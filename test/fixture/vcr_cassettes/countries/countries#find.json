@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/country/2"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"id\":2,\"country_id\":2,\"country_name\":\"Aruba\",\"country_tld\":\".aw\",\"country_cca2\":\"AW\",\"country_cca3\":\"ABW\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/country\\/2\"}}}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

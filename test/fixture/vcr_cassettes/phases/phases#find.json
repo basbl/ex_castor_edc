@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/phase/7808FFAB-6B69-4DD6-8E5F-DDF2D5D0115A"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"id\":\"7808FFAB-6B69-4DD6-8E5F-DDF2D5D0115A\",\"phase_id\":\"7808FFAB-6B69-4DD6-8E5F-DDF2D5D0115A\",\"phase_description\":null,\"phase_name\":\"Patient characteristics\",\"phase_duration\":null,\"phase_order\":1,\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/phase\\/7808FFAB-6B69-4DD6-8E5F-DDF2D5D0115A\"}}}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

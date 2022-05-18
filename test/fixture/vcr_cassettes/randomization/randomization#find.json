@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/record/110001/randomization"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"randomization_group_name\":\"Group 1\",\"randomization_group\":\"1\",\"randomized_id\":\"001\",\"randomized_on\":{\"date\":\"2022-05-07 11:43:12.000000\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/record\\/110001\\/randomization\"}}}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

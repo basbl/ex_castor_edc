@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/role/Admin"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"name\":\"Admin\",\"description\":\"\",\"permissions\":{\"add\":true,\"view\":true,\"edit\":true,\"delete\":true,\"lock\":true,\"query\":true,\"export\":true,\"randomization_read\":true,\"randomization_write\":true,\"sign\":true,\"email_addresses\":true,\"sdv\":true,\"survey_send\":true,\"survey_view\":true},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/role\\/Admin\"}}}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

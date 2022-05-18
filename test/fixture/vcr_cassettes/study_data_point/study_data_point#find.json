@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/record/110001/data-point/study/79F398C8-7B4A-49B4-8A60-85347EC176E6"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"record_id\":\"110001\",\"field_variable_name\":\"dx_his_diabetes\",\"field_id\":\"79F398C8-7B4A-49B4-8A60-85347EC176E6\",\"value\":\"9\",\"updated_on\":\"2020-11-28 09:07:55\",\"_embedded\":{\"record\":{\"id\":\"110001\",\"record_id\":\"110001\",\"record_status\":null,\"ccr_patient_id\":\"\",\"last_opened_step\":\"494D8D96-9607-40C6-B4E9-CAFF4A55B16C\",\"progress\":96,\"locked\":false,\"status\":\"open\",\"archived\":false,\"archived_reason\":null,\"created_by\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"created_on\":{\"date\":\"2022-05-02 19:42:32.000000\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"updated_by\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"updated_on\":{\"date\":\"2022-05-07 11:43:12.000000\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"randomized_id\":\"001\",\"randomization_group\":\"1\",\"randomization_group_name\":\"Group 1\",\"randomized_on\":{\"date\":\"2022-05-07 11:43:12.000000\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"_embedded\":{\"institute\":{\"id\":\"DC58372A-5ECF-4F0D-951D-8AA1E7390882\",\"institute_id\":\"DC58372A-5ECF-4F0D-951D-8AA1E7390882\",\"name\":\"Castor\",\"abbreviation\":\"CSTR\",\"code\":null,\"order\":11,\"deleted\":false,\"country_id\":169,\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/institute\\/DC58372A-5ECF-4F0D-951D-8AA1E7390882\"}}}},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/record\\/110001\"}}},\"field\":{\"id\":\"79F398C8-7B4A-49B4-8A60-85347EC176E6\",\"parent_id\":\"D7AFCBA2-86E0-4312-B7D2-68894CE7E421\",\"field_id\":\"79F398C8-7B4A-49B4-8A60-85347EC176E6\",\"field_number\":4,\"field_label\":\"History of diabetes\",\"field_variable_name\":\"dx_his_diabetes\",\"field_type\":\"radio\",\"field_required\":1,\"field_hidden\":0,\"field_info\":\"\",\"field_units\":\"\",\"field_min\":null,\"field_min_label\":\"\",\"field_max\":null,\"field_max_label\":\"\",\"field_enforce_decimals\":null,\"field_summary_template\":\"\",\"field_slider_step\":null,\"field_image\":\"\",\"report_id\":\"\",\"field_length\":null,\"additional_config\":\"\",\"exclude_on_data_export\":false,\"option_group\":null,\"metadata_points\":[],\"validations\":[],\"dependency_parents\":[],\"dependency_children\":[],\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/field\\/79F398C8-7B4A-49B4-8A60-85347EC176E6\"}}}},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/record\\/110001\\/data-point\\/study\\/79F398C8-7B4A-49B4-8A60-85347EC176E6\"}}}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/metadata/00F382C3-9ED6-4283-A0E1-98EA209C65FE"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"id\":\"00F382C3-9ED6-4283-A0E1-98EA209C65FE\",\"metadata_type\":{\"id\":1,\"name\":\"LOINC\",\"description\":\"Ble\"},\"parent_id\":null,\"value\":\"is\",\"description\":\"year\",\"element_type\":\"Field\",\"element_id\":\"6997DADD-4160-4E7F-9C76-9F089840FBED\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/metadata\\/00F382C3-9ED6-4283-A0E1-98EA209C65FE\"}}}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

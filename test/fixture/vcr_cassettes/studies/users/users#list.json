@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/7AD4616E-B169-4F9E-9982-F626099B84C0/user"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/7AD4616E-B169-4F9E-9982-F626099B84C0\\/user\"}},\"_embedded\":{\"studyUsers\":[{\"id\":\"8F654747-3561-4C90-BD8F-B21320DA7862\",\"user_id\":\"8F654747-3561-4C90-BD8F-B21320DA7862\",\"entity_id\":\"8F654747-3561-4C90-BD8F-B21320DA7862\",\"full_name\":\"John Doe\",\"name_first\":\"John\",\"name_middle\":null,\"name_last\":\"Doe\",\"email_address\":\"example@example.org\",\"institute\":null,\"department\":null,\"last_login\":\"2022-01-27 21:08:45\",\"manage_permissions\":{\"manage_records\":true,\"manage_form\":true,\"manage_users\":true,\"manage_settings\":true,\"manage_encryption\":true},\"institute_permissions\":[{\"add\":true,\"view\":true,\"edit\":true,\"delete\":true,\"lock\":true,\"query\":true,\"export\":true,\"randomization_read\":true,\"randomization_write\":true,\"sign\":true,\"encrypt\":false,\"decrypt\":false,\"email_addresses\":true,\"sdv\":true,\"survey_send\":true,\"survey_view\":true,\"televisit\":true,\"institute_id\":\"0F3CEC48-45DB-440D-A23E-65478CB480A0\",\"role\":null},{\"add\":true,\"view\":true,\"edit\":true,\"delete\":true,\"lock\":true,\"query\":true,\"export\":true,\"randomization_read\":true,\"randomization_write\":true,\"sign\":true,\"encrypt\":false,\"decrypt\":false,\"email_addresses\":true,\"sdv\":true,\"survey_send\":true,\"survey_view\":true,\"televisit\":true,\"institute_id\":\"44A6D11D-84B5-4983-9B32-C06297349193\",\"role\":null}],\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/user\\/8F654747-3561-4C90-BD8F-B21320DA7862\"}}}]},\"total_items\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

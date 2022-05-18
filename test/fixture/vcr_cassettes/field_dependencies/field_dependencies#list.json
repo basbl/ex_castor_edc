@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-dependency"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-dependency?page=1\"},\"first\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-dependency\"},\"last\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-dependency?page=1\"}},\"_embedded\":{\"fieldDependencies\":[{\"id\":1,\"operator\":\"==\",\"value\":\"14\",\"parent_id\":\"73CAD717-F70B-420F-9777-CF363D8A8FFE\",\"child_id\":\"53CAAC60-5535-49B2-A042-D6B093CB8E35\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-dependency\\/1\"}}},{\"id\":2,\"operator\":\"!=\",\"value\":\"0\",\"parent_id\":\"7A54DBD7-5EC2-41D5-B566-BA31AF3201FD\",\"child_id\":\"DA0E5397-051D-4437-A085-E94D5855B5CF\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-dependency\\/2\"}}},{\"id\":3,\"operator\":\"!=\",\"value\":\"0\",\"parent_id\":\"7A54DBD7-5EC2-41D5-B566-BA31AF3201FD\",\"child_id\":\"E6D2AC9B-4A74-40C4-A69C-12BD2895D81C\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-dependency\\/3\"}}},{\"id\":4,\"operator\":\"==\",\"value\":\"3\",\"parent_id\":\"C8F92082-B29C-4A23-88ED-46F83705F3BF\",\"child_id\":\"056D86C0-9A95-4E07-8BE2-26527C7667A7\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-dependency\\/4\"}}},{\"id\":5,\"operator\":\"==\",\"value\":\"2\",\"parent_id\":\"C8F92082-B29C-4A23-88ED-46F83705F3BF\",\"child_id\":\"3CB8F5BA-398A-49E9-8B9D-3E73ADAB7815\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-dependency\\/5\"}}},{\"id\":6,\"operator\":\"==\",\"value\":\"2\",\"parent_id\":\"C8F92082-B29C-4A23-88ED-46F83705F3BF\",\"child_id\":\"92EC67EE-35C3-4FCF-B129-90B05CD4FA00\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-dependency\\/6\"}}}]},\"page_count\":1,\"page_size\":25,\"total_items\":6,\"page\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

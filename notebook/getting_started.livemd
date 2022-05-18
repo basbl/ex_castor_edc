@@ -1,0 +1,188 @@
+# Getting started with the Castor EDC API
+
+```elixir
+Mix.install([
+  {:ex_castor_edc, "~> 0.1.0"},
+  {:kino, "~> 0.6.1"}
+])
+```
+
+## Introduction
+
+This notebook serves as an introduction on how to use the API wrapper. It's not meant to be an exhaustive guide.
+
+## Authentication
+
+Before we can start making requests to the API we need to have a `client_id` and a `client_secret`. You can get this information from the [account settings page](https://data.castoredc.com/account/settings).
+
+Enter your `client_id` and `client_secret` in the form below after evaluating the code-block.
+
+```elixir
+endpoints = [
+  {"https://data.castoredc.com/", "https://data.castoredc.com/"},
+  {"https://uk.castoredc.com/", "https://uk.castoredc.com/"},
+  {"https://us.castoredc.com/", "https://us.castoredc.com/"},
+  {"https://au.castoredc.com/", "https://au.castoredc.com/"}
+]
+
+client_id = Kino.Input.text("Client Id") |> Kino.render()
+client_secret = Kino.Input.password("Client Secret") |> Kino.render()
+endpoint = Kino.Input.select("My studies run on", endpoints) |> Kino.render()
+
+Kino.nothing()
+```
+
+Next we need to exchange your `client_id` and `client_secret` for an access token. The access token can then be used to make other requests to the API.
+
+```elixir
+client =
+  CastorEDC.authenticate(
+    CastorEDC.Client.new(
+      Kino.Input.read(client_id),
+      Kino.Input.read(client_secret),
+      Kino.Input.read(endpoint)
+    )
+  )
+
+client
+```
+
+## Performing authenticated API requests
+
+Let's start at the beginning and fetch all of the studies that you have access to with your account.
+
+All function calls return a 3 element tuple. The first element is the http status code, the second element is the decoded response from the API, and the last element is the raw response that came back from the server.
+
+We'll make extensive use of pattern-matching to collect that the data that we're interested in, while ignoring the rest.
+
+Most API calls support pagination but we'll mostly focus on the first page of the results. If you want to fetch the second page it's possible to pass the page number as a keyword option e.g. `page: 2`
+
+```elixir
+{200, %{"_embedded" => %{"study" => studies}}, _} = CastorEDC.Common.Studies.list(client)
+
+studies
+```
+
+Now that we have a list of all the studies we'll need to pick one to dig deeper into with further API requests.
+
+```elixir
+studies =
+  studies
+  |> Enum.map(&{&1["study_id"], &1["name"]})
+  |> Enum.sort(fn {_, a}, {_, b} -> a <= b end)
+
+study_id = Kino.Input.select("Select a study", studies)
+```
+
+Let's read the chosen study into an easily accessible variable that we can reuse with other requests.
+
+```elixir
+study_id = Kino.Input.read(study_id)
+```
+
+## Institutes
+
+With a study id in our hands we can start digging, let's start with finding out which institutes the study is being conducted in!
+
+You'll get the option to also run write calls against the API. Make sure that you've chosen a test institute as to not put data where it doesn't belong.
+
+```elixir
+{200, %{"_embedded" => %{"institutes" => institutes}}, _} =
+  CastorEDC.Common.Institutes.list(client, study_id)
+
+institutes =
+  institutes
+  |> Enum.filter(&(&1["deleted"] == false))
+  |> Enum.map(&{&1["id"], &1["name"]})
+
+institute_id = Kino.Input.select("Choose your test institute", institutes)
+```
+
+```elixir
+institute_id = Kino.Input.read(institute_id)
+```
+
+<!-- livebook:{"branch_parent_index":3} -->
+
+## Records
+
+The `CastorEDC.Records` module is our gateway into fetching information about our records. We can either fetch entire lists or fetch specific ones. With the `create` function we can even directly create new ones in our study.
+
+Let's start with fetching the first 10.
+
+```elixir
+{200, %{"_embedded" => %{"records" => records}}, _} =
+  CastorEDC.DataCollection.Records.list(client, study_id, page_size: 10)
+
+records
+```
+
+As you can see we now have a list of all the records enrolled in the the study. Let's take the first one from the list and find out more about it.
+
+```elixir
+[%{"id" => record_id} | _] = records
+
+{200, record, _} = CastorEDC.DataCollection.Records.find(client, study_id, record_id)
+
+record
+```
+
+It's also possible to create new Records via the API allowing for the enrollment of records through external systems.
+
+**Before you evaluate the code-block below double-check the selected institute, you also need record creation permission for the given institute.**
+
+```elixir
+{201, new_record, _} =
+  CastorEDC.DataCollection.Records.create(client, study_id, %{institute_id: institute_id})
+
+new_record
+```
+
+<!-- livebook:{"branch_parent_index":2} -->
+
+## Study Structure
+
+It's also possible to fetch the elements
+
+```elixir
+{200, %{"_embedded" => %{"phases" => phases}}, _} =
+  CastorEDC.StudyProtocol.Phases.list(client, study_id)
+
+phases
+|> Enum.sort(&(&1["phase_order"] <= &2["phase_order"]))
+```
+
+```elixir
+{200, %{"_embedded" => %{"steps" => steps}}, _} =
+  CastorEDC.StudyProtocol.Steps.list(client, study_id)
+
+steps
+|> Enum.sort(&(&1["step_order"] <= &2["step_order"]))
+```
+
+```elixir
+{200, %{"_embedded" => %{"fields" => fields}}, _} =
+  CastorEDC.StudyProtocol.Fields.list(client, study_id)
+
+fields
+```
+
+<!-- livebook:{"branch_parent_index":2} -->
+
+## Collected Data
+
+## Study Data
+
+Fetching your study data is easy. Remember that this API call is paginated, so you'll need to make multiple API calls to actually get everything.
+
+As an example we'll only fetch the first 10 data points on page 1.
+
+```elixir
+{200, %{"_embedded" => %{"items" => study_data_points}}, _} =
+  CastorEDC.DataCollection.DataPoints.StudyDataPointCollection.list(client, study_id,
+    page: 1,
+    page_size: 10
+  )
+
+study_data_points
+```

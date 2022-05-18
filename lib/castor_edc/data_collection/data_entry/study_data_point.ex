@@ -1,0 +1,47 @@
+defmodule CastorEDC.DataCollection.DataEntry.StudyDataPoint do
+  @moduledoc """
+  Provides access to study data point related endpoints
+  """
+
+  import CastorEDC
+  alias CastorEDC.Client
+
+  @doc """
+  List all collected study data points for a record
+
+  [More info](https://data.castoredc.com/api#/study-data-entry/get_study__study_id__record__record_id__data_point_study)
+  """
+  def list(%Client{} = client, study_id, record_id, params \\ []) do
+    get(
+      "api/study/" <> study_id <> "/record/" <> record_id <> "/data-point/study",
+      client,
+      params
+    )
+  end
+
+  @doc """
+  Find collected study data point for a record in a field
+
+  [More info](https://data.castoredc.com/api#/study-data-entry/get_study__study_id__record__record_id__study_data_point__field_id_)
+  """
+  def find(%Client{} = client, study_id, record_id, field_id, params \\ []) do
+    get(
+      "api/study/" <> study_id <> "/record/" <> record_id <> "/data-point/study/" <> field_id,
+      client,
+      params
+    )
+  end
+
+  @doc """
+  Create a new data point for a record
+
+  [More info](https://data.castoredc.com/api#/study-data-entry/post_study__study_id__record__record_id__study_data_point__field_id_)
+  """
+  def create(%Client{} = client, study_id, record_id, field_id, body) do
+    post(
+      "api/study/" <> study_id <> "/record/" <> record_id <> "/data-point/study/" <> field_id,
+      client,
+      body
+    )
+  end
+end

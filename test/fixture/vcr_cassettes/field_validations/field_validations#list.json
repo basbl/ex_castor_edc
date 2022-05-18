@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-validation"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-validation?page=1\"},\"first\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-validation\"},\"last\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-validation?page=1\"}},\"_embedded\":{\"fieldValidations\":[{\"id\":1,\"type\":\"warning\",\"value\":\"NOW\",\"operator\":\"\\u003E\",\"text\":\"This date is in the future\",\"field_id\":\"2265F06E-2506-493A-BCD1-AA5D1B32ED0B\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-validation\\/1\"}}},{\"id\":2,\"type\":\"warning\",\"value\":\"0\",\"operator\":\"\\u003C=\",\"text\":\"Enter number of packs per day, i.e. more than 0\",\"field_id\":\"E6D2AC9B-4A74-40C4-A69C-12BD2895D81C\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-validation\\/2\"}}},{\"id\":3,\"type\":\"warning\",\"value\":\"4\",\"operator\":\"\\u003E=\",\"text\":\"Enter number of packs per day (not number of cigarettes, cigars etc)\",\"field_id\":\"E6D2AC9B-4A74-40C4-A69C-12BD2895D81C\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-validation\\/3\"}}},{\"id\":4,\"type\":\"warning\",\"value\":\"NOW\",\"operator\":\"\\u003E\",\"text\":\"Date is in the future, please correct\",\"field_id\":\"EED98E44-95A3-4AEA-8598-96A588C3FDA3\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-validation\\/4\"}}},{\"id\":5,\"type\":\"warning\",\"value\":\"NOW\",\"operator\":\"\\u003E\",\"text\":\"Date of death is in the future!\",\"field_id\":\"056D86C0-9A95-4E07-8BE2-26527C7667A7\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-validation\\/5\"}}},{\"id\":6,\"type\":\"warning\",\"value\":\"NOW\",\"operator\":\"\\u003E\",\"text\":\"Date is in the future!\",\"field_id\":\"3CB8F5BA-398A-49E9-8B9D-3E73ADAB7815\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-validation\\/6\"}}}]},\"page_count\":1,\"page_size\":25,\"total_items\":6,\"page\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

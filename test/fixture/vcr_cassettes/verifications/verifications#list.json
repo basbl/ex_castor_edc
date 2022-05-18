@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/verification"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/verification?page=1\"},\"first\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/verification\"},\"last\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/verification?page=1\"}},\"_embedded\":{\"verifications\":[{\"id\":1,\"record_id\":\"110001\",\"entity_type\":\"step\",\"entity_id\":\"494D8D96-9607-40C6-B4E9-CAFF4A55B16C\",\"parent_id\":\"\",\"verified_by\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"verified_on\":{\"date\":\"2022-05-13 12:26:15.000000\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"status\":\"active\",\"dropped_by\":null,\"dropped_on\":null,\"changed_field\":null,\"_embedded\":{\"verification_type\":{\"id\":1,\"name\":\"Source Data Verification\",\"is_sdv\":true,\"_links\":[]}},\"_links\":[]},{\"id\":2,\"record_id\":\"110001\",\"entity_type\":\"field\",\"entity_id\":\"7BC52BB4-4848-4271-AE32-7AAD0ECE941F\",\"parent_id\":\"\",\"verified_by\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"verified_on\":{\"date\":\"2022-05-13 12:26:15.000000\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"status\":\"active\",\"dropped_by\":null,\"dropped_on\":null,\"changed_field\":null,\"_embedded\":{\"verification_type\":{\"id\":1,\"name\":\"Source Data Verification\",\"is_sdv\":true,\"_links\":[]}},\"_links\":[]},{\"id\":3,\"record_id\":\"110001\",\"entity_type\":\"field\",\"entity_id\":\"CA277BFD-C5BD-47F7-A70B-54A9D02F3AB0\",\"parent_id\":\"\",\"verified_by\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"verified_on\":{\"date\":\"2022-05-13 12:26:15.000000\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"status\":\"active\",\"dropped_by\":null,\"dropped_on\":null,\"changed_field\":null,\"_embedded\":{\"verification_type\":{\"id\":1,\"name\":\"Source Data Verification\",\"is_sdv\":true,\"_links\":[]}},\"_links\":[]},{\"id\":4,\"record_id\":\"110001\",\"entity_type\":\"field\",\"entity_id\":\"DBE4B321-5A29-4D3C-A788-6F84384F80B5\",\"parent_id\":\"\",\"verified_by\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"verified_on\":{\"date\":\"2022-05-13 12:26:15.000000\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"status\":\"active\",\"dropped_by\":null,\"dropped_on\":null,\"changed_field\":null,\"_embedded\":{\"verification_type\":{\"id\":1,\"name\":\"Source Data Verification\",\"is_sdv\":true,\"_links\":[]}},\"_links\":[]},{\"id\":5,\"record_id\":\"110001\",\"entity_type\":\"field\",\"entity_id\":\"A8035A51-9058-4EAC-B8CD-868E1058AFB8\",\"parent_id\":\"\",\"verified_by\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"verified_on\":{\"date\":\"2022-05-13 12:26:15.000000\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"status\":\"active\",\"dropped_by\":null,\"dropped_on\":null,\"changed_field\":null,\"_embedded\":{\"verification_type\":{\"id\":1,\"name\":\"Source Data Verification\",\"is_sdv\":true,\"_links\":[]}},\"_links\":[]},{\"id\":6,\"record_id\":\"110001\",\"entity_type\":\"field\",\"entity_id\":\"E06C2A29-6192-41D0-8F3C-4F40AD2DAF24\",\"parent_id\":\"\",\"verified_by\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"verified_on\":{\"date\":\"2022-05-13 12:26:15.000000\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"status\":\"active\",\"dropped_by\":null,\"dropped_on\":null,\"changed_field\":null,\"_embedded\":{\"verification_type\":{\"id\":1,\"name\":\"Source Data Verification\",\"is_sdv\":true,\"_links\":[]}},\"_links\":[]}]},\"page_count\":1,\"page_size\":25,\"total_items\":6,\"page\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/user"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/user\"}},\"_embedded\":{\"user\":[{\"id\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"user_id\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"entity_id\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"full_name\":\"John Doe\",\"name_first\":\"John\",\"name_middle\":null,\"name_last\":\"Doe\",\"email_address\":\"example@example.org\",\"institute\":null,\"department\":null,\"last_login\":\"2022-05-12 15:12:37\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/user\\/D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\"}}}]},\"total_items\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,70 @@
+defmodule CastorEDC.MixProject do
+  use Mix.Project
+
+  @version "0.1.0"
+  @source_url "https://github.com/basbl/ex_castor_edc/"
+  @homepage_url "https://www.castoredc.com/"
+
+  def project do
+    [
+      app: :ex_castor_edc,
+      version: @version,
+      elixir: "~> 1.11",
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.html": :test,
+        "coveralls.post": :test,
+        vcr: :test,
+        "vcr.delete": :test,
+        "vcr.check": :test,
+        "vcr.show": :test
+      ],
+      start_permanent: Mix.env() == :prod,
+      deps: deps(),
+      package: package(),
+
+      # docs
+      name: "ExCastorEDC",
+      source_url: @source_url,
+      homepage_url: @homepage_url,
+      docs: [
+        main: "readme",
+        extras: ["README.md"]
+      ]
+    ]
+  end
+
+  defp package do
+    [
+      description: "Elixir wrapper for the Castor EDC API",
+      maintainers: ["Bas Bloembergen"],
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => @source_url,
+        "Homepage" => @homepage_url
+      }
+    ]
+  end
+
+  # Run "mix help compile.app" to learn about applications.
+  def application do
+    [
+      extra_applications: [:logger]
+    ]
+  end
+
+  # Run "mix help deps" to learn about dependencies.
+  defp deps do
+    [
+      {:jason, ">= 1.0.0"},
+      {:castore, "~> 0.1"},
+      {:httpoison, "~> 1.0"},
+      {:exvcr, "~> 0.11", only: :test},
+      {:excoveralls, "~> 0.10", only: :test},
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.27", only: :dev, runtime: false}
+    ]
+  end
+end

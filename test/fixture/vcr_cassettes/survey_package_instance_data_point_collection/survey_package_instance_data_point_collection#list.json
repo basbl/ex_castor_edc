@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/data-point-collection/survey-package-instance/E8ECA57E-4204-4D22-85F5-10D8FF50913F"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/data-point-collection\\/survey-package-instance\\/E8ECA57E-4204-4D22-85F5-10D8FF50913F?page=1\"},\"first\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/data-point-collection\\/survey-package-instance\\/E8ECA57E-4204-4D22-85F5-10D8FF50913F\"},\"last\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/data-point-collection\\/survey-package-instance\\/E8ECA57E-4204-4D22-85F5-10D8FF50913F?page=1\"}},\"_embedded\":{\"items\":[{\"field_id\":\"37B37AA1-03EA-4654-B297-D1E30160F6EC\",\"field_value\":\"1\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-21 20:14:45\",\"survey_instance_id\":\"478ABB09-F259-4C53-A02E-B91B12F55F69\",\"survey_name\":\"Short Form Health Survey SF-36\",\"survey_package_instance_id\":\"E8ECA57E-4204-4D22-85F5-10D8FF50913F\"},{\"field_id\":\"89DBBDDE-D2F0-4ECD-A226-23DB23862FB4\",\"field_value\":\"2\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-21 20:14:45\",\"survey_instance_id\":\"478ABB09-F259-4C53-A02E-B91B12F55F69\",\"survey_name\":\"Short Form Health Survey SF-36\",\"survey_package_instance_id\":\"E8ECA57E-4204-4D22-85F5-10D8FF50913F\"},{\"field_id\":\"D2F4E603-796B-4A23-915D-0ECA5BAA3F88\",\"field_value\":\"2\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-21 20:14:46\",\"survey_instance_id\":\"478ABB09-F259-4C53-A02E-B91B12F55F69\",\"survey_name\":\"Short Form Health Survey SF-36\",\"survey_package_instance_id\":\"E8ECA57E-4204-4D22-85F5-10D8FF50913F\"},{\"field_id\":\"DD512889-BA3F-4F1B-8595-4EC457BD8BF3\",\"field_value\":\"2\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-21 20:14:47\",\"survey_instance_id\":\"478ABB09-F259-4C53-A02E-B91B12F55F69\",\"survey_name\":\"Short Form Health Survey SF-36\",\"survey_package_instance_id\":\"E8ECA57E-4204-4D22-85F5-10D8FF50913F\"}]},\"page_count\":1,\"page_size\":500,\"total_items\":4,\"page\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

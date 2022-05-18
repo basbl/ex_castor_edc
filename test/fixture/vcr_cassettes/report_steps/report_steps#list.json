@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/07362069-A506-43F0-BB92-A82FF5C46D59/report-step"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/report\\/07362069-A506-43F0-BB92-A82FF5C46D59\\/report-step?page=1\"},\"first\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/report\\/07362069-A506-43F0-BB92-A82FF5C46D59\\/report-step\"},\"last\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/report\\/07362069-A506-43F0-BB92-A82FF5C46D59\\/report-step?page=1\"}},\"_embedded\":{\"report_steps\":[{\"id\":\"0EFBA357-F714-4AE7-A6C9-155570EF3B3D\",\"report_step_id\":\"0EFBA357-F714-4AE7-A6C9-155570EF3B3D\",\"report_step_name\":\"Physical exam\",\"report_step_description\":\"\",\"report_step_number\":1,\"_embedded\":{\"report\":{\"id\":\"07362069-A506-43F0-BB92-A82FF5C46D59\",\"report_id\":\"07362069-A506-43F0-BB92-A82FF5C46D59\",\"name\":\"Unscheduled visit\",\"description\":\"Follow-up visit\",\"type\":\"unscheduled_phase\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/report\\/07362069-A506-43F0-BB92-A82FF5C46D59\"}}}},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/report\\/07362069-A506-43F0-BB92-A82FF5C46D59\\/report-step\\/0EFBA357-F714-4AE7-A6C9-155570EF3B3D\"}}},{\"id\":\"2DE87A09-6FC7-493E-BB6F-5D36D74E1FA7\",\"report_step_id\":\"2DE87A09-6FC7-493E-BB6F-5D36D74E1FA7\",\"report_step_name\":\"Laboratory\",\"report_step_description\":\"\",\"report_step_number\":2,\"_embedded\":{\"report\":{\"id\":\"07362069-A506-43F0-BB92-A82FF5C46D59\",\"report_id\":\"07362069-A506-43F0-BB92-A82FF5C46D59\",\"name\":\"Unscheduled visit\",\"description\":\"Follow-up visit\",\"type\":\"unscheduled_phase\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/report\\/07362069-A506-43F0-BB92-A82FF5C46D59\"}}}},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/report\\/07362069-A506-43F0-BB92-A82FF5C46D59\\/report-step\\/2DE87A09-6FC7-493E-BB6F-5D36D74E1FA7\"}}}]},\"page_count\":1,\"page_size\":25,\"total_items\":2,\"page\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

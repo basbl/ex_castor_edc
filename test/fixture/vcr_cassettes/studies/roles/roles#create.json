@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "{\"description\":\"Role added through the API\",\"name\":\"NewCustomRole\",\"permissions\":{\"add\":true,\"delete\":true,\"edit\":false,\"email_addresses\":true,\"export\":false,\"lock\":true,\"query\":false,\"randomization_read\":true,\"randomization_write\":false,\"sdv\":true,\"sign\":false,\"survey_send\":true,\"survey_view\":false,\"televisit\":true,\"view\":true}}",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "post",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/role"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"name\":\"NewCustomRole\",\"description\":\"Role added through the API\",\"permissions\":{\"add\":true,\"view\":true,\"edit\":false,\"delete\":true,\"lock\":true,\"query\":false,\"export\":false,\"randomization_read\":true,\"sign\":false,\"email_addresses\":true,\"randomization_write\":false,\"sdv\":true,\"survey_send\":true,\"survey_view\":false,\"televisit\":true},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/role\"}}}",
+      "status_code": 201,
+      "type": "ok"
+    }
+  }
+]

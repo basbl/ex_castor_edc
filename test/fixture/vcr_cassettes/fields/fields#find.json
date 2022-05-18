@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field/4282728F-D112-4F96-99E2-2DDDFF012EC4"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"id\":\"4282728F-D112-4F96-99E2-2DDDFF012EC4\",\"parent_id\":\"93819F3F-F0FC-4263-B499-44CE356198B3\",\"field_id\":\"4282728F-D112-4F96-99E2-2DDDFF012EC4\",\"field_number\":32,\"field_label\":\"Did you have a lot of energy?\",\"field_variable_name\":\"sf36_9e\",\"field_type\":\"radio\",\"field_required\":1,\"field_hidden\":0,\"field_info\":\"\",\"field_units\":\"\",\"field_min\":null,\"field_min_label\":\"\",\"field_max\":null,\"field_max_label\":\"\",\"field_enforce_decimals\":null,\"field_summary_template\":\"\",\"field_slider_step\":null,\"field_image\":\"\",\"report_id\":\"\",\"field_length\":null,\"additional_config\":\"\",\"exclude_on_data_export\":false,\"option_group\":null,\"metadata_points\":[],\"validations\":[],\"dependency_parents\":[],\"dependency_children\":[],\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field\\/4282728F-D112-4F96-99E2-2DDDFF012EC4\"}}}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

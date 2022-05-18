@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-dependency/6"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"id\":6,\"operator\":\"==\",\"value\":\"2\",\"parent_id\":\"C8F92082-B29C-4A23-88ED-46F83705F3BF\",\"child_id\":\"92EC67EE-35C3-4FCF-B129-90B05CD4FA00\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-dependency\\/6\"}}}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

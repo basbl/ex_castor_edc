@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-validation/6"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"id\":6,\"type\":\"warning\",\"value\":\"NOW\",\"operator\":\"\\u003E\",\"text\":\"Date is in the future!\",\"field_id\":\"3CB8F5BA-398A-49E9-8B9D-3E73ADAB7815\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/field-validation\\/6\"}}}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

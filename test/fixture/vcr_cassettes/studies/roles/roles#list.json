@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/role"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/role\"}},\"_embedded\":{\"roles\":[{\"name\":\"Admin\",\"description\":\"\",\"permissions\":{\"add\":true,\"view\":true,\"edit\":true,\"delete\":true,\"lock\":true,\"query\":true,\"export\":true,\"randomization_read\":true,\"randomization_write\":true,\"sign\":true,\"email_addresses\":true,\"sdv\":true,\"survey_send\":true,\"survey_view\":true},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/role\\/Admin\"}}},{\"name\":\"Monitor\",\"description\":\"\",\"permissions\":{\"add\":false,\"view\":true,\"edit\":false,\"delete\":false,\"lock\":false,\"query\":true,\"export\":false,\"randomization_read\":false,\"randomization_write\":false,\"sign\":false,\"email_addresses\":false,\"sdv\":true,\"survey_send\":false,\"survey_view\":false},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/role\\/Monitor\"}}},{\"name\":\"Blabla\",\"description\":null,\"permissions\":{\"add\":false,\"view\":false,\"edit\":false,\"delete\":false,\"lock\":false,\"query\":false,\"export\":false,\"randomization_read\":false,\"randomization_write\":false,\"sign\":false,\"email_addresses\":false,\"sdv\":false,\"survey_send\":false,\"survey_view\":false},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/role\\/Blabla\"}}}]},\"total_items\":3}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

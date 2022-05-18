@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/02F149C6-A94E-45DD-93E8-E9849C36692F"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"id\":\"02F149C6-A94E-45DD-93E8-E9849C36692F\",\"name\":\"Status\",\"description\":\"\",\"layout\":false,\"options\":[{\"id\":\"41CDFFF6-7D3F-4B68-8C71-BF0BE7B2919D\",\"name\":\"Under follow-up\",\"value\":\"0\",\"groupOrder\":0},{\"id\":\"47BE6114-D03F-4505-9D7F-228594C7A1DB\",\"name\":\"Referred back to GP\",\"value\":\"1\",\"groupOrder\":1},{\"id\":\"06DE3EA2-57A1-451E-84F9-C4C70A593C31\",\"name\":\"Lost to follow-up\",\"value\":\"2\",\"groupOrder\":2},{\"id\":\"DB1A0B19-898D-4352-9DFE-8A0E09E525AC\",\"name\":\"Death\",\"value\":\"3\",\"groupOrder\":3}],\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/field-optiongroup\\/02F149C6-A94E-45DD-93E8-E9849C36692F\"}}}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

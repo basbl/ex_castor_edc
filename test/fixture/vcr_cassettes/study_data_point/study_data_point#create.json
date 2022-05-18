@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "{\"field_value\":\"1984\"}",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "post",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/record/110004/data-point/study/7BC52BB4-4848-4271-AE32-7AAD0ECE941F"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"record_id\":\"110004\",\"field_variable_name\":\"pat_birth_year\",\"field_id\":\"7BC52BB4-4848-4271-AE32-7AAD0ECE941F\",\"value\":\"1984\",\"updated_on\":\"2022-05-13 14:17:30\",\"_embedded\":{\"record\":{\"id\":\"110004\",\"record_id\":\"110004\",\"record_status\":null,\"ccr_patient_id\":\"\",\"last_opened_step\":\"494D8D96-9607-40C6-B4E9-CAFF4A55B16C\",\"progress\":96,\"locked\":false,\"status\":\"open\",\"archived\":false,\"archived_reason\":null,\"created_by\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"created_on\":{\"date\":\"2022-05-02 19:42:32.000000\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"updated_by\":\"D6A16E39-B3CE-4441-BD7A-43AA1B53A43E\",\"updated_on\":{\"date\":\"2022-05-13 14:17:30.499091\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"randomized_id\":null,\"randomization_group\":null,\"randomization_group_name\":null,\"randomized_on\":null,\"_embedded\":{\"institute\":{\"id\":\"DC58372A-5ECF-4F0D-951D-8AA1E7390882\",\"institute_id\":\"DC58372A-5ECF-4F0D-951D-8AA1E7390882\",\"name\":\"Castor\",\"abbreviation\":\"CSTR\",\"code\":null,\"order\":11,\"deleted\":false,\"country_id\":169,\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/institute\\/DC58372A-5ECF-4F0D-951D-8AA1E7390882\"}}}},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/record\\/110004\"}}},\"field\":{\"id\":\"7BC52BB4-4848-4271-AE32-7AAD0ECE941F\",\"parent_id\":\"494D8D96-9607-40C6-B4E9-CAFF4A55B16C\",\"field_id\":\"7BC52BB4-4848-4271-AE32-7AAD0ECE941F\",\"field_number\":1,\"field_label\":\"Year of birth\",\"field_variable_name\":\"pat_birth_year\",\"field_type\":\"year\",\"field_required\":1,\"field_hidden\":0,\"field_info\":\"\",\"field_units\":\"\",\"field_min\":1900,\"field_min_label\":\"\",\"field_max\":2100,\"field_max_label\":\"\",\"field_enforce_decimals\":null,\"field_summary_template\":\"\",\"field_slider_step\":null,\"field_image\":\"\",\"report_id\":\"\",\"field_length\":5,\"additional_config\":\"\",\"exclude_on_data_export\":false,\"option_group\":null,\"metadata_points\":[],\"validations\":[],\"dependency_parents\":[],\"dependency_children\":[],\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/field\\/7BC52BB4-4848-4271-AE32-7AAD0ECE941F\"}}}},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/record\\/110004\\/data-point\\/study\\/7BC52BB4-4848-4271-AE32-7AAD0ECE941F\"}}}",
+      "status_code": 201,
+      "type": "ok"
+    }
+  }
+]

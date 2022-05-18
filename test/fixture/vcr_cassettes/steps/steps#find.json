@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/step/E30A339F-0470-451C-B8EF-115B53D8F76B"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"id\":\"E30A339F-0470-451C-B8EF-115B53D8F76B\",\"step_id\":\"E30A339F-0470-451C-B8EF-115B53D8F76B\",\"step_name\":\"Physical exam\",\"step_order\":6,\"step_description\":\"Contains physical exam data from this visit\",\"_embedded\":{\"phase\":{\"id\":\"2C4665E9-BB2C-4C9D-B644-558719C9F1C2\",\"phase_id\":\"2C4665E9-BB2C-4C9D-B644-558719C9F1C2\",\"phase_description\":null,\"phase_name\":\"Follow-up\",\"phase_duration\":null,\"phase_order\":3,\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/phase\\/2C4665E9-BB2C-4C9D-B644-558719C9F1C2\"}}}},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/step\\/E30A339F-0470-451C-B8EF-115B53D8F76B\"}}}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

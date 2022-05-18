@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/survey?page=1\"},\"first\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/survey\"},\"last\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/survey?page=1\"}},\"_embedded\":{\"surveys\":[{\"id\":\"83F352DC-816B-4387-A13E-6D716D44AE83\",\"survey_id\":\"83F352DC-816B-4387-A13E-6D716D44AE83\",\"name\":\"Short Form Health Survey SF-36\",\"description\":\"\",\"intro_text\":\"\",\"outro_text\":\"\",\"survey_steps\":[],\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/survey\\/83F352DC-816B-4387-A13E-6D716D44AE83\"}}},{\"id\":\"A2E43B9D-21A3-49A7-BED0-F82F071DDFA3\",\"survey_id\":\"A2E43B9D-21A3-49A7-BED0-F82F071DDFA3\",\"name\":\"Generalised Anxiety Disorder Questionnaire (GAD-7)\",\"description\":\"\",\"intro_text\":\"\",\"outro_text\":\"\",\"survey_steps\":[],\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/survey\\/A2E43B9D-21A3-49A7-BED0-F82F071DDFA3\"}}}]},\"page_count\":1,\"page_size\":25,\"total_items\":2,\"page\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

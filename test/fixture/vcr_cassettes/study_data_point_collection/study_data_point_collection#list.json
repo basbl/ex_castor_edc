@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/data-point-collection/study"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/data-point-collection\\/study?page=1\"},\"first\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/data-point-collection\\/study\"},\"last\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/data-point-collection\\/study?page=1\"}},\"_embedded\":{\"items\":[{\"field_id\":\"03511032-AD02-43F3-8AC8-238C18801ACB\",\"field_value\":\"23.55\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 19:56:15\"},{\"field_id\":\"66E89476-62BC-4F87-A678-4942B5883ED9\",\"field_value\":\"123\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 19:56:16\"},{\"field_id\":\"6997DADD-4160-4E7F-9C76-9F089840FBED\",\"field_value\":\"1984\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 19:56:10\"},{\"field_id\":\"89AEC15D-90BC-4214-8880-00F24A46FA3D\",\"field_value\":\"190\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 19:56:12\"},{\"field_id\":\"D91520D6-7C5B-40DE-8B1C-F044894C773B\",\"field_value\":\"85\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 19:56:15\"},{\"field_id\":\"E73ADB08-FB6A-4DD0-B939-ADBA4BD5EF08\",\"field_value\":\"1\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 19:56:11\"}]},\"page_count\":1,\"page_size\":500,\"total_items\":6,\"page\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
