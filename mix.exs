@@ -9,7 +9,7 @@ defmodule CastorEDC.MixProject do
     [
       app: :ex_castor_edc,
       version: @version,
-      elixir: "~> 1.11",
+      elixir: "~> 1.13",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
