@@ -6,10 +6,6 @@ defmodule CastorEDCTest.DataCollection.Randomization do
 
   @client CastorEDC.Client.access_token("supersecretaccesstoken")
 
-  setup_all do
-    HTTPoison.start()
-  end
-
   test "find/3" do
     use_cassette "randomization/randomization#find" do
       {200, %{"randomized_id" => randomized_id}, _} =

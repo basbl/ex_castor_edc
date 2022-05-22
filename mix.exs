@@ -1,7 +1,7 @@
 defmodule CastorEDC.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.2.0-dev"
   @source_url "https://github.com/basbl/ex_castor_edc/"
   @homepage_url "https://www.castoredc.com/"
 
@@ -32,7 +32,9 @@ defmodule CastorEDC.MixProject do
       docs: [
         main: "readme",
         extras: ["README.md"]
-      ]
+      ],
+      extras: ["notebook/getting_started.livemd"],
+      source_ref: @version
     ]
   end
 
@@ -60,7 +62,8 @@ defmodule CastorEDC.MixProject do
     [
       {:jason, ">= 1.0.0"},
       {:castore, "~> 0.1"},
-      {:httpoison, "~> 1.0"},
+      {:tesla, "~> 1.4"},
+      {:hackney, "~> 1.13"},
       {:exvcr, "~> 0.11", only: :test},
       {:excoveralls, "~> 0.10", only: :test},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},

@@ -6,10 +6,6 @@ defmodule CastorEDCTest.StudyProtocol.ReportSteps do
 
   @client CastorEDC.Client.access_token("supersecretaccesstoken")
 
-  setup_all do
-    HTTPoison.start()
-  end
-
   test "list/2" do
     use_cassette "report_steps/report_steps#list" do
       {200, report_steps, _} =

@@ -6,10 +6,6 @@ defmodule CastorEDCTest.DataCollection.Records.Progress do
 
   @client CastorEDC.Client.access_token("supersecretaccesstoken")
 
-  setup_all do
-    HTTPoison.start()
-  end
-
   test "list/2" do
     use_cassette "records/progress/progress#list" do
       {200, records, _} = list(@client, "AFE56D62-0797-406B-9949-DD8DC65D6A75")

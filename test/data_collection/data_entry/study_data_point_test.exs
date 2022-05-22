@@ -6,10 +6,6 @@ defmodule CastorEDCTest.DataCollection.DataEntry.StudyDataPoint do
 
   @client CastorEDC.Client.access_token("supersecretaccesstoken")
 
-  setup_all do
-    HTTPoison.start()
-  end
-
   test "list/4" do
     use_cassette "study_data_point/study_data_point#list" do
       {200, data_points, _} = list(@client, "AFE56D62-0797-406B-9949-DD8DC65D6A75", "110001")

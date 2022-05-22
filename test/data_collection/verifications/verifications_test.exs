@@ -6,10 +6,6 @@ defmodule CastorEDCTest.DataCollection.Verifications do
 
   @client CastorEDC.Client.access_token("supersecretaccesstoken")
 
-  setup_all do
-    HTTPoison.start()
-  end
-
   test "list/2" do
     use_cassette "verifications/verifications#list" do
       {200, verifications, _} = list(@client, "AFE56D62-0797-406B-9949-DD8DC65D6A75")
