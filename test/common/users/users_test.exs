@@ -6,10 +6,6 @@ defmodule CastorEDCTest.Common.Users do
 
   @client CastorEDC.Client.access_token("supersecretaccesstoken")
 
-  setup_all do
-    HTTPoison.start()
-  end
-
   test "list/1" do
     use_cassette "users/users#list" do
       {200, users, _} = list(@client)

@@ -6,10 +6,6 @@ defmodule CastorEDCTest.DataCollection.ReportInstanceDataPointCollection do
 
   @client CastorEDC.Client.access_token("supersecretaccesstoken")
 
-  setup_all do
-    HTTPoison.start()
-  end
-
   test "list/2" do
     use_cassette "report_instance_data_point_collection/report_instance_data_point_collection#list" do
       {200, report_instance_data_point_collection, _} =

@@ -6,10 +6,6 @@ defmodule CastorEDCTest.DataCollection.Statistics do
 
   @client CastorEDC.Client.access_token("supersecretaccesstoken")
 
-  setup_all do
-    HTTPoison.start()
-  end
-
   test "find/2" do
     use_cassette "statistics/statistics#find" do
       {200, statistics, _} = find(@client, "AFE56D62-0797-406B-9949-DD8DC65D6A75")

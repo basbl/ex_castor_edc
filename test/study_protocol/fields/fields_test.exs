@@ -6,10 +6,6 @@ defmodule CastorEDCTest.StudyProtocol.Fields do
 
   @client CastorEDC.Client.access_token("supersecretaccesstoken")
 
-  setup_all do
-    HTTPoison.start()
-  end
-
   test "list/2" do
     use_cassette "fields/fields#list" do
       {200, fields, _} = list(@client, "500475BC-F67A-41FD-A07D-4FF7C13756C8")

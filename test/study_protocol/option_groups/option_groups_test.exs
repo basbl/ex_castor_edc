@@ -6,10 +6,6 @@ defmodule CastorEDCTest.StudyProtocol.OptionGroups do
 
   @client CastorEDC.Client.access_token("supersecretaccesstoken")
 
-  setup_all do
-    HTTPoison.start()
-  end
-
   test "list/2" do
     use_cassette "option_groups/option_groups#list" do
       {200, option_groups, _} = list(@client, "AFE56D62-0797-406B-9949-DD8DC65D6A75", page: 1)

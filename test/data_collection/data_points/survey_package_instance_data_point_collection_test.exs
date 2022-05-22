@@ -6,10 +6,6 @@ defmodule CastorEDCTest.DataCollection.SurveyPackageInstanceDataPointCollection 
 
   @client CastorEDC.Client.access_token("supersecretaccesstoken")
 
-  setup_all do
-    HTTPoison.start()
-  end
-
   test "list/3" do
     use_cassette "survey_package_instance_data_point_collection/survey_package_instance_data_point_collection#list" do
       {200, survey_package_instance_data_point_collection, _} =
