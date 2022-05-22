@@ -19,15 +19,15 @@ Enter your `client_id` and `client_secret` in the form below after evaluating th
 
 ```elixir
 endpoints = [
-  {"https://data.castoredc.com/", "https://data.castoredc.com/"},
-  {"https://uk.castoredc.com/", "https://uk.castoredc.com/"},
-  {"https://us.castoredc.com/", "https://us.castoredc.com/"},
-  {"https://au.castoredc.com/", "https://au.castoredc.com/"}
+  {"https://data.castoredc.com/", "NL"},
+  {"https://uk.castoredc.com/", "UK"},
+  {"https://us.castoredc.com/", "US"},
+  {"https://au.castoredc.com/", "AU"}
 ]
 
+endpoint = Kino.Input.select("Region", endpoints) |> Kino.render()
 client_id = Kino.Input.text("Client Id") |> Kino.render()
 client_secret = Kino.Input.password("Client Secret") |> Kino.render()
-endpoint = Kino.Input.select("My studies run on", endpoints) |> Kino.render()
 
 Kino.nothing()
 ```
@@ -186,3 +186,7 @@ As an example we'll only fetch the first 10 data points on page 1.
 
 study_data_points
 ```
+
+## Wrapping up
+
+I hope that this notebook has given you a taste of how the library works. The documentation lists all of the available endpoints that you can use.
