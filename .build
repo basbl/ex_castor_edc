@@ -1,3 +1,4 @@
+/home/runner/work/ex_castor_edc/ex_castor_edc/doc/getting_started.livemd
 404.html
 CastorEDC.Client.html
 CastorEDC.Common.Countries.html
@@ -16,9 +17,12 @@ CastorEDC.DataCollection.DataPoints.SurveyPackageInstanceDataPointCollection.htm
 CastorEDC.DataCollection.Queries.html
 CastorEDC.DataCollection.Randomization.html
 CastorEDC.DataCollection.Records.Progress.html
+CastorEDC.DataCollection.Records.ReportInstances.html
+CastorEDC.DataCollection.Records.SurveyPackageInstances.html
 CastorEDC.DataCollection.Records.html
 CastorEDC.DataCollection.ReportInstances.html
 CastorEDC.DataCollection.Statistics.html
+CastorEDC.DataCollection.SurveyPackageInstances.html
 CastorEDC.DataCollection.Verifications.html
 CastorEDC.StudyProtocol.FieldDependencies.html
 CastorEDC.StudyProtocol.FieldValidations.html
@@ -30,6 +34,7 @@ CastorEDC.StudyProtocol.Phases.html
 CastorEDC.StudyProtocol.ReportSteps.html
 CastorEDC.StudyProtocol.Reports.html
 CastorEDC.StudyProtocol.Steps.html
+CastorEDC.StudyProtocol.SurveyPackages.html
 CastorEDC.StudyProtocol.SurveySteps.html
 CastorEDC.StudyProtocol.Surveys.html
 CastorEDC.html
@@ -42,8 +47,9 @@ dist/html/fonts/remixicon.svg
 dist/html/fonts/remixicon.ttf
 dist/html/fonts/remixicon.woff
 dist/html/fonts/remixicon.woff2
-dist/search_items-6545564fb9.js
-dist/sidebar_items-cefae4334c.js
+dist/search_items-8dd43f13d5.js
+dist/sidebar_items-f4b8ae066f.js
+getting_started.html
 index.html
 readme.html
 search.html

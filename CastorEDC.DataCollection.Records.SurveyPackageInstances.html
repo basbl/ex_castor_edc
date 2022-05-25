@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.28.4">
     <meta name="project" content="ExCastorEDC v0.2.0-dev">
 
-    <title>ex_castor_edc — ExCastorEDC v0.2.0-dev</title>
+    <title>CastorEDC.DataCollection.Records.SurveyPackageInstances — ExCastorEDC v0.2.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
 
     <script src="dist/sidebar_items-f4b8ae066f.js"></script>
@@ -18,7 +18,7 @@
 
 
   </head>
-  <body data-type="extras">
+  <body data-type="modules">
     <script>
 
       try {
@@ -94,55 +94,85 @@ ExCastorEDC
 </button>
 
 
-    <a href="https://github.com/basbl/ex_castor_edc/blob/main/README.md#L1" title="View Source" class="view-source" rel="help">
+    <a href="https://github.com/basbl/ex_castor_edc/blob/main/lib/castor_edc/data_collection/records/survey_package_instances/survey_package_instances.ex#L1" title="View Source" class="view-source" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
-  <span>ex_castor_edc</span>
+  <span translate="no">CastorEDC.DataCollection.Records.SurveyPackageInstances</span> 
+  <small class="app-vsn" translate="no">(ExCastorEDC v0.2.0-dev)</small>
+
 </h1>
 
-<p><a href="https://hex.pm/packages/ex_castor_edc"><img src="https://img.shields.io/hexpm/v/ex_castor_edc.svg" alt="Package"/></a> <a href="https://hexdocs.pm/ex_castor_edc"><img src="http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat" alt="Documentation"/></a> <img src="https://github.com/basbl/ex_castor_edc/actions/workflows/ci.yml/badge.svg" alt="CI"/></p><p>An Elixir wrapper for the <a href="https://data.castoredc.com/api">Castor EDC API</a>.</p><p>Not all endpoints have been implemented yet, these will be gradually added in future releases.</p><h2 id="getting-started" class="section-heading">
-  <a href="#getting-started" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
-  <p class="sr-only">getting-started</p>
-  </a>
-  Getting started
-</h2>
-<p>In order to use <code class="inline">ex_castor_edc</code>, you will need Elixir installed. Then create an
-Elixir project via the <code class="inline">mix</code> build tool:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix new my_app
-</span></code></pre><p>Then you can add <code class="inline">ex_castor_edc</code> as dependency in your <code class="inline">mix.exs</code>.</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="2819605852-1">do</span><span class="w">
-  </span><span class="p" data-group-id="2819605852-2">[</span><span class="w">
-    </span><span class="p" data-group-id="2819605852-3">{</span><span class="ss">:ex_castor_edc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 0.1.0&quot;</span><span class="p" data-group-id="2819605852-3">}</span><span class="w">
-  </span><span class="p" data-group-id="2819605852-2">]</span><span class="w">
-</span><span class="k" data-group-id="2819605852-1">end</span></code></pre><p>Alternatively, inside a script or Livebook:</p><pre><code class="makeup elixir" translate="no"><span class="nc">Mix</span><span class="o">.</span><span class="n">install</span><span class="p" data-group-id="1715604728-1">(</span><span class="p" data-group-id="1715604728-2">[</span><span class="w">
-  </span><span class="p" data-group-id="1715604728-3">{</span><span class="ss">:ex_castor_edc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 0.1.0&quot;</span><span class="p" data-group-id="1715604728-3">}</span><span class="w">
-</span><span class="p" data-group-id="1715604728-2">]</span><span class="p" data-group-id="1715604728-1">)</span></code></pre>
-<div class="bottom-actions">
-  <div class="bottom-actions-item">
 
-      <a href="api-reference.html" class="bottom-actions-button" rel="prev">
-        <span class="subheader">
-          ← Previous Page
-        </span>
-        <span class="title">
-API Reference
-        </span>
+  <section id="moduledoc">
+<p>Provides access to survey package instance related endpoints</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
       </a>
+      Summary
+    </h1>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#patch/5" translate="no">patch(client, study_id, record_id, survey_package_instance_id, body)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Updates the start time for a survey package instance</p></div>
+
+      </div>
 
   </div>
-  <div class="bottom-actions-item">
 
-      <a href="getting_started.html" class="bottom-actions-button" rel="next">
-        <span class="subheader">
-          Next Page →
-        </span>
-        <span class="title">
-Getting started with the Castor EDC API
-        </span>
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
       </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="patch/5">
+
+  <div class="detail-header">
+    <a href="#patch/5" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">patch(client, study_id, record_id, survey_package_instance_id, body)</h1>
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/main/lib/castor_edc/data_collection/records/survey_package_instances/survey_package_instances.ex#L14" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
 
   </div>
-</div>
+
+  <section class="docstring">
+
+<p>Updates the start time for a survey package instance</p><p><a href="https://data.castoredc.com/api#/survey/patch_study__study_id__record__record_id__surveypackageinstance__survey_package_instance_id_">More info</a></p>
+  </section>
+</section>
+
+    </div>
+  </section>
 
       <footer class="footer">
 
@@ -153,7 +183,7 @@ Getting started with the Castor EDC API
               <a href="https://hex.pm/packages/ex_castor_edc/0.2.0-dev" class="line footer-hex-package">Package</a>
               <a href="https://preview.hex.pm/preview/ex_castor_edc/0.2.0-dev" class="line">Preview</a>
 
-                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.2.0-dev/show/README.md">(current file)</a>
+                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.2.0-dev/show/lib/castor_edc/data_collection/records/survey_package_instances/survey_package_instances.ex">(current file)</a>
 
             </span>
 

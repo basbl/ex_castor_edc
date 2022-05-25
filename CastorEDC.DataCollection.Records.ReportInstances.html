@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.28.4">
     <meta name="project" content="ExCastorEDC v0.2.0-dev">
 
-    <title>CastorEDC.StudyProtocol.Reports — ExCastorEDC v0.2.0-dev</title>
+    <title>CastorEDC.DataCollection.Records.ReportInstances — ExCastorEDC v0.2.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
 
     <script src="dist/sidebar_items-f4b8ae066f.js"></script>
@@ -94,19 +94,19 @@ ExCastorEDC
 </button>
 
 
-    <a href="https://github.com/basbl/ex_castor_edc/blob/main/lib/castor_edc/study_protocol/reports/reports.ex#L1" title="View Source" class="view-source" rel="help">
+    <a href="https://github.com/basbl/ex_castor_edc/blob/main/lib/castor_edc/data_collection/records/report_instances/report_instances.ex#L1" title="View Source" class="view-source" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
-  <span translate="no">CastorEDC.StudyProtocol.Reports</span> 
+  <span translate="no">CastorEDC.DataCollection.Records.ReportInstances</span> 
   <small class="app-vsn" translate="no">(ExCastorEDC v0.2.0-dev)</small>
 
 </h1>
 
 
   <section id="moduledoc">
-<p>Provides access to report related endpoints</p>
+<p>Provides access to report instance related endpoints</p>
   </section>
 
 
@@ -126,21 +126,31 @@ ExCastorEDC
 
       <div class="summary-row">
         <div class="summary-signature">
-          <a href="#find/3" translate="no">find(client, study_id, report_id)</a>
+          <a href="#create/4" translate="no">create(client, study_id, record_id, body)</a>
 
         </div>
 
-          <div class="summary-synopsis"><p>Find a specific report</p></div>
+          <div class="summary-synopsis"><p>Creates a report instance</p></div>
 
       </div>
 
       <div class="summary-row">
         <div class="summary-signature">
-          <a href="#list/3" translate="no">list(client, study_id, params \\ [])</a>
+          <a href="#find/4" translate="no">find(client, study_id, record_id, report_instance_id)</a>
 
         </div>
 
-          <div class="summary-synopsis"><p>List all reports</p></div>
+          <div class="summary-synopsis"><p>Find a specific report instance</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#list/4" translate="no">list(client, study_id, record_id, params \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>List all report instances</p></div>
 
       </div>
 
@@ -158,16 +168,16 @@ ExCastorEDC
 Functions
     </h1>
     <div class="functions-list">
-<section class="detail" id="find/3">
+<section class="detail" id="create/4">
 
   <div class="detail-header">
-    <a href="#find/3" class="detail-link" title="Link to this function">
+    <a href="#create/4" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">find(client, study_id, report_id)</h1>
+    <h1 class="signature" translate="no">create(client, study_id, record_id, body)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/main/lib/castor_edc/study_protocol/reports/reports.ex#L23" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/main/lib/castor_edc/data_collection/records/report_instances/report_instances.ex#L37" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -177,21 +187,20 @@ Functions
 
   <section class="docstring">
 
-<p>Find a specific report</p><p><a href="https://data.castoredc.com/api#/report/get_study__study_id__report__report_id_">More info</a></p>
+<p>Creates a report instance</p><p><a href="https://data.castoredc.com/api#/report-instance/post_study__study_id__record__record_id__report_instance">Single instance</a>
+<a href="https://data.castoredc.com/api#/report-instance/post_study__study_id__record__record_id__report_instance_collection">Multiple instances</a></p>
   </section>
 </section>
-<section class="detail" id="list/3">
-
-    <span id="list/2"></span>
+<section class="detail" id="find/4">
 
   <div class="detail-header">
-    <a href="#list/3" class="detail-link" title="Link to this function">
+    <a href="#find/4" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">list(client, study_id, params \\ [])</h1>
+    <h1 class="signature" translate="no">find(client, study_id, record_id, report_instance_id)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/main/lib/castor_edc/study_protocol/reports/reports.ex#L14" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/main/lib/castor_edc/data_collection/records/report_instances/report_instances.ex#L23" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -201,7 +210,31 @@ Functions
 
   <section class="docstring">
 
-<p>List all reports</p><p><a href="https://data.castoredc.com/api#/report/get_study__study_id__report">More info</a></p>
+<p>Find a specific report instance</p><p><a href="https://data.castoredc.com/api#/report-instance/get_study__study_id__record__record_id__report_instance__report_instance_id_">More info</a></p>
+  </section>
+</section>
+<section class="detail" id="list/4">
+
+    <span id="list/3"></span>
+
+  <div class="detail-header">
+    <a href="#list/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">list(client, study_id, record_id, params \\ [])</h1>
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/main/lib/castor_edc/data_collection/records/report_instances/report_instances.ex#L14" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>List all report instances</p><p><a href="https://data.castoredc.com/api#/report-instance/get_study__study_id__record__record_id__report_instance">More info</a></p>
   </section>
 </section>
 
@@ -217,7 +250,7 @@ Functions
               <a href="https://hex.pm/packages/ex_castor_edc/0.2.0-dev" class="line footer-hex-package">Package</a>
               <a href="https://preview.hex.pm/preview/ex_castor_edc/0.2.0-dev" class="line">Preview</a>
 
-                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.2.0-dev/show/lib/castor_edc/study_protocol/reports/reports.ex">(current file)</a>
+                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.2.0-dev/show/lib/castor_edc/data_collection/records/report_instances/report_instances.ex">(current file)</a>
 
             </span>
 
