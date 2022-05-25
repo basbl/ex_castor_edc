@@ -28,6 +28,13 @@ defmodule CastorEDC do
     |> handle_response()
   end
 
+  def patch(url, %Client{} = client, body) do
+    default_middleware(client)
+    |> http_client()
+    |> Tesla.patch!(url(client, url), body)
+    |> handle_response()
+  end
+
   def get(url, %Client{} = client, params \\ []) do
     default_middleware(client)
     |> http_client()

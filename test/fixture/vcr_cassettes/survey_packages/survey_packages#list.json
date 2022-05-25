@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "authorization": "Bearer supersecretaccesstoken",
+        "Accept": "application/json"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/C56B7E31-8984-438C-AAD8-E041AF4A09DC/surveypackage"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/C56B7E31-8984-438C-AAD8-E041AF4A09DC\\/surveypackage?page=1\"},\"first\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/C56B7E31-8984-438C-AAD8-E041AF4A09DC\\/surveypackage\"},\"last\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/C56B7E31-8984-438C-AAD8-E041AF4A09DC\\/surveypackage?page=1\"}},\"_embedded\":{\"survey_packages\":[{\"id\":\"21A81642-4A40-451F-A153-B6A9089E4AE6\",\"survey_package_id\":\"21A81642-4A40-451F-A153-B6A9089E4AE6\",\"name\":\"Health survey package\",\"description\":\"\",\"sender_name\":\"Castor EDC\",\"auto_send\":false,\"allow_step_navigation\":true,\"show_step_navigator\":true,\"finish_url\":\"\",\"auto_lock_on_finish\":true,\"intro_text\":\"\",\"outro_text\":\"\",\"default_invitation\":\"Dear participant,\\n\\nPlease click the link below to complete our survey.\\n\\n{url}\",\"default_invitation_subject\":\"Health survey\",\"sender_email\":\"no-reply@castoredc.com\",\"is_mobile\":false,\"is_training\":false,\"expire_after_hours\":null,\"allow_open_survey_link\":false,\"_embedded\":{\"surveys\":[{\"id\":\"7511BD7F-FF34-420E-AEF4-4CAB6629EAA7\",\"survey_id\":\"7511BD7F-FF34-420E-AEF4-4CAB6629EAA7\",\"name\":\"Short Form Health Survey SF-36\",\"description\":\"\",\"intro_text\":\"\",\"outro_text\":\"\",\"survey_steps\":[],\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/C56B7E31-8984-438C-AAD8-E041AF4A09DC\\/survey\\/7511BD7F-FF34-420E-AEF4-4CAB6629EAA7\"}}}]},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/C56B7E31-8984-438C-AAD8-E041AF4A09DC\\/surveypackage\\/21A81642-4A40-451F-A153-B6A9089E4AE6\"}}},{\"id\":\"C2421B68-95A4-4903-844D-6BF88EA06342\",\"survey_package_id\":\"C2421B68-95A4-4903-844D-6BF88EA06342\",\"name\":\"Health and Anxiety Disorder survey package\",\"description\":\"\",\"sender_name\":\"Castor EDC\",\"auto_send\":false,\"allow_step_navigation\":true,\"show_step_navigator\":true,\"finish_url\":\"\",\"auto_lock_on_finish\":true,\"intro_text\":\"\",\"outro_text\":\"\",\"default_invitation\":\"Dear participant,\\n\\nPlease click the link below to complete our survey.\\n\\n{url}\",\"default_invitation_subject\":\"Health and Anxiety Survey\",\"sender_email\":\"no-reply@castoredc.com\",\"is_mobile\":false,\"is_training\":false,\"expire_after_hours\":null,\"allow_open_survey_link\":false,\"_embedded\":{\"surveys\":[{\"id\":\"7511BD7F-FF34-420E-AEF4-4CAB6629EAA7\",\"survey_id\":\"7511BD7F-FF34-420E-AEF4-4CAB6629EAA7\",\"name\":\"Short Form Health Survey SF-36\",\"description\":\"\",\"intro_text\":\"\",\"outro_text\":\"\",\"survey_steps\":[],\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/C56B7E31-8984-438C-AAD8-E041AF4A09DC\\/survey\\/7511BD7F-FF34-420E-AEF4-4CAB6629EAA7\"}}},{\"id\":\"F88F0FF9-1C08-44A6-8FDF-CD23DA055DE7\",\"survey_id\":\"F88F0FF9-1C08-44A6-8FDF-CD23DA055DE7\",\"name\":\"Generalised Anxiety Disorder Questionnaire (GAD-7)\",\"description\":\"\",\"intro_text\":\"\",\"outro_text\":\"\",\"survey_steps\":[],\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/C56B7E31-8984-438C-AAD8-E041AF4A09DC\\/survey\\/F88F0FF9-1C08-44A6-8FDF-CD23DA055DE7\"}}}]},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/C56B7E31-8984-438C-AAD8-E041AF4A09DC\\/surveypackage\\/C2421B68-95A4-4903-844D-6BF88EA06342\"}}}]},\"page_count\":1,\"page_size\":25,\"total_items\":2,\"page\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
