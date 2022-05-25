@@ -31,9 +31,8 @@ defmodule CastorEDC.MixProject do
       homepage_url: @homepage_url,
       docs: [
         main: "readme",
-        extras: ["README.md"]
+        extras: ["README.md", "notebook/getting_started.livemd"]
       ],
-      extras: ["notebook/getting_started.livemd"],
       source_ref: @version
     ]
   end
