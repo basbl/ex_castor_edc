@@ -1,12 +1,29 @@
 defmodule CastorEDC do
-  @moduledoc """
-  Acts as a wrapper for HTTPoison and provides convenience functions
+  @moduledoc ~S"""
+  Acts as a wrapper for Tesla and provides convenience functions
   to perform HTTP requests.
+
+      alias CastorEDC.Client
+
+      client = Client.new("<client id>", "<client secret>")
+      {:ok, client} = CastorEDC.authenticate(client)
+
+  After authenticating against the API you can then use the other modules to perform
+  API requests, e.g:
+
+      {200, list_of_studies, _} = CastorEDC.Common.Studies.list(client)
+
+      list_of_studies
   """
 
   alias CastorEDC.Client
   alias Jason
 
+  @doc """
+  Will exchange a valid combination of client id and secret into an access token. The access token
+  can then be used to make further requests to the API
+  """
+  @spec authenticate(Client.t()) :: {:ok, Client.t()} | {:error, String.t()}
   def authenticate(%Client{} = client) do
     http_client([{Tesla.Middleware.FormUrlencoded, []}])
     |> Tesla.post(
@@ -21,6 +38,10 @@ defmodule CastorEDC do
     |> handle_authentication_response(client)
   end
 
+  @doc """
+  Internal convenience function for POST requests
+  """
+  @spec post(String.t(), Client.t(), %{}) :: {integer(), %{}, Tesla.Env.t()}
   def post(url, %Client{} = client, body) do
     default_middleware(client)
     |> http_client()
@@ -28,6 +49,10 @@ defmodule CastorEDC do
     |> handle_response()
   end
 
+  @doc """
+  Internal convenience function for PATCH requests
+  """
+  @spec patch(String.t(), Client.t(), %{}) :: {integer(), %{}, Tesla.Env.t()}
   def patch(url, %Client{} = client, body) do
     default_middleware(client)
     |> http_client()
@@ -35,6 +60,10 @@ defmodule CastorEDC do
     |> handle_response()
   end
 
+  @doc """
+  Internal convenience function for GET requests
+  """
+  @spec get(String.t(), Client.t(), []) :: {integer(), %{}, Tesla.Env.t()}
   def get(url, %Client{} = client, params \\ []) do
     default_middleware(client)
     |> http_client()
@@ -64,9 +93,9 @@ defmodule CastorEDC do
     Tesla.client(middleware, {Tesla.Adapter.Hackney, []})
   end
 
-  def process_response_body(""), do: nil
-  def process_response_body(body) when is_binary(body), do: Jason.decode!(body)
-  def process_response_body(body), do: body
+  defp process_response_body(""), do: nil
+  defp process_response_body(body) when is_binary(body), do: Jason.decode!(body)
+  defp process_response_body(body), do: body
 
   defp handle_response(%Tesla.Env{status: status, body: body} = response) do
     {status, process_response_body(body), response}

@@ -1,4 +1,4 @@
-# ex_castor_edc
+# ExCastorEDC
 
 [![Package](https://img.shields.io/hexpm/v/ex_castor_edc.svg)](https://hex.pm/packages/ex_castor_edc) [![Documentation](http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat)](https://hexdocs.pm/ex_castor_edc) ![CI](https://github.com/basbl/ex_castor_edc/actions/workflows/ci.yml/badge.svg)
 

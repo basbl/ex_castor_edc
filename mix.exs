@@ -7,6 +7,7 @@ defmodule CastorEDC.MixProject do
 
   def project do
     [
+      name: "ExCastorEDC",
       app: :ex_castor_edc,
       version: @version,
       elixir: "~> 1.13",
@@ -24,16 +25,22 @@ defmodule CastorEDC.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
+      docs: docs()
+    ]
+  end
 
-      # docs
-      name: "ExCastorEDC",
+  defp docs do
+    [
+      main: "CastorEDC",
+      source_ref: @version,
       source_url: @source_url,
       homepage_url: @homepage_url,
-      docs: [
-        main: "readme",
-        extras: ["README.md", "notebook/getting_started.livemd"]
+      groups_for_modules: [
+        Common: ~r"CastorEDC.Common",
+        "Data Collection": ~r"CastorEDC.DataCollection",
+        "Study Protocol": ~r"CastorEDC.StudyProtocol"
       ],
-      source_ref: @version
+      extras: ["notebook/getting_started.livemd"]
     ]
   end
 
