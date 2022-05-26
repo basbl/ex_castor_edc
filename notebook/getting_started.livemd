@@ -1,4 +1,4 @@
-# Getting started with the Castor EDC API
+# Using the Castor EDC API
 
 ```elixir
 Mix.install([
