@@ -31,4 +31,19 @@ defmodule CastorEDC.DataCollection.DataPoints.ReportInstanceDataPointCollection 
       params
     )
   end
+
+  @doc """
+  Create/update a collection of field values for a report instance
+
+  [More info](https://data.castoredc.com/api#/data-point-collection/post_study__study_id__record__record_id__data_point_collection_report_instance__report_instance_id_)
+  """
+  def create(%Client{} = client, study_id, record_id, report_instance_id, body) do
+    post(
+      "api/study/" <>
+        study_id <>
+        "/record/" <> record_id <> "/data-point-collection/report-instance/" <> report_instance_id,
+      client,
+      body
+    )
+  end
 end
