@@ -5,6 +5,7 @@ defmodule CastorEDC.DataCollection.DataEntry.StudyDataPoint do
 
   import CastorEDC
   alias CastorEDC.Client
+  alias Tesla.Multipart
 
   @doc """
   List all collected study data points for a record
@@ -37,11 +38,25 @@ defmodule CastorEDC.DataCollection.DataEntry.StudyDataPoint do
 
   [More info](https://data.castoredc.com/api#/study-data-entry/post_study__study_id__record__record_id__study_data_point__field_id_)
   """
-  def create(%Client{} = client, study_id, record_id, field_id, body) do
+  def create(%Client{} = client, study_id, record_id, field_id, %{"field_value" => _} = body) do
     post(
       "api/study/" <> study_id <> "/record/" <> record_id <> "/data-point/study/" <> field_id,
       client,
       body
+    )
+  end
+
+  def create(%Client{} = client, study_id, record_id, field_id, %{"upload_file" => file} = body) do
+    mp =
+      body
+      |> Map.drop(["upload_file"])
+      |> Enum.reduce(Multipart.new(), fn {k, v}, mp -> Multipart.add_field(mp, k, v) end)
+      |> Multipart.add_file(file, name: "upload_file")
+
+    post(
+      "api/study/" <> study_id <> "/record/" <> record_id <> "/data-point/study/" <> field_id,
+      client,
+      mp
     )
   end
 end
