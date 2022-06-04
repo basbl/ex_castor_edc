@@ -45,7 +45,7 @@ defmodule CastorEDC do
   def post(url, %Client{} = client, body) do
     default_middleware(client)
     |> http_client()
-    |> Tesla.post!(url(client, url), body)
+    |> Tesla.post(url(client, url), body)
     |> handle_response()
   end
 
@@ -56,7 +56,7 @@ defmodule CastorEDC do
   def patch(url, %Client{} = client, body) do
     default_middleware(client)
     |> http_client()
-    |> Tesla.patch!(url(client, url), body)
+    |> Tesla.patch(url(client, url), body)
     |> handle_response()
   end
 
@@ -67,11 +67,13 @@ defmodule CastorEDC do
   def get(url, %Client{} = client, params \\ []) do
     default_middleware(client)
     |> http_client()
-    |> Tesla.get!(url(client, url), query: params)
+    |> Tesla.get(url(client, url), query: params)
     |> handle_response()
   end
 
-  defp handle_authentication_response({_, %Tesla.Env{body: body, status: 200}}, client) do
+  defp handle_authentication_response({:error, reason}, _client), do: {:error, reason}
+
+  defp handle_authentication_response({:ok, %Tesla.Env{body: body, status: 200}}, client) do
     access_token = Jason.decode!(body)["access_token"]
     {:ok, Client.put_token(client, access_token)}
   end
@@ -97,7 +99,9 @@ defmodule CastorEDC do
   defp process_response_body(body) when is_binary(body), do: Jason.decode!(body)
   defp process_response_body(body), do: body
 
-  defp handle_response(%Tesla.Env{status: status, body: body} = response) do
+  defp handle_response({:error, reason}), do: {:error, reason}
+
+  defp handle_response({:ok, %Tesla.Env{status: status, body: body} = response}) do
     {status, process_response_body(body), response}
   end
 

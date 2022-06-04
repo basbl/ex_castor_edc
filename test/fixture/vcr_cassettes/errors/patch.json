@@ -1,0 +1,23 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "content-type": "application/json",
+        "authorization": "Bearer supersecretaccesstoken",
+        "Accept": "application/json"
+      },
+      "method": "patch",
+      "options": [],
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/"
+    },
+    "response": {
+      "binary": false,
+      "body": "econnrefused",
+      "headers": [],
+      "status_code": null,
+      "type": "error"
+    }
+  }
+]
