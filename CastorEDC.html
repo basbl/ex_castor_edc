@@ -5,9 +5,9 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.28.4">
-    <meta name="project" content="ExCastorEDC v0.2.0">
+    <meta name="project" content="ExCastorEDC v0.3.0-dev">
 
-    <title>CastorEDC — ExCastorEDC v0.2.0</title>
+    <title>CastorEDC — ExCastorEDC v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
 
     <script src="dist/sidebar_items-4f0997f627.js"></script>
@@ -66,7 +66,7 @@
 ExCastorEDC
       </a>
       <strong class="sidebar-projectVersion" translate="no">
-        v0.2.0
+        v0.3.0-dev
       </strong>
     </div>
     <ul class="sidebar-listNav">
@@ -94,13 +94,13 @@ ExCastorEDC
 </button>
 
 
-    <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc.ex#L1" title="View Source" class="view-source" rel="help">
+    <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc.ex#L1" title="View Source" class="view-source" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
   <span translate="no">CastorEDC</span> 
-  <small class="app-vsn" translate="no">(ExCastorEDC v0.2.0)</small>
+  <small class="app-vsn" translate="no">(ExCastorEDC v0.3.0-dev)</small>
 
 </h1>
 
@@ -109,9 +109,9 @@ ExCastorEDC
 <p>Acts as a wrapper for Tesla and provides convenience functions
 to perform HTTP requests.</p><pre><code class="makeup elixir" translate="no"><span class="kn">alias</span><span class="w"> </span><span class="nc">CastorEDC.Client</span><span class="w">
 
-</span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1276696222-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="1276696222-1">)</span><span class="w">
-</span><span class="p" data-group-id="1276696222-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">client</span><span class="p" data-group-id="1276696222-2">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC</span><span class="o">.</span><span class="n">authenticate</span><span class="p" data-group-id="1276696222-3">(</span><span class="n">client</span><span class="p" data-group-id="1276696222-3">)</span></code></pre><p>After authenticating against the API you can then use the other modules to perform
-API requests, e.g:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="3605226052-1">{</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="n">list_of_studies</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="3605226052-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Common.Studies</span><span class="o">.</span><span class="n">list</span><span class="p" data-group-id="3605226052-2">(</span><span class="n">client</span><span class="p" data-group-id="3605226052-2">)</span><span class="w">
+</span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3452354117-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="3452354117-1">)</span><span class="w">
+</span><span class="p" data-group-id="3452354117-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">client</span><span class="p" data-group-id="3452354117-2">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC</span><span class="o">.</span><span class="n">authenticate</span><span class="p" data-group-id="3452354117-3">(</span><span class="n">client</span><span class="p" data-group-id="3452354117-3">)</span></code></pre><p>After authenticating against the API you can then use the other modules to perform
+API requests, e.g:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="6787744147-1">{</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="n">list_of_studies</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="6787744147-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Common.Studies</span><span class="o">.</span><span class="n">list</span><span class="p" data-group-id="6787744147-2">(</span><span class="n">client</span><span class="p" data-group-id="6787744147-2">)</span><span class="w">
 
 </span><span class="n">list_of_studies</span></code></pre>
   </section>
@@ -195,7 +195,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">authenticate(client)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc.ex#L27" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc.ex#L27" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -227,7 +227,7 @@ can then be used to make further requests to the API</p>
     </a>
     <h1 class="signature" translate="no">get(url, client, params \\ [])</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc.ex#L67" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc.ex#L67" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -255,7 +255,7 @@ can then be used to make further requests to the API</p>
     </a>
     <h1 class="signature" translate="no">patch(url, client, body)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc.ex#L56" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc.ex#L56" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -283,7 +283,7 @@ can then be used to make further requests to the API</p>
     </a>
     <h1 class="signature" translate="no">post(url, client, body)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc.ex#L45" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc.ex#L45" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -312,10 +312,10 @@ can then be used to make further requests to the API</p>
             On Hex.pm:
 
             <span class="line">
-              <a href="https://hex.pm/packages/ex_castor_edc/0.2.0" class="line footer-hex-package">Package</a>
-              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.2.0" class="line">Preview</a>
+              <a href="https://hex.pm/packages/ex_castor_edc/0.3.0-dev" class="line footer-hex-package">Package</a>
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0-dev" class="line">Preview</a>
 
-                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.2.0/show/lib/castor_edc.ex">(current file)</a>
+                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0-dev/show/lib/castor_edc.ex">(current file)</a>
 
             </span>
 

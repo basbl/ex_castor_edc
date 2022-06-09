@@ -5,9 +5,9 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.28.4">
-    <meta name="project" content="ExCastorEDC v0.2.0">
+    <meta name="project" content="ExCastorEDC v0.3.0-dev">
 
-    <title>CastorEDC.Client — ExCastorEDC v0.2.0</title>
+    <title>CastorEDC.Client — ExCastorEDC v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
 
     <script src="dist/sidebar_items-4f0997f627.js"></script>
@@ -66,7 +66,7 @@
 ExCastorEDC
       </a>
       <strong class="sidebar-projectVersion" translate="no">
-        v0.2.0
+        v0.3.0-dev
       </strong>
     </div>
     <ul class="sidebar-listNav">
@@ -94,20 +94,20 @@ ExCastorEDC
 </button>
 
 
-    <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc/client.ex#L1" title="View Source" class="view-source" rel="help">
+    <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L1" title="View Source" class="view-source" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
   <span translate="no">CastorEDC.Client</span> 
-  <small class="app-vsn" translate="no">(ExCastorEDC v0.2.0)</small>
+  <small class="app-vsn" translate="no">(ExCastorEDC v0.3.0-dev)</small>
 
 </h1>
 
 
   <section id="moduledoc">
-<p>Container for authentication related values</p><p>If you plan to use <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> as an endpoint then you can use <a href="#new/2"><code class="inline">new/2</code></a></p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3307612906-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="3307612906-1">)</span></code></pre><p>When your study is located in a different region then you can use <a href="#new/3"><code class="inline">new/3</code></a></p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="2101156893-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://&lt;domain&gt;/&quot;</span><span class="p" data-group-id="2101156893-1">)</span></code></pre><p>The clients can then be passed to <a href="CastorEDC.html#authenticate/1"><code class="inline">CastorEDC.authenticate/1</code></a> for an access token.</p><p>Depending on whether you have a long-lived access token you can use either <a href="#access_token/1"><code class="inline">access_token/1</code></a> or <a href="#access_token/2"><code class="inline">access_token/2</code></a>
-and pass in an access token directly allowing you to skip the authentication step.</p><pre><code class="makeup elixir" translate="no"><span class="w">  </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">access_token</span><span class="p" data-group-id="4407753563-1">(</span><span class="s">&quot;&lt;access token&gt;&quot;</span><span class="p" data-group-id="4407753563-1">)</span></code></pre>
+<p>Container for authentication related values</p><p>If you plan to use <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> as an endpoint then you can use <a href="#new/2"><code class="inline">new/2</code></a></p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="4093221184-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="4093221184-1">)</span></code></pre><p>When your study is located in a different region then you can use <a href="#new/3"><code class="inline">new/3</code></a></p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="5535670401-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://&lt;domain&gt;/&quot;</span><span class="p" data-group-id="5535670401-1">)</span></code></pre><p>The clients can then be passed to <a href="CastorEDC.html#authenticate/1"><code class="inline">CastorEDC.authenticate/1</code></a> for an access token.</p><p>Depending on whether you have a long-lived access token you can use either <a href="#access_token/1"><code class="inline">access_token/1</code></a> or <a href="#access_token/2"><code class="inline">access_token/2</code></a>
+and pass in an access token directly allowing you to skip the authentication step.</p><pre><code class="makeup elixir" translate="no"><span class="w">  </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">access_token</span><span class="p" data-group-id="3204695597-1">(</span><span class="s">&quot;&lt;access token&gt;&quot;</span><span class="p" data-group-id="3204695597-1">)</span></code></pre>
   </section>
 
 
@@ -227,7 +227,7 @@ Types
     </a>
     <h1 class="signature" translate="no">t()</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc/client.ex#L26" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L26" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -262,7 +262,7 @@ Types
     </a>
     <h1 class="signature" translate="no">url()</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc/client.ex#L23" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L23" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -290,7 +290,7 @@ Types
     </a>
     <h1 class="signature" translate="no">uuid()</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc/client.ex#L24" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L24" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -331,7 +331,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">access_token(access_token)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc/client.ex#L72" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L72" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -348,7 +348,7 @@ Functions
       </div>
 
 <p>If you already have an access token you can use this function to pass it in directly allowing
-you to skip the authentication step.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">access_token</span><span class="p" data-group-id="6162384896-1">(</span><span class="s">&quot;&lt;access token&gt;&quot;</span><span class="p" data-group-id="6162384896-1">)</span></code></pre><p>or <a href="#access_token/2"><code class="inline">access_token/2</code></a> when your studies are hosted, for example, in Australia</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">access_token</span><span class="p" data-group-id="3086766590-1">(</span><span class="s">&quot;&lt;access token&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://au.castoredc.com/&quot;</span><span class="p" data-group-id="3086766590-1">)</span></code></pre>
+you to skip the authentication step.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">access_token</span><span class="p" data-group-id="0839443843-1">(</span><span class="s">&quot;&lt;access token&gt;&quot;</span><span class="p" data-group-id="0839443843-1">)</span></code></pre><p>or <a href="#access_token/2"><code class="inline">access_token/2</code></a> when your studies are hosted, for example, in Australia</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">access_token</span><span class="p" data-group-id="7358537809-1">(</span><span class="s">&quot;&lt;access token&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://au.castoredc.com/&quot;</span><span class="p" data-group-id="7358537809-1">)</span></code></pre>
   </section>
 </section>
 <section class="detail" id="access_token/2">
@@ -360,7 +360,7 @@ you to skip the authentication step.</p><pre><code class="makeup elixir" transla
     </a>
     <h1 class="signature" translate="no">access_token(access_token, endpoint)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc/client.ex#L75" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L75" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -388,7 +388,7 @@ you to skip the authentication step.</p><pre><code class="makeup elixir" transla
     </a>
     <h1 class="signature" translate="no">new(client_id, client_secret)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc/client.ex#L54" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L54" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -405,7 +405,7 @@ you to skip the authentication step.</p><pre><code class="makeup elixir" transla
       </div>
 
 <p>You can get your client id and secret from the account settings page after logging in
-over at <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> or the region that your studies reside at.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="8857195771-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="8857195771-1">)</span></code></pre><p>Use <a href="#new/3"><code class="inline">new/3</code></a> if your studies are hosted, for example, in the US.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="2652486891-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://us.castoredc.com/&quot;</span><span class="p" data-group-id="2652486891-1">)</span></code></pre>
+over at <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> or the region that your studies reside at.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="4148751480-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="4148751480-1">)</span></code></pre><p>Use <a href="#new/3"><code class="inline">new/3</code></a> if your studies are hosted, for example, in the US.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1494511296-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://us.castoredc.com/&quot;</span><span class="p" data-group-id="1494511296-1">)</span></code></pre>
   </section>
 </section>
 <section class="detail" id="new/3">
@@ -417,7 +417,7 @@ over at <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> or
     </a>
     <h1 class="signature" translate="no">new(client_id, client_secret, endpoint)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc/client.ex#L57" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L57" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -445,7 +445,7 @@ over at <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> or
     </a>
     <h1 class="signature" translate="no">put_token(client, access_token)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.2.0/lib/castor_edc/client.ex#L82" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L82" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -474,10 +474,10 @@ over at <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> or
             On Hex.pm:
 
             <span class="line">
-              <a href="https://hex.pm/packages/ex_castor_edc/0.2.0" class="line footer-hex-package">Package</a>
-              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.2.0" class="line">Preview</a>
+              <a href="https://hex.pm/packages/ex_castor_edc/0.3.0-dev" class="line footer-hex-package">Package</a>
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0-dev" class="line">Preview</a>
 
-                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.2.0/show/lib/castor_edc/client.ex">(current file)</a>
+                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0-dev/show/lib/castor_edc/client.ex">(current file)</a>
 
             </span>
 
