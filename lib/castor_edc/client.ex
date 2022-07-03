@@ -1,6 +1,6 @@
 defmodule CastorEDC.Client do
   @moduledoc ~S"""
-  Container for authentication related values
+  Container for API client configuration values.
 
   If you plan to use https://data.castoredc.com/ as an endpoint then you can use `new/2`
 
@@ -20,6 +20,8 @@ defmodule CastorEDC.Client do
   """
   alias __MODULE__
 
+  @default_user_agent "elixir-ex_castor_edc/" <> Mix.Project.config()[:version]
+
   @type url() :: String.t()
   @type uuid() :: String.t()
 
@@ -29,7 +31,8 @@ defmodule CastorEDC.Client do
           grant_type: String.t(),
           scope: String.t(),
           endpoint: url(),
-          access_token: nil | String.t()
+          access_token: nil | String.t(),
+          user_agent: String.t()
         }
 
   defstruct client_id: nil,
@@ -37,7 +40,8 @@ defmodule CastorEDC.Client do
             grant_type: "client_credentials",
             scope: "default",
             endpoint: "https://data.castoredc.com/",
-            access_token: nil
+            access_token: nil,
+            user_agent: @default_user_agent
 
   @doc """
   You can get your client id and secret from the account settings page after logging in
