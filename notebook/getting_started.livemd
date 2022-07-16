@@ -35,14 +35,18 @@ Kino.nothing()
 Next we need to exchange your `client_id` and `client_secret` for an access token. The access token can then be used to make other requests to the API.
 
 ```elixir
-{:ok, client} =
-  CastorEDC.authenticate(
-    CastorEDC.Client.new(
-      Kino.Input.read(client_id),
-      Kino.Input.read(client_secret),
-      Kino.Input.read(endpoint)
-    )
+client =
+  CastorEDC.Client.new(
+    %{
+      client_id: Kino.Input.read(client_id),
+      client_secret: Kino.Input.read(client_secret)
+    },
+    Kino.Input.read(endpoint)
   )
+
+{:ok, client} =
+  client
+  |> CastorEDC.authenticate()
 
 client
 ```

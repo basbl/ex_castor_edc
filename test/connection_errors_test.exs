@@ -4,10 +4,10 @@ defmodule CastorEDCTest.ConnectionErrors do
 
   import CastorEDC
 
-  @client CastorEDC.Client.access_token("supersecretaccesstoken")
+  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
 
   # These tests verify that we will return `{:error, :reason}` tuples on
-  # non-HTTP related errors, like timeouts and refused connetions.
+  # non-HTTP related errors, like timeouts and refused connections.
   #
   # In reality, :reason is an atom (at least with Hackney, this may be
   # adapter-specific behavior?), however due to a quirk in ExVCR these atoms
@@ -43,10 +43,10 @@ defmodule CastorEDCTest.ConnectionErrors do
   test "authenticate" do
     use_cassette "errors/authenticate" do
       client =
-        CastorEDC.Client.new(
-          "0b362196-09ad-4d09-b5bf-27a515bbc358",
-          "secret"
-        )
+        CastorEDC.Client.new(%{
+          client_id: "0b362196-09ad-4d09-b5bf-27a515bbc358",
+          client_secret: "secret"
+        })
 
       {:error, "econnrefused"} = CastorEDC.authenticate(client)
     end

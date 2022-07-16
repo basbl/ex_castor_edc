@@ -4,7 +4,7 @@ defmodule CastorEDCTest.DataCollection.Queries do
 
   import CastorEDC.DataCollection.Queries
 
-  @client CastorEDC.Client.access_token("supersecretaccesstoken")
+  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "queries/queries#list" do

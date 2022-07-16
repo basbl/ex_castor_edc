@@ -5,7 +5,7 @@ defmodule CastorEDC do
 
       alias CastorEDC.Client
 
-      client = Client.new("<client id>", "<client secret>")
+      client = Client.new(%{client_id: "<client id>", client_secret: "<client secret>"})
       {:ok, client} = CastorEDC.authenticate(client)
 
   After authenticating against the API you can then use the other modules to perform
@@ -24,8 +24,12 @@ defmodule CastorEDC do
   can then be used to make further requests to the API
   """
   @spec authenticate(Client.t()) :: {:ok, Client.t()} | {:error, String.t()}
-  def authenticate(%Client{} = client) do
-    http_client([{Tesla.Middleware.FormUrlencoded, []}])
+  def authenticate(%Client{options: opts} = client) do
+    [
+      {Tesla.Middleware.FormUrlencoded, []},
+      {Tesla.Middleware.Opts, adapter: opts[:adapter_options]}
+    ]
+    |> http_client()
     |> Tesla.post(
       url(client, "oauth/token"),
       %{
@@ -75,7 +79,7 @@ defmodule CastorEDC do
 
   defp handle_authentication_response({:ok, %Tesla.Env{body: body, status: 200}}, client) do
     access_token = Jason.decode!(body)["access_token"]
-    {:ok, Client.put_token(client, access_token)}
+    {:ok, Client.update_token(client, access_token)}
   end
 
   defp handle_authentication_response({_, %Tesla.Env{body: body}}, _) do
@@ -83,11 +87,13 @@ defmodule CastorEDC do
     {:error, error_description}
   end
 
-  defp default_middleware(%Client{access_token: token}) do
+  defp default_middleware(%Client{access_token: token, options: opts}) do
     [
       {Tesla.Middleware.JSON, []},
       {Tesla.Middleware.BearerAuth, token: token},
-      {Tesla.Middleware.Headers, [{"Accept", "application/json"}]}
+      {Tesla.Middleware.Headers, [{"Accept", "application/json"}]},
+      {Tesla.Middleware.Opts, adapter: opts[:adapter_options]},
+      {Tesla.Middleware.Timeout, timeout: opts[:timeout]}
     ]
   end
 

@@ -4,7 +4,7 @@ defmodule CastorEDCTest.DataCollection.SurveyPackageInstances do
 
   import CastorEDC.DataCollection.SurveyPackageInstances
 
-  @client CastorEDC.Client.access_token("supersecretaccesstoken")
+  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "data_collection/survey_package_instances#list" do
