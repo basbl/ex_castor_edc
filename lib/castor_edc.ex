@@ -83,16 +83,23 @@ defmodule CastorEDC do
     {:error, error_description}
   end
 
-  defp default_middleware(%Client{access_token: token}) do
+  defp default_middleware(%Client{access_token: token, user_agent: ua}) do
     [
       {Tesla.Middleware.JSON, []},
       {Tesla.Middleware.BearerAuth, token: token},
-      {Tesla.Middleware.Headers, [{"Accept", "application/json"}]}
+      {Tesla.Middleware.Headers, [{"Accept", "application/json"}, {"User-Agent", ua}]}
     ]
   end
 
   defp http_client(middleware) do
-    Tesla.client(middleware, {Tesla.Adapter.Hackney, []})
+    adapter =
+      if Process.get(:mock_tesla_adapter, false) do
+        {Tesla.Mock, []}
+      else
+        {Tesla.Adapter.Hackney, []}
+      end
+
+    Tesla.client(middleware, adapter)
   end
 
   defp process_response_body(""), do: nil
