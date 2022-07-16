@@ -4,7 +4,7 @@ defmodule CastorEDCTest.DataCollection.StudyDataPointCollection do
 
   import CastorEDC.DataCollection.DataPoints.StudyDataPointCollection
 
-  @client CastorEDC.Client.access_token("supersecretaccesstoken")
+  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "study_data_point_collection/study_data_point_collection#list" do

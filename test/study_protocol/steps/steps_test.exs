@@ -4,7 +4,7 @@ defmodule CastorEDCTest.StudyProtocol.Steps do
 
   import CastorEDC.StudyProtocol.Steps
 
-  @client CastorEDC.Client.access_token("supersecretaccesstoken")
+  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "steps/steps#list" do

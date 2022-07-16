@@ -4,7 +4,7 @@ defmodule CastorEDCTest.Common.Studies do
 
   import CastorEDC.Common.Studies
 
-  @client CastorEDC.Client.access_token("supersecretaccesstoken")
+  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/1" do
     use_cassette "studies/studies#list" do
