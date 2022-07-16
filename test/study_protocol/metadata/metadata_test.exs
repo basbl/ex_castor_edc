@@ -4,7 +4,7 @@ defmodule CastorEDCTest.StudyProtocol.Metadata do
 
   import CastorEDC.StudyProtocol.Metadata
 
-  @client CastorEDC.Client.access_token("supersecretaccesstoken")
+  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "metadata/metadata#list" do

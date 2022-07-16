@@ -4,7 +4,7 @@ defmodule CastorEDCTest.DataCollection.ReportInstances do
 
   import CastorEDC.DataCollection.ReportInstances
 
-  @client CastorEDC.Client.access_token("supersecretaccesstoken")
+  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "report_instances/report_instances#list" do

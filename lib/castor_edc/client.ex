@@ -1,27 +1,39 @@
 defmodule CastorEDC.Client do
   @moduledoc ~S"""
-  Container for authentication related values
+  Container for API client configuration values.
 
-  If you plan to use https://data.castoredc.com/ as an endpoint then you can use `new/2`
+  If you plan to use https://data.castoredc.com/ as an endpoint then you can simply pass
+  in a map with your client id and secret.
 
-      client = Client.new("<client id>", "<client secret>")
+      client = Client.new(%{client_id: "<client id>", client_secret: "<client secret>"})
 
-  When your study is located in a different region then you can use `new/3`
+  When your study is located in a different region then you can pass in the url as the second
+  argument
 
-      client = Client.new("<client id>", "<client secret>", "https://<domain>/")
+      client = Client.new(%{client_id: "<client id>", client_secret: "<client secret>"}, "https://<domain>/")
 
-  The clients can then be passed to `CastorEDC.authenticate/1` for an access token.
+  You can now call `CastorEDC.authenticate(client)`.
 
-  Depending on whether you have a long-lived access token you can use either `access_token/1` or `access_token/2`
-  and pass in an access token directly allowing you to skip the authentication step.
+  Alternatively, when you have a long-lived access token you can pass it in directly
 
-        client = Client.access_token("<access token>")
+      client = Client.new(%{access_token: "<access token>"})
 
+  Additionally it's possible to pass options e.g increasing the timeout.
+
+      client = Client.new(
+        %{client_id: "<client id>", client_secret: "<client secret>"},
+        "https://us.castoredc.com/",
+        timeout: 30_000
+      )
   """
   alias __MODULE__
 
+  @default_timeout 5_000
+
   @type url() :: String.t()
   @type uuid() :: String.t()
+
+  @type credentials :: %{client_id: binary, client_secret: binary} | %{access_token: binary}
 
   @type t() :: %__MODULE__{
           client_id: nil | uuid(),
@@ -29,55 +41,75 @@ defmodule CastorEDC.Client do
           grant_type: String.t(),
           scope: String.t(),
           endpoint: url(),
-          access_token: nil | String.t()
+          access_token: nil | String.t(),
+          options: []
         }
 
   defstruct client_id: nil,
             client_secret: nil,
             grant_type: "client_credentials",
             scope: "default",
-            endpoint: "https://data.castoredc.com/",
-            access_token: nil
+            endpoint: nil,
+            access_token: nil,
+            options: []
 
-  @doc """
-  You can get your client id and secret from the account settings page after logging in
-  over at https://data.castoredc.com/ or the region that your studies reside at.
+  @spec new(credentials(), url(), keyword()) :: Client.t()
+  def new(credentials, endpoint \\ "https://data.castoredc.com/", opts \\ [])
 
-      client = Client.new("<client id>", "<client secret>")
+  def new(%{client_id: client_id, client_secret: client_secret}, endpoint, opts)
+      when is_binary(endpoint) do
+    validate_options!(opts)
 
-  Use `new/3` if your studies are hosted, for example, in the US.
+    %__MODULE__{
+      client_id: client_id,
+      client_secret: client_secret,
+      endpoint: endpoint(endpoint),
+      options: merge_options(opts)
+    }
+  end
 
-      client = Client.new("<client id>", "<client secret>", "https://us.castoredc.com/")
-  """
-  @spec new(uuid(), String.t()) :: Client.t()
-  @spec new(uuid(), String.t(), url()) :: Client.t()
-  def new(client_id, client_secret),
-    do: %__MODULE__{client_id: client_id, client_secret: client_secret}
+  def new(%{access_token: access_token}, endpoint, opts) when is_binary(endpoint) do
+    validate_options!(opts)
 
-  def new(client_id, client_secret, endpoint),
-    do: %__MODULE__{client_id: client_id, client_secret: client_secret, endpoint: endpoint}
+    %__MODULE__{
+      access_token: access_token,
+      endpoint: endpoint(endpoint),
+      options: merge_options(opts)
+    }
+  end
 
-  @doc ~S"""
-  If you already have an access token you can use this function to pass it in directly allowing
-  you to skip the authentication step.
+  defp validate_options!(opts) do
+    supported_options = [:adapter_options, :timeout]
 
-      client = Client.access_token("<access token>")
+    options =
+      supported_options
+      |> Enum.map_join(", ", &inspect/1)
 
-  or `access_token/2` when your studies are hosted, for example, in Australia
+    for {option, _value} <- opts do
+      if option not in supported_options do
+        raise ArgumentError, "Unknown option, expected one of #{options}, got: #{inspect(option)}"
+      end
+    end
+  end
 
-      client = Client.access_token("<access token>", "https://au.castoredc.com/")
-  """
-  @spec access_token(String.t()) :: Client.t()
-  @spec access_token(String.t(), url()) :: Client.t()
-  def access_token(access_token),
-    do: %__MODULE__{access_token: access_token}
+  defp merge_options(opts) do
+    [
+      timeout: opts[:timeout] || @default_timeout,
+      adapter_options: opts[:adapter_options] || []
+    ]
+  end
 
-  def access_token(access_token, endpoint),
-    do: %__MODULE__{access_token: access_token, endpoint: endpoint}
+  defp endpoint(endpoint) do
+    if String.ends_with?(endpoint, "/") do
+      endpoint
+    else
+      endpoint <> "/"
+    end
+  end
 
   @doc """
   This is an internal function that will add the access token after the authentication step.
   """
-  @spec put_token(Client.t(), String.t()) :: Client.t()
-  def put_token(client, access_token), do: %__MODULE__{client | access_token: access_token}
+  def update_token(%Client{} = client, access_token),
+    do: %__MODULE__{client | access_token: access_token}
 end
