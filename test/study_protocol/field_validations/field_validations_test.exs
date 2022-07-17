@@ -4,7 +4,7 @@ defmodule CastorEDCTest.StudyProtocol.FieldValidations do
 
   import CastorEDC.StudyProtocol.FieldValidations
 
-  @client CastorEDC.Client.access_token("supersecretaccesstoken")
+  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "field_validations/field_validations#list" do

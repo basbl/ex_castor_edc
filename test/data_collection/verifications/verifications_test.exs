@@ -4,7 +4,7 @@ defmodule CastorEDCTest.DataCollection.Verifications do
 
   import CastorEDC.DataCollection.Verifications
 
-  @client CastorEDC.Client.access_token("supersecretaccesstoken")
+  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "verifications/verifications#list" do

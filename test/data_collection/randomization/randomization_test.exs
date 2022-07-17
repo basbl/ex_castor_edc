@@ -4,7 +4,7 @@ defmodule CastorEDCTest.DataCollection.Randomization do
 
   import CastorEDC.DataCollection.Randomization
 
-  @client CastorEDC.Client.access_token("supersecretaccesstoken")
+  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "find/3" do
     use_cassette "randomization/randomization#find" do
