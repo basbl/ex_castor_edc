@@ -29,7 +29,7 @@ defmodule CastorEDC do
       {Tesla.Middleware.FormUrlencoded, []},
       {Tesla.Middleware.Opts, adapter: opts[:adapter_options]}
     ]
-    |> http_client()
+    |> http_client(client)
     |> Tesla.post(
       url(client, "oauth/token"),
       %{
@@ -48,7 +48,7 @@ defmodule CastorEDC do
   @spec post(String.t(), Client.t(), %{}) :: {integer(), %{}, Tesla.Env.t()}
   def post(url, %Client{} = client, body) do
     default_middleware(client)
-    |> http_client()
+    |> http_client(client)
     |> Tesla.post(url(client, url), body)
     |> handle_response()
   end
@@ -59,7 +59,7 @@ defmodule CastorEDC do
   @spec patch(String.t(), Client.t(), %{}) :: {integer(), %{}, Tesla.Env.t()}
   def patch(url, %Client{} = client, body) do
     default_middleware(client)
-    |> http_client()
+    |> http_client(client)
     |> Tesla.patch(url(client, url), body)
     |> handle_response()
   end
@@ -70,7 +70,7 @@ defmodule CastorEDC do
   @spec get(String.t(), Client.t(), []) :: {integer(), %{}, Tesla.Env.t()}
   def get(url, %Client{} = client, params \\ []) do
     default_middleware(client)
-    |> http_client()
+    |> http_client(client)
     |> Tesla.get(url(client, url), query: params)
     |> handle_response()
   end
@@ -92,13 +92,12 @@ defmodule CastorEDC do
       {Tesla.Middleware.JSON, []},
       {Tesla.Middleware.BearerAuth, token: token},
       {Tesla.Middleware.Headers, [{"Accept", "application/json"}]},
-      {Tesla.Middleware.Opts, adapter: opts[:adapter_options]},
       {Tesla.Middleware.Timeout, timeout: opts[:timeout]}
     ]
   end
 
-  defp http_client(middleware) do
-    Tesla.client(middleware, {Tesla.Adapter.Hackney, []})
+  defp http_client(middleware, %Client{options: opts}) do
+    Tesla.client(middleware, {opts[:adapter], opts[:adapter_options]})
   end
 
   defp process_response_body(""), do: nil

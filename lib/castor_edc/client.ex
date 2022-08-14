@@ -79,7 +79,7 @@ defmodule CastorEDC.Client do
   end
 
   defp validate_options!(opts) do
-    supported_options = [:adapter_options, :timeout]
+    supported_options = [:adapter, :adapter_options, :timeout]
 
     options =
       supported_options
@@ -95,7 +95,8 @@ defmodule CastorEDC.Client do
   defp merge_options(opts) do
     [
       timeout: opts[:timeout] || @default_timeout,
-      adapter_options: opts[:adapter_options] || []
+      adapter_options: opts[:adapter_options] || [],
+      adapter: opts[:adapter] || Tesla.Adapter.Hackney
     ]
   end
 
