@@ -28,7 +28,8 @@ defmodule CastorEDC do
   def authenticate(%Client{options: opts} = client) do
     [
       {Tesla.Middleware.FormUrlencoded, []},
-      {Tesla.Middleware.Opts, adapter: opts[:adapter_options]}
+      {Tesla.Middleware.Opts, adapter: opts[:adapter_options]},
+      {Tesla.Middleware.Headers, [{"User-Agent", opts[:user_agent]}]}
     ]
     |> http_client(client)
     |> Tesla.post(
@@ -86,7 +87,8 @@ defmodule CastorEDC do
     middleware = [
       {Tesla.Middleware.JSON, []},
       {Tesla.Middleware.BearerAuth, token: token},
-      {Tesla.Middleware.Headers, [{"Accept", "application/json"}]}
+      {Tesla.Middleware.Headers,
+       [{"Accept", "application/json"}, {"User-Agent", opts[:user_agent]}]}
     ]
 
     # If we're using the default timeout value we skip adding the timeout middleware
