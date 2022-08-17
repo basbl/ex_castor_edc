@@ -62,14 +62,14 @@ defmodule CastorEDC.Client do
   @spec new(credentials(), keyword()) :: Client.t()
   def new(credentials, opts \\ [])
 
-  def new(%{client_id: _, client_secret: _} = credentials, opts) do
+  def new(%{client_id: client_id, client_secret: client_secret}, opts) do
     validate_options!(opts)
-    merge_properties(credentials, opts)
+    merge_properties(%{client_id: client_id, client_secret: client_secret}, opts)
   end
 
-  def new(%{access_token: _} = credentials, opts) do
+  def new(%{access_token: access_token}, opts) do
     validate_options!(opts)
-    merge_properties(credentials, opts)
+    merge_properties(%{access_token: access_token}, opts)
   end
 
   defp validate_options!(opts) do
