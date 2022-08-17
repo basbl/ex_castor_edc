@@ -5,7 +5,6 @@ defmodule CastorEDCTest.ConnectionErrors do
 
   @client CastorEDC.Client.new(
             %{access_token: "supersecretaccesstoken"},
-            "https://data.castoredc.com/",
             adapter: Tesla.Mock
           )
 

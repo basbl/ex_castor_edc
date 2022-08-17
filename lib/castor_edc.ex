@@ -1,12 +1,13 @@
 defmodule CastorEDC do
   @moduledoc ~S"""
-  Acts as a wrapper for Tesla and provides convenience functions
-  to perform HTTP requests.
+  Facilitates authentication against the Castor EDC API
 
       alias CastorEDC.Client
 
       client = Client.new(%{client_id: "<client id>", client_secret: "<client secret>"})
       {:ok, client} = CastorEDC.authenticate(client)
+
+  See `CastorEDC.Client.new/2` for all the options.
 
   After authenticating against the API you can then use the other modules to perform
   API requests, e.g:
@@ -20,8 +21,8 @@ defmodule CastorEDC do
   alias Jason
 
   @doc """
-  Will exchange a valid combination of client id and secret into an access token. The access token
-  can then be used to make further requests to the API
+  Exchanges a valid client id & secret combination for an access token that can be used to
+  make further API calls.
   """
   @spec authenticate(Client.t()) :: {:ok, Client.t()} | {:error, String.t()}
   def authenticate(%Client{options: opts} = client) do
@@ -42,9 +43,7 @@ defmodule CastorEDC do
     |> handle_authentication_response(client)
   end
 
-  @doc """
-  Internal convenience function for POST requests
-  """
+  @doc false
   @spec post(String.t(), Client.t(), %{}) :: {integer(), %{}, Tesla.Env.t()}
   def post(url, %Client{} = client, body) do
     default_middleware(client)
@@ -53,9 +52,7 @@ defmodule CastorEDC do
     |> handle_response()
   end
 
-  @doc """
-  Internal convenience function for PATCH requests
-  """
+  @doc false
   @spec patch(String.t(), Client.t(), %{}) :: {integer(), %{}, Tesla.Env.t()}
   def patch(url, %Client{} = client, body) do
     default_middleware(client)
@@ -64,9 +61,7 @@ defmodule CastorEDC do
     |> handle_response()
   end
 
-  @doc """
-  Internal convenience function for GET requests
-  """
+  @doc false
   @spec get(String.t(), Client.t(), []) :: {integer(), %{}, Tesla.Env.t()}
   def get(url, %Client{} = client, params \\ []) do
     default_middleware(client)

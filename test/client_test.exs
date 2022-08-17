@@ -13,7 +13,9 @@ defmodule CastorEDCTest.Client do
 
   test "creating a client with custom endpoint" do
     client =
-      new(%{client_id: "client-id", client_secret: "client-secret"}, "https://us.castoredc.com")
+      new(%{client_id: "client-id", client_secret: "client-secret"},
+        endpoint: "https://us.castoredc.com"
+      )
 
     assert client.client_id == "client-id"
     assert client.client_secret == "client-secret"
@@ -27,7 +29,7 @@ defmodule CastorEDCTest.Client do
   end
 
   test "creating a client with existing access token and custom endpoint" do
-    client = new(%{access_token: "access-token"}, "https://us.castoredc.com")
+    client = new(%{access_token: "access-token"}, endpoint: "https://us.castoredc.com")
 
     assert client.access_token == "access-token"
     assert client.endpoint == "https://us.castoredc.com/"
@@ -35,7 +37,9 @@ defmodule CastorEDCTest.Client do
 
   test "update_token/2" do
     client =
-      new(%{client_id: "client-id", client_secret: "client-secret"}, "https://us.castoredc.com")
+      new(%{client_id: "client-id", client_secret: "client-secret"},
+        endpoint: "https://us.castoredc.com"
+      )
 
     client = update_token(client, "access-token")
 
@@ -49,7 +53,7 @@ defmodule CastorEDCTest.Client do
     client =
       new(
         %{access_token: "access-token"},
-        "https://us.castoredc.com",
+        endpoint: "https://us.castoredc.com",
         adapter_options: [some_option: true],
         timeout: 30_000,
         adapter: Tesla.Adapter.Finch
@@ -69,7 +73,7 @@ defmodule CastorEDCTest.Client do
     client =
       new(
         %{access_token: "access-token"},
-        "https://us.castoredc.com"
+        endpoint: "https://us.castoredc.com"
       )
 
     assert client.access_token == "access-token"
@@ -86,8 +90,8 @@ defmodule CastorEDCTest.Client do
     assert_raise ArgumentError, fn ->
       new(
         %{access_token: "access-token"},
-        "https://us.castoredc.com",
-        recv_timeout: 30_000
+        endpoint: "https://us.castoredc.com/",
+        unsupported_option: 30_000
       )
     end
   end
