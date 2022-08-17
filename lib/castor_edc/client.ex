@@ -6,6 +6,7 @@ defmodule CastorEDC.Client do
 
   @default_timeout 5_000
   @default_endpoint "https://data.castoredc.com/"
+  @default_user_agent "elixir-ex_castor_edc/" <> Mix.Project.config()[:version]
 
   @type url() :: String.t()
   @type uuid() :: String.t()
@@ -73,7 +74,7 @@ defmodule CastorEDC.Client do
   end
 
   defp validate_options!(opts) do
-    supported_options = [:adapter, :adapter_options, :timeout, :endpoint]
+    supported_options = [:adapter, :adapter_options, :timeout, :endpoint, :user_agent]
 
     options =
       supported_options
@@ -101,7 +102,8 @@ defmodule CastorEDC.Client do
     [
       timeout: opts[:timeout] || @default_timeout,
       adapter_options: opts[:adapter_options] || [],
-      adapter: opts[:adapter] || Tesla.Adapter.Hackney
+      adapter: opts[:adapter] || Tesla.Adapter.Hackney,
+      user_agent: opts[:user_agent] || @default_user_agent
     ]
   end
 

@@ -3,6 +3,8 @@ defmodule CastorEDCTest.Client do
 
   import CastorEDC.Client
 
+  @expect_user_agent "elixir-ex_castor_edc/" <> Mix.Project.config()[:version]
+
   test "creating a client with id and secret" do
     client = new(%{client_id: "client-id", client_secret: "client-secret"})
 
@@ -56,7 +58,8 @@ defmodule CastorEDCTest.Client do
         endpoint: "https://us.castoredc.com",
         adapter_options: [some_option: true],
         timeout: 30_000,
-        adapter: Tesla.Adapter.Finch
+        adapter: Tesla.Adapter.Finch,
+        user_agent: "some-user-agent"
       )
 
     assert client.access_token == "access-token"
@@ -65,7 +68,8 @@ defmodule CastorEDCTest.Client do
     assert client.options == [
              timeout: 30_000,
              adapter_options: [some_option: true],
-             adapter: Tesla.Adapter.Finch
+             adapter: Tesla.Adapter.Finch,
+             user_agent: "some-user-agent"
            ]
   end
 
@@ -82,7 +86,8 @@ defmodule CastorEDCTest.Client do
     assert client.options == [
              timeout: 5_000,
              adapter_options: [],
-             adapter: Tesla.Adapter.Hackney
+             adapter: Tesla.Adapter.Hackney,
+             user_agent: @expect_user_agent
            ]
   end
 
