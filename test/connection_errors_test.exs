@@ -14,7 +14,7 @@ defmodule CastorEDCTest.ConnectionErrors do
     # For more information, see:
     #
     # - https://hexdocs.pm/tesla/Tesla.Mock.html
-    Tesla.Mock.mock_global(fn _env ->
+    Tesla.Mock.mock(fn _env ->
       {:error, :econnrefused}
     end)
 
