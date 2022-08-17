@@ -41,7 +41,7 @@ client =
       client_id: Kino.Input.read(client_id),
       client_secret: Kino.Input.read(client_secret)
     },
-    Kino.Input.read(endpoint)
+    endpoint: Kino.Input.read(endpoint)
   )
 
 {:ok, client} =
