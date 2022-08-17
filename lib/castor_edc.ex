@@ -83,12 +83,19 @@ defmodule CastorEDC do
   end
 
   defp default_middleware(%Client{access_token: token, options: opts}) do
-    [
+    middleware = [
       {Tesla.Middleware.JSON, []},
       {Tesla.Middleware.BearerAuth, token: token},
-      {Tesla.Middleware.Headers, [{"Accept", "application/json"}]},
-      {Tesla.Middleware.Timeout, timeout: opts[:timeout]}
+      {Tesla.Middleware.Headers, [{"Accept", "application/json"}]}
     ]
+
+    # If we're using the default timeout value we skip adding the timeout middleware
+    # https://github.com/elixir-tesla/tesla/issues/157
+    if opts[:timeout] === 5_000 do
+      middleware
+    else
+      [{Tesla.Middleware.Timeout, timeout: opts[:timeout]} | middleware]
+    end
   end
 
   defp http_client(middleware, %Client{options: opts}) do
