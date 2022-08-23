@@ -64,13 +64,10 @@ defmodule CastorEDCTest.Client do
 
     assert client.access_token == "access-token"
     assert client.endpoint == "https://us.castoredc.com/"
-
-    assert client.options == [
-             timeout: 30_000,
-             adapter_options: [some_option: true],
-             adapter: Tesla.Adapter.Finch,
-             user_agent: "some-user-agent"
-           ]
+    assert client.options[:timeout] == 30_000
+    assert client.options[:user_agent] == "some-user-agent"
+    assert client.options[:adapter] == Tesla.Adapter.Finch
+    assert client.options[:adapter_options] == [some_option: true]
   end
 
   test "default options" do
@@ -82,13 +79,10 @@ defmodule CastorEDCTest.Client do
 
     assert client.access_token == "access-token"
     assert client.endpoint == "https://us.castoredc.com/"
-
-    assert client.options == [
-             timeout: 5_000,
-             adapter_options: [],
-             adapter: Tesla.Adapter.Hackney,
-             user_agent: @expect_user_agent
-           ]
+    assert client.options[:timeout] == 5_000
+    assert client.options[:user_agent] == @expect_user_agent
+    assert client.options[:adapter] == Tesla.Adapter.Hackney
+    assert client.options[:adapter_options] == []
   end
 
   test "raises an error on unknown option" do
