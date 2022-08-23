@@ -4,9 +4,13 @@ defmodule CastorEDC.Client do
   """
   alias __MODULE__
 
-  @default_timeout 5_000
-  @default_endpoint "https://data.castoredc.com/"
-  @default_user_agent "elixir-ex_castor_edc/" <> Mix.Project.config()[:version]
+  @supported_options [:adapter, :adapter_options, :timeout, :endpoint, :user_agent]
+
+  @default_options endpoint: "https://data.castoredc.com/",
+                   user_agent: "elixir-ex_castor_edc/" <> Mix.Project.config()[:version],
+                   timeout: 5_000,
+                   adapter: Tesla.Adapter.Hackney,
+                   adapter_options: []
 
   @type url() :: String.t()
   @type uuid() :: String.t()
@@ -74,38 +78,30 @@ defmodule CastorEDC.Client do
   end
 
   defp validate_options!(opts) do
-    supported_options = [:adapter, :adapter_options, :timeout, :endpoint, :user_agent]
-
     options =
-      supported_options
+      @supported_options
       |> Enum.map_join(", ", &inspect/1)
 
     for {option, _value} <- opts do
-      if option not in supported_options do
+      if option not in @supported_options do
         raise ArgumentError, "Unknown option, expected one of #{options}, got: #{inspect(option)}"
       end
     end
   end
 
   defp merge_properties(credentials, opts) do
-    endpoint = endpoint(opts[:endpoint] || @default_endpoint)
+    opts = merge_options(opts)
+    endpoint = endpoint(opts[:endpoint])
 
     opts =
       opts
       |> Keyword.drop([:endpoint])
 
-    %__MODULE__{endpoint: endpoint, options: merge_options(opts)}
+    %__MODULE__{endpoint: endpoint, options: opts}
     |> Map.merge(credentials)
   end
 
-  defp merge_options(opts) do
-    [
-      timeout: opts[:timeout] || @default_timeout,
-      adapter_options: opts[:adapter_options] || [],
-      adapter: opts[:adapter] || Tesla.Adapter.Hackney,
-      user_agent: opts[:user_agent] || @default_user_agent
-    ]
-  end
+  defp merge_options(opts), do: Keyword.merge(@default_options, opts)
 
   defp endpoint(endpoint) do
     if String.ends_with?(endpoint, "/") do
