@@ -91,12 +91,12 @@ defmodule CastorEDC do
        [{"Accept", "application/json"}, {"User-Agent", opts[:user_agent]}]}
     ]
 
-    # If we're using the default timeout value we skip adding the timeout middleware
+    # If we're using the Tesla.Mock adapter we skip adding the timeout middleware
     # https://github.com/elixir-tesla/tesla/issues/157
-    if opts[:timeout] === 5_000 do
+    if opts[:adapter] === Tesla.Mock do
       middleware
     else
-      [{Tesla.Middleware.Timeout, timeout: opts[:timeout]} | middleware]
+      [{Tesla.Middleware.Timeout, timeout: opts[:global_timeout]} | middleware]
     end
   end
 
