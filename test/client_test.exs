@@ -57,14 +57,14 @@ defmodule CastorEDCTest.Client do
         %{access_token: "access-token"},
         endpoint: "https://us.castoredc.com",
         adapter_options: [some_option: true],
-        timeout: 30_000,
+        global_timeout: 30_000,
         adapter: Tesla.Adapter.Finch,
         user_agent: "some-user-agent"
       )
 
     assert client.access_token == "access-token"
     assert client.endpoint == "https://us.castoredc.com/"
-    assert client.options[:timeout] == 30_000
+    assert client.options[:global_timeout] == 30_000
     assert client.options[:user_agent] == "some-user-agent"
     assert client.options[:adapter] == Tesla.Adapter.Finch
     assert client.options[:adapter_options] == [some_option: true]
@@ -79,7 +79,7 @@ defmodule CastorEDCTest.Client do
 
     assert client.access_token == "access-token"
     assert client.endpoint == "https://us.castoredc.com/"
-    assert client.options[:timeout] == 5_000
+    assert client.options[:global_timeout] == 5_000
     assert client.options[:user_agent] == @expect_user_agent
     assert client.options[:adapter] == Tesla.Adapter.Hackney
     assert client.options[:adapter_options] == []

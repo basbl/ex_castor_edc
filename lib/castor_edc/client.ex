@@ -4,11 +4,11 @@ defmodule CastorEDC.Client do
   """
   alias __MODULE__
 
-  @supported_options [:adapter, :adapter_options, :timeout, :endpoint, :user_agent]
+  @supported_options [:adapter, :adapter_options, :global_timeout, :endpoint, :user_agent]
 
   @default_options endpoint: "https://data.castoredc.com/",
                    user_agent: "elixir-ex_castor_edc/" <> Mix.Project.config()[:version],
-                   timeout: 5_000,
+                   global_timeout: 5_000,
                    adapter: Tesla.Adapter.Hackney,
                    adapter_options: []
 
@@ -51,16 +51,16 @@ defmodule CastorEDC.Client do
 
       client = Client.new(%{access_token: "<access token>"})
 
-  Additionally it's possible to pass options e.g increasing the timeout.
+  Additionally it's possible to pass options e.g increasing the global_timeout.
 
       client = Client.new(
         %{client_id: "<client id>", client_secret: "<client secret>"},
-        timeout: 30_000
+        global_timeout: 30_000
       )
 
   ## Options
     * `:endpoint` - An alternative endpoint e.g. https://us.castoredc.com/
-    * `:timeout` - The timeout in milliseconds, by default it is 5000
+    * `:global_timeout` - The global_timeout in milliseconds, by default it is 5000
     * `:adapter` - Any module that implements the `Tesla.Adapter` behavior
     * `:adapter_options` - The supported options for the given adapter
   """
