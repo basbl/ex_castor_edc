@@ -20,7 +20,7 @@ Then you can add `ex_castor_edc` as dependency in your `mix.exs`.
 ```elixir
 def deps do
   [
-    {:ex_castor_edc, "~> 0.2.0"}
+    {:ex_castor_edc, "~> 0.3.0"}
   ]
 end
 ```
@@ -29,6 +29,6 @@ Alternatively, inside a script or Livebook:
 
 ```elixir
 Mix.install([
-  {:ex_castor_edc, "~> 0.2.0"}
+  {:ex_castor_edc, "~> 0.3.0"}
 ])
 ```
