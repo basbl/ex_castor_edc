@@ -1,8 +1,15 @@
 # Using the Castor EDC API
 
 ```elixir
+# ## Fix for the free tier of Fly.io livebook
+# ## Allocate 2GB swap
+# System.cmd("fallocate", ["-l", "2G", "/swap"])
+# System.cmd("chmod", ["400", "/swap"])
+# System.cmd("mkswap", ["/swap"])
+# System.cmd("swapon", ["/swap"])
+
 Mix.install([
-  {:ex_castor_edc, "~> 0.2.0"},
+  {:ex_castor_edc, "~> 0.3.0"},
   {:kino, "~> 0.6.1"}
 ])
 ```
