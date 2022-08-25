@@ -10,7 +10,7 @@
     <title>CastorEDC.Client — ExCastorEDC v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
 
-    <script src="dist/sidebar_items-4f0997f627.js"></script>
+    <script src="dist/sidebar_items-5cc8c7dad0.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -106,8 +106,7 @@ ExCastorEDC
 
 
   <section id="moduledoc">
-<p>Container for authentication related values</p><p>If you plan to use <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> as an endpoint then you can use <a href="#new/2"><code class="inline">new/2</code></a></p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="7142938156-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="7142938156-1">)</span></code></pre><p>When your study is located in a different region then you can use <a href="#new/3"><code class="inline">new/3</code></a></p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="9627777858-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://&lt;domain&gt;/&quot;</span><span class="p" data-group-id="9627777858-1">)</span></code></pre><p>The clients can then be passed to <a href="CastorEDC.html#authenticate/1"><code class="inline">CastorEDC.authenticate/1</code></a> for an access token.</p><p>Depending on whether you have a long-lived access token you can use either <a href="#access_token/1"><code class="inline">access_token/1</code></a> or <a href="#access_token/2"><code class="inline">access_token/2</code></a>
-and pass in an access token directly allowing you to skip the authentication step.</p><pre><code class="makeup elixir" translate="no"><span class="w">  </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">access_token</span><span class="p" data-group-id="9529080224-1">(</span><span class="s">&quot;&lt;access token&gt;&quot;</span><span class="p" data-group-id="9529080224-1">)</span></code></pre>
+<p>Container for API client configuration values.</p>
   </section>
 
 
@@ -124,6 +123,14 @@ and pass in an access token directly allowing you to skip the authentication ste
     <h2>
       <a href="#types">Types</a>
     </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#t:credentials/0" translate="no">credentials()</a>
+
+        </div>
+
+      </div>
 
       <div class="summary-row">
         <div class="summary-signature">
@@ -158,49 +165,11 @@ and pass in an access token directly allowing you to skip the authentication ste
 
       <div class="summary-row">
         <div class="summary-signature">
-          <a href="#access_token/1" translate="no">access_token(access_token)</a>
+          <a href="#new/2" translate="no">new(credentials, opts \\ [])</a>
 
         </div>
 
-          <div class="summary-synopsis"><p>If you already have an access token you can use this function to pass it in directly allowing
-you to skip the authentication step.</p></div>
-
-      </div>
-
-      <div class="summary-row">
-        <div class="summary-signature">
-          <a href="#access_token/2" translate="no">access_token(access_token, endpoint)</a>
-
-        </div>
-
-      </div>
-
-      <div class="summary-row">
-        <div class="summary-signature">
-          <a href="#new/2" translate="no">new(client_id, client_secret)</a>
-
-        </div>
-
-          <div class="summary-synopsis"><p>You can get your client id and secret from the account settings page after logging in
-over at <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> or the region that your studies reside at.</p></div>
-
-      </div>
-
-      <div class="summary-row">
-        <div class="summary-signature">
-          <a href="#new/3" translate="no">new(client_id, client_secret, endpoint)</a>
-
-        </div>
-
-      </div>
-
-      <div class="summary-row">
-        <div class="summary-signature">
-          <a href="#put_token/2" translate="no">put_token(client, access_token)</a>
-
-        </div>
-
-          <div class="summary-synopsis"><p>This is an internal function that will add the access token after the authentication step.</p></div>
+          <div class="summary-synopsis"><p>By default the client will use <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> as the endpoint</p></div>
 
       </div>
 
@@ -218,6 +187,35 @@ over at <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> or
 Types
     </h1>
     <div class="types-list">
+<section class="detail" id="t:credentials/0">
+
+  <div class="detail-header">
+    <a href="#t:credentials/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">credentials()</h1>
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L18" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> credentials() ::
+  %{client_id: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), client_secret: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()} | %{access_token: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()}</pre>
+
+      </div>
+
+
+  </section>
+</section>
 <section class="detail" id="t:t/0">
 
   <div class="detail-header">
@@ -227,7 +225,7 @@ Types
     </a>
     <h1 class="signature" translate="no">t()</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L26" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L20" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -245,6 +243,7 @@ Types
   client_secret: nil | <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
   endpoint: <a href="#t:url/0">url</a>(),
   grant_type: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  options: [],
   scope: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
 }</pre>
 
@@ -262,7 +261,7 @@ Types
     </a>
     <h1 class="signature" translate="no">url()</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L23" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L15" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -290,7 +289,7 @@ Types
     </a>
     <h1 class="signature" translate="no">uuid()</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L24" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L16" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -322,73 +321,18 @@ Types
 Functions
     </h1>
     <div class="functions-list">
-<section class="detail" id="access_token/1">
-
-  <div class="detail-header">
-    <a href="#access_token/1" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">access_token(access_token)</h1>
-
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L72" class="view-source" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> access_token(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="#t:t/0">t</a>()</pre>
-
-      </div>
-
-<p>If you already have an access token you can use this function to pass it in directly allowing
-you to skip the authentication step.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">access_token</span><span class="p" data-group-id="1229278389-1">(</span><span class="s">&quot;&lt;access token&gt;&quot;</span><span class="p" data-group-id="1229278389-1">)</span></code></pre><p>or <a href="#access_token/2"><code class="inline">access_token/2</code></a> when your studies are hosted, for example, in Australia</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">access_token</span><span class="p" data-group-id="4090456315-1">(</span><span class="s">&quot;&lt;access token&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://au.castoredc.com/&quot;</span><span class="p" data-group-id="4090456315-1">)</span></code></pre>
-  </section>
-</section>
-<section class="detail" id="access_token/2">
-
-  <div class="detail-header">
-    <a href="#access_token/2" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">access_token(access_token, endpoint)</h1>
-
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L75" class="view-source" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> access_token(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="#t:url/0">url</a>()) :: <a href="#t:t/0">t</a>()</pre>
-
-      </div>
-
-
-  </section>
-</section>
 <section class="detail" id="new/2">
+
+    <span id="new/1"></span>
 
   <div class="detail-header">
     <a href="#new/2" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">new(client_id, client_secret)</h1>
+    <h1 class="signature" translate="no">new(credentials, opts \\ [])</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L54" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L68" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -400,68 +344,26 @@ you to skip the authentication step.</p><pre><code class="makeup elixir" transla
 
       <div class="specs">
 
-          <pre translate="no"><span class="attribute">@spec</span> new(<a href="#t:uuid/0">uuid</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="#t:t/0">t</a>()</pre>
+          <pre translate="no"><span class="attribute">@spec</span> new(
+  <a href="#t:credentials/0">credentials</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="#t:t/0">t</a>()</pre>
 
       </div>
 
-<p>You can get your client id and secret from the account settings page after logging in
-over at <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> or the region that your studies reside at.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1845741878-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="1845741878-1">)</span></code></pre><p>Use <a href="#new/3"><code class="inline">new/3</code></a> if your studies are hosted, for example, in the US.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3940838981-1">(</span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://us.castoredc.com/&quot;</span><span class="p" data-group-id="3940838981-1">)</span></code></pre>
-  </section>
-</section>
-<section class="detail" id="new/3">
-
-  <div class="detail-header">
-    <a href="#new/3" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">new(client_id, client_secret, endpoint)</h1>
-
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L57" class="view-source" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> new(<a href="#t:uuid/0">uuid</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="#t:url/0">url</a>()) :: <a href="#t:t/0">t</a>()</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="put_token/2">
-
-  <div class="detail-header">
-    <a href="#put_token/2" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">put_token(client, access_token)</h1>
-
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0-dev/lib/castor_edc/client.ex#L82" class="view-source" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> put_token(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="#t:t/0">t</a>()</pre>
-
-      </div>
-
-<p>This is an internal function that will add the access token after the authentication step.</p>
+<p>By default the client will use <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> as the endpoint</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3625508799-1">(</span><span class="p" data-group-id="3625508799-2">%{</span><span class="ss">client_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">client_secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="3625508799-2">}</span><span class="p" data-group-id="3625508799-1">)</span></code></pre><p>You can pass a different endpoint as an option when your studies are located elsewhere e.g.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="7104705770-1">(</span><span class="w">
+  </span><span class="p" data-group-id="7104705770-2">%{</span><span class="ss">client_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">client_secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="7104705770-2">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://us.castoredc.com/&quot;</span><span class="w">
+</span><span class="p" data-group-id="7104705770-1">)</span></code></pre><p>Alternatively, when you have a long-lived access token you can pass it in directly</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="7724769383-1">(</span><span class="p" data-group-id="7724769383-2">%{</span><span class="ss">access_token</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;access token&gt;&quot;</span><span class="p" data-group-id="7724769383-2">}</span><span class="p" data-group-id="7724769383-1">)</span></code></pre><p>Additionally it's possible to pass options e.g increasing the global_timeout.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="4426882867-1">(</span><span class="w">
+  </span><span class="p" data-group-id="4426882867-2">%{</span><span class="ss">client_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">client_secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="4426882867-2">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">global_timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">30_000</span><span class="w">
+</span><span class="p" data-group-id="4426882867-1">)</span></code></pre><h2 id="new/2-options" class="section-heading">
+  <a href="#new/2-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">options</p>
+  </a>
+  Options
+</h2>
+<ul><li><code class="inline">:endpoint</code> - An alternative endpoint e.g. <a href="https://us.castoredc.com/">https://us.castoredc.com/</a></li><li><code class="inline">:global_timeout</code> - The global_timeout in milliseconds, by default it is 5000</li><li><code class="inline">:adapter</code> - Any module that implements the <a href="https://hexdocs.pm/tesla/1.4.4/Tesla.Adapter.html"><code class="inline">Tesla.Adapter</code></a> behavior</li><li><code class="inline">:adapter_options</code> - The supported options for the given adapter</li></ul>
   </section>
 </section>
 
