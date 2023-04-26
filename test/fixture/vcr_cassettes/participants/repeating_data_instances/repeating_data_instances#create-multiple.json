@@ -1,0 +1,22 @@
+[
+  {
+    "request": {
+      "body": "{\"data\":[{\"report_id\":\"738DDB4C-E1E2-42C3-8C21-DA8903EEF1F3\"},{\"report_id\":\"BE71F4D5-64E2-493E-9D9B-18A215A493D3\"}]}",
+      "headers": {
+        "content-type": "application/json",
+        "authorization": "Bearer supersecretaccesstoken",
+        "Accept": "application/json"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/C56B7E31-8984-438C-AAD8-E041AF4A09DC/participant/110001/repeating-data-instance-collection"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"success\":[{\"id\":\"E6452B79-734C-4203-8FAC-8CC2C663A90C\",\"name\":\"Adverse event - 24-05-2022 20:30:05\",\"status\":\"open\",\"parent_id\":\"\",\"parent_type\":\"\",\"record_id\":\"110001\",\"report_name\":\"Adverse event\",\"created_on\":\"2022-05-24 20:30:05\",\"created_by\":\"6B2AD55A-CCC3-4A9C-A15B-5F0C55386CE0\",\"report\":{},\"archived\":false},{\"id\":\"183DC0D4-8D73-4FFB-B617-88C1A281AF88\",\"name\":\"Blood pressure - 24-05-2022 20:30:05\",\"status\":\"open\",\"parent_id\":\"\",\"parent_type\":\"\",\"record_id\":\"110001\",\"report_name\":\"Blood pressure\",\"created_on\":\"2022-05-24 20:30:05\",\"created_by\":\"6B2AD55A-CCC3-4A9C-A15B-5F0C55386CE0\",\"report\":{},\"archived\":false}],\"failed\":[],\"total_processed\":2,\"total_success\":2,\"total_failed\":0,\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/C56B7E31-8984-438C-AAD8-E041AF4A09DC\\/record\\/110001\\/report-instance-collection\"}}}",
+      "status_code": 201,
+      "type": "ok"
+    }
+  }
+]

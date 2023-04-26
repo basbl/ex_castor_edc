@@ -9,7 +9,7 @@
       },
       "method": "post",
       "request_body": "",
-      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/record/110004/data-point/study/7BC52BB4-4848-4271-AE32-7AAD0ECE941F"
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/participant/110004/data-point/study/7BC52BB4-4848-4271-AE32-7AAD0ECE941F"
     },
     "response": {
       "binary": false,

@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey/83F352DC-816B-4387-A13E-6D716D44AE83/survey-form"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/survey\\/83F352DC-816B-4387-A13E-6D716D44AE83\\/survey-step?page=1\"},\"first\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/survey\\/83F352DC-816B-4387-A13E-6D716D44AE83\\/survey-step\"},\"last\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/survey\\/83F352DC-816B-4387-A13E-6D716D44AE83\\/survey-step?page=1\"}},\"_embedded\":{\"survey_steps\":[{\"id\":\"3F22E3E8-E3BB-43D0-9C9C-F1DE67B95B18\",\"survey_step_id\":\"3F22E3E8-E3BB-43D0-9C9C-F1DE67B95B18\",\"survey_step_name\":\"SF 36\",\"survey_step_description\":\"\",\"survey_step_number\":1,\"form_numbering\":\"visible\",\"field_alignment\":\"left-aligned\",\"label_bold_if_required\":true,\"_embedded\":{\"survey\":{\"id\":\"83F352DC-816B-4387-A13E-6D716D44AE83\",\"survey_id\":\"83F352DC-816B-4387-A13E-6D716D44AE83\",\"name\":\"Short Form Health Survey SF-36\",\"description\":\"\",\"intro_text\":\"\",\"outro_text\":\"\",\"survey_steps\":[],\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/survey\\/83F352DC-816B-4387-A13E-6D716D44AE83\"}}}},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/AFE56D62-0797-406B-9949-DD8DC65D6A75\\/survey\\/83F352DC-816B-4387-A13E-6D716D44AE83\\/survey-step\\/3F22E3E8-E3BB-43D0-9C9C-F1DE67B95B18\"}}}]},\"page_count\":1,\"page_size\":25,\"total_items\":1,\"page\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

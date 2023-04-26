@@ -9,7 +9,7 @@
       },
       "method": "get",
       "request_body": "",
-      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/data-point-collection/survey-package-instance/E8ECA57E-4204-4D22-85F5-10D8FF50913F"
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/data-points/survey-package-instance/E8ECA57E-4204-4D22-85F5-10D8FF50913F"
     },
     "response": {
       "binary": false,

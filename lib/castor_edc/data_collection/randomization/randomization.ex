@@ -7,20 +7,24 @@ defmodule CastorEDC.DataCollection.Randomization do
   alias CastorEDC.Client
 
   @doc """
-  Find randomization details of a record
+  Find randomization details of a participant
 
-  [More info](https://data.castoredc.com/api#/randomization/get_study__study_id__record__record_id__randomization)
+  [More info](https://data.castoredc.com/api#/randomization/get_study__study_id__participant__participant_id__randomization)
   """
-  def find(%Client{} = client, study_id, record_id) do
-    get("api/study/" <> study_id <> "/record/" <> record_id <> "/randomization", client)
+  def find(%Client{} = client, study_id, participant_id) do
+    get("api/study/" <> study_id <> "/participant/" <> participant_id <> "/randomization", client)
   end
 
   @doc """
-  Randomize a record
+  Randomize a participant
 
-  [More info](https://data.castoredc.com/api#/randomization/post_study__study_id__record__record_id__randomization)
+  [More info](https://data.castoredc.com/api#/randomization/post_study__study_id__participant__participant_id__randomization)
   """
-  def create(%Client{} = client, study_id, record_id) do
-    post("api/study/" <> study_id <> "/record/" <> record_id <> "/randomization", client, %{})
+  def create(%Client{} = client, study_id, participant_id) do
+    post(
+      "api/study/" <> study_id <> "/participant/" <> participant_id <> "/randomization",
+      client,
+      %{}
+    )
   end
 end

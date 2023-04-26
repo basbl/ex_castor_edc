@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "{\"email_address\":\"example.user@example.org\",\"institute_id\":\"44A6D11D-84B5-4983-9B32-C06297349193\"}",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "post",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/7AD4616E-B169-4F9E-9982-F626099B84C0/participant"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"id\":\"000001\",\"record_id\":\"000001\",\"record_status\":null,\"ccr_patient_id\":\"\",\"last_opened_step\":null,\"progress\":0,\"locked\":false,\"status\":\"open\",\"archived\":false,\"archived_reason\":null,\"created_by\":\"8F654747-3561-4C90-BD8F-B21320DA7862\",\"created_on\":{\"date\":\"2022-01-27 21:09:46.130206\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"updated_by\":\"8F654747-3561-4C90-BD8F-B21320DA7862\",\"updated_on\":{\"date\":\"2022-01-27 21:09:46.130208\",\"timezone_type\":3,\"timezone\":\"Europe\\/Amsterdam\"},\"randomized_id\":null,\"randomization_group\":null,\"randomization_group_name\":null,\"randomized_on\":null,\"_embedded\":{\"institute\":{\"id\":\"44A6D11D-84B5-4983-9B32-C06297349193\",\"institute_id\":\"44A6D11D-84B5-4983-9B32-C06297349193\",\"name\":\"Test Institute\",\"abbreviation\":\"TES\",\"code\":\"TES\",\"order\":0,\"deleted\":false,\"country_id\":169,\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/7AD4616E-B169-4F9E-9982-F626099B84C0\\/institute\\/44A6D11D-84B5-4983-9B32-C06297349193\"}}}},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/7AD4616E-B169-4F9E-9982-F626099B84C0\\/record\\/000001\"}}}",
+      "status_code": 201,
+      "type": "ok"
+    }
+  }
+]
