@@ -1,0 +1,22 @@
+[
+  {
+    "request": {
+      "body": "{\"report_id\":\"738DDB4C-E1E2-42C3-8C21-DA8903EEF1F3\"}",
+      "headers": {
+        "content-type": "application/json",
+        "authorization": "Bearer supersecretaccesstoken",
+        "Accept": "application/json"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/C56B7E31-8984-438C-AAD8-E041AF4A09DC/participant/110001/repeating-data-instance"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"id\":\"95CD85E1-45BD-42EE-90EA-8C3A5F3FAC00\",\"name\":\"Adverse event - 24-05-2022 20:28:56\",\"status\":\"open\",\"parent_id\":\"\",\"parent_type\":\"\",\"record_id\":\"110001\",\"report_name\":\"Adverse event\",\"created_on\":\"2022-05-24 20:28:56\",\"created_by\":\"6B2AD55A-CCC3-4A9C-A15B-5F0C55386CE0\",\"archived\":false,\"_embedded\":{\"report\":{\"id\":\"738DDB4C-E1E2-42C3-8C21-DA8903EEF1F3\",\"report_id\":\"738DDB4C-E1E2-42C3-8C21-DA8903EEF1F3\",\"name\":\"Adverse event\",\"description\":\"Adverse events\",\"type\":\"adverse_event\",\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/C56B7E31-8984-438C-AAD8-E041AF4A09DC\\/report\\/738DDB4C-E1E2-42C3-8C21-DA8903EEF1F3\"}}}},\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/C56B7E31-8984-438C-AAD8-E041AF4A09DC\\/record\\/110001\\/report-instance\\/95CD85E1-45BD-42EE-90EA-8C3A5F3FAC00\"}}}",
+      "status_code": 201,
+      "type": "ok"
+    }
+  }
+]

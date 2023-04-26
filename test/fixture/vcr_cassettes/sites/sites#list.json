@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/site"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/institute?page=1\"},\"first\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/institute\"},\"last\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/institute?page=1\"}},\"_embedded\":{\"institutes\":[{\"id\":\"141BF885-F4CA-49DB-9559-C56727DF5903\",\"institute_id\":\"141BF885-F4CA-49DB-9559-C56727DF5903\",\"name\":\"Test Institute\",\"abbreviation\":\"TES\",\"code\":\"TES\",\"order\":0,\"deleted\":false,\"country_id\":169,\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/institute\\/141BF885-F4CA-49DB-9559-C56727DF5903\"}}},{\"id\":\"4C7A0F62-31A0-40E3-A2E8-F9C41C1AC55B\",\"institute_id\":\"4C7A0F62-31A0-40E3-A2E8-F9C41C1AC55B\",\"name\":\"Via API 3\",\"abbreviation\":\"API3\",\"code\":\"\",\"order\":14,\"deleted\":false,\"country_id\":123,\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/institute\\/4C7A0F62-31A0-40E3-A2E8-F9C41C1AC55B\"}}},{\"id\":\"5E6FF7BD-1BE0-427C-A8FE-6511F9E6B536\",\"institute_id\":\"5E6FF7BD-1BE0-427C-A8FE-6511F9E6B536\",\"name\":\"Castor\",\"abbreviation\":\"CSTR\",\"code\":null,\"order\":11,\"deleted\":false,\"country_id\":169,\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/institute\\/5E6FF7BD-1BE0-427C-A8FE-6511F9E6B536\"}}},{\"id\":\"87B0E37F-2403-491A-8313-7B9EE1C0AB77\",\"institute_id\":\"87B0E37F-2403-491A-8313-7B9EE1C0AB77\",\"name\":\"Via API 2\",\"abbreviation\":\"API2\",\"code\":\"\",\"order\":13,\"deleted\":false,\"country_id\":123,\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/institute\\/87B0E37F-2403-491A-8313-7B9EE1C0AB77\"}}},{\"id\":\"CAB70053-9D8C-4EFE-8044-437E2C05659A\",\"institute_id\":\"CAB70053-9D8C-4EFE-8044-437E2C05659A\",\"name\":\"Via API\",\"abbreviation\":\"API\",\"code\":\"\",\"order\":12,\"deleted\":false,\"country_id\":123,\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/institute\\/CAB70053-9D8C-4EFE-8044-437E2C05659A\"}}}]},\"page_count\":1,\"page_size\":25,\"total_items\":5,\"page\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

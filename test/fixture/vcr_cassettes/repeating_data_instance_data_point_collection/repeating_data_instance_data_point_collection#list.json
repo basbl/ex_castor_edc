@@ -1,0 +1,21 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer supersecretaccesstoken",
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "request_body": "",
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/data-points/repeating-data-instance"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"_links\":{\"self\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/data-point-collection\\/report-instance?page=1\"},\"first\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/data-point-collection\\/report-instance\"},\"last\":{\"href\":\"https:\\/\\/data.castoredc.com\\/api\\/study\\/500475BC-F67A-41FD-A07D-4FF7C13756C8\\/data-point-collection\\/report-instance?page=1\"}},\"_embedded\":{\"items\":[{\"field_id\":\"64A16F5C-7F3B-48ED-9AE6-864A66607A3A\",\"field_value\":\"Blabla\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 20:01:55\",\"report_instance_id\":\"9514592B-580B-4FB1-8302-855A13659BC5\",\"report_instance_name\":\"Adverse event - 20-04-2022 20:01:48\"},{\"field_id\":\"09F11A78-74F1-479B-885D-0229F7D3F825\",\"field_value\":\"3\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 20:00:18\",\"report_instance_id\":\"C818FFC2-0FB8-4DDE-9317-231D99B1F453\",\"report_instance_name\":\"Adverse event - 20-04-2022 19:59:59\"},{\"field_id\":\"16D59F84-3595-443F-AA35-B04F11F22181\",\"field_value\":\"1\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 20:00:19\",\"report_instance_id\":\"C818FFC2-0FB8-4DDE-9317-231D99B1F453\",\"report_instance_name\":\"Adverse event - 20-04-2022 19:59:59\"},{\"field_id\":\"2265F06E-2506-493A-BCD1-AA5D1B32ED0B\",\"field_value\":\"19-04-2022\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 20:00:08\",\"report_instance_id\":\"C818FFC2-0FB8-4DDE-9317-231D99B1F453\",\"report_instance_name\":\"Adverse event - 20-04-2022 19:59:59\"},{\"field_id\":\"602E0819-2359-4BCD-A4A3-27FAB4B26D7E\",\"field_value\":\"1\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 20:00:15\",\"report_instance_id\":\"C818FFC2-0FB8-4DDE-9317-231D99B1F453\",\"report_instance_name\":\"Adverse event - 20-04-2022 19:59:59\"},{\"field_id\":\"64A16F5C-7F3B-48ED-9AE6-864A66607A3A\",\"field_value\":\"Nosebleed\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 20:00:07\",\"report_instance_id\":\"C818FFC2-0FB8-4DDE-9317-231D99B1F453\",\"report_instance_name\":\"Adverse event - 20-04-2022 19:59:59\"},{\"field_id\":\"67CA757C-9111-4DCA-B33C-953C65017B03\",\"field_value\":\"1\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 20:00:20\",\"report_instance_id\":\"C818FFC2-0FB8-4DDE-9317-231D99B1F453\",\"report_instance_name\":\"Adverse event - 20-04-2022 19:59:59\"},{\"field_id\":\"8075CFE8-1C90-4DFB-97FE-999DDF78B74D\",\"field_value\":\"2\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 20:00:16\",\"report_instance_id\":\"C818FFC2-0FB8-4DDE-9317-231D99B1F453\",\"report_instance_name\":\"Adverse event - 20-04-2022 19:59:59\"},{\"field_id\":\"CEE26A59-D2BD-4A7E-9278-9691B78A90C7\",\"field_value\":\"3\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 20:00:19\",\"report_instance_id\":\"C818FFC2-0FB8-4DDE-9317-231D99B1F453\",\"report_instance_name\":\"Adverse event - 20-04-2022 19:59:59\"},{\"field_id\":\"FD4E61E4-D296-4CFD-AC0D-0FDBB4C5B36B\",\"field_value\":\"20-04-2022\",\"record_id\":\"110001\",\"updated_on\":\"2022-04-20 20:00:13\",\"report_instance_id\":\"C818FFC2-0FB8-4DDE-9317-231D99B1F453\",\"report_instance_name\":\"Adverse event - 20-04-2022 19:59:59\"}]},\"page_count\":1,\"page_size\":500,\"total_items\":10,\"page\":1}",
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

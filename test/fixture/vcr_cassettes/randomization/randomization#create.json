@@ -9,7 +9,7 @@
       },
       "method": "post",
       "request_body": "",
-      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/record/110003/randomization"
+      "url": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/participant/110003/randomization"
     },
     "response": {
       "binary": false,

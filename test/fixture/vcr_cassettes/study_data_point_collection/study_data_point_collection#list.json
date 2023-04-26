@@ -9,7 +9,7 @@
       },
       "method": "get",
       "request_body": "",
-      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/data-point-collection/study"
+      "url": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/data-points/study"
     },
     "response": {
       "binary": false,
