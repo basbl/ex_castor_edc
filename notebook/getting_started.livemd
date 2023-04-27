@@ -9,7 +9,7 @@
 # System.cmd("swapon", ["/swap"])
 
 Mix.install([
-  {:ex_castor_edc, "~> 0.3.0"},
+  {:ex_castor_edc, "~> 0.4.0"},
   {:kino, "~> 0.6.1"}
 ])
 ```
@@ -91,62 +91,62 @@ Let's read the chosen study into an easily accessible variable that we can reuse
 study_id = Kino.Input.read(study_id)
 ```
 
-## Institutes
+## Sites
 
-With a study id in our hands we can start digging, let's start with finding out which institutes the study is being conducted in!
+With a study id in our hands we can start digging, let's start with finding out which sites the study is being conducted at!
 
-You'll get the option to also run write calls against the API. Make sure that you've chosen a test institute as to not put data where it doesn't belong.
+You'll get the option to also run write calls against the API. Make sure that you've chosen a test site as to not put data where it doesn't belong.
 
 ```elixir
-{200, %{"_embedded" => %{"institutes" => institutes}}, _} =
-  CastorEDC.Common.Institutes.list(client, study_id)
+{200, %{"_embedded" => %{"sites" => sites}}, _} = CastorEDC.Common.Sites.list(client, study_id)
 
-institutes =
-  institutes
+sites =
+  sites
   |> Enum.filter(&(&1["deleted"] == false))
   |> Enum.map(&{&1["id"], &1["name"]})
 
-institute_id = Kino.Input.select("Choose your test institute", institutes)
+site_id = Kino.Input.select("Choose your test site", sites)
 ```
 
 ```elixir
-institute_id = Kino.Input.read(institute_id)
+site_id = Kino.Input.read(site_id)
 ```
 
 <!-- livebook:{"branch_parent_index":3} -->
 
-## Records
+## Participants
 
-The `CastorEDC.Records` module is our gateway into fetching information about our records. We can either fetch entire lists or fetch specific ones. With the `create` function we can even directly create new ones in our study.
+The `CastorEDC.Participants` module is our gateway into fetching information about our participants. We can either fetch entire lists or fetch specific ones. With the `create` function we can even directly create new ones in our study.
 
 Let's start with fetching the first 10.
 
 ```elixir
-{200, %{"_embedded" => %{"records" => records}}, _} =
-  CastorEDC.DataCollection.Records.list(client, study_id, page_size: 10)
+{200, %{"_embedded" => %{"participants" => participants}}, _} =
+  CastorEDC.DataCollection.Participants.list(client, study_id, page_size: 10)
 
-records
+participants
 ```
 
-As you can see we now have a list of all the records enrolled in the the study. Let's take the first one from the list and find out more about it.
+As you can see we now have a list of all the participants enrolled in the the study. Let's take the first one from the list and find out more about it.
 
 ```elixir
-[%{"id" => record_id} | _] = records
+[%{"id" => participant_id} | _] = participants
 
-{200, record, _} = CastorEDC.DataCollection.Records.find(client, study_id, record_id)
+{200, participant, _} =
+  CastorEDC.DataCollection.Participants.find(client, study_id, participant_id)
 
-record
+participant
 ```
 
-It's also possible to create new Records via the API allowing for the enrollment of records through external systems.
+It's also possible to create new Participants via the API allowing for the enrollment of participants through external systems.
 
-**Before you evaluate the code-block below double-check the selected institute, you also need record creation permission for the given institute.**
+**Before you evaluate the code-block below double-check the selected site, you also need participant creation permission for the given site.**
 
 ```elixir
-{201, new_record, _} =
-  CastorEDC.DataCollection.Records.create(client, study_id, %{institute_id: institute_id})
+{201, new_participant, _} =
+  CastorEDC.DataCollection.Participants.create(client, study_id, %{site_id: site_id})
 
-new_record
+new_participant
 ```
 
 <!-- livebook:{"branch_parent_index":2} -->
@@ -156,18 +156,18 @@ new_record
 It's also possible to fetch the elements
 
 ```elixir
-{200, %{"_embedded" => %{"phases" => phases}}, _} =
-  CastorEDC.StudyProtocol.Phases.list(client, study_id)
+{200, %{"_embedded" => %{"visits" => visits}}, _} =
+  CastorEDC.StudyProtocol.Visits.list(client, study_id)
 
-phases
+visits
 |> Enum.sort(&(&1["phase_order"] <= &2["phase_order"]))
 ```
 
 ```elixir
-{200, %{"_embedded" => %{"steps" => steps}}, _} =
-  CastorEDC.StudyProtocol.Steps.list(client, study_id)
+{200, %{"_embedded" => %{"forms" => forms}}, _} =
+  CastorEDC.StudyProtocol.Forms.list(client, study_id)
 
-steps
+forms
 |> Enum.sort(&(&1["step_order"] <= &2["step_order"]))
 ```
 
