@@ -5,12 +5,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.28.5">
-    <meta name="project" content="ExCastorEDC v0.3.0">
+    <meta name="project" content="ExCastorEDC v0.4.0">
 
-    <title>CastorEDC.DataCollection.Records.SurveyPackageInstances — ExCastorEDC v0.3.0</title>
+    <title>CastorEDC.StudyProtocol.Forms — ExCastorEDC v0.4.0</title>
     <link rel="stylesheet" href="dist/elixir-64c5e2b63575bddb1c5b.css" />
 
-    <script src="dist/sidebar_items-5cc8c7dad0.js"></script>
+    <script src="dist/sidebar_items-76403ee8e8.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -66,7 +66,7 @@
 ExCastorEDC
       </a>
       <strong class="sidebar-projectVersion" translate="no">
-        v0.3.0
+        v0.4.0
       </strong>
     </div>
     <ul class="sidebar-listNav">
@@ -94,19 +94,19 @@ ExCastorEDC
 </button>
 
 
-    <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc/data_collection/records/survey_package_instances/survey_package_instances.ex#L1" title="View Source" class="view-source" rel="help">
+    <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/study_protocol/forms/forms.ex#L1" title="View Source" class="view-source" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
-  <span translate="no">CastorEDC.DataCollection.Records.SurveyPackageInstances</span> 
-  <small class="app-vsn" translate="no">(ExCastorEDC v0.3.0)</small>
+  <span translate="no">CastorEDC.StudyProtocol.Forms</span> 
+  <small class="app-vsn" translate="no">(ExCastorEDC v0.4.0)</small>
 
 </h1>
 
 
   <section id="moduledoc">
-<p>Provides access to survey package instance related endpoints</p>
+<p>Provides access to form related endpoints within the study context</p>
   </section>
 
 
@@ -126,11 +126,21 @@ ExCastorEDC
 
       <div class="summary-row">
         <div class="summary-signature">
-          <a href="#patch/5" translate="no">patch(client, study_id, record_id, survey_package_instance_id, body)</a>
+          <a href="#find/4" translate="no">find(client, study_id, form_id, params \\ [])</a>
 
         </div>
 
-          <div class="summary-synopsis"><p>Updates the start time for a survey package instance</p></div>
+          <div class="summary-synopsis"><p>Find a specific form</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#list/3" translate="no">list(client, study_id, params \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>List all forms</p></div>
 
       </div>
 
@@ -148,16 +158,18 @@ ExCastorEDC
 Functions
     </h1>
     <div class="functions-list">
-<section class="detail" id="patch/5">
+<section class="detail" id="find/4">
+
+    <span id="find/3"></span>
 
   <div class="detail-header">
-    <a href="#patch/5" class="detail-link" title="Link to this function">
+    <a href="#find/4" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">patch(client, study_id, record_id, survey_package_instance_id, body)</h1>
+    <h1 class="signature" translate="no">find(client, study_id, form_id, params \\ [])</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc/data_collection/records/survey_package_instances/survey_package_instances.ex#L14" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/study_protocol/forms/forms.ex#L28" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -167,7 +179,37 @@ Functions
 
   <section class="docstring">
 
-<p>Updates the start time for a survey package instance</p><p><a href="https://data.castoredc.com/api#/survey/patch_study__study_id__record__record_id__surveypackageinstance__survey_package_instance_id_">More info</a></p>
+<p>Find a specific form</p><p><a href="https://data.castoredc.com/api#/form/get_study__study_id__form__form_id_">More info</a></p>
+  </section>
+</section>
+<section class="detail" id="list/3">
+
+    <span id="list/2"></span>
+
+  <div class="detail-header">
+    <a href="#list/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">list(client, study_id, params \\ [])</h1>
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/study_protocol/forms/forms.ex#L15" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list(<a href="CastorEDC.Client.html#t:t/0">CastorEDC.Client.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), []) :: {<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(), %{}, <a href="https://hexdocs.pm/tesla/1.4.4/Tesla.Env.html#t:t/0">Tesla.Env.t</a>()}</pre>
+
+      </div>
+
+<p>List all forms</p><p><a href="https://data.castoredc.com/api#/form/get_study__study_id__form">More info</a></p>
   </section>
 </section>
 
@@ -180,10 +222,10 @@ Functions
             On Hex.pm:
 
             <span class="line">
-              <a href="https://hex.pm/packages/ex_castor_edc/0.3.0" class="line footer-hex-package">Package</a>
-              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0" class="line">Preview</a>
+              <a href="https://hex.pm/packages/ex_castor_edc/0.4.0" class="line footer-hex-package">Package</a>
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.0" class="line">Preview</a>
 
-                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0/show/lib/castor_edc/data_collection/records/survey_package_instances/survey_package_instances.ex">(current file)</a>
+                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.0/show/lib/castor_edc/study_protocol/forms/forms.ex">(current file)</a>
 
             </span>
 

@@ -5,12 +5,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.28.5">
-    <meta name="project" content="ExCastorEDC v0.3.0">
+    <meta name="project" content="ExCastorEDC v0.4.0">
 
-    <title>CastorEDC.DataCollection.ReportInstances — ExCastorEDC v0.3.0</title>
+    <title>CastorEDC.StudyProtocol.SurveyForms — ExCastorEDC v0.4.0</title>
     <link rel="stylesheet" href="dist/elixir-64c5e2b63575bddb1c5b.css" />
 
-    <script src="dist/sidebar_items-5cc8c7dad0.js"></script>
+    <script src="dist/sidebar_items-76403ee8e8.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -66,7 +66,7 @@
 ExCastorEDC
       </a>
       <strong class="sidebar-projectVersion" translate="no">
-        v0.3.0
+        v0.4.0
       </strong>
     </div>
     <ul class="sidebar-listNav">
@@ -94,19 +94,19 @@ ExCastorEDC
 </button>
 
 
-    <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc/data_collection/report_instances/report_instances.ex#L1" title="View Source" class="view-source" rel="help">
+    <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/study_protocol/survey_forms/survey_forms.ex#L1" title="View Source" class="view-source" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
-  <span translate="no">CastorEDC.DataCollection.ReportInstances</span> 
-  <small class="app-vsn" translate="no">(ExCastorEDC v0.3.0)</small>
+  <span translate="no">CastorEDC.StudyProtocol.SurveyForms</span> 
+  <small class="app-vsn" translate="no">(ExCastorEDC v0.4.0)</small>
 
 </h1>
 
 
   <section id="moduledoc">
-<p>Provides access to report instance related endpoints</p>
+<p>Provides access to survey form related endpoints</p>
   </section>
 
 
@@ -126,21 +126,21 @@ ExCastorEDC
 
       <div class="summary-row">
         <div class="summary-signature">
-          <a href="#find/3" translate="no">find(client, study_id, report_instance_id)</a>
+          <a href="#find/5" translate="no">find(client, study_id, survey_id, survey_form_id, params \\ [])</a>
 
         </div>
 
-          <div class="summary-synopsis"><p>Find a specific report instance</p></div>
+          <div class="summary-synopsis"><p>Find a specific survey form</p></div>
 
       </div>
 
       <div class="summary-row">
         <div class="summary-signature">
-          <a href="#list/3" translate="no">list(client, study_id, params \\ [])</a>
+          <a href="#list/4" translate="no">list(client, study_id, survey_id, params \\ [])</a>
 
         </div>
 
-          <div class="summary-synopsis"><p>List all report instances</p></div>
+          <div class="summary-synopsis"><p>List all survey forms</p></div>
 
       </div>
 
@@ -158,16 +158,18 @@ ExCastorEDC
 Functions
     </h1>
     <div class="functions-list">
-<section class="detail" id="find/3">
+<section class="detail" id="find/5">
+
+    <span id="find/4"></span>
 
   <div class="detail-header">
-    <a href="#find/3" class="detail-link" title="Link to this function">
+    <a href="#find/5" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">find(client, study_id, report_instance_id)</h1>
+    <h1 class="signature" translate="no">find(client, study_id, survey_id, survey_form_id, params \\ [])</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc/data_collection/report_instances/report_instances.ex#L23" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/study_protocol/survey_forms/survey_forms.ex#L27" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -177,21 +179,21 @@ Functions
 
   <section class="docstring">
 
-<p>Find a specific report instance</p><p><a href="https://data.castoredc.com/api#/report-instance/get_study__study_id__report_instance__report_instance_id_">More info</a></p>
+<p>Find a specific survey form</p><p><a href="https://data.castoredc.com/api#/survey-form/get_study__study_id__survey__survey_id__survey_form__survey_form_id_">https://data.castoredc.com/api#/survey-form/get_study__study_id__survey__survey_id__survey_form__survey_form_id_</a>)</p>
   </section>
 </section>
-<section class="detail" id="list/3">
+<section class="detail" id="list/4">
 
-    <span id="list/2"></span>
+    <span id="list/3"></span>
 
   <div class="detail-header">
-    <a href="#list/3" class="detail-link" title="Link to this function">
+    <a href="#list/4" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">list(client, study_id, params \\ [])</h1>
+    <h1 class="signature" translate="no">list(client, study_id, survey_id, params \\ [])</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc/data_collection/report_instances/report_instances.ex#L14" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/study_protocol/survey_forms/survey_forms.ex#L14" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -201,7 +203,7 @@ Functions
 
   <section class="docstring">
 
-<p>List all report instances</p><p><a href="https://data.castoredc.com/api#/report-instance/get_study__study_id__report_instance">More info</a></p>
+<p>List all survey forms</p><p><a href="https://data.castoredc.com/api#/survey-form/get_study__study_id__survey__survey_id__survey_form">More info</a></p>
   </section>
 </section>
 
@@ -214,10 +216,10 @@ Functions
             On Hex.pm:
 
             <span class="line">
-              <a href="https://hex.pm/packages/ex_castor_edc/0.3.0" class="line footer-hex-package">Package</a>
-              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0" class="line">Preview</a>
+              <a href="https://hex.pm/packages/ex_castor_edc/0.4.0" class="line footer-hex-package">Package</a>
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.0" class="line">Preview</a>
 
-                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0/show/lib/castor_edc/data_collection/report_instances/report_instances.ex">(current file)</a>
+                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.0/show/lib/castor_edc/study_protocol/survey_forms/survey_forms.ex">(current file)</a>
 
             </span>
 

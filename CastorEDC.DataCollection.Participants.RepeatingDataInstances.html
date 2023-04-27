@@ -5,12 +5,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.28.5">
-    <meta name="project" content="ExCastorEDC v0.3.0">
+    <meta name="project" content="ExCastorEDC v0.4.0">
 
-    <title>CastorEDC.StudyProtocol.ReportSteps — ExCastorEDC v0.3.0</title>
+    <title>CastorEDC.DataCollection.Participants.RepeatingDataInstances — ExCastorEDC v0.4.0</title>
     <link rel="stylesheet" href="dist/elixir-64c5e2b63575bddb1c5b.css" />
 
-    <script src="dist/sidebar_items-5cc8c7dad0.js"></script>
+    <script src="dist/sidebar_items-76403ee8e8.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -66,7 +66,7 @@
 ExCastorEDC
       </a>
       <strong class="sidebar-projectVersion" translate="no">
-        v0.3.0
+        v0.4.0
       </strong>
     </div>
     <ul class="sidebar-listNav">
@@ -94,19 +94,19 @@ ExCastorEDC
 </button>
 
 
-    <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc/study_protocol/report_steps/report_steps.ex#L1" title="View Source" class="view-source" rel="help">
+    <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/data_collection/participants/repeating_data_instances/repeating_data_instances.ex#L1" title="View Source" class="view-source" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
-  <span translate="no">CastorEDC.StudyProtocol.ReportSteps</span> 
-  <small class="app-vsn" translate="no">(ExCastorEDC v0.3.0)</small>
+  <span translate="no">CastorEDC.DataCollection.Participants.RepeatingDataInstances</span> 
+  <small class="app-vsn" translate="no">(ExCastorEDC v0.4.0)</small>
 
 </h1>
 
 
   <section id="moduledoc">
-<p>Provides access to report step related endpoints</p>
+<p>Provides access to repeating data instance related endpoints</p>
   </section>
 
 
@@ -126,21 +126,31 @@ ExCastorEDC
 
       <div class="summary-row">
         <div class="summary-signature">
-          <a href="#find/5" translate="no">find(client, study_id, report_id, report_step_id, params \\ [])</a>
+          <a href="#create/4" translate="no">create(client, study_id, participant_id, body)</a>
 
         </div>
 
-          <div class="summary-synopsis"><p>Find a specific report step</p></div>
+          <div class="summary-synopsis"><p>Creates a repeating data instance</p></div>
 
       </div>
 
       <div class="summary-row">
         <div class="summary-signature">
-          <a href="#list/4" translate="no">list(client, study_id, report_id, params \\ [])</a>
+          <a href="#find/4" translate="no">find(client, study_id, participant_id, repeating_data_instance_id)</a>
 
         </div>
 
-          <div class="summary-synopsis"><p>List all report steps</p></div>
+          <div class="summary-synopsis"><p>Find a specific repeating data instance</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#list/4" translate="no">list(client, study_id, participant_id, params \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>List all repeating data instances</p></div>
 
       </div>
 
@@ -158,18 +168,16 @@ ExCastorEDC
 Functions
     </h1>
     <div class="functions-list">
-<section class="detail" id="find/5">
-
-    <span id="find/4"></span>
+<section class="detail" id="create/4">
 
   <div class="detail-header">
-    <a href="#find/5" class="detail-link" title="Link to this function">
+    <a href="#create/4" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">find(client, study_id, report_id, report_step_id, params \\ [])</h1>
+    <h1 class="signature" translate="no">create(client, study_id, participant_id, body)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc/study_protocol/report_steps/report_steps.ex#L27" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/data_collection/participants/repeating_data_instances/repeating_data_instances.ex#L43" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -179,7 +187,30 @@ Functions
 
   <section class="docstring">
 
-<p>Find a specific report step</p><p><a href="https://data.castoredc.com/api#/report-step/get_study__study_id__report__report_id__report_step__report_step_id_">More info</a></p>
+<p>Creates a repeating data instance</p><p><a href="https://data.castoredc.com/api#/repeating-data-instance/post_study__study_id__participant__participant_id__repeating_data_instance">Single instance</a>
+<a href="https://data.castoredc.com/api#/repeating-data-instance/post_study__study_id__participant__participant_id__repeating_data_instance_collection">Multiple instances</a></p>
+  </section>
+</section>
+<section class="detail" id="find/4">
+
+  <div class="detail-header">
+    <a href="#find/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">find(client, study_id, participant_id, repeating_data_instance_id)</h1>
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/data_collection/participants/repeating_data_instances/repeating_data_instances.ex#L27" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Find a specific repeating data instance</p><p><a href="https://data.castoredc.com/api#/repeating-data-instance/get_study__study_id__participant__participant_id__repeating_data_instance__repeating_data_instance_id_">More info</a></p>
   </section>
 </section>
 <section class="detail" id="list/4">
@@ -191,9 +222,9 @@ Functions
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">list(client, study_id, report_id, params \\ [])</h1>
+    <h1 class="signature" translate="no">list(client, study_id, participant_id, params \\ [])</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc/study_protocol/report_steps/report_steps.ex#L14" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/data_collection/participants/repeating_data_instances/repeating_data_instances.ex#L14" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -203,7 +234,7 @@ Functions
 
   <section class="docstring">
 
-<p>List all report steps</p><p><a href="https://data.castoredc.com/api#/report-step/get_study__study_id__report__report_id__report_step">More info</a></p>
+<p>List all repeating data instances</p><p><a href="https://data.castoredc.com/api#/repeating-data-instance/get_study__study_id__participant__participant_id__repeating_data_instance">More info</a></p>
   </section>
 </section>
 
@@ -216,10 +247,10 @@ Functions
             On Hex.pm:
 
             <span class="line">
-              <a href="https://hex.pm/packages/ex_castor_edc/0.3.0" class="line footer-hex-package">Package</a>
-              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0" class="line">Preview</a>
+              <a href="https://hex.pm/packages/ex_castor_edc/0.4.0" class="line footer-hex-package">Package</a>
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.0" class="line">Preview</a>
 
-                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0/show/lib/castor_edc/study_protocol/report_steps/report_steps.ex">(current file)</a>
+                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.0/show/lib/castor_edc/data_collection/participants/repeating_data_instances/repeating_data_instances.ex">(current file)</a>
 
             </span>
 

@@ -5,12 +5,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.28.5">
-    <meta name="project" content="ExCastorEDC v0.3.0">
+    <meta name="project" content="ExCastorEDC v0.4.0">
 
-    <title>CastorEDC — ExCastorEDC v0.3.0</title>
+    <title>CastorEDC — ExCastorEDC v0.4.0</title>
     <link rel="stylesheet" href="dist/elixir-64c5e2b63575bddb1c5b.css" />
 
-    <script src="dist/sidebar_items-5cc8c7dad0.js"></script>
+    <script src="dist/sidebar_items-76403ee8e8.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -66,7 +66,7 @@
 ExCastorEDC
       </a>
       <strong class="sidebar-projectVersion" translate="no">
-        v0.3.0
+        v0.4.0
       </strong>
     </div>
     <ul class="sidebar-listNav">
@@ -94,13 +94,13 @@ ExCastorEDC
 </button>
 
 
-    <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc.ex#L1" title="View Source" class="view-source" rel="help">
+    <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc.ex#L1" title="View Source" class="view-source" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
   <span translate="no">CastorEDC</span> 
-  <small class="app-vsn" translate="no">(ExCastorEDC v0.3.0)</small>
+  <small class="app-vsn" translate="no">(ExCastorEDC v0.4.0)</small>
 
 </h1>
 
@@ -108,9 +108,9 @@ ExCastorEDC
   <section id="moduledoc">
 <p>Facilitates authentication against the Castor EDC API</p><pre><code class="makeup elixir" translate="no"><span class="kn">alias</span><span class="w"> </span><span class="nc">CastorEDC.Client</span><span class="w">
 
-</span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="2611716801-1">(</span><span class="p" data-group-id="2611716801-2">%{</span><span class="ss">client_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">client_secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="2611716801-2">}</span><span class="p" data-group-id="2611716801-1">)</span><span class="w">
-</span><span class="p" data-group-id="2611716801-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">client</span><span class="p" data-group-id="2611716801-3">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC</span><span class="o">.</span><span class="n">authenticate</span><span class="p" data-group-id="2611716801-4">(</span><span class="n">client</span><span class="p" data-group-id="2611716801-4">)</span></code></pre><p>See <a href="CastorEDC.Client.html#new/2"><code class="inline">CastorEDC.Client.new/2</code></a> for all the options.</p><p>After authenticating against the API you can then use the other modules to perform
-API requests, e.g:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="0475173083-1">{</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="n">list_of_studies</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="0475173083-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Common.Studies</span><span class="o">.</span><span class="n">list</span><span class="p" data-group-id="0475173083-2">(</span><span class="n">client</span><span class="p" data-group-id="0475173083-2">)</span><span class="w">
+</span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="4938485264-1">(</span><span class="p" data-group-id="4938485264-2">%{</span><span class="ss">client_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">client_secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="4938485264-2">}</span><span class="p" data-group-id="4938485264-1">)</span><span class="w">
+</span><span class="p" data-group-id="4938485264-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">client</span><span class="p" data-group-id="4938485264-3">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC</span><span class="o">.</span><span class="n">authenticate</span><span class="p" data-group-id="4938485264-4">(</span><span class="n">client</span><span class="p" data-group-id="4938485264-4">)</span></code></pre><p>See <a href="CastorEDC.Client.html#new/2"><code class="inline">CastorEDC.Client.new/2</code></a> for all the options.</p><p>After authenticating against the API you can then use the other modules to perform
+API requests, e.g:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="9378094551-1">{</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="n">list_of_studies</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="9378094551-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Common.Studies</span><span class="o">.</span><span class="n">list</span><span class="p" data-group-id="9378094551-2">(</span><span class="n">client</span><span class="p" data-group-id="9378094551-2">)</span><span class="w">
 
 </span><span class="n">list_of_studies</span></code></pre>
   </section>
@@ -164,7 +164,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">authenticate(client)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc.ex#L28" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc.ex#L28" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -195,10 +195,10 @@ make further API calls.</p>
             On Hex.pm:
 
             <span class="line">
-              <a href="https://hex.pm/packages/ex_castor_edc/0.3.0" class="line footer-hex-package">Package</a>
-              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0" class="line">Preview</a>
+              <a href="https://hex.pm/packages/ex_castor_edc/0.4.0" class="line footer-hex-package">Package</a>
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.0" class="line">Preview</a>
 
-                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0/show/lib/castor_edc.ex">(current file)</a>
+                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.0/show/lib/castor_edc.ex">(current file)</a>
 
             </span>
 

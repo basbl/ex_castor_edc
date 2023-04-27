@@ -5,12 +5,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.28.5">
-    <meta name="project" content="ExCastorEDC v0.3.0">
+    <meta name="project" content="ExCastorEDC v0.4.0">
 
-    <title>CastorEDC.DataCollection.DataPoints.SurveyInstanceDataPointCollection — ExCastorEDC v0.3.0</title>
+    <title>CastorEDC.DataCollection.DataPoints.SurveyInstanceDataPointCollection — ExCastorEDC v0.4.0</title>
     <link rel="stylesheet" href="dist/elixir-64c5e2b63575bddb1c5b.css" />
 
-    <script src="dist/sidebar_items-5cc8c7dad0.js"></script>
+    <script src="dist/sidebar_items-76403ee8e8.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -66,7 +66,7 @@
 ExCastorEDC
       </a>
       <strong class="sidebar-projectVersion" translate="no">
-        v0.3.0
+        v0.4.0
       </strong>
     </div>
     <ul class="sidebar-listNav">
@@ -94,19 +94,19 @@ ExCastorEDC
 </button>
 
 
-    <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc/data_collection/data_points/survey_instance_data_point_collection.ex#L1" title="View Source" class="view-source" rel="help">
+    <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/data_collection/data_points/survey_instance_data_point_collection.ex#L1" title="View Source" class="view-source" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
   <span translate="no">CastorEDC.DataCollection.DataPoints.SurveyInstanceDataPointCollection</span> 
-  <small class="app-vsn" translate="no">(ExCastorEDC v0.3.0)</small>
+  <small class="app-vsn" translate="no">(ExCastorEDC v0.4.0)</small>
 
 </h1>
 
 
   <section id="moduledoc">
-<p>Provides access to survey instance data point collection for all records</p>
+<p>Provides access to survey instance data point collection for all participants</p>
   </section>
 
 
@@ -126,7 +126,7 @@ ExCastorEDC
 
       <div class="summary-row">
         <div class="summary-signature">
-          <a href="#create/5" translate="no">create(client, study_id, record_id, survey_instance_id, body)</a>
+          <a href="#create/5" translate="no">create(client, study_id, participant_id, survey_instance_id, body)</a>
 
         </div>
 
@@ -175,9 +175,9 @@ Functions
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">create(client, study_id, record_id, survey_instance_id, body)</h1>
+    <h1 class="signature" translate="no">create(client, study_id, participant_id, survey_instance_id, body)</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc/data_collection/data_points/survey_instance_data_point_collection.ex#L40" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/data_collection/data_points/survey_instance_data_point_collection.ex#L40" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -187,7 +187,7 @@ Functions
 
   <section class="docstring">
 
-<p>Create/update a collection of field values for a survey instance</p><p><a href="https://data.castoredc.com/api#/data-point-collection/post_study__study_id__record__record_id__data_point_collection_survey_instance__survey_instance_id_">More info</a></p>
+<p>Create/update a collection of field values for a survey instance</p><p><a href="https://data.castoredc.com/api#/data-points/post_study__study_id__participant__participant_id__data_points_survey_instance__survey_instance_id_">More info</a></p>
   </section>
 </section>
 <section class="detail" id="find/4">
@@ -201,7 +201,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">find(client, study_id, survey_instance_id, params \\ [])</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc/data_collection/data_points/survey_instance_data_point_collection.ex#L27" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/data_collection/data_points/survey_instance_data_point_collection.ex#L27" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -211,7 +211,7 @@ Functions
 
   <section class="docstring">
 
-<p>Find all collected data points for a specific survey instance</p><p>[More info](<a href="https://data.castoredc.com/api#/data-point-collection/get_study__study_id__data_point_collection_survey_instance__survey_instance_id">https://data.castoredc.com/api#/data-point-collection/get_study__study_id__data_point_collection_survey_instance__survey_instance_id</a>_</p>
+<p>Find all collected data points for a specific survey instance</p><p>[More info](<a href="https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_survey_instance__survey_instance_id">https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_survey_instance__survey_instance_id</a>_</p>
   </section>
 </section>
 <section class="detail" id="list/3">
@@ -225,7 +225,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">list(client, study_id, params \\ [])</h1>
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.3.0/lib/castor_edc/data_collection/data_points/survey_instance_data_point_collection.ex#L14" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.0/lib/castor_edc/data_collection/data_points/survey_instance_data_point_collection.ex#L14" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -235,7 +235,7 @@ Functions
 
   <section class="docstring">
 
-<p>List all collected data points for all surveys</p><p>[More info](<a href="https://data.castoredc.com/api#/data-point-collection/get_study__study_id__data_point_collection_survey_instance">https://data.castoredc.com/api#/data-point-collection/get_study__study_id__data_point_collection_survey_instance</a></p>
+<p>List all collected data points for all surveys</p><p>[More info](<a href="https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_survey_instance">https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_survey_instance</a></p>
   </section>
 </section>
 
@@ -248,10 +248,10 @@ Functions
             On Hex.pm:
 
             <span class="line">
-              <a href="https://hex.pm/packages/ex_castor_edc/0.3.0" class="line footer-hex-package">Package</a>
-              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0" class="line">Preview</a>
+              <a href="https://hex.pm/packages/ex_castor_edc/0.4.0" class="line footer-hex-package">Package</a>
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.0" class="line">Preview</a>
 
-                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.3.0/show/lib/castor_edc/data_collection/data_points/survey_instance_data_point_collection.ex">(current file)</a>
+                <a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.0/show/lib/castor_edc/data_collection/data_points/survey_instance_data_point_collection.ex">(current file)</a>
 
             </span>
 
