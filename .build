@@ -7,7 +7,7 @@ CastorEDC.Common.Studies.Roles.html
 CastorEDC.Common.Studies.Users.html
 CastorEDC.Common.Studies.html
 CastorEDC.Common.Users.html
-CastorEDC.DataCollection.DataEntry.ReportDataPoint.html
+CastorEDC.DataCollection.DataEntry.RepeatingDataDataPoint.html
 CastorEDC.DataCollection.DataEntry.StudyDataPoint.html
 CastorEDC.DataCollection.DataEntry.SurveyDataPoint.html
 CastorEDC.DataCollection.DataPoints.RepeatingDataInstanceDataPointCollection.html
@@ -66,8 +66,8 @@ dist/merriweather-latin-ext-300-normal-K6L27CZ5.woff2
 dist/merriweather-vietnamese-300-italic-EHHNZPUO.woff2
 dist/merriweather-vietnamese-300-normal-U376L4Z4.woff2
 dist/remixicon-NKANDIL5.woff2
-dist/search_items-009C42EB.js
-dist/sidebar_items-97B20F55.js
+dist/search_items-944AC546.js
+dist/sidebar_items-89CFD43E.js
 getting_started.html
 index.html
 search.html
