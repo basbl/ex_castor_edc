@@ -15,7 +15,8 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
   def list(%Client{} = client, study_id, participant_id, survey_instance_id, params \\ []) do
     get(
       "api/study/" <>
-        study_id <> "/participant/" <> participant_id <> "/data-point/survey/" <> survey_instance_id,
+        study_id <>
+        "/participant/" <> participant_id <> "/data-point/survey/" <> survey_instance_id,
       client,
       params
     )
@@ -26,11 +27,19 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
 
   [More info](https://data.castoredc.com/api#/survey-data-entry/get_study__study_id__participant__participant_id__data_point_survey__survey_instance_id___field_id_)
   """
-  def find(%Client{} = client, study_id, participant_id, survey_instance_id, field_id, params \\ []) do
+  def find(
+        %Client{} = client,
+        study_id,
+        participant_id,
+        survey_instance_id,
+        field_id,
+        params \\ []
+      ) do
     get(
       "api/study/" <>
         study_id <>
-        "/participant/" <> participant_id <> "/data-point/survey/" <> survey_instance_id <> "/" <> field_id,
+        "/participant/" <>
+        participant_id <> "/data-point/survey/" <> survey_instance_id <> "/" <> field_id,
       client,
       params
     )
@@ -52,7 +61,8 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
     post(
       "api/study/" <>
         study_id <>
-        "/participant/" <> participant_id <> "/data-point/survey/" <> survey_instance_id <> "/" <> field_id,
+        "/participant/" <>
+        participant_id <> "/data-point/survey/" <> survey_instance_id <> "/" <> field_id,
       client,
       body
     )
@@ -75,7 +85,8 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
     post(
       "api/study/" <>
         study_id <>
-        "/participant/" <> participant_id <> "/data-point/survey/" <> survey_instance_id <> "/" <> field_id,
+        "/participant/" <>
+        participant_id <> "/data-point/survey/" <> survey_instance_id <> "/" <> field_id,
       client,
       mp
     )
