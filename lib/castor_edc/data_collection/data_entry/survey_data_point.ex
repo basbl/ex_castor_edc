@@ -8,43 +8,43 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
   alias Tesla.Multipart
 
   @doc """
-  List all collected survey data points for a record
+  List all collected survey data points for a participant
 
-  [More info](https://data.castoredc.com/api#/survey-data-entry/get_study__study_id__record__record_id__data_point_survey__survey_instance_id_)
+  [More info](https://data.castoredc.com/api#/survey-data-entry/get_study__study_id__participant__participant_id__data_point_survey__survey_instance_id_)
   """
-  def list(%Client{} = client, study_id, record_id, survey_instance_id, params \\ []) do
+  def list(%Client{} = client, study_id, participant_id, survey_instance_id, params \\ []) do
     get(
       "api/study/" <>
-        study_id <> "/record/" <> record_id <> "/data-point/survey/" <> survey_instance_id,
+        study_id <> "/participant/" <> participant_id <> "/data-point/survey/" <> survey_instance_id,
       client,
       params
     )
   end
 
   @doc """
-  Find a data point for a record in a specific survey instance
+  Find a data point for a participant in a specific survey instance
 
-  [More info](https://data.castoredc.com/api#/survey-data-entry/get_study__study_id__record__record_id__data_point_survey__survey_instance_id___field_id_)
+  [More info](https://data.castoredc.com/api#/survey-data-entry/get_study__study_id__participant__participant_id__data_point_survey__survey_instance_id___field_id_)
   """
-  def find(%Client{} = client, study_id, record_id, survey_instance_id, field_id, params \\ []) do
+  def find(%Client{} = client, study_id, participant_id, survey_instance_id, field_id, params \\ []) do
     get(
       "api/study/" <>
         study_id <>
-        "/record/" <> record_id <> "/data-point/survey/" <> survey_instance_id <> "/" <> field_id,
+        "/participant/" <> participant_id <> "/data-point/survey/" <> survey_instance_id <> "/" <> field_id,
       client,
       params
     )
   end
 
   @doc """
-  Create a new data point in a specific survey instance for a record
+  Create a new data point in a specific survey instance for a participant
 
-  [More info](https://data.castoredc.com/api#/survey-data-entry/get_study__study_id__record__record_id__data_point_survey__survey_instance_id___field_id_)
+  [More info](https://data.castoredc.com/api#/survey-data-entry/get_study__study_id__participant__participant_id__data_point_survey__survey_instance_id___field_id_)
   """
   def create(
         %Client{} = client,
         study_id,
-        record_id,
+        participant_id,
         survey_instance_id,
         field_id,
         %{"field_value" => _} = body
@@ -52,7 +52,7 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
     post(
       "api/study/" <>
         study_id <>
-        "/record/" <> record_id <> "/data-point/survey/" <> survey_instance_id <> "/" <> field_id,
+        "/participant/" <> participant_id <> "/data-point/survey/" <> survey_instance_id <> "/" <> field_id,
       client,
       body
     )
@@ -61,7 +61,7 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
   def create(
         %Client{} = client,
         study_id,
-        record_id,
+        participant_id,
         survey_instance_id,
         field_id,
         %{"upload_file" => file} = body
@@ -75,7 +75,7 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
     post(
       "api/study/" <>
         study_id <>
-        "/record/" <> record_id <> "/data-point/survey/" <> survey_instance_id <> "/" <> field_id,
+        "/participant/" <> participant_id <> "/data-point/survey/" <> survey_instance_id <> "/" <> field_id,
       client,
       mp
     )

@@ -1,6 +1,6 @@
-defmodule CastorEDC.DataCollection.DataEntry.ReportDataPoint do
+defmodule CastorEDC.DataCollection.DataEntry.RepeatingDataDataPoint do
   @moduledoc """
-  Provides access to report data point related endpoints
+  Provides access to repeating data data point related endpoints
   """
 
   import CastorEDC
@@ -8,51 +8,51 @@ defmodule CastorEDC.DataCollection.DataEntry.ReportDataPoint do
   alias Tesla.Multipart
 
   @doc """
-  List all collected report instance data points for a record
+  List all collected repeating data instance data points for a participant
 
-  [More info](https://data.castoredc.com/api#/report-data-entry/get_study__study_id__record__record_id__data_point_report__report_instance_id_)
+  [More info](https://data.castoredc.com/api#/repeating-data-data-entry/get_study__study_id__participant__participant_id__data_point_repeating_data__repeating_data_instance_id_)
   """
-  def list(%Client{} = client, study_id, record_id, report_instance_id, params \\ []) do
+  def list(%Client{} = client, study_id, participant_id, repeating_data_instance_id, params \\ []) do
     get(
       "api/study/" <>
-        study_id <> "/record/" <> record_id <> "/data-point/report/" <> report_instance_id,
+        study_id <> "/participant/" <> participant_id <> "/data-point/repeating-data/" <> repeating_data_instance_id,
       client,
       params
     )
   end
 
   @doc """
-  Find a data point for a record in a specific report instance
+  Find a data point for a participant in a specific repeating data instance
 
-  [More info](https://data.castoredc.com/api#/report-data-entry/get_study__study_id__record__record_id__data_point_report__report_instance_id___field_id_)
+  [More info](https://data.castoredc.com/api#/repeating-data-data-entry/get_study__study_id__participant__participant_id__data_point_repeating_data__repeating_data_instance_id___field_id_)
   """
-  def find(%Client{} = client, study_id, record_id, report_instance_id, field_id, params \\ []) do
+  def find(%Client{} = client, study_id, participant_id, repeating_data_instance_id, field_id, params \\ []) do
     get(
       "api/study/" <>
         study_id <>
-        "/record/" <> record_id <> "/data-point/report/" <> report_instance_id <> "/" <> field_id,
+        "/participant/" <> participant_id <> "/data-point/repeating-data/" <> repeating_data_instance_id <> "/" <> field_id,
       client,
       params
     )
   end
 
   @doc """
-  Create a new data point in a specific report instance for a record
+  Create a new data point in a specific repeating data instance for a participant
 
-  [More info](https://data.castoredc.com/api#/report-data-entry/post_study__study_id__record__record_id__data_point_report__report_instance_id___field_id_)
+  [More info](https://data.castoredc.com/api#/repeating-data-data-entry/post_study__study_id__participant__participant_id__data_point_repeating_data__repeating_data_instance_id___field_id_)
   """
   def create(
         %Client{} = client,
         study_id,
-        record_id,
-        report_instance_id,
+        participant_id,
+        repeating_data_instance_id,
         field_id,
         %{"field_value" => _} = body
       ) do
     post(
       "api/study/" <>
         study_id <>
-        "/record/" <> record_id <> "/data-point/report/" <> report_instance_id <> "/" <> field_id,
+        "/participant/" <> participant_id <> "/data-point/repeating-data/" <> repeating_data_instance_id <> "/" <> field_id,
       client,
       body
     )
@@ -61,8 +61,8 @@ defmodule CastorEDC.DataCollection.DataEntry.ReportDataPoint do
   def create(
         %Client{} = client,
         study_id,
-        record_id,
-        report_instance_id,
+        participant_id,
+        repeating_data_instance_id,
         field_id,
         %{"upload_file" => file} = body
       ) do
@@ -75,7 +75,7 @@ defmodule CastorEDC.DataCollection.DataEntry.ReportDataPoint do
     post(
       "api/study/" <>
         study_id <>
-        "/record/" <> record_id <> "/data-point/report/" <> report_instance_id <> "/" <> field_id,
+        "/participant/" <> participant_id <> "/data-point/repeating-data/" <> repeating_data_instance_id <> "/" <> field_id,
       client,
       mp
     )
