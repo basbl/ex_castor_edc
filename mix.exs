@@ -67,7 +67,7 @@ defmodule CastorEDC.MixProject do
   defp deps do
     [
       {:jason, ">= 1.0.0"},
-      {:castore, "~> 0.1"},
+      {:castore, "~> 1.0"},
       {:tesla, "~> 1.4"},
       {:hackney, "~> 1.13"},
       {:exvcr, "~> 0.11", only: :test},
