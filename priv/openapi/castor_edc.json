@@ -1222,7 +1222,8 @@
             "type": "integer"
           }
         },
-        "type": "object"
+        "type": "object",
+        "x-castor-type": "datetime"
       },
       "DefaultSiteRole": {
         "properties": {
@@ -1428,17 +1429,17 @@
       "ExportEntry": {
         "properties": {
           "completed_on": {
-            "$ref": "#/components/schemas/PhpDateTime"
+            "$ref": "#/components/schemas/DateTime"
           },
           "created_by": {
             "description": "The ID of the user who requested the export.",
             "type": "string"
           },
           "created_on": {
-            "$ref": "#/components/schemas/PhpDateTime"
+            "$ref": "#/components/schemas/DateTime"
           },
           "expires_on": {
-            "$ref": "#/components/schemas/PhpDateTime"
+            "$ref": "#/components/schemas/DateTime"
           },
           "export_name": {
             "description": "The export type, despite the name.",
@@ -2921,22 +2922,6 @@
           }
         },
         "type": "object"
-      },
-      "PhpDateTime": {
-        "description": "A PHP DateTime object as the API serialises it: a local date and time in `date` (YYYY-MM-DD HH:MM:SS.ffffff) and a named time zone in `timezone`.",
-        "properties": {
-          "date": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "timezone_type": {
-            "type": "integer"
-          }
-        },
-        "type": "object",
-        "x-castor-type": "datetime"
       },
       "Query": {
         "properties": {

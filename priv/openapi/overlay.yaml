@@ -703,23 +703,12 @@ actions:
   #
   # The export list's entries look nothing like the spec says: a finished
   # export is `ready` (not `completed`), the dates are serialised PHP
-  # DateTime objects (not strings), `export_name` holds the export type and
+  # DateTime objects (not strings) like elsewhere in the API, `export_name` holds the export type and
   # `export_type` its format, and `created_by` is a user ID. Every download
   # is a zip.
 
   - target: $.definitions
     update:
-      PhpDateTime:
-        type: object
-        description: >-
-          A PHP DateTime object as the API serialises it: a local date and
-          time in `date` (YYYY-MM-DD HH:MM:SS.ffffff) and a named time zone in
-          `timezone`.
-        x-castor-type: datetime
-        properties:
-          date: {type: string}
-          timezone_type: {type: integer}
-          timezone: {type: string}
       ExportEntry:
         type: object
         properties:
@@ -751,11 +740,17 @@ actions:
           created_by:
             type: string
             description: The ID of the user who requested the export.
-          created_on: {$ref: '#/definitions/PhpDateTime'}
-          completed_on: {$ref: '#/definitions/PhpDateTime'}
-          expires_on: {$ref: '#/definitions/PhpDateTime'}
+          created_on: {$ref: '#/definitions/DateTime'}
+          completed_on: {$ref: '#/definitions/DateTime'}
+          expires_on: {$ref: '#/definitions/DateTime'}
           file_name: {type: string, x-nullable: true}
           file_size: {type: integer, x-nullable: true}
+  - target: $.definitions.DateTime
+    description: >-
+      A serialised PHP DateTime object: a local date and time in `date`
+      (YYYY-MM-DD HH:MM:SS.ffffff) and a named time zone in `timezone`. The
+      client turns it into a DateTime in that zone.
+    update: {x-castor-type: datetime}
   - target: $.paths['/study/{study_id}/export'].get.responses['200'].schema
     description: Replaced below; the described shape doesn't match the response.
     remove: true
