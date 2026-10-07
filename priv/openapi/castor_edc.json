@@ -15481,5 +15481,25 @@
     {
       "url": "https://data.castoredc.com/api"
     }
-  ]
+  ],
+  "x-castor-modules": {
+    "Countries": "The countries Castor EDC knows, for site and participant addresses.",
+    "DataPoints": "The values collected for participants: reading them per study, per participant or per survey, repeating data or survey package instance, and writing them one at a time or in bulk. Values are strings; see CastorEDC.FieldValue for decoding them by field type.",
+    "Exports": "Batch exports: queuing them, listing them with their status, and downloading the result. CastorEDC.Export does all three in one call.",
+    "Fields": "The fields of a study, with their dependencies and validations.",
+    "Forms": "The forms of a study and the visits that group them.",
+    "Metadata": "Metadata attached to a study's elements, and the types of metadata.",
+    "OptionGroups": "The option groups behind radio, dropdown and checkbox fields.",
+    "Participants": "The participants of a study, and their progress through its forms.",
+    "Queries": "Queries raised on a study's data.",
+    "Randomization": "Randomizing participants and reading their randomization.",
+    "RepeatingData": "Repeating data: its definitions and forms, and the instances created for participants.",
+    "Roles": "The roles of a study.",
+    "Sites": "The sites of a study.",
+    "Studies": "The studies the credentials have access to, with their metadata and statistics.",
+    "StudyUsers": "The users of a study, and their roles per site.",
+    "Surveys": "Surveys, their forms and packages, the instances sent to participants, and survey compliance.",
+    "Users": "The users the credentials can see.",
+    "Verifications": "Verifications (such as source data verification) of a study's data."
+  }
 }
