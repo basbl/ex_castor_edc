@@ -4,11 +4,13 @@ defmodule CastorEDC.Generator.Renderer do
   source, through the EEx templates in `gen/castor_edc/generator/templates`.
 
   Every file starts with `banner/0`, which is how the generator recognises
-  the files it wrote. The source goes through `Code.format_string!/1`, so
-  generated files pass `mix format` as they are.
+  the files it wrote. The source goes through the project's formatter,
+  plugins included, so generated files are exactly what `mix format` makes
+  of them, and formatting the project never changes them.
   """
 
   alias CastorEDC.Generator.Spec
+  alias Mix.Tasks.Format
 
   @templates Path.join(__DIR__, "templates")
   @external_resource Path.join(@templates, "model.ex.eex")
@@ -46,7 +48,12 @@ defmodule CastorEDC.Generator.Renderer do
   end
 
   @doc false
-  def format(source), do: IO.iodata_to_binary([Code.format_string!(source), ?\n])
+  # Formats with the project's formatter, plugins included, so generated files
+  # are exactly what `mix format` makes of them.
+  def format(source) do
+    {formatter, _options} = Format.formatter_for_file("lib/castor_edc/generated.ex")
+    formatter.(source)
+  end
 
   # Operation helpers the module template calls.
 
