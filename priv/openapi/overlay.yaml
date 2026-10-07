@@ -56,3 +56,19 @@ actions:
       The synchronous option group export is deprecated, though the spec
       doesn't flag it; listing option groups replaces it.
     remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/study'].get
+    description: >-
+      Lists a participant's study data like GET .../data-points/study, but
+      through an older serialiser that names the value `value` instead of
+      `field_value`. The client keeps one operation per capability.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/survey/{survey_instance_id}'].get
+    description: >-
+      Duplicates GET .../data-points/survey-instance/{survey_instance_id}
+      through the older serialiser.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/repeating-data/{repeating_data_instance_id}'].get
+    description: >-
+      Duplicates GET .../data-points/repeating-data-instance/{repeating_data_instance_id}
+      through the older serialiser.
+    remove: true
