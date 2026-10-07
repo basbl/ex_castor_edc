@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## Unreleased
 
+### Added
+
+- `CastorEDC.new/1` builds a Req-based client from API credentials, the application environment or environment variables.
+
 ### Changed
 
 - **Breaking:** Elixir 1.20 or later is required.

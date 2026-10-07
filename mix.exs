@@ -100,6 +100,7 @@ defmodule CastorEDC.MixProject do
     [
       {:jason, ">= 1.0.0"},
       {:castore, "~> 1.0"},
+      {:req, "~> 0.7.5"},
       {:tesla, "~> 1.4"},
       {:hackney, "~> 1.13"},
       {:exvcr, "~> 0.11", only: :test},
