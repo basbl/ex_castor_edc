@@ -64,22 +64,15 @@ defmodule CastorEDC.Roles do
   @spec get_role(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, Role.t()} | {:error, CastorEDC.Error.t()}
   def get_role(client, study_id, role_name, opts \\ []) do
-    Client.request(
-      client,
-      operation(:get_role, %{"study_id" => study_id, "role_name" => role_name}, opts)
-    )
+    Client.request(client, operation(:get_role, %{"study_id" => study_id, "role_name" => role_name}, opts))
   end
 
   @doc ~S"""
   The same as `get_role/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_role!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          Role.t()
+  @spec get_role!(CastorEDC.client(), String.t(), String.t(), keyword()) :: Role.t()
   def get_role!(client, study_id, role_name, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:get_role, %{"study_id" => study_id, "role_name" => role_name}, opts)
-    )
+    Client.request!(client, operation(:get_role, %{"study_id" => study_id, "role_name" => role_name}, opts))
   end
 
   @doc ~S"""
@@ -104,8 +97,7 @@ defmodule CastorEDC.Roles do
   @doc ~S"""
   The same as `list_roles/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_roles!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(Role.t())
+  @spec list_roles!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(Role.t())
   def list_roles!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_roles, %{"study_id" => study_id}, opts))
   end

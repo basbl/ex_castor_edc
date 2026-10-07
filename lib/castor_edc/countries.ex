@@ -56,8 +56,7 @@ defmodule CastorEDC.Countries do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.CountryWithNoHalLinks.t/0` records.
   """
   @spec list_countries(CastorEDC.client(), keyword()) ::
-          {:ok, CastorEDC.Page.t(CountryWithNoHalLinks.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(CountryWithNoHalLinks.t())} | {:error, CastorEDC.Error.t()}
   def list_countries(client, opts \\ []) do
     Client.request(client, operation(:list_countries, %{}, opts))
   end
@@ -65,8 +64,7 @@ defmodule CastorEDC.Countries do
   @doc ~S"""
   The same as `list_countries/2`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_countries!(CastorEDC.client(), keyword()) ::
-          CastorEDC.Page.t(CountryWithNoHalLinks.t())
+  @spec list_countries!(CastorEDC.client(), keyword()) :: CastorEDC.Page.t(CountryWithNoHalLinks.t())
   def list_countries!(client, opts \\ []) do
     Client.request!(client, operation(:list_countries, %{}, opts))
   end

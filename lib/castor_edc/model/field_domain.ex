@@ -34,10 +34,7 @@ defmodule CastorEDC.Model.FieldDomain do
       abbreviation: data["abbreviation"],
       domain_variable_name: data["domain_variable_name"],
       name: data["name"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

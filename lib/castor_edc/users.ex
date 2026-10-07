@@ -66,14 +66,7 @@ defmodule CastorEDC.Users do
   end
 
   defp operation(:get_user, path_params, opts) do
-    [
-      method: :get,
-      path: "/api/user/{user_id}",
-      path_params: path_params,
-      query: opts,
-      query_names: %{},
-      decode: User
-    ]
+    [method: :get, path: "/api/user/{user_id}", path_params: path_params, query: opts, query_names: %{}, decode: User]
   end
 
   defp operation(:list_users, path_params, opts) do

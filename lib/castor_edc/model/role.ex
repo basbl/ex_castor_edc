@@ -34,10 +34,7 @@ defmodule CastorEDC.Model.Role do
       description: data["description"],
       name: data["name"],
       permissions: data["permissions"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

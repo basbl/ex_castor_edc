@@ -20,16 +20,7 @@ defmodule CastorEDC.Model.Visit do
   @known ~w(id visit_description visit_duration visit_id visit_name visit_number visit_order)
   @known_embedded ~w()
 
-  defstruct [
-    :id,
-    :visit_description,
-    :visit_duration,
-    :visit_id,
-    :visit_name,
-    :visit_number,
-    :visit_order,
-    extra: %{}
-  ]
+  defstruct [:id, :visit_description, :visit_duration, :visit_id, :visit_name, :visit_number, :visit_order, extra: %{}]
 
   @type t :: %__MODULE__{
           id: String.t() | nil,
@@ -55,10 +46,7 @@ defmodule CastorEDC.Model.Visit do
       visit_name: data["visit_name"],
       visit_number: data["visit_number"],
       visit_order: data["visit_order"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

@@ -54,8 +54,7 @@ defmodule CastorEDC.Participants do
   @doc ~S"""
   The same as `create_participant/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec create_participant!(CastorEDC.client(), String.t(), map(), keyword()) ::
-          Participant.t()
+  @spec create_participant!(CastorEDC.client(), String.t(), map(), keyword()) :: Participant.t()
   def create_participant!(client, study_id, body, opts \\ []) do
     Client.request!(client, operation(:create_participant, %{"study_id" => study_id}, body, opts))
   end
@@ -79,27 +78,18 @@ defmodule CastorEDC.Participants do
   def get_participant(client, study_id, participant_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :get_participant,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:get_participant, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
   @doc ~S"""
   The same as `get_participant/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_participant!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          Participant.t()
+  @spec get_participant!(CastorEDC.client(), String.t(), String.t(), keyword()) :: Participant.t()
   def get_participant!(client, study_id, participant_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :get_participant,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:get_participant, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
@@ -125,8 +115,7 @@ defmodule CastorEDC.Participants do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.ParticipantProgress.t/0` records.
   """
   @spec list_form_progress(CastorEDC.client(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(ParticipantProgress.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(ParticipantProgress.t())} | {:error, CastorEDC.Error.t()}
   def list_form_progress(client, study_id, opts \\ []) do
     Client.request(client, operation(:list_form_progress, %{"study_id" => study_id}, opts))
   end
@@ -134,8 +123,7 @@ defmodule CastorEDC.Participants do
   @doc ~S"""
   The same as `list_form_progress/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_form_progress!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(ParticipantProgress.t())
+  @spec list_form_progress!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(ParticipantProgress.t())
   def list_form_progress!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_form_progress, %{"study_id" => study_id}, opts))
   end
@@ -147,8 +135,7 @@ defmodule CastorEDC.Participants do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_form_progress(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(ParticipantProgress.t())
+  @spec stream_form_progress(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(ParticipantProgress.t())
   def stream_form_progress(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_form_progress(client, study_id, Keyword.merge(opts, &1)),
@@ -189,8 +176,7 @@ defmodule CastorEDC.Participants do
   @doc ~S"""
   The same as `list_participants/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_participants!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(Participant.t())
+  @spec list_participants!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(Participant.t())
   def list_participants!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_participants, %{"study_id" => study_id}, opts))
   end
@@ -202,8 +188,7 @@ defmodule CastorEDC.Participants do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_participants(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(Participant.t())
+  @spec stream_participants(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(Participant.t())
   def stream_participants(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_participants(client, study_id, Keyword.merge(opts, &1)),
@@ -233,16 +218,11 @@ defmodule CastorEDC.Participants do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.ParticipantProgressRepeatingDataCollection.t/0` records.
   """
   @spec list_repeating_data_progress(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(ParticipantProgressRepeatingDataCollection.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(ParticipantProgressRepeatingDataCollection.t())} | {:error, CastorEDC.Error.t()}
   def list_repeating_data_progress(client, study_id, participant_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :list_repeating_data_progress,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:list_repeating_data_progress, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
@@ -254,11 +234,7 @@ defmodule CastorEDC.Participants do
   def list_repeating_data_progress!(client, study_id, participant_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :list_repeating_data_progress,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:list_repeating_data_progress, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
@@ -299,16 +275,11 @@ defmodule CastorEDC.Participants do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.ParticipantProgressVisitCollection.t/0` records.
   """
   @spec list_visit_progress(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(ParticipantProgressVisitCollection.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(ParticipantProgressVisitCollection.t())} | {:error, CastorEDC.Error.t()}
   def list_visit_progress(client, study_id, participant_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :list_visit_progress,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:list_visit_progress, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
@@ -320,11 +291,7 @@ defmodule CastorEDC.Participants do
   def list_visit_progress!(client, study_id, participant_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :list_visit_progress,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:list_visit_progress, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
@@ -374,13 +341,7 @@ defmodule CastorEDC.Participants do
       path: "/api/study/{study_id}/participant",
       path_params: path_params,
       query: opts,
-      query_names: %{
-        page: "page",
-        site: "site",
-        archived: "archived",
-        fields: "field[]",
-        page_size: "page_size"
-      },
+      query_names: %{page: "page", site: "site", archived: "archived", fields: "field[]", page_size: "page_size"},
       items: "_embedded.participants",
       max_page_size: 1000,
       decode: Participant

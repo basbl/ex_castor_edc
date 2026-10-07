@@ -18,14 +18,7 @@ defmodule CastorEDC.Model.ManagementPermissions do
   @known ~w(manage_encryption manage_form manage_records manage_settings manage_users)
   @known_embedded ~w()
 
-  defstruct [
-    :manage_encryption,
-    :manage_form,
-    :manage_participants,
-    :manage_settings,
-    :manage_users,
-    extra: %{}
-  ]
+  defstruct [:manage_encryption, :manage_form, :manage_participants, :manage_settings, :manage_users, extra: %{}]
 
   @type t :: %__MODULE__{
           manage_encryption: boolean() | nil,
@@ -47,10 +40,7 @@ defmodule CastorEDC.Model.ManagementPermissions do
       manage_participants: data["manage_records"],
       manage_settings: data["manage_settings"],
       manage_users: data["manage_users"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

@@ -21,17 +21,7 @@ defmodule CastorEDC.Model.Survey do
   @known ~w(description footer_text id intro_text name outro_text survey_forms survey_id)
   @known_embedded ~w()
 
-  defstruct [
-    :description,
-    :footer_text,
-    :id,
-    :intro_text,
-    :name,
-    :outro_text,
-    :survey_forms,
-    :survey_id,
-    extra: %{}
-  ]
+  defstruct [:description, :footer_text, :id, :intro_text, :name, :outro_text, :survey_forms, :survey_id, extra: %{}]
 
   @type t :: %__MODULE__{
           description: String.t() | nil,
@@ -59,10 +49,7 @@ defmodule CastorEDC.Model.Survey do
       outro_text: data["outro_text"],
       survey_forms: data["survey_forms"],
       survey_id: data["survey_id"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

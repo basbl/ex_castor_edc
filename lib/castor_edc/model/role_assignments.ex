@@ -37,10 +37,7 @@ defmodule CastorEDC.Model.RoleAssignments do
       role_id: data["role_id"],
       role_name: data["role_name"],
       site_id: data["site_id"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

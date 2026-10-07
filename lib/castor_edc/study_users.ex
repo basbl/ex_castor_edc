@@ -49,8 +49,7 @@ defmodule CastorEDC.StudyUsers do
   @doc ~S"""
   The same as `add_study_user/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec add_study_user!(CastorEDC.client(), String.t(), map(), keyword()) ::
-          InvitationSuccess.t()
+  @spec add_study_user!(CastorEDC.client(), String.t(), map(), keyword()) :: InvitationSuccess.t()
   def add_study_user!(client, study_id, body, opts \\ []) do
     Client.request!(client, operation(:add_study_user, %{"study_id" => study_id}, body, opts))
   end
@@ -70,22 +69,15 @@ defmodule CastorEDC.StudyUsers do
   @spec get_study_user(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, StudyUser.t()} | {:error, CastorEDC.Error.t()}
   def get_study_user(client, study_id, user_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:get_study_user, %{"study_id" => study_id, "user_id" => user_id}, opts)
-    )
+    Client.request(client, operation(:get_study_user, %{"study_id" => study_id, "user_id" => user_id}, opts))
   end
 
   @doc ~S"""
   The same as `get_study_user/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_study_user!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          StudyUser.t()
+  @spec get_study_user!(CastorEDC.client(), String.t(), String.t(), keyword()) :: StudyUser.t()
   def get_study_user!(client, study_id, user_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:get_study_user, %{"study_id" => study_id, "user_id" => user_id}, opts)
-    )
+    Client.request!(client, operation(:get_study_user, %{"study_id" => study_id, "user_id" => user_id}, opts))
   end
 
   @doc ~S"""
@@ -110,8 +102,7 @@ defmodule CastorEDC.StudyUsers do
   @doc ~S"""
   The same as `list_study_users/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_study_users!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(StudyUser.t())
+  @spec list_study_users!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(StudyUser.t())
   def list_study_users!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_study_users, %{"study_id" => study_id}, opts))
   end
@@ -131,10 +122,7 @@ defmodule CastorEDC.StudyUsers do
   @spec remove_study_user(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, term()} | {:error, CastorEDC.Error.t()}
   def remove_study_user(client, study_id, user_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:remove_study_user, %{"study_id" => study_id, "user_id" => user_id}, opts)
-    )
+    Client.request(client, operation(:remove_study_user, %{"study_id" => study_id, "user_id" => user_id}, opts))
   end
 
   @doc ~S"""
@@ -142,10 +130,7 @@ defmodule CastorEDC.StudyUsers do
   """
   @spec remove_study_user!(CastorEDC.client(), String.t(), String.t(), keyword()) :: term()
   def remove_study_user!(client, study_id, user_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:remove_study_user, %{"study_id" => study_id, "user_id" => user_id}, opts)
-    )
+    Client.request!(client, operation(:remove_study_user, %{"study_id" => study_id, "user_id" => user_id}, opts))
   end
 
   @doc ~S"""
@@ -169,10 +154,7 @@ defmodule CastorEDC.StudyUsers do
   @spec update_study_user(CastorEDC.client(), String.t(), String.t(), map(), keyword()) ::
           {:ok, RoleAssignmentUpdateSuccess.t()} | {:error, CastorEDC.Error.t()}
   def update_study_user(client, study_id, user_id, body, opts \\ []) do
-    Client.request(
-      client,
-      operation(:update_study_user, %{"study_id" => study_id, "user_id" => user_id}, body, opts)
-    )
+    Client.request(client, operation(:update_study_user, %{"study_id" => study_id, "user_id" => user_id}, body, opts))
   end
 
   @doc ~S"""
@@ -181,10 +163,7 @@ defmodule CastorEDC.StudyUsers do
   @spec update_study_user!(CastorEDC.client(), String.t(), String.t(), map(), keyword()) ::
           RoleAssignmentUpdateSuccess.t()
   def update_study_user!(client, study_id, user_id, body, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:update_study_user, %{"study_id" => study_id, "user_id" => user_id}, body, opts)
-    )
+    Client.request!(client, operation(:update_study_user, %{"study_id" => study_id, "user_id" => user_id}, body, opts))
   end
 
   defp operation(:get_study_user, path_params, opts) do

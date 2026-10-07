@@ -36,22 +36,15 @@ defmodule CastorEDC.Forms do
   @spec get_form(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, Form.t()} | {:error, CastorEDC.Error.t()}
   def get_form(client, study_id, form_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:get_form, %{"study_id" => study_id, "form_id" => form_id}, opts)
-    )
+    Client.request(client, operation(:get_form, %{"study_id" => study_id, "form_id" => form_id}, opts))
   end
 
   @doc ~S"""
   The same as `get_form/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_form!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          Form.t()
+  @spec get_form!(CastorEDC.client(), String.t(), String.t(), keyword()) :: Form.t()
   def get_form!(client, study_id, form_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:get_form, %{"study_id" => study_id, "form_id" => form_id}, opts)
-    )
+    Client.request!(client, operation(:get_form, %{"study_id" => study_id, "form_id" => form_id}, opts))
   end
 
   @doc ~S"""
@@ -69,22 +62,15 @@ defmodule CastorEDC.Forms do
   @spec get_visit(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, Visit.t()} | {:error, CastorEDC.Error.t()}
   def get_visit(client, study_id, visit_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:get_visit, %{"study_id" => study_id, "visit_id" => visit_id}, opts)
-    )
+    Client.request(client, operation(:get_visit, %{"study_id" => study_id, "visit_id" => visit_id}, opts))
   end
 
   @doc ~S"""
   The same as `get_visit/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_visit!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          Visit.t()
+  @spec get_visit!(CastorEDC.client(), String.t(), String.t(), keyword()) :: Visit.t()
   def get_visit!(client, study_id, visit_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:get_visit, %{"study_id" => study_id, "visit_id" => visit_id}, opts)
-    )
+    Client.request!(client, operation(:get_visit, %{"study_id" => study_id, "visit_id" => visit_id}, opts))
   end
 
   @doc ~S"""
@@ -118,8 +104,7 @@ defmodule CastorEDC.Forms do
   @doc ~S"""
   The same as `list_forms/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_forms!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(Form.t())
+  @spec list_forms!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(Form.t())
   def list_forms!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_forms, %{"study_id" => study_id}, opts))
   end
@@ -131,8 +116,7 @@ defmodule CastorEDC.Forms do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_forms(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(Form.t())
+  @spec stream_forms(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(Form.t())
   def stream_forms(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_forms(client, study_id, Keyword.merge(opts, &1)),
@@ -171,8 +155,7 @@ defmodule CastorEDC.Forms do
   @doc ~S"""
   The same as `list_visits/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_visits!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(Visit.t())
+  @spec list_visits!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(Visit.t())
   def list_visits!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_visits, %{"study_id" => study_id}, opts))
   end
@@ -184,8 +167,7 @@ defmodule CastorEDC.Forms do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_visits(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(Visit.t())
+  @spec stream_visits(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(Visit.t())
   def stream_visits(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_visits(client, study_id, Keyword.merge(opts, &1)),

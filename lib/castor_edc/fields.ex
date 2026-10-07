@@ -43,22 +43,15 @@ defmodule CastorEDC.Fields do
   @spec get_field(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, Field.t()} | {:error, CastorEDC.Error.t()}
   def get_field(client, study_id, field_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:get_field, %{"study_id" => study_id, "field_id" => field_id}, opts)
-    )
+    Client.request(client, operation(:get_field, %{"study_id" => study_id, "field_id" => field_id}, opts))
   end
 
   @doc ~S"""
   The same as `get_field/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_field!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          Field.t()
+  @spec get_field!(CastorEDC.client(), String.t(), String.t(), keyword()) :: Field.t()
   def get_field!(client, study_id, field_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:get_field, %{"study_id" => study_id, "field_id" => field_id}, opts)
-    )
+    Client.request!(client, operation(:get_field, %{"study_id" => study_id, "field_id" => field_id}, opts))
   end
 
   @doc ~S"""
@@ -78,27 +71,18 @@ defmodule CastorEDC.Fields do
   def get_field_dependency(client, study_id, field_dependency_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :get_field_dependency,
-        %{"study_id" => study_id, "fieldDependency_id" => field_dependency_id},
-        opts
-      )
+      operation(:get_field_dependency, %{"study_id" => study_id, "fieldDependency_id" => field_dependency_id}, opts)
     )
   end
 
   @doc ~S"""
   The same as `get_field_dependency/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_field_dependency!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          FieldDependency.t()
+  @spec get_field_dependency!(CastorEDC.client(), String.t(), String.t(), keyword()) :: FieldDependency.t()
   def get_field_dependency!(client, study_id, field_dependency_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :get_field_dependency,
-        %{"study_id" => study_id, "fieldDependency_id" => field_dependency_id},
-        opts
-      )
+      operation(:get_field_dependency, %{"study_id" => study_id, "fieldDependency_id" => field_dependency_id}, opts)
     )
   end
 
@@ -119,27 +103,18 @@ defmodule CastorEDC.Fields do
   def get_field_validation(client, study_id, field_validation_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :get_field_validation,
-        %{"study_id" => study_id, "fieldValidation_id" => field_validation_id},
-        opts
-      )
+      operation(:get_field_validation, %{"study_id" => study_id, "fieldValidation_id" => field_validation_id}, opts)
     )
   end
 
   @doc ~S"""
   The same as `get_field_validation/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_field_validation!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          FieldValidation.t()
+  @spec get_field_validation!(CastorEDC.client(), String.t(), String.t(), keyword()) :: FieldValidation.t()
   def get_field_validation!(client, study_id, field_validation_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :get_field_validation,
-        %{"study_id" => study_id, "fieldValidation_id" => field_validation_id},
-        opts
-      )
+      operation(:get_field_validation, %{"study_id" => study_id, "fieldValidation_id" => field_validation_id}, opts)
     )
   end
 
@@ -165,8 +140,7 @@ defmodule CastorEDC.Fields do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.FieldDependency.t/0` records.
   """
   @spec list_field_dependencies(CastorEDC.client(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(FieldDependency.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(FieldDependency.t())} | {:error, CastorEDC.Error.t()}
   def list_field_dependencies(client, study_id, opts \\ []) do
     Client.request(client, operation(:list_field_dependencies, %{"study_id" => study_id}, opts))
   end
@@ -174,8 +148,7 @@ defmodule CastorEDC.Fields do
   @doc ~S"""
   The same as `list_field_dependencies/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_field_dependencies!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(FieldDependency.t())
+  @spec list_field_dependencies!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(FieldDependency.t())
   def list_field_dependencies!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_field_dependencies, %{"study_id" => study_id}, opts))
   end
@@ -187,8 +160,7 @@ defmodule CastorEDC.Fields do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_field_dependencies(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(FieldDependency.t())
+  @spec stream_field_dependencies(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(FieldDependency.t())
   def stream_field_dependencies(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_field_dependencies(client, study_id, Keyword.merge(opts, &1)),
@@ -224,8 +196,7 @@ defmodule CastorEDC.Fields do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.FieldValidation.t/0` records.
   """
   @spec list_field_validations(CastorEDC.client(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(FieldValidation.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(FieldValidation.t())} | {:error, CastorEDC.Error.t()}
   def list_field_validations(client, study_id, opts \\ []) do
     Client.request(client, operation(:list_field_validations, %{"study_id" => study_id}, opts))
   end
@@ -233,8 +204,7 @@ defmodule CastorEDC.Fields do
   @doc ~S"""
   The same as `list_field_validations/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_field_validations!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(FieldValidation.t())
+  @spec list_field_validations!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(FieldValidation.t())
   def list_field_validations!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_field_validations, %{"study_id" => study_id}, opts))
   end
@@ -246,8 +216,7 @@ defmodule CastorEDC.Fields do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_field_validations(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(FieldValidation.t())
+  @spec stream_field_validations(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(FieldValidation.t())
   def stream_field_validations(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_field_validations(client, study_id, Keyword.merge(opts, &1)),
@@ -287,8 +256,7 @@ defmodule CastorEDC.Fields do
   @doc ~S"""
   The same as `list_fields/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_fields!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(Field.t())
+  @spec list_fields!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(Field.t())
   def list_fields!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_fields, %{"study_id" => study_id}, opts))
   end
@@ -300,8 +268,7 @@ defmodule CastorEDC.Fields do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_fields(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(Field.t())
+  @spec stream_fields(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(Field.t())
   def stream_fields(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_fields(client, study_id, Keyword.merge(opts, &1)),
@@ -363,11 +330,7 @@ defmodule CastorEDC.Fields do
       path: "/api/study/{study_id}/field-validation",
       path_params: path_params,
       query: opts,
-      query_names: %{
-        page: "page",
-        include_referenced_field: "include_referenced_field",
-        page_size: "page_size"
-      },
+      query_names: %{page: "page", include_referenced_field: "include_referenced_field", page_size: "page_size"},
       items: "_embedded.fieldValidations",
       max_page_size: 1000,
       decode: FieldValidation

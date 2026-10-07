@@ -129,10 +129,7 @@ defmodule CastorEDC.Model.SurveyPackage do
       sender_name: data["sender_name"],
       show_form_navigator: data["show_step_navigator"],
       survey_package_id: data["survey_package_id"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

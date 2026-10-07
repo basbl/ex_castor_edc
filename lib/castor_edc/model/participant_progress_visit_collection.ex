@@ -46,10 +46,7 @@ defmodule CastorEDC.Model.ParticipantProgressVisitCollection do
       sdv: data["sdv"],
       signed: data["signed"],
       visit_id: data["visit_id"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

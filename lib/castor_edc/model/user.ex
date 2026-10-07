@@ -75,10 +75,7 @@ defmodule CastorEDC.Model.User do
       name_last: data["name_last"],
       name_middle: data["name_middle"],
       user_id: data["user_id"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

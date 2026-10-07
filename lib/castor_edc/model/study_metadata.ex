@@ -21,17 +21,7 @@ defmodule CastorEDC.Model.StudyMetadata do
   @known ~w(created_on domain live name siteFormattedDatesEnabled slug study_id version)
   @known_embedded ~w()
 
-  defstruct [
-    :created_on,
-    :domain,
-    :live,
-    :name,
-    :site_formatted_dates_enabled,
-    :slug,
-    :study_id,
-    :version,
-    extra: %{}
-  ]
+  defstruct [:created_on, :domain, :live, :name, :site_formatted_dates_enabled, :slug, :study_id, :version, extra: %{}]
 
   @type t :: %__MODULE__{
           created_on: String.t() | nil,
@@ -59,10 +49,7 @@ defmodule CastorEDC.Model.StudyMetadata do
       slug: data["slug"],
       study_id: data["study_id"],
       version: data["version"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

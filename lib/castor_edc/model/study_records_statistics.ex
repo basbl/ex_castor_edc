@@ -31,16 +31,9 @@ defmodule CastorEDC.Model.StudyRecordsStatistics do
     embedded = if is_map(data["_embedded"]), do: data["_embedded"], else: %{}
 
     %__MODULE__{
-      institutes:
-        CastorEDC.Model.one(
-          data["institutes"] || embedded["institutes"],
-          InstituteRecordsStatistics
-        ),
+      institutes: CastorEDC.Model.one(data["institutes"] || embedded["institutes"], InstituteRecordsStatistics),
       total_count: data["total_count"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

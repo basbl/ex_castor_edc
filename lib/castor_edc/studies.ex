@@ -69,8 +69,7 @@ defmodule CastorEDC.Studies do
   @doc ~S"""
   The same as `get_study_metadata/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_study_metadata!(CastorEDC.client(), String.t(), keyword()) ::
-          StudyMetadata.t()
+  @spec get_study_metadata!(CastorEDC.client(), String.t(), keyword()) :: StudyMetadata.t()
   def get_study_metadata!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:get_study_metadata, %{"study_id" => study_id}, opts))
   end
@@ -97,8 +96,7 @@ defmodule CastorEDC.Studies do
   @doc ~S"""
   The same as `get_study_statistics/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_study_statistics!(CastorEDC.client(), String.t(), keyword()) ::
-          StudyStatistics.t()
+  @spec get_study_statistics!(CastorEDC.client(), String.t(), keyword()) :: StudyStatistics.t()
   def get_study_statistics!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:get_study_statistics, %{"study_id" => study_id}, opts))
   end
@@ -113,8 +111,7 @@ defmodule CastorEDC.Studies do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.StudyCollectionItem.t/0` records.
   """
   @spec list_studies(CastorEDC.client(), keyword()) ::
-          {:ok, CastorEDC.Page.t(StudyCollectionItem.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(StudyCollectionItem.t())} | {:error, CastorEDC.Error.t()}
   def list_studies(client, opts \\ []) do
     Client.request(client, operation(:list_studies, %{}, opts))
   end
@@ -122,21 +119,13 @@ defmodule CastorEDC.Studies do
   @doc ~S"""
   The same as `list_studies/2`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_studies!(CastorEDC.client(), keyword()) ::
-          CastorEDC.Page.t(StudyCollectionItem.t())
+  @spec list_studies!(CastorEDC.client(), keyword()) :: CastorEDC.Page.t(StudyCollectionItem.t())
   def list_studies!(client, opts \\ []) do
     Client.request!(client, operation(:list_studies, %{}, opts))
   end
 
   defp operation(:get_study, path_params, opts) do
-    [
-      method: :get,
-      path: "/api/study/{study_id}",
-      path_params: path_params,
-      query: opts,
-      query_names: %{},
-      decode: Study
-    ]
+    [method: :get, path: "/api/study/{study_id}", path_params: path_params, query: opts, query_names: %{}, decode: Study]
   end
 
   defp operation(:get_study_metadata, path_params, opts) do

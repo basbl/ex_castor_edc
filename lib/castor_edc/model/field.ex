@@ -106,15 +106,9 @@ defmodule CastorEDC.Model.Field do
 
     %__MODULE__{
       dependency_children:
-        CastorEDC.Model.list(
-          data["dependency_children"] || embedded["dependency_children"],
-          FieldDependencyNested
-        ),
+        CastorEDC.Model.list(data["dependency_children"] || embedded["dependency_children"], FieldDependencyNested),
       dependency_parents:
-        CastorEDC.Model.list(
-          data["dependency_parents"] || embedded["dependency_parents"],
-          FieldDependencyNested
-        ),
+        CastorEDC.Model.list(data["dependency_parents"] || embedded["dependency_parents"], FieldDependencyNested),
       domains: CastorEDC.Model.list(data["domains"] || embedded["domains"], FieldDomain),
       field_enforce_decimals: data["field_enforce_decimals"],
       field_hidden: data["field_hidden"],
@@ -131,28 +125,13 @@ defmodule CastorEDC.Model.Field do
       field_units: data["field_units"],
       field_variable_name: data["field_variable_name"],
       id: data["id"],
-      metadata_points:
-        CastorEDC.Model.list(
-          data["metadata_points"] || embedded["metadata_points"],
-          Metadata
-        ),
-      option_group:
-        CastorEDC.Model.list(
-          data["option_group"] || embedded["option_group"],
-          FieldOptionGroup
-        ),
+      metadata_points: CastorEDC.Model.list(data["metadata_points"] || embedded["metadata_points"], Metadata),
+      option_group: CastorEDC.Model.list(data["option_group"] || embedded["option_group"], FieldOptionGroup),
       parent_id: data["parent_id"],
       randomize_option_order: data["randomize_option_order"],
       repeating_data_id: data["report_id"],
-      validations:
-        CastorEDC.Model.list(
-          data["validations"] || embedded["validations"],
-          FieldValidation
-        ),
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      validations: CastorEDC.Model.list(data["validations"] || embedded["validations"], FieldValidation),
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

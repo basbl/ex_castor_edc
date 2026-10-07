@@ -102,10 +102,7 @@ defmodule CastorEDC.Model.Participant do
       mobile_ui_version: data["mobile_ui_version"],
       participant_id: data["participant_id"],
       participant_status:
-        CastorEDC.Model.one(
-          data["participant_status"] || embedded["participant_status"],
-          ParticipantStatus
-        ),
+        CastorEDC.Model.one(data["participant_status"] || embedded["participant_status"], ParticipantStatus),
       progress: data["progress"],
       randomization_group: data["randomization_group"],
       randomization_group_name: data["randomization_group_name"],
@@ -114,10 +111,7 @@ defmodule CastorEDC.Model.Participant do
       status: data["status"],
       updated_by: data["updated_by"],
       updated_on: CastorEDC.Model.cast(data["updated_on"], :datetime),
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

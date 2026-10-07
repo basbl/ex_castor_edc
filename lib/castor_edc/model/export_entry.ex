@@ -67,10 +67,7 @@ defmodule CastorEDC.Model.ExportEntry do
       id: data["id"],
       status: data["status"],
       type: data["export_name"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

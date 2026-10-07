@@ -43,8 +43,7 @@ defmodule CastorEDC.Verifications do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.Verification.t/0` records.
   """
   @spec list_verifications(CastorEDC.client(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(Verification.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(Verification.t())} | {:error, CastorEDC.Error.t()}
   def list_verifications(client, study_id, opts \\ []) do
     Client.request(client, operation(:list_verifications, %{"study_id" => study_id}, opts))
   end
@@ -52,8 +51,7 @@ defmodule CastorEDC.Verifications do
   @doc ~S"""
   The same as `list_verifications/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_verifications!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(Verification.t())
+  @spec list_verifications!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(Verification.t())
   def list_verifications!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_verifications, %{"study_id" => study_id}, opts))
   end
@@ -65,8 +63,7 @@ defmodule CastorEDC.Verifications do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_verifications(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(Verification.t())
+  @spec stream_verifications(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(Verification.t())
   def stream_verifications(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_verifications(client, study_id, Keyword.merge(opts, &1)),

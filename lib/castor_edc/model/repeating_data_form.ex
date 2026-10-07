@@ -53,10 +53,7 @@ defmodule CastorEDC.Model.RepeatingDataForm do
       repeating_data_form_id: data["repeating_data_form_id"],
       repeating_data_form_name: data["repeating_data_form_name"],
       repeating_data_form_number: data["repeating_data_form_number"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

@@ -45,10 +45,7 @@ defmodule CastorEDC.Model.Form do
       form_order: data["form_order"],
       id: data["id"],
       visit: CastorEDC.Model.one(embedded["visit"], Visit),
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

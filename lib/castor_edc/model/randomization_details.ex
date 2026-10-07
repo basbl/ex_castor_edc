@@ -17,13 +17,7 @@ defmodule CastorEDC.Model.RandomizationDetails do
   @known ~w(randomization_group randomization_group_name randomized_id randomized_on)
   @known_embedded ~w()
 
-  defstruct [
-    :randomization_group,
-    :randomization_group_name,
-    :randomized_id,
-    :randomized_on,
-    extra: %{}
-  ]
+  defstruct [:randomization_group, :randomization_group_name, :randomized_id, :randomized_on, extra: %{}]
 
   @type t :: %__MODULE__{
           randomization_group: integer() | nil,
@@ -43,10 +37,7 @@ defmodule CastorEDC.Model.RandomizationDetails do
       randomization_group_name: data["randomization_group_name"],
       randomized_id: data["randomized_id"],
       randomized_on: CastorEDC.Model.cast(data["randomized_on"], :datetime),
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

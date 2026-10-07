@@ -42,10 +42,7 @@ defmodule CastorEDC.Model.Metadata do
       metadata_type: CastorEDC.Model.one(embedded["metadata_type"], MetadataType),
       parent_id: data["parent_id"],
       value: data["value"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

@@ -34,10 +34,7 @@ defmodule CastorEDC.Model.InstituteRecordsStatistics do
       institute_id: data["institute_id"],
       institute_name: data["institute_name"],
       participant_count: data["record_count"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

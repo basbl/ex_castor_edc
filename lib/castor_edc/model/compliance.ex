@@ -55,10 +55,7 @@ defmodule CastorEDC.Model.Compliance do
       site_id: data["siteId"],
       site_name: data["siteName"],
       total_surveys: data["totalSurveys"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

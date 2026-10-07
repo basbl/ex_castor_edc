@@ -69,10 +69,7 @@ defmodule CastorEDC.Model.Query do
       status: data["status"],
       updated_by: data["updated_by"],
       updated_on: CastorEDC.Model.cast(data["updated_on"], :datetime),
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

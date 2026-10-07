@@ -37,10 +37,7 @@ defmodule CastorEDC.Model.FieldOption do
       id: data["id"],
       name: data["name"],
       value: data["value"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

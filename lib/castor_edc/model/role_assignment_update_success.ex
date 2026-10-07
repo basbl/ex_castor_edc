@@ -25,10 +25,7 @@ defmodule CastorEDC.Model.RoleAssignmentUpdateSuccess do
     embedded = if is_map(data["_embedded"]), do: data["_embedded"], else: %{}
 
     %__MODULE__{
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

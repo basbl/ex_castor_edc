@@ -19,15 +19,7 @@ defmodule CastorEDC.Model.CountryWithNoHalLinks do
   @known ~w(country_cca2 country_cca3 country_id country_name country_tld id)
   @known_embedded ~w()
 
-  defstruct [
-    :country_cca2,
-    :country_cca3,
-    :country_id,
-    :country_name,
-    :country_tld,
-    :id,
-    extra: %{}
-  ]
+  defstruct [:country_cca2, :country_cca3, :country_id, :country_name, :country_tld, :id, extra: %{}]
 
   @type t :: %__MODULE__{
           country_cca2: String.t() | nil,
@@ -51,10 +43,7 @@ defmodule CastorEDC.Model.CountryWithNoHalLinks do
       country_name: data["country_name"],
       country_tld: data["country_tld"],
       id: data["id"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

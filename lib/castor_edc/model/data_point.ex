@@ -67,10 +67,7 @@ defmodule CastorEDC.Model.DataPoint do
       survey_package_instance_id: data["survey_package_instance_id"],
       updated_on: CastorEDC.Model.cast(data["updated_on"], :naive_datetime),
       value: data["field_value"] || data["value"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

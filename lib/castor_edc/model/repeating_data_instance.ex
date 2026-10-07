@@ -74,10 +74,7 @@ defmodule CastorEDC.Model.RepeatingDataInstance do
       repeating_data: CastorEDC.Model.one(embedded["repeating_data"], RepeatingData),
       repeating_data_name: data["repeating data_name"],
       status: data["status"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

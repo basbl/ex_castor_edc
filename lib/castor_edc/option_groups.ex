@@ -35,27 +35,18 @@ defmodule CastorEDC.OptionGroups do
   def get_option_group(client, study_id, option_group_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :get_option_group,
-        %{"study_id" => study_id, "optiongroup_id" => option_group_id},
-        opts
-      )
+      operation(:get_option_group, %{"study_id" => study_id, "optiongroup_id" => option_group_id}, opts)
     )
   end
 
   @doc ~S"""
   The same as `get_option_group/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_option_group!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          FieldOptionGroup.t()
+  @spec get_option_group!(CastorEDC.client(), String.t(), String.t(), keyword()) :: FieldOptionGroup.t()
   def get_option_group!(client, study_id, option_group_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :get_option_group,
-        %{"study_id" => study_id, "optiongroup_id" => option_group_id},
-        opts
-      )
+      operation(:get_option_group, %{"study_id" => study_id, "optiongroup_id" => option_group_id}, opts)
     )
   end
 
@@ -81,8 +72,7 @@ defmodule CastorEDC.OptionGroups do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.FieldOptionGroup.t/0` records.
   """
   @spec list_option_groups(CastorEDC.client(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(FieldOptionGroup.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(FieldOptionGroup.t())} | {:error, CastorEDC.Error.t()}
   def list_option_groups(client, study_id, opts \\ []) do
     Client.request(client, operation(:list_option_groups, %{"study_id" => study_id}, opts))
   end
@@ -90,8 +80,7 @@ defmodule CastorEDC.OptionGroups do
   @doc ~S"""
   The same as `list_option_groups/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_option_groups!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(FieldOptionGroup.t())
+  @spec list_option_groups!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(FieldOptionGroup.t())
   def list_option_groups!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_option_groups, %{"study_id" => study_id}, opts))
   end
@@ -103,8 +92,7 @@ defmodule CastorEDC.OptionGroups do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_option_groups(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(FieldOptionGroup.t())
+  @spec stream_option_groups(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(FieldOptionGroup.t())
   def stream_option_groups(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_option_groups(client, study_id, Keyword.merge(opts, &1)),

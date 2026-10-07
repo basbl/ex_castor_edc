@@ -35,10 +35,7 @@ defmodule CastorEDC.Exports do
   @spec download_export(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, binary()} | {:error, CastorEDC.Error.t()}
   def download_export(client, study_id, export_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:download_export, %{"study_id" => study_id, "id" => export_id}, opts)
-    )
+    Client.request(client, operation(:download_export, %{"study_id" => study_id, "id" => export_id}, opts))
   end
 
   @doc ~S"""
@@ -46,10 +43,7 @@ defmodule CastorEDC.Exports do
   """
   @spec download_export!(CastorEDC.client(), String.t(), String.t(), keyword()) :: binary()
   def download_export!(client, study_id, export_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:download_export, %{"study_id" => study_id, "id" => export_id}, opts)
-    )
+    Client.request!(client, operation(:download_export, %{"study_id" => study_id, "id" => export_id}, opts))
   end
 
   @doc ~S"""
@@ -79,8 +73,7 @@ defmodule CastorEDC.Exports do
   @doc ~S"""
   The same as `list_exports/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_exports!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(ExportEntry.t())
+  @spec list_exports!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(ExportEntry.t())
   def list_exports!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_exports, %{"study_id" => study_id}, opts))
   end
@@ -92,8 +85,7 @@ defmodule CastorEDC.Exports do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_exports(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(ExportEntry.t())
+  @spec stream_exports(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(ExportEntry.t())
   def stream_exports(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_exports(client, study_id, Keyword.merge(opts, &1)),
@@ -126,8 +118,7 @@ defmodule CastorEDC.Exports do
   @doc ~S"""
   The same as `queue_exports/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec queue_exports!(CastorEDC.client(), String.t(), map(), keyword()) ::
-          ExportSuccess.t()
+  @spec queue_exports!(CastorEDC.client(), String.t(), map(), keyword()) :: ExportSuccess.t()
   def queue_exports!(client, study_id, body, opts \\ []) do
     Client.request!(client, operation(:queue_exports, %{"study_id" => study_id}, body, opts))
   end

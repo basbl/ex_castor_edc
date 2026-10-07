@@ -151,14 +151,7 @@ defmodule CastorEDC.DataPoints do
 
   Every option is passed to `Req`.
   """
-  @spec create_study_data_point(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) ::
+  @spec create_study_data_point(CastorEDC.client(), String.t(), String.t(), String.t(), map(), keyword()) ::
           {:ok, DataPoint.t()} | {:error, CastorEDC.Error.t()}
   def create_study_data_point(client, study_id, participant_id, field_id, body, opts \\ []) do
     Client.request(
@@ -175,14 +168,8 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `create_study_data_point/6`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec create_study_data_point!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) :: DataPoint.t()
+  @spec create_study_data_point!(CastorEDC.client(), String.t(), String.t(), String.t(), map(), keyword()) ::
+          DataPoint.t()
   def create_study_data_point!(client, study_id, participant_id, field_id, body, opts \\ []) do
     Client.request!(
       client,
@@ -215,15 +202,7 @@ defmodule CastorEDC.DataPoints do
 
   Every option is passed to `Req`.
   """
-  @spec create_survey_data_point(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) ::
+  @spec create_survey_data_point(CastorEDC.client(), String.t(), String.t(), String.t(), String.t(), map(), keyword()) ::
           {:ok, DataPoint.t()} | {:error, CastorEDC.Error.t()}
   def create_survey_data_point(client, study_id, participant_id, survey_instance_id, field_id, body, opts \\ []) do
     Client.request(
@@ -245,15 +224,8 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `create_survey_data_point/7`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec create_survey_data_point!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) :: DataPoint.t()
+  @spec create_survey_data_point!(CastorEDC.client(), String.t(), String.t(), String.t(), String.t(), map(), keyword()) ::
+          DataPoint.t()
   def create_survey_data_point!(client, study_id, participant_id, survey_instance_id, field_id, body, opts \\ []) do
     Client.request!(
       client,
@@ -292,13 +264,7 @@ defmodule CastorEDC.DataPoints do
 
   Returns what was saved and what wasn't; the `!` variant raises a `CastorEDC.Error` when anything wasn't.
   """
-  @spec create_survey_package_instance_with_data_points(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) ::
+  @spec create_survey_package_instance_with_data_points(CastorEDC.client(), String.t(), String.t(), map(), keyword()) ::
           {:ok, DataPointsResult.t()} | {:error, CastorEDC.Error.t()}
   def create_survey_package_instance_with_data_points(client, study_id, participant_id, body, opts \\ []) do
     Client.request(
@@ -315,13 +281,8 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `create_survey_package_instance_with_data_points/5`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec create_survey_package_instance_with_data_points!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) :: DataPointsResult.t()
+  @spec create_survey_package_instance_with_data_points!(CastorEDC.client(), String.t(), String.t(), map(), keyword()) ::
+          DataPointsResult.t()
   def create_survey_package_instance_with_data_points!(client, study_id, participant_id, body, opts \\ []) do
     Client.request!(
       client,
@@ -352,14 +313,7 @@ defmodule CastorEDC.DataPoints do
 
   Any other option is passed to `Req`.
   """
-  @spec get_repeating_data_data_point(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) ::
+  @spec get_repeating_data_data_point(CastorEDC.client(), String.t(), String.t(), String.t(), String.t(), keyword()) ::
           {:ok, DataPoint.t()} | {:error, CastorEDC.Error.t()}
   def get_repeating_data_data_point(client, study_id, participant_id, repeating_data_instance_id, field_id, opts \\ []) do
     Client.request(
@@ -380,14 +334,8 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `get_repeating_data_data_point/6`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_repeating_data_data_point!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: DataPoint.t()
+  @spec get_repeating_data_data_point!(CastorEDC.client(), String.t(), String.t(), String.t(), String.t(), keyword()) ::
+          DataPoint.t()
   def get_repeating_data_data_point!(client, study_id, participant_id, repeating_data_instance_id, field_id, opts \\ []) do
     Client.request!(
       client,
@@ -437,8 +385,7 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `get_study_data_point/5`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_study_data_point!(CastorEDC.client(), String.t(), String.t(), String.t(), keyword()) ::
-          DataPoint.t()
+  @spec get_study_data_point!(CastorEDC.client(), String.t(), String.t(), String.t(), keyword()) :: DataPoint.t()
   def get_study_data_point!(client, study_id, participant_id, field_id, opts \\ []) do
     Client.request!(
       client,
@@ -470,14 +417,7 @@ defmodule CastorEDC.DataPoints do
 
   Any other option is passed to `Req`.
   """
-  @spec get_survey_data_point(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) ::
+  @spec get_survey_data_point(CastorEDC.client(), String.t(), String.t(), String.t(), String.t(), keyword()) ::
           {:ok, DataPoint.t()} | {:error, CastorEDC.Error.t()}
   def get_survey_data_point(client, study_id, participant_id, survey_instance_id, field_id, opts \\ []) do
     Client.request(
@@ -498,14 +438,8 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `get_survey_data_point/6`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_survey_data_point!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: DataPoint.t()
+  @spec get_survey_data_point!(CastorEDC.client(), String.t(), String.t(), String.t(), String.t(), keyword()) ::
+          DataPoint.t()
   def get_survey_data_point!(client, study_id, participant_id, survey_instance_id, field_id, opts \\ []) do
     Client.request!(
       client,
@@ -544,12 +478,7 @@ defmodule CastorEDC.DataPoints do
 
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.DataPoint.t/0` records.
   """
-  @spec list_participant_repeating_data_data_points(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) ::
+  @spec list_participant_repeating_data_data_points(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, CastorEDC.Page.t(DataPoint.t())} | {:error, CastorEDC.Error.t()}
   def list_participant_repeating_data_data_points(client, study_id, participant_id, opts \\ []) do
     Client.request(
@@ -565,12 +494,8 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `list_participant_repeating_data_data_points/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_participant_repeating_data_data_points!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: CastorEDC.Page.t(DataPoint.t())
+  @spec list_participant_repeating_data_data_points!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
+          CastorEDC.Page.t(DataPoint.t())
   def list_participant_repeating_data_data_points!(client, study_id, participant_id, opts \\ []) do
     Client.request!(
       client,
@@ -690,11 +615,7 @@ defmodule CastorEDC.DataPoints do
   def list_participant_study_data_points(client, study_id, participant_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :list_participant_study_data_points,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:list_participant_study_data_points, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
@@ -706,11 +627,7 @@ defmodule CastorEDC.DataPoints do
   def list_participant_study_data_points!(client, study_id, participant_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :list_participant_study_data_points,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:list_participant_study_data_points, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
@@ -740,31 +657,19 @@ defmodule CastorEDC.DataPoints do
   def list_participant_survey_data_points(client, study_id, participant_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :list_participant_survey_data_points,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:list_participant_survey_data_points, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
   @doc ~S"""
   The same as `list_participant_survey_data_points/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_participant_survey_data_points!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: CastorEDC.Page.t(DataPoint.t())
+  @spec list_participant_survey_data_points!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
+          CastorEDC.Page.t(DataPoint.t())
   def list_participant_survey_data_points!(client, study_id, participant_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :list_participant_survey_data_points,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:list_participant_survey_data_points, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
@@ -790,24 +695,14 @@ defmodule CastorEDC.DataPoints do
 
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.DataPoint.t/0` records.
   """
-  @spec list_participant_survey_instance_data_points(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) ::
+  @spec list_participant_survey_instance_data_points(CastorEDC.client(), String.t(), String.t(), String.t(), keyword()) ::
           {:ok, CastorEDC.Page.t(DataPoint.t())} | {:error, CastorEDC.Error.t()}
   def list_participant_survey_instance_data_points(client, study_id, participant_id, survey_instance_id, opts \\ []) do
     Client.request(
       client,
       operation(
         :list_participant_survey_instance_data_points,
-        %{
-          "study_id" => study_id,
-          "participant_id" => participant_id,
-          "survey_instance_id" => survey_instance_id
-        },
+        %{"study_id" => study_id, "participant_id" => participant_id, "survey_instance_id" => survey_instance_id},
         opts
       )
     )
@@ -816,23 +711,14 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `list_participant_survey_instance_data_points/5`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_participant_survey_instance_data_points!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: CastorEDC.Page.t(DataPoint.t())
+  @spec list_participant_survey_instance_data_points!(CastorEDC.client(), String.t(), String.t(), String.t(), keyword()) ::
+          CastorEDC.Page.t(DataPoint.t())
   def list_participant_survey_instance_data_points!(client, study_id, participant_id, survey_instance_id, opts \\ []) do
     Client.request!(
       client,
       operation(
         :list_participant_survey_instance_data_points,
-        %{
-          "study_id" => study_id,
-          "participant_id" => participant_id,
-          "survey_instance_id" => survey_instance_id
-        },
+        %{"study_id" => study_id, "participant_id" => participant_id, "survey_instance_id" => survey_instance_id},
         opts
       )
     )
@@ -945,22 +831,15 @@ defmodule CastorEDC.DataPoints do
   @spec list_repeating_data_data_points(CastorEDC.client(), String.t(), keyword()) ::
           {:ok, CastorEDC.Page.t(DataPoint.t())} | {:error, CastorEDC.Error.t()}
   def list_repeating_data_data_points(client, study_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:list_repeating_data_data_points, %{"study_id" => study_id}, opts)
-    )
+    Client.request(client, operation(:list_repeating_data_data_points, %{"study_id" => study_id}, opts))
   end
 
   @doc ~S"""
   The same as `list_repeating_data_data_points/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_repeating_data_data_points!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(DataPoint.t())
+  @spec list_repeating_data_data_points!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(DataPoint.t())
   def list_repeating_data_data_points!(client, study_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:list_repeating_data_data_points, %{"study_id" => study_id}, opts)
-    )
+    Client.request!(client, operation(:list_repeating_data_data_points, %{"study_id" => study_id}, opts))
   end
 
   @doc ~S"""
@@ -970,8 +849,7 @@ defmodule CastorEDC.DataPoints do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_repeating_data_data_points(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(DataPoint.t())
+  @spec stream_repeating_data_data_points(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(DataPoint.t())
   def stream_repeating_data_data_points(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_repeating_data_data_points(client, study_id, Keyword.merge(opts, &1)),
@@ -1003,12 +881,7 @@ defmodule CastorEDC.DataPoints do
 
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.DataPoint.t/0` records.
   """
-  @spec list_repeating_data_instance_data_points(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) ::
+  @spec list_repeating_data_instance_data_points(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, CastorEDC.Page.t(DataPoint.t())} | {:error, CastorEDC.Error.t()}
   def list_repeating_data_instance_data_points(client, study_id, repeating_data_instance_id, opts \\ []) do
     Client.request(
@@ -1024,12 +897,8 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `list_repeating_data_instance_data_points/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_repeating_data_instance_data_points!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: CastorEDC.Page.t(DataPoint.t())
+  @spec list_repeating_data_instance_data_points!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
+          CastorEDC.Page.t(DataPoint.t())
   def list_repeating_data_instance_data_points!(client, study_id, repeating_data_instance_id, opts \\ []) do
     Client.request!(
       client,
@@ -1048,20 +917,11 @@ defmodule CastorEDC.DataPoints do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_repeating_data_instance_data_points(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: Enumerable.t(DataPoint.t())
+  @spec stream_repeating_data_instance_data_points(CastorEDC.client(), String.t(), String.t(), keyword()) ::
+          Enumerable.t(DataPoint.t())
   def stream_repeating_data_instance_data_points(client, study_id, repeating_data_instance_id, opts \\ []) do
     Pagination.stream(
-      &list_repeating_data_instance_data_points(
-        client,
-        study_id,
-        repeating_data_instance_id,
-        Keyword.merge(opts, &1)
-      ),
+      &list_repeating_data_instance_data_points(client, study_id, repeating_data_instance_id, Keyword.merge(opts, &1)),
       opts,
       5000
     )
@@ -1098,8 +958,7 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `list_study_data_points/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_study_data_points!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(DataPoint.t())
+  @spec list_study_data_points!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(DataPoint.t())
   def list_study_data_points!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_study_data_points, %{"study_id" => study_id}, opts))
   end
@@ -1111,8 +970,7 @@ defmodule CastorEDC.DataPoints do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_study_data_points(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(DataPoint.t())
+  @spec stream_study_data_points(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(DataPoint.t())
   def stream_study_data_points(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_study_data_points(client, study_id, Keyword.merge(opts, &1)),
@@ -1152,8 +1010,7 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `list_survey_data_points/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_survey_data_points!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(DataPoint.t())
+  @spec list_survey_data_points!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(DataPoint.t())
   def list_survey_data_points!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_survey_data_points, %{"study_id" => study_id}, opts))
   end
@@ -1165,8 +1022,7 @@ defmodule CastorEDC.DataPoints do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_survey_data_points(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(DataPoint.t())
+  @spec stream_survey_data_points(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(DataPoint.t())
   def stream_survey_data_points(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_survey_data_points(client, study_id, Keyword.merge(opts, &1)),
@@ -1238,12 +1094,7 @@ defmodule CastorEDC.DataPoints do
           Enumerable.t(DataPoint.t())
   def stream_survey_instance_data_points(client, study_id, survey_instance_id, opts \\ []) do
     Pagination.stream(
-      &list_survey_instance_data_points(
-        client,
-        study_id,
-        survey_instance_id,
-        Keyword.merge(opts, &1)
-      ),
+      &list_survey_instance_data_points(client, study_id, survey_instance_id, Keyword.merge(opts, &1)),
       opts,
       5000
     )
@@ -1272,12 +1123,7 @@ defmodule CastorEDC.DataPoints do
 
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.DataPoint.t/0` records.
   """
-  @spec list_survey_package_instance_data_points(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) ::
+  @spec list_survey_package_instance_data_points(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, CastorEDC.Page.t(DataPoint.t())} | {:error, CastorEDC.Error.t()}
   def list_survey_package_instance_data_points(client, study_id, survey_package_instance_id, opts \\ []) do
     Client.request(
@@ -1293,12 +1139,8 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `list_survey_package_instance_data_points/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_survey_package_instance_data_points!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: CastorEDC.Page.t(DataPoint.t())
+  @spec list_survey_package_instance_data_points!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
+          CastorEDC.Page.t(DataPoint.t())
   def list_survey_package_instance_data_points!(client, study_id, survey_package_instance_id, opts \\ []) do
     Client.request!(
       client,
@@ -1317,20 +1159,11 @@ defmodule CastorEDC.DataPoints do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_survey_package_instance_data_points(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: Enumerable.t(DataPoint.t())
+  @spec stream_survey_package_instance_data_points(CastorEDC.client(), String.t(), String.t(), keyword()) ::
+          Enumerable.t(DataPoint.t())
   def stream_survey_package_instance_data_points(client, study_id, survey_package_instance_id, opts \\ []) do
     Pagination.stream(
-      &list_survey_package_instance_data_points(
-        client,
-        study_id,
-        survey_package_instance_id,
-        Keyword.merge(opts, &1)
-      ),
+      &list_survey_package_instance_data_points(client, study_id, survey_package_instance_id, Keyword.merge(opts, &1)),
       opts,
       5000
     )
@@ -1442,29 +1275,18 @@ defmodule CastorEDC.DataPoints do
   def upsert_study_data_points(client, study_id, participant_id, body, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :upsert_study_data_points,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        body,
-        opts
-      )
+      operation(:upsert_study_data_points, %{"study_id" => study_id, "participant_id" => participant_id}, body, opts)
     )
   end
 
   @doc ~S"""
   The same as `upsert_study_data_points/5`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec upsert_study_data_points!(CastorEDC.client(), String.t(), String.t(), map(), keyword()) ::
-          DataPointsResult.t()
+  @spec upsert_study_data_points!(CastorEDC.client(), String.t(), String.t(), map(), keyword()) :: DataPointsResult.t()
   def upsert_study_data_points!(client, study_id, participant_id, body, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :upsert_study_data_points,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        body,
-        opts
-      )
+      operation(:upsert_study_data_points, %{"study_id" => study_id, "participant_id" => participant_id}, body, opts)
     )
   end
 
@@ -1485,25 +1307,14 @@ defmodule CastorEDC.DataPoints do
 
   Returns what was saved and what wasn't; the `!` variant raises a `CastorEDC.Error` when anything wasn't.
   """
-  @spec upsert_survey_instance_data_points(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) ::
+  @spec upsert_survey_instance_data_points(CastorEDC.client(), String.t(), String.t(), String.t(), map(), keyword()) ::
           {:ok, DataPointsResult.t()} | {:error, CastorEDC.Error.t()}
   def upsert_survey_instance_data_points(client, study_id, participant_id, survey_instance_id, body, opts \\ []) do
     Client.request(
       client,
       operation(
         :upsert_survey_instance_data_points,
-        %{
-          "study_id" => study_id,
-          "participant_id" => participant_id,
-          "survey_instance_id" => survey_instance_id
-        },
+        %{"study_id" => study_id, "participant_id" => participant_id, "survey_instance_id" => survey_instance_id},
         body,
         opts
       )
@@ -1513,24 +1324,14 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   The same as `upsert_survey_instance_data_points/6`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec upsert_survey_instance_data_points!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) :: DataPointsResult.t()
+  @spec upsert_survey_instance_data_points!(CastorEDC.client(), String.t(), String.t(), String.t(), map(), keyword()) ::
+          DataPointsResult.t()
   def upsert_survey_instance_data_points!(client, study_id, participant_id, survey_instance_id, body, opts \\ []) do
     Client.request!(
       client,
       operation(
         :upsert_survey_instance_data_points,
-        %{
-          "study_id" => study_id,
-          "participant_id" => participant_id,
-          "survey_instance_id" => survey_instance_id
-        },
+        %{"study_id" => study_id, "participant_id" => participant_id, "survey_instance_id" => survey_instance_id},
         body,
         opts
       )
@@ -1661,11 +1462,7 @@ defmodule CastorEDC.DataPoints do
       path: "/api/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance",
       path_params: path_params,
       query: opts,
-      query_names: %{
-        enable_pagination: "enable_pagination",
-        field_ids: "field_ids",
-        updated_after: "updated_after"
-      },
+      query_names: %{enable_pagination: "enable_pagination", field_ids: "field_ids", updated_after: "updated_after"},
       list_params: [:field_ids],
       items: "_embedded.items",
       decode: DataPoint
@@ -1745,12 +1542,7 @@ defmodule CastorEDC.DataPoints do
       path: "/api/study/{study_id}/data-points/repeating-data-instance",
       path_params: path_params,
       query: opts,
-      query_names: %{
-        field_ids: "field_ids",
-        updated_after: "updated_after",
-        page: "page",
-        page_size: "page_size"
-      },
+      query_names: %{field_ids: "field_ids", updated_after: "updated_after", page: "page", page_size: "page_size"},
       list_params: [:field_ids],
       items: "_embedded.items",
       max_page_size: 5000,
@@ -1764,12 +1556,7 @@ defmodule CastorEDC.DataPoints do
       path: "/api/study/{study_id}/data-points/repeating-data-instance/{repeating_data_instance_id}",
       path_params: path_params,
       query: opts,
-      query_names: %{
-        field_ids: "field_ids",
-        updated_after: "updated_after",
-        page: "page",
-        page_size: "page_size"
-      },
+      query_names: %{field_ids: "field_ids", updated_after: "updated_after", page: "page", page_size: "page_size"},
       list_params: [:field_ids],
       items: "_embedded.items",
       max_page_size: 5000,
@@ -1783,12 +1570,7 @@ defmodule CastorEDC.DataPoints do
       path: "/api/study/{study_id}/data-points/study",
       path_params: path_params,
       query: opts,
-      query_names: %{
-        field_ids: "field_ids",
-        updated_after: "updated_after",
-        page: "page",
-        page_size: "page_size"
-      },
+      query_names: %{field_ids: "field_ids", updated_after: "updated_after", page: "page", page_size: "page_size"},
       list_params: [:field_ids],
       items: "_embedded.items",
       max_page_size: 5000,
@@ -1802,12 +1584,7 @@ defmodule CastorEDC.DataPoints do
       path: "/api/study/{study_id}/data-points/survey-instance",
       path_params: path_params,
       query: opts,
-      query_names: %{
-        field_ids: "field_ids",
-        updated_after: "updated_after",
-        page: "page",
-        page_size: "page_size"
-      },
+      query_names: %{field_ids: "field_ids", updated_after: "updated_after", page: "page", page_size: "page_size"},
       list_params: [:field_ids],
       items: "_embedded.items",
       max_page_size: 5000,
@@ -1821,12 +1598,7 @@ defmodule CastorEDC.DataPoints do
       path: "/api/study/{study_id}/data-points/survey-instance/{survey_instance_id}",
       path_params: path_params,
       query: opts,
-      query_names: %{
-        field_ids: "field_ids",
-        updated_after: "updated_after",
-        page: "page",
-        page_size: "page_size"
-      },
+      query_names: %{field_ids: "field_ids", updated_after: "updated_after", page: "page", page_size: "page_size"},
       list_params: [:field_ids],
       items: "_embedded.items",
       max_page_size: 5000,
@@ -1840,12 +1612,7 @@ defmodule CastorEDC.DataPoints do
       path: "/api/study/{study_id}/data-points/survey-package-instance/{survey_package_instance_id}",
       path_params: path_params,
       query: opts,
-      query_names: %{
-        field_ids: "field_ids",
-        updated_after: "updated_after",
-        page: "page",
-        page_size: "page_size"
-      },
+      query_names: %{field_ids: "field_ids", updated_after: "updated_after", page: "page", page_size: "page_size"},
       list_params: [:field_ids],
       items: "_embedded.items",
       max_page_size: 5000,

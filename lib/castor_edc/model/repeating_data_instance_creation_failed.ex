@@ -20,16 +20,7 @@ defmodule CastorEDC.Model.RepeatingDataInstanceCreationFailed do
   @known ~w(code data id message participant_id repeating_data_id repeating_data_name_custom)
   @known_embedded ~w()
 
-  defstruct [
-    :code,
-    :data,
-    :id,
-    :message,
-    :participant_id,
-    :repeating_data_id,
-    :repeating_data_name_custom,
-    extra: %{}
-  ]
+  defstruct [:code, :data, :id, :message, :participant_id, :repeating_data_id, :repeating_data_name_custom, extra: %{}]
 
   @type t :: %__MODULE__{
           code: String.t() | nil,
@@ -55,10 +46,7 @@ defmodule CastorEDC.Model.RepeatingDataInstanceCreationFailed do
       participant_id: data["participant_id"],
       repeating_data_id: data["repeating_data_id"],
       repeating_data_name_custom: data["repeating_data_name_custom"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

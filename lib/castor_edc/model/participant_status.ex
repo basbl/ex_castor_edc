@@ -31,10 +31,7 @@ defmodule CastorEDC.Model.ParticipantStatus do
     %__MODULE__{
       id: data["id"],
       name: data["name"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

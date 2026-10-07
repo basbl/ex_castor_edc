@@ -42,10 +42,7 @@ defmodule CastorEDC.Model.FieldOptionGroup do
       layout: data["layout"],
       name: data["name"],
       options: CastorEDC.Model.list(data["options"] || embedded["options"], FieldOption),
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

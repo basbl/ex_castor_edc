@@ -22,15 +22,7 @@ defmodule CastorEDC.Model.DataPointsResult do
   @known ~w(failed success survey_package_instance_id total_failed total_processed total_success)
   @known_embedded ~w(failed success)
 
-  defstruct [
-    :failed,
-    :saved,
-    :survey_package_instance_id,
-    :total_failed,
-    :total_processed,
-    :total_success,
-    extra: %{}
-  ]
+  defstruct [:failed, :saved, :survey_package_instance_id, :total_failed, :total_processed, :total_success, extra: %{}]
 
   @type t :: %__MODULE__{
           failed: [DataPointFailure.t()] | nil,
@@ -48,20 +40,13 @@ defmodule CastorEDC.Model.DataPointsResult do
     embedded = if is_map(data["_embedded"]), do: data["_embedded"], else: %{}
 
     %__MODULE__{
-      failed:
-        CastorEDC.Model.list(
-          data["failed"] || embedded["failed"],
-          DataPointFailure
-        ),
+      failed: CastorEDC.Model.list(data["failed"] || embedded["failed"], DataPointFailure),
       saved: CastorEDC.Model.list(data["success"] || embedded["success"], DataPoint),
       survey_package_instance_id: data["survey_package_instance_id"],
       total_failed: data["total_failed"],
       total_processed: data["total_processed"],
       total_success: data["total_success"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

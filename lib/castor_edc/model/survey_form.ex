@@ -65,10 +65,7 @@ defmodule CastorEDC.Model.SurveyForm do
       survey_form_id: data["survey_form_id"],
       survey_form_name: data["survey_form_name"],
       survey_form_number: data["survey_form_number"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

@@ -40,10 +40,7 @@ defmodule CastorEDC.Model.FieldDependency do
       operator: data["operator"],
       parent_id: data["parent_id"],
       value: data["value"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

@@ -37,10 +37,7 @@ defmodule CastorEDC.Model.SurveyPackageReminder do
       message: data["message"],
       send_on: CastorEDC.Model.cast(data["send_on"], :datetime),
       subject: data["subject"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

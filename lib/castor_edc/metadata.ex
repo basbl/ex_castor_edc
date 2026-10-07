@@ -36,22 +36,15 @@ defmodule CastorEDC.Metadata do
   @spec get_metadata(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, Metadata.t()} | {:error, CastorEDC.Error.t()}
   def get_metadata(client, study_id, metadata_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:get_metadata, %{"study_id" => study_id, "metadata_id" => metadata_id}, opts)
-    )
+    Client.request(client, operation(:get_metadata, %{"study_id" => study_id, "metadata_id" => metadata_id}, opts))
   end
 
   @doc ~S"""
   The same as `get_metadata/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_metadata!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          Metadata.t()
+  @spec get_metadata!(CastorEDC.client(), String.t(), String.t(), keyword()) :: Metadata.t()
   def get_metadata!(client, study_id, metadata_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:get_metadata, %{"study_id" => study_id, "metadata_id" => metadata_id}, opts)
-    )
+    Client.request!(client, operation(:get_metadata, %{"study_id" => study_id, "metadata_id" => metadata_id}, opts))
   end
 
   @doc ~S"""
@@ -71,27 +64,18 @@ defmodule CastorEDC.Metadata do
   def get_metadata_type(client, study_id, metadata_type_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :get_metadata_type,
-        %{"study_id" => study_id, "metadatatype_id" => metadata_type_id},
-        opts
-      )
+      operation(:get_metadata_type, %{"study_id" => study_id, "metadatatype_id" => metadata_type_id}, opts)
     )
   end
 
   @doc ~S"""
   The same as `get_metadata_type/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_metadata_type!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          MetadataType.t()
+  @spec get_metadata_type!(CastorEDC.client(), String.t(), String.t(), keyword()) :: MetadataType.t()
   def get_metadata_type!(client, study_id, metadata_type_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :get_metadata_type,
-        %{"study_id" => study_id, "metadatatype_id" => metadata_type_id},
-        opts
-      )
+      operation(:get_metadata_type, %{"study_id" => study_id, "metadatatype_id" => metadata_type_id}, opts)
     )
   end
 
@@ -125,8 +109,7 @@ defmodule CastorEDC.Metadata do
   @doc ~S"""
   The same as `list_metadata/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_metadata!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(Metadata.t())
+  @spec list_metadata!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(Metadata.t())
   def list_metadata!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_metadata, %{"study_id" => study_id}, opts))
   end
@@ -138,8 +121,7 @@ defmodule CastorEDC.Metadata do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_metadata(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(Metadata.t())
+  @spec stream_metadata(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(Metadata.t())
   def stream_metadata(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_metadata(client, study_id, Keyword.merge(opts, &1)),
@@ -170,8 +152,7 @@ defmodule CastorEDC.Metadata do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.MetadataType.t/0` records.
   """
   @spec list_metadata_types(CastorEDC.client(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(MetadataType.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(MetadataType.t())} | {:error, CastorEDC.Error.t()}
   def list_metadata_types(client, study_id, opts \\ []) do
     Client.request(client, operation(:list_metadata_types, %{"study_id" => study_id}, opts))
   end
@@ -179,8 +160,7 @@ defmodule CastorEDC.Metadata do
   @doc ~S"""
   The same as `list_metadata_types/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_metadata_types!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(MetadataType.t())
+  @spec list_metadata_types!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(MetadataType.t())
   def list_metadata_types!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_metadata_types, %{"study_id" => study_id}, opts))
   end
@@ -192,8 +172,7 @@ defmodule CastorEDC.Metadata do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_metadata_types(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(MetadataType.t())
+  @spec stream_metadata_types(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(MetadataType.t())
   def stream_metadata_types(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_metadata_types(client, study_id, Keyword.merge(opts, &1)),

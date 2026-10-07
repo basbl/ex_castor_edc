@@ -33,22 +33,15 @@ defmodule CastorEDC.Queries do
   @spec get_query(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, Query.t()} | {:error, CastorEDC.Error.t()}
   def get_query(client, study_id, query_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:get_query, %{"study_id" => study_id, "query_id" => query_id}, opts)
-    )
+    Client.request(client, operation(:get_query, %{"study_id" => study_id, "query_id" => query_id}, opts))
   end
 
   @doc ~S"""
   The same as `get_query/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_query!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          Query.t()
+  @spec get_query!(CastorEDC.client(), String.t(), String.t(), keyword()) :: Query.t()
   def get_query!(client, study_id, query_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:get_query, %{"study_id" => study_id, "query_id" => query_id}, opts)
-    )
+    Client.request!(client, operation(:get_query, %{"study_id" => study_id, "query_id" => query_id}, opts))
   end
 
   @doc ~S"""
@@ -80,8 +73,7 @@ defmodule CastorEDC.Queries do
   @doc ~S"""
   The same as `list_queries/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_queries!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(Query.t())
+  @spec list_queries!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(Query.t())
   def list_queries!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_queries, %{"study_id" => study_id}, opts))
   end
@@ -93,8 +85,7 @@ defmodule CastorEDC.Queries do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_queries(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(Query.t())
+  @spec stream_queries(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(Query.t())
   def stream_queries(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_queries(client, study_id, Keyword.merge(opts, &1)),

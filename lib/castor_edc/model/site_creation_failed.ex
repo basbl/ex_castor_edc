@@ -34,10 +34,7 @@ defmodule CastorEDC.Model.SiteCreationFailed do
       code: data["code"],
       id: data["id"],
       message: data["message"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

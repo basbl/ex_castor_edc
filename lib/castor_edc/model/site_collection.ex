@@ -38,19 +38,12 @@ defmodule CastorEDC.Model.SiteCollection do
     embedded = if is_map(data["_embedded"]), do: data["_embedded"], else: %{}
 
     %__MODULE__{
-      failed:
-        CastorEDC.Model.list(
-          data["failed"] || embedded["failed"],
-          SiteCreationFailed
-        ),
+      failed: CastorEDC.Model.list(data["failed"] || embedded["failed"], SiteCreationFailed),
       success: CastorEDC.Model.list(data["success"] || embedded["success"], SiteNoLinks),
       total_failed: data["total_failed"],
       total_processed: data["total_processed"],
       total_success: data["total_success"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

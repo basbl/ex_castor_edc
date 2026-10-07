@@ -34,27 +34,18 @@ defmodule CastorEDC.Randomization do
   def get_randomization(client, study_id, participant_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :get_randomization,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:get_randomization, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
   @doc ~S"""
   The same as `get_randomization/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_randomization!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          RandomizationDetails.t()
+  @spec get_randomization!(CastorEDC.client(), String.t(), String.t(), keyword()) :: RandomizationDetails.t()
   def get_randomization!(client, study_id, participant_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :get_randomization,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:get_randomization, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
@@ -77,27 +68,18 @@ defmodule CastorEDC.Randomization do
   def randomize_participant(client, study_id, participant_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :randomize_participant,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:randomize_participant, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 
   @doc ~S"""
   The same as `randomize_participant/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec randomize_participant!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          RandomizationDetails.t()
+  @spec randomize_participant!(CastorEDC.client(), String.t(), String.t(), keyword()) :: RandomizationDetails.t()
   def randomize_participant!(client, study_id, participant_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :randomize_participant,
-        %{"study_id" => study_id, "participant_id" => participant_id},
-        opts
-      )
+      operation(:randomize_participant, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
     )
   end
 

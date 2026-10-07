@@ -21,17 +21,7 @@ defmodule CastorEDC.Model.SiteNoLinks do
   @known ~w(abbreviation code country_id deleted id name order site_id)
   @known_embedded ~w()
 
-  defstruct [
-    :abbreviation,
-    :code,
-    :country_id,
-    :deleted,
-    :id,
-    :name,
-    :order,
-    :site_id,
-    extra: %{}
-  ]
+  defstruct [:abbreviation, :code, :country_id, :deleted, :id, :name, :order, :site_id, extra: %{}]
 
   @type t :: %__MODULE__{
           abbreviation: String.t() | nil,
@@ -59,10 +49,7 @@ defmodule CastorEDC.Model.SiteNoLinks do
       name: data["name"],
       order: data["order"],
       site_id: data["site_id"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

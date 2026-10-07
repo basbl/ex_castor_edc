@@ -55,13 +55,7 @@ defmodule CastorEDC.RepeatingData do
 
   Every option is passed to `Req`.
   """
-  @spec create_repeating_data_instance(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) ::
+  @spec create_repeating_data_instance(CastorEDC.client(), String.t(), String.t(), map(), keyword()) ::
           {:ok, RepeatingDataInstance.t()} | {:error, CastorEDC.Error.t()}
   def create_repeating_data_instance(client, study_id, participant_id, body, opts \\ []) do
     Client.request(
@@ -78,13 +72,8 @@ defmodule CastorEDC.RepeatingData do
   @doc ~S"""
   The same as `create_repeating_data_instance/5`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec create_repeating_data_instance!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) :: RepeatingDataInstance.t()
+  @spec create_repeating_data_instance!(CastorEDC.client(), String.t(), String.t(), map(), keyword()) ::
+          RepeatingDataInstance.t()
   def create_repeating_data_instance!(client, study_id, participant_id, body, opts \\ []) do
     Client.request!(
       client,
@@ -121,15 +110,8 @@ defmodule CastorEDC.RepeatingData do
 
   Every option is passed to `Req`.
   """
-  @spec create_repeating_data_instances(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) ::
-          {:ok, RepeatingDataInstanceCollection.t()}
-          | {:error, CastorEDC.Error.t()}
+  @spec create_repeating_data_instances(CastorEDC.client(), String.t(), String.t(), map(), keyword()) ::
+          {:ok, RepeatingDataInstanceCollection.t()} | {:error, CastorEDC.Error.t()}
   def create_repeating_data_instances(client, study_id, participant_id, body, opts \\ []) do
     Client.request(
       client,
@@ -145,13 +127,8 @@ defmodule CastorEDC.RepeatingData do
   @doc ~S"""
   The same as `create_repeating_data_instances/5`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec create_repeating_data_instances!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) :: RepeatingDataInstanceCollection.t()
+  @spec create_repeating_data_instances!(CastorEDC.client(), String.t(), String.t(), map(), keyword()) ::
+          RepeatingDataInstanceCollection.t()
   def create_repeating_data_instances!(client, study_id, participant_id, body, opts \\ []) do
     Client.request!(
       client,
@@ -177,13 +154,7 @@ defmodule CastorEDC.RepeatingData do
 
   Every option is passed to `Req`.
   """
-  @spec get_participant_repeating_data_instance(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) ::
+  @spec get_participant_repeating_data_instance(CastorEDC.client(), String.t(), String.t(), String.t(), keyword()) ::
           {:ok, RepeatingDataInstance.t()} | {:error, CastorEDC.Error.t()}
   def get_participant_repeating_data_instance(client, study_id, participant_id, repeating_data_instance_id, opts \\ []) do
     Client.request(
@@ -203,13 +174,8 @@ defmodule CastorEDC.RepeatingData do
   @doc ~S"""
   The same as `get_participant_repeating_data_instance/5`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_participant_repeating_data_instance!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: RepeatingDataInstance.t()
+  @spec get_participant_repeating_data_instance!(CastorEDC.client(), String.t(), String.t(), String.t(), keyword()) ::
+          RepeatingDataInstance.t()
   def get_participant_repeating_data_instance!(client, study_id, participant_id, repeating_data_instance_id, opts \\ []) do
     Client.request!(
       client,
@@ -242,27 +208,18 @@ defmodule CastorEDC.RepeatingData do
   def get_repeating_data(client, study_id, repeating_data_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :get_repeating_data,
-        %{"study_id" => study_id, "repeating_data_id" => repeating_data_id},
-        opts
-      )
+      operation(:get_repeating_data, %{"study_id" => study_id, "repeating_data_id" => repeating_data_id}, opts)
     )
   end
 
   @doc ~S"""
   The same as `get_repeating_data/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_repeating_data!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          RepeatingData.t()
+  @spec get_repeating_data!(CastorEDC.client(), String.t(), String.t(), keyword()) :: RepeatingData.t()
   def get_repeating_data!(client, study_id, repeating_data_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :get_repeating_data,
-        %{"study_id" => study_id, "repeating_data_id" => repeating_data_id},
-        opts
-      )
+      operation(:get_repeating_data, %{"study_id" => study_id, "repeating_data_id" => repeating_data_id}, opts)
     )
   end
 
@@ -299,13 +256,8 @@ defmodule CastorEDC.RepeatingData do
   @doc ~S"""
   The same as `get_repeating_data_form/5`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_repeating_data_form!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: RepeatingDataForm.t()
+  @spec get_repeating_data_form!(CastorEDC.client(), String.t(), String.t(), String.t(), keyword()) ::
+          RepeatingDataForm.t()
   def get_repeating_data_form!(client, study_id, repeating_data_id, repeating_data_form_id, opts \\ []) do
     Client.request!(
       client,
@@ -349,8 +301,7 @@ defmodule CastorEDC.RepeatingData do
   @doc ~S"""
   The same as `get_repeating_data_instance/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_repeating_data_instance!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          RepeatingDataInstance.t()
+  @spec get_repeating_data_instance!(CastorEDC.client(), String.t(), String.t(), keyword()) :: RepeatingDataInstance.t()
   def get_repeating_data_instance!(client, study_id, repeating_data_instance_id, opts \\ []) do
     Client.request!(
       client,
@@ -386,14 +337,8 @@ defmodule CastorEDC.RepeatingData do
 
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.RepeatingDataInstance.t/0` records.
   """
-  @spec list_participant_repeating_data_instances(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) ::
-          {:ok, CastorEDC.Page.t(RepeatingDataInstance.t())}
-          | {:error, CastorEDC.Error.t()}
+  @spec list_participant_repeating_data_instances(CastorEDC.client(), String.t(), String.t(), keyword()) ::
+          {:ok, CastorEDC.Page.t(RepeatingDataInstance.t())} | {:error, CastorEDC.Error.t()}
   def list_participant_repeating_data_instances(client, study_id, participant_id, opts \\ []) do
     Client.request(
       client,
@@ -408,12 +353,8 @@ defmodule CastorEDC.RepeatingData do
   @doc ~S"""
   The same as `list_participant_repeating_data_instances/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_participant_repeating_data_instances!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: CastorEDC.Page.t(RepeatingDataInstance.t())
+  @spec list_participant_repeating_data_instances!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
+          CastorEDC.Page.t(RepeatingDataInstance.t())
   def list_participant_repeating_data_instances!(client, study_id, participant_id, opts \\ []) do
     Client.request!(
       client,
@@ -432,20 +373,11 @@ defmodule CastorEDC.RepeatingData do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_participant_repeating_data_instances(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          keyword()
-        ) :: Enumerable.t(RepeatingDataInstance.t())
+  @spec stream_participant_repeating_data_instances(CastorEDC.client(), String.t(), String.t(), keyword()) ::
+          Enumerable.t(RepeatingDataInstance.t())
   def stream_participant_repeating_data_instances(client, study_id, participant_id, opts \\ []) do
     Pagination.stream(
-      &list_participant_repeating_data_instances(
-        client,
-        study_id,
-        participant_id,
-        Keyword.merge(opts, &1)
-      ),
+      &list_participant_repeating_data_instances(client, study_id, participant_id, Keyword.merge(opts, &1)),
       opts,
       1000
     )
@@ -474,8 +406,7 @@ defmodule CastorEDC.RepeatingData do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.RepeatingData.t/0` records.
   """
   @spec list_repeating_data(CastorEDC.client(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(RepeatingData.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(RepeatingData.t())} | {:error, CastorEDC.Error.t()}
   def list_repeating_data(client, study_id, opts \\ []) do
     Client.request(client, operation(:list_repeating_data, %{"study_id" => study_id}, opts))
   end
@@ -483,8 +414,7 @@ defmodule CastorEDC.RepeatingData do
   @doc ~S"""
   The same as `list_repeating_data/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_repeating_data!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(RepeatingData.t())
+  @spec list_repeating_data!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(RepeatingData.t())
   def list_repeating_data!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_repeating_data, %{"study_id" => study_id}, opts))
   end
@@ -496,8 +426,7 @@ defmodule CastorEDC.RepeatingData do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_repeating_data(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(RepeatingData.t())
+  @spec stream_repeating_data(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(RepeatingData.t())
   def stream_repeating_data(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_repeating_data(client, study_id, Keyword.merge(opts, &1)),
@@ -530,16 +459,11 @@ defmodule CastorEDC.RepeatingData do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.RepeatingDataForm.t/0` records.
   """
   @spec list_repeating_data_forms(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(RepeatingDataForm.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(RepeatingDataForm.t())} | {:error, CastorEDC.Error.t()}
   def list_repeating_data_forms(client, study_id, repeating_data_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :list_repeating_data_forms,
-        %{"study_id" => study_id, "repeating_data_id" => repeating_data_id},
-        opts
-      )
+      operation(:list_repeating_data_forms, %{"study_id" => study_id, "repeating_data_id" => repeating_data_id}, opts)
     )
   end
 
@@ -551,11 +475,7 @@ defmodule CastorEDC.RepeatingData do
   def list_repeating_data_forms!(client, study_id, repeating_data_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :list_repeating_data_forms,
-        %{"study_id" => study_id, "repeating_data_id" => repeating_data_id},
-        opts
-      )
+      operation(:list_repeating_data_forms, %{"study_id" => study_id, "repeating_data_id" => repeating_data_id}, opts)
     )
   end
 
@@ -600,13 +520,9 @@ defmodule CastorEDC.RepeatingData do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.RepeatingDataInstance.t/0` records.
   """
   @spec list_repeating_data_instances(CastorEDC.client(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(RepeatingDataInstance.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(RepeatingDataInstance.t())} | {:error, CastorEDC.Error.t()}
   def list_repeating_data_instances(client, study_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:list_repeating_data_instances, %{"study_id" => study_id}, opts)
-    )
+    Client.request(client, operation(:list_repeating_data_instances, %{"study_id" => study_id}, opts))
   end
 
   @doc ~S"""
@@ -615,10 +531,7 @@ defmodule CastorEDC.RepeatingData do
   @spec list_repeating_data_instances!(CastorEDC.client(), String.t(), keyword()) ::
           CastorEDC.Page.t(RepeatingDataInstance.t())
   def list_repeating_data_instances!(client, study_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:list_repeating_data_instances, %{"study_id" => study_id}, opts)
-    )
+    Client.request!(client, operation(:list_repeating_data_instances, %{"study_id" => study_id}, opts))
   end
 
   @doc ~S"""

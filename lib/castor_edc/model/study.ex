@@ -111,10 +111,7 @@ defmodule CastorEDC.Model.Study do
       surveys_enabled: data["surveys_enabled"],
       trial_registry_id: data["trial_registry_id"],
       version: data["version"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

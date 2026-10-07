@@ -20,16 +20,7 @@ defmodule CastorEDC.Model.FieldValidation do
   @known ~w(field_id id reference_type referenced_field_id text type value)
   @known_embedded ~w()
 
-  defstruct [
-    :field_id,
-    :id,
-    :reference_type,
-    :referenced_field_id,
-    :text,
-    :type,
-    :value,
-    extra: %{}
-  ]
+  defstruct [:field_id, :id, :reference_type, :referenced_field_id, :text, :type, :value, extra: %{}]
 
   @type t :: %__MODULE__{
           field_id: String.t() | nil,
@@ -55,10 +46,7 @@ defmodule CastorEDC.Model.FieldValidation do
       text: data["text"],
       type: data["type"],
       value: data["value"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

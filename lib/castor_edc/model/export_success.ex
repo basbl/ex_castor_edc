@@ -34,10 +34,7 @@ defmodule CastorEDC.Model.ExportSuccess do
       description: data["description"],
       queued_exports: data["queued_exports"],
       success: data["success"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

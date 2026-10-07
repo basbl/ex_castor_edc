@@ -40,10 +40,7 @@ defmodule CastorEDC.Model.QueryRemark do
       description: data["description"],
       id: data["id"],
       title: data["title"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

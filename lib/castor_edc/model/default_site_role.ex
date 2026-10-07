@@ -31,10 +31,7 @@ defmodule CastorEDC.Model.DefaultSiteRole do
     %__MODULE__{
       role_id: data["role_id"],
       role_name: data["role_name"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

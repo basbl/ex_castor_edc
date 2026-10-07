@@ -71,10 +71,7 @@ defmodule CastorEDC.Model.StudyUser do
 
     %__MODULE__{
       default_role_assignment:
-        CastorEDC.Model.one(
-          data["default_role_assignment"] || embedded["default_role_assignment"],
-          DefaultSiteRole
-        ),
+        CastorEDC.Model.one(data["default_role_assignment"] || embedded["default_role_assignment"], DefaultSiteRole),
       department: data["department"],
       email_address: data["email_address"],
       entity_id: data["entity_id"],
@@ -82,23 +79,13 @@ defmodule CastorEDC.Model.StudyUser do
       id: data["id"],
       last_login: CastorEDC.Model.cast(data["last_login"], :datetime),
       manage_permissions:
-        CastorEDC.Model.one(
-          data["manage_permissions"] || embedded["manage_permissions"],
-          ManagementPermissions
-        ),
+        CastorEDC.Model.one(data["manage_permissions"] || embedded["manage_permissions"], ManagementPermissions),
       name_first: data["name_first"],
       name_last: data["name_last"],
       name_middle: data["name_middle"],
-      role_assignments:
-        CastorEDC.Model.list(
-          data["role_assignments"] || embedded["role_assignments"],
-          RoleAssignments
-        ),
+      role_assignments: CastorEDC.Model.list(data["role_assignments"] || embedded["role_assignments"], RoleAssignments),
       user_id: data["user_id"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

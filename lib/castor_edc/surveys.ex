@@ -58,22 +58,15 @@ defmodule CastorEDC.Surveys do
   @spec create_survey_package_instance(CastorEDC.client(), String.t(), map(), keyword()) ::
           {:ok, SurveyPackageInstance.t()} | {:error, CastorEDC.Error.t()}
   def create_survey_package_instance(client, study_id, body, opts \\ []) do
-    Client.request(
-      client,
-      operation(:create_survey_package_instance, %{"study_id" => study_id}, body, opts)
-    )
+    Client.request(client, operation(:create_survey_package_instance, %{"study_id" => study_id}, body, opts))
   end
 
   @doc ~S"""
   The same as `create_survey_package_instance/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec create_survey_package_instance!(CastorEDC.client(), String.t(), map(), keyword()) ::
-          SurveyPackageInstance.t()
+  @spec create_survey_package_instance!(CastorEDC.client(), String.t(), map(), keyword()) :: SurveyPackageInstance.t()
   def create_survey_package_instance!(client, study_id, body, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:create_survey_package_instance, %{"study_id" => study_id}, body, opts)
-    )
+    Client.request!(client, operation(:create_survey_package_instance, %{"study_id" => study_id}, body, opts))
   end
 
   @doc ~S"""
@@ -95,22 +88,15 @@ defmodule CastorEDC.Surveys do
   @spec get_survey(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, Survey.t()} | {:error, CastorEDC.Error.t()}
   def get_survey(client, study_id, survey_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:get_survey, %{"study_id" => study_id, "survey_id" => survey_id}, opts)
-    )
+    Client.request(client, operation(:get_survey, %{"study_id" => study_id, "survey_id" => survey_id}, opts))
   end
 
   @doc ~S"""
   The same as `get_survey/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_survey!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          Survey.t()
+  @spec get_survey!(CastorEDC.client(), String.t(), String.t(), keyword()) :: Survey.t()
   def get_survey!(client, study_id, survey_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:get_survey, %{"study_id" => study_id, "survey_id" => survey_id}, opts)
-    )
+    Client.request!(client, operation(:get_survey, %{"study_id" => study_id, "survey_id" => survey_id}, opts))
   end
 
   @doc ~S"""
@@ -142,8 +128,7 @@ defmodule CastorEDC.Surveys do
   @doc ~S"""
   The same as `get_survey_form/5`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_survey_form!(CastorEDC.client(), String.t(), String.t(), String.t(), keyword()) ::
-          SurveyForm.t()
+  @spec get_survey_form!(CastorEDC.client(), String.t(), String.t(), String.t(), keyword()) :: SurveyForm.t()
   def get_survey_form!(client, study_id, survey_id, survey_form_id, opts \\ []) do
     Client.request!(
       client,
@@ -176,27 +161,18 @@ defmodule CastorEDC.Surveys do
   def get_survey_package(client, study_id, survey_package_id, opts \\ []) do
     Client.request(
       client,
-      operation(
-        :get_survey_package,
-        %{"study_id" => study_id, "survey_package_id" => survey_package_id},
-        opts
-      )
+      operation(:get_survey_package, %{"study_id" => study_id, "survey_package_id" => survey_package_id}, opts)
     )
   end
 
   @doc ~S"""
   The same as `get_survey_package/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_survey_package!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          SurveyPackage.t()
+  @spec get_survey_package!(CastorEDC.client(), String.t(), String.t(), keyword()) :: SurveyPackage.t()
   def get_survey_package!(client, study_id, survey_package_id, opts \\ []) do
     Client.request!(
       client,
-      operation(
-        :get_survey_package,
-        %{"study_id" => study_id, "survey_package_id" => survey_package_id},
-        opts
-      )
+      operation(:get_survey_package, %{"study_id" => study_id, "survey_package_id" => survey_package_id}, opts)
     )
   end
 
@@ -228,8 +204,7 @@ defmodule CastorEDC.Surveys do
   @doc ~S"""
   The same as `get_survey_package_instance/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_survey_package_instance!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          SurveyPackageInstance.t()
+  @spec get_survey_package_instance!(CastorEDC.client(), String.t(), String.t(), keyword()) :: SurveyPackageInstance.t()
   def get_survey_package_instance!(client, study_id, survey_package_instance_id, opts \\ []) do
     Client.request!(
       client,
@@ -284,8 +259,7 @@ defmodule CastorEDC.Surveys do
   @doc ~S"""
   The same as `list_survey_compliance/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_survey_compliance!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(Compliance.t())
+  @spec list_survey_compliance!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(Compliance.t())
   def list_survey_compliance!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_survey_compliance, %{"study_id" => study_id}, opts))
   end
@@ -297,8 +271,7 @@ defmodule CastorEDC.Surveys do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_survey_compliance(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(Compliance.t())
+  @spec stream_survey_compliance(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(Compliance.t())
   def stream_survey_compliance(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_survey_compliance(client, study_id, Keyword.merge(opts, &1)),
@@ -333,22 +306,15 @@ defmodule CastorEDC.Surveys do
   @spec list_survey_forms(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, CastorEDC.Page.t(SurveyForm.t())} | {:error, CastorEDC.Error.t()}
   def list_survey_forms(client, study_id, survey_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:list_survey_forms, %{"study_id" => study_id, "survey_id" => survey_id}, opts)
-    )
+    Client.request(client, operation(:list_survey_forms, %{"study_id" => study_id, "survey_id" => survey_id}, opts))
   end
 
   @doc ~S"""
   The same as `list_survey_forms/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_survey_forms!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          CastorEDC.Page.t(SurveyForm.t())
+  @spec list_survey_forms!(CastorEDC.client(), String.t(), String.t(), keyword()) :: CastorEDC.Page.t(SurveyForm.t())
   def list_survey_forms!(client, study_id, survey_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:list_survey_forms, %{"study_id" => study_id, "survey_id" => survey_id}, opts)
-    )
+    Client.request!(client, operation(:list_survey_forms, %{"study_id" => study_id, "survey_id" => survey_id}, opts))
   end
 
   @doc ~S"""
@@ -358,8 +324,7 @@ defmodule CastorEDC.Surveys do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_survey_forms(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          Enumerable.t(SurveyForm.t())
+  @spec stream_survey_forms(CastorEDC.client(), String.t(), String.t(), keyword()) :: Enumerable.t(SurveyForm.t())
   def stream_survey_forms(client, study_id, survey_id, opts \\ []) do
     Pagination.stream(
       &list_survey_forms(client, study_id, survey_id, Keyword.merge(opts, &1)),
@@ -409,13 +374,9 @@ defmodule CastorEDC.Surveys do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.SurveyPackageInstance.t/0` records.
   """
   @spec list_survey_package_instances(CastorEDC.client(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(SurveyPackageInstance.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(SurveyPackageInstance.t())} | {:error, CastorEDC.Error.t()}
   def list_survey_package_instances(client, study_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:list_survey_package_instances, %{"study_id" => study_id}, opts)
-    )
+    Client.request(client, operation(:list_survey_package_instances, %{"study_id" => study_id}, opts))
   end
 
   @doc ~S"""
@@ -424,10 +385,7 @@ defmodule CastorEDC.Surveys do
   @spec list_survey_package_instances!(CastorEDC.client(), String.t(), keyword()) ::
           CastorEDC.Page.t(SurveyPackageInstance.t())
   def list_survey_package_instances!(client, study_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:list_survey_package_instances, %{"study_id" => study_id}, opts)
-    )
+    Client.request!(client, operation(:list_survey_package_instances, %{"study_id" => study_id}, opts))
   end
 
   @doc ~S"""
@@ -471,8 +429,7 @@ defmodule CastorEDC.Surveys do
   Returns a `CastorEDC.Page` of `t:CastorEDC.Model.SurveyPackage.t/0` records.
   """
   @spec list_survey_packages(CastorEDC.client(), String.t(), keyword()) ::
-          {:ok, CastorEDC.Page.t(SurveyPackage.t())}
-          | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(SurveyPackage.t())} | {:error, CastorEDC.Error.t()}
   def list_survey_packages(client, study_id, opts \\ []) do
     Client.request(client, operation(:list_survey_packages, %{"study_id" => study_id}, opts))
   end
@@ -480,8 +437,7 @@ defmodule CastorEDC.Surveys do
   @doc ~S"""
   The same as `list_survey_packages/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_survey_packages!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(SurveyPackage.t())
+  @spec list_survey_packages!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(SurveyPackage.t())
   def list_survey_packages!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_survey_packages, %{"study_id" => study_id}, opts))
   end
@@ -493,8 +449,7 @@ defmodule CastorEDC.Surveys do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_survey_packages(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(SurveyPackage.t())
+  @spec stream_survey_packages(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(SurveyPackage.t())
   def stream_survey_packages(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_survey_packages(client, study_id, Keyword.merge(opts, &1)),
@@ -535,8 +490,7 @@ defmodule CastorEDC.Surveys do
   @doc ~S"""
   The same as `list_surveys/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_surveys!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(Survey.t())
+  @spec list_surveys!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(Survey.t())
   def list_surveys!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_surveys, %{"study_id" => study_id}, opts))
   end
@@ -548,8 +502,7 @@ defmodule CastorEDC.Surveys do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_surveys(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(Survey.t())
+  @spec stream_surveys(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(Survey.t())
   def stream_surveys(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_surveys(client, study_id, Keyword.merge(opts, &1)),
@@ -588,13 +541,7 @@ defmodule CastorEDC.Surveys do
 
   Every option is passed to `Req`.
   """
-  @spec update_survey_package_instance(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) ::
+  @spec update_survey_package_instance(CastorEDC.client(), String.t(), String.t(), map(), keyword()) ::
           {:ok, SurveyPackageInstance.t()} | {:error, CastorEDC.Error.t()}
   def update_survey_package_instance(client, study_id, survey_package_instance_id, body, opts \\ []) do
     Client.request(
@@ -611,13 +558,8 @@ defmodule CastorEDC.Surveys do
   @doc ~S"""
   The same as `update_survey_package_instance/5`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec update_survey_package_instance!(
-          CastorEDC.client(),
-          String.t(),
-          String.t(),
-          map(),
-          keyword()
-        ) :: SurveyPackageInstance.t()
+  @spec update_survey_package_instance!(CastorEDC.client(), String.t(), String.t(), map(), keyword()) ::
+          SurveyPackageInstance.t()
   def update_survey_package_instance!(client, study_id, survey_package_instance_id, body, opts \\ []) do
     Client.request!(
       client,

@@ -164,10 +164,7 @@ defmodule CastorEDC.Model.SurveyPackageInstance do
       survey_package_name: data["survey_package_name"],
       survey_reminders: CastorEDC.Model.one(embedded["survey_reminders"], SurveyPackageReminder),
       survey_url_string: data["survey_url_string"],
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end

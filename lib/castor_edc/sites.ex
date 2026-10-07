@@ -43,8 +43,7 @@ defmodule CastorEDC.Sites do
   @doc ~S"""
   The same as `create_site/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec create_site!(CastorEDC.client(), String.t(), map(), keyword()) ::
-          SiteCollection.t()
+  @spec create_site!(CastorEDC.client(), String.t(), map(), keyword()) :: SiteCollection.t()
   def create_site!(client, study_id, body, opts \\ []) do
     Client.request!(client, operation(:create_site, %{"study_id" => study_id}, body, opts))
   end
@@ -64,22 +63,15 @@ defmodule CastorEDC.Sites do
   @spec get_site(CastorEDC.client(), String.t(), String.t(), keyword()) ::
           {:ok, Site.t()} | {:error, CastorEDC.Error.t()}
   def get_site(client, study_id, site_id, opts \\ []) do
-    Client.request(
-      client,
-      operation(:get_site, %{"study_id" => study_id, "site_id" => site_id}, opts)
-    )
+    Client.request(client, operation(:get_site, %{"study_id" => study_id, "site_id" => site_id}, opts))
   end
 
   @doc ~S"""
   The same as `get_site/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec get_site!(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          Site.t()
+  @spec get_site!(CastorEDC.client(), String.t(), String.t(), keyword()) :: Site.t()
   def get_site!(client, study_id, site_id, opts \\ []) do
-    Client.request!(
-      client,
-      operation(:get_site, %{"study_id" => study_id, "site_id" => site_id}, opts)
-    )
+    Client.request!(client, operation(:get_site, %{"study_id" => study_id, "site_id" => site_id}, opts))
   end
 
   @doc ~S"""
@@ -112,8 +104,7 @@ defmodule CastorEDC.Sites do
   @doc ~S"""
   The same as `list_sites/3`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_sites!(CastorEDC.client(), String.t(), keyword()) ::
-          CastorEDC.Page.t(Site.t())
+  @spec list_sites!(CastorEDC.client(), String.t(), keyword()) :: CastorEDC.Page.t(Site.t())
   def list_sites!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:list_sites, %{"study_id" => study_id}, opts))
   end
@@ -125,8 +116,7 @@ defmodule CastorEDC.Sites do
   consumed, as large as the API allows unless `:page_size` says otherwise;
   see `CastorEDC.Pagination`.
   """
-  @spec stream_sites(CastorEDC.client(), String.t(), keyword()) ::
-          Enumerable.t(Site.t())
+  @spec stream_sites(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(Site.t())
   def stream_sites(client, study_id, opts \\ []) do
     Pagination.stream(
       &list_sites(client, study_id, Keyword.merge(opts, &1)),

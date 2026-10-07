@@ -75,16 +75,10 @@ defmodule CastorEDC.Model.Verification do
       participant_id: data["record_id"],
       status: data["status"],
       verification_type:
-        CastorEDC.Model.one(
-          data["verification_type"] || embedded["verification_type"],
-          VerificationType
-        ),
+        CastorEDC.Model.one(data["verification_type"] || embedded["verification_type"], VerificationType),
       verified_by: data["verified_by"],
       verified_on: CastorEDC.Model.cast(data["verified_on"], :datetime),
-      extra:
-        data
-        |> Map.drop(@known ++ ["_links", "_embedded"])
-        |> Map.merge(Map.drop(embedded, @known_embedded))
+      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end
 end
