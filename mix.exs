@@ -10,9 +10,18 @@ defmodule CastorEDC.MixProject do
       name: "ExCastorEDC",
       app: :ex_castor_edc,
       version: @version,
-      elixir: "~> 1.13",
+      elixir: "~> 1.20",
       test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: [
+      start_permanent: Mix.env() == :prod,
+      deps: deps(),
+      package: package(),
+      docs: docs()
+    ]
+  end
+
+  def cli do
+    [
+      preferred_envs: [
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.html": :test,
@@ -21,11 +30,7 @@ defmodule CastorEDC.MixProject do
         "vcr.delete": :test,
         "vcr.check": :test,
         "vcr.show": :test
-      ],
-      start_permanent: Mix.env() == :prod,
-      deps: deps(),
-      package: package(),
-      docs: docs()
+      ]
     ]
   end
 
