@@ -20,6 +20,9 @@ defmodule CastorEDC do
   alias CastorEDC.Client
   alias Tesla.Middleware.Headers
 
+  @typedoc false
+  @type response :: {integer(), term(), Tesla.Env.t()} | {:error, term()}
+
   @doc """
   Exchanges a valid client id & secret combination for an access token that can be used to
   make further API calls.
@@ -45,7 +48,7 @@ defmodule CastorEDC do
   end
 
   @doc false
-  @spec post(String.t(), Client.t(), %{}) :: {integer(), %{}, Tesla.Env.t()}
+  @spec post(String.t(), Client.t(), map() | list() | Tesla.Multipart.t()) :: response()
   def post(url, %Client{} = client, body) do
     client
     |> default_middleware()
@@ -55,7 +58,7 @@ defmodule CastorEDC do
   end
 
   @doc false
-  @spec patch(String.t(), Client.t(), %{}) :: {integer(), %{}, Tesla.Env.t()}
+  @spec patch(String.t(), Client.t(), map() | list()) :: response()
   def patch(url, %Client{} = client, body) do
     client
     |> default_middleware()
@@ -65,7 +68,7 @@ defmodule CastorEDC do
   end
 
   @doc false
-  @spec get(String.t(), Client.t(), []) :: {integer(), %{}, Tesla.Env.t()}
+  @spec get(String.t(), Client.t(), keyword()) :: response()
   def get(url, %Client{} = client, params \\ []) do
     client
     |> default_middleware()
