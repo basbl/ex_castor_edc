@@ -579,3 +579,53 @@ actions:
       Without repeating data instances the API answers 404 ("There are no
       repeating data instances.") instead of an empty collection.
     update: {x-castor-not-found-is-empty: true}
+
+  # Integer types
+  #
+  # The spec types every counter and ordinal as `number`. These properties
+  # only ever hold whole numbers, so the client decodes them as integers.
+  # Durations, progress and slider steps can be fractional and stay numbers.
+  - target: $.definitions.*.properties.page
+    update: {type: integer}
+  - target: $.paths.*.*.responses.*.schema.properties.page
+    update: {type: integer}
+  - target: $.definitions.*.properties.page_count
+    update: {type: integer}
+  - target: $.paths.*.*.responses.*.schema.properties.page_count
+    update: {type: integer}
+  - target: $.definitions.*.properties.page_size
+    update: {type: integer}
+  - target: $.paths.*.*.responses.*.schema.properties.page_size
+    update: {type: integer}
+  - target: $.definitions.*.properties.total_items
+    update: {type: integer}
+  - target: $.paths.*.*.responses.*.schema.properties.total_items
+    update: {type: integer}
+  - target: $.paths.*.*.responses.*.schema.properties.total
+    update: {type: integer}
+  - target: $.paths.*.*.responses.*.schema.properties.totals
+    update: {type: integer}
+  - target: $.definitions.*.properties.total_processed
+    update: {type: integer}
+  - target: $.definitions.*.properties.total_success
+    update: {type: integer}
+  - target: $.definitions.*.properties.total_failed
+    update: {type: integer}
+  - target: $.definitions.*.properties.field_number
+    update: {type: integer}
+  - target: $.definitions.*.properties.field_length
+    update: {type: integer}
+  - target: $.definitions.*.properties.visit_number
+    update: {type: integer}
+  - target: $.definitions.*.properties.visit_order
+    update: {type: integer}
+  - target: $.definitions.*.properties.phase_order
+    update: {type: integer}
+  - target: $.definitions.*.properties.expected_centers
+    update: {type: integer}
+  - target: $.definitions.*.properties.expected_records
+    update: {type: integer}
+  - target: $.definitions.*.properties.randomization_group
+    update: {type: integer}
+  - target: $.definitions.*.properties.last_login.properties.timezone_type
+    update: {type: integer}

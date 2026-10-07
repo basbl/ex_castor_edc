@@ -1356,11 +1356,11 @@
           "field_length": {
             "default": null,
             "description": "Length parameter to derive UI input width for this field",
-            "type": "number"
+            "type": "integer"
           },
           "field_number": {
             "description": "The Field's position within a step",
-            "type": "number"
+            "type": "integer"
           },
           "field_required": {
             "description": "If enabled, it makes the field required (cannot be left empty). Returns 1 for required, 0 for not required",
@@ -1687,16 +1687,16 @@
             "$ref": "#/components/schemas/LinksCollection"
           },
           "page": {
-            "type": "number"
+            "type": "integer"
           },
           "page_count": {
-            "type": "number"
+            "type": "integer"
           },
           "page_size": {
-            "type": "number"
+            "type": "integer"
           },
           "total_items": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -1725,13 +1725,13 @@
             "type": "array"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -2349,7 +2349,7 @@
             "type": "number"
           },
           "randomization_group": {
-            "type": "number"
+            "type": "integer"
           },
           "randomization_group_name": {
             "type": "string"
@@ -2677,7 +2677,7 @@
           },
           "phase_order": {
             "description": "the Phase's order",
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -2760,7 +2760,7 @@
             "$ref": "#/components/schemas/LinksSingle"
           },
           "randomization_group": {
-            "type": "string"
+            "type": "integer"
           },
           "randomization_group_name": {
             "type": "string"
@@ -2815,7 +2815,7 @@
             "type": "number"
           },
           "randomization_group": {
-            "type": "number"
+            "type": "integer"
           },
           "randomization_group_name": {
             "type": "string"
@@ -2930,13 +2930,13 @@
             "type": "string"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -2980,13 +2980,13 @@
             "type": "string"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -3154,13 +3154,13 @@
             "type": "array"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -3353,13 +3353,13 @@
             "type": "array"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -3558,13 +3558,13 @@
             "type": "array"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -3672,13 +3672,13 @@
             "type": "array"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -4065,13 +4065,13 @@
             "type": "array"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -4111,13 +4111,13 @@
             "type": "array"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -4146,13 +4146,13 @@
             "type": "array"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -4336,10 +4336,10 @@
             "type": "boolean"
           },
           "expected_centers": {
-            "type": "number"
+            "type": "integer"
           },
           "expected_records": {
-            "type": "number"
+            "type": "integer"
           },
           "first_live_on": {
             "format": "dateTime",
@@ -4412,10 +4412,10 @@
             "type": "boolean"
           },
           "expected_centers": {
-            "type": "number"
+            "type": "integer"
           },
           "expected_records": {
-            "type": "number"
+            "type": "integer"
           },
           "first_live_on": {
             "format": "dateTime",
@@ -4533,13 +4533,13 @@
             "type": "array"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -4575,13 +4575,13 @@
             "type": "array"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -4906,13 +4906,13 @@
             "type": "array"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -4955,13 +4955,13 @@
             "type": "array"
           },
           "total_failed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_processed": {
-            "type": "number"
+            "type": "integer"
           },
           "total_success": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -5642,7 +5642,7 @@
                 "type": "string"
               },
               "timezone_type": {
-                "type": "number"
+                "type": "integer"
               }
             },
             "type": "object"
@@ -5791,11 +5791,11 @@
           },
           "visit_number": {
             "description": "the Visit's number (unique)",
-            "type": "number"
+            "type": "integer"
           },
           "visit_order": {
             "description": "the Visit's order",
-            "type": "number"
+            "type": "integer"
           }
         },
         "type": "object"
@@ -6191,7 +6191,7 @@
                       "type": "array"
                     },
                     "totals": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Countries HalJSON representation",
@@ -6303,7 +6303,7 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Study list HalJSON representation",
@@ -6624,7 +6624,7 @@
                       "type": "array"
                     },
                     "total": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Compliance response",
@@ -6737,16 +6737,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -6866,16 +6866,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -6986,16 +6986,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -7106,16 +7106,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -7235,16 +7235,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -7364,16 +7364,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -7747,16 +7747,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -7849,16 +7849,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -8013,16 +8013,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "FieldOptionGroup HalJSON representation",
@@ -8187,16 +8187,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -8426,16 +8426,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -8609,16 +8609,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -8772,16 +8772,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Metadata HalJSON representation",
@@ -8968,16 +8968,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Participants HalJSON representation",
@@ -9148,7 +9148,7 @@
                       "type": "object"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -9257,16 +9257,16 @@
                       "$ref": "#/components/schemas/LinksSingle"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "ParticipantProgressRepeatingDataCollection",
@@ -9377,16 +9377,16 @@
                       "$ref": "#/components/schemas/LinksSingle"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "ParticipantProgressVisitCollection",
@@ -9976,7 +9976,7 @@
                       "$ref": "#/components/schemas/LinksSingle"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "RepeatingDataFieldResultCollection",
@@ -10086,7 +10086,7 @@
                       "$ref": "#/components/schemas/LinksSingle"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "RepeatingDataFieldResultCollection",
@@ -10296,7 +10296,7 @@
                       "$ref": "#/components/schemas/LinksSingle"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "StudyFieldResultCollection",
@@ -10497,7 +10497,7 @@
                       "$ref": "#/components/schemas/LinksSingle"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "SurveyFieldResultCollection",
@@ -10607,7 +10607,7 @@
                       "$ref": "#/components/schemas/LinksSingle"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "SurveyFieldResultCollection",
@@ -10929,7 +10929,7 @@
                       "$ref": "#/components/schemas/LinksSingle"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "SurveyPackageFieldResultCollection",
@@ -11817,16 +11817,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Repeating Data Instance HalJSON representation",
@@ -12551,16 +12551,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Queries HalJSON representation",
@@ -12714,16 +12714,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Repeating Data HalJSON representation",
@@ -12818,16 +12818,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Repeating Data Instance HalJSON representation",
@@ -13045,16 +13045,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -13198,7 +13198,7 @@
                     },
                     "total_items": {
                       "description": "Number of items returned.",
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Roles HalJSON representation",
@@ -13451,16 +13451,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Sites HalJSON representation",
@@ -13837,16 +13837,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Surveys HalJSON representation",
@@ -13939,16 +13939,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "SurveyPackages HalJSON representation",
@@ -14211,16 +14211,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "SurveyPackageInstances HalJSON representation",
@@ -14245,16 +14245,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "SurveyPackageInstances HalJSON representation",
@@ -14279,16 +14279,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "SurveyPackageInstances HalJSON representation",
@@ -14313,16 +14313,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "SurveyPackageInstances HalJSON representation",
@@ -14827,16 +14827,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Fields HalJSON representation",
@@ -15498,16 +15498,16 @@
                       "$ref": "#/components/schemas/LinksCollection"
                     },
                     "page": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_count": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "page_size": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "total_items": {
-                      "type": "number"
+                      "type": "integer"
                     }
                   },
                   "title": "Visit HalJSON representation",
