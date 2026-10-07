@@ -64,6 +64,11 @@ defmodule CastorEDC do
     * `:base_url` - the Castor EDC server, `#{@default_base_url}` by
       default. Studies in other regions live on other servers, such as
       `https://us.castoredc.com`.
+    * `:rate_limit` - `:wait` (the default) to wait out the API's rate
+      limit, or `:error` to get the 429 back right away; see
+      `CastorEDC.RateLimit`.
+    * `:max_rate_limit_wait` - the longest to wait for a rate limit, in
+      milliseconds, 60 seconds by default.
 
   Every other option is passed to `Req.new/1`, so timeouts, retries and
   connection options are set the same way:
@@ -75,12 +80,13 @@ defmodule CastorEDC do
   """
   @spec new(keyword()) :: Req.Request.t()
   def new(options \\ []) do
-    {own, req_options} = Keyword.split(options, [:client_id, :client_secret, :access_token, :base_url])
+    {own, req_options} =
+      Keyword.split(options, [:client_id, :client_secret, :access_token, :base_url, :rate_limit, :max_rate_limit_wait])
 
     [base_url: own[:base_url] || configured(:base_url) || @default_base_url, user_agent: @user_agent]
     |> Keyword.merge(req_options)
     |> Req.new()
-    |> CastorEDC.RateLimit.attach()
+    |> CastorEDC.RateLimit.attach(Keyword.take(own, [:rate_limit, :max_rate_limit_wait]))
     |> authenticate_with(credentials!(own))
   end
 

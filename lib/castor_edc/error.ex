@@ -19,6 +19,9 @@ defmodule CastorEDC.Error do
     * `details` - each individual error, as `%{code:, message:, field:}`
       maps (`field` is set for validation messages)
     * `request_id` - a reference Castor support can trace
+    * `retry_after` - on a 429, the seconds until the rate limit resets
+    * `rate_limit` - the rate limit the response reported, see
+      `CastorEDC.RateLimit.parse/1`
     * `body` and `headers` - the response as it arrived
   """
 
@@ -67,7 +70,7 @@ defmodule CastorEDC.Error do
 
   @doc false
   @spec from_response(Req.Response.t()) :: t()
-  def from_response(%Req.Response{status: status, body: body, headers: headers}) do
+  def from_response(%Req.Response{status: status, body: body, headers: headers} = response) do
     body = decode(body)
     errors = errors(body)
     validation = validation_details(body)
@@ -79,7 +82,9 @@ defmodule CastorEDC.Error do
       details: Enum.map(errors, &detail/1) ++ validation,
       request_id: first(errors, ["id"]),
       body: body,
-      headers: headers
+      headers: headers,
+      retry_after: if(status == 429, do: CastorEDC.RateLimit.retry_after(response)),
+      rate_limit: CastorEDC.RateLimit.parse(headers)
     }
   end
 

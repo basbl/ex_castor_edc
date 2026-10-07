@@ -15,9 +15,20 @@ defmodule CastorEDC.RateLimit do
 
   The client records them for every route it uses, per server and
   credentials.
+
+  When the API answers 429 anyway (other processes or machines may share
+  the allowance), the client waits until the window resets and sends the
+  request again, at most three times, as long as the wait is within
+  `:max_rate_limit_wait` (60 seconds by default). A 429 is refused before
+  anything happens, so this is safe for any request. With
+  `rate_limit: :error`, or when the wait would be longer, the 429 is
+  returned as a `CastorEDC.Error` whose `retry_after` says how many seconds
+  are left. Both options are given to `CastorEDC.new/1`.
   """
 
   @table :castor_edc_rate_limits
+  @max_attempts 3
+  @default_max_wait 60_000
 
   @type t :: %{limit: non_neg_integer() | nil, remaining: non_neg_integer() | nil, reset_at: DateTime.t() | nil}
 
@@ -52,9 +63,63 @@ defmodule CastorEDC.RateLimit do
   end
 
   @doc false
-  @spec attach(Req.Request.t()) :: Req.Request.t()
-  def attach(request) do
-    Req.Request.prepend_response_steps(request, castor_edc_rate_limit: &record/1)
+  @spec attach(Req.Request.t(), keyword()) :: Req.Request.t()
+  def attach(request, options \\ []) do
+    mode = Keyword.get(options, :rate_limit, :wait)
+    max_wait = Keyword.get(options, :max_rate_limit_wait, @default_max_wait)
+
+    if mode not in [:wait, :error],
+      do: raise(ArgumentError, "expected :rate_limit to be :wait or :error, got: #{inspect(mode)}")
+
+    request
+    |> Req.Request.put_private(:castor_edc_rate_limit, {mode, max_wait})
+    |> Req.Request.prepend_response_steps(castor_edc_rate_limit: &record/1, castor_edc_rate_limit_retry: &retry/1)
+  end
+
+  @doc false
+  def retry({request, %Req.Response{status: 429} = response}) do
+    {mode, max_wait} = Req.Request.get_private(request, :castor_edc_rate_limit, {:wait, @default_max_wait})
+    attempts = Req.Request.get_private(request, :castor_edc_rate_limit_attempts, 0)
+
+    with :wait <- mode,
+         true <- attempts < @max_attempts,
+         %{reset_at: %DateTime{} = reset_at} <- parse(response),
+         wait when wait <= max_wait <- max(DateTime.diff(reset_at, now(request), :millisecond), 0) do
+      sleep(request, wait)
+
+      {request, response_or_exception} =
+        request
+        |> Req.Request.put_private(:castor_edc_rate_limit_attempts, attempts + 1)
+        |> Map.put(:halted, false)
+        |> Req.Request.run_request()
+
+      Req.Request.halt(request, response_or_exception)
+    else
+      _no_wait -> {request, response}
+    end
+  end
+
+  def retry(request_response), do: request_response
+
+  @doc false
+  # Seconds until the window of a rate-limited response resets.
+  @spec retry_after(Req.Response.t()) :: non_neg_integer() | nil
+  def retry_after(response) do
+    case parse(response) do
+      %{reset_at: %DateTime{} = reset_at} -> max(DateTime.diff(reset_at, DateTime.utc_now(), :second), 0)
+      _unknown -> nil
+    end
+  end
+
+  defp now(request) do
+    case Req.Request.get_private(request, :castor_edc_clock) do
+      nil -> DateTime.utc_now()
+      clock -> DateTime.from_unix!(clock.())
+    end
+  end
+
+  defp sleep(request, milliseconds) do
+    Req.Request.get_private(request, :castor_edc_sleep, &Process.sleep/1).(milliseconds)
   end
 
   @doc false
