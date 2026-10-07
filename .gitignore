@@ -25,3 +25,6 @@ ex_castor_edc-*.tar
 
 # Temporary files for e.g. tests
 /tmp
+
+# Dialyzer PLTs
+/priv/plts/

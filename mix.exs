@@ -12,6 +12,11 @@ defmodule CastorEDC.MixProject do
       version: @version,
       elixir: "~> 1.20",
       test_coverage: [tool: ExCoveralls],
+      dialyzer: [
+        plt_local_path: "priv/plts",
+        plt_core_path: "priv/plts",
+        ignore_warnings: ".dialyzer_ignore.exs"
+      ],
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
@@ -79,6 +84,7 @@ defmodule CastorEDC.MixProject do
       {:excoveralls, "~> 0.18.5", only: :test},
       {:styler, "~> 1.12", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.4.8", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.40.4", only: :dev, runtime: false}
     ]
   end
