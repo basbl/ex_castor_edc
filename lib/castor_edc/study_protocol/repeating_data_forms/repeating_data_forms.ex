@@ -4,6 +4,7 @@ defmodule CastorEDC.StudyProtocol.RepeatingDataForms do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

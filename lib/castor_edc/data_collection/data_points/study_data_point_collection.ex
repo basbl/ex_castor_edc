@@ -4,6 +4,7 @@ defmodule CastorEDC.DataCollection.DataPoints.StudyDataPointCollection do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

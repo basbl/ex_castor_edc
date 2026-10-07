@@ -4,6 +4,7 @@ defmodule CastorEDC.DataCollection.Participants.RepeatingDataInstances do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

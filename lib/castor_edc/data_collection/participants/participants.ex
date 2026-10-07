@@ -4,6 +4,7 @@ defmodule CastorEDC.DataCollection.Participants do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

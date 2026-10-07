@@ -1,4 +1,5 @@
 defmodule CastorEDCTest.DataCollection.SurveyPackageInstanceDataPointCollection do
+  @moduledoc false
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 

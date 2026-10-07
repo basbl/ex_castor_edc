@@ -4,6 +4,7 @@ defmodule CastorEDC.StudyProtocol.FieldDependencies do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

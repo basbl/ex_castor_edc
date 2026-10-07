@@ -4,6 +4,7 @@ defmodule CastorEDC.DataCollection.DataEntry.RepeatingDataDataPoint do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
   alias Tesla.Multipart
 
@@ -28,14 +29,7 @@ defmodule CastorEDC.DataCollection.DataEntry.RepeatingDataDataPoint do
 
   [More info](https://data.castoredc.com/api#/repeating-data-data-entry/get_study__study_id__participant__participant_id__data_point_repeating_data__repeating_data_instance_id___field_id_)
   """
-  def find(
-        %Client{} = client,
-        study_id,
-        participant_id,
-        repeating_data_instance_id,
-        field_id,
-        params \\ []
-      ) do
+  def find(%Client{} = client, study_id, participant_id, repeating_data_instance_id, field_id, params \\ []) do
     get(
       "api/study/" <>
         study_id <>
@@ -81,7 +75,7 @@ defmodule CastorEDC.DataCollection.DataEntry.RepeatingDataDataPoint do
       ) do
     mp =
       body
-      |> Map.drop(["upload_file"])
+      |> Map.delete("upload_file")
       |> Enum.reduce(Multipart.new(), fn {k, v}, mp -> Multipart.add_field(mp, k, v) end)
       |> Multipart.add_file(file, name: "upload_file")
 

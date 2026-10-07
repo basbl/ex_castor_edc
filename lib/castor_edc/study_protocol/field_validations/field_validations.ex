@@ -4,6 +4,7 @@ defmodule CastorEDC.StudyProtocol.FieldValidations do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

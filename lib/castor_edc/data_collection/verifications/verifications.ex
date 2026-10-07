@@ -4,6 +4,7 @@ defmodule CastorEDC.DataCollection.Verifications do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

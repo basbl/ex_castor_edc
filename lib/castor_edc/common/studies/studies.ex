@@ -4,6 +4,7 @@ defmodule CastorEDC.Common.Studies do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

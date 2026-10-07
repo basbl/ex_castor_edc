@@ -1,4 +1,5 @@
 defmodule CastorEDCTest.Middleware do
+  @moduledoc false
   use ExUnit.Case, async: true
 
   import CastorEDC

@@ -78,9 +78,7 @@ defmodule CastorEDC.Client do
   end
 
   defp validate_options!(opts) do
-    options =
-      @supported_options
-      |> Enum.map_join(", ", &inspect/1)
+    options = Enum.map_join(@supported_options, ", ", &inspect/1)
 
     for {option, _value} <- opts do
       if option not in @supported_options do
@@ -93,12 +91,9 @@ defmodule CastorEDC.Client do
     opts = merge_options(opts)
     endpoint = endpoint(opts[:endpoint])
 
-    opts =
-      opts
-      |> Keyword.drop([:endpoint])
+    opts = Keyword.delete(opts, :endpoint)
 
-    %__MODULE__{endpoint: endpoint, options: opts}
-    |> Map.merge(credentials)
+    Map.merge(%__MODULE__{endpoint: endpoint, options: opts}, credentials)
   end
 
   defp merge_options(opts), do: Keyword.merge(@default_options, opts)
@@ -112,6 +107,5 @@ defmodule CastorEDC.Client do
   end
 
   @doc false
-  def update_token(%Client{} = client, access_token),
-    do: %__MODULE__{client | access_token: access_token}
+  def update_token(%Client{} = client, access_token), do: %{client | access_token: access_token}
 end

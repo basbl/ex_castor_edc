@@ -1,7 +1,10 @@
 defmodule CastorEDCTest.Client do
+  @moduledoc false
   use ExUnit.Case
 
   import CastorEDC.Client
+
+  alias Tesla.Adapter.Finch
 
   @expect_user_agent "elixir-ex_castor_edc/" <> Mix.Project.config()[:version]
 
@@ -58,7 +61,7 @@ defmodule CastorEDCTest.Client do
         endpoint: "https://us.castoredc.com",
         adapter_options: [some_option: true],
         global_timeout: 30_000,
-        adapter: Tesla.Adapter.Finch,
+        adapter: Finch,
         user_agent: "some-user-agent"
       )
 
@@ -66,7 +69,7 @@ defmodule CastorEDCTest.Client do
     assert client.endpoint == "https://us.castoredc.com/"
     assert client.options[:global_timeout] == 30_000
     assert client.options[:user_agent] == "some-user-agent"
-    assert client.options[:adapter] == Tesla.Adapter.Finch
+    assert client.options[:adapter] == Finch
     assert client.options[:adapter_options] == [some_option: true]
   end
 

@@ -4,6 +4,7 @@ defmodule CastorEDC.DataCollection.Randomization do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

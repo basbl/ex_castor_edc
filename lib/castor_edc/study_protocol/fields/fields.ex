@@ -4,6 +4,7 @@ defmodule CastorEDC.StudyProtocol.Fields do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

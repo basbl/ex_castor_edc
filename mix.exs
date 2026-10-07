@@ -77,6 +77,7 @@ defmodule CastorEDC.MixProject do
       {:hackney, "~> 1.13"},
       {:exvcr, "~> 0.11", only: :test},
       {:excoveralls, "~> 0.18.5", only: :test},
+      {:styler, "~> 1.12", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.40.4", only: :dev, runtime: false}
     ]

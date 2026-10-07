@@ -4,6 +4,7 @@ defmodule CastorEDC.Common.Sites do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

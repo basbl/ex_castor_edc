@@ -4,6 +4,7 @@ defmodule CastorEDC.StudyProtocol.MetadataTypes do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

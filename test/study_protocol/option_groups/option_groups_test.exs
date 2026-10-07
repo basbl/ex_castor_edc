@@ -1,4 +1,5 @@
 defmodule CastorEDCTest.StudyProtocol.OptionGroups do
+  @moduledoc false
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 

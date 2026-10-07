@@ -4,6 +4,7 @@ defmodule CastorEDC.DataCollection.Participants.Progress do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

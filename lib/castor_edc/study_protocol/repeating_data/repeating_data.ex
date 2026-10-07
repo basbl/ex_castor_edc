@@ -4,6 +4,7 @@ defmodule CastorEDC.StudyProtocol.RepeatingData do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

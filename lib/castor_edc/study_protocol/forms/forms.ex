@@ -4,9 +4,10 @@ defmodule CastorEDC.StudyProtocol.Forms do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
-  @spec list(CastorEDC.Client.t(), binary, []) :: {integer, %{}, Tesla.Env.t()}
+  @spec list(Client.t(), binary, []) :: {integer, %{}, Tesla.Env.t()}
   @doc """
   List all forms
 

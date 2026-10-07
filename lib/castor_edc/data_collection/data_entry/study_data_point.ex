@@ -4,6 +4,7 @@ defmodule CastorEDC.DataCollection.DataEntry.StudyDataPoint do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
   alias Tesla.Multipart
 
@@ -48,16 +49,10 @@ defmodule CastorEDC.DataCollection.DataEntry.StudyDataPoint do
     )
   end
 
-  def create(
-        %Client{} = client,
-        study_id,
-        participant_id,
-        field_id,
-        %{"upload_file" => file} = body
-      ) do
+  def create(%Client{} = client, study_id, participant_id, field_id, %{"upload_file" => file} = body) do
     mp =
       body
-      |> Map.drop(["upload_file"])
+      |> Map.delete("upload_file")
       |> Enum.reduce(Multipart.new(), fn {k, v}, mp -> Multipart.add_field(mp, k, v) end)
       |> Multipart.add_file(file, name: "upload_file")
 

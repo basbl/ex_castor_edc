@@ -4,6 +4,7 @@ defmodule CastorEDC.Common.Countries do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

@@ -4,6 +4,7 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
   alias Tesla.Multipart
 
@@ -27,14 +28,7 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
 
   [More info](https://data.castoredc.com/api#/survey-data-entry/get_study__study_id__participant__participant_id__data_point_survey__survey_instance_id___field_id_)
   """
-  def find(
-        %Client{} = client,
-        study_id,
-        participant_id,
-        survey_instance_id,
-        field_id,
-        params \\ []
-      ) do
+  def find(%Client{} = client, study_id, participant_id, survey_instance_id, field_id, params \\ []) do
     get(
       "api/study/" <>
         study_id <>
@@ -50,14 +44,7 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
 
   [More info](https://data.castoredc.com/api#/survey-data-entry/get_study__study_id__participant__participant_id__data_point_survey__survey_instance_id___field_id_)
   """
-  def create(
-        %Client{} = client,
-        study_id,
-        participant_id,
-        survey_instance_id,
-        field_id,
-        %{"field_value" => _} = body
-      ) do
+  def create(%Client{} = client, study_id, participant_id, survey_instance_id, field_id, %{"field_value" => _} = body) do
     post(
       "api/study/" <>
         study_id <>
@@ -68,17 +55,10 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
     )
   end
 
-  def create(
-        %Client{} = client,
-        study_id,
-        participant_id,
-        survey_instance_id,
-        field_id,
-        %{"upload_file" => file} = body
-      ) do
+  def create(%Client{} = client, study_id, participant_id, survey_instance_id, field_id, %{"upload_file" => file} = body) do
     mp =
       body
-      |> Map.drop(["upload_file"])
+      |> Map.delete("upload_file")
       |> Enum.reduce(Multipart.new(), fn {k, v}, mp -> Multipart.add_field(mp, k, v) end)
       |> Multipart.add_file(file, name: "upload_file")
 

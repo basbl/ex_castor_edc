@@ -4,6 +4,7 @@ defmodule CastorEDC.StudyProtocol.SurveyPackages do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

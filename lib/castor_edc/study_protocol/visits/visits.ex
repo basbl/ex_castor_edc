@@ -4,6 +4,7 @@ defmodule CastorEDC.StudyProtocol.Visits do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

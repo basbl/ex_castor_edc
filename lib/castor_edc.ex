@@ -18,7 +18,7 @@ defmodule CastorEDC do
   """
 
   alias CastorEDC.Client
-  alias Jason
+  alias Tesla.Middleware.Headers
 
   @doc """
   Exchanges a valid client id & secret combination for an access token that can be used to
@@ -29,7 +29,7 @@ defmodule CastorEDC do
     [
       {Tesla.Middleware.FormUrlencoded, []},
       {Tesla.Middleware.Opts, adapter: opts[:adapter_options]},
-      {Tesla.Middleware.Headers, [{"User-Agent", opts[:user_agent]}]}
+      {Headers, [{"User-Agent", opts[:user_agent]}]}
     ]
     |> http_client(client)
     |> Tesla.post(
@@ -47,7 +47,8 @@ defmodule CastorEDC do
   @doc false
   @spec post(String.t(), Client.t(), %{}) :: {integer(), %{}, Tesla.Env.t()}
   def post(url, %Client{} = client, body) do
-    default_middleware(client)
+    client
+    |> default_middleware()
     |> http_client(client)
     |> Tesla.post(url(client, url), body)
     |> handle_response()
@@ -56,7 +57,8 @@ defmodule CastorEDC do
   @doc false
   @spec patch(String.t(), Client.t(), %{}) :: {integer(), %{}, Tesla.Env.t()}
   def patch(url, %Client{} = client, body) do
-    default_middleware(client)
+    client
+    |> default_middleware()
     |> http_client(client)
     |> Tesla.patch(url(client, url), body)
     |> handle_response()
@@ -65,7 +67,8 @@ defmodule CastorEDC do
   @doc false
   @spec get(String.t(), Client.t(), []) :: {integer(), %{}, Tesla.Env.t()}
   def get(url, %Client{} = client, params \\ []) do
-    default_middleware(client)
+    client
+    |> default_middleware()
     |> http_client(client)
     |> Tesla.get(url(client, url), query: params)
     |> handle_response()
@@ -87,8 +90,7 @@ defmodule CastorEDC do
     middleware = [
       {Tesla.Middleware.JSON, []},
       {Tesla.Middleware.BearerAuth, token: token},
-      {Tesla.Middleware.Headers,
-       [{"Accept", "application/json"}, {"User-Agent", opts[:user_agent]}]}
+      {Headers, [{"Accept", "application/json"}, {"User-Agent", opts[:user_agent]}]}
     ]
 
     # If we're using the Tesla.Mock adapter we skip adding the timeout middleware

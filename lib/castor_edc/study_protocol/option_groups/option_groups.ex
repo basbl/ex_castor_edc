@@ -4,6 +4,7 @@ defmodule CastorEDC.StudyProtocol.OptionGroups do
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """

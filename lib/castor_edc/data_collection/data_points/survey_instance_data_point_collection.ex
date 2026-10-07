@@ -4,6 +4,7 @@ defmodule CastorEDC.DataCollection.DataPoints.SurveyInstanceDataPointCollection 
   """
 
   import CastorEDC
+
   alias CastorEDC.Client
 
   @doc """
