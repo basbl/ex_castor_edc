@@ -7,7 +7,8 @@ defmodule CastorEDC.Generator.Spec do
   produces:
 
     * `groups` - one per `x-castor-module`, with its operations, sorted by
-      name
+      name, and the description the spec's top-level `x-castor-modules`
+      gives it
     * `models` - one per schema a response can reach, directly or nested,
       except schemas the client casts rather than decodes (those with an
       `x-castor-type`, such as `PhpDateTime`)
@@ -21,7 +22,7 @@ defmodule CastorEDC.Generator.Spec do
 
   defmodule Group do
     @moduledoc "An operation group, generated into one module."
-    defstruct [:name, :module, operations: []]
+    defstruct [:name, :module, :description, operations: []]
     @type t :: %__MODULE__{}
   end
 
@@ -97,7 +98,12 @@ defmodule CastorEDC.Generator.Spec do
       operations
       |> Enum.group_by(fn {group, _operation} -> group end, fn {_group, operation} -> operation end)
       |> Enum.map(fn {name, operations} ->
-        %Group{name: name, module: Naming.group_module(name), operations: Enum.sort_by(operations, & &1.name)}
+        %Group{
+          name: name,
+          module: Naming.group_module(name),
+          description: get_in(document, ["x-castor-modules", name]),
+          operations: Enum.sort_by(operations, & &1.name)
+        }
       end)
       |> Enum.sort_by(& &1.name)
 
