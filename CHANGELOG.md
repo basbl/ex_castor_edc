@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - `CastorEDC.new/1` builds a Req-based client from API credentials, the application environment or environment variables.
+- Clients built from client credentials fetch, cache and renew access tokens themselves, and retry once with a new token on a 401.
 - `CastorEDC.Client.request/2` runs an operation and returns `{:ok, result}` or `{:error, %CastorEDC.Error{}}`; collections come back as a `CastorEDC.Page`.
 
 ### Changed

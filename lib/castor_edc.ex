@@ -54,7 +54,8 @@ defmodule CastorEDC do
 
   ## Options
 
-    * `:client_id` and `:client_secret` - your API credentials. They default
+    * `:client_id` and `:client_secret` - your API credentials, exchanged
+      for access tokens as needed (see `CastorEDC.Auth`). They default
       to the `:client_id` and `:client_secret` application environment keys,
       then to the `CASTOR_EDC_CLIENT_ID` and `CASTOR_EDC_CLIENT_SECRET`
       environment variables.
@@ -102,7 +103,9 @@ defmodule CastorEDC do
   end
 
   defp authenticate_with(request, {:client_credentials, _client_id, _client_secret} = credentials) do
-    Req.Request.put_private(request, :castor_edc_credentials, credentials)
+    request
+    |> Req.Request.put_private(:castor_edc_credentials, credentials)
+    |> CastorEDC.Auth.attach()
   end
 
   defp configured(key), do: Application.get_env(:ex_castor_edc, key)

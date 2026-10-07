@@ -152,6 +152,7 @@ defmodule CastorEDC.Client do
   end
 
   defp handle({:ok, %Req.Response{} = response}, _operation), do: {:error, Error.from_response(response)}
+  defp handle({:error, %Error{} = error}, _operation), do: {:error, error}
   defp handle({:error, exception}, _operation), do: {:error, Error.from_exception(exception)}
 
   defp decode(body, _operation) when body in [nil, ""], do: nil
