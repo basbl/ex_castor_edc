@@ -1140,6 +1140,29 @@
         },
         "type": "object"
       },
+      "DataPointFailure": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "data": {},
+          "field_id": {
+            "format": "UUID",
+            "type": "string"
+          },
+          "id": {
+            "description": "A reference Castor support can trace.",
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "participant_id": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "DataPointsCommonParameters": {
         "properties": {
           "change_reason": {
@@ -1149,6 +1172,38 @@
           "confirmed_changes": {
             "description": "User confirmed consequent changes after this field value update (i.e. automatic dependency clearing, signature drops, verification drops).",
             "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "DataPointsResult": {
+        "properties": {
+          "failed": {
+            "items": {
+              "$ref": "#/components/schemas/DataPointFailure"
+            },
+            "type": "array"
+          },
+          "success": {
+            "items": {
+              "$ref": "#/components/schemas/DataPoint"
+            },
+            "type": "array",
+            "x-castor-rename": "saved"
+          },
+          "survey_package_instance_id": {
+            "description": "Only when the write created a survey package instance.",
+            "format": "UUID",
+            "type": "string"
+          },
+          "total_failed": {
+            "type": "integer"
+          },
+          "total_processed": {
+            "type": "integer"
+          },
+          "total_success": {
+            "type": "integer"
           }
         },
         "type": "object"
@@ -10464,7 +10519,7 @@
             "content": {
               "application/hal+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RepeatingDataDataPointFieldResultCollection"
+                  "$ref": "#/components/schemas/DataPointsResult"
                 }
               }
             },
@@ -10522,7 +10577,8 @@
         "tags": [
           "data-points"
         ],
-        "x-castor-module": "DataPoints"
+        "x-castor-module": "DataPoints",
+        "x-castor-partial-success": true
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-points/study": {
@@ -10671,7 +10727,7 @@
             "content": {
               "application/hal+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StudyDataPointFieldResultCollection"
+                  "$ref": "#/components/schemas/DataPointsResult"
                 }
               }
             },
@@ -10729,7 +10785,8 @@
         "tags": [
           "data-points"
         ],
-        "x-castor-module": "DataPoints"
+        "x-castor-module": "DataPoints",
+        "x-castor-partial-success": true
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-points/survey-instance": {
@@ -11003,7 +11060,7 @@
             "content": {
               "application/hal+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SurveyDataPointFieldResultCollection"
+                  "$ref": "#/components/schemas/DataPointsResult"
                 }
               }
             },
@@ -11061,7 +11118,8 @@
         "tags": [
           "data-points"
         ],
-        "x-castor-module": "DataPoints"
+        "x-castor-module": "DataPoints",
+        "x-castor-partial-success": true
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance": {
@@ -11105,7 +11163,7 @@
             "content": {
               "application/hal+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RepeatableSPIDataPointFieldResultCollection"
+                  "$ref": "#/components/schemas/DataPointsResult"
                 }
               }
             },
@@ -11164,7 +11222,8 @@
         "tags": [
           "data-points"
         ],
-        "x-castor-module": "DataPoints"
+        "x-castor-module": "DataPoints",
+        "x-castor-partial-success": true
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance/{survey_package_instance_id}": {
@@ -11332,7 +11391,7 @@
             "content": {
               "application/hal+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SPIDataPointFieldResultCollection"
+                  "$ref": "#/components/schemas/DataPointsResult"
                 }
               }
             },
@@ -11390,7 +11449,8 @@
         "tags": [
           "data-points"
         ],
-        "x-castor-module": "DataPoints"
+        "x-castor-module": "DataPoints",
+        "x-castor-partial-success": true
       }
     },
     "/study/{study_id}/participant/{participant_id}/device-token": {

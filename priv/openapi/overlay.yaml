@@ -879,3 +879,45 @@ actions:
         report_step: repeating_data_form
         report_field: repeating_data_field
         survey_step: survey_form
+
+  # Data point writes
+  #
+  # The bulk data point writes answer 201 even when some or all values fail,
+  # listing what was saved under `success` and what wasn't under `failed`.
+  # A value for a field outside the endpoint's context (a survey field sent
+  # to the study endpoint) fails as "Unsupported field type". The client
+  # returns a CastorEDC.DataPointsResult instead of hiding the failures in a
+  # success, and its `!` functions raise when anything failed.
+
+  - target: $.definitions
+    update:
+      DataPointFailure:
+        type: object
+        properties:
+          id: {type: string, description: A reference Castor support can trace.}
+          code: {type: string}
+          message: {type: string}
+          field_id: {type: string, format: UUID}
+          participant_id: {type: string}
+          data: {}
+      DataPointsResult:
+        type: object
+        properties:
+          success:
+            type: array
+            items: {$ref: '#/definitions/DataPoint'}
+            x-castor-rename: saved
+          failed:
+            type: array
+            items: {$ref: '#/definitions/DataPointFailure'}
+          total_processed: {type: integer}
+          total_success: {type: integer}
+          total_failed: {type: integer}
+          survey_package_instance_id:
+            type: string
+            format: UUID
+            description: Only when the write created a survey package instance.
+  - target: $.paths.*[?@.operationId == 'upsert_study_data_points' || @.operationId == 'upsert_repeating_data_instance_data_points' || @.operationId == 'upsert_survey_instance_data_points' || @.operationId == 'upsert_survey_package_instance_data_points' || @.operationId == 'create_survey_package_instance_with_data_points']
+    update: {x-castor-partial-success: true}
+  - target: $.paths.*[?@['x-castor-partial-success'] == true].responses['201'].schema
+    update: {$ref: '#/definitions/DataPointsResult'}
