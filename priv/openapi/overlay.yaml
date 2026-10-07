@@ -960,3 +960,20 @@ actions:
             properties:
               studyUsers: {type: array, items: {$ref: '#/definitions/StudyUser'}}
           total_items: {type: integer}
+
+  # Missing schemas
+
+  - target: $.definitions.Site
+    description: The spec describes a site with nothing but its links; this is what the API returns.
+    update:
+      properties:
+        id: {type: string, format: UUID}
+        site_id: {type: string, format: UUID, description: The same as `id`.}
+        name: {type: string}
+        abbreviation: {type: string}
+        code: {type: string}
+        order: {type: integer}
+        deleted: {type: boolean}
+        country_id: {type: integer}
+        date_format: {type: string, description: "The site's date format, such as `Y-m-d`."}
+        date_display_format: {type: string, description: "The same format for display, such as `YYYY-MM-DD`."}

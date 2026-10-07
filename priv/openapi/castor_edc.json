@@ -4368,6 +4368,41 @@
         "properties": {
           "_links": {
             "$ref": "#/components/schemas/LinksSingle"
+          },
+          "abbreviation": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "country_id": {
+            "type": "integer"
+          },
+          "date_display_format": {
+            "description": "The same format for display, such as `YYYY-MM-DD`.",
+            "type": "string"
+          },
+          "date_format": {
+            "description": "The site's date format, such as `Y-m-d`.",
+            "type": "string"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "format": "UUID",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer"
+          },
+          "site_id": {
+            "description": "The same as `id`.",
+            "format": "UUID",
+            "type": "string"
           }
         },
         "type": "object"
