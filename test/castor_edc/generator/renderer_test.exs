@@ -88,6 +88,15 @@ defmodule CastorEDC.Generator.RendererTest do
     end
   end
 
+  test "allows the struct field count of an API object with 31 fields or more" do
+    fields = for n <- 1..31, do: %Spec.Field{name: "field_#{n}", wires: ["field_#{n}"], type: {:string, nil}}
+    small = %Spec.Model{name: "Small", module: CastorEDC.Model.Small, fields: Enum.take(fields, 30)}
+    large = %{small | name: "Large", module: CastorEDC.Model.Large, fields: fields}
+
+    refute Renderer.model(small) =~ "credo:disable"
+    assert Renderer.model(large) =~ "credo:disable-for-this-file Credo.Check.Warning.StructFieldAmount"
+  end
+
   test "keeps descriptions inside the heredoc" do
     assert Renderer.doc("first\nsecond\n\nfourth  ") == "first\n  second\n\n  fourth"
     assert Renderer.doc(~s|has """ inside|) == "has ''' inside"

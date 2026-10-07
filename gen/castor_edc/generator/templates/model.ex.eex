@@ -1,7 +1,10 @@
 <%= CastorEDC.Generator.Renderer.banner() %>
 
 defmodule <%= inspect(model.module) %> do
-  @moduledoc ~S"""
+<%= if length(model.fields) >= 31 do %>  # The API's object has this many fields; a struct this large is a hash map
+  # rather than a flat one, which is fine here.
+  # credo:disable-for-this-file Credo.Check.Warning.StructFieldAmount
+<% end %>  @moduledoc ~S"""
   <%= CastorEDC.Generator.Renderer.doc(model.description || "The `#{model.name}` object of the API.") %>
 
   ## Fields
