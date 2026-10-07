@@ -1234,19 +1234,54 @@
         "type": "object"
       },
       "Error": {
+        "description": "Either an RFC 7807 problem (type, title, status, detail, and for some errors `errors` or `validation_messages`), or a body from the layers in front of the endpoints (success, errors or reason). Batch export errors put the useful message in `description`.",
         "properties": {
+          "description": {
+            "description": "The message of batch export errors, which put a generic text in `detail`.",
+            "type": "string"
+          },
           "detail": {
             "description": "The detailed explanation of the failure",
             "type": "string"
           },
           "errors": {
-            "description": "Optional list of all errors that occurred during the request",
-            "type": "object"
+            "description": "The individual errors, from either kind of body.",
+            "items": {
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "data": {},
+                "error_code": {
+                  "type": "string"
+                },
+                "http_code": {
+                  "type": "integer"
+                },
+                "id": {
+                  "description": "A reference Castor support can trace.",
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "reason": {
+            "description": "The message of errors that carry neither `detail` nor `errors`.",
+            "type": "string"
           },
           "status": {
             "description": "The HTTP return code.",
             "format": "int32",
             "type": "integer"
+          },
+          "success": {
+            "description": "Always false, on errors from the layers in front of the endpoints.",
+            "type": "boolean"
           },
           "title": {
             "description": "The short error description belonging to the status code",

@@ -786,3 +786,42 @@ actions:
   - target: $.paths['/study/{study_id}/export/{id}/download'].get.responses['200']
     update:
       schema: {type: file}
+
+  # Errors
+  #
+  # The API answers errors with two different bodies: an RFC 7807 problem
+  # from inside an endpoint, and `{"success": false, "errors": [...]}` (or
+  # `{"success": false, "reason": ...}`) from the layers in front of it,
+  # such as rate limiting and maintenance. The spec only describes the
+  # first, and types its `errors` as an object while it's a list.
+  # CastorEDC.Error reads all of them; this describes them for reference.
+
+  - target: $.definitions.Error
+    update:
+      description: >-
+        Either an RFC 7807 problem (type, title, status, detail, and for some
+        errors `errors` or `validation_messages`), or a body from the layers
+        in front of the endpoints (success, errors or reason). Batch export
+        errors put the useful message in `description`.
+      properties:
+        description:
+          type: string
+          description: The message of batch export errors, which put a generic text in `detail`.
+        errors:
+          type: array
+          description: The individual errors, from either kind of body.
+          items:
+            type: object
+            properties:
+              id: {type: string, description: A reference Castor support can trace.}
+              code: {type: string}
+              error_code: {type: string}
+              http_code: {type: integer}
+              message: {type: string}
+              data: {}
+        success:
+          type: boolean
+          description: Always false, on errors from the layers in front of the endpoints.
+        reason:
+          type: string
+          description: The message of errors that carry neither `detail` nor `errors`.
