@@ -1,0 +1,235 @@
+{
+  "_embedded": {
+    "participant": {
+      "_embedded": {
+        "site": {
+          "_links": {
+            "self": {
+              "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/site/F58A7CB5-60BB-4280-8AB3-E6DADBC20946"
+            }
+          },
+          "abbreviation": "TES",
+          "code": "TES",
+          "country_id": 169,
+          "date_display_format": "YYYY-MM-DD",
+          "date_format": "Y-m-d",
+          "deleted": false,
+          "id": "F58A7CB5-60BB-4280-8AB3-E6DADBC20946",
+          "name": "Test Site",
+          "order": 0,
+          "site_id": "F58A7CB5-60BB-4280-8AB3-E6DADBC20946"
+        }
+      },
+      "_links": {
+        "self": {
+          "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/participant"
+        }
+      },
+      "archived": false,
+      "archived_reason": null,
+      "ccr_patient_id": "",
+      "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+      "created_on": {
+        "date": "2026-10-07 21:06:33.000000",
+        "timezone": "Europe/Amsterdam",
+        "timezone_type": 3
+      },
+      "id": "000002",
+      "last_opened_step": null,
+      "locked": false,
+      "mobile_my_details_enabled": true,
+      "mobile_ui_version": "4.0",
+      "participant_id": "000002",
+      "participant_status": null,
+      "progress": 64,
+      "randomization_group": null,
+      "randomization_group_name": null,
+      "randomized_id": null,
+      "randomized_on": null,
+      "status": "open",
+      "updated_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+      "updated_on": {
+        "date": "2026-10-07 21:06:00.000000",
+        "timezone": "Europe/Amsterdam",
+        "timezone_type": 3
+      }
+    },
+    "site": {
+      "_links": {
+        "self": {
+          "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/site/F58A7CB5-60BB-4280-8AB3-E6DADBC20946"
+        }
+      },
+      "abbreviation": "TES",
+      "code": "TES",
+      "country_id": 169,
+      "date_display_format": "YYYY-MM-DD",
+      "date_format": "Y-m-d",
+      "deleted": false,
+      "id": "F58A7CB5-60BB-4280-8AB3-E6DADBC20946",
+      "name": "Test Site",
+      "order": 0,
+      "site_id": "F58A7CB5-60BB-4280-8AB3-E6DADBC20946"
+    },
+    "survey_instances": [
+      {
+        "_embedded": {
+          "survey": {
+            "_links": {
+              "self": {
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/B8FDFCF6-4EE5-4B09-B1E6-9A7FBAF8D3CD"
+              }
+            },
+            "description": "",
+            "footer_text": null,
+            "id": "B8FDFCF6-4EE5-4B09-B1E6-9A7FBAF8D3CD",
+            "intro_text": "",
+            "name": "Short Form Health Survey SF-36",
+            "outro_text": "",
+            "survey_forms": [],
+            "survey_id": "B8FDFCF6-4EE5-4B09-B1E6-9A7FBAF8D3CD"
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/11BC06EB-4FF9-4B7E-B47F-619BF37EDA1E"
+          }
+        },
+        "id": "11BC06EB-4FF9-4B7E-B47F-619BF37EDA1E",
+        "progress": 3,
+        "progress_total_fields": 36,
+        "progress_total_fields_not_empty": 1
+      },
+      {
+        "_embedded": {
+          "survey": {
+            "_links": {
+              "self": {
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E"
+              }
+            },
+            "description": "",
+            "footer_text": null,
+            "id": "23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E",
+            "intro_text": "",
+            "name": "Generalised Anxiety Disorder Questionnaire (GAD-7)",
+            "outro_text": "",
+            "survey_forms": [],
+            "survey_id": "23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E"
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/9A16BC8D-77B1-4EAF-B573-5577ED690D5A"
+          }
+        },
+        "id": "9A16BC8D-77B1-4EAF-B573-5577ED690D5A",
+        "progress": 0,
+        "progress_total_fields": 7,
+        "progress_total_fields_not_empty": 0
+      }
+    ],
+    "survey_package": {
+      "_embedded": {
+        "surveys": [
+          {
+            "_links": {
+              "self": {
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/B8FDFCF6-4EE5-4B09-B1E6-9A7FBAF8D3CD"
+              }
+            },
+            "description": "",
+            "footer_text": null,
+            "id": "B8FDFCF6-4EE5-4B09-B1E6-9A7FBAF8D3CD",
+            "intro_text": "",
+            "name": "Short Form Health Survey SF-36",
+            "outro_text": "",
+            "survey_forms": [],
+            "survey_id": "B8FDFCF6-4EE5-4B09-B1E6-9A7FBAF8D3CD"
+          },
+          {
+            "_links": {
+              "self": {
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E"
+              }
+            },
+            "description": "",
+            "footer_text": null,
+            "id": "23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E",
+            "intro_text": "",
+            "name": "Generalised Anxiety Disorder Questionnaire (GAD-7)",
+            "outro_text": "",
+            "survey_forms": [],
+            "survey_id": "23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E"
+          }
+        ]
+      },
+      "_links": {
+        "self": {
+          "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey-package/1430DFBE-526A-44AC-856E-BF44A99139B6"
+        }
+      },
+      "allow_open_survey_link": false,
+      "allow_step_navigation": true,
+      "as_needed": false,
+      "auto_5s_redirect": false,
+      "auto_lock_on_finish": true,
+      "default_invitation": "Dear participant,\n\nPlease click the link below to complete our survey.\n\n{url}",
+      "default_invitation_subject": "Health and Anxiety Survey",
+      "description": "",
+      "expire_after_hours": null,
+      "field_pagination": "none",
+      "finish_url": "",
+      "id": "1430DFBE-526A-44AC-856E-BF44A99139B6",
+      "intro_text": "",
+      "is_mobile": false,
+      "is_repeatable": false,
+      "is_resumable": false,
+      "is_training": false,
+      "name": "Health and Anxiety Disorder survey package",
+      "outro_text": "",
+      "pre_redirect_text": "",
+      "sender_email": "user@example.org",
+      "sender_name": "Castor EDC",
+      "show_step_navigator": true,
+      "survey_package_id": "1430DFBE-526A-44AC-856E-BF44A99139B6"
+    },
+    "survey_reminders": []
+  },
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey-package-instance/D57233CC-526E-4F49-B613-B827ECE35A57"
+    }
+  },
+  "all_fields_filled_on": null,
+  "archived": false,
+  "auto_lock_on_finish": false,
+  "available_from": null,
+  "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+  "created_on": {
+    "date": "2026-10-07 21:50:13.000000",
+    "timezone": "Europe/Amsterdam",
+    "timezone_type": 3
+  },
+  "expire_on": null,
+  "finished_on": null,
+  "first_opened_on": null,
+  "id": "D57233CC-526E-4F49-B613-B827ECE35A57",
+  "invitation_content": "Dear participant,\n\nPlease click the link below to complete our survey.\n\n{url}",
+  "invitation_subject": "Health and Anxiety Survey",
+  "locked": false,
+  "parent_id": null,
+  "parent_type": "0",
+  "participant_id": "000002",
+  "progress": 2,
+  "received_on": null,
+  "sent_on": null,
+  "site_id": "F58A7CB5-60BB-4280-8AB3-E6DADBC20946",
+  "site_name": "Test Site",
+  "started_on": null,
+  "status": "In Progress",
+  "survey_package_id": "1430DFBE-526A-44AC-856E-BF44A99139B6",
+  "survey_package_instance_id": "D57233CC-526E-4F49-B613-B827ECE35A57",
+  "survey_package_name": "Health and Anxiety Disorder survey package",
+  "survey_url_string": "CMKJSBRT"
+}

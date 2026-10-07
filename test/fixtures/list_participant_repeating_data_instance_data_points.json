@@ -1,0 +1,20 @@
+{
+  "_embedded": {
+    "items": [
+      {
+        "field_id": "4841B362-28C9-45A2-846E-B3B6BE95B77F",
+        "field_value": "120",
+        "participant_id": "000001",
+        "repeating_data_instance_id": "F01DF8F7-F20C-40F5-8325-411681CA31DB",
+        "repeating_data_instance_name": "Blood pressure - 07-10-2026 21:46:26",
+        "updated_on": "2026-10-07 21:49:55"
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/participant/000001/data-points/repeating-data-instance/F01DF8F7-F20C-40F5-8325-411681CA31DB"
+    }
+  },
+  "total_items": 1
+}

@@ -1,0 +1,187 @@
+{
+  "_embedded": {
+    "items": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/export"
+          }
+        },
+        "completed_on": null,
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": {
+          "date": "2026-10-07 21:12:03.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "expires_on": null,
+        "export_name": "empty_crf",
+        "export_type": "pdf",
+        "file_name": null,
+        "file_size": null,
+        "id": "161fbc3c-82ed-4462-99d2-2dc050ef94e5",
+        "status": "failed"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/export"
+          }
+        },
+        "completed_on": {
+          "date": "2026-10-07 21:09:57.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": {
+          "date": "2026-10-07 21:09:56.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "expires_on": {
+          "date": "2026-10-14 07:00:00.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "export_name": "sites",
+        "export_type": "csv",
+        "file_name": "API_Testing_sites_csv_2026_10_07-21_09_57.zip",
+        "file_size": 264,
+        "id": "47f76c1f-95bb-495d-975f-4d156637b515",
+        "status": "ready"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/export"
+          }
+        },
+        "completed_on": {
+          "date": "2026-10-07 21:09:57.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": {
+          "date": "2026-10-07 21:09:56.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "expires_on": {
+          "date": "2026-10-14 07:00:00.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "export_name": "queries",
+        "export_type": "csv",
+        "file_name": "API_Testing_queries_csv_2026_10_07-21_09_57.zip",
+        "file_size": 362,
+        "id": "af7c5afb-a1f9-403a-981f-d72880955d77",
+        "status": "ready"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/export"
+          }
+        },
+        "completed_on": {
+          "date": "2026-10-07 21:08:47.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": {
+          "date": "2026-10-07 21:08:46.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "expires_on": {
+          "date": "2026-10-14 07:00:00.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "export_name": "participant_data",
+        "export_type": "csv",
+        "file_name": "API_Testing_participant_data_csv_2026_10_07-21_08_47.zip",
+        "file_size": 11298,
+        "id": "05ea47e9-8f46-4dbe-afea-5356fd6d488e",
+        "status": "ready"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/export"
+          }
+        },
+        "completed_on": {
+          "date": "2026-10-07 21:08:47.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": {
+          "date": "2026-10-07 21:08:46.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "expires_on": {
+          "date": "2026-10-14 07:00:00.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "export_name": "sites",
+        "export_type": "csv",
+        "file_name": "API_Testing_sites_csv_2026_10_07-21_08_47.zip",
+        "file_size": 264,
+        "id": "590515af-d120-4db2-b07c-0f9a203305ac",
+        "status": "ready"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/export"
+          }
+        },
+        "completed_on": {
+          "date": "2026-10-07 21:08:41.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": {
+          "date": "2026-10-07 21:08:39.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "expires_on": {
+          "date": "2026-10-14 07:00:00.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "export_name": "queries",
+        "export_type": "csv",
+        "file_name": "API_Testing_queries_csv_2026_10_07-21_08_41.zip",
+        "file_size": 362,
+        "id": "fd7c9502-a6b6-40d5-9fa0-0078322925bc",
+        "status": "ready"
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/export"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/export?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/export?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 25,
+  "total_items": 6
+}

@@ -1,73 +1,47 @@
 {
   "_embedded": {
-    "report_steps": [
+    "repeating_data_forms": [
       {
         "_embedded": {
-          "report": {
+          "repeating_data": {
             "_links": {
               "self": {
-                "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/07362069-A506-43F0-BB92-A82FF5C46D59"
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data/81CF4C62-403C-4844-A186-C19EEDE14362"
               }
             },
-            "description": "Follow-up visit",
-            "id": "07362069-A506-43F0-BB92-A82FF5C46D59",
-            "name": "Unscheduled visit",
-            "report_id": "07362069-A506-43F0-BB92-A82FF5C46D59",
-            "type": "unscheduled_phase"
+            "description": "Blood pressure measurements during physical exam.",
+            "id": "81CF4C62-403C-4844-A186-C19EEDE14362",
+            "name": "Blood pressure",
+            "repeating_data_id": "81CF4C62-403C-4844-A186-C19EEDE14362",
+            "type": "repeated_measure"
           }
         },
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/07362069-A506-43F0-BB92-A82FF5C46D59/report-step/0EFBA357-F714-4AE7-A6C9-155570EF3B3D"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data/ED4B720C-CB41-4187-837B-F81C9D4BA871/repeating-data-form"
           }
         },
-        "id": "0EFBA357-F714-4AE7-A6C9-155570EF3B3D",
-        "report_step_description": "",
-        "report_step_id": "0EFBA357-F714-4AE7-A6C9-155570EF3B3D",
-        "report_step_name": "Physical exam",
-        "report_step_number": 1
-      },
-      {
-        "_embedded": {
-          "report": {
-            "_links": {
-              "self": {
-                "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/07362069-A506-43F0-BB92-A82FF5C46D59"
-              }
-            },
-            "description": "Follow-up visit",
-            "id": "07362069-A506-43F0-BB92-A82FF5C46D59",
-            "name": "Unscheduled visit",
-            "report_id": "07362069-A506-43F0-BB92-A82FF5C46D59",
-            "type": "unscheduled_phase"
-          }
-        },
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/07362069-A506-43F0-BB92-A82FF5C46D59/report-step/2DE87A09-6FC7-493E-BB6F-5D36D74E1FA7"
-          }
-        },
-        "id": "2DE87A09-6FC7-493E-BB6F-5D36D74E1FA7",
-        "report_step_description": "",
-        "report_step_id": "2DE87A09-6FC7-493E-BB6F-5D36D74E1FA7",
-        "report_step_name": "Laboratory",
-        "report_step_number": 2
+        "id": "ED4B720C-CB41-4187-837B-F81C9D4BA871",
+        "repeating_data_form_description": "",
+        "repeating_data_form_id": "ED4B720C-CB41-4187-837B-F81C9D4BA871",
+        "repeating_data_form_name": "BP measurements",
+        "repeating_data_form_number": 1
       }
     ]
   },
   "_links": {
     "first": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/07362069-A506-43F0-BB92-A82FF5C46D59/report-step"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data/81CF4C62-403C-4844-A186-C19EEDE14362/repeating-data-form"
     },
     "last": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/07362069-A506-43F0-BB92-A82FF5C46D59/report-step?page=1"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data/81CF4C62-403C-4844-A186-C19EEDE14362/repeating-data-form?page=1"
     },
     "self": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/07362069-A506-43F0-BB92-A82FF5C46D59/report-step?page=1"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data/81CF4C62-403C-4844-A186-C19EEDE14362/repeating-data-form?page=1"
     }
   },
   "page": 1,
   "page_count": 1,
   "page_size": 25,
-  "total_items": 2
+  "total_items": 1
 }

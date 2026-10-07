@@ -1,7 +1,7 @@
 {
   "method": "GET",
   "operation": "get_participant_repeating_data_instance",
-  "path": "/api/study/C56B7E31-8984-438C-AAD8-E041AF4A09DC/participant/110001/repeating-data-instance/3306FAD0-AEB8-4F4A-932D-AD936F7FE212",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/participant/000001/repeating-data-instance/F01DF8F7-F20C-40F5-8325-411681CA31DB",
   "query": null,
   "status": 200
 }

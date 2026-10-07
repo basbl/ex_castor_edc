@@ -1,15 +1,17 @@
 {
   "_links": {
     "self": {
-      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/institute/87B0E37F-2403-491A-8313-7B9EE1C0AB77"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/site/96460B59-42B7-4B26-99AB-4C032E954CF7"
     }
   },
-  "abbreviation": "API2",
-  "code": "",
-  "country_id": 123,
+  "abbreviation": "CSTR",
+  "code": null,
+  "country_id": 169,
+  "date_display_format": "YYYY-MM-DD",
+  "date_format": "Y-m-d",
   "deleted": false,
-  "id": "87B0E37F-2403-491A-8313-7B9EE1C0AB77",
-  "institute_id": "87B0E37F-2403-491A-8313-7B9EE1C0AB77",
-  "name": "Via API 2",
-  "order": 13
+  "id": "96460B59-42B7-4B26-99AB-4C032E954CF7",
+  "name": "Castor",
+  "order": 11,
+  "site_id": "96460B59-42B7-4B26-99AB-4C032E954CF7"
 }

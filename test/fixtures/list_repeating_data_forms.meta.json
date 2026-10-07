@@ -1,7 +1,7 @@
 {
   "method": "GET",
   "operation": "list_repeating_data_forms",
-  "path": "/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/repeating-data/07362069-A506-43F0-BB92-A82FF5C46D59/repeating-data-form",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data/81CF4C62-403C-4844-A186-C19EEDE14362/repeating-data-form",
   "query": null,
   "status": 200
 }

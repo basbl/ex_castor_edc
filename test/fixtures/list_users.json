@@ -4,20 +4,19 @@
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/user/D6A16E39-B3CE-4441-BD7A-43AA1B53A43E"
+            "href": "https://data.castoredc.com/api/user/62C48D56-7A78-45A0-9A26-9A2397F37804"
           }
         },
-        "department": null,
-        "email_address": "example@example.org",
-        "entity_id": "D6A16E39-B3CE-4441-BD7A-43AA1B53A43E",
-        "full_name": "John Doe",
-        "id": "D6A16E39-B3CE-4441-BD7A-43AA1B53A43E",
-        "institute": null,
-        "last_login": "2022-05-12 15:12:37",
-        "name_first": "John",
-        "name_last": "Doe",
-        "name_middle": null,
-        "user_id": "D6A16E39-B3CE-4441-BD7A-43AA1B53A43E"
+        "department": "Bla",
+        "email_address": "user@example.org",
+        "entity_id": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "full_name": "Test User",
+        "id": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "last_login": "2026-10-07 21:01:22",
+        "name_first": "Test User",
+        "name_last": "Test User",
+        "name_middle": "",
+        "user_id": "62C48D56-7A78-45A0-9A26-9A2397F37804"
       }
     ]
   },

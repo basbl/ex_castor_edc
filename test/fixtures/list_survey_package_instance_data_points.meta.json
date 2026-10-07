@@ -1,7 +1,7 @@
 {
   "method": "GET",
   "operation": "list_survey_package_instance_data_points",
-  "path": "/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/data-points/survey-package-instance/E8ECA57E-4204-4D22-85F5-10D8FF50913F",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/data-points/survey-package-instance/D57233CC-526E-4F49-B613-B827ECE35A57",
   "query": null,
   "status": 200
 }

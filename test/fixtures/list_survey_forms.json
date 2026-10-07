@@ -1,48 +1,50 @@
 {
   "_embedded": {
-    "survey_steps": [
+    "survey_forms": [
       {
         "_embedded": {
           "survey": {
             "_links": {
               "self": {
-                "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey/83F352DC-816B-4387-A13E-6D716D44AE83"
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E"
               }
             },
             "description": "",
-            "id": "83F352DC-816B-4387-A13E-6D716D44AE83",
+            "footer_text": null,
+            "id": "23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E",
             "intro_text": "",
-            "name": "Short Form Health Survey SF-36",
+            "name": "Generalised Anxiety Disorder Questionnaire (GAD-7)",
             "outro_text": "",
-            "survey_id": "83F352DC-816B-4387-A13E-6D716D44AE83",
-            "survey_steps": []
+            "survey_forms": [],
+            "survey_id": "23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E"
           }
         },
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey/83F352DC-816B-4387-A13E-6D716D44AE83/survey-step/3F22E3E8-E3BB-43D0-9C9C-F1DE67B95B18"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E/survey-form"
           }
         },
         "field_alignment": "left-aligned",
+        "footer_text": "",
         "form_numbering": "visible",
-        "id": "3F22E3E8-E3BB-43D0-9C9C-F1DE67B95B18",
+        "id": "39DD5B79-CF47-4F62-93AF-1E0575397C4A",
         "label_bold_if_required": true,
-        "survey_step_description": "",
-        "survey_step_id": "3F22E3E8-E3BB-43D0-9C9C-F1DE67B95B18",
-        "survey_step_name": "SF 36",
-        "survey_step_number": 1
+        "survey_form_description": "",
+        "survey_form_id": "39DD5B79-CF47-4F62-93AF-1E0575397C4A",
+        "survey_form_name": "GAD-7",
+        "survey_form_number": 1
       }
     ]
   },
   "_links": {
     "first": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey/83F352DC-816B-4387-A13E-6D716D44AE83/survey-step"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E/survey-form"
     },
     "last": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey/83F352DC-816B-4387-A13E-6D716D44AE83/survey-step?page=1"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E/survey-form?page=1"
     },
     "self": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey/83F352DC-816B-4387-A13E-6D716D44AE83/survey-step?page=1"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E/survey-form?page=1"
     }
   },
   "page": 1,

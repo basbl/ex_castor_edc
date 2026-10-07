@@ -1,18 +1,18 @@
 {
   "_links": {
     "self": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/statistics"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/statistics"
     }
   },
   "records": {
     "institutes": [
       {
-        "institute_id": "DC58372A-5ECF-4F0D-951D-8AA1E7390882",
+        "institute_id": "96460B59-42B7-4B26-99AB-4C032E954CF7",
         "institute_name": "Castor",
-        "record_count": 500
+        "record_count": 0
       }
     ],
-    "total_count": 500
+    "total_count": 0
   },
-  "study_id": "AFE56D62-0797-406B-9949-DD8DC65D6A75"
+  "study_id": "8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD"
 }

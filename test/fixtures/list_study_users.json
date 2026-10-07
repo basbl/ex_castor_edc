@@ -4,60 +4,16 @@
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/user/8F654747-3561-4C90-BD8F-B21320DA7862"
+            "href": "https://data.castoredc.com/api/user/62C48D56-7A78-45A0-9A26-9A2397F37804"
           }
         },
-        "department": null,
-        "email_address": "example@example.org",
-        "entity_id": "8F654747-3561-4C90-BD8F-B21320DA7862",
-        "full_name": "John Doe",
-        "id": "8F654747-3561-4C90-BD8F-B21320DA7862",
-        "institute": null,
-        "institute_permissions": [
-          {
-            "add": true,
-            "decrypt": false,
-            "delete": true,
-            "edit": true,
-            "email_addresses": true,
-            "encrypt": false,
-            "export": true,
-            "institute_id": "0F3CEC48-45DB-440D-A23E-65478CB480A0",
-            "lock": true,
-            "query": true,
-            "randomization_read": true,
-            "randomization_write": true,
-            "role": null,
-            "sdv": true,
-            "sign": true,
-            "survey_send": true,
-            "survey_view": true,
-            "televisit": true,
-            "view": true
-          },
-          {
-            "add": true,
-            "decrypt": false,
-            "delete": true,
-            "edit": true,
-            "email_addresses": true,
-            "encrypt": false,
-            "export": true,
-            "institute_id": "44A6D11D-84B5-4983-9B32-C06297349193",
-            "lock": true,
-            "query": true,
-            "randomization_read": true,
-            "randomization_write": true,
-            "role": null,
-            "sdv": true,
-            "sign": true,
-            "survey_send": true,
-            "survey_view": true,
-            "televisit": true,
-            "view": true
-          }
-        ],
-        "last_login": "2022-01-27 21:08:45",
+        "default_role_assignment": null,
+        "department": "Bla",
+        "email_address": "user@example.org",
+        "entity_id": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "full_name": "Test User",
+        "id": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "last_login": "2026-10-07 21:01:22",
         "manage_permissions": {
           "manage_encryption": true,
           "manage_form": true,
@@ -65,16 +21,70 @@
           "manage_settings": true,
           "manage_users": true
         },
-        "name_first": "John",
-        "name_last": "Doe",
-        "name_middle": null,
-        "user_id": "8F654747-3561-4C90-BD8F-B21320DA7862"
+        "name_first": "Test User",
+        "name_last": "Test User",
+        "name_middle": "",
+        "role_assignments": [
+          {
+            "permissions": {
+              "add": true,
+              "catalyst_upload": false,
+              "decrypt": false,
+              "delete": true,
+              "edit": true,
+              "email_addresses": true,
+              "encrypt": false,
+              "export": true,
+              "lock": true,
+              "query": true,
+              "randomization_read": true,
+              "randomization_write": true,
+              "sdv": true,
+              "sign": true,
+              "survey_send": true,
+              "survey_view": true,
+              "televisit": false,
+              "validation": true,
+              "view": true
+            },
+            "role_id": 1,
+            "role_name": "Admin",
+            "site_id": "F58A7CB5-60BB-4280-8AB3-E6DADBC20946"
+          },
+          {
+            "permissions": {
+              "add": true,
+              "catalyst_upload": false,
+              "decrypt": false,
+              "delete": true,
+              "edit": true,
+              "email_addresses": true,
+              "encrypt": false,
+              "export": true,
+              "lock": true,
+              "query": true,
+              "randomization_read": true,
+              "randomization_write": true,
+              "sdv": true,
+              "sign": true,
+              "survey_send": true,
+              "survey_view": true,
+              "televisit": false,
+              "validation": true,
+              "view": true
+            },
+            "role_id": 1,
+            "role_name": "Admin",
+            "site_id": "96460B59-42B7-4B26-99AB-4C032E954CF7"
+          }
+        ],
+        "user_id": "62C48D56-7A78-45A0-9A26-9A2397F37804"
       }
     ]
   },
   "_links": {
     "self": {
-      "href": "https://data.castoredc.com/api/study/7AD4616E-B169-4F9E-9982-F626099B84C0/user"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/user"
     }
   },
   "total_items": 1

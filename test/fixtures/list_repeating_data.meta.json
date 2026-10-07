@@ -1,7 +1,7 @@
 {
   "method": "GET",
   "operation": "list_repeating_data",
-  "path": "/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/repeating-data",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data",
   "query": null,
   "status": 200
 }

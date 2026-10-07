@@ -1,7 +1,7 @@
 {
   "method": "GET",
   "operation": "list_field_dependencies",
-  "path": "/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-dependency",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency",
   "query": null,
   "status": 200
 }

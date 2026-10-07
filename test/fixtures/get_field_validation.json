@@ -1,13 +1,15 @@
 {
   "_links": {
     "self": {
-      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-validation/6"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-validation/38"
     }
   },
-  "field_id": "3CB8F5BA-398A-49E9-8B9D-3E73ADAB7815",
-  "id": 6,
+  "field_id": "D478A81D-4C1E-45FE-BDC3-6BACA4E6FB0E",
+  "id": 38,
   "operator": ">",
-  "text": "Date is in the future!",
+  "reference_type": "value",
+  "referenced_field_id": null,
+  "text": "This date is in the future",
   "type": "warning",
   "value": "NOW"
 }

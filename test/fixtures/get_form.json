@@ -1,27 +1,28 @@
 {
   "_embedded": {
-    "phase": {
+    "visit": {
       "_links": {
         "self": {
-          "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/phase/2C4665E9-BB2C-4C9D-B644-558719C9F1C2"
+          "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/3BB6D9B5-EF97-4F66-A25B-55EC43181C7B"
         }
       },
-      "id": "2C4665E9-BB2C-4C9D-B644-558719C9F1C2",
-      "phase_description": null,
-      "phase_duration": null,
-      "phase_id": "2C4665E9-BB2C-4C9D-B644-558719C9F1C2",
-      "phase_name": "Follow-up",
-      "phase_order": 3
+      "id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B",
+      "visit_description": null,
+      "visit_duration": null,
+      "visit_id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B",
+      "visit_name": "Clinical and laboratory",
+      "visit_number": null,
+      "visit_order": 2
     }
   },
   "_links": {
     "self": {
-      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/step/E30A339F-0470-451C-B8EF-115B53D8F76B"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data-instance/3F075142-968C-4773-AA66-9C2914FB6CD7"
     }
   },
-  "id": "E30A339F-0470-451C-B8EF-115B53D8F76B",
-  "step_description": "Contains physical exam data from this visit",
-  "step_id": "E30A339F-0470-451C-B8EF-115B53D8F76B",
-  "step_name": "Physical exam",
-  "step_order": 6
+  "form_description": "Contains blood test data",
+  "form_id": "3F075142-968C-4773-AA66-9C2914FB6CD7",
+  "form_name": "Blood test",
+  "form_order": 4,
+  "id": "3F075142-968C-4773-AA66-9C2914FB6CD7"
 }

@@ -4,42 +4,44 @@
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey/83F352DC-816B-4387-A13E-6D716D44AE83"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E"
           }
         },
         "description": "",
-        "id": "83F352DC-816B-4387-A13E-6D716D44AE83",
+        "footer_text": null,
+        "id": "23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E",
         "intro_text": "",
-        "name": "Short Form Health Survey SF-36",
+        "name": "Generalised Anxiety Disorder Questionnaire (GAD-7)",
         "outro_text": "",
-        "survey_id": "83F352DC-816B-4387-A13E-6D716D44AE83",
-        "survey_steps": []
+        "survey_forms": [],
+        "survey_id": "23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E"
       },
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey/A2E43B9D-21A3-49A7-BED0-F82F071DDFA3"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/B8FDFCF6-4EE5-4B09-B1E6-9A7FBAF8D3CD"
           }
         },
         "description": "",
-        "id": "A2E43B9D-21A3-49A7-BED0-F82F071DDFA3",
+        "footer_text": null,
+        "id": "B8FDFCF6-4EE5-4B09-B1E6-9A7FBAF8D3CD",
         "intro_text": "",
-        "name": "Generalised Anxiety Disorder Questionnaire (GAD-7)",
+        "name": "Short Form Health Survey SF-36",
         "outro_text": "",
-        "survey_id": "A2E43B9D-21A3-49A7-BED0-F82F071DDFA3",
-        "survey_steps": []
+        "survey_forms": [],
+        "survey_id": "B8FDFCF6-4EE5-4B09-B1E6-9A7FBAF8D3CD"
       }
     ]
   },
   "_links": {
     "first": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey"
     },
     "last": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey?page=1"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey?page=1"
     },
     "self": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey?page=1"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey?page=1"
     }
   },
   "page": 1,

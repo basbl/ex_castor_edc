@@ -1,0 +1,121 @@
+{
+  "_embedded": {
+    "items": [
+      {
+        "complete": 2,
+        "forms": [
+          {
+            "complete": 2,
+            "form_id": "47E81689-CE89-46CB-87DF-DA68CB2414BF",
+            "locked": false,
+            "progress": 100,
+            "sdv": false,
+            "signed": false
+          },
+          {
+            "complete": 2,
+            "form_id": "52652631-30C6-4329-8C14-580759C53222",
+            "locked": false,
+            "progress": 100,
+            "sdv": false,
+            "signed": false
+          }
+        ],
+        "locked": false,
+        "participant_id": "000001",
+        "progress": 100,
+        "sdv": false,
+        "signed": false,
+        "visit_id": "2EAC22F4-09FE-43ED-A6EE-F3514A1C997A"
+      },
+      {
+        "complete": 2,
+        "forms": [
+          {
+            "complete": 2,
+            "form_id": "91779714-9744-4E62-A3A0-BC9521113FC9",
+            "locked": false,
+            "progress": 100,
+            "sdv": false,
+            "signed": false
+          },
+          {
+            "complete": 2,
+            "form_id": "3F075142-968C-4773-AA66-9C2914FB6CD7",
+            "locked": false,
+            "progress": 100,
+            "sdv": false,
+            "signed": false
+          },
+          {
+            "complete": 2,
+            "form_id": "AC8EB6A6-5F50-4306-B0F7-1FF92A451F09",
+            "locked": false,
+            "progress": 100,
+            "sdv": false,
+            "signed": false
+          }
+        ],
+        "locked": false,
+        "participant_id": "000001",
+        "progress": 100,
+        "sdv": false,
+        "signed": false,
+        "visit_id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B"
+      },
+      {
+        "complete": 2,
+        "forms": [
+          {
+            "complete": 2,
+            "form_id": "4C09CC02-F995-420E-94BE-51818341DDB7",
+            "locked": false,
+            "progress": 100,
+            "sdv": false,
+            "signed": false
+          }
+        ],
+        "locked": false,
+        "participant_id": "000001",
+        "progress": 100,
+        "sdv": false,
+        "signed": false,
+        "visit_id": "F0CAEF50-ACA9-4535-A4FC-5DF471C239B3"
+      },
+      {
+        "complete": 2,
+        "forms": [
+          {
+            "complete": 2,
+            "form_id": "ECE715B8-DD70-4BB5-8805-9735DF35F449",
+            "locked": false,
+            "progress": 100,
+            "sdv": false,
+            "signed": false
+          }
+        ],
+        "locked": false,
+        "participant_id": "000001",
+        "progress": 100,
+        "sdv": false,
+        "signed": false,
+        "visit_id": "51833C50-5CDD-4160-9B36-00911DFDC809"
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/participant-progress/000001/visit"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/participant-progress/000001/visit?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/participant-progress/000001/visit?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 25,
+  "total_items": 4
+}

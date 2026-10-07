@@ -1,31 +1,31 @@
 {
   "_embedded": {
-    "report": {
+    "repeating_data": {
       "_links": {
         "self": {
-          "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/EFB381FE-D43E-4846-BA5B-280C12DC1922"
+          "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data/81CF4C62-403C-4844-A186-C19EEDE14362"
         }
       },
-      "description": "Adverse events",
-      "id": "EFB381FE-D43E-4846-BA5B-280C12DC1922",
-      "name": "Adverse event",
-      "report_id": "EFB381FE-D43E-4846-BA5B-280C12DC1922",
-      "type": "adverse_event"
+      "description": "Blood pressure measurements during physical exam.",
+      "id": "81CF4C62-403C-4844-A186-C19EEDE14362",
+      "name": "Blood pressure",
+      "repeating_data_id": "81CF4C62-403C-4844-A186-C19EEDE14362",
+      "type": "repeated_measure"
     }
   },
   "_links": {
     "self": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report-instance/98CFD906-7D4D-43C8-8E83-AC26DBB8BDD5"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data-instance/F01DF8F7-F20C-40F5-8325-411681CA31DB"
     }
   },
   "archived": false,
-  "created_by": "D6A16E39-B3CE-4441-BD7A-43AA1B53A43E",
-  "created_on": "2022-05-07 11:08:13",
-  "id": "98CFD906-7D4D-43C8-8E83-AC26DBB8BDD5",
-  "name": "Adverse event - 07-05-2022 11:08:12",
+  "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+  "created_on": "2026-10-07 21:46:26",
+  "id": "F01DF8F7-F20C-40F5-8325-411681CA31DB",
+  "name": "Blood pressure - 07-10-2026 21:46:26",
   "parent_id": "",
   "parent_type": "",
-  "record_id": "110001",
-  "report_name": "Adverse event",
+  "participant_id": "000001",
+  "repeating_data_name": "Blood pressure",
   "status": "open"
 }

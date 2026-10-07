@@ -1,36 +1,33 @@
 {
   "_links": {
     "self": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/02F149C6-A94E-45DD-93E8-E9849C36692F"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/0020F5A6-60B1-42BF-9E90-97F587C3C163"
     }
   },
   "description": "",
-  "id": "02F149C6-A94E-45DD-93E8-E9849C36692F",
+  "id": "0020F5A6-60B1-42BF-9E90-97F587C3C163",
   "layout": false,
-  "name": "Status",
+  "name": "Position",
   "options": [
     {
+      "domainVariableNameOverride": null,
       "groupOrder": 0,
-      "id": "41CDFFF6-7D3F-4B68-8C71-BF0BE7B2919D",
-      "name": "Under follow-up",
-      "value": "0"
-    },
-    {
-      "groupOrder": 1,
-      "id": "47BE6114-D03F-4505-9D7F-228594C7A1DB",
-      "name": "Referred back to GP",
+      "id": "2FED6223-C791-46F4-AA95-2BEA366B4AE8",
+      "name": "Lying down",
       "value": "1"
     },
     {
-      "groupOrder": 2,
-      "id": "06DE3EA2-57A1-451E-84F9-C4C70A593C31",
-      "name": "Lost to follow-up",
+      "domainVariableNameOverride": null,
+      "groupOrder": 1,
+      "id": "34486240-7CFE-4C09-A9D0-9033B9BA3BC4",
+      "name": "Sitting",
       "value": "2"
     },
     {
-      "groupOrder": 3,
-      "id": "DB1A0B19-898D-4352-9DFE-8A0E09E525AC",
-      "name": "Death",
+      "domainVariableNameOverride": null,
+      "groupOrder": 2,
+      "id": "568317AB-56B9-41EC-B867-660D380C0D26",
+      "name": "Standing",
       "value": "3"
     }
   ]

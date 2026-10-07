@@ -1,7 +1,7 @@
 {
   "method": "GET",
   "operation": "get_field",
-  "path": "/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field/4282728F-D112-4F96-99E2-2DDDFF012EC4",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field/010F8DF8-1474-4981-8CA3-B37173E42EAB",
   "query": null,
   "status": 200
 }

@@ -1,0 +1,65 @@
+{
+  "_embedded": {
+    "surveys": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/B8FDFCF6-4EE5-4B09-B1E6-9A7FBAF8D3CD"
+          }
+        },
+        "description": "",
+        "footer_text": null,
+        "id": "B8FDFCF6-4EE5-4B09-B1E6-9A7FBAF8D3CD",
+        "intro_text": "",
+        "name": "Short Form Health Survey SF-36",
+        "outro_text": "",
+        "survey_forms": [],
+        "survey_id": "B8FDFCF6-4EE5-4B09-B1E6-9A7FBAF8D3CD"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E"
+          }
+        },
+        "description": "",
+        "footer_text": null,
+        "id": "23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E",
+        "intro_text": "",
+        "name": "Generalised Anxiety Disorder Questionnaire (GAD-7)",
+        "outro_text": "",
+        "survey_forms": [],
+        "survey_id": "23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E"
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey-package/1430DFBE-526A-44AC-856E-BF44A99139B6"
+    }
+  },
+  "allow_open_survey_link": false,
+  "allow_step_navigation": true,
+  "as_needed": false,
+  "auto_5s_redirect": false,
+  "auto_lock_on_finish": true,
+  "default_invitation": "Dear participant,\n\nPlease click the link below to complete our survey.\n\n{url}",
+  "default_invitation_subject": "Health and Anxiety Survey",
+  "description": "",
+  "expire_after_hours": null,
+  "field_pagination": "none",
+  "finish_url": "",
+  "id": "1430DFBE-526A-44AC-856E-BF44A99139B6",
+  "intro_text": "",
+  "is_mobile": false,
+  "is_repeatable": false,
+  "is_resumable": false,
+  "is_training": false,
+  "name": "Health and Anxiety Disorder survey package",
+  "outro_text": "",
+  "pre_redirect_text": "",
+  "sender_email": "user@example.org",
+  "sender_name": "Castor EDC",
+  "show_step_navigator": true,
+  "survey_package_id": "1430DFBE-526A-44AC-856E-BF44A99139B6"
+}

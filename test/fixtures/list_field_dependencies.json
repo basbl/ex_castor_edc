@@ -4,86 +4,86 @@
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-dependency/1"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/68"
           }
         },
-        "child_id": "53CAAC60-5535-49B2-A042-D6B093CB8E35",
-        "id": 1,
+        "child_id": "A10A04C9-C861-47A7-AFC8-B5F5F092417E",
+        "id": 68,
         "operator": "==",
-        "parent_id": "73CAD717-F70B-420F-9777-CF363D8A8FFE",
+        "parent_id": "40A78E37-E98E-4A96-911A-A0505A53B60D",
         "value": "14"
       },
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-dependency/2"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/69"
           }
         },
-        "child_id": "DA0E5397-051D-4437-A085-E94D5855B5CF",
-        "id": 2,
+        "child_id": "1B71BE3C-B9CE-4418-94CF-3A921D86B07E",
+        "id": 69,
         "operator": "!=",
-        "parent_id": "7A54DBD7-5EC2-41D5-B566-BA31AF3201FD",
+        "parent_id": "1B7E969E-F103-4AFE-99EA-1CAFD9401034",
         "value": "0"
       },
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-dependency/3"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/70"
           }
         },
-        "child_id": "E6D2AC9B-4A74-40C4-A69C-12BD2895D81C",
-        "id": 3,
+        "child_id": "F9AD33BA-01F1-4135-8347-109AC6A55B45",
+        "id": 70,
         "operator": "!=",
-        "parent_id": "7A54DBD7-5EC2-41D5-B566-BA31AF3201FD",
+        "parent_id": "1B7E969E-F103-4AFE-99EA-1CAFD9401034",
         "value": "0"
       },
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-dependency/4"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/71"
           }
         },
-        "child_id": "056D86C0-9A95-4E07-8BE2-26527C7667A7",
-        "id": 4,
+        "child_id": "6BEF5E53-DBD3-41A7-9401-005240DDC768",
+        "id": 71,
         "operator": "==",
-        "parent_id": "C8F92082-B29C-4A23-88ED-46F83705F3BF",
+        "parent_id": "370A1634-B2BC-4B4D-8114-98D72461E129",
         "value": "3"
       },
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-dependency/5"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/72"
           }
         },
-        "child_id": "3CB8F5BA-398A-49E9-8B9D-3E73ADAB7815",
-        "id": 5,
+        "child_id": "5EAAEAFB-616E-41E7-A974-57C2C97B9C56",
+        "id": 72,
         "operator": "==",
-        "parent_id": "C8F92082-B29C-4A23-88ED-46F83705F3BF",
+        "parent_id": "370A1634-B2BC-4B4D-8114-98D72461E129",
         "value": "2"
       },
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-dependency/6"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/73"
           }
         },
-        "child_id": "92EC67EE-35C3-4FCF-B129-90B05CD4FA00",
-        "id": 6,
+        "child_id": "73BE4F1C-FBA4-43B8-9578-1BF96B6120F9",
+        "id": 73,
         "operator": "==",
-        "parent_id": "C8F92082-B29C-4A23-88ED-46F83705F3BF",
+        "parent_id": "370A1634-B2BC-4B4D-8114-98D72461E129",
         "value": "2"
       }
     ]
   },
   "_links": {
     "first": {
-      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-dependency"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency"
     },
     "last": {
-      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-dependency?page=1"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency?page=1"
     },
     "self": {
-      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-dependency?page=1"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency?page=1"
     }
   },
   "page": 1,

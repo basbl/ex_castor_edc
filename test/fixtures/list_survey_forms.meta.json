@@ -1,7 +1,7 @@
 {
   "method": "GET",
   "operation": "list_survey_forms",
-  "path": "/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey/83F352DC-816B-4387-A13E-6D716D44AE83/survey-form",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E/survey-form",
   "query": null,
   "status": 200
 }

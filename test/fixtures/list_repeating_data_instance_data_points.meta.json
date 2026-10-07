@@ -1,7 +1,7 @@
 {
   "method": "GET",
   "operation": "list_repeating_data_instance_data_points",
-  "path": "/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/data-points/repeating-data-instance/C818FFC2-0FB8-4DDE-9317-231D99B1F453",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/data-points/repeating-data-instance/F01DF8F7-F20C-40F5-8325-411681CA31DB",
   "query": null,
   "status": 200
 }

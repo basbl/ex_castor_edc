@@ -4,2307 +4,32 @@
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/02F149C6-A94E-45DD-93E8-E9849C36692F"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/0020F5A6-60B1-42BF-9E90-97F587C3C163"
           }
         },
         "description": "",
-        "id": "02F149C6-A94E-45DD-93E8-E9849C36692F",
-        "layout": false,
-        "name": "Status",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "41CDFFF6-7D3F-4B68-8C71-BF0BE7B2919D",
-            "name": "Under follow-up",
-            "value": "0"
-          },
-          {
-            "groupOrder": 1,
-            "id": "47BE6114-D03F-4505-9D7F-228594C7A1DB",
-            "name": "Referred back to GP",
-            "value": "1"
-          },
-          {
-            "groupOrder": 2,
-            "id": "06DE3EA2-57A1-451E-84F9-C4C70A593C31",
-            "name": "Lost to follow-up",
-            "value": "2"
-          },
-          {
-            "groupOrder": 3,
-            "id": "DB1A0B19-898D-4352-9DFE-8A0E09E525AC",
-            "name": "Death",
-            "value": "3"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/06044B35-0FC0-4C3B-95F9-7B6205B812CF"
-          }
-        },
-        "description": "",
-        "id": "06044B35-0FC0-4C3B-95F9-7B6205B812CF",
-        "layout": false,
-        "name": "Not at all-Extremely",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "5967C0BB-6360-47EE-AA1F-606EFD13BFEF",
-            "name": "Not at all",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "5995DC14-49F2-40C8-AABE-6C58C7302AED",
-            "name": "Slightly",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "0C451851-8615-4193-9912-C3DAA3D34F17",
-            "name": "Moderately",
-            "value": "3"
-          },
-          {
-            "groupOrder": 3,
-            "id": "D95994A9-D9C6-4DC2-B69A-0B3A5C514EDE",
-            "name": "Quite a bit",
-            "value": "4"
-          },
-          {
-            "groupOrder": 4,
-            "id": "226974CC-5E0D-40BF-B7D8-CC2AC25FD045",
-            "name": "Extremely",
-            "value": "5"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/11C43662-E6BF-4944-88D5-F6E9DA9F4A7C"
-          }
-        },
-        "description": "",
-        "id": "11C43662-E6BF-4944-88D5-F6E9DA9F4A7C",
-        "layout": false,
-        "name": "GAD-7 scale",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "57C36752-6590-4F52-80DF-5C577F70DB8B",
-            "name": "Not at all",
-            "value": "0"
-          },
-          {
-            "groupOrder": 1,
-            "id": "4F7D9079-7638-436A-8AB0-3B381E808DC6",
-            "name": "Several days",
-            "value": "1"
-          },
-          {
-            "groupOrder": 2,
-            "id": "A9416C95-8EBA-4460-B924-984AEB7B5956",
-            "name": "More than half the days",
-            "value": "2"
-          },
-          {
-            "groupOrder": 3,
-            "id": "4976EB2E-CA5A-466C-9A2D-7C5876E1BA06",
-            "name": "Nearly every day",
-            "value": "3"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/12058A72-0F82-4D8B-86AC-8CAC346AFC5B"
-          }
-        },
-        "description": "sex",
-        "id": "12058A72-0F82-4D8B-86AC-8CAC346AFC5B",
-        "layout": false,
-        "name": "sex",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "76D36DCD-9FEB-4420-8EA6-7F26A7C9ED4E",
-            "name": "Female",
-            "value": "0"
-          },
-          {
-            "groupOrder": 1,
-            "id": "3D3E2E42-FC96-4A89-A266-8C96CF100535",
-            "name": "Male",
-            "value": "1"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/16BB1474-9D4A-4B3F-9DA3-325D81194E79"
-          }
-        },
-        "description": "Medication class",
-        "id": "16BB1474-9D4A-4B3F-9DA3-325D81194E79",
-        "layout": false,
-        "name": "med_class_dropdown",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "98D9805B-7563-43A4-8A69-7EF2D94CB024",
-            "name": "ACE inhibitor (ACEi)",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "6BA54979-70B6-4CEA-AC5A-75F9593BEFDC",
-            "name": "Angiotensin receptor blocker (ARB)",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "A7ECFADD-5F45-4675-8BB4-AAA0D1A4813C",
-            "name": "Loop diuretics",
-            "value": "3"
-          },
-          {
-            "groupOrder": 3,
-            "id": "5FE5B511-F104-4224-9CDB-93D8D73AABE8",
-            "name": "Anti-aldosterone diurectics",
-            "value": "4"
-          },
-          {
-            "groupOrder": 4,
-            "id": "DE5F1739-2DCB-4BA3-9119-F7573277AD4B",
-            "name": "Thiazide diuretics",
-            "value": "5"
-          },
-          {
-            "groupOrder": 5,
-            "id": "FB2731FF-CC13-43D2-B54C-B3359B95D9B8",
-            "name": "Other diurectics",
-            "value": "6"
-          },
-          {
-            "groupOrder": 6,
-            "id": "92FA2074-B1B8-4DFD-A237-55DFB0DB5D47",
-            "name": "Lipid lowering drugs",
-            "value": "7"
-          },
-          {
-            "groupOrder": 7,
-            "id": "9023D383-350E-46B2-8D6F-B6EEF429108B",
-            "name": "Anti-platelets",
-            "value": "8"
-          },
-          {
-            "groupOrder": 8,
-            "id": "17B89841-A49D-4C62-8D18-FBBAF46093FE",
-            "name": "Anti-coagulants",
-            "value": "9"
-          },
-          {
-            "groupOrder": 9,
-            "id": "CEE48038-8049-4081-B3AB-57DFD2A33FC5",
-            "name": "Prednisolone (oral administration)",
-            "value": "10"
-          },
-          {
-            "groupOrder": 10,
-            "id": "1DACF486-FBC4-4664-8AE0-7BEBAC02A3CA",
-            "name": "Methylprednisolone (IV pulse therapy)",
-            "value": "11"
-          },
-          {
-            "groupOrder": 11,
-            "id": "6321CBF0-8C4A-493B-AE28-6D7D072AE9F7",
-            "name": "Cyclophosphamide",
-            "value": "12"
-          },
-          {
-            "groupOrder": 12,
-            "id": "3208E9F0-85A6-42FA-B69C-A595D067DCE6",
-            "name": "Cyclosporin A",
-            "value": "13"
-          },
-          {
-            "groupOrder": 13,
-            "id": "F34AC6D4-BB1C-4C17-ACE5-DD0CB6A164BD",
-            "name": "Tacrolimus",
-            "value": "14"
-          },
-          {
-            "groupOrder": 14,
-            "id": "C4F7C2E8-660D-4983-B982-EA5F6953570C",
-            "name": "Mycofenolate Mofetil (MMF)",
-            "value": "15"
-          },
-          {
-            "groupOrder": 15,
-            "id": "DEF90522-5706-4D8E-8156-623900E9AEDD",
-            "name": "Azathioprine",
-            "value": "16"
-          },
-          {
-            "groupOrder": 16,
-            "id": "EF5BC43E-CE42-4B3C-A0D5-E7F3574FCE4C",
-            "name": "Chloorambucil",
-            "value": "17"
-          },
-          {
-            "groupOrder": 17,
-            "id": "F898E6FE-8DDE-4A45-A6C5-5FE9E0A04C10",
-            "name": "Rituximab",
-            "value": "18"
-          },
-          {
-            "groupOrder": 18,
-            "id": "9A3716AC-A36C-4F60-8897-95AA9BEDEC5C",
-            "name": "Oral anti-diabetics",
-            "value": "19"
-          },
-          {
-            "groupOrder": 19,
-            "id": "85719F85-446E-404A-AE62-6F896DA7FE11",
-            "name": "Insulin s.c.",
-            "value": "20"
-          },
-          {
-            "groupOrder": 20,
-            "id": "98B0B237-0705-46AB-AB94-B2480F29E9C4",
-            "name": "Anti-Blyss (belumimab)",
-            "value": "21"
-          },
-          {
-            "groupOrder": 21,
-            "id": "4D5EFF6C-DC00-4C57-A779-644E09155C5C",
-            "name": "ACTH",
-            "value": "22"
-          },
-          {
-            "groupOrder": 22,
-            "id": "7E439FD2-5ED7-43E1-8673-5A5DBC95B224",
-            "name": "Ofatumumab",
-            "value": "23"
-          },
-          {
-            "groupOrder": 23,
-            "id": "50C8CDA8-A06C-47CF-BFA4-D7E72E0827AA",
-            "name": "NSAID",
-            "value": "24"
-          },
-          {
-            "groupOrder": 24,
-            "id": "60B4B37A-60AD-444E-A332-F9785697B05A",
-            "name": "Eculizumab",
-            "value": "25"
-          },
-          {
-            "groupOrder": 25,
-            "id": "2EB7E04C-BA9C-4D46-9BC9-B34F46324294",
-            "name": "Bortezomib",
-            "value": "26"
-          },
-          {
-            "groupOrder": 26,
-            "id": "9318FF03-668E-4145-8837-047B4359B52B",
-            "name": "Daratumumab",
-            "value": "27"
-          },
-          {
-            "groupOrder": 28,
-            "id": "4142CDE5-9C60-4D97-A4CB-391540723D5E",
-            "name": "IVIG",
-            "value": "29"
-          },
-          {
-            "groupOrder": 29,
-            "id": "C2FEECBC-E044-4B3B-8EE4-9799F321CC17",
-            "name": "Electrolyte supplements",
-            "value": "30"
-          },
-          {
-            "groupOrder": 30,
-            "id": "A2B51764-EDBF-4384-8567-1A1E93394A5B",
-            "name": "Other antihypertensives",
-            "value": "31"
-          },
-          {
-            "groupOrder": 31,
-            "id": "60275064-D44D-4283-9528-86823AC17929",
-            "name": "Proton pump inhibitors (PPIs)",
-            "value": "32"
-          },
-          {
-            "groupOrder": 32,
-            "id": "91604577-E3CE-448C-9C03-E1E035E6B6BB",
-            "name": "Other medication",
-            "value": "33"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/2CB1D4C0-3788-4412-8C5B-C2BDEC0E703D"
-          }
-        },
-        "description": "",
-        "id": "2CB1D4C0-3788-4412-8C5B-C2BDEC0E703D",
-        "layout": false,
-        "name": "Health a year ago",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "DEBEBFE2-0111-4A29-8D3F-96B0D8BEADE9",
-            "name": "Much better now than one year ago",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "0D86468F-1C89-41B2-9FAC-CE28EB819451",
-            "name": "Somewhat better now than one year ago",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "5DD47DC7-48D3-4C17-A5C5-5690438991AC",
-            "name": "About the same",
-            "value": "3"
-          },
-          {
-            "groupOrder": 3,
-            "id": "57BBF87E-E6A7-4ABA-9135-7AFA14780F16",
-            "name": "Somewhat worse now than one year ago",
-            "value": "4"
-          },
-          {
-            "groupOrder": 4,
-            "id": "B76D4F91-128A-4B27-82A3-F1EF99DD5066",
-            "name": "Much worse now than one year ago",
-            "value": "5"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/337A61B1-27FF-4195-AA32-0421E72EA02B"
-          }
-        },
-        "description": "Yes or No",
-        "id": "337A61B1-27FF-4195-AA32-0421E72EA02B",
-        "layout": false,
-        "name": "og_ynu",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "C70B1871-4356-422B-8642-93C7B283BABD",
-            "name": "No",
-            "value": "0"
-          },
-          {
-            "groupOrder": 1,
-            "id": "18B4172E-F44D-45D3-B731-3E3B5D07D5EC",
-            "name": "Yes",
-            "value": "1"
-          },
-          {
-            "groupOrder": 2,
-            "id": "6809A819-D708-48C4-9A9A-0F949D67AB0C",
-            "name": "Unknown",
-            "value": "9"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/44E90E11-1B47-47CB-8AD8-29FB9BD7D5A7"
-          }
-        },
-        "description": "",
-        "id": "44E90E11-1B47-47CB-8AD8-29FB9BD7D5A7",
-        "layout": false,
-        "name": "Definitely true-Definitely false",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "B2E49FE8-56CA-42BF-8329-89CC1FB67397",
-            "name": "Definitely true",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "22F1A1DF-7597-41BF-A1B1-ECE8734B04E0",
-            "name": "Mostly true",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "0B1BB1D7-3D4C-4C73-BF0C-B62F3FCBC661",
-            "name": "Don't know",
-            "value": "3"
-          },
-          {
-            "groupOrder": 3,
-            "id": "319C3BA4-360A-4EBC-A4C3-47C8216E9B69",
-            "name": "Mostly false",
-            "value": "4"
-          },
-          {
-            "groupOrder": 4,
-            "id": "2DF59D11-353F-49D2-8BA0-75F4D81B649E",
-            "name": "Definitely false",
-            "value": "5"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/4BF134B6-F4C1-4B62-A6CB-195933755A22"
-          }
-        },
-        "description": "",
-        "id": "4BF134B6-F4C1-4B62-A6CB-195933755A22",
-        "layout": false,
-        "name": "fuvis_type_grp",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "66563B38-5623-4BD1-9178-AE19F7E26BA2",
-            "name": "in-patient admission",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "FDC633B5-B56E-435D-8A98-5958F0960AE9",
-            "name": "out-patient visit",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "3C14F857-A233-474D-A716-A23D3912A6C8",
-            "name": "admission to day-care",
-            "value": "3"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/4C92F11F-EC94-40F8-8AED-EECEE551E711"
-          }
-        },
-        "description": "",
-        "id": "4C92F11F-EC94-40F8-8AED-EECEE551E711",
-        "layout": false,
-        "name": "All of the Time-None of the Time",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "71F735C7-0B92-4EFA-8CEA-F528FF4A314A",
-            "name": "All of the time",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "79A71502-64A1-4C13-98E5-9F59B3760895",
-            "name": "Most of the time",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "CA1F9D8F-A972-4373-BCCD-2B5C5B175C0D",
-            "name": "A good bit of the time",
-            "value": "3"
-          },
-          {
-            "groupOrder": 3,
-            "id": "0F175454-0621-4BBA-851D-741358664229",
-            "name": "Some of the time",
-            "value": "4"
-          },
-          {
-            "groupOrder": 4,
-            "id": "ECD84D68-3B2B-4F63-9147-F37A66900B32",
-            "name": "A little of the time",
-            "value": "5"
-          },
-          {
-            "groupOrder": 5,
-            "id": "917754E2-2BFA-4677-A41F-C241D97B9BB6",
-            "name": "None of the time",
-            "value": "6"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/50EBC4FB-63A0-4F8D-8211-6AE3E95A42EC"
-          }
-        },
-        "description": "",
-        "id": "50EBC4FB-63A0-4F8D-8211-6AE3E95A42EC",
-        "layout": false,
-        "name": "Yes/No",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "AF2C5D7D-7314-42B8-804B-EE8ADDF2CC23",
-            "name": "Yes",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "3245E9DE-19C3-431C-944B-83BDD8B496C2",
-            "name": "No",
-            "value": "0"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/536386AF-1569-4B3D-A66D-973C366E1EE5"
-          }
-        },
-        "description": "",
-        "id": "536386AF-1569-4B3D-A66D-973C366E1EE5",
-        "layout": false,
-        "name": "Severity",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "15187ED0-8E3D-468F-92F2-B9C94D20F1E9",
-            "name": "Mild",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "0AC38D26-C24D-4F3F-ABED-3C5BF4F435F0",
-            "name": "Moderate",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "1CFDCA00-942C-475E-AE12-B1283A51EFF5",
-            "name": "Severe",
-            "value": "3"
-          },
-          {
-            "groupOrder": 3,
-            "id": "35846BFC-8C30-4B83-BC86-D45171BF266B",
-            "name": "Life-threatening",
-            "value": "4"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/5402C853-5E6E-4BAA-98D4-CF15542C9D9E"
-          }
-        },
-        "description": "",
-        "id": "5402C853-5E6E-4BAA-98D4-CF15542C9D9E",
-        "layout": false,
-        "name": "FamHistory",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "88199307-1C23-40D3-A3B8-1002AB1DE108",
-            "name": "Renal disease",
-            "value": "0"
-          },
-          {
-            "groupOrder": 2,
-            "id": "54F24515-598C-4681-AC22-B724EAA14145",
-            "name": "Deafness",
-            "value": "1"
-          },
-          {
-            "groupOrder": 3,
-            "id": "65DC79A6-87AB-4953-85FB-217521A28F92",
-            "name": "(Cardio)myopathy",
-            "value": "2"
-          },
-          {
-            "groupOrder": 4,
-            "id": "10B5536E-5AC9-4691-A9F5-4187332A972D",
-            "name": "Encephalopathy",
-            "value": "3"
-          },
-          {
-            "groupOrder": 5,
-            "id": "1E9AFC17-00D2-4091-A91A-4504AE31AD56",
-            "name": "Diabetes Mellitus",
-            "value": "4"
-          },
-          {
-            "groupOrder": 6,
-            "id": "54067783-55E9-4ED2-A334-D5B7A1763167",
-            "name": "Hypertension/Cardiovascular disease",
-            "value": "5"
-          },
-          {
-            "groupOrder": 7,
-            "id": "2C34B843-2684-4F59-87D5-9B95B2B4A2A2",
-            "name": "Thrombosis",
-            "value": "6"
-          },
-          {
-            "groupOrder": 8,
-            "id": "F619B1F9-63E1-4C9C-A993-D7071CCB459E",
-            "name": "Malignancy",
-            "value": "7"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/5E954826-DFFE-4672-AADB-329E2AB1AF55"
-          }
-        },
-        "description": "",
-        "id": "5E954826-DFFE-4672-AADB-329E2AB1AF55",
-        "layout": false,
-        "name": "Not at all-Extremely (pain)",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "142D367B-729E-481F-8523-E1D24E7F8BB6",
-            "name": "Not at all",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "81B284AE-FC18-4FA5-801F-5A780D874A9E",
-            "name": "A little bit",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "840068D2-EF2B-4CFE-8EB4-5A4DA8D274DD",
-            "name": "Moderately",
-            "value": "3"
-          },
-          {
-            "groupOrder": 3,
-            "id": "B89B050A-CF48-4E7D-8918-F48FDD36A30B",
-            "name": "Quite a bit",
-            "value": "4"
-          },
-          {
-            "groupOrder": 4,
-            "id": "D7177027-B16C-4557-B5AC-4013248CB82E",
-            "name": "Extremely",
-            "value": "5"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/6589277F-D512-46A1-A5FE-2F4EFE0FF3E3"
-          }
-        },
-        "description": "",
-        "id": "6589277F-D512-46A1-A5FE-2F4EFE0FF3E3",
-        "layout": false,
-        "name": "Excellent-Poor",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "088B6A3F-988F-48E5-9DAA-0C82DE1F66F7",
-            "name": "Excellent",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "5E932917-6612-456B-B7E8-DF1DFF2A6307",
-            "name": "Very good",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "32FA6203-E7F5-42CD-A034-F6A29CBDAE5A",
-            "name": "Good",
-            "value": "3"
-          },
-          {
-            "groupOrder": 3,
-            "id": "F07F28AB-E4E4-4928-A9B2-3D33E43E6447",
-            "name": "Fair",
-            "value": "4"
-          },
-          {
-            "groupOrder": 4,
-            "id": "E465468B-425B-4F3F-AF0E-2191E79A933A",
-            "name": "Poor",
-            "value": "5"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/7391AA18-77A4-419D-9115-87BD6783FD66"
-          }
-        },
-        "description": "",
-        "id": "7391AA18-77A4-419D-9115-87BD6783FD66",
-        "layout": false,
-        "name": "Country",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "0439FE12-C4A3-4261-A747-2A810A1F9CB5",
-            "name": "Afghanistan",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "8097C9B1-D27F-4491-A203-F09F81D9F9D3",
-            "name": "Albania",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "057D9CEA-3AD6-45C0-9FC8-1D2A95049325",
-            "name": "Algeria",
-            "value": "3"
-          },
-          {
-            "groupOrder": 3,
-            "id": "C9B50880-BCAA-4E15-98F9-48ED4F581220",
-            "name": "Andorra",
-            "value": "4"
-          },
-          {
-            "groupOrder": 4,
-            "id": "C50DCA04-4832-4683-9E99-F3CA1A634862",
-            "name": "Angola",
-            "value": "5"
-          },
-          {
-            "groupOrder": 5,
-            "id": "7A5B8538-CAC1-448F-A8B6-38FC6C8A17BD",
-            "name": "Antigua and Barbuda",
-            "value": "6"
-          },
-          {
-            "groupOrder": 6,
-            "id": "02DCB09A-FFFD-4F43-874F-A157FDFCF9A5",
-            "name": "Argentina",
-            "value": "7"
-          },
-          {
-            "groupOrder": 7,
-            "id": "0D4981CE-6A82-4867-972F-C56160A44738",
-            "name": "Armenia",
-            "value": "8"
-          },
-          {
-            "groupOrder": 8,
-            "id": "C5715E11-9226-4D47-819C-C6DD02564AA6",
-            "name": "Australia",
-            "value": "9"
-          },
-          {
-            "groupOrder": 9,
-            "id": "430FE248-1312-4629-B011-45C034F58540",
-            "name": "Austria",
-            "value": "10"
-          },
-          {
-            "groupOrder": 10,
-            "id": "32CEBAF9-7C3C-47D2-BFA3-A1349E891B5C",
-            "name": "Azerbaijan",
-            "value": "11"
-          },
-          {
-            "groupOrder": 11,
-            "id": "E7A22382-0C12-4978-A8D0-FBA81E338A20",
-            "name": "Bahamas",
-            "value": "12"
-          },
-          {
-            "groupOrder": 12,
-            "id": "C26A50B4-8E67-4A4F-9AC8-37865437DF38",
-            "name": "Bahrain",
-            "value": "13"
-          },
-          {
-            "groupOrder": 13,
-            "id": "A6E1BE8F-47FD-480B-AB04-F87FE7D5D6BB",
-            "name": "Bangladesh",
-            "value": "14"
-          },
-          {
-            "groupOrder": 14,
-            "id": "A92A460D-A344-4D3F-AEEB-C9705FBD01A4",
-            "name": "Barbados",
-            "value": "15"
-          },
-          {
-            "groupOrder": 15,
-            "id": "F8589058-5301-45E9-A545-77FF89B01E4C",
-            "name": "Belarus",
-            "value": "16"
-          },
-          {
-            "groupOrder": 16,
-            "id": "4FC073D2-A0FC-4268-A34F-D161114315A9",
-            "name": "Belgium",
-            "value": "17"
-          },
-          {
-            "groupOrder": 17,
-            "id": "E5BD41B3-85E4-45B8-A67A-2A644F2C9D13",
-            "name": "Belize",
-            "value": "18"
-          },
-          {
-            "groupOrder": 18,
-            "id": "BFE83EDC-0B95-4E4B-9B2D-366F56812D11",
-            "name": "Benin",
-            "value": "19"
-          },
-          {
-            "groupOrder": 19,
-            "id": "AEDE94CD-56C5-4FE2-8EAC-885B5AC4161C",
-            "name": "Bhutan",
-            "value": "20"
-          },
-          {
-            "groupOrder": 20,
-            "id": "638C06E8-6B35-4132-8EDD-FF84387A505E",
-            "name": "Bolivia",
-            "value": "21"
-          },
-          {
-            "groupOrder": 21,
-            "id": "1F71C0BF-73F0-4BEF-A7C2-E73084E90853",
-            "name": "Bosnia and Herzegovina",
-            "value": "22"
-          },
-          {
-            "groupOrder": 22,
-            "id": "93781CEB-FE5D-418C-B26A-2EFE4D62F434",
-            "name": "Botswana",
-            "value": "23"
-          },
-          {
-            "groupOrder": 23,
-            "id": "73655C3D-33DB-4D90-AAC2-7D606CBC1C6A",
-            "name": "Brazil",
-            "value": "24"
-          },
-          {
-            "groupOrder": 24,
-            "id": "B9B56497-1650-4FD5-A31D-6E03B5814DC7",
-            "name": "Brunei",
-            "value": "25"
-          },
-          {
-            "groupOrder": 25,
-            "id": "B678397D-86AF-42C8-B66A-60AEA1E2DC21",
-            "name": "Bulgaria",
-            "value": "26"
-          },
-          {
-            "groupOrder": 26,
-            "id": "BEE15AAD-18DD-43E5-AE53-5DFAD03679B6",
-            "name": "Burkina Faso",
-            "value": "27"
-          },
-          {
-            "groupOrder": 27,
-            "id": "F4B1FAD2-A293-405B-AE9C-18DBBCF153C3",
-            "name": "Burundi",
-            "value": "28"
-          },
-          {
-            "groupOrder": 28,
-            "id": "F9E4A8C1-77A2-409D-A5C4-6EEBF393522C",
-            "name": "Cabo Verde",
-            "value": "29"
-          },
-          {
-            "groupOrder": 29,
-            "id": "F5860998-F8EE-4DFC-97A6-D641F4EE025F",
-            "name": "Cambodia",
-            "value": "30"
-          },
-          {
-            "groupOrder": 30,
-            "id": "0B89749B-A171-4479-ABB6-D3A00CBE9CA6",
-            "name": "Cameroon",
-            "value": "31"
-          },
-          {
-            "groupOrder": 31,
-            "id": "227BCDF7-307E-4A83-9AFF-4208C466DE03",
-            "name": "Canada",
-            "value": "32"
-          },
-          {
-            "groupOrder": 32,
-            "id": "68515636-091A-435B-9590-9808A088EC31",
-            "name": "Central African Republic",
-            "value": "33"
-          },
-          {
-            "groupOrder": 33,
-            "id": "044C8E1C-2215-4C90-AE91-BB1A3054CF68",
-            "name": "Chad",
-            "value": "34"
-          },
-          {
-            "groupOrder": 34,
-            "id": "1AD89A6D-D204-4257-B0F5-9AA6FD832C73",
-            "name": "Chile",
-            "value": "35"
-          },
-          {
-            "groupOrder": 35,
-            "id": "526E1992-0867-48B6-AC4C-CFA2B3CC0629",
-            "name": "China",
-            "value": "36"
-          },
-          {
-            "groupOrder": 36,
-            "id": "E9C6A052-64A9-4BC9-BB96-A46AB7C63463",
-            "name": "Colombia",
-            "value": "37"
-          },
-          {
-            "groupOrder": 37,
-            "id": "8743FBC1-0DCD-43D5-B019-72523B8C5B57",
-            "name": "Comoros",
-            "value": "38"
-          },
-          {
-            "groupOrder": 38,
-            "id": "082D1BA2-D5D3-487A-9A34-7E05A5445B5A",
-            "name": "Democratic Republic of the Congo",
-            "value": "39"
-          },
-          {
-            "groupOrder": 39,
-            "id": "502F57D8-5CA8-4FC0-8BEF-A52BCA76B002",
-            "name": "Republic of the Congo",
-            "value": "40"
-          },
-          {
-            "groupOrder": 40,
-            "id": "E58BC89D-5CB4-4A4D-8AF8-BE969B46E0BE",
-            "name": "Costa Rica",
-            "value": "41"
-          },
-          {
-            "groupOrder": 41,
-            "id": "ECC8C6CE-2E9E-414A-BC8E-90A537973F27",
-            "name": "Cote d Ivoire",
-            "value": "42"
-          },
-          {
-            "groupOrder": 42,
-            "id": "A7C2168A-41CF-4966-A53C-23973E8A5C7B",
-            "name": "Croatia",
-            "value": "43"
-          },
-          {
-            "groupOrder": 43,
-            "id": "50092957-717B-4BCF-AED8-0942D88A515D",
-            "name": "Cuba",
-            "value": "44"
-          },
-          {
-            "groupOrder": 44,
-            "id": "25E812C3-63E0-40FF-8DB4-67997442F8EF",
-            "name": "Cyprus",
-            "value": "45"
-          },
-          {
-            "groupOrder": 45,
-            "id": "02E06D43-481A-4168-B2BE-2C6B0635ADA7",
-            "name": "Czech Republic",
-            "value": "46"
-          },
-          {
-            "groupOrder": 46,
-            "id": "002D647B-9CAE-4A53-AE4D-FB2EF0B91B23",
-            "name": "Denmark",
-            "value": "47"
-          },
-          {
-            "groupOrder": 47,
-            "id": "E5446315-7008-4AFF-B04F-6F2FD6219453",
-            "name": "Djibouti",
-            "value": "48"
-          },
-          {
-            "groupOrder": 48,
-            "id": "45094E45-20BA-4674-AB6E-7A94B1527458",
-            "name": "Dominica",
-            "value": "49"
-          },
-          {
-            "groupOrder": 49,
-            "id": "13690EB0-20F9-4632-8E5F-104B9BC18633",
-            "name": "Dominican Republic",
-            "value": "50"
-          },
-          {
-            "groupOrder": 50,
-            "id": "1CC36405-82C0-4730-8C40-BEEFDA69DE59",
-            "name": "Ecuador",
-            "value": "51"
-          },
-          {
-            "groupOrder": 51,
-            "id": "336A216A-29B6-461A-9455-C5CDD7BB163E",
-            "name": "Egypt",
-            "value": "52"
-          },
-          {
-            "groupOrder": 52,
-            "id": "C1951F90-A3BE-4C2A-9605-725124630915",
-            "name": "El Salvador",
-            "value": "53"
-          },
-          {
-            "groupOrder": 53,
-            "id": "FB4862A1-3BC2-4498-8C72-5EC126A90CAA",
-            "name": "Equatorial Guinea",
-            "value": "54"
-          },
-          {
-            "groupOrder": 54,
-            "id": "DAF12FAB-FB54-4C03-82C0-C1282E011D58",
-            "name": "Eritrea",
-            "value": "55"
-          },
-          {
-            "groupOrder": 55,
-            "id": "B2EDAADA-CFEF-4CEC-9896-0D0453A6B888",
-            "name": "Estonia",
-            "value": "56"
-          },
-          {
-            "groupOrder": 56,
-            "id": "B4AAC072-CFC7-42AE-BA3E-69D4901EF0E0",
-            "name": "Ethiopia",
-            "value": "57"
-          },
-          {
-            "groupOrder": 57,
-            "id": "6A626D46-BC90-4A4C-99F1-E6D16E7B243F",
-            "name": "Fiji",
-            "value": "58"
-          },
-          {
-            "groupOrder": 58,
-            "id": "B1130F34-11B1-4E91-82EE-CE55F815E68D",
-            "name": "Finland",
-            "value": "59"
-          },
-          {
-            "groupOrder": 59,
-            "id": "6A5ECBC8-6BDE-417E-B6AC-0C7CEE300357",
-            "name": "France",
-            "value": "60"
-          },
-          {
-            "groupOrder": 60,
-            "id": "71BB7CF8-BF92-4EB7-A22A-97EF70D46CC1",
-            "name": "Gabon",
-            "value": "61"
-          },
-          {
-            "groupOrder": 61,
-            "id": "75C07264-3A34-45D6-B709-D281B045DA9F",
-            "name": "Gambia",
-            "value": "62"
-          },
-          {
-            "groupOrder": 62,
-            "id": "9AD4BD7B-02AB-4B37-A425-868FEFE5B873",
-            "name": "Georgia",
-            "value": "63"
-          },
-          {
-            "groupOrder": 63,
-            "id": "E284C8AA-E3C3-4AAE-9B0C-375EE2CE1836",
-            "name": "Germany",
-            "value": "64"
-          },
-          {
-            "groupOrder": 64,
-            "id": "508575ED-6EBD-4CB7-814F-8AC3C31A8C14",
-            "name": "Ghana",
-            "value": "65"
-          },
-          {
-            "groupOrder": 65,
-            "id": "694DFE20-B8CA-48CB-ACAE-2F269D819E5A",
-            "name": "Greece",
-            "value": "66"
-          },
-          {
-            "groupOrder": 66,
-            "id": "5FF6EEF6-389A-42E7-A002-D89D24FAD1CB",
-            "name": "Grenada",
-            "value": "67"
-          },
-          {
-            "groupOrder": 67,
-            "id": "068BDAF7-3175-4680-9894-1FE8CC43001D",
-            "name": "Guatemala",
-            "value": "68"
-          },
-          {
-            "groupOrder": 68,
-            "id": "79AE21AF-78A5-432D-91E1-46BF54728FCF",
-            "name": "Guinea",
-            "value": "69"
-          },
-          {
-            "groupOrder": 69,
-            "id": "0B79EB8F-A851-4C91-AB8B-615023AE0BFC",
-            "name": "Guinea-Bissau",
-            "value": "70"
-          },
-          {
-            "groupOrder": 70,
-            "id": "48B419F6-6CB7-485B-9719-D4743D229105",
-            "name": "Guyana",
-            "value": "71"
-          },
-          {
-            "groupOrder": 71,
-            "id": "B7BAD288-D335-409B-88E7-863D6F690CEF",
-            "name": "Haiti",
-            "value": "72"
-          },
-          {
-            "groupOrder": 72,
-            "id": "53E8555A-9EFD-473E-A31B-82DC55D1572C",
-            "name": "Honduras",
-            "value": "73"
-          },
-          {
-            "groupOrder": 73,
-            "id": "0D15588A-F8B6-4C9F-AA29-17CA79DA12A3",
-            "name": "Hungary",
-            "value": "74"
-          },
-          {
-            "groupOrder": 74,
-            "id": "23A990D3-55B9-4424-84C1-97DA3EF3A3E1",
-            "name": "Iceland",
-            "value": "75"
-          },
-          {
-            "groupOrder": 75,
-            "id": "770E8BB5-B27F-43C7-B27B-6A4BBB83F453",
-            "name": "India",
-            "value": "76"
-          },
-          {
-            "groupOrder": 76,
-            "id": "8DD29B0C-A805-45AB-968C-F475829D6CDF",
-            "name": "Indonesia",
-            "value": "77"
-          },
-          {
-            "groupOrder": 77,
-            "id": "168252EB-B0DD-43D8-A2EC-8058D9699C9C",
-            "name": "Iran",
-            "value": "78"
-          },
-          {
-            "groupOrder": 78,
-            "id": "3C5192EF-7EF8-48FA-B4C0-29B159350B3C",
-            "name": "Iraq",
-            "value": "79"
-          },
-          {
-            "groupOrder": 79,
-            "id": "FED247E7-2916-4BD0-BAB6-1C6460F76324",
-            "name": "Ireland",
-            "value": "80"
-          },
-          {
-            "groupOrder": 80,
-            "id": "DDAA8912-4455-4EF6-8BC8-94B38507A2FC",
-            "name": "Israel",
-            "value": "81"
-          },
-          {
-            "groupOrder": 81,
-            "id": "EAC209AE-50CD-4BB3-AAB7-3740277667D0",
-            "name": "Italy",
-            "value": "82"
-          },
-          {
-            "groupOrder": 82,
-            "id": "D47763AB-89DE-4F88-915E-58FDE6BEB9FD",
-            "name": "Jamaica",
-            "value": "83"
-          },
-          {
-            "groupOrder": 83,
-            "id": "D2C25969-9770-4BFA-9572-94CC5CBC2A51",
-            "name": "Japan",
-            "value": "84"
-          },
-          {
-            "groupOrder": 84,
-            "id": "84B5E682-C030-4279-A394-5476387E691E",
-            "name": "Jordan",
-            "value": "85"
-          },
-          {
-            "groupOrder": 85,
-            "id": "40278183-B72F-4B14-A18C-E02B119F2A47",
-            "name": "Kazakhstan",
-            "value": "86"
-          },
-          {
-            "groupOrder": 86,
-            "id": "0325A952-5B8D-4B96-AF0E-C947A944A9AC",
-            "name": "Kenya",
-            "value": "87"
-          },
-          {
-            "groupOrder": 87,
-            "id": "E2FE3251-379C-495D-950D-2481C3CBDEC6",
-            "name": "Kiribati",
-            "value": "88"
-          },
-          {
-            "groupOrder": 88,
-            "id": "F8C7C0B7-8DF2-4A5C-8E9F-6A469117A365",
-            "name": "Kosovo",
-            "value": "89"
-          },
-          {
-            "groupOrder": 89,
-            "id": "8C54E595-285C-4EE3-8A3F-F3291993DBBD",
-            "name": "Kuwait",
-            "value": "90"
-          },
-          {
-            "groupOrder": 90,
-            "id": "CA683696-A073-4990-8A76-B60EE72D2A41",
-            "name": "Kyrgyzstan",
-            "value": "91"
-          },
-          {
-            "groupOrder": 91,
-            "id": "6662E003-6A15-4AB9-BCB8-F2BAE614DB62",
-            "name": "Laos",
-            "value": "92"
-          },
-          {
-            "groupOrder": 92,
-            "id": "DF48987B-E6F1-4EF4-AC27-05421C71B327",
-            "name": "Latvia",
-            "value": "93"
-          },
-          {
-            "groupOrder": 93,
-            "id": "4BF8F232-ED5A-46BE-B342-348249344DA3",
-            "name": "Lebanon",
-            "value": "94"
-          },
-          {
-            "groupOrder": 94,
-            "id": "B1F82B6C-5EE9-4820-8635-6AAFB50D0835",
-            "name": "Lesotho",
-            "value": "95"
-          },
-          {
-            "groupOrder": 95,
-            "id": "27AC67DC-556A-4222-99D0-7C7A5DE6AEB6",
-            "name": "Liberia",
-            "value": "96"
-          },
-          {
-            "groupOrder": 96,
-            "id": "442078BC-62C4-45CF-9563-D67A6BFC21F4",
-            "name": "Libya",
-            "value": "97"
-          },
-          {
-            "groupOrder": 97,
-            "id": "81D6029A-0D7D-4F62-AB04-5610AEBA4E9B",
-            "name": "Liechtenstein",
-            "value": "98"
-          },
-          {
-            "groupOrder": 98,
-            "id": "013F99C2-540B-4D55-953F-1380106A94BB",
-            "name": "Lithuania",
-            "value": "99"
-          },
-          {
-            "groupOrder": 99,
-            "id": "F2DC53D7-DF38-4CC3-AD9B-56C5FCB96436",
-            "name": "Luxembourg",
-            "value": "100"
-          },
-          {
-            "groupOrder": 100,
-            "id": "3AB5C455-CE44-4BBB-82D3-564D2C5EB667",
-            "name": "Macedonia",
-            "value": "101"
-          },
-          {
-            "groupOrder": 101,
-            "id": "36C35989-6A6C-41D2-8334-6A387BC02B0E",
-            "name": "Madagascar",
-            "value": "102"
-          },
-          {
-            "groupOrder": 102,
-            "id": "BBB3BAFC-8178-4F19-90E3-E71C803B48D0",
-            "name": "Malawi",
-            "value": "103"
-          },
-          {
-            "groupOrder": 103,
-            "id": "29F9237B-2785-4719-83D1-AD1B36BDB7C1",
-            "name": "Malaysia",
-            "value": "104"
-          },
-          {
-            "groupOrder": 104,
-            "id": "A1FB103C-41C9-4CDF-A51A-273760FEAD04",
-            "name": "Maldives",
-            "value": "105"
-          },
-          {
-            "groupOrder": 105,
-            "id": "16BCA45C-14C8-4399-B84E-D7A9EA140FF1",
-            "name": "Mali",
-            "value": "106"
-          },
-          {
-            "groupOrder": 106,
-            "id": "5675F3FD-22D1-4D8F-A820-CA94914C91A6",
-            "name": "Malta",
-            "value": "107"
-          },
-          {
-            "groupOrder": 107,
-            "id": "AC3C7915-403F-4942-9ACE-CE20379274DD",
-            "name": "Marshall Islands",
-            "value": "108"
-          },
-          {
-            "groupOrder": 108,
-            "id": "AD30A6CC-0D64-4DF6-87E1-59B7C2492754",
-            "name": "Mauritania",
-            "value": "109"
-          },
-          {
-            "groupOrder": 109,
-            "id": "B1099703-1DAD-4EF6-ACAC-33C4050B95D9",
-            "name": "Mauritius",
-            "value": "110"
-          },
-          {
-            "groupOrder": 110,
-            "id": "A0C3569F-D41D-428A-86FB-4DB5285130DD",
-            "name": "Mexico",
-            "value": "111"
-          },
-          {
-            "groupOrder": 111,
-            "id": "23330845-4958-4275-9530-FC66E4D46AE9",
-            "name": "Micronesia",
-            "value": "112"
-          },
-          {
-            "groupOrder": 112,
-            "id": "C3DB1330-96AB-4C39-A917-1F8A3215F02A",
-            "name": "Moldova",
-            "value": "113"
-          },
-          {
-            "groupOrder": 113,
-            "id": "4894DDD1-F7C8-408D-BFC2-DDC3465F8366",
-            "name": "Monaco",
-            "value": "114"
-          },
-          {
-            "groupOrder": 114,
-            "id": "80D9DB14-AD8C-43FB-8172-F42B6DB98CE4",
-            "name": "Mongolia",
-            "value": "115"
-          },
-          {
-            "groupOrder": 115,
-            "id": "DBE0C8FB-DA0C-48F4-8F3A-14EEBFF5D6CE",
-            "name": "Montenegro",
-            "value": "116"
-          },
-          {
-            "groupOrder": 116,
-            "id": "982AAB8A-1A67-4950-BB00-7AD79DE5E402",
-            "name": "Morocco",
-            "value": "117"
-          },
-          {
-            "groupOrder": 117,
-            "id": "AC525F19-4697-402F-83B9-60F481333E41",
-            "name": "Mozambique",
-            "value": "118"
-          },
-          {
-            "groupOrder": 118,
-            "id": "933867E9-51D2-42FF-9BE0-0A0BF1F8964B",
-            "name": "Myanmar (Burma)",
-            "value": "119"
-          },
-          {
-            "groupOrder": 119,
-            "id": "E42B3192-B74A-4049-92D7-D6DEC3946E71",
-            "name": "Namibia",
-            "value": "120"
-          },
-          {
-            "groupOrder": 120,
-            "id": "4232FDAB-4614-4C62-BDAE-FAF820FE45FF",
-            "name": "Nauru",
-            "value": "121"
-          },
-          {
-            "groupOrder": 121,
-            "id": "AE815447-07CD-4BF2-9654-F71515335193",
-            "name": "Nepal",
-            "value": "122"
-          },
-          {
-            "groupOrder": 122,
-            "id": "B984EE25-8E24-445D-81D5-EF685CFDC1E9",
-            "name": "Netherlands",
-            "value": "123"
-          },
-          {
-            "groupOrder": 123,
-            "id": "57530228-B4FC-49F8-972C-614DDAB7D2F2",
-            "name": "New Zealand",
-            "value": "124"
-          },
-          {
-            "groupOrder": 124,
-            "id": "FC354651-B3E1-4635-9E0C-84FA8D3A4604",
-            "name": "Nicaragua",
-            "value": "125"
-          },
-          {
-            "groupOrder": 125,
-            "id": "511782F6-386C-4090-BDDE-5032107D039A",
-            "name": "Niger",
-            "value": "126"
-          },
-          {
-            "groupOrder": 126,
-            "id": "8ACF34B4-972F-4BC4-823F-CF344966BDED",
-            "name": "Nigeria",
-            "value": "127"
-          },
-          {
-            "groupOrder": 127,
-            "id": "A0D710EB-5F09-4DA6-9ABA-9CB3AD70C7EA",
-            "name": "North Korea",
-            "value": "128"
-          },
-          {
-            "groupOrder": 128,
-            "id": "2D3D8042-45E7-46BC-A6CF-2651CA37353D",
-            "name": "Norway",
-            "value": "129"
-          },
-          {
-            "groupOrder": 129,
-            "id": "A5FD3AFB-4423-4031-80CE-3F03C06EB1F1",
-            "name": "Oman",
-            "value": "130"
-          },
-          {
-            "groupOrder": 130,
-            "id": "FE74D32E-B066-45F0-B5D7-721EB7168EAA",
-            "name": "Pakistan",
-            "value": "131"
-          },
-          {
-            "groupOrder": 131,
-            "id": "0876D00F-23CD-4D4C-B9A4-2C82B3039D0D",
-            "name": "Palau",
-            "value": "132"
-          },
-          {
-            "groupOrder": 132,
-            "id": "3205A3C7-54EB-433A-BDE1-C2ECA5279FD0",
-            "name": "Palestine",
-            "value": "133"
-          },
-          {
-            "groupOrder": 133,
-            "id": "B09E9B12-7C6A-4362-A7DA-69A0FACE995A",
-            "name": "Panama",
-            "value": "134"
-          },
-          {
-            "groupOrder": 134,
-            "id": "9B765607-895F-42CA-9671-473BE5FA82B8",
-            "name": "Papua New Guinea",
-            "value": "135"
-          },
-          {
-            "groupOrder": 135,
-            "id": "8C71D99C-EA69-4C8F-A29A-ECAFDD35D550",
-            "name": "Paraguay",
-            "value": "136"
-          },
-          {
-            "groupOrder": 136,
-            "id": "0CDAA72A-62BD-4C10-8F61-DE16D87E8086",
-            "name": "Peru",
-            "value": "137"
-          },
-          {
-            "groupOrder": 137,
-            "id": "D3214D9C-CD1D-4B5E-ABDF-AE2117125101",
-            "name": "Philippines",
-            "value": "138"
-          },
-          {
-            "groupOrder": 138,
-            "id": "6A1CB5EA-651D-4839-8578-BD37F115D53B",
-            "name": "Poland",
-            "value": "139"
-          },
-          {
-            "groupOrder": 139,
-            "id": "8A5CAE5F-40FF-472B-B2CD-DBCB0F305EC9",
-            "name": "Portugal",
-            "value": "140"
-          },
-          {
-            "groupOrder": 140,
-            "id": "4823B242-27A5-4D5D-BF7E-7D198775D8BF",
-            "name": "Qatar",
-            "value": "141"
-          },
-          {
-            "groupOrder": 141,
-            "id": "B3BDF994-FB68-434C-BFEA-B232944154E4",
-            "name": "Romania",
-            "value": "142"
-          },
-          {
-            "groupOrder": 142,
-            "id": "958A7C67-FF39-4801-8C83-44BFF46FC6C1",
-            "name": "Russia",
-            "value": "143"
-          },
-          {
-            "groupOrder": 143,
-            "id": "F89E4458-E382-4F5B-B229-4A2F18FA13B1",
-            "name": "Rwanda",
-            "value": "144"
-          },
-          {
-            "groupOrder": 144,
-            "id": "0B110D94-9109-43E0-A86D-D4815C2CA0F0",
-            "name": "Saint Kitts and Nevis",
-            "value": "145"
-          },
-          {
-            "groupOrder": 145,
-            "id": "A65A2146-55D9-4CB1-AB03-44E45736CAE7",
-            "name": "Saint Lucia",
-            "value": "146"
-          },
-          {
-            "groupOrder": 146,
-            "id": "07F3EB9D-A12B-4B8E-86EE-16D83AD40753",
-            "name": "Saint Vincent and the Grenadines",
-            "value": "147"
-          },
-          {
-            "groupOrder": 147,
-            "id": "E7F682DF-2CF6-4C11-98FC-C7D8204E7A87",
-            "name": "Samoa",
-            "value": "148"
-          },
-          {
-            "groupOrder": 148,
-            "id": "6EA814BE-FB23-4A4B-B0C6-B97E810275EA",
-            "name": "San Marino",
-            "value": "149"
-          },
-          {
-            "groupOrder": 149,
-            "id": "7C99A3CA-3F9B-487A-8E1C-2DF735B14AA2",
-            "name": "Sao Tome and Principe",
-            "value": "150"
-          },
-          {
-            "groupOrder": 150,
-            "id": "C53F10FA-D87F-4C4E-A3F5-EABCDD87D35E",
-            "name": "Saudi Arabia",
-            "value": "151"
-          },
-          {
-            "groupOrder": 151,
-            "id": "D6B5D522-DBF5-4D14-8D69-6527F3D060E8",
-            "name": "Senegal",
-            "value": "152"
-          },
-          {
-            "groupOrder": 152,
-            "id": "FF51641A-F13B-42FD-9893-0EA80562A78C",
-            "name": "Serbia",
-            "value": "153"
-          },
-          {
-            "groupOrder": 153,
-            "id": "60DC8129-BE54-475A-8EB1-EECBC990B0D5",
-            "name": "Seychelles",
-            "value": "154"
-          },
-          {
-            "groupOrder": 154,
-            "id": "3A5B57F9-8495-4F88-8C5A-F8877B9689F1",
-            "name": "Sierra Leone",
-            "value": "155"
-          },
-          {
-            "groupOrder": 155,
-            "id": "B1144B6C-C586-45A8-AAD6-610F8B57E9E2",
-            "name": "Singapore",
-            "value": "156"
-          },
-          {
-            "groupOrder": 156,
-            "id": "D6332FE9-977C-4DC7-A0D4-8AD2E1680D9D",
-            "name": "Slovakia",
-            "value": "157"
-          },
-          {
-            "groupOrder": 157,
-            "id": "39E2DD05-1E6F-4369-9A06-7FAAE6DD82AF",
-            "name": "Slovenia",
-            "value": "158"
-          },
-          {
-            "groupOrder": 158,
-            "id": "7B1B475D-4ECF-4A9D-8D61-7D2E5996F063",
-            "name": "Solomon Islands",
-            "value": "159"
-          },
-          {
-            "groupOrder": 159,
-            "id": "5099DC6B-6D6C-45D9-AF6E-90D8980D6926",
-            "name": "Somalia",
-            "value": "160"
-          },
-          {
-            "groupOrder": 160,
-            "id": "BF3937D6-F8C1-42D8-9BDD-5BA4E893F9D0",
-            "name": "South Africa",
-            "value": "161"
-          },
-          {
-            "groupOrder": 161,
-            "id": "CC33D1C7-A3DE-4B97-A19F-38A3296E2014",
-            "name": "South Korea",
-            "value": "162"
-          },
-          {
-            "groupOrder": 162,
-            "id": "821A1B3F-D4C8-4DFF-82C0-4BFCCBBCF31D",
-            "name": "South Sudan",
-            "value": "163"
-          },
-          {
-            "groupOrder": 163,
-            "id": "888C3CB8-2921-4DE1-9ADD-77E937BF4F2E",
-            "name": "Spain",
-            "value": "164"
-          },
-          {
-            "groupOrder": 164,
-            "id": "8DDBD0C8-B4C9-4334-A85D-F7C19FE4D2E8",
-            "name": "Sri Lanka",
-            "value": "165"
-          },
-          {
-            "groupOrder": 165,
-            "id": "27D2EFFB-E743-401F-B1D5-EACCD207C697",
-            "name": "Sudan",
-            "value": "166"
-          },
-          {
-            "groupOrder": 166,
-            "id": "D827BF3E-4705-4D21-B4B5-5DF43B24A819",
-            "name": "Suriname",
-            "value": "167"
-          },
-          {
-            "groupOrder": 167,
-            "id": "9EAE824E-72F8-44F9-B5A5-6C6CE79F25B0",
-            "name": "Swaziland",
-            "value": "168"
-          },
-          {
-            "groupOrder": 168,
-            "id": "1BCB382D-ABD3-4368-A3D3-B10B75FA2D6B",
-            "name": "Sweden",
-            "value": "169"
-          },
-          {
-            "groupOrder": 169,
-            "id": "38236517-D06E-4EEB-9F23-C43471228293",
-            "name": "Switzerland",
-            "value": "170"
-          },
-          {
-            "groupOrder": 170,
-            "id": "0F5906F5-3881-4376-A5A3-2DB7B41B7ECE",
-            "name": "Syria",
-            "value": "171"
-          },
-          {
-            "groupOrder": 171,
-            "id": "D05A88DF-BF55-4332-AE11-6685BFE02E32",
-            "name": "Taiwan",
-            "value": "172"
-          },
-          {
-            "groupOrder": 172,
-            "id": "BE7E6BA8-FE98-4175-90F4-ECB5D98679DC",
-            "name": "Tajikistan",
-            "value": "173"
-          },
-          {
-            "groupOrder": 173,
-            "id": "67AEFF36-DEE6-4B83-90B7-0EBF4C7E6E36",
-            "name": "Tanzania",
-            "value": "174"
-          },
-          {
-            "groupOrder": 174,
-            "id": "8B6F9399-C338-41CB-B531-9BE41D7B0CA8",
-            "name": "Thailand",
-            "value": "175"
-          },
-          {
-            "groupOrder": 175,
-            "id": "F50ED17E-3812-4D5D-8072-8C4E939142C9",
-            "name": "Timor-Leste",
-            "value": "176"
-          },
-          {
-            "groupOrder": 176,
-            "id": "52E40695-1F73-4EDD-9F11-028A22679CE5",
-            "name": "Togo",
-            "value": "177"
-          },
-          {
-            "groupOrder": 177,
-            "id": "49B925C2-A74E-441E-8B02-61A4B2219613",
-            "name": "Tonga",
-            "value": "178"
-          },
-          {
-            "groupOrder": 178,
-            "id": "6BB6BEC5-FC91-4305-A9FA-36BBCD467E7C",
-            "name": "Trinidad and Tobago",
-            "value": "179"
-          },
-          {
-            "groupOrder": 179,
-            "id": "D0937EF7-A2C9-4CD3-94AF-39689D8B0F37",
-            "name": "Tunisia",
-            "value": "180"
-          },
-          {
-            "groupOrder": 180,
-            "id": "607C0229-4358-40E7-A2FD-57B19B460063",
-            "name": "Turkey",
-            "value": "181"
-          },
-          {
-            "groupOrder": 181,
-            "id": "4FA4D952-5348-404E-8DA3-0BAF92D81EFD",
-            "name": "Turkmenistan",
-            "value": "182"
-          },
-          {
-            "groupOrder": 182,
-            "id": "2C336B6E-FC70-44E2-A995-559FB3E8D3E3",
-            "name": "Tuvalu",
-            "value": "183"
-          },
-          {
-            "groupOrder": 183,
-            "id": "F9FB2C4C-58C6-4581-A71D-2A4F28B89677",
-            "name": "Uganda",
-            "value": "184"
-          },
-          {
-            "groupOrder": 184,
-            "id": "0F3C33FB-A973-47F1-B95C-BA660B482AB7",
-            "name": "Ukraine",
-            "value": "185"
-          },
-          {
-            "groupOrder": 185,
-            "id": "DBF992F5-3DB3-4A05-B6DF-692C295F45AE",
-            "name": "United Arab Emirates",
-            "value": "186"
-          },
-          {
-            "groupOrder": 186,
-            "id": "09972673-598A-446E-BDA6-4EE75947B588",
-            "name": "United Kingdom",
-            "value": "187"
-          },
-          {
-            "groupOrder": 187,
-            "id": "CBA0B4A0-0D9E-42B8-B4A0-85868036B6F4",
-            "name": "United States of America",
-            "value": "188"
-          },
-          {
-            "groupOrder": 188,
-            "id": "87C319AA-B749-44E7-B6D3-1DA696CE815D",
-            "name": "Uruguay",
-            "value": "189"
-          },
-          {
-            "groupOrder": 189,
-            "id": "618183B0-A259-4EE8-88B1-46ACB66A9731",
-            "name": "Uzbekistan",
-            "value": "190"
-          },
-          {
-            "groupOrder": 190,
-            "id": "D670C5DB-FE95-4FC5-96A8-6F810F9800FE",
-            "name": "Vanuatu",
-            "value": "191"
-          },
-          {
-            "groupOrder": 191,
-            "id": "CA633C5F-EA07-4B44-BB0F-51F81624AE64",
-            "name": "Vatican City",
-            "value": "192"
-          },
-          {
-            "groupOrder": 192,
-            "id": "74919F6A-5F6E-42D0-B549-F5C4F891F56B",
-            "name": "Venezuela",
-            "value": "193"
-          },
-          {
-            "groupOrder": 193,
-            "id": "8C407138-8BE7-43FD-836A-108FA0E6B44A",
-            "name": "Vietnam",
-            "value": "194"
-          },
-          {
-            "groupOrder": 194,
-            "id": "C10501BA-4B0D-4F16-83A5-4B69BC37DBD8",
-            "name": "Yemen",
-            "value": "195"
-          },
-          {
-            "groupOrder": 195,
-            "id": "FEE1251B-C456-4891-8DFB-CA5E2A87ABD1",
-            "name": "Zambia",
-            "value": "196"
-          },
-          {
-            "groupOrder": 196,
-            "id": "34224450-96D9-45E1-8D4A-4BD96BC67048",
-            "name": "Zimbabwe",
-            "value": "197"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/778DE28D-F610-4A26-A55B-5CB1ED172995"
-          }
-        },
-        "description": "",
-        "id": "778DE28D-F610-4A26-A55B-5CB1ED172995",
-        "layout": false,
-        "name": "AE Outcome",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "FA6BF068-F78E-4ABF-8EF1-C08303309912",
-            "name": "Resolved",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "BA01FE34-7A0E-41FB-899D-544E4CFFE404",
-            "name": "Recovered with minor sequelae",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "F326F080-D23C-47EC-B72F-EC47E9647F19",
-            "name": "Recovered with major sequelae",
-            "value": "3"
-          },
-          {
-            "groupOrder": 3,
-            "id": "E3410976-E8CC-492B-B964-47DD2ADC8318",
-            "name": "Ongoing / continuing treatment",
-            "value": "4"
-          },
-          {
-            "groupOrder": 4,
-            "id": "6BB4E2BE-4033-4FA8-B60A-05CBA4D6AAE0",
-            "name": "Condition worsening",
-            "value": "5"
-          },
-          {
-            "groupOrder": 5,
-            "id": "A9611F9A-0A09-43C8-9234-BF82BBCD25E8",
-            "name": "Death",
-            "value": "6"
-          },
-          {
-            "groupOrder": 6,
-            "id": "C07C1D16-98B5-49B7-A4B7-C41B379A6695",
-            "name": "Unknown",
-            "value": "7"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/7E1A5DF4-924D-4B28-A2CC-FFCE04725207"
-          }
-        },
-        "description": "",
-        "id": "7E1A5DF4-924D-4B28-A2CC-FFCE04725207",
-        "layout": false,
-        "name": "Action AE",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "45963DE5-B4CC-499D-8480-B1773DD0A9CB",
-            "name": "None",
-            "value": "0"
-          },
-          {
-            "groupOrder": 1,
-            "id": "D3F87E45-4C50-4F61-928A-EE531A5654E7",
-            "name": "Dose modification",
-            "value": "1"
-          },
-          {
-            "groupOrder": 2,
-            "id": "BA8F02EC-1654-4F07-821C-066F26640F5A",
-            "name": "Medical intervention",
-            "value": "2"
-          },
-          {
-            "groupOrder": 3,
-            "id": "877A1CB8-F996-4B34-B5AE-C7E4361921C0",
-            "name": "Hospitalization",
-            "value": "3"
-          },
-          {
-            "groupOrder": 4,
-            "id": "5F3DA424-8DEC-4A9E-AEE1-C69E28A92309",
-            "name": "Intervention discontinued",
-            "value": "4"
-          },
-          {
-            "groupOrder": 5,
-            "id": "40ED2E48-472A-4566-B696-A8A57BD7D3C1",
-            "name": "Other",
-            "value": "5"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/8E059BA5-15F6-4F3D-9F70-1FB690B086EB"
-          }
-        },
-        "description": "Renal diagnosis",
-        "id": "8E059BA5-15F6-4F3D-9F70-1FB690B086EB",
-        "layout": false,
-        "name": "RenalDiagnosis",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "DA152FAF-EF00-42DE-815C-F0DA8A7DA14F",
-            "name": "Kidney stones",
-            "value": "0"
-          },
-          {
-            "groupOrder": 1,
-            "id": "ECBC15B6-DFD5-4502-8AD9-FE9A8B4989BD",
-            "name": "Nephrotic syndrome",
-            "value": "1"
-          },
-          {
-            "groupOrder": 2,
-            "id": "02831D31-E687-4B2B-825F-498516573A93",
-            "name": "Minimal change nephropathy",
-            "value": "2"
-          },
-          {
-            "groupOrder": 3,
-            "id": "2BC4A9E5-B139-431D-9082-9CA5D3E233A6",
-            "name": "Focal glomerulosclerosis",
-            "value": "3"
-          },
-          {
-            "groupOrder": 4,
-            "id": "F786E2A5-BE8E-4895-A0EB-81294E339107",
-            "name": "Membranous nephropathy",
-            "value": "4"
-          },
-          {
-            "groupOrder": 5,
-            "id": "091D2CB6-8BC0-4BDC-ABE8-CFBABCD267C5",
-            "name": "IgA nephropathy",
-            "value": "5"
-          },
-          {
-            "groupOrder": 6,
-            "id": "C014BBF8-E394-498C-ADC1-E50DEE08CCC0",
-            "name": "Henoch Schonlein Purpura/ IgA vasculitis",
-            "value": "6"
-          },
-          {
-            "groupOrder": 7,
-            "id": "89939579-57B5-4DC4-8241-9E6AFA359F7A",
-            "name": "Glomerulonephritis",
-            "value": "7"
-          },
-          {
-            "groupOrder": 8,
-            "id": "099CECB1-7A7F-434E-9065-A76C833AAFB1",
-            "name": "Glomerulopathy",
-            "value": "8"
-          },
-          {
-            "groupOrder": 9,
-            "id": "1FBE9FF2-5681-4EFE-B507-1B7C16C9EC5C",
-            "name": "Lupus nephritis",
-            "value": "9"
-          },
-          {
-            "groupOrder": 10,
-            "id": "4B34C930-AC47-42AD-B2CF-921DB662B78A",
-            "name": "Diabetic nephropathy",
-            "value": "10"
-          },
-          {
-            "groupOrder": 11,
-            "id": "3D614D71-3CEB-4507-9FAC-9819E7CF64D2",
-            "name": "Cast nephropathy",
-            "value": "11"
-          },
-          {
-            "groupOrder": 12,
-            "id": "EA2B7E99-5CE2-40C9-B4E8-D6E76AAA7EB0",
-            "name": "M. Alport",
-            "value": "12"
-          },
-          {
-            "groupOrder": 13,
-            "id": "EAC93D08-B2F1-4256-AFD2-74288AD4067F",
-            "name": "Fanconi",
-            "value": "13"
-          },
-          {
-            "groupOrder": 14,
-            "id": "44903164-2D3F-48A4-998E-E9F270B7393E",
-            "name": "Other",
-            "value": "14"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/942032C0-039D-4334-A09F-245A658D6DA3"
-          }
-        },
-        "description": "",
-        "id": "942032C0-039D-4334-A09F-245A658D6DA3",
-        "layout": false,
-        "name": "AE Relationship",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "84019639-9B53-49AD-8A34-48BCDE677161",
-            "name": "Not related",
-            "value": "0"
-          },
-          {
-            "groupOrder": 1,
-            "id": "DE13B7D1-00E3-4BFF-A55E-7D01A962E9A3",
-            "name": "Unlikely related",
-            "value": "1"
-          },
-          {
-            "groupOrder": 2,
-            "id": "309D3E11-66E1-4EBF-9ECB-CF3AEA3F3C25",
-            "name": "Possibly related",
-            "value": "2"
-          },
-          {
-            "groupOrder": 3,
-            "id": "A78E1133-368C-4AA9-8396-88FAE5E31600",
-            "name": "Probably related",
-            "value": "3"
-          },
-          {
-            "groupOrder": 4,
-            "id": "18862E8A-9BE3-4201-AC1E-AFF4D05FADE4",
-            "name": "Definitely related",
-            "value": "4"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/B447CB44-E74D-48A9-8CF5-FEBA1BDC3038"
-          }
-        },
-        "description": "",
-        "id": "B447CB44-E74D-48A9-8CF5-FEBA1BDC3038",
-        "layout": false,
-        "name": "Limits",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "42049937-A5A9-491C-B883-F5A14566525C",
-            "name": "Yes, limited a lot",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "EA8FBBBB-B4E5-4A86-9C6A-7D51C8CE34B9",
-            "name": "Yes, limited a little",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "391DD8A9-5D90-4D7B-92F4-0A1A664D4241",
-            "name": "No, not limited at all",
-            "value": "3"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/C1270C6C-E27A-4300-B206-B2891BCA124F"
-          }
-        },
-        "description": "",
-        "id": "C1270C6C-E27A-4300-B206-B2891BCA124F",
-        "layout": false,
-        "name": "None-Very severe",
-        "options": [
-          {
-            "groupOrder": 0,
-            "id": "064E356C-A931-4FA7-925E-A82B6160778A",
-            "name": "None",
-            "value": "1"
-          },
-          {
-            "groupOrder": 1,
-            "id": "51B38F05-8F14-4198-A554-A7813AA66CF3",
-            "name": "Very mild",
-            "value": "2"
-          },
-          {
-            "groupOrder": 2,
-            "id": "792A0748-21E0-4BFB-81FE-32468B565CAA",
-            "name": "Mild",
-            "value": "3"
-          },
-          {
-            "groupOrder": 3,
-            "id": "ACB4803D-B672-446A-AE77-FE34D581B1C8",
-            "name": "Moderate",
-            "value": "4"
-          },
-          {
-            "groupOrder": 4,
-            "id": "90DA915C-C0E1-416A-9488-4BD9112DF224",
-            "name": "Severe",
-            "value": "5"
-          },
-          {
-            "groupOrder": 5,
-            "id": "9F86F78A-07EA-43D8-90D0-489E7C9546A2",
-            "name": "Very severe",
-            "value": "6"
-          }
-        ]
-      },
-      {
-        "_links": {
-          "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/C5DF3DE7-BEE9-4B86-9E2A-A0EF370295A9"
-          }
-        },
-        "description": "",
-        "id": "C5DF3DE7-BEE9-4B86-9E2A-A0EF370295A9",
+        "id": "0020F5A6-60B1-42BF-9E90-97F587C3C163",
         "layout": false,
         "name": "Position",
         "options": [
           {
+            "domainVariableNameOverride": null,
             "groupOrder": 0,
-            "id": "A3A4C6DF-AA0A-45D1-AEEF-4BBF86274E19",
+            "id": "2FED6223-C791-46F4-AA95-2BEA366B4AE8",
             "name": "Lying down",
             "value": "1"
           },
           {
+            "domainVariableNameOverride": null,
             "groupOrder": 1,
-            "id": "1E5F0508-8648-4ACF-AFF0-AC319AAF12A1",
+            "id": "34486240-7CFE-4C09-A9D0-9033B9BA3BC4",
             "name": "Sitting",
             "value": "2"
           },
           {
+            "domainVariableNameOverride": null,
             "groupOrder": 2,
-            "id": "99429E72-51D2-4504-BF9D-C7469D7D5BB5",
+            "id": "568317AB-56B9-41EC-B867-660D380C0D26",
             "name": "Standing",
             "value": "3"
           }
@@ -2313,29 +38,1740 @@
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/C65FAEBC-9518-494C-B081-7E48C595BC74"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/035F73C3-4776-4AAE-A9E7-74932E1C7C6E"
+          }
+        },
+        "description": "units in which medication was recorded",
+        "id": "035F73C3-4776-4AAE-A9E7-74932E1C7C6E",
+        "layout": false,
+        "name": "og_medunits",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "E6B41DD1-77CD-480E-AA26-11B6D15602BC",
+            "name": "Unknown",
+            "value": "0"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "CAE30CB3-88A1-4782-BA3E-D62B1D65C6E6",
+            "name": "ug/day",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "9EF98223-52C3-44E4-878B-5F8DF1F95086",
+            "name": "mg/day",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "C894D01B-755D-432A-80D9-CA503B75E19E",
+            "name": "g/day",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "2309BD84-712A-431E-B5B5-0B75CCDDB8A1",
+            "name": "ug/week",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 5,
+            "id": "7BE080F1-8D80-42C0-9602-6FF9D316E17C",
+            "name": "mg/week",
+            "value": "5"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 6,
+            "id": "D5E0E8CA-98EE-44F8-AFD4-D1D81B37CF94",
+            "name": "g/week",
+            "value": "6"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/0AD6EF8D-FA55-4893-B84A-720BC795BB1D"
+          }
+        },
+        "description": "",
+        "id": "0AD6EF8D-FA55-4893-B84A-720BC795BB1D",
+        "layout": false,
+        "name": "All of the Time-None of the Time",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "7EB4095D-7A3E-4888-B798-F280413E9D13",
+            "name": "All of the time",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "D17E6C54-EF95-45F5-8F1E-54576C9F88CC",
+            "name": "Most of the time",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "6666BE2E-E451-4D9D-BFF9-D7146A4FD4C6",
+            "name": "A good bit of the time",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "E7B81294-DD46-442D-9A7C-04BAFAAA0818",
+            "name": "Some of the time",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "B8FA5D4C-AEBB-47BD-B544-B29287ED7FF6",
+            "name": "A little of the time",
+            "value": "5"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 5,
+            "id": "EEA87AFC-F251-440B-84B6-AFAAEEC9E5B7",
+            "name": "None of the time",
+            "value": "6"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/0F615CAE-9376-4546-8A92-EB1801CB4F46"
+          }
+        },
+        "description": "",
+        "id": "0F615CAE-9376-4546-8A92-EB1801CB4F46",
+        "layout": false,
+        "name": "GAD-7 scale",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "634995D0-01B6-412B-85F2-BDDB9DF4E20A",
+            "name": "Not at all",
+            "value": "0"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "9EA2CCBF-0EF5-4BBE-AB73-754795E480F7",
+            "name": "Several days",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "ACB6FEB2-94D8-4291-99B9-29263E25BE90",
+            "name": "More than half the days",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "B2A83908-0CB2-4F3E-87F3-5BCB180E36BC",
+            "name": "Nearly every day",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/15CE0FDF-0863-4386-AB09-DB22C348A519"
+          }
+        },
+        "description": "",
+        "id": "15CE0FDF-0863-4386-AB09-DB22C348A519",
+        "layout": false,
+        "name": "Country",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "3B81E5DB-DAFF-4716-AFE2-06B08BA88C27",
+            "name": "Afghanistan",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "F48E20DC-61D5-45DF-9D78-1314F7285BFB",
+            "name": "Albania",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "2CD54191-541D-491E-8A51-BD0541859E93",
+            "name": "Algeria",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "55300916-7E44-45CC-8D66-31E39D2ABA44",
+            "name": "Andorra",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "FB69E951-5B7F-4859-B450-ADA07F23411B",
+            "name": "Angola",
+            "value": "5"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 5,
+            "id": "00AA6D9A-0A3B-4AAD-B41C-9C6EA026A990",
+            "name": "Antigua and Barbuda",
+            "value": "6"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 6,
+            "id": "3F49972E-DD32-4016-BECE-579615EAC7D1",
+            "name": "Argentina",
+            "value": "7"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 7,
+            "id": "66D24E22-85F4-4CE3-A636-C72D3E3DA487",
+            "name": "Armenia",
+            "value": "8"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 8,
+            "id": "0A6EFADF-789D-489A-86D6-F5DD4C4B81E2",
+            "name": "Australia",
+            "value": "9"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 9,
+            "id": "49D7D915-1A29-4DBB-AAB4-EA4161F7F6C7",
+            "name": "Austria",
+            "value": "10"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 10,
+            "id": "CE16C408-A58E-40A9-A2DD-EFDB2B1D44E4",
+            "name": "Azerbaijan",
+            "value": "11"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 11,
+            "id": "D0969B34-26F0-44BF-8534-8BBB564A22D5",
+            "name": "Bahamas",
+            "value": "12"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 12,
+            "id": "512049CD-1CD1-43D8-A26B-05A046C13AD9",
+            "name": "Bahrain",
+            "value": "13"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 13,
+            "id": "7D19AA33-AA2A-42A9-8953-5E41ECA394F2",
+            "name": "Bangladesh",
+            "value": "14"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 14,
+            "id": "87BA5D88-EAD0-43BE-B46E-1446B47119D2",
+            "name": "Barbados",
+            "value": "15"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 15,
+            "id": "C1B95579-337D-4903-945A-0361E33A3E29",
+            "name": "Belarus",
+            "value": "16"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 16,
+            "id": "197EE267-DD4D-448E-95E6-769ABC5E881A",
+            "name": "Belgium",
+            "value": "17"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 17,
+            "id": "18981095-E397-4640-A909-C57D3E84FBCC",
+            "name": "Belize",
+            "value": "18"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 18,
+            "id": "FEEDB296-5CFF-4016-A346-F358C80C47DF",
+            "name": "Benin",
+            "value": "19"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 19,
+            "id": "0DC830F2-0FD2-43C0-A8C5-8C1EEC8A0BA8",
+            "name": "Bhutan",
+            "value": "20"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 20,
+            "id": "720139F3-5A4A-4F6E-85F9-C05C9112ADF5",
+            "name": "Bolivia",
+            "value": "21"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 21,
+            "id": "E1B9DC0E-BDDE-4715-B904-65051522851B",
+            "name": "Bosnia and Herzegovina",
+            "value": "22"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 22,
+            "id": "8C0D3BDB-10D2-409D-9185-0DF1FB085BF8",
+            "name": "Botswana",
+            "value": "23"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 23,
+            "id": "35558BF4-1349-4CA3-8715-F6E97F3254CE",
+            "name": "Brazil",
+            "value": "24"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 24,
+            "id": "A4420A9E-221A-4D3C-8F4C-CABC1F5B7660",
+            "name": "Brunei",
+            "value": "25"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 25,
+            "id": "EB6F3F60-95C6-4D42-8BE3-0D3829DC9CB4",
+            "name": "Bulgaria",
+            "value": "26"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 26,
+            "id": "03BF2592-E320-4E7D-9137-DFE13B9CC18F",
+            "name": "Burkina Faso",
+            "value": "27"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 27,
+            "id": "6296E22B-370A-4E2B-B25C-3688B816FC44",
+            "name": "Burundi",
+            "value": "28"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 28,
+            "id": "DC2D0503-94A2-41EB-A9E1-AADB5E8185F6",
+            "name": "Cabo Verde",
+            "value": "29"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 29,
+            "id": "61217271-DE11-46C1-896A-2DAD1A0DFB3F",
+            "name": "Cambodia",
+            "value": "30"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 30,
+            "id": "C26EE44E-FB6C-49BE-9D57-B87E27144DE7",
+            "name": "Cameroon",
+            "value": "31"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 31,
+            "id": "4F2DAAEA-0343-4A90-B967-FEBD53A2BE05",
+            "name": "Canada",
+            "value": "32"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 32,
+            "id": "91C849F9-E603-4D0D-B49F-EC6435582842",
+            "name": "Central African Republic",
+            "value": "33"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 33,
+            "id": "B05F355B-C4DF-4EEE-B3AD-484AFB884990",
+            "name": "Chad",
+            "value": "34"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 34,
+            "id": "373B7147-9A9D-48AD-85FC-BAB760F44BE3",
+            "name": "Chile",
+            "value": "35"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 35,
+            "id": "FF6BF69A-D5C7-4B09-94EC-F38E105CF7DE",
+            "name": "China",
+            "value": "36"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 36,
+            "id": "1887D1D3-5ABB-48CC-8A56-3EB067855E90",
+            "name": "Colombia",
+            "value": "37"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 37,
+            "id": "C6F715EB-0673-476C-8AFA-BDF9405B2F8A",
+            "name": "Comoros",
+            "value": "38"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 38,
+            "id": "DCB42DF1-4892-4C2A-B9CC-600DCC91F13C",
+            "name": "Democratic Republic of the Congo",
+            "value": "39"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 39,
+            "id": "CC3652B0-28EC-42B0-8D96-D972F2722201",
+            "name": "Republic of the Congo",
+            "value": "40"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 40,
+            "id": "647791F8-9615-4D14-B649-E51C0F11C5BE",
+            "name": "Costa Rica",
+            "value": "41"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 41,
+            "id": "817C7708-4D40-419C-BE61-92B098355945",
+            "name": "Cote d Ivoire",
+            "value": "42"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 42,
+            "id": "00D4B6D1-8FCF-4492-804A-BFBF5129D996",
+            "name": "Croatia",
+            "value": "43"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 43,
+            "id": "16CC9BAF-06C6-49AC-A0B6-3BA8AEDD03A1",
+            "name": "Cuba",
+            "value": "44"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 44,
+            "id": "BE3ACEBD-BBAC-4EB3-8559-399589FAAF6D",
+            "name": "Cyprus",
+            "value": "45"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 45,
+            "id": "A7EE2F76-2F0E-4C3D-BF9F-4FF4476FD944",
+            "name": "Czech Republic",
+            "value": "46"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 46,
+            "id": "1290610B-6C4B-4DFC-B04A-D7B9A25B6DC9",
+            "name": "Denmark",
+            "value": "47"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 47,
+            "id": "4B143E24-2608-4CD0-AB76-8D2AD08DE523",
+            "name": "Djibouti",
+            "value": "48"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 48,
+            "id": "D00158B2-7FAC-4116-BC4F-7C34305AE2F8",
+            "name": "Dominica",
+            "value": "49"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 49,
+            "id": "C5CA6DE4-0D84-40F1-93F1-E42AD1AE0F1F",
+            "name": "Dominican Republic",
+            "value": "50"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 50,
+            "id": "13162144-0444-44F0-8289-AD96B481F08A",
+            "name": "Ecuador",
+            "value": "51"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 51,
+            "id": "0A730946-E59C-4686-AE51-D544A8FFE43C",
+            "name": "Egypt",
+            "value": "52"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 52,
+            "id": "DC850FD1-BC1F-4F19-B8C9-8720BD19A1A6",
+            "name": "El Salvador",
+            "value": "53"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 53,
+            "id": "34D82150-BE68-4C0C-97E4-6B2E4C9A40BD",
+            "name": "Equatorial Guinea",
+            "value": "54"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 54,
+            "id": "B3FFBB85-99E5-4E79-A545-B1AEFBAB72BC",
+            "name": "Eritrea",
+            "value": "55"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 55,
+            "id": "260021DE-2FD9-42F1-8BBF-A749183CFE55",
+            "name": "Estonia",
+            "value": "56"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 56,
+            "id": "2A940509-7168-45DE-8EC3-1C3BE0302B61",
+            "name": "Ethiopia",
+            "value": "57"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 57,
+            "id": "8258EBDA-D304-462F-B088-BF1681CE3643",
+            "name": "Fiji",
+            "value": "58"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 58,
+            "id": "39E7EA38-F754-49BF-9B48-F623FEB75171",
+            "name": "Finland",
+            "value": "59"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 59,
+            "id": "BA0CB491-1AAA-4F65-B237-A771D6A340B6",
+            "name": "France",
+            "value": "60"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 60,
+            "id": "165334F0-6781-4675-8357-9D1C5FF4EAAE",
+            "name": "Gabon",
+            "value": "61"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 61,
+            "id": "A3F07827-0815-42D6-9449-83A01E0ED950",
+            "name": "Gambia",
+            "value": "62"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 62,
+            "id": "B1184241-88BA-45D3-8EF7-D476A4739F07",
+            "name": "Georgia",
+            "value": "63"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 63,
+            "id": "191F3345-FB8A-4C55-8A95-20E2223E5D2F",
+            "name": "Germany",
+            "value": "64"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 64,
+            "id": "D1B4A3FC-0B14-4478-BEDA-0C071FD03523",
+            "name": "Ghana",
+            "value": "65"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 65,
+            "id": "A7A48F6A-7D2B-4093-844E-31E65BF8CEBD",
+            "name": "Greece",
+            "value": "66"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 66,
+            "id": "A98B06E9-E807-4FFE-AAB3-C8BFA44D6ED0",
+            "name": "Grenada",
+            "value": "67"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 67,
+            "id": "02DA0178-AA70-4A79-805D-3614BCE8A79F",
+            "name": "Guatemala",
+            "value": "68"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 68,
+            "id": "15A3FE78-2223-4F35-8DE7-C388F48B7683",
+            "name": "Guinea",
+            "value": "69"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 69,
+            "id": "3EBF0B6F-D9E8-4A61-87D4-21691736AF06",
+            "name": "Guinea-Bissau",
+            "value": "70"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 70,
+            "id": "CBCA75CA-D80A-45E2-A390-6486251CB795",
+            "name": "Guyana",
+            "value": "71"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 71,
+            "id": "3DEFD245-BDD1-4C03-BB7A-EF82EF5A6AFF",
+            "name": "Haiti",
+            "value": "72"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 72,
+            "id": "AD39687F-4A56-4954-B42D-6F7068482AA3",
+            "name": "Honduras",
+            "value": "73"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 73,
+            "id": "854E25C7-EB97-46EE-A4DC-BE288BAB9FD4",
+            "name": "Hungary",
+            "value": "74"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 74,
+            "id": "75967F57-5D0E-418A-84A2-CF349ED02A57",
+            "name": "Iceland",
+            "value": "75"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 75,
+            "id": "9C56BC9D-73A4-4B79-9E39-28E23FF94C37",
+            "name": "India",
+            "value": "76"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 76,
+            "id": "1A5D43BC-BB51-4AB0-B213-9352E6DE0B51",
+            "name": "Indonesia",
+            "value": "77"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 77,
+            "id": "2B6E520D-A206-4C11-9163-49C8D8B189CD",
+            "name": "Iran",
+            "value": "78"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 78,
+            "id": "4A04F854-27B1-4CB4-85C9-7017A5767479",
+            "name": "Iraq",
+            "value": "79"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 79,
+            "id": "DB82EF0D-6041-4284-ADC2-E6DB95032271",
+            "name": "Ireland",
+            "value": "80"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 80,
+            "id": "2E23913F-4075-4064-BAC1-66DEC90B032C",
+            "name": "Israel",
+            "value": "81"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 81,
+            "id": "12C6C650-E57F-4A33-B31B-2EFB3B336D89",
+            "name": "Italy",
+            "value": "82"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 82,
+            "id": "BC6962E0-4D45-48A9-A52D-4095407A7B29",
+            "name": "Jamaica",
+            "value": "83"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 83,
+            "id": "AC39F536-F116-414B-B987-32A5EADA8A78",
+            "name": "Japan",
+            "value": "84"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 84,
+            "id": "D498BF4F-57A1-4D1A-952A-5349AAA9690D",
+            "name": "Jordan",
+            "value": "85"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 85,
+            "id": "3770141D-4FEA-486C-B9E6-7BF3260794C8",
+            "name": "Kazakhstan",
+            "value": "86"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 86,
+            "id": "51BF6386-ED73-4661-997F-A72BBC618A39",
+            "name": "Kenya",
+            "value": "87"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 87,
+            "id": "16CCBCCC-731D-4046-88C2-C148BB814863",
+            "name": "Kiribati",
+            "value": "88"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 88,
+            "id": "C7F84797-3B78-44A6-8915-B189F5F550D6",
+            "name": "Kosovo",
+            "value": "89"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 89,
+            "id": "EC6550AB-7E8C-4FD0-8DDC-73E0C6C7C816",
+            "name": "Kuwait",
+            "value": "90"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 90,
+            "id": "1072DE1C-B894-48C0-B0B1-4740E9C08098",
+            "name": "Kyrgyzstan",
+            "value": "91"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 91,
+            "id": "77C6CFDA-120F-4FF2-B936-FCEE508BBDF7",
+            "name": "Laos",
+            "value": "92"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 92,
+            "id": "9A367AC1-8C86-4328-BFC6-F2A0CAFC0918",
+            "name": "Latvia",
+            "value": "93"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 93,
+            "id": "14183766-B7A6-45B2-8E36-B0F26880005C",
+            "name": "Lebanon",
+            "value": "94"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 94,
+            "id": "F87E1B3A-61F8-4185-A03A-3A2B24D89C46",
+            "name": "Lesotho",
+            "value": "95"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 95,
+            "id": "0D001C14-46C2-42CE-B04F-04288E0EAFAD",
+            "name": "Liberia",
+            "value": "96"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 96,
+            "id": "FD4C32E7-4C17-4B96-A54F-4674F897C0B0",
+            "name": "Libya",
+            "value": "97"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 97,
+            "id": "93D24E3F-C82D-44F8-8C2D-C236ABDE43C1",
+            "name": "Liechtenstein",
+            "value": "98"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 98,
+            "id": "8992464A-5E41-44F7-8CB3-6F17ED94FF62",
+            "name": "Lithuania",
+            "value": "99"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 99,
+            "id": "BE8B1D9A-7D4A-4B47-8384-0E8304DA2930",
+            "name": "Luxembourg",
+            "value": "100"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 100,
+            "id": "ADD3E40C-F837-45B7-86E8-8CCBD411E7AE",
+            "name": "Macedonia",
+            "value": "101"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 101,
+            "id": "91BDB0B2-3550-48BE-9BB7-495B9B17F1C0",
+            "name": "Madagascar",
+            "value": "102"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 102,
+            "id": "3B74B23F-3FF7-44D9-AA38-D2A9A58DC4B4",
+            "name": "Malawi",
+            "value": "103"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 103,
+            "id": "A7EBD3C4-7237-4376-9270-A9F2BD45FB54",
+            "name": "Malaysia",
+            "value": "104"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 104,
+            "id": "E82EC8A0-B782-464E-8C73-D6BF6334A68A",
+            "name": "Maldives",
+            "value": "105"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 105,
+            "id": "FBA3066C-F130-45B8-B463-FFFDAD09F2A8",
+            "name": "Mali",
+            "value": "106"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 106,
+            "id": "91F6DD1A-2842-4452-A273-4614D0C82FE9",
+            "name": "Malta",
+            "value": "107"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 107,
+            "id": "8E759CED-0F70-4860-80A2-ECECA0C2A8C7",
+            "name": "Marshall Islands",
+            "value": "108"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 108,
+            "id": "4DFD7BEC-8BA6-42FD-BCB2-C206E25304E3",
+            "name": "Mauritania",
+            "value": "109"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 109,
+            "id": "E7C9A581-CCDB-4301-9915-A95222E4E574",
+            "name": "Mauritius",
+            "value": "110"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 110,
+            "id": "90CC79B5-A9A0-454D-A10B-EE0FCE49E955",
+            "name": "Mexico",
+            "value": "111"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 111,
+            "id": "E5EAFCB6-5B2F-4707-B2F9-2ADBA274844B",
+            "name": "Micronesia",
+            "value": "112"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 112,
+            "id": "B93B1B16-F372-4ABF-B2D1-C1439C7621D1",
+            "name": "Moldova",
+            "value": "113"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 113,
+            "id": "196BE467-D129-4B15-B9FB-BF84FD2FB265",
+            "name": "Monaco",
+            "value": "114"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 114,
+            "id": "A2D55F73-6DBB-4BAF-8CA5-836CB1BE1D74",
+            "name": "Mongolia",
+            "value": "115"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 115,
+            "id": "5CDED0EB-D742-4495-B058-F55A4951B458",
+            "name": "Montenegro",
+            "value": "116"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 116,
+            "id": "56F1E382-BD3F-43B7-9FB5-66FA7759EF74",
+            "name": "Morocco",
+            "value": "117"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 117,
+            "id": "FD60BD46-D507-44A5-AD31-C2B9DB067F9F",
+            "name": "Mozambique",
+            "value": "118"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 118,
+            "id": "37AE0374-758A-4E61-B39B-E4BB47976E41",
+            "name": "Myanmar (Burma)",
+            "value": "119"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 119,
+            "id": "1C4234F6-8081-46D5-8705-2B0E0FBADBF8",
+            "name": "Namibia",
+            "value": "120"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 120,
+            "id": "E693DE4D-3787-4E88-BD49-B32DDE4BF448",
+            "name": "Nauru",
+            "value": "121"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 121,
+            "id": "DE409737-99C2-4ACA-8D82-42B6B554FAA7",
+            "name": "Nepal",
+            "value": "122"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 122,
+            "id": "D61423BE-6412-4911-B9E2-B6C4ACB28387",
+            "name": "Netherlands",
+            "value": "123"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 123,
+            "id": "18D4F5C3-B3E8-4B1D-8C2F-12E666240E47",
+            "name": "New Zealand",
+            "value": "124"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 124,
+            "id": "D15D4826-6497-483A-8A93-D48C31E01003",
+            "name": "Nicaragua",
+            "value": "125"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 125,
+            "id": "EEE8C034-22E7-4B33-B442-BFBC05515FD3",
+            "name": "Niger",
+            "value": "126"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 126,
+            "id": "6AD2ADDE-BD0B-465D-8199-13EAE53BE799",
+            "name": "Nigeria",
+            "value": "127"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 127,
+            "id": "DD051745-8F17-44CB-942B-8F8FBFE45CC2",
+            "name": "North Korea",
+            "value": "128"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 128,
+            "id": "5B2241D9-8260-4843-A0D6-89FD2B4B8D0D",
+            "name": "Norway",
+            "value": "129"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 129,
+            "id": "6632EC9D-29C0-4D9B-B014-9342B0925CEB",
+            "name": "Oman",
+            "value": "130"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 130,
+            "id": "B87F8B83-4962-4652-8842-E0502259A924",
+            "name": "Pakistan",
+            "value": "131"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 131,
+            "id": "BB81492D-A756-48CE-BCD5-E683192557E1",
+            "name": "Palau",
+            "value": "132"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 132,
+            "id": "644C62BD-CB69-48D0-9F23-52633A6C0AB1",
+            "name": "Palestine",
+            "value": "133"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 133,
+            "id": "96C99E23-7CD7-40F5-AC04-8B07A5CD3447",
+            "name": "Panama",
+            "value": "134"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 134,
+            "id": "BD0947CC-4C0F-4246-89BD-9E5A270E8858",
+            "name": "Papua New Guinea",
+            "value": "135"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 135,
+            "id": "092AD7A5-6666-4A1D-9677-31A92703B057",
+            "name": "Paraguay",
+            "value": "136"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 136,
+            "id": "2896E9A0-0686-4AC4-8932-23A75F1860CB",
+            "name": "Peru",
+            "value": "137"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 137,
+            "id": "8255D080-9140-4D0A-A5B7-228E757ED2B8",
+            "name": "Philippines",
+            "value": "138"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 138,
+            "id": "165FBC83-E0BA-4314-88AB-ACE83634D185",
+            "name": "Poland",
+            "value": "139"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 139,
+            "id": "20B1393C-2EB6-40E5-96DB-82805685675A",
+            "name": "Portugal",
+            "value": "140"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 140,
+            "id": "EF1534CE-E157-449D-AFF4-E6F5286C1861",
+            "name": "Qatar",
+            "value": "141"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 141,
+            "id": "84298309-ADE9-4D3C-AD53-AD8EE18F29E2",
+            "name": "Romania",
+            "value": "142"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 142,
+            "id": "28355944-5469-4F4E-A707-601C02509481",
+            "name": "Russia",
+            "value": "143"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 143,
+            "id": "3EFFFB9D-0144-41AC-B7C3-0CA438220E29",
+            "name": "Rwanda",
+            "value": "144"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 144,
+            "id": "4D66EB1B-4996-4A92-956E-36D77B8E6905",
+            "name": "Saint Kitts and Nevis",
+            "value": "145"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 145,
+            "id": "F6E4F7F1-A927-4969-A0D1-9835EA8243B0",
+            "name": "Saint Lucia",
+            "value": "146"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 146,
+            "id": "19C2E098-E2A8-4365-ACE7-F2E49C419615",
+            "name": "Saint Vincent and the Grenadines",
+            "value": "147"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 147,
+            "id": "92C59957-0F3E-475F-A8C7-9853F9FE3F64",
+            "name": "Samoa",
+            "value": "148"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 148,
+            "id": "BBBE4DE1-AE0E-478C-963B-704CF06BE447",
+            "name": "San Marino",
+            "value": "149"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 149,
+            "id": "A94D6D88-7F71-4F17-8FCA-043F07D19C32",
+            "name": "Sao Tome and Principe",
+            "value": "150"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 150,
+            "id": "DB88A270-D4CD-4E4F-B66A-50E3AE0293BE",
+            "name": "Saudi Arabia",
+            "value": "151"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 151,
+            "id": "FEE75720-5D83-4587-A87B-6826CAD95316",
+            "name": "Senegal",
+            "value": "152"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 152,
+            "id": "030CEAC6-BF5C-4640-A03D-3FE958691D00",
+            "name": "Serbia",
+            "value": "153"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 153,
+            "id": "6208ABC6-337B-4D67-BB7C-04EF048CE9EC",
+            "name": "Seychelles",
+            "value": "154"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 154,
+            "id": "3A711263-DA36-4FE2-AA18-61093BE4DE00",
+            "name": "Sierra Leone",
+            "value": "155"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 155,
+            "id": "053A8B49-5287-4572-A4B9-7618888B10AD",
+            "name": "Singapore",
+            "value": "156"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 156,
+            "id": "73B4C2F3-ECE3-423F-8295-A466F4A45F9B",
+            "name": "Slovakia",
+            "value": "157"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 157,
+            "id": "14BCC4AF-C5BE-4C06-903E-0E256FEBD74E",
+            "name": "Slovenia",
+            "value": "158"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 158,
+            "id": "CDE15167-FF6C-4467-A527-2C0680E3590B",
+            "name": "Solomon Islands",
+            "value": "159"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 159,
+            "id": "62D9E60B-57A5-4C11-89A3-97BB86EBEA6C",
+            "name": "Somalia",
+            "value": "160"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 160,
+            "id": "E85BC292-57C8-4813-A51C-090B35DEFD43",
+            "name": "South Africa",
+            "value": "161"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 161,
+            "id": "A8519D41-9113-42CE-8D85-CFFD291C8492",
+            "name": "South Korea",
+            "value": "162"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 162,
+            "id": "76DD662F-0E25-4955-9FCA-777FA0DF9485",
+            "name": "South Sudan",
+            "value": "163"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 163,
+            "id": "3BB1F2CF-9C7F-45F1-9583-517365BA013D",
+            "name": "Spain",
+            "value": "164"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 164,
+            "id": "0605FE11-522F-4243-82D3-F79C3EDC2814",
+            "name": "Sri Lanka",
+            "value": "165"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 165,
+            "id": "285FE40D-0A6A-4E3D-9542-4DE40ACB0ABA",
+            "name": "Sudan",
+            "value": "166"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 166,
+            "id": "CAE96158-4DB3-4921-9466-7ABE1B5456C6",
+            "name": "Suriname",
+            "value": "167"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 167,
+            "id": "302F7CD3-43CE-4220-B2F8-853096D84E3A",
+            "name": "Swaziland",
+            "value": "168"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 168,
+            "id": "08E269E7-3FF1-42D9-9050-14D62215CED2",
+            "name": "Sweden",
+            "value": "169"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 169,
+            "id": "BAD0DFA8-3B51-4D59-9CF9-859A96157247",
+            "name": "Switzerland",
+            "value": "170"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 170,
+            "id": "E45C6153-F286-4F9F-8A19-932E31FCD5B9",
+            "name": "Syria",
+            "value": "171"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 171,
+            "id": "6CDE6347-2B90-47C1-9AD7-3F7EECE84416",
+            "name": "Taiwan",
+            "value": "172"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 172,
+            "id": "45158356-9422-48DC-ADC0-F441130F3720",
+            "name": "Tajikistan",
+            "value": "173"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 173,
+            "id": "15BB5652-76F2-4B17-ACD7-11049BD0022D",
+            "name": "Tanzania",
+            "value": "174"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 174,
+            "id": "925ABEF9-BAB7-465E-84C0-0B8452F7E48D",
+            "name": "Thailand",
+            "value": "175"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 175,
+            "id": "265C0272-559A-438A-B69F-EE0ED29E5654",
+            "name": "Timor-Leste",
+            "value": "176"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 176,
+            "id": "91034483-A653-4F73-A0E5-371399F996AF",
+            "name": "Togo",
+            "value": "177"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 177,
+            "id": "B07D7D0E-40BB-4C5A-9132-E65B06DBB506",
+            "name": "Tonga",
+            "value": "178"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 178,
+            "id": "36D65FF8-E682-4C3F-B770-9B251672AD39",
+            "name": "Trinidad and Tobago",
+            "value": "179"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 179,
+            "id": "F915C0E2-8734-4D36-8FE5-027535932D59",
+            "name": "Tunisia",
+            "value": "180"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 180,
+            "id": "0F81DF95-0E1F-43DA-BBFD-31035626FD29",
+            "name": "Turkey",
+            "value": "181"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 181,
+            "id": "5C5DD6D8-45CC-4BB5-9360-5A6608E1E8A5",
+            "name": "Turkmenistan",
+            "value": "182"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 182,
+            "id": "DF2636D4-ED1F-4F3A-AEFE-FFDD629F2B9C",
+            "name": "Tuvalu",
+            "value": "183"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 183,
+            "id": "7F055A56-62A7-427B-B1EB-F41091DFC691",
+            "name": "Uganda",
+            "value": "184"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 184,
+            "id": "5E54AC55-82A6-4E70-A412-32C624F2CF92",
+            "name": "Ukraine",
+            "value": "185"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 185,
+            "id": "2DDBAFCF-7F33-46EE-B22F-73CF903E2546",
+            "name": "United Arab Emirates",
+            "value": "186"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 186,
+            "id": "01D16B21-5A2B-4937-AE5F-34B2E01FB786",
+            "name": "United Kingdom",
+            "value": "187"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 187,
+            "id": "6CC7C50A-FC24-4702-97EA-0247DD5F8BD3",
+            "name": "United States of America",
+            "value": "188"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 188,
+            "id": "D1A94D1B-C569-43B1-82C6-6F8C97AA48A2",
+            "name": "Uruguay",
+            "value": "189"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 189,
+            "id": "BE4C4399-7F82-404A-8BDF-3A5D0EFBC51D",
+            "name": "Uzbekistan",
+            "value": "190"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 190,
+            "id": "13FF34C0-F579-433D-B663-7CB3664E08C5",
+            "name": "Vanuatu",
+            "value": "191"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 191,
+            "id": "BCFD8A79-F5D3-40F7-9C0D-51661AD41839",
+            "name": "Vatican City",
+            "value": "192"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 192,
+            "id": "1C310CFE-2FC7-4463-B3A3-DF446E9ACFCB",
+            "name": "Venezuela",
+            "value": "193"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 193,
+            "id": "BDE5B672-7028-438A-9FF5-3A3FF09C9358",
+            "name": "Vietnam",
+            "value": "194"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 194,
+            "id": "1D5D9DCA-79CC-4062-87D6-3B8B0ED55B57",
+            "name": "Yemen",
+            "value": "195"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 195,
+            "id": "A5E5F0FD-2034-4F58-BC08-31CDE5532370",
+            "name": "Zambia",
+            "value": "196"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 196,
+            "id": "2DADE705-2F55-4283-8B07-0F6D144C815A",
+            "name": "Zimbabwe",
+            "value": "197"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/1794D8A8-B487-4450-9D18-14777C3AE911"
+          }
+        },
+        "description": "",
+        "id": "1794D8A8-B487-4450-9D18-14777C3AE911",
+        "layout": false,
+        "name": "None-Very severe",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "5B3A16B8-8E26-4F3B-9C20-67FE1E85074F",
+            "name": "None",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "0A2D56F8-DDF6-4B33-B9B4-B02ED9570C16",
+            "name": "Very mild",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "E4C940AE-2756-45E3-9044-7C0E0CE81B6F",
+            "name": "Mild",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "48370102-2587-40A2-A05A-8F5975EAC7EC",
+            "name": "Moderate",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "FF6BDCAD-AA82-48D1-964B-93C85D8AFB7E",
+            "name": "Severe",
+            "value": "5"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 5,
+            "id": "E914F2CE-02B0-48E7-8DF0-302F873E42C4",
+            "name": "Very severe",
+            "value": "6"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/1928DA9A-17C3-4EDA-9676-143D281103B9"
+          }
+        },
+        "description": "",
+        "id": "1928DA9A-17C3-4EDA-9676-143D281103B9",
+        "layout": false,
+        "name": "AE Outcome",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "4B155957-E62E-4D25-85CE-89C98B963024",
+            "name": "Resolved",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "2192DA3C-AEF2-4C6F-8C26-1CB173C768E6",
+            "name": "Recovered with minor sequelae",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "B735A0E3-08E4-448A-A7CE-F4F6CBBDFC01",
+            "name": "Recovered with major sequelae",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "3A90A0BF-6AA0-4E92-8EA1-DE7305DE8FEC",
+            "name": "Ongoing / continuing treatment",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "AB6D12D4-394F-4698-9E46-81B36D215637",
+            "name": "Condition worsening",
+            "value": "5"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 5,
+            "id": "8E169672-C547-4A39-A935-2E1F240CC960",
+            "name": "Death",
+            "value": "6"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 6,
+            "id": "361C05C4-0A33-4183-83B9-1F7E220EB515",
+            "name": "Unknown",
+            "value": "7"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/2E61AA03-5FC0-4355-987F-B24B1B774CB8"
+          }
+        },
+        "description": "",
+        "id": "2E61AA03-5FC0-4355-987F-B24B1B774CB8",
+        "layout": false,
+        "name": "Status",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "79E00AEF-5BA2-4856-B016-F855975B715E",
+            "name": "Under follow-up",
+            "value": "0"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "53860766-0662-47F8-A31B-4F2FCFC1263E",
+            "name": "Referred back to GP",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "F60DA84B-88A1-42D6-A7C8-B9CEC3140423",
+            "name": "Lost to follow-up",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "7FBA4292-D707-4696-97D2-B3FFCF9C1319",
+            "name": "Death",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/35750DFA-023C-458B-9417-90C8A2223CC5"
           }
         },
         "description": "Has patient ever been smoking?",
-        "id": "C65FAEBC-9518-494C-B081-7E48C595BC74",
+        "id": "35750DFA-023C-458B-9417-90C8A2223CC5",
         "layout": false,
         "name": "og_smoker",
         "options": [
           {
+            "domainVariableNameOverride": null,
             "groupOrder": 0,
-            "id": "2AE02D18-88DE-4BB0-82F7-3A375080E76B",
+            "id": "6DE43CBD-DF91-4A52-97CB-27E93EF5BCD1",
             "name": "No",
             "value": "0"
           },
           {
+            "domainVariableNameOverride": null,
             "groupOrder": 1,
-            "id": "4A5BF252-F832-4C27-81E6-CA9CDD8DF68E",
+            "id": "A11D4832-B891-4464-AA6C-70425C57F46D",
             "name": "Yes, former",
             "value": "1"
           },
           {
+            "domainVariableNameOverride": null,
             "groupOrder": 2,
-            "id": "FC6CE2F5-DBA5-42B6-8844-F68A7E458EFA",
+            "id": "83FCCE45-93AC-4621-969E-22E0CF668523",
             "name": "Yes, current",
             "value": "2"
           }
@@ -2344,55 +1780,978 @@
       {
         "_links": {
           "self": {
-            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup/D16049EA-CCA7-49C6-8116-65E6FDA6307D"
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/3FA634D9-ABCB-4BA4-9CE2-FDD09FF5435B"
           }
         },
-        "description": "units in which medication was recorded",
-        "id": "D16049EA-CCA7-49C6-8116-65E6FDA6307D",
+        "description": "sex",
+        "id": "3FA634D9-ABCB-4BA4-9CE2-FDD09FF5435B",
         "layout": false,
-        "name": "og_medunits",
+        "name": "sex",
         "options": [
           {
+            "domainVariableNameOverride": null,
             "groupOrder": 0,
-            "id": "468DFA1E-C65F-4172-9240-FB914ED3B82D",
-            "name": "Unknown",
+            "id": "16AE2CFE-F018-4811-ACF2-A2A2B5777CC2",
+            "name": "Female",
             "value": "0"
           },
           {
+            "domainVariableNameOverride": null,
             "groupOrder": 1,
-            "id": "F609471E-3D68-4A8E-93C8-458417DAF6BE",
-            "name": "ug/day",
+            "id": "3A443EEA-FC9E-40BA-AAC6-258D9A65ED80",
+            "name": "Male",
+            "value": "1"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/41CACE7A-5F64-4C50-9227-5588B828188D"
+          }
+        },
+        "description": "Yes or No",
+        "id": "41CACE7A-5F64-4C50-9227-5588B828188D",
+        "layout": false,
+        "name": "og_ynu",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "9E348A25-2867-4CB9-ADDA-24114B87B699",
+            "name": "No",
+            "value": "0"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "A53C8450-FF2F-4E57-8EB7-FD235F6667F4",
+            "name": "Yes",
             "value": "1"
           },
           {
+            "domainVariableNameOverride": null,
             "groupOrder": 2,
-            "id": "A0BD56C1-02C7-405B-921C-E2F64E8B34C0",
-            "name": "mg/day",
+            "id": "44FA834B-B157-494F-8621-8DE75862DA90",
+            "name": "Unknown",
+            "value": "9"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/43C8F861-91DF-4424-A051-1A35BEFADE0B"
+          }
+        },
+        "description": "",
+        "id": "43C8F861-91DF-4424-A051-1A35BEFADE0B",
+        "layout": false,
+        "name": "Excellent-Poor",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "B3BAB3AE-C783-404D-B4C0-24C259597CBC",
+            "name": "Excellent",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "253F859C-D1CF-4A7B-9E36-F91872A7CE7C",
+            "name": "Very good",
             "value": "2"
           },
           {
-            "groupOrder": 3,
-            "id": "382A11C9-D821-493D-9835-DC012BA66CA9",
-            "name": "g/day",
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "53530EDF-7373-4AC5-9AF8-D89AEC6240FB",
+            "name": "Good",
             "value": "3"
           },
           {
-            "groupOrder": 4,
-            "id": "EF818815-1A89-498C-8CA9-DD430DD74411",
-            "name": "ug/week",
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "8133899B-A7DE-416A-8974-1EBB048D01B7",
+            "name": "Fair",
             "value": "4"
           },
           {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "81DDF3B9-6D87-4FF3-BCFA-E792E5DB9D39",
+            "name": "Poor",
+            "value": "5"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/51997C50-EBBF-41C2-99CE-D267187596A9"
+          }
+        },
+        "description": "",
+        "id": "51997C50-EBBF-41C2-99CE-D267187596A9",
+        "layout": false,
+        "name": "Health a year ago",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "9DEBBB7C-47A7-47C2-A79C-AECD4548A208",
+            "name": "Much better now than one year ago",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "4B0AB2FC-F847-4451-9E05-4F572EF33AA5",
+            "name": "Somewhat better now than one year ago",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "71925193-9002-4A6F-8661-C5CDBF9FE5C1",
+            "name": "About the same",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "9BC73375-E33D-43C3-92B1-391B3166E0CF",
+            "name": "Somewhat worse now than one year ago",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "4331865A-F99B-42D3-BC62-4232277315B1",
+            "name": "Much worse now than one year ago",
+            "value": "5"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/52EA100A-748D-4913-B1DA-BCB08448EA2A"
+          }
+        },
+        "description": "",
+        "id": "52EA100A-748D-4913-B1DA-BCB08448EA2A",
+        "layout": false,
+        "name": "Action AE",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "07A64412-5A29-4C2C-879B-1DD390F7BBBB",
+            "name": "None",
+            "value": "0"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "BECFC74F-7FFB-4884-B10A-743F21CE15B0",
+            "name": "Dose modification",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "96700B3B-33FD-420D-AA30-3BEBEA12B208",
+            "name": "Medical intervention",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "E4EDB5DB-8425-4AE0-9B2A-F01CE86C6672",
+            "name": "Hospitalization",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "86F07F67-B6EE-4828-9CB2-FC6C990771E0",
+            "name": "Intervention discontinued",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
             "groupOrder": 5,
-            "id": "D1DDEF84-C51C-496C-971B-890A11CDEAC5",
-            "name": "mg/week",
+            "id": "79E366A9-17E9-46B9-8D03-4406024AC85B",
+            "name": "Other",
+            "value": "5"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/581DBE3F-73B0-4354-80CD-88841A613C54"
+          }
+        },
+        "description": "Medication class",
+        "id": "581DBE3F-73B0-4354-80CD-88841A613C54",
+        "layout": false,
+        "name": "med_class_dropdown",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "EE425C05-6B83-461F-9A07-6F3A3EEEDA6E",
+            "name": "ACE inhibitor (ACEi)",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "3AEF31DD-D417-44E4-BBF3-DE48E4FB2EB6",
+            "name": "Angiotensin receptor blocker (ARB)",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "B0CBB555-F069-4DDF-BB11-47D716829DC6",
+            "name": "Loop diuretics",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "17EB7430-1363-4C94-B876-3753F23A7BCD",
+            "name": "Anti-aldosterone diurectics",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "1EDA6200-EAA6-4B6B-A0F7-5C2E331FB167",
+            "name": "Thiazide diuretics",
             "value": "5"
           },
           {
-            "groupOrder": 6,
-            "id": "9A12458A-65DD-4277-871A-D4A99A25622F",
-            "name": "g/week",
+            "domainVariableNameOverride": null,
+            "groupOrder": 5,
+            "id": "91960878-E6C8-4ED5-B22A-7BB109611E40",
+            "name": "Other diurectics",
             "value": "6"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 6,
+            "id": "F419C63E-1035-4E07-A8E5-FDC57504AFC9",
+            "name": "Lipid lowering drugs",
+            "value": "7"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 7,
+            "id": "344A7F65-72D7-4170-B139-CB5038DFFA3B",
+            "name": "Anti-platelets",
+            "value": "8"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 8,
+            "id": "A5304C46-F67A-432F-BDD3-7473DA88B537",
+            "name": "Anti-coagulants",
+            "value": "9"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 9,
+            "id": "4A348C9D-7F2E-4AC8-B094-F34C1067885F",
+            "name": "Prednisolone (oral administration)",
+            "value": "10"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 10,
+            "id": "2305D028-E9F8-470D-ACC4-021BD219C7D1",
+            "name": "Methylprednisolone (IV pulse therapy)",
+            "value": "11"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 11,
+            "id": "EA6F48AB-26C9-4C5F-AFDE-DC52018463C2",
+            "name": "Cyclophosphamide",
+            "value": "12"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 12,
+            "id": "CB0DBAA4-73B6-47B1-9354-C6E755C2C5C8",
+            "name": "Cyclosporin A",
+            "value": "13"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 13,
+            "id": "7A512194-08D0-4CFE-8AEB-48725BE500FB",
+            "name": "Tacrolimus",
+            "value": "14"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 14,
+            "id": "EDBEE0EB-8486-4D8E-9F93-A09883486323",
+            "name": "Mycofenolate Mofetil (MMF)",
+            "value": "15"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 15,
+            "id": "6FC9C1FA-2E21-44A3-BDBC-6EF8A1DFAB2F",
+            "name": "Azathioprine",
+            "value": "16"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 16,
+            "id": "15C9C836-1D60-4CB1-8C13-F09C191E8E97",
+            "name": "Chloorambucil",
+            "value": "17"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 17,
+            "id": "9002E4BA-6E45-436F-846A-1925B1205538",
+            "name": "Rituximab",
+            "value": "18"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 18,
+            "id": "BE7287D4-7542-4F04-B4B4-587DB76C3852",
+            "name": "Oral anti-diabetics",
+            "value": "19"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 19,
+            "id": "B591B321-B4D1-4C15-9808-9ABE485F7893",
+            "name": "Insulin s.c.",
+            "value": "20"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 20,
+            "id": "2D749745-20AB-41DF-8DA8-780163E09851",
+            "name": "Anti-Blyss (belumimab)",
+            "value": "21"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 21,
+            "id": "1684B28B-F11F-4442-8C68-F25A49F83B69",
+            "name": "ACTH",
+            "value": "22"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 22,
+            "id": "A6144996-9B67-4126-A7E8-D30297D7B9A0",
+            "name": "Ofatumumab",
+            "value": "23"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 23,
+            "id": "F77FCB4D-9058-4CE7-B90C-FC014A194371",
+            "name": "NSAID",
+            "value": "24"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 24,
+            "id": "6B8E262D-C897-487C-A5A0-8E74D721EA0C",
+            "name": "Eculizumab",
+            "value": "25"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 25,
+            "id": "AFEF2C89-A551-4B86-A007-6DD8167750CC",
+            "name": "Bortezomib",
+            "value": "26"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 26,
+            "id": "F11FFCB3-2AB9-49C2-8D2D-7C381F9C3D0E",
+            "name": "Daratumumab",
+            "value": "27"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 28,
+            "id": "13C58D25-36A6-4E34-BDC1-31CEF511C42F",
+            "name": "IVIG",
+            "value": "29"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 29,
+            "id": "059FAF1E-C6A3-4CDC-9C52-7FE7652DAF57",
+            "name": "Electrolyte supplements",
+            "value": "30"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 30,
+            "id": "A49DC58E-6BE4-4A05-B2EB-00E1392D3395",
+            "name": "Other antihypertensives",
+            "value": "31"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 31,
+            "id": "BC8F5732-12C5-47C4-8999-C65D9809498F",
+            "name": "Proton pump inhibitors (PPIs)",
+            "value": "32"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 32,
+            "id": "0D3F617C-F6B2-4E02-A767-4465B83621A3",
+            "name": "Other medication",
+            "value": "33"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/5E7096F0-BEE7-401E-BF4C-120A64CE2F1A"
+          }
+        },
+        "description": "",
+        "id": "5E7096F0-BEE7-401E-BF4C-120A64CE2F1A",
+        "layout": false,
+        "name": "All of the Time-None of the Time (2)",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "D37E342B-5D14-466E-AFE1-7A1D631729BC",
+            "name": "All of the time",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "63BBC56E-F91D-4CB6-8B72-42517C97C558",
+            "name": "Most of the time",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "DB62992C-2930-4333-BD88-E6F1B1435513",
+            "name": "Some of the time",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "B467EF6C-CD20-4E08-8641-3133F8005AA7",
+            "name": "A little of the time",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "37579E84-0460-464E-9614-14ECFD59FBD7",
+            "name": "None of the time",
+            "value": "5"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/6A792D5C-1EE2-4BFB-8BB5-53AA89635511"
+          }
+        },
+        "description": "",
+        "id": "6A792D5C-1EE2-4BFB-8BB5-53AA89635511",
+        "layout": false,
+        "name": "FamHistory",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "9C7532FC-462C-4C96-8B13-566B9E2454C5",
+            "name": "Renal disease",
+            "value": "0"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "BF0C6E1B-FB52-406C-BDA5-D4CDBAB5698F",
+            "name": "Deafness",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "96D4BB88-5F4F-41F3-A1B0-33BC3B25193E",
+            "name": "(Cardio)myopathy",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "0079CF3D-4B76-4F84-B17C-9A43284B1822",
+            "name": "Encephalopathy",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 5,
+            "id": "AE1B241C-A43B-49B6-BBCC-BEA19BE823DF",
+            "name": "Diabetes Mellitus",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 6,
+            "id": "BA95C1B2-E571-4E05-8926-0C56857C1862",
+            "name": "Hypertension/Cardiovascular disease",
+            "value": "5"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 7,
+            "id": "64A2D539-A25C-4372-B7BE-D31CAA39C02A",
+            "name": "Thrombosis",
+            "value": "6"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 8,
+            "id": "68D129DA-6091-4ED3-A716-04768A90EC09",
+            "name": "Malignancy",
+            "value": "7"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/80BE8F54-9D1C-4AA5-A318-61262F85A914"
+          }
+        },
+        "description": "",
+        "id": "80BE8F54-9D1C-4AA5-A318-61262F85A914",
+        "layout": false,
+        "name": "fuvis_type_grp",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "AB96B1D5-A59D-4B93-8144-81DC75EE55E6",
+            "name": "in-patient admission",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "2158F324-78ED-4B26-B946-251B7E0EDF07",
+            "name": "out-patient visit",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "852C93C6-8783-4ECC-80BA-505E2247F6E9",
+            "name": "admission to day-care",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/B5D5AA70-09ED-4F39-A54C-C100E5CC4C9C"
+          }
+        },
+        "description": "",
+        "id": "B5D5AA70-09ED-4F39-A54C-C100E5CC4C9C",
+        "layout": false,
+        "name": "AE Relationship",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "85172863-E22E-4679-99FC-DD416EDF5724",
+            "name": "Not related",
+            "value": "0"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "B0B9FF78-A6EA-4D0C-B3DD-0AD5DAFA1AA5",
+            "name": "Unlikely related",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "687E8DEB-DAFC-4200-85B8-9CAE74C0F8D0",
+            "name": "Possibly related",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "CECDD15D-49E5-4D1E-AB2A-4E19C6098D9C",
+            "name": "Probably related",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "F2456A92-BF09-4674-8387-C7CD8DCB83F9",
+            "name": "Definitely related",
+            "value": "4"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/C396C6CE-DA51-481D-801A-4B9F2C39F19B"
+          }
+        },
+        "description": "",
+        "id": "C396C6CE-DA51-481D-801A-4B9F2C39F19B",
+        "layout": false,
+        "name": "Yes/No",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "DB3773EF-5C7C-4638-81A6-CE2E773472CE",
+            "name": "Yes",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "FE039027-1524-4248-A9BF-45FB5BBC67B1",
+            "name": "No",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/C5BAEC18-6A25-4BE6-8745-C3A07AFA67F0"
+          }
+        },
+        "description": "",
+        "id": "C5BAEC18-6A25-4BE6-8745-C3A07AFA67F0",
+        "layout": false,
+        "name": "Definitely true-Definitely false",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "BF53CB81-4EBA-4AF4-8F69-14FB5A076A08",
+            "name": "Definitely true",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "DFECF88E-2AEE-4E46-9ABE-7D261A3EF0B7",
+            "name": "Mostly true",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "77CBFCEA-847F-44B0-A40C-2399B7DE9640",
+            "name": "Don't know",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "57C87996-01DF-431B-BBF2-0D52B71BD8A8",
+            "name": "Mostly false",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "8C39B18F-7571-43C5-B65A-F0C83782150E",
+            "name": "Definitely false",
+            "value": "5"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/C638992D-2AA0-4BB0-8E90-0E5AAE0322D4"
+          }
+        },
+        "description": "",
+        "id": "C638992D-2AA0-4BB0-8E90-0E5AAE0322D4",
+        "layout": false,
+        "name": "Not at all-Extremely (pain)",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "A5D3F775-160B-44D5-8704-8C01F562923F",
+            "name": "Not at all",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "D723CC2E-B115-4958-AB6C-00EA7E5AB300",
+            "name": "A little bit",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "623C6819-17E1-4B1C-BF37-7C0A094366FB",
+            "name": "Moderately",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "440BC361-131A-4EF7-8090-A64BDB7EDAB8",
+            "name": "Quite a bit",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "5987EEAD-848D-4E4F-B06F-A9D48D634516",
+            "name": "Extremely",
+            "value": "5"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/C9356247-4177-40C0-993C-130554706853"
+          }
+        },
+        "description": "Renal diagnosis",
+        "id": "C9356247-4177-40C0-993C-130554706853",
+        "layout": false,
+        "name": "RenalDiagnosis",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "5A63EADB-6159-4C04-A4FA-69A8586AAB65",
+            "name": "Kidney stones",
+            "value": "0"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "D3172F69-37CA-430A-8ADF-2659818D4E52",
+            "name": "Nephrotic syndrome",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "8A90C419-C36E-4E96-AE5D-794A1C1BA30D",
+            "name": "Minimal change nephropathy",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "9327532B-8651-4D26-9C79-41F78BA22924",
+            "name": "Focal glomerulosclerosis",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "B3D38DAA-82FF-4C6E-AA89-F740373BCE25",
+            "name": "Membranous nephropathy",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 5,
+            "id": "55F5DEA3-D821-4CFF-9A0D-2315E43C7A11",
+            "name": "IgA nephropathy",
+            "value": "5"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 6,
+            "id": "D7D0821F-8D75-4E08-8199-9949860A1FBA",
+            "name": "Henoch Schonlein Purpura/ IgA vasculitis",
+            "value": "6"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 7,
+            "id": "4252A432-C7D7-4649-9083-7C89764DB02F",
+            "name": "Glomerulonephritis",
+            "value": "7"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 8,
+            "id": "0FCED28C-0CAF-48EE-8087-3F27BC438298",
+            "name": "Glomerulopathy",
+            "value": "8"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 9,
+            "id": "A61EE640-E89D-4B00-AEA7-07E49E002953",
+            "name": "Lupus nephritis",
+            "value": "9"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 10,
+            "id": "3131ED1C-B5E9-42C3-ACA1-C749B59A9A19",
+            "name": "Diabetic nephropathy",
+            "value": "10"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 11,
+            "id": "6DA55EFA-38C8-43B0-8CA8-BF539A1961E6",
+            "name": "Cast nephropathy",
+            "value": "11"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 12,
+            "id": "20DD300B-19A6-4D6F-9DC1-EB2B70EA0392",
+            "name": "M. Alport",
+            "value": "12"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 13,
+            "id": "F3BF4BAB-EDF6-4BA0-AEB7-DE3A13584174",
+            "name": "Fanconi",
+            "value": "13"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 14,
+            "id": "A2A84439-1845-427E-9175-9858A986F482",
+            "name": "Other",
+            "value": "14"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/D36DE7B5-723F-4C65-A952-74F27C47D28F"
+          }
+        },
+        "description": "",
+        "id": "D36DE7B5-723F-4C65-A952-74F27C47D28F",
+        "layout": false,
+        "name": "Severity",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "8BB7A36D-0C3D-4BC9-BE4D-C974F20E48C8",
+            "name": "Mild",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "EC169759-E903-4659-B537-CC1C70A1BC90",
+            "name": "Moderate",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "36E9EC4E-FF94-4DF1-8B2D-49ADCFE7B79F",
+            "name": "Severe",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "EE0068B8-4EDB-4279-8C7B-F6984BB66347",
+            "name": "Life-threatening",
+            "value": "4"
+          }
+        ]
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/D4662D3A-9D74-4B11-9602-4E1B7D2604DD"
+          }
+        },
+        "description": "",
+        "id": "D4662D3A-9D74-4B11-9602-4E1B7D2604DD",
+        "layout": false,
+        "name": "Not at all-Extremely",
+        "options": [
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 0,
+            "id": "55C6D857-2316-4C26-A025-9CD6EBB35E4F",
+            "name": "Not at all",
+            "value": "1"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 1,
+            "id": "24F803C3-C00C-4BED-915D-5AC9CF111051",
+            "name": "Slightly",
+            "value": "2"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 2,
+            "id": "61641E93-7AD0-4841-85C6-8AD4965AE42F",
+            "name": "Moderately",
+            "value": "3"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 3,
+            "id": "45FD5767-335A-4391-8F4D-4CF2BA5238CA",
+            "name": "Quite a bit",
+            "value": "4"
+          },
+          {
+            "domainVariableNameOverride": null,
+            "groupOrder": 4,
+            "id": "A2D7188A-171E-4BF0-AE27-74E80E1D9489",
+            "name": "Extremely",
+            "value": "5"
           }
         ]
       }
@@ -2400,16 +2759,16 @@
   },
   "_links": {
     "first": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup"
     },
     "last": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup?page=2"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup?page=2"
     },
     "next": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup?page=2"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup?page=2"
     },
     "self": {
-      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup?page=1"
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup?page=1"
     }
   },
   "page": 1,

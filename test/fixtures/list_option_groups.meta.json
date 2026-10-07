@@ -1,7 +1,7 @@
 {
   "method": "GET",
   "operation": "list_option_groups",
-  "path": "/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/field-optiongroup",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup",
   "query": null,
   "status": 200
 }
