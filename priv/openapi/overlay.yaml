@@ -19,3 +19,40 @@ actions:
       it a `paths: {"/": []}` fragment, which leaves an empty list where a
       path item object belongs, so the document doesn't validate.
     remove: true
+
+  # Operations outside the client
+
+  - target: $.paths.*[?@.deprecated == true]
+    description: >-
+      Deprecated operations (58, mostly the record, report, phase and step
+      routes and the data point collections) get Sunset headers upstream and
+      aren't part of the client.
+    remove: true
+  - target: $.paths['/study/{study_id}/export'].post.tags[?@ == 'beta']
+    description: >-
+      Batch exports are tagged beta, but they're the supported way to export
+      (the synchronous CSV exports are deprecated), so the client keeps them.
+    remove: true
+  - target: $.paths.*[?@.tags[?@ == 'beta']]
+    description: >-
+      The other beta operations (audit trail, domains, monitoring
+      validations) may still change upstream and aren't part of the client.
+    remove: true
+  - target: $.paths.*[?@.tags[?@ == 'castor-internal']]
+    description: The custom export upload is for Castor's internal use.
+    remove: true
+  - target: $.paths['/study/{study_id}/export/data'].get
+    description: >-
+      The synchronous data export is deprecated, though the spec doesn't flag
+      it; batch exports replace it.
+    remove: true
+  - target: $.paths['/study/{study_id}/export/structure'].get
+    description: >-
+      The synchronous structure export is deprecated, though the spec doesn't
+      flag it; the form_structure batch export replaces it.
+    remove: true
+  - target: $.paths['/study/{study_id}/export/optiongroups'].get
+    description: >-
+      The synchronous option group export is deprecated, though the spec
+      doesn't flag it; listing option groups replaces it.
+    remove: true
