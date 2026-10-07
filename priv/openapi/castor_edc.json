@@ -1045,6 +1045,58 @@
           }
         }
       },
+      "DataPoint": {
+        "description": "A stored value of one field, for a participant, in the context of the study, a survey (package) instance or a repeating data instance.",
+        "properties": {
+          "field_id": {
+            "format": "UUID",
+            "type": "string"
+          },
+          "field_value": {
+            "description": "The name collections use for the value.",
+            "type": "string",
+            "x-castor-rename": "value"
+          },
+          "field_variable_name": {
+            "description": "Only present on single data points.",
+            "type": "string"
+          },
+          "participant_id": {
+            "type": "string"
+          },
+          "repeating_data_instance_id": {
+            "format": "UUID",
+            "type": "string"
+          },
+          "repeating_data_instance_name": {
+            "type": "string"
+          },
+          "survey_instance_id": {
+            "format": "UUID",
+            "type": "string"
+          },
+          "survey_name": {
+            "type": "string"
+          },
+          "survey_package_instance_id": {
+            "format": "UUID",
+            "type": "string"
+          },
+          "updated_on": {
+            "description": "When the value last changed, as YYYY-MM-DD HH:MM:SS.",
+            "type": [
+              "string",
+              "null"
+            ],
+            "x-castor-type": "naive_datetime"
+          },
+          "value": {
+            "description": "The stored value, always a string; see CastorEDC.FieldValue for decoding it by field type.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "DataPointCollectionCommonParameters": {
         "properties": {
           "change_reason": {
@@ -6726,7 +6778,7 @@
                       "properties": {
                         "items": {
                           "items": {
-                            "$ref": "#/components/schemas/RepeatingDataFieldResultCollection"
+                            "$ref": "#/components/schemas/DataPoint"
                           },
                           "type": "array"
                         }
@@ -6855,7 +6907,7 @@
                       "properties": {
                         "items": {
                           "items": {
-                            "$ref": "#/components/schemas/RepeatingDataFieldResultCollection"
+                            "$ref": "#/components/schemas/DataPoint"
                           },
                           "type": "array"
                         }
@@ -6975,7 +7027,7 @@
                       "properties": {
                         "items": {
                           "items": {
-                            "$ref": "#/components/schemas/StudyFieldResultCollection"
+                            "$ref": "#/components/schemas/DataPoint"
                           },
                           "type": "array"
                         }
@@ -7095,7 +7147,7 @@
                       "properties": {
                         "items": {
                           "items": {
-                            "$ref": "#/components/schemas/SurveyFieldResultCollection"
+                            "$ref": "#/components/schemas/DataPoint"
                           },
                           "type": "array"
                         }
@@ -7224,7 +7276,7 @@
                       "properties": {
                         "items": {
                           "items": {
-                            "$ref": "#/components/schemas/SurveyFieldResultCollection"
+                            "$ref": "#/components/schemas/DataPoint"
                           },
                           "type": "array"
                         }
@@ -7353,7 +7405,7 @@
                       "properties": {
                         "items": {
                           "items": {
-                            "$ref": "#/components/schemas/SurveyPackageFieldResultCollection"
+                            "$ref": "#/components/schemas/DataPoint"
                           },
                           "type": "array"
                         }
@@ -9553,7 +9605,7 @@
             "content": {
               "application/hal+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RepeatingDataInstanceFieldResult"
+                  "$ref": "#/components/schemas/DataPoint"
                 }
               }
             },
@@ -9757,7 +9809,7 @@
             "content": {
               "application/hal+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SurveyInstanceFieldResult"
+                  "$ref": "#/components/schemas/DataPoint"
                 }
               }
             },
@@ -9965,7 +10017,7 @@
                       "properties": {
                         "items": {
                           "items": {
-                            "$ref": "#/components/schemas/RepeatingDataFieldResultCollection"
+                            "$ref": "#/components/schemas/DataPoint"
                           },
                           "type": "array"
                         }
@@ -10075,7 +10127,7 @@
                       "properties": {
                         "items": {
                           "items": {
-                            "$ref": "#/components/schemas/RepeatingDataFieldResultCollection"
+                            "$ref": "#/components/schemas/DataPoint"
                           },
                           "type": "array"
                         }
@@ -10285,7 +10337,7 @@
                       "properties": {
                         "items": {
                           "items": {
-                            "$ref": "#/components/schemas/StudyFieldResultCollection"
+                            "$ref": "#/components/schemas/DataPoint"
                           },
                           "type": "array"
                         }
@@ -10486,7 +10538,7 @@
                       "properties": {
                         "items": {
                           "items": {
-                            "$ref": "#/components/schemas/SurveyFieldResultCollection"
+                            "$ref": "#/components/schemas/DataPoint"
                           },
                           "type": "array"
                         }
@@ -10596,7 +10648,7 @@
                       "properties": {
                         "items": {
                           "items": {
-                            "$ref": "#/components/schemas/SurveyFieldResultCollection"
+                            "$ref": "#/components/schemas/DataPoint"
                           },
                           "type": "array"
                         }
@@ -10918,7 +10970,7 @@
                       "properties": {
                         "items": {
                           "items": {
-                            "$ref": "#/components/schemas/SurveyPackageFieldResultCollection"
+                            "$ref": "#/components/schemas/DataPoint"
                           },
                           "type": "array"
                         }
@@ -12186,7 +12238,7 @@
             "content": {
               "application/hal+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FieldResult"
+                  "$ref": "#/components/schemas/DataPoint"
                 }
               }
             },
