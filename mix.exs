@@ -38,6 +38,8 @@ defmodule CastorEDC.MixProject do
   def cli do
     [
       preferred_envs: [
+        precommit: :test,
+        quality: :dev,
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.html": :test,
@@ -103,7 +105,18 @@ defmodule CastorEDC.MixProject do
 
   defp aliases do
     [
-      "deps.audit": ["deps.audit --ignore-advisory-ids #{Enum.join(@ignored_advisories, ",")}"]
+      "deps.audit": ["deps.audit --ignore-advisory-ids #{Enum.join(@ignored_advisories, ",")}"],
+      precommit: ["compile --warnings-as-errors", "deps.unlock --unused", "format", "credo --strict", "test"],
+      quality: [
+        # hex.audit has to run first: once another task has loaded the
+        # project's code paths, Mix no longer finds tasks from the Hex archive
+        "hex.audit",
+        "format --check-formatted",
+        "credo --strict",
+        "dialyzer",
+        "deps.audit",
+        "docs --warnings-as-errors"
+      ]
     ]
   end
 end
