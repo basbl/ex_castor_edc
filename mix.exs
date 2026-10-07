@@ -129,6 +129,7 @@ defmodule CastorEDC.MixProject do
         "dialyzer",
         "deps.audit",
         "castor_edc.spec.build --check",
+        "castor_edc.gen.client --check",
         "docs --warnings-as-errors"
       ]
     ]
