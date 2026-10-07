@@ -6223,6 +6223,7 @@
         "tags": [
           "country"
         ],
+        "x-castor-items": "results",
         "x-castor-module": "Countries"
       }
     },
@@ -6334,6 +6335,7 @@
         "tags": [
           "study"
         ],
+        "x-castor-items": "_embedded.study",
         "x-castor-module": "Studies"
       }
     },
@@ -6657,6 +6659,7 @@
         "tags": [
           "survey"
         ],
+        "x-castor-items": "data",
         "x-castor-module": "Surveys"
       }
     },
@@ -6692,6 +6695,24 @@
             "schema": {
               "format": "date-time",
               "type": "string"
+            }
+          },
+          {
+            "description": "The page to retrieve.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 5000,
+              "type": "integer"
             }
           }
         ],
@@ -6757,6 +6778,8 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-items": "_embedded.items",
+        "x-castor-max-page-size": 5000,
         "x-castor-module": "DataPoints"
       }
     },
@@ -6801,6 +6824,24 @@
             "schema": {
               "format": "date-time",
               "type": "string"
+            }
+          },
+          {
+            "description": "The page to retrieve.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 5000,
+              "type": "integer"
             }
           }
         ],
@@ -6866,6 +6907,8 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-items": "_embedded.items",
+        "x-castor-max-page-size": 5000,
         "x-castor-module": "DataPoints"
       }
     },
@@ -6901,6 +6944,24 @@
             "schema": {
               "format": "date-time",
               "type": "string"
+            }
+          },
+          {
+            "description": "The page to retrieve.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 5000,
+              "type": "integer"
             }
           }
         ],
@@ -6966,6 +7027,8 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-items": "_embedded.items",
+        "x-castor-max-page-size": 5000,
         "x-castor-module": "DataPoints"
       }
     },
@@ -7001,6 +7064,24 @@
             "schema": {
               "format": "date-time",
               "type": "string"
+            }
+          },
+          {
+            "description": "The page to retrieve.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 5000,
+              "type": "integer"
             }
           }
         ],
@@ -7066,6 +7147,8 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-items": "_embedded.items",
+        "x-castor-max-page-size": 5000,
         "x-castor-module": "DataPoints"
       }
     },
@@ -7110,6 +7193,24 @@
             "schema": {
               "format": "date-time",
               "type": "string"
+            }
+          },
+          {
+            "description": "The page to retrieve.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 5000,
+              "type": "integer"
             }
           }
         ],
@@ -7175,6 +7276,8 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-items": "_embedded.items",
+        "x-castor-max-page-size": 5000,
         "x-castor-module": "DataPoints"
       }
     },
@@ -7219,6 +7322,24 @@
             "schema": {
               "format": "date-time",
               "type": "string"
+            }
+          },
+          {
+            "description": "The page to retrieve.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 5000,
+              "type": "integer"
             }
           }
         ],
@@ -7284,6 +7405,8 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-items": "_embedded.items",
+        "x-castor-max-page-size": 5000,
         "x-castor-module": "DataPoints"
       }
     },
@@ -7374,6 +7497,8 @@
         "tags": [
           "export"
         ],
+        "x-castor-items": "_embedded.items",
+        "x-castor-max-page-size": 100,
         "x-castor-module": "Exports"
       },
       "post": {
@@ -7590,6 +7715,15 @@
               "type": "array"
             },
             "style": "form"
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -7654,6 +7788,8 @@
         "tags": [
           "field"
         ],
+        "x-castor-items": "_embedded.fields",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Fields"
       }
     },
@@ -7679,6 +7815,15 @@
             "required": false,
             "schema": {
               "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
               "type": "integer"
             }
           }
@@ -7745,6 +7890,8 @@
         "tags": [
           "field-dependency"
         ],
+        "x-castor-items": "_embedded.fieldDependencies",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Fields"
       }
     },
@@ -7834,6 +7981,15 @@
               "default": 1,
               "type": "integer"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -7898,6 +8054,8 @@
         "tags": [
           "field-optiongroup"
         ],
+        "x-castor-items": "_embedded.fieldOptionGroups",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "OptionGroups"
       }
     },
@@ -7997,6 +8155,15 @@
               "default": false,
               "type": "boolean"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -8061,6 +8228,8 @@
         "tags": [
           "field-validation"
         ],
+        "x-castor-items": "_embedded.fieldValidations",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Fields"
       }
     },
@@ -8225,6 +8394,15 @@
               "default": 1,
               "type": "integer"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -8289,6 +8467,8 @@
         "tags": [
           "form"
         ],
+        "x-castor-items": "_embedded.forms",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Forms"
       }
     },
@@ -8397,6 +8577,15 @@
               "default": 1,
               "type": "integer"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -8461,6 +8650,8 @@
         "tags": [
           "metadata"
         ],
+        "x-castor-items": "_embedded.metadatas",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Metadata"
       }
     },
@@ -8549,6 +8740,15 @@
               "default": 1,
               "type": "integer"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -8613,6 +8813,8 @@
         "tags": [
           "metadatatype"
         ],
+        "x-castor-items": "_embedded.metadatatypes",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Metadata"
       }
     },
@@ -8734,6 +8936,15 @@
               "type": "array"
             },
             "x-castor-name": "fields"
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -8798,6 +9009,8 @@
         "tags": [
           "participant"
         ],
+        "x-castor-items": "_embedded.participants",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Participants"
       },
       "post": {
@@ -8907,6 +9120,14 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -8959,6 +9180,7 @@
         "tags": [
           "participant-progress"
         ],
+        "x-castor-items": "_embedded.participants",
         "x-castor-module": "Participants"
       }
     },
@@ -9086,6 +9308,8 @@
         "tags": [
           "participant-progress"
         ],
+        "x-castor-items": "_embedded.items",
+        "x-castor-max-page-size": 100,
         "x-castor-module": "Participants"
       }
     },
@@ -9204,6 +9428,8 @@
         "tags": [
           "participant-progress"
         ],
+        "x-castor-items": "_embedded.items",
+        "x-castor-max-page-size": 100,
         "x-castor-module": "Participants"
       }
     },
@@ -9727,25 +9953,6 @@
               "format": "date-time",
               "type": "string"
             }
-          },
-          {
-            "description": "The page to retrieve",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "type": "integer"
-            }
-          },
-          {
-            "description": "The size of pages",
-            "in": "query",
-            "name": "page_size",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
           }
         ],
         "responses": {
@@ -9801,6 +10008,7 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-items": "_embedded.items",
         "x-castor-module": "DataPoints"
       }
     },
@@ -9910,6 +10118,7 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-items": "_embedded.items",
         "x-castor-module": "DataPoints"
       },
       "post": {
@@ -10119,6 +10328,7 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-items": "_embedded.items",
         "x-castor-module": "DataPoints"
       },
       "post": {
@@ -10319,6 +10529,7 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-items": "_embedded.items",
         "x-castor-module": "DataPoints"
       }
     },
@@ -10428,6 +10639,7 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-items": "_embedded.items",
         "x-castor-module": "DataPoints"
       },
       "post": {
@@ -10750,6 +10962,7 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-items": "_embedded.items",
         "x-castor-module": "DataPoints"
       },
       "post": {
@@ -11572,6 +11785,15 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -11636,7 +11858,10 @@
         "tags": [
           "repeating-data-instance"
         ],
-        "x-castor-module": "RepeatingData"
+        "x-castor-items": "_embedded.repeatingDataInstance",
+        "x-castor-max-page-size": 1000,
+        "x-castor-module": "RepeatingData",
+        "x-castor-not-found-is-empty": true
       },
       "post": {
         "description": "Creates an instance of Repeating Data for a specific Participant. Repeating Data Instances are the objects on which data points are\nstored and are required to be created before that happens. They can have a custom name that has to be unique within\na given participant.<br/>\nRepeating Data Instances can have a parent defined to create a tree-like structure of parent/child information elements. Parents\ncan be either a visit or another repeating data instance and have to be defined with parent_type and parent_id.<br/>\nTo store data on repeated measures repeating data, the parent_type and parent_id should always point to the visit or\nrepeating data instance on which the repeated measure field is present.\n",
@@ -12294,6 +12519,15 @@
               "default": 1,
               "type": "integer"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -12358,6 +12592,8 @@
         "tags": [
           "query"
         ],
+        "x-castor-items": "_embedded.queries",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Queries"
       }
     },
@@ -12446,6 +12682,15 @@
               "default": 1,
               "type": "integer"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -12503,6 +12748,8 @@
         "tags": [
           "repeating-data"
         ],
+        "x-castor-items": "_embedded.repeatingData",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "RepeatingData"
       }
     },
@@ -12537,6 +12784,15 @@
             "name": "archived",
             "required": false,
             "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
               "type": "integer"
             }
           }
@@ -12603,7 +12859,10 @@
         "tags": [
           "repeating-data-instance"
         ],
-        "x-castor-module": "RepeatingData"
+        "x-castor-items": "_embedded.repeatingDataInstance",
+        "x-castor-max-page-size": 1000,
+        "x-castor-module": "RepeatingData",
+        "x-castor-not-found-is-empty": true
       }
     },
     "/study/{study_id}/repeating-data-instance/{repeating_data_instance_id}": {
@@ -12754,6 +13013,15 @@
               "default": 1,
               "type": "integer"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -12818,6 +13086,8 @@
         "tags": [
           "repeating-data-form"
         ],
+        "x-castor-items": "_embedded.repeating_data_forms",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "RepeatingData"
       }
     },
@@ -12963,6 +13233,7 @@
         "tags": [
           "role"
         ],
+        "x-castor-items": "_embedded.roles",
         "x-castor-module": "Roles"
       },
       "post": {
@@ -13148,6 +13419,15 @@
               "default": 1,
               "type": "integer"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -13212,6 +13492,8 @@
         "tags": [
           "site"
         ],
+        "x-castor-items": "_embedded.sites",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Sites"
       },
       "post": {
@@ -13523,6 +13805,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -13587,6 +13878,8 @@
         "tags": [
           "survey"
         ],
+        "x-castor-items": "_embedded.surveys",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Surveys"
       }
     },
@@ -13612,6 +13905,15 @@
             "required": false,
             "schema": {
               "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
               "type": "integer"
             }
           }
@@ -13678,6 +13980,8 @@
         "tags": [
           "survey"
         ],
+        "x-castor-items": "_embedded.survey_packages",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Surveys"
       }
     },
@@ -14065,6 +14369,8 @@
         "tags": [
           "survey"
         ],
+        "x-castor-items": "_embedded.surveypackageinstance",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Surveys"
       },
       "post": {
@@ -14489,6 +14795,15 @@
               "default": 1,
               "type": "integer"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -14553,6 +14868,8 @@
         "tags": [
           "survey-form"
         ],
+        "x-castor-items": "_embedded.survey_forms",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Surveys"
       }
     },
@@ -14679,6 +14996,7 @@
         "tags": [
           "study-user"
         ],
+        "x-castor-items": "_embedded.studyUsers",
         "x-castor-module": "StudyUsers"
       },
       "post": {
@@ -15026,6 +15344,15 @@
               "default": 1,
               "type": "integer"
             }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -15110,6 +15437,8 @@
         "tags": [
           "verification"
         ],
+        "x-castor-items": "_embedded.verifications",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Verifications"
       }
     },
@@ -15135,6 +15464,15 @@
             "required": false,
             "schema": {
               "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of records per page.",
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "maximum": 1000,
               "type": "integer"
             }
           }
@@ -15201,6 +15539,8 @@
         "tags": [
           "visit"
         ],
+        "x-castor-items": "_embedded.visits",
+        "x-castor-max-page-size": 1000,
         "x-castor-module": "Forms"
       }
     },
@@ -15306,6 +15646,7 @@
         "tags": [
           "user"
         ],
+        "x-castor-items": "_embedded.user",
         "x-castor-module": "Users"
       }
     },

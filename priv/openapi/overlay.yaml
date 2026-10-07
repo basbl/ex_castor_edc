@@ -367,3 +367,215 @@ actions:
     update: {x-castor-name: finished_on_or_before}
   - target: $.paths['/study/{study_id}/export/{id}/download'].get.parameters[?@.name == 'id']
     update: {x-castor-name: export_id}
+
+  # Collections and pagination
+  #
+  # x-castor-items is where the records of a collection sit in the response:
+  # usually under `_embedded`, with a key that differs per operation and
+  # often from what the spec says (`metadatas`, not `steps`;
+  # `repeatingDataInstance`, not `repeatingDataInstances`), and in two cases
+  # in a body of its own (`results` for countries, `data` for survey
+  # compliance). x-castor-max-page-size is the largest page_size the API
+  # accepts; the client clamps to it, because a larger one is rejected with
+  # a 416 (or a 422 for survey package instances). Both were checked against
+  # a running API.
+  - target: $.paths['/study/{study_id}/site'].get
+    update: {x-castor-items: _embedded.sites, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/site'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/participant'].get
+    update: {x-castor-items: _embedded.participants, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/participant'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/participant-progress/forms'].get
+    update: {x-castor-items: _embedded.participants}
+  - target: $.paths['/study/{study_id}/participant-progress/forms'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page.}
+  - target: $.paths['/study/{study_id}/participant-progress/{participant_id}/visit'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 100}
+  - target: $.paths['/study/{study_id}/participant-progress/{participant_id}/repeating-data'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 100}
+  - target: $.paths['/study/{study_id}/data-points/study'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 5000}
+  - target: $.paths['/study/{study_id}/data-points/study'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page parameter.
+    update: {name: page, in: query, type: integer, default: 1, description: The page to retrieve.}
+  - target: $.paths['/study/{study_id}/data-points/study'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 5000}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 5000}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page parameter.
+    update: {name: page, in: query, type: integer, default: 1, description: The page to retrieve.}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 5000}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 5000}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page parameter.
+    update: {name: page, in: query, type: integer, default: 1, description: The page to retrieve.}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 5000}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 5000}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page parameter.
+    update: {name: page, in: query, type: integer, default: 1, description: The page to retrieve.}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 5000}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance/{survey_instance_id}'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 5000}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance/{survey_instance_id}'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page parameter.
+    update: {name: page, in: query, type: integer, default: 1, description: The page to retrieve.}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance/{survey_instance_id}'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 5000}
+  - target: $.paths['/study/{study_id}/data-points/survey-package-instance/{survey_package_instance_id}'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 5000}
+  - target: $.paths['/study/{study_id}/data-points/survey-package-instance/{survey_package_instance_id}'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page parameter.
+    update: {name: page, in: query, type: integer, default: 1, description: The page to retrieve.}
+  - target: $.paths['/study/{study_id}/data-points/survey-package-instance/{survey_package_instance_id}'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 5000}
+  - target: $.paths['/study/{study_id}/field'].get
+    update: {x-castor-items: _embedded.fields, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/field'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/field-dependency'].get
+    update: {x-castor-items: _embedded.fieldDependencies, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/field-dependency'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/field-validation'].get
+    update: {x-castor-items: _embedded.fieldValidations, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/field-validation'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/field-optiongroup'].get
+    update: {x-castor-items: _embedded.fieldOptionGroups, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/field-optiongroup'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/form'].get
+    update: {x-castor-items: _embedded.forms, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/form'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/visit'].get
+    update: {x-castor-items: _embedded.visits, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/visit'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/metadata'].get
+    update: {x-castor-items: _embedded.metadatas, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/metadata'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/metadatatype'].get
+    update: {x-castor-items: _embedded.metadatatypes, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/metadatatype'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/repeating-data'].get
+    update: {x-castor-items: _embedded.repeatingData, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/repeating-data'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/repeating-data/{repeating_data_id}/repeating-data-form'].get
+    update: {x-castor-items: _embedded.repeating_data_forms, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/repeating-data/{repeating_data_id}/repeating-data-form'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/repeating-data-instance'].get
+    update: {x-castor-items: _embedded.repeatingDataInstance, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/repeating-data-instance'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].get
+    update: {x-castor-items: _embedded.repeatingDataInstance, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/survey'].get
+    update: {x-castor-items: _embedded.surveys, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/survey'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/survey/{survey_id}/survey-form'].get
+    update: {x-castor-items: _embedded.survey_forms, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/survey/{survey_id}/survey-form'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/survey-package'].get
+    update: {x-castor-items: _embedded.survey_packages, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/survey-package'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/survey-package-instance'].get
+    update: {x-castor-items: _embedded.surveypackageinstance, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/compliance'].post
+    update: {x-castor-items: data}
+  - target: $.paths['/study/{study_id}/query'].get
+    update: {x-castor-items: _embedded.queries, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/query'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/verification'].get
+    update: {x-castor-items: _embedded.verifications, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/verification'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/export'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 100}
+  - target: $.paths['/country'].get
+    update: {x-castor-items: results}
+  - target: $.paths['/user'].get
+    update: {x-castor-items: _embedded.user}
+  - target: $.paths['/study'].get
+    update: {x-castor-items: _embedded.study}
+  - target: $.paths['/study/{study_id}/role'].get
+    update: {x-castor-items: _embedded.roles}
+  - target: $.paths['/study/{study_id}/user'].get
+    update: {x-castor-items: _embedded.studyUsers}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/study'].get
+    update: {x-castor-items: _embedded.items}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance'].get
+    update: {x-castor-items: _embedded.items}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance'].get.parameters[?@.name == 'page']
+    description: >-
+      Participant-level data point collections only page with
+      enable_pagination=true; the client fetches them whole.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance'].get.parameters[?@.name == 'page_size']
+    description: >-
+      Participant-level data point collections only page with
+      enable_pagination=true; the client fetches them whole.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].get
+    update: {x-castor-items: _embedded.items}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-instance'].get
+    update: {x-castor-items: _embedded.items}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-instance/{survey_instance_id}'].get
+    update: {x-castor-items: _embedded.items}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance/{survey_package_instance_id}'].get
+    update: {x-castor-items: _embedded.items}
+  - target: $.paths['/study/{study_id}/repeating-data-instance'].get
+    description: >-
+      Without repeating data instances the API answers 404 ("There are no
+      repeating data instances.") instead of an empty collection.
+    update: {x-castor-not-found-is-empty: true}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].get
+    description: >-
+      Without repeating data instances the API answers 404 ("There are no
+      repeating data instances.") instead of an empty collection.
+    update: {x-castor-not-found-is-empty: true}
