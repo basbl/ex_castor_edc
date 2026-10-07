@@ -210,7 +210,16 @@
                             "survey_package"
                           ],
                           "example": "all|study|phase|step|field|reports|report|report_step|report_field|surveys|survey|survey_step|survey_field|survey_packages|survey_package",
-                          "type": "string"
+                          "type": "string",
+                          "x-castor-enum-names": {
+                            "phase": "visit",
+                            "report": "repeating_data_item",
+                            "report_field": "repeating_data_field",
+                            "report_step": "repeating_data_form",
+                            "reports": "repeating_data",
+                            "step": "form",
+                            "survey_step": "survey_form"
+                          }
                         }
                       },
                       "type": "object"
@@ -1580,6 +1589,14 @@
             "description": "If enabled, the order of options should be randomized (only applies to dropdown, radio, and checkbox fields)",
             "type": "boolean"
           },
+          "report_id": {
+            "format": "UUID",
+            "type": [
+              "string",
+              "null"
+            ],
+            "x-castor-rename": "repeating_data_id"
+          },
           "validations": {
             "items": {
               "$ref": "#/components/schemas/FieldValidation"
@@ -1955,7 +1972,8 @@
             "type": "string"
           },
           "record_count": {
-            "type": "integer"
+            "type": "integer",
+            "x-castor-rename": "participant_count"
           }
         },
         "type": "object"
@@ -2057,7 +2075,8 @@
             "type": "boolean"
           },
           "manage_records": {
-            "type": "boolean"
+            "type": "boolean",
+            "x-castor-rename": "manage_participants"
           },
           "manage_settings": {
             "type": "boolean"
@@ -2490,7 +2509,8 @@
           },
           "last_opened_step": {
             "format": "UUID",
-            "type": "string"
+            "type": "string",
+            "x-castor-rename": "last_opened_form"
           },
           "locked": {
             "type": "boolean"
@@ -2585,7 +2605,8 @@
                 "step_id": {
                   "description": "Unique identifier of the Step",
                   "format": "UUID",
-                  "type": "string"
+                  "type": "string",
+                  "x-castor-rename": "form_id"
                 }
               }
             },
@@ -2897,7 +2918,8 @@
             "type": "string"
           },
           "record_id": {
-            "type": "string"
+            "type": "string",
+            "x-castor-rename": "participant_id"
           },
           "status": {
             "type": "string"
@@ -4519,7 +4541,8 @@
             "type": "integer"
           },
           "expected_records": {
-            "type": "integer"
+            "type": "integer",
+            "x-castor-rename": "expected_participants"
           },
           "first_live_on": {
             "format": "dateTime",
@@ -4595,7 +4618,8 @@
             "type": "integer"
           },
           "expected_records": {
-            "type": "integer"
+            "type": "integer",
+            "x-castor-rename": "expected_participants"
           },
           "first_live_on": {
             "format": "dateTime",
@@ -4895,7 +4919,8 @@
             "$ref": "#/components/schemas/LinksSingle"
           },
           "records": {
-            "$ref": "#/components/schemas/StudyRecordsStatistics"
+            "$ref": "#/components/schemas/StudyRecordsStatistics",
+            "x-castor-rename": "participants"
           },
           "study_id": {
             "format": "UUID",
@@ -5354,7 +5379,8 @@
           },
           "allow_step_navigation": {
             "description": "Whether survey participants are allowed to navigate between steps",
-            "type": "boolean"
+            "type": "boolean",
+            "x-castor-rename": "allow_form_navigation"
           },
           "as_needed": {
             "description": "Whether a mobile SurveyPackage can be completed as needed",
@@ -5448,7 +5474,8 @@
           },
           "show_step_navigator": {
             "description": "Whether the step navigator is shown in the survey data entry view",
-            "type": "boolean"
+            "type": "boolean",
+            "x-castor-rename": "show_form_navigator"
           },
           "survey_package_id": {
             "description": "Unique identifier for the SurveyPackage. Synonymous to id.",
@@ -5908,7 +5935,8 @@
             "type": "string"
           },
           "record_id": {
-            "type": "string"
+            "type": "string",
+            "x-castor-rename": "participant_id"
           },
           "status": {
             "description": "The status of the verification, can be 'active' or 'dropped'",
@@ -15601,7 +15629,8 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "participant_id"
           },
           {
             "description": "Filter verifications with verification date higher or equal than provided",

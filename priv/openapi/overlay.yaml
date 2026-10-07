@@ -825,3 +825,57 @@ actions:
         reason:
           type: string
           description: The message of errors that carry neither `detail` nor `errors`.
+
+  # Terminology
+  #
+  # The client speaks Castor's current terms: participant (not record),
+  # visit (not phase), form (not step) and repeating data (not report).
+  # Wire names stay as they are; x-castor-rename, x-castor-name and
+  # x-castor-enum-names give the client its names. Field types such as
+  # add_report_button keep their names, being identifiers rather than
+  # terminology, and field_slider_step is a slider's increment.
+
+  - target: $.definitions.Study.properties.expected_records
+    update: {x-castor-rename: expected_participants}
+  - target: $.definitions.StudyCollectionItem.properties.expected_records
+    update: {x-castor-rename: expected_participants}
+  - target: $.definitions.StudyStatistics.properties.records
+    update: {x-castor-rename: participants}
+  - target: $.definitions.InstituteRecordsStatistics.properties.record_count
+    update: {x-castor-rename: participant_count}
+  - target: $.definitions.ManagementPermissions.properties.manage_records
+    update: {x-castor-rename: manage_participants}
+  - target: $.definitions.Participant.properties.last_opened_step
+    update: {x-castor-rename: last_opened_form}
+  - target: $.definitions.ParticipantProgress.properties.forms.items.properties.step_id
+    update: {x-castor-rename: form_id}
+  - target: $.definitions.Query.properties.record_id
+    update: {x-castor-rename: participant_id}
+  - target: $.definitions.Verification.properties.record_id
+    update: {x-castor-rename: participant_id}
+  - target: $.definitions.SurveyPackage.properties.allow_step_navigation
+    update: {x-castor-rename: allow_form_navigation}
+  - target: $.definitions.SurveyPackage.properties.show_step_navigator
+    update: {x-castor-rename: show_form_navigator}
+  - target: $.definitions.Field.properties
+    description: >-
+      Fields of repeating data carry the repeating data's ID under report_id,
+      which the spec doesn't declare.
+    update:
+      report_id:
+        type: string
+        format: UUID
+        x-nullable: true
+        x-castor-rename: repeating_data_id
+  - target: $.paths['/study/{study_id}/verification'].get.parameters[?@.name == 'record_id']
+    update: {x-castor-name: participant_id}
+  - target: $.definitions.BatchExportRequest.properties.exports.properties.form_structure.items.properties.filters.properties.element_type
+    update:
+      x-castor-enum-names:
+        phase: visit
+        step: form
+        reports: repeating_data
+        report: repeating_data_item
+        report_step: repeating_data_form
+        report_field: repeating_data_field
+        survey_step: survey_form
