@@ -16,18 +16,32 @@ defmodule CastorEDC.RateLimit do
   The client records them for every route it uses, per server and
   credentials.
 
+  Before a request, the client checks its route. When the last response
+  said nothing is left and the window hasn't reset yet, it waits for the
+  reset (plus up to a quarter of a second, so waiting processes don't all
+  fire at once) instead of sending a request the API would refuse. Each
+  wait emits a `[:castor_edc, :rate_limit, :wait]` telemetry event, with
+  the wait in milliseconds as `:duration` and the `:bucket` and `:base_url`
+  as metadata.
+
   When the API answers 429 anyway (other processes or machines may share
   the allowance), the client waits until the window resets and sends the
   request again, at most three times, as long as the wait is within
   `:max_rate_limit_wait` (60 seconds by default). A 429 is refused before
   anything happens, so this is safe for any request. With
-  `rate_limit: :error`, or when the wait would be longer, the 429 is
-  returned as a `CastorEDC.Error` whose `retry_after` says how many seconds
-  are left. Both options are given to `CastorEDC.new/1`.
+  `rate_limit: :error`, or when the wait would be longer, the client doesn't
+  wait: a request it knows would be refused isn't sent and returns a
+  `CastorEDC.Error` with `code: :rate_limited`, and a 429 is returned as
+  is; either way the error's `retry_after` says how many seconds are left.
+  Both options are given to `CastorEDC.new/1`.
+
+  The client only knows what this node has seen. Several nodes sharing
+  credentials still get the 429 handling.
   """
 
   @table :castor_edc_rate_limits
   @max_attempts 3
+  @max_jitter 250
   @default_max_wait 60_000
 
   @type t :: %{limit: non_neg_integer() | nil, remaining: non_neg_integer() | nil, reset_at: DateTime.t() | nil}
@@ -73,7 +87,45 @@ defmodule CastorEDC.RateLimit do
 
     request
     |> Req.Request.put_private(:castor_edc_rate_limit, {mode, max_wait})
+    |> Req.Request.prepend_request_steps(castor_edc_throttle: &throttle/1)
     |> Req.Request.prepend_response_steps(castor_edc_rate_limit: &record/1, castor_edc_rate_limit_retry: &retry/1)
+  end
+
+  @doc false
+  def throttle(request) do
+    with false <- Req.Request.get_private(request, :castor_edc_waited, false),
+         %{remaining: 0, reset_at: %DateTime{} = reset_at} = rate_limit <- lookup(request),
+         wait when wait > 0 <- DateTime.diff(reset_at, now(request), :millisecond) do
+      {mode, max_wait} = Req.Request.get_private(request, :castor_edc_rate_limit, {:wait, @default_max_wait})
+
+      if mode == :wait and wait <= max_wait do
+        wait = wait + :rand.uniform(@max_jitter)
+
+        :telemetry.execute([:castor_edc, :rate_limit, :wait], %{duration: wait}, %{
+          bucket: request |> Req.Request.get_private(:castor_edc_route) |> bucket(),
+          base_url: request.options[:base_url]
+        })
+
+        sleep(request, wait)
+        request
+      else
+        Req.Request.halt(request, rate_limited(rate_limit, wait))
+      end
+    else
+      _not_limited -> request
+    end
+  end
+
+  defp rate_limited(rate_limit, wait) do
+    seconds = div(wait + 999, 1000)
+
+    %CastorEDC.Error{
+      message: "the rate limit of this route is used up; it resets in #{seconds} seconds",
+      code: :rate_limited,
+      status: 429,
+      retry_after: seconds,
+      rate_limit: rate_limit
+    }
   end
 
   @doc false
@@ -90,6 +142,7 @@ defmodule CastorEDC.RateLimit do
       {request, response_or_exception} =
         request
         |> Req.Request.put_private(:castor_edc_rate_limit_attempts, attempts + 1)
+        |> Req.Request.put_private(:castor_edc_waited, true)
         |> Map.put(:halted, false)
         |> Req.Request.run_request()
 

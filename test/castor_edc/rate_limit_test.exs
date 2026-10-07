@@ -97,11 +97,13 @@ defmodule CastorEDC.RateLimitRetryTest do
     end
   end
 
+  # Every client gets its own server: rate limits recorded by one test
+  # would otherwise hold back the next.
   defp limited_client(responder, options \\ []) do
     test = self()
 
     responder
-    |> client(options)
+    |> client(Keyword.put(options, :base_url, "https://test-#{System.unique_integer([:positive])}.invalid"))
     |> Req.Request.put_private(:castor_edc_clock, fn -> @now end)
     |> Req.Request.put_private(:castor_edc_sleep, fn ms -> send(test, {:slept, ms}) end)
   end
@@ -156,11 +158,103 @@ defmodule CastorEDC.RateLimitRetryTest do
     reset = DateTime.utc_now() |> DateTime.shift(minute: 2) |> DateTime.to_unix() |> Integer.to_string()
     response = json(%{}, status: 429, headers: %{"x-ratelimit-retry-after" => [reset]})
 
-    assert {:error, %Error{retry_after: seconds}} = Client.request(client(response, rate_limit: :error), @operation)
+    assert {:error, %Error{retry_after: seconds}} =
+             Client.request(limited_client(response, rate_limit: :error), @operation)
+
     assert seconds in 118..120
   end
 
   test "rejects an unknown rate_limit mode" do
     assert_raise ArgumentError, ~r/:rate_limit/, fn -> client(json(%{}), rate_limit: :ignore) end
+  end
+end
+
+defmodule CastorEDC.RateLimitThrottleTest do
+  use CastorEDC.Case, async: true
+
+  alias CastorEDC.Client
+  alias CastorEDC.Error
+
+  @operation [method: :get, path: "/api/study/{study_id}/field", path_params: %{"study_id" => "S"}, query_names: %{}]
+  @now 1_791_399_700
+
+  setup do
+    {:ok, clock} = Agent.start_link(fn -> @now end)
+    %{base_url: "https://test-#{System.unique_integer([:positive])}.invalid", clock: clock}
+  end
+
+  defp used_up(reset_in) do
+    json(%{},
+      headers: %{
+        "x-ratelimit-limit" => ["600"],
+        "x-ratelimit-remaining" => ["0"],
+        "x-ratelimit-retry-after" => [Integer.to_string(@now + reset_in)]
+      }
+    )
+  end
+
+  defp throttled_client(response, %{base_url: base_url, clock: clock}, options \\ []) do
+    test = self()
+
+    response
+    |> client(Keyword.put(options, :base_url, base_url))
+    |> Req.Request.put_private(:castor_edc_clock, fn -> Agent.get(clock, & &1) end)
+    |> Req.Request.put_private(:castor_edc_sleep, fn ms -> send(test, {:slept, ms}) end)
+  end
+
+  test "waits for the window to reset when the last response said nothing is left", context do
+    Client.request(throttled_client(used_up(20), context), @operation)
+    assert_requested()
+
+    assert {:ok, _body} = Client.request(throttled_client(json(%{}), context), @operation)
+
+    assert_received {:slept, ms}
+    assert ms in 20_001..20_250
+    assert_requested()
+  end
+
+  test "reports each wait as a telemetry event", context do
+    ref = :telemetry_test.attach_event_handlers(self(), [[:castor_edc, :rate_limit, :wait]])
+
+    Client.request(throttled_client(used_up(5), context), @operation)
+    Client.request(throttled_client(json(%{}), context), @operation)
+
+    assert_received {[:castor_edc, :rate_limit, :wait], ^ref, %{duration: duration}, metadata}
+    assert duration in 5_001..5_250
+    assert metadata == %{bucket: "/api/study/{study_id}/field", base_url: context.base_url}
+  end
+
+  test "doesn't wait once the window has reset", context do
+    Client.request(throttled_client(used_up(20), context), @operation)
+    Agent.update(context.clock, &(&1 + 21))
+
+    assert {:ok, _body} = Client.request(throttled_client(json(%{}), context), @operation)
+    refute_received {:slept, _ms}
+  end
+
+  test "doesn't send a request it knows would be refused with rate_limit: :error", context do
+    Client.request(throttled_client(used_up(20), context), @operation)
+    assert_requested()
+
+    assert {:error, %Error{code: :rate_limited, status: 429, retry_after: 20, rate_limit: %{remaining: 0}}} =
+             Client.request(throttled_client(json(%{}), context, rate_limit: :error), @operation)
+
+    refute_received {:castor_edc_request, _request}
+    refute_received {:slept, _ms}
+  end
+
+  test "doesn't wait longer than max_rate_limit_wait", context do
+    Client.request(throttled_client(used_up(90), context), @operation)
+
+    assert {:error, %Error{code: :rate_limited, retry_after: 90}} =
+             Client.request(throttled_client(json(%{}), context, max_rate_limit_wait: 60_000), @operation)
+  end
+
+  test "only holds back the bucket that's used up", context do
+    Client.request(throttled_client(used_up(20), context), @operation)
+
+    visits = Keyword.put(@operation, :path, "/api/study/{study_id}/visit")
+    assert {:ok, _body} = Client.request(throttled_client(json(%{}), context), visits)
+    refute_received {:slept, _ms}
   end
 end

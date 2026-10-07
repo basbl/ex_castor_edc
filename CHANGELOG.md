@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - `CastorEDC.new/1` builds a Req-based client from API credentials, the application environment or environment variables.
 - Clients built from client credentials fetch, cache and renew access tokens themselves, and retry once with a new token on a 401.
-- Rate-limited requests wait for the API's window to reset and are sent again; `rate_limit: :error` returns the 429 instead.
+- The client stays within the API's rate limits: when a route's allowance is used up it waits for the window to reset, and a request that still gets a 429 is sent again after the reset. `rate_limit: :error` returns an error instead of waiting.
 - `CastorEDC.Client.request/2` runs an operation and returns `{:ok, result}` or `{:error, %CastorEDC.Error{}}`; collections come back as a `CastorEDC.Page`.
 
 ### Changed
