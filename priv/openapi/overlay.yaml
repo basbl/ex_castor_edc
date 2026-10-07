@@ -41,6 +41,25 @@ actions:
   - target: $.paths.*[?@.tags[?@ == 'castor-internal']]
     description: The custom export upload is for Castor's internal use.
     remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/device-token']
+    description: >-
+      Device tokens belong to the participant app and need the `record`
+      scope, which is for Castor's own apps.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/survey-package-instance'].patch
+    description: >-
+      Marks survey package instances received or started from the
+      participant app; it needs the `record` scope.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/survey-package-instance/{survey_package_instance_id}'].patch
+    description: >-
+      Records when a participant started or received a survey package
+      instance, from the participant app. The spec allows the default scope,
+      but with it the API answers 500.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/econsent']
+    description: The eConsent integration is internal to Castor.
+    remove: true
   - target: $.paths['/study/{study_id}/export/data'].get
     description: >-
       The synchronous data export is deprecated, though the spec doesn't flag
@@ -149,23 +168,7 @@ actions:
   - target: $.paths['/study/{study_id}/participant/{participant_id}/randomization'].post
     update: {operationId: randomize_participant, x-castor-module: Randomization}
 
-  # DeviceTokens
-  - target: $.paths['/study/{study_id}/participant/{participant_id}/device-token'].get
-    update: {operationId: get_device_token, x-castor-module: DeviceTokens}
-  - target: $.paths['/study/{study_id}/participant/{participant_id}/device-token'].post
-    update: {operationId: register_device_token, x-castor-module: DeviceTokens}
-  - target: $.paths['/study/{study_id}/participant/{participant_id}/device-token'].patch
-    update: {operationId: update_device_token, x-castor-module: DeviceTokens}
-  - target: $.paths['/study/{study_id}/participant/{participant_id}/device-token'].delete
-    update: {operationId: delete_device_token, x-castor-module: DeviceTokens}
 
-  # EConsent
-  - target: $.paths['/study/{study_id}/participant/{participant_id}/econsent'].get
-    update: {operationId: get_econsent, x-castor-module: EConsent}
-  - target: $.paths['/study/{study_id}/participant/{participant_id}/econsent'].post
-    update: {operationId: create_econsent_links, x-castor-module: EConsent}
-  - target: $.paths['/study/{study_id}/participant/{participant_id}/econsent'].patch
-    update: {operationId: update_econsent_link, x-castor-module: EConsent}
 
   # DataPoints
   - target: $.paths['/study/{study_id}/data-points/study'].get
@@ -298,10 +301,6 @@ actions:
     update: {operationId: create_survey_package_instance, x-castor-module: Surveys}
   - target: $.paths['/study/{study_id}/survey-package-instance/{survey_package_instance_id}'].patch
     update: {operationId: update_survey_package_instance, x-castor-module: Surveys}
-  - target: $.paths['/study/{study_id}/participant/{participant_id}/survey-package-instance/{survey_package_instance_id}'].patch
-    update: {operationId: update_participant_survey_package_instance, x-castor-module: Surveys}
-  - target: $.paths['/study/{study_id}/participant/{participant_id}/survey-package-instance'].patch
-    update: {operationId: update_participant_survey_package_instances, x-castor-module: Surveys}
   - target: $.paths['/study/{study_id}/compliance'].post
     update: {operationId: list_survey_compliance, x-castor-module: Surveys}
 
@@ -678,11 +677,7 @@ actions:
 
   # Missing response schemas
   #
-  # Responses the spec doesn't describe, as returned by a running API. Not
-  # confirmed yet, and so still undescribed: the participant-scope survey
-  # package instance updates and device token registration (they need the
-  # `record` scope) and the eConsent link update (it needs an eConsent
-  # study); the client returns their decoded body as is.
+  # Responses the spec doesn't describe, as returned by a running API.
 
   - target: $.paths.*[?@.operationId == 'create_study_data_point' || @.operationId == 'create_survey_data_point' || @.operationId == 'create_repeating_data_data_point'].responses['201']
     description: Creating a single data point returns it, like reading it does.
