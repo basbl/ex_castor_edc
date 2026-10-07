@@ -80,6 +80,7 @@ defmodule CastorEDC do
     [base_url: own[:base_url] || configured(:base_url) || @default_base_url, user_agent: @user_agent]
     |> Keyword.merge(req_options)
     |> Req.new()
+    |> CastorEDC.RateLimit.attach()
     |> authenticate_with(credentials!(own))
   end
 

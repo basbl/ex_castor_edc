@@ -11,12 +11,13 @@ defmodule CastorEDC.Application do
   defmodule Tables do
     @moduledoc false
     # Owns the client's shared ETS tables: cached access tokens, keyed by
-    # server and client ID. A table lives as long as its owner, so the owner
-    # is a process of its own under the supervisor.
+    # server and client ID, and the last known rate limit of every route. A
+    # table lives as long as its owner, so the owner is a process of its own
+    # under the supervisor.
 
     use GenServer
 
-    @tables [:castor_edc_tokens]
+    @tables [:castor_edc_tokens, :castor_edc_rate_limits]
 
     def start_link(_options), do: GenServer.start_link(__MODULE__, nil, name: __MODULE__)
 
