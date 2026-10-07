@@ -1,0 +1,21 @@
+# Corrections to the Castor EDC API spec, as an OpenAPI Overlay 1.0 document.
+#
+# `mix castor_edc.spec.build` applies these actions, in order, to
+# priv/openapi/upstream.json and writes the result to
+# priv/openapi/castor_edc.json, which the client is generated from.
+#
+# Every action says why it exists in its description. A target that selects
+# nothing fails the build: the upstream spec has changed under the
+# correction, and it needs another look. Every correction is also reported
+# upstream, so this file shrinks as the published spec improves.
+overlay: 1.0.0
+info:
+  title: Castor EDC API corrections
+  version: 1.0.0
+actions:
+  - target: $.paths['/']
+    description: >-
+      Upstream hides an undocumented endpoint (the participant PIN) by giving
+      it a `paths: {"/": []}` fragment, which leaves an empty list where a
+      path item object belongs, so the document doesn't validate.
+    remove: true
