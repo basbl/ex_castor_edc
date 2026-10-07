@@ -692,3 +692,14 @@ actions:
     description: Updating a survey package instance returns it, like reading it does.
     update:
       schema: {$ref: '#/definitions/SurveyPackageInstance'}
+
+  # List parameters
+
+  - target: $.paths.*.*.parameters[?@.name == 'field_ids']
+    description: >-
+      field_ids is a list of field UUIDs that the API takes comma-separated;
+      the spec types it as a plain string.
+    update:
+      type: array
+      items: {type: string, format: UUID}
+      collectionFormat: csv

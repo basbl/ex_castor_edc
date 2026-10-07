@@ -6732,12 +6732,18 @@
           },
           {
             "description": "Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.",
+            "explode": false,
             "in": "query",
             "name": "field_ids",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "format": "UUID",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
@@ -6861,12 +6867,18 @@
           },
           {
             "description": "Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.",
+            "explode": false,
             "in": "query",
             "name": "field_ids",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "format": "UUID",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
@@ -6981,12 +6993,18 @@
           },
           {
             "description": "Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.",
+            "explode": false,
             "in": "query",
             "name": "field_ids",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "format": "UUID",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
@@ -7101,12 +7119,18 @@
           },
           {
             "description": "Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.",
+            "explode": false,
             "in": "query",
             "name": "field_ids",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "format": "UUID",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
@@ -7230,12 +7254,18 @@
           },
           {
             "description": "Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.",
+            "explode": false,
             "in": "query",
             "name": "field_ids",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "format": "UUID",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
@@ -7359,12 +7389,18 @@
           },
           {
             "description": "Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.",
+            "explode": false,
             "in": "query",
             "name": "field_ids",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "format": "UUID",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
@@ -10003,12 +10039,18 @@
           },
           {
             "description": "Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.",
+            "explode": false,
             "in": "query",
             "name": "field_ids",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "format": "UUID",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
@@ -10113,12 +10155,18 @@
           },
           {
             "description": "Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.",
+            "explode": false,
             "in": "query",
             "name": "field_ids",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "format": "UUID",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
@@ -10323,12 +10371,18 @@
           },
           {
             "description": "Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.",
+            "explode": false,
             "in": "query",
             "name": "field_ids",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "format": "UUID",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
@@ -10524,12 +10578,18 @@
           },
           {
             "description": "Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.",
+            "explode": false,
             "in": "query",
             "name": "field_ids",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "format": "UUID",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
@@ -10634,12 +10694,18 @@
           },
           {
             "description": "Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.",
+            "explode": false,
             "in": "query",
             "name": "field_ids",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "format": "UUID",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
@@ -10956,12 +11022,18 @@
           },
           {
             "description": "Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.",
+            "explode": false,
             "in": "query",
             "name": "field_ids",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "format": "UUID",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
