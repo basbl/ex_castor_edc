@@ -8919,6 +8919,12 @@
                   "properties": {
                     "_embedded": {
                       "properties": {
+                        "metadatas": {
+                          "items": {
+                            "$ref": "#/components/schemas/Metadata"
+                          },
+                          "type": "array"
+                        },
                         "steps": {
                           "items": {
                             "$ref": "#/components/schemas/Metadata"
@@ -9082,6 +9088,12 @@
                   "properties": {
                     "_embedded": {
                       "properties": {
+                        "metadatatypes": {
+                          "items": {
+                            "$ref": "#/components/schemas/MetadataType"
+                          },
+                          "type": "array"
+                        },
                         "steps": {
                           "items": {
                             "$ref": "#/components/schemas/MetadataType"
@@ -11659,6 +11671,12 @@
                   "properties": {
                     "_embedded": {
                       "properties": {
+                        "repeatingDataInstance": {
+                          "items": {
+                            "$ref": "#/components/schemas/RepeatingDataInstance"
+                          },
+                          "type": "array"
+                        },
                         "repeatingDataInstances": {
                           "items": {
                             "$ref": "#/components/schemas/RepeatingDataInstance"
@@ -12494,6 +12512,12 @@
                   "properties": {
                     "_embedded": {
                       "properties": {
+                        "repeatingDataInstance": {
+                          "items": {
+                            "$ref": "#/components/schemas/RepeatingDataInstance"
+                          },
+                          "type": "array"
+                        },
                         "repeatingDataInstances": {
                           "items": {
                             "$ref": "#/components/schemas/RepeatingDataInstance"
@@ -14660,11 +14684,23 @@
             "content": {
               "application/hal+json": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/StudyUser"
+                  "properties": {
+                    "_embedded": {
+                      "properties": {
+                        "studyUsers": {
+                          "items": {
+                            "$ref": "#/components/schemas/StudyUser"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "total_items": {
+                      "type": "integer"
+                    }
                   },
-                  "title": "Users",
-                  "type": "array"
+                  "type": "object"
                 }
               }
             },
@@ -15311,11 +15347,23 @@
             "content": {
               "application/hal+json": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/User"
+                  "properties": {
+                    "_embedded": {
+                      "properties": {
+                        "user": {
+                          "items": {
+                            "$ref": "#/components/schemas/User"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "total_items": {
+                      "type": "integer"
+                    }
                   },
-                  "title": "Users",
-                  "type": "array"
+                  "type": "object"
                 }
               }
             },

@@ -916,3 +916,52 @@ actions:
     update: {x-castor-partial-success: true}
   - target: $.paths.*[?@['x-castor-partial-success'] == true].responses['201'].schema
     update: {$ref: '#/definitions/DataPointsResult'}
+
+  # Collection schemas
+  #
+  # Some collections put their records under a different key than their
+  # schema says, or aren't described as HAL at all. These schemas describe
+  # where the records really are, so the client knows what they decode into.
+
+  - target: $.paths['/study/{study_id}/metadata'].get.responses['200'].schema.properties._embedded.properties
+    description: The records sit under `metadatas`, not `steps`.
+    update:
+      metadatas: {type: array, items: {$ref: '#/definitions/Metadata'}}
+  - target: $.paths['/study/{study_id}/metadatatype'].get.responses['200'].schema.properties._embedded.properties
+    description: The records sit under `metadatatypes`, not `steps`.
+    update:
+      metadatatypes: {type: array, items: {$ref: '#/definitions/MetadataType'}}
+  - target: $.paths['/study/{study_id}/repeating-data-instance'].get.responses['200'].schema.properties._embedded.properties
+    description: The records sit under `repeatingDataInstance`, not `repeatingDataInstances`.
+    update:
+      repeatingDataInstance: {type: array, items: {$ref: '#/definitions/RepeatingDataInstance'}}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].get.responses['200'].schema.properties._embedded.properties
+    description: The records sit under `repeatingDataInstance`, not `repeatingDataInstances`.
+    update:
+      repeatingDataInstance: {type: array, items: {$ref: '#/definitions/RepeatingDataInstance'}}
+  - target: $.paths['/user'].get.responses['200'].schema
+    description: Users come as a HAL collection under `user`, not as a bare array.
+    remove: true
+  - target: $.paths['/user'].get.responses['200']
+    update:
+      schema:
+        type: object
+        properties:
+          _embedded:
+            type: object
+            properties:
+              user: {type: array, items: {$ref: '#/definitions/User'}}
+          total_items: {type: integer}
+  - target: $.paths['/study/{study_id}/user'].get.responses['200'].schema
+    description: Study users come as a HAL collection under `studyUsers`, not as a bare array.
+    remove: true
+  - target: $.paths['/study/{study_id}/user'].get.responses['200']
+    update:
+      schema:
+        type: object
+        properties:
+          _embedded:
+            type: object
+            properties:
+              studyUsers: {type: array, items: {$ref: '#/definitions/StudyUser'}}
+          total_items: {type: integer}
