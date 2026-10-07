@@ -11,6 +11,20 @@ defmodule CastorEDC.Client do
   turning failures into `CastorEDC.Error`s.
 
   Build the client these functions take with `CastorEDC.new/1`.
+
+  ## Telemetry
+
+  Every operation is wrapped in a `[:castor_edc, :request]` span:
+
+    * `[:castor_edc, :request, :start]` - with `:method`, `:route` (the path
+      template, such as `"/api/study/{study_id}/site"`, so metrics don't get a
+      series per study) and `:base_url` as metadata
+    * `[:castor_edc, :request, :stop]` - with the `:duration`, and `:status`
+      added to the metadata: `:ok`, or the error's HTTP status (`nil` when the
+      request never got an answer) together with the `:error`
+    * `[:castor_edc, :request, :exception]` - when something raised
+
+  Retries and token requests happen within the span.
   """
 
   alias CastorEDC.Error
@@ -57,12 +71,21 @@ defmodule CastorEDC.Client do
         headers: [accept: operation[:accept] || "application/hal+json"]
       ] ++ body(operation) ++ req_options
 
-    client
-    |> to_request()
-    |> Req.Request.put_private(:castor_edc_route, Keyword.fetch!(operation, :path))
-    |> Req.request(options)
-    |> handle(operation)
+    request =
+      client
+      |> to_request()
+      |> Req.Request.put_private(:castor_edc_route, Keyword.fetch!(operation, :path))
+
+    metadata = %{method: options[:method], route: operation[:path], base_url: request.options[:base_url]}
+
+    :telemetry.span([:castor_edc, :request], metadata, fn ->
+      result = request |> Req.request(options) |> handle(operation)
+      {result, Map.merge(metadata, result_metadata(result))}
+    end)
   end
+
+  defp result_metadata({:ok, _result}), do: %{status: :ok}
+  defp result_metadata({:error, %Error{status: status} = error}), do: %{status: status, error: error}
 
   @doc """
   Runs one operation, returning its result or raising `CastorEDC.Error`.

@@ -202,3 +202,32 @@ defmodule CastorEDC.ClientTest do
     end
   end
 end
+
+defmodule CastorEDC.ClientTelemetryTest do
+  use CastorEDC.Case, async: true
+
+  alias CastorEDC.Client
+
+  @operation [method: :get, path: "/api/study/{study_id}", path_params: %{"study_id" => "S1"}, query_names: %{}]
+
+  setup do
+    events = [[:castor_edc, :request, :start], [:castor_edc, :request, :stop]]
+    %{ref: :telemetry_test.attach_event_handlers(self(), events)}
+  end
+
+  test "spans every operation, with the route rather than the path", %{ref: ref} do
+    Client.request(client(json(%{})), @operation)
+
+    assert_received {[:castor_edc, :request, :start], ^ref, %{system_time: _time}, start}
+    assert %{method: :get, route: "/api/study/{study_id}", base_url: "https://data.castoredc.com"} = start
+
+    assert_received {[:castor_edc, :request, :stop], ^ref, %{duration: duration}, %{status: :ok}}
+    assert is_integer(duration)
+  end
+
+  test "reports a failure's status and error", %{ref: ref} do
+    Client.request(client(json(%{"detail" => "Gone"}, status: 404)), @operation)
+
+    assert_received {[:castor_edc, :request, :stop], ^ref, _measurements, %{status: 404, error: %CastorEDC.Error{}}}
+  end
+end
