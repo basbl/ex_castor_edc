@@ -1,0 +1,39 @@
+{
+  "_embedded": {
+    "metadatas": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/metadata/00F382C3-9ED6-4283-A0E1-98EA209C65FE"
+          }
+        },
+        "description": "year",
+        "element_id": "6997DADD-4160-4E7F-9C76-9F089840FBED",
+        "element_type": "Field",
+        "id": "00F382C3-9ED6-4283-A0E1-98EA209C65FE",
+        "metadata_type": {
+          "description": "Ble",
+          "id": 1,
+          "name": "LOINC"
+        },
+        "parent_id": null,
+        "value": "is"
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/metadata"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/metadata?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/metadata?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 25,
+  "total_items": 1
+}

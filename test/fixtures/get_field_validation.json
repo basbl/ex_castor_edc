@@ -1,0 +1,13 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-validation/6"
+    }
+  },
+  "field_id": "3CB8F5BA-398A-49E9-8B9D-3E73ADAB7815",
+  "id": 6,
+  "operator": ">",
+  "text": "Date is in the future!",
+  "type": "warning",
+  "value": "NOW"
+}

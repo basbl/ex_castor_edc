@@ -1,0 +1,31 @@
+{
+  "_embedded": {
+    "report": {
+      "_links": {
+        "self": {
+          "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/EFB381FE-D43E-4846-BA5B-280C12DC1922"
+        }
+      },
+      "description": "Adverse events",
+      "id": "EFB381FE-D43E-4846-BA5B-280C12DC1922",
+      "name": "Adverse event",
+      "report_id": "EFB381FE-D43E-4846-BA5B-280C12DC1922",
+      "type": "adverse_event"
+    }
+  },
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report-instance/98CFD906-7D4D-43C8-8E83-AC26DBB8BDD5"
+    }
+  },
+  "archived": false,
+  "created_by": "D6A16E39-B3CE-4441-BD7A-43AA1B53A43E",
+  "created_on": "2022-05-07 11:08:13",
+  "id": "98CFD906-7D4D-43C8-8E83-AC26DBB8BDD5",
+  "name": "Adverse event - 07-05-2022 11:08:12",
+  "parent_id": "",
+  "parent_type": "",
+  "record_id": "110001",
+  "report_name": "Adverse event",
+  "status": "open"
+}

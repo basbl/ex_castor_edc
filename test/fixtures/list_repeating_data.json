@@ -1,0 +1,69 @@
+{
+  "_embedded": {
+    "reports": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/07362069-A506-43F0-BB92-A82FF5C46D59"
+          }
+        },
+        "description": "Follow-up visit",
+        "id": "07362069-A506-43F0-BB92-A82FF5C46D59",
+        "name": "Unscheduled visit",
+        "report_id": "07362069-A506-43F0-BB92-A82FF5C46D59",
+        "type": "unscheduled_phase"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/D6B68EC5-AA7B-4BCB-ACBC-BD2A3E81241C"
+          }
+        },
+        "description": "Alle mogelijke repeated measures zijn hier te bewerken",
+        "id": "D6B68EC5-AA7B-4BCB-ACBC-BD2A3E81241C",
+        "name": "Medication",
+        "report_id": "D6B68EC5-AA7B-4BCB-ACBC-BD2A3E81241C",
+        "type": "repeated_measure"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/72771757-6AC1-4303-8FAE-E3671D8C8AED"
+          }
+        },
+        "description": "Blood pressure measurements during physical exam.",
+        "id": "72771757-6AC1-4303-8FAE-E3671D8C8AED",
+        "name": "Blood pressure",
+        "report_id": "72771757-6AC1-4303-8FAE-E3671D8C8AED",
+        "type": "repeated_measure"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/EFB381FE-D43E-4846-BA5B-280C12DC1922"
+          }
+        },
+        "description": "Adverse events",
+        "id": "EFB381FE-D43E-4846-BA5B-280C12DC1922",
+        "name": "Adverse event",
+        "report_id": "EFB381FE-D43E-4846-BA5B-280C12DC1922",
+        "type": "adverse_event"
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 25,
+  "total_items": 4
+}

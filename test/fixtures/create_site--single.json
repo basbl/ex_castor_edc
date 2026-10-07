@@ -1,0 +1,23 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/institute"
+    }
+  },
+  "failed": [],
+  "success": [
+    {
+      "abbreviation": "CSTR",
+      "code": "",
+      "country_id": 169,
+      "deleted": false,
+      "id": "32614BE0-E80A-4FD0-9E2B-1F19090C5B6A",
+      "institute_id": "32614BE0-E80A-4FD0-9E2B-1F19090C5B6A",
+      "name": "Castor",
+      "order": 15
+    }
+  ],
+  "total_failed": 0,
+  "total_processed": 1,
+  "total_success": 1
+}

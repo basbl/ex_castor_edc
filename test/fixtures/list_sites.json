@@ -1,0 +1,96 @@
+{
+  "_embedded": {
+    "institutes": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/institute/141BF885-F4CA-49DB-9559-C56727DF5903"
+          }
+        },
+        "abbreviation": "TES",
+        "code": "TES",
+        "country_id": 169,
+        "deleted": false,
+        "id": "141BF885-F4CA-49DB-9559-C56727DF5903",
+        "institute_id": "141BF885-F4CA-49DB-9559-C56727DF5903",
+        "name": "Test Institute",
+        "order": 0
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/institute/4C7A0F62-31A0-40E3-A2E8-F9C41C1AC55B"
+          }
+        },
+        "abbreviation": "API3",
+        "code": "",
+        "country_id": 123,
+        "deleted": false,
+        "id": "4C7A0F62-31A0-40E3-A2E8-F9C41C1AC55B",
+        "institute_id": "4C7A0F62-31A0-40E3-A2E8-F9C41C1AC55B",
+        "name": "Via API 3",
+        "order": 14
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/institute/5E6FF7BD-1BE0-427C-A8FE-6511F9E6B536"
+          }
+        },
+        "abbreviation": "CSTR",
+        "code": null,
+        "country_id": 169,
+        "deleted": false,
+        "id": "5E6FF7BD-1BE0-427C-A8FE-6511F9E6B536",
+        "institute_id": "5E6FF7BD-1BE0-427C-A8FE-6511F9E6B536",
+        "name": "Castor",
+        "order": 11
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/institute/87B0E37F-2403-491A-8313-7B9EE1C0AB77"
+          }
+        },
+        "abbreviation": "API2",
+        "code": "",
+        "country_id": 123,
+        "deleted": false,
+        "id": "87B0E37F-2403-491A-8313-7B9EE1C0AB77",
+        "institute_id": "87B0E37F-2403-491A-8313-7B9EE1C0AB77",
+        "name": "Via API 2",
+        "order": 13
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/institute/CAB70053-9D8C-4EFE-8044-437E2C05659A"
+          }
+        },
+        "abbreviation": "API",
+        "code": "",
+        "country_id": 123,
+        "deleted": false,
+        "id": "CAB70053-9D8C-4EFE-8044-437E2C05659A",
+        "institute_id": "CAB70053-9D8C-4EFE-8044-437E2C05659A",
+        "name": "Via API",
+        "order": 12
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/institute"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/institute?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/institute?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 25,
+  "total_items": 5
+}

@@ -1,0 +1,7 @@
+{
+  "method": "POST",
+  "operation": "create_repeating_data_instance",
+  "path": "/api/study/C56B7E31-8984-438C-AAD8-E041AF4A09DC/participant/110001/repeating-data-instance",
+  "query": null,
+  "status": 201
+}

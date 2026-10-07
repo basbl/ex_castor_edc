@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "list_participants",
+  "path": "/api/study/4C1FBBE5-B9D7-421B-90B3-D5E2E7AF394F/participant",
+  "query": null,
+  "status": 200
+}

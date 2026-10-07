@@ -1,0 +1,65 @@
+{
+  "_embedded": {
+    "queries": [
+      {
+        "_embedded": {
+          "query_remarks": [
+            {
+              "_links": {
+                "self": {
+                  "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/query/3234B62C-0625-423B-AC5F-3EFC0D3FE38A"
+                }
+              },
+              "created_by": "D6A16E39-B3CE-4441-BD7A-43AA1B53A43E",
+              "created_on": {
+                "date": "2022-04-20 20:20:20.000000",
+                "timezone": "Europe/Amsterdam",
+                "timezone_type": 3
+              },
+              "description": "Blaat",
+              "id": "3234B62C-0625-423B-AC5F-3EFC0D3FE38A",
+              "title": null
+            }
+          ]
+        },
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/query/1C0B247E-3C2C-4506-BE88-5DDCF580F373"
+          }
+        },
+        "created_by": "D6A16E39-B3CE-4441-BD7A-43AA1B53A43E",
+        "created_on": {
+          "date": "2022-04-20 20:20:20.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        },
+        "field_id": "6997DADD-4160-4E7F-9C76-9F089840FBED",
+        "first_query_remark": "Blaat",
+        "id": "1C0B247E-3C2C-4506-BE88-5DDCF580F373",
+        "record_id": "110001",
+        "status": "New",
+        "updated_by": "D6A16E39-B3CE-4441-BD7A-43AA1B53A43E",
+        "updated_on": {
+          "date": "2022-04-20 20:20:20.000000",
+          "timezone": "Europe/Amsterdam",
+          "timezone_type": 3
+        }
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/query"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/query?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/query?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 25,
+  "total_items": 1
+}

@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "list_study_users",
+  "path": "/api/study/7AD4616E-B169-4F9E-9982-F626099B84C0/user",
+  "query": null,
+  "status": 200
+}

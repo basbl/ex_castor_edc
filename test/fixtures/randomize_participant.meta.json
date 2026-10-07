@@ -1,0 +1,7 @@
+{
+  "method": "POST",
+  "operation": "randomize_participant",
+  "path": "/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/participant/110003/randomization",
+  "query": null,
+  "status": 201
+}

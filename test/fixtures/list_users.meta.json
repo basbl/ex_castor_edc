@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "list_users",
+  "path": "/api/user",
+  "query": null,
+  "status": 200
+}

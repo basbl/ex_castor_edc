@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "get_field_validation",
+  "path": "/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field-validation/6",
+  "query": null,
+  "status": 200
+}

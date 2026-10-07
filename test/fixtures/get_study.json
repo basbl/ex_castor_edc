@@ -1,0 +1,24 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/EB010EBB-A515-4395-AF66-4F83EAFF015C"
+    }
+  },
+  "created_by": "0AEAB16E-7147-4773-A3DC-330DA6093910",
+  "created_on": "2021-10-29 14:48:08",
+  "crf_id": "EB010EBB-A515-4395-AF66-4F83EAFF015C",
+  "domain": "https://data.castoredc.com",
+  "duration": null,
+  "expected_centers": 0,
+  "expected_records": 0,
+  "gcp_enabled": true,
+  "live": false,
+  "main_contact": "0AEAB16E-7147-4773-A3DC-330DA6093910",
+  "name": "[CAS-11554] Send notifications on study/report/survey field update",
+  "premium_support_enabled": false,
+  "randomization_enabled": false,
+  "slug": "xA8SXzANNMnZVSwewYqJpj",
+  "study_id": "EB010EBB-A515-4395-AF66-4F83EAFF015C",
+  "surveys_enabled": true,
+  "version": "0.01"
+}

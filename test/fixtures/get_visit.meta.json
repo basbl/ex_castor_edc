@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "get_visit",
+  "path": "/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/visit/7808FFAB-6B69-4DD6-8E5F-DDF2D5D0115A",
+  "query": null,
+  "status": 200
+}

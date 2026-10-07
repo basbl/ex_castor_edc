@@ -1,0 +1,87 @@
+{
+  "_embedded": {
+    "roles": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/role/Admin"
+          }
+        },
+        "description": "",
+        "name": "Admin",
+        "permissions": {
+          "add": true,
+          "delete": true,
+          "edit": true,
+          "email_addresses": true,
+          "export": true,
+          "lock": true,
+          "query": true,
+          "randomization_read": true,
+          "randomization_write": true,
+          "sdv": true,
+          "sign": true,
+          "survey_send": true,
+          "survey_view": true,
+          "view": true
+        }
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/role/Monitor"
+          }
+        },
+        "description": "",
+        "name": "Monitor",
+        "permissions": {
+          "add": false,
+          "delete": false,
+          "edit": false,
+          "email_addresses": false,
+          "export": false,
+          "lock": false,
+          "query": true,
+          "randomization_read": false,
+          "randomization_write": false,
+          "sdv": true,
+          "sign": false,
+          "survey_send": false,
+          "survey_view": false,
+          "view": true
+        }
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/role/Blabla"
+          }
+        },
+        "description": null,
+        "name": "Blabla",
+        "permissions": {
+          "add": false,
+          "delete": false,
+          "edit": false,
+          "email_addresses": false,
+          "export": false,
+          "lock": false,
+          "query": false,
+          "randomization_read": false,
+          "randomization_write": false,
+          "sdv": false,
+          "sign": false,
+          "survey_send": false,
+          "survey_view": false,
+          "view": false
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/role"
+    }
+  },
+  "total_items": 3
+}

@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "list_metadata_types",
+  "path": "/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/metadatatype",
+  "query": null,
+  "status": 200
+}

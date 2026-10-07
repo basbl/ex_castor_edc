@@ -1,0 +1,26 @@
+{
+  "_embedded": {
+    "report": {
+      "_links": {
+        "self": {
+          "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/07362069-A506-43F0-BB92-A82FF5C46D59"
+        }
+      },
+      "description": "Follow-up visit",
+      "id": "07362069-A506-43F0-BB92-A82FF5C46D59",
+      "name": "Unscheduled visit",
+      "report_id": "07362069-A506-43F0-BB92-A82FF5C46D59",
+      "type": "unscheduled_phase"
+    }
+  },
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/report/07362069-A506-43F0-BB92-A82FF5C46D59/report-step/0EFBA357-F714-4AE7-A6C9-155570EF3B3D"
+    }
+  },
+  "id": "0EFBA357-F714-4AE7-A6C9-155570EF3B3D",
+  "report_step_description": "",
+  "report_step_id": "0EFBA357-F714-4AE7-A6C9-155570EF3B3D",
+  "report_step_name": "Physical exam",
+  "report_step_number": 1
+}

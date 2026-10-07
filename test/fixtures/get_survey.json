@@ -1,0 +1,14 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/survey/83F352DC-816B-4387-A13E-6D716D44AE83"
+    }
+  },
+  "description": "",
+  "id": "83F352DC-816B-4387-A13E-6D716D44AE83",
+  "intro_text": "",
+  "name": "Short Form Health Survey SF-36",
+  "outro_text": "",
+  "survey_id": "83F352DC-816B-4387-A13E-6D716D44AE83",
+  "survey_steps": []
+}

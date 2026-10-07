@@ -1,0 +1,18 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/user/D6A16E39-B3CE-4441-BD7A-43AA1B53A43E"
+    }
+  },
+  "department": null,
+  "email_address": "example@example.org",
+  "entity_id": "D6A16E39-B3CE-4441-BD7A-43AA1B53A43E",
+  "full_name": "John Doe",
+  "id": "D6A16E39-B3CE-4441-BD7A-43AA1B53A43E",
+  "institute": null,
+  "last_login": "2022-05-12 15:12:37",
+  "name_first": "John",
+  "name_last": "Doe",
+  "name_middle": null,
+  "user_id": "D6A16E39-B3CE-4441-BD7A-43AA1B53A43E"
+}

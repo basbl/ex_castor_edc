@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "get_repeating_data_instance",
+  "path": "/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/repeating-data-instance/98CFD906-7D4D-43C8-8E83-AC26DBB8BDD5",
+  "query": null,
+  "status": 200
+}

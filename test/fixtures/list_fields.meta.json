@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "list_fields",
+  "path": "/api/study/500475BC-F67A-41FD-A07D-4FF7C13756C8/field",
+  "query": null,
+  "status": 200
+}
