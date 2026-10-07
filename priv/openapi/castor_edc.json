@@ -9708,6 +9708,13 @@
         },
         "responses": {
           "201": {
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPoint"
+                }
+              }
+            },
             "description": "Field value successfully created"
           },
           "400": {
@@ -9909,6 +9916,13 @@
         },
         "responses": {
           "201": {
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPoint"
+                }
+              }
+            },
             "description": "Field value successfully created"
           },
           "400": {
@@ -12331,6 +12345,13 @@
         },
         "responses": {
           "201": {
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPoint"
+                }
+              }
+            },
             "description": "Field value successfully created"
           },
           "400": {
@@ -14631,6 +14652,13 @@
         },
         "responses": {
           "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SurveyPackageInstance"
+                }
+              }
+            },
             "description": "SurveyPackageInstance successfully updated"
           },
           "404": {

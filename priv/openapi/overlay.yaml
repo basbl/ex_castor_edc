@@ -675,3 +675,20 @@ actions:
     update: {$ref: '#/definitions/DataPoint'}
   - target: $.paths.*[?@.operationId == 'get_study_data_point' || @.operationId == 'get_survey_data_point' || @.operationId == 'get_repeating_data_data_point'].responses['200'].schema
     update: {$ref: '#/definitions/DataPoint'}
+
+  # Missing response schemas
+  #
+  # Responses the spec doesn't describe, as returned by a running API. Not
+  # confirmed yet, and so still undescribed: the participant-scope survey
+  # package instance updates and device token registration (they need the
+  # `record` scope) and the eConsent link update (it needs an eConsent
+  # study); the client returns their decoded body as is.
+
+  - target: $.paths.*[?@.operationId == 'create_study_data_point' || @.operationId == 'create_survey_data_point' || @.operationId == 'create_repeating_data_data_point'].responses['201']
+    description: Creating a single data point returns it, like reading it does.
+    update:
+      schema: {$ref: '#/definitions/DataPoint'}
+  - target: $.paths['/study/{study_id}/survey-package-instance/{survey_package_instance_id}'].patch.responses['200']
+    description: Updating a survey package instance returns it, like reading it does.
+    update:
+      schema: {$ref: '#/definitions/SurveyPackageInstance'}
