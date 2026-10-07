@@ -17,7 +17,8 @@ defmodule Mix.Tasks.CastorEdc.Spec.BuildTest do
       "basePath": "/api/",
       "paths": {
         "/": [],
-        "/study": {"get": {"summary": "List studies", "responses": {"200": {"description": "OK"}}}}
+        "/study": {"get": {"summary": "List studies", "responses": {"200": {"description": "OK"}}}},
+        "/record": {"get": {"deprecated": true, "responses": {}}}
       }
     }))
 
@@ -29,6 +30,8 @@ defmodule Mix.Tasks.CastorEdc.Spec.BuildTest do
         remove: true
       - target: $.paths['/study'].get
         update: {operationId: list_studies}
+      - target: $.paths.*[?@.deprecated == true]
+        remove: true
     """)
 
     args = ["--upstream", upstream, "--overlay", overlay, "--output", output]
@@ -36,7 +39,10 @@ defmodule Mix.Tasks.CastorEdc.Spec.BuildTest do
     %{args: args, output: output}
   end
 
-  test "applies the overlay, converts the result and writes it", %{args: args, output: output} do
+  test "applies the overlay, drops emptied path items, converts the result and writes it", %{
+    args: args,
+    output: output
+  } do
     Build.run(args)
 
     spec = output |> File.read!() |> JSON.decode!()
