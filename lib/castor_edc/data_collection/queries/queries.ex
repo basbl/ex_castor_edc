@@ -5,7 +5,7 @@ defmodule CastorEDC.DataCollection.Queries do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
 
   @doc """
   List all queries

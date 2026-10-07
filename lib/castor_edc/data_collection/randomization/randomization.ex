@@ -5,7 +5,7 @@ defmodule CastorEDC.DataCollection.Randomization do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
 
   @doc """
   Find randomization details of a participant

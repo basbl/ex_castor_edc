@@ -5,7 +5,7 @@ defmodule CastorEDC.DataCollection.DataEntry.SurveyDataPoint do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
   alias Tesla.Multipart
 
   @doc """

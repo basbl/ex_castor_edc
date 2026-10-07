@@ -5,7 +5,7 @@ defmodule CastorEDC.StudyProtocol.Forms do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
 
   @spec list(Client.t(), binary, []) :: {integer, %{}, Tesla.Env.t()}
   @doc """

@@ -2,7 +2,7 @@ defmodule CastorEDCTest.Client do
   @moduledoc false
   use ExUnit.Case
 
-  import CastorEDC.Client
+  import CastorEDC.Legacy.Client
 
   alias Tesla.Adapter.Finch
 

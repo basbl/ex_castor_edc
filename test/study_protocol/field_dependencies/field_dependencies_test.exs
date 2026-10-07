@@ -5,7 +5,7 @@ defmodule CastorEDCTest.StudyProtocol.FieldDependencies do
 
   import CastorEDC.StudyProtocol.FieldDependencies
 
-  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
+  @client CastorEDC.Legacy.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "field_dependencies/field_dependencies#list" do

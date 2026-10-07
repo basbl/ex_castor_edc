@@ -5,7 +5,7 @@ defmodule CastorEDCTest.StudyProtocol.SurveyForms do
 
   import CastorEDC.StudyProtocol.SurveyForms
 
-  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
+  @client CastorEDC.Legacy.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "survey_forms/survey_forms#list" do

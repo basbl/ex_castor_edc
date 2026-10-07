@@ -5,7 +5,7 @@ defmodule CastorEDC.Common.Users do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
 
   @doc """
   List all users that the authenticated user is authorized to see

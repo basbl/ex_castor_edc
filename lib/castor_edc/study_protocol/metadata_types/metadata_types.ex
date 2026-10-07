@@ -5,7 +5,7 @@ defmodule CastorEDC.StudyProtocol.MetadataTypes do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
 
   @doc """
   List all metadata types

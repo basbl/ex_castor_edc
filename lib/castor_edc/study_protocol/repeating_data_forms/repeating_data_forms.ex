@@ -5,7 +5,7 @@ defmodule CastorEDC.StudyProtocol.RepeatingDataForms do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
 
   @doc """
   List all repeating data forms

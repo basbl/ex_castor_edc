@@ -5,7 +5,7 @@ defmodule CastorEDC.DataCollection.Participants.SurveyPackageInstances do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
 
   @doc """
   Updates the start time for a survey package instance

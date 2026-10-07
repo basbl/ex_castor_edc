@@ -5,7 +5,7 @@ defmodule CastorEDCTest.Middleware do
   import CastorEDC
 
   @access_token "supersecretaccesstoken"
-  @client CastorEDC.Client.new(%{access_token: @access_token}, adapter: Tesla.Mock)
+  @client CastorEDC.Legacy.Client.new(%{access_token: @access_token}, adapter: Tesla.Mock)
   @expect_user_agent "elixir-ex_castor_edc/" <> Mix.Project.config()[:version]
 
   setup do

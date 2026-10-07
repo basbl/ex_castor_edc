@@ -4,7 +4,7 @@ defmodule CastorEDCTest.ConnectionErrors do
 
   import CastorEDC
 
-  @client CastorEDC.Client.new(
+  @client CastorEDC.Legacy.Client.new(
             %{access_token: "supersecretaccesstoken"},
             adapter: Tesla.Mock
           )

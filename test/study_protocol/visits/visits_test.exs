@@ -5,7 +5,7 @@ defmodule CastorEDCTest.StudyProtocol.Visits do
 
   import CastorEDC.StudyProtocol.Visits
 
-  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
+  @client CastorEDC.Legacy.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "visits/visits#list" do

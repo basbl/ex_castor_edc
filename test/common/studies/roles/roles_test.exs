@@ -5,7 +5,7 @@ defmodule CastorEDCTest.Common.Studies.Roles do
 
   import CastorEDC.Common.Studies.Roles
 
-  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
+  @client CastorEDC.Legacy.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "studies/roles/roles#list" do

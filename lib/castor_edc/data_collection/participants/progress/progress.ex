@@ -5,7 +5,7 @@ defmodule CastorEDC.DataCollection.Participants.Progress do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
 
   @doc """
   List all participant progress

@@ -5,7 +5,7 @@ defmodule CastorEDC.Common.Studies do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
 
   @doc """
   List all studies that the authenticated user is authorized to see

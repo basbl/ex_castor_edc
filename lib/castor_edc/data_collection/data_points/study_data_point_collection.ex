@@ -5,7 +5,7 @@ defmodule CastorEDC.DataCollection.DataPoints.StudyDataPointCollection do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
 
   @doc """
   List all collected data points for the study

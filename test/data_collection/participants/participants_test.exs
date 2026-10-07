@@ -5,7 +5,7 @@ defmodule CastorEDCTest.DataCollection.Participants do
 
   import CastorEDC.DataCollection.Participants
 
-  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
+  @client CastorEDC.Legacy.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "participants/participants#list" do

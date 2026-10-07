@@ -5,7 +5,7 @@ defmodule CastorEDCTest.Common.Users do
 
   import CastorEDC.Common.Users
 
-  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
+  @client CastorEDC.Legacy.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/1" do
     use_cassette "users/users#list" do

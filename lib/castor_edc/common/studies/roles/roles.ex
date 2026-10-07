@@ -5,7 +5,7 @@ defmodule CastorEDC.Common.Studies.Roles do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
 
   @doc """
   List all roles available within the study

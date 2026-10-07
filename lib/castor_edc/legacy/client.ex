@@ -1,6 +1,9 @@
-defmodule CastorEDC.Client do
+defmodule CastorEDC.Legacy.Client do
   @moduledoc ~S"""
   Container for API client configuration values.
+
+  This is the client of the Tesla-based API, which is being replaced by
+  `CastorEDC.new/1` and goes away in 1.0.
   """
   alias __MODULE__
 

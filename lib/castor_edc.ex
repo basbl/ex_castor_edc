@@ -2,12 +2,12 @@ defmodule CastorEDC do
   @moduledoc ~S"""
   Facilitates authentication against the Castor EDC API
 
-      alias CastorEDC.Client
+      alias CastorEDC.Legacy.Client
 
       client = Client.new(%{client_id: "<client id>", client_secret: "<client secret>"})
       {:ok, client} = CastorEDC.authenticate(client)
 
-  See `CastorEDC.Client.new/2` for all the options.
+  See `CastorEDC.Legacy.Client.new/2` for all the options.
 
   After authenticating against the API you can then use the other modules to perform
   API requests, e.g:
@@ -17,7 +17,7 @@ defmodule CastorEDC do
       list_of_studies
   """
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
   alias Tesla.Middleware.Headers
 
   @typedoc false

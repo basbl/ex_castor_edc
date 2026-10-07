@@ -43,7 +43,7 @@ Next we need to exchange your `client_id` and `client_secret` for an access toke
 
 ```elixir
 client =
-  CastorEDC.Client.new(
+  CastorEDC.Legacy.Client.new(
     %{
       client_id: Kino.Input.read(client_id),
       client_secret: Kino.Input.read(client_secret)

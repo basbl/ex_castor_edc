@@ -5,7 +5,7 @@ defmodule CastorEDCTest.DataCollection.Participants.RepeatingDataInstances do
 
   import CastorEDC.DataCollection.Participants.RepeatingDataInstances
 
-  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
+  @client CastorEDC.Legacy.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/4" do
     use_cassette "participants/repeating_data_instances/repeating_data_instances#list" do

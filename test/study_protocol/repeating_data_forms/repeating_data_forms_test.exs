@@ -5,7 +5,7 @@ defmodule CastorEDCTest.StudyProtocol.RepeatingDataForms do
 
   import CastorEDC.StudyProtocol.RepeatingDataForms
 
-  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
+  @client CastorEDC.Legacy.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "list/2" do
     use_cassette "repeating_data_forms/repeating_data_forms#list" do

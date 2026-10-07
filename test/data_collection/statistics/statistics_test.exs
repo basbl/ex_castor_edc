@@ -5,7 +5,7 @@ defmodule CastorEDCTest.DataCollection.Statistics do
 
   import CastorEDC.DataCollection.Statistics
 
-  @client CastorEDC.Client.new(%{access_token: "supersecretaccesstoken"})
+  @client CastorEDC.Legacy.Client.new(%{access_token: "supersecretaccesstoken"})
 
   test "find/2" do
     use_cassette "statistics/statistics#find" do

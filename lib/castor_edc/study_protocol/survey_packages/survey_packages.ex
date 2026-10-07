@@ -5,7 +5,7 @@ defmodule CastorEDC.StudyProtocol.SurveyPackages do
 
   import CastorEDC
 
-  alias CastorEDC.Client
+  alias CastorEDC.Legacy.Client
 
   @doc """
   Retrieve list of available survey packages
