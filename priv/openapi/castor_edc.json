@@ -6177,6 +6177,7 @@
     "/country": {
       "get": {
         "description": "Gets `Country` objects.\nIs not paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_countries",
         "responses": {
           "200": {
             "content": {
@@ -6221,12 +6222,14 @@
         "summary": "Retrieves the list of all countries",
         "tags": [
           "country"
-        ]
+        ],
+        "x-castor-module": "Countries"
       }
     },
     "/country/{country_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_country",
         "parameters": [
           {
             "description": "ID of the country to fetch",
@@ -6270,12 +6273,14 @@
         "summary": "Retrieve a single Country",
         "tags": [
           "country"
-        ]
+        ],
+        "x-castor-module": "Countries"
       }
     },
     "/study": {
       "get": {
         "description": "Returns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_studies",
         "responses": {
           "200": {
             "content": {
@@ -6328,12 +6333,14 @@
         "summary": "Retrieve a list of studies the current authenticated user has access to.",
         "tags": [
           "study"
-        ]
+        ],
+        "x-castor-module": "Studies"
       }
     },
     "/study/{study_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_study",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -6388,12 +6395,14 @@
         "summary": "Retrieve a single Study",
         "tags": [
           "study"
-        ]
+        ],
+        "x-castor-module": "Studies"
       }
     },
     "/study/{study_id}/compliance": {
       "post": {
         "description": "Retrieves participant survey compliance. Result is based on the site permissions of the API user.",
+        "operationId": "list_survey_compliance",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -6454,7 +6463,8 @@
               },
               "type": "array"
             },
-            "style": "form"
+            "style": "form",
+            "x-castor-name": "participant_ids"
           },
           {
             "description": "Returns all surveys available for completion between availabilityStart and availabilityEnd dates. Supported format Y-m-d H:i:s",
@@ -6463,7 +6473,8 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "availability_start"
           },
           {
             "description": "Returns all surveys available for completion between availabilityStart and availabilityEnd dates Supported format Y-m-d H:i:s",
@@ -6472,7 +6483,8 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "availability_end"
           },
           {
             "description": "Returns compliance result filtered on given sites.",
@@ -6486,7 +6498,8 @@
               },
               "type": "array"
             },
-            "style": "form"
+            "style": "form",
+            "x-castor-name": "site_ids"
           },
           {
             "description": "Returns compliance result filtered on given participant statuses.",
@@ -6500,7 +6513,8 @@
               },
               "type": "array"
             },
-            "style": "form"
+            "style": "form",
+            "x-castor-name": "participant_statuses"
           },
           {
             "description": "Returns compliance result filtered on given survey packages.",
@@ -6514,7 +6528,8 @@
               },
               "type": "array"
             },
-            "style": "form"
+            "style": "form",
+            "x-castor-name": "survey_package_ids"
           },
           {
             "description": "Returns compliance result filtered on survey package status. Available ones are: Created, Completed, Failed, In Progress, Locked, Received, Sent, Viewed",
@@ -6528,7 +6543,8 @@
               },
               "type": "array"
             },
-            "style": "form"
+            "style": "form",
+            "x-castor-name": "survey_package_statuses"
           },
           {
             "description": "Filter on mobile surveys. Requires mobile surveys to be enabled on the study.",
@@ -6564,7 +6580,8 @@
                 ">="
               ],
               "type": "string"
-            }
+            },
+            "x-castor-name": "compliance_option"
           },
           {
             "description": "UUID of the visit or repeating data survey parent. Requires the \"parentType\" parameter.",
@@ -6573,7 +6590,8 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "parent_id"
           },
           {
             "description": "0: No parent. 1: Surveys belongs to a visit. 2: The surveys belongs to a repeating data instance.",
@@ -6587,7 +6605,8 @@
                 "2"
               ],
               "type": "string"
-            }
+            },
+            "x-castor-name": "parent_type"
           }
         ],
         "responses": {
@@ -6637,12 +6656,14 @@
         "summary": "Retrieve participant survey compliance information",
         "tags": [
           "survey"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       }
     },
     "/study/{study_id}/data-points/repeating-data-instance": {
       "get": {
         "description": "Returns an array of objects. Paged.",
+        "operationId": "list_repeating_data_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -6735,12 +6756,14 @@
         "summary": "Retrieves a list of all repeating data data collected for all participants",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/data-points/repeating-data-instance/{repeating_data_instance_id}": {
       "get": {
         "description": "Returns an array of objects. Paged.",
+        "operationId": "list_repeating_data_instance_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -6842,12 +6865,14 @@
         "summary": "Retrieves a list of all repeating data data collected for this repeating data instance",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/data-points/study": {
       "get": {
         "description": "Returns an array of objects. Paged.",
+        "operationId": "list_study_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -6940,12 +6965,14 @@
         "summary": "Retrieves a list of all study data collected for all participants",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/data-points/survey-instance": {
       "get": {
         "description": "Returns an array of objects. Paged.",
+        "operationId": "list_survey_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -7038,12 +7065,14 @@
         "summary": "Retrieves a list of all survey data collected for all participants",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/data-points/survey-instance/{survey_instance_id}": {
       "get": {
         "description": "Returns an array of objects. Paged.",
+        "operationId": "list_survey_instance_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -7145,12 +7174,14 @@
         "summary": "Retrieves a list of all survey data collected for this survey instance",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/data-points/survey-package-instance/{survey_package_instance_id}": {
       "get": {
         "description": "Returns an array of objects. Paged.",
+        "operationId": "list_survey_package_instance_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -7252,12 +7283,14 @@
         "summary": "Retrieves a list of all survey data collected for this survey package instance",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/export": {
       "get": {
         "description": "",
+        "operationId": "list_exports",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -7340,10 +7373,12 @@
         "summary": "Shows the status of previously requested exports",
         "tags": [
           "export"
-        ]
+        ],
+        "x-castor-module": "Exports"
       },
       "post": {
         "description": "This batch endpoint supports initiating multiple, distinct export types in a single request.",
+        "operationId": "queue_exports",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made.",
@@ -7427,12 +7462,14 @@
           }
         ],
         "summary": "Request exports of multiple types.",
-        "tags": []
+        "tags": [],
+        "x-castor-module": "Exports"
       }
     },
     "/study/{study_id}/export/{id}/download": {
       "get": {
         "description": "",
+        "operationId": "download_export",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -7452,7 +7489,8 @@
             "schema": {
               "format": "UUID",
               "type": "string"
-            }
+            },
+            "x-castor-name": "export_id"
           }
         ],
         "responses": {
@@ -7510,12 +7548,14 @@
         "summary": "File download. Endpoint responds with binary stream.",
         "tags": [
           "export"
-        ]
+        ],
+        "x-castor-module": "Exports"
       }
     },
     "/study/{study_id}/field": {
       "get": {
         "description": "Gets `Field` objects.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_fields",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -7613,12 +7653,14 @@
         "summary": "Retrieves the list of all available fields",
         "tags": [
           "field"
-        ]
+        ],
+        "x-castor-module": "Fields"
       }
     },
     "/study/{study_id}/field-dependency": {
       "get": {
         "description": "Gets `FieldDependency` objects.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_field_dependencies",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -7702,12 +7744,14 @@
         "summary": "Retrieve list of available fieldDependency",
         "tags": [
           "field-dependency"
-        ]
+        ],
+        "x-castor-module": "Fields"
       }
     },
     "/study/{study_id}/field-dependency/{fieldDependency_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_field_dependency",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -7726,7 +7770,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "field_dependency_id"
           }
         ],
         "responses": {
@@ -7761,12 +7806,14 @@
         "summary": "Retrieve a single dependency",
         "tags": [
           "field-dependency"
-        ]
+        ],
+        "x-castor-module": "Fields"
       }
     },
     "/study/{study_id}/field-optiongroup": {
       "get": {
         "description": "Gets `FieldOptionGroup` objects.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_option_groups",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -7850,12 +7897,14 @@
         "summary": "Retrieves the list of all available FieldOptionGroups",
         "tags": [
           "field-optiongroup"
-        ]
+        ],
+        "x-castor-module": "OptionGroups"
       }
     },
     "/study/{study_id}/field-optiongroup/{optiongroup_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_option_group",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -7874,7 +7923,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "option_group_id"
           }
         ],
         "responses": {
@@ -7909,12 +7959,14 @@
         "summary": "Retrieve a single FieldOptionGroup",
         "tags": [
           "field-optiongroup"
-        ]
+        ],
+        "x-castor-module": "OptionGroups"
       }
     },
     "/study/{study_id}/field-validation": {
       "get": {
         "description": "Gets `FieldValidation` objects.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).\n\nUse the `include_referenced_field` query parameter to control field-to-field validations:\n- When `false` (default): Only value-based validations are returned for backward compatibility\n- When `true`: All validations including field-to-field validations are returned",
+        "operationId": "list_field_validations",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -8008,12 +8060,14 @@
         "summary": "Retrieve list of available field-validations",
         "tags": [
           "field-validation"
-        ]
+        ],
+        "x-castor-module": "Fields"
       }
     },
     "/study/{study_id}/field-validation/{fieldValidation_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_field_validation",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -8032,7 +8086,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "field_validation_id"
           }
         ],
         "responses": {
@@ -8067,12 +8122,14 @@
         "summary": "Retrieve a single field-validation",
         "tags": [
           "field-validation"
-        ]
+        ],
+        "x-castor-module": "Fields"
       }
     },
     "/study/{study_id}/field/{field_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_field",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -8140,12 +8197,14 @@
         "summary": "Retrieve a single Field",
         "tags": [
           "field"
-        ]
+        ],
+        "x-castor-module": "Fields"
       }
     },
     "/study/{study_id}/form": {
       "get": {
         "description": "Gets `Form` objects, which are Forms that are collected only once per participant.\nForms are placed in a Visit and contain Fields.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_forms",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -8229,12 +8288,14 @@
         "summary": "Retrieve list of available forms",
         "tags": [
           "form"
-        ]
+        ],
+        "x-castor-module": "Forms"
       }
     },
     "/study/{study_id}/form/{form_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_form",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -8308,12 +8369,14 @@
         "summary": "Retrieve a single Form",
         "tags": [
           "form"
-        ]
+        ],
+        "x-castor-module": "Forms"
       }
     },
     "/study/{study_id}/metadata": {
       "get": {
         "description": "Gets `Metadata` objects.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_metadata",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -8397,12 +8460,14 @@
         "summary": "Retrieve list of available metadata",
         "tags": [
           "metadata"
-        ]
+        ],
+        "x-castor-module": "Metadata"
       }
     },
     "/study/{study_id}/metadata/{metadata_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_metadata",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -8456,12 +8521,14 @@
         "summary": "Retrieve a single metadata item",
         "tags": [
           "metadata"
-        ]
+        ],
+        "x-castor-module": "Metadata"
       }
     },
     "/study/{study_id}/metadatatype": {
       "get": {
         "description": "Gets `MetadataType` objects. \nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_metadata_types",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -8545,12 +8612,14 @@
         "summary": "Retrieve list of available metadatatypes",
         "tags": [
           "metadatatype"
-        ]
+        ],
+        "x-castor-module": "Metadata"
       }
     },
     "/study/{study_id}/metadatatype/{metadatatype_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_metadata_type",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -8569,7 +8638,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "metadata_type_id"
           }
         ],
         "responses": {
@@ -8604,12 +8674,14 @@
         "summary": "Retrieve a single metadatatype",
         "tags": [
           "metadatatype"
-        ]
+        ],
+        "x-castor-module": "Metadata"
       }
     },
     "/study/{study_id}/participant": {
       "get": {
         "description": "Gets `Participant` objects. Can be paged.",
+        "operationId": "list_participants",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -8660,7 +8732,8 @@
                 "type": "string"
               },
               "type": "array"
-            }
+            },
+            "x-castor-name": "fields"
           }
         ],
         "responses": {
@@ -8724,10 +8797,12 @@
         "summary": "Retrieve list of study participants",
         "tags": [
           "participant"
-        ]
+        ],
+        "x-castor-module": "Participants"
       },
       "post": {
         "description": "Create a new participant for a specific study. Returns HalJson objects (with _links).\n                    You need to set your study's participant id generation strategy to <i>Patient Study ID (free text)</i>\n                    to be able to supply your own participant id",
+        "operationId": "create_participant",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -8805,12 +8880,14 @@
         "summary": "Create a participant",
         "tags": [
           "participant"
-        ]
+        ],
+        "x-castor-module": "Participants"
       }
     },
     "/study/{study_id}/participant-progress/forms": {
       "get": {
         "description": "Gets `Participant Progress` objects, which are Participant Forms that are going to show how much of a participant has been sdv\\'d,\nsigned and locked.",
+        "operationId": "list_form_progress",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -8881,11 +8958,13 @@
         "summary": "Retrieve information about forms filled for participants",
         "tags": [
           "participant-progress"
-        ]
+        ],
+        "x-castor-module": "Participants"
       }
     },
     "/study/{study_id}/participant-progress/{participant_id}/repeating-data": {
       "get": {
+        "operationId": "list_repeating_data_progress",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -9006,11 +9085,13 @@
         "summary": "Fetch repeating data progress per participant",
         "tags": [
           "participant-progress"
-        ]
+        ],
+        "x-castor-module": "Participants"
       }
     },
     "/study/{study_id}/participant-progress/{participant_id}/visit": {
       "get": {
+        "operationId": "list_visit_progress",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -9122,12 +9203,14 @@
         "summary": "Fetch visit progress per participant",
         "tags": [
           "participant-progress"
-        ]
+        ],
+        "x-castor-module": "Participants"
       }
     },
     "/study/{study_id}/participant/{participant_id}": {
       "get": {
         "description": "Supports the `record` scope.",
+        "operationId": "get_participant",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -9182,12 +9265,14 @@
         "summary": "Retrieve a single Participant 🔭",
         "tags": [
           "participant"
-        ]
+        ],
+        "x-castor-module": "Participants"
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-point/repeating-data/{repeating_data_instance_id}/{field_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_repeating_data_data_point",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -9269,10 +9354,12 @@
         "summary": "Retrieve a single RepeatingDataInstanceFieldResult object",
         "tags": [
           "repeating-data-data-entry"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       },
       "post": {
         "description": "Create a field result for a repeating data instance.",
+        "operationId": "create_repeating_data_data_point",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -9382,12 +9469,14 @@
         "summary": "Create a field result for a repeating data instance",
         "tags": [
           "repeating-data-data-entry"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-point/survey/{survey_instance_id}/{field_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links). Supports the `record` scope.",
+        "operationId": "get_survey_data_point",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -9470,10 +9559,12 @@
         "summary": "Retrieve a single SurveyInstanceFieldResult object 🔭",
         "tags": [
           "survey-data-entry"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       },
       "post": {
         "description": "Create a field result for a survey (package) instance. Supports the `record` scope.",
+        "operationId": "create_survey_data_point",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -9580,12 +9671,14 @@
         "summary": "Create a field result for a survey (package) instance 🔭",
         "tags": [
           "survey-data-entry"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance": {
       "get": {
         "description": "Returns an array of objects. Paged.",
+        "operationId": "list_participant_repeating_data_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -9707,12 +9800,14 @@
         "summary": "Retrieves a list of all repeating data data collected for this participant",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance/{repeating_data_instance_id}": {
       "get": {
         "description": "Returns an array of objects. Unpaged.",
+        "operationId": "list_participant_repeating_data_instance_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -9814,10 +9909,12 @@
         "summary": "Retrieves a list of all repeating data data collected for this repeating data instance",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       },
       "post": {
         "description": "Create/update a collection of field values for a repeating data instance",
+        "operationId": "upsert_repeating_data_instance_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -9921,12 +10018,14 @@
         "summary": "Create/update a collection of field values for a repeating data instance",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-points/study": {
       "get": {
         "description": "Returns an array of objects. Unpaged.",
+        "operationId": "list_participant_study_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -10019,10 +10118,12 @@
         "summary": "Retrieves a list of all study data collected for this participant",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       },
       "post": {
         "description": "Create/update a collection of field values for a study",
+        "operationId": "upsert_study_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -10117,12 +10218,14 @@
         "summary": "Create/update a collection of field values for a study",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-points/survey-instance": {
       "get": {
         "description": "Returns an array of objects. Unpaged.",
+        "operationId": "list_participant_survey_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -10215,12 +10318,14 @@
         "summary": "Retrieves a list of all survey data collected for this participant",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-points/survey-instance/{survey_instance_id}": {
       "get": {
         "description": "Returns an array of objects. Unpaged.",
+        "operationId": "list_participant_survey_instance_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -10322,10 +10427,12 @@
         "summary": "Retrieves a list of all survey data collected for this survey instance",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       },
       "post": {
         "description": "Create/update a collection of field values for a survey instance",
+        "operationId": "upsert_survey_instance_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -10429,12 +10536,14 @@
         "summary": "Create/update a collection of field values for a survey instance",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance": {
       "post": {
         "description": "Create a new repeatable survey package instance and a collection of field values for it",
+        "operationId": "create_survey_package_instance_with_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -10530,12 +10639,14 @@
         "summary": "Create a new repeatable survey package instance and a collection of field values for it 🔭",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance/{survey_package_instance_id}": {
       "get": {
         "description": "Returns an array of objects. Unpaged. Supports the `record` scope.",
+        "operationId": "list_participant_survey_package_instance_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -10638,10 +10749,12 @@
         "summary": "Retrieves a list of all survey data collected for this survey package instance 🔭",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       },
       "post": {
         "description": "Create/update a collection of field values for a survey package instance",
+        "operationId": "upsert_survey_package_instance_data_points",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -10745,12 +10858,14 @@
         "summary": "Create/update a collection of field values for a survey package instance",
         "tags": [
           "data-points"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/participant/{participant_id}/device-token": {
       "delete": {
         "description": "Removes the participants device token effectively unlinking their device. Supports the `record` scope.",
+        "operationId": "delete_device_token",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -10813,10 +10928,12 @@
         "summary": "Delete the participants device token 🔭",
         "tags": [
           "participant-device-token"
-        ]
+        ],
+        "x-castor-module": "DeviceTokens"
       },
       "get": {
         "description": "Retrieve the participant device token. Supports the `record` scope.",
+        "operationId": "get_device_token",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -10873,10 +10990,12 @@
         "summary": "Retrieve the participant device token 🔭",
         "tags": [
           "participant-device-token"
-        ]
+        ],
+        "x-castor-module": "DeviceTokens"
       },
       "patch": {
         "description": "Supports the `record` scope.",
+        "operationId": "update_device_token",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -10957,10 +11076,12 @@
         "summary": "Updates an existing participant device token 🔭",
         "tags": [
           "participant-device-token"
-        ]
+        ],
+        "x-castor-module": "DeviceTokens"
       },
       "post": {
         "description": "Create a device token for a participant. Supports the `record` scope.",
+        "operationId": "register_device_token",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -11037,12 +11158,14 @@
         "summary": "Register a device token for a participant 🔭",
         "tags": [
           "participant-device-token"
-        ]
+        ],
+        "x-castor-module": "DeviceTokens"
       }
     },
     "/study/{study_id}/participant/{participant_id}/econsent": {
       "get": {
         "description": "Gets `EConsentLink` objects containing eConsent information tied to CDMS Participant.",
+        "operationId": "get_econsent",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -11099,10 +11222,12 @@
         "summary": "Retrieve eConsent (link) information about CDMS Participant.",
         "tags": [
           "participant-econsent"
-        ]
+        ],
+        "x-castor-module": "EConsent"
       },
       "patch": {
         "description": "Updates link between eConsent and Participant.",
+        "operationId": "update_econsent_link",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -11173,10 +11298,12 @@
         "summary": "Updates link between eConsent and Participant.",
         "tags": [
           "participant-econsent"
-        ]
+        ],
+        "x-castor-module": "EConsent"
       },
       "post": {
         "description": "Creates `EConsentLink` objects containing eConsent information tied to CDMS Participant.",
+        "operationId": "create_econsent_links",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -11254,12 +11381,14 @@
         "summary": "Creates `EConsentLink` objects containing eConsent information tied to CDMS Participant.",
         "tags": [
           "participant-econsent"
-        ]
+        ],
+        "x-castor-module": "EConsent"
       }
     },
     "/study/{study_id}/participant/{participant_id}/randomization": {
       "get": {
         "description": "",
+        "operationId": "get_randomization",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -11319,10 +11448,12 @@
         "summary": "Retrieve a single RandomizationDetails",
         "tags": [
           "randomization"
-        ]
+        ],
+        "x-castor-module": "Randomization"
       },
       "post": {
         "description": "Randomize a participant if possible. Returns HalJson objects (with _links).",
+        "operationId": "randomize_participant",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -11395,12 +11526,14 @@
         "summary": "Randomize a participant",
         "tags": [
           "randomization"
-        ]
+        ],
+        "x-castor-module": "Randomization"
       }
     },
     "/study/{study_id}/participant/{participant_id}/repeating-data-instance": {
       "get": {
         "description": "Gets `RepeatingDataPackageInstance` objects, which are 'instantiations' of Repeating Data.\nThe Repeating Data Instance is the entity to which the data gets saved.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_participant_repeating_data_instances",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -11502,10 +11635,12 @@
         "summary": "Retrieve list of available repeating data instances",
         "tags": [
           "repeating-data-instance"
-        ]
+        ],
+        "x-castor-module": "RepeatingData"
       },
       "post": {
         "description": "Creates an instance of Repeating Data for a specific Participant. Repeating Data Instances are the objects on which data points are\nstored and are required to be created before that happens. They can have a custom name that has to be unique within\na given participant.<br/>\nRepeating Data Instances can have a parent defined to create a tree-like structure of parent/child information elements. Parents\ncan be either a visit or another repeating data instance and have to be defined with parent_type and parent_id.<br/>\nTo store data on repeated measures repeating data, the parent_type and parent_id should always point to the visit or\nrepeating data instance on which the repeated measure field is present.\n",
+        "operationId": "create_repeating_data_instance",
         "parameters": [
           {
             "description": "The ID of the study to create a repeating data instance for",
@@ -11600,12 +11735,14 @@
         "summary": "Creates a repeating data instance.",
         "tags": [
           "repeating-data-instance"
-        ]
+        ],
+        "x-castor-module": "RepeatingData"
       }
     },
     "/study/{study_id}/participant/{participant_id}/repeating-data-instance-collection": {
       "post": {
         "description": "Creates a collection of repeating data instances for a specific participant. Repeating data instances are the objects on which data points are\nstored and are required to be created before that happens. They can have a custom name that has to be unique within\na given participant.<br/>\nRepeating data instances can have a parent defined to create a tree-like structure of parent/child information elements. Parents\ncan be either a visit or another repeating data instance and have to be defined with parent_type and parent_id.<br/>\nTo store data on repeated measures repeating data, the parent_type and parent_id should always point to the visit or\nrepeating data instance on which the repeated measure field is present.",
+        "operationId": "create_repeating_data_instances",
         "parameters": [
           {
             "description": "The ID of the study to create the repeating data instances for",
@@ -11700,12 +11837,14 @@
         "summary": "Creates a collection of repeating data instances.",
         "tags": [
           "repeating-data-instance"
-        ]
+        ],
+        "x-castor-module": "RepeatingData"
       }
     },
     "/study/{study_id}/participant/{participant_id}/repeating-data-instance/{repeating_data_instance_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links)",
+        "operationId": "get_participant_repeating_data_instance",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -11769,12 +11908,14 @@
         "summary": "Retrieve a single repeating data instance",
         "tags": [
           "repeating-data-instance"
-        ]
+        ],
+        "x-castor-module": "RepeatingData"
       }
     },
     "/study/{study_id}/participant/{participant_id}/study-data-point/{field_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_study_data_point",
         "parameters": [
           {
             "description": "The ID of the study to retrieve FieldResults for",
@@ -11847,10 +11988,12 @@
         "summary": "Retrieve a single FieldResult object",
         "tags": [
           "study-data-entry"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       },
       "post": {
         "description": "Create a field result",
+        "operationId": "create_study_data_point",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -11950,12 +12093,14 @@
         "summary": "Create a field result",
         "tags": [
           "study-data-entry"
-        ]
+        ],
+        "x-castor-module": "DataPoints"
       }
     },
     "/study/{study_id}/participant/{participant_id}/survey-package-instance": {
       "patch": {
         "description": "Updates the status of multiple Survey Package Instances at once, either when they were received or when progress was started. Supports only the `record` scope.",
+        "operationId": "update_participant_survey_package_instances",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12032,12 +12177,14 @@
         "summary": "Updates the start time or the received time of multiple Survey Package Instances 🔭",
         "tags": [
           "survey"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       }
     },
     "/study/{study_id}/participant/{participant_id}/survey-package-instance/{survey_package_instance_id}": {
       "patch": {
         "description": "Updates the date and time when the filling of a SurveyPackageInstance has started,\nor the date and time when it has been received. Supports the `record` scope.",
+        "operationId": "update_participant_survey_package_instance",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12119,12 +12266,14 @@
         "summary": "Updates the start time or the delivery time for a SurveyPackageInstance 🔭",
         "tags": [
           "survey"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       }
     },
     "/study/{study_id}/query": {
       "get": {
         "description": "Gets `Query` objects. Can be paged",
+        "operationId": "list_queries",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12208,12 +12357,14 @@
         "summary": "Retrieve list of study queries",
         "tags": [
           "query"
-        ]
+        ],
+        "x-castor-module": "Queries"
       }
     },
     "/study/{study_id}/query/{query_id}": {
       "get": {
         "description": "",
+        "operationId": "get_query",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12267,12 +12418,14 @@
         "summary": "Retrieve a single Query",
         "tags": [
           "query"
-        ]
+        ],
+        "x-castor-module": "Queries"
       }
     },
     "/study/{study_id}/repeating-data": {
       "get": {
         "description": "Gets `RepeatingData` objects. Repeating Datas are used for repeating measurements or events, that have a 1::N\nrelationship with the Participant.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_repeating_data",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12349,12 +12502,14 @@
         "summary": "Retrieve list of available Repeating Data",
         "tags": [
           "repeating-data"
-        ]
+        ],
+        "x-castor-module": "RepeatingData"
       }
     },
     "/study/{study_id}/repeating-data-instance": {
       "get": {
         "description": "Gets `RepeatingDataPackageInstance` objects, which are 'instantiations' of Repeating Data.\nThe Repeating Data Instance is the entity to which the data gets saved.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_repeating_data_instances",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12447,12 +12602,14 @@
         "summary": "Retrieve list of available repeating data instances",
         "tags": [
           "repeating-data-instance"
-        ]
+        ],
+        "x-castor-module": "RepeatingData"
       }
     },
     "/study/{study_id}/repeating-data-instance/{repeating_data_instance_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links)",
+        "operationId": "get_repeating_data_instance",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12506,12 +12663,14 @@
         "summary": "Retrieve a single repeating data instance",
         "tags": [
           "repeating-data-instance"
-        ]
+        ],
+        "x-castor-module": "RepeatingData"
       }
     },
     "/study/{study_id}/repeating-data/{repeating_data_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_repeating_data",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12558,12 +12717,14 @@
         "summary": "Retrieve a single Repeating Data",
         "tags": [
           "repeating-data"
-        ]
+        ],
+        "x-castor-module": "RepeatingData"
       }
     },
     "/study/{study_id}/repeating-data/{repeating_data_id}/repeating-data-form": {
       "get": {
         "description": "Gets `RepeatingDataForm` objects, which are Forms that are collected only once per Repeating Data.\nRepeatingDataForms are placed in a Repeating Data and contain Fields.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_repeating_data_forms",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12656,12 +12817,14 @@
         "summary": "Retrieve list of available RepeatingDataForms of one specific Repeating Data",
         "tags": [
           "repeating-data-form"
-        ]
+        ],
+        "x-castor-module": "RepeatingData"
       }
     },
     "/study/{study_id}/repeating-data/{repeating_data_id}/repeating-data-form/{repeating_data_form_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_repeating_data_form",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12724,11 +12887,13 @@
         "summary": "Retrieve a single RepeatingDataForm",
         "tags": [
           "repeating-data-form"
-        ]
+        ],
+        "x-castor-module": "RepeatingData"
       }
     },
     "/study/{study_id}/role": {
       "get": {
+        "operationId": "list_roles",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12797,10 +12962,12 @@
         "summary": "A list of roles related to the Study.",
         "tags": [
           "role"
-        ]
+        ],
+        "x-castor-module": "Roles"
       },
       "post": {
         "description": "Creates `Role` object.",
+        "operationId": "create_role",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12879,12 +13046,14 @@
         "summary": "Creates a role",
         "tags": [
           "role"
-        ]
+        ],
+        "x-castor-module": "Roles"
       }
     },
     "/study/{study_id}/role/{role_name}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_role",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -12951,12 +13120,14 @@
         "summary": "Retrieve a single Role",
         "tags": [
           "role"
-        ]
+        ],
+        "x-castor-module": "Roles"
       }
     },
     "/study/{study_id}/site": {
       "get": {
         "description": "Gets `Site` objects.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_sites",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -13040,10 +13211,12 @@
         "summary": "Retrieve list of study sites",
         "tags": [
           "site"
-        ]
+        ],
+        "x-castor-module": "Sites"
       },
       "post": {
         "description": "Creates `Site` objects.",
+        "operationId": "create_site",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -13128,12 +13301,14 @@
         "summary": "Creates a site",
         "tags": [
           "site"
-        ]
+        ],
+        "x-castor-module": "Sites"
       }
     },
     "/study/{study_id}/site/{site_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_site",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -13187,12 +13362,14 @@
         "summary": "Retrieve a single Site",
         "tags": [
           "site"
-        ]
+        ],
+        "x-castor-module": "Sites"
       }
     },
     "/study/{study_id}/statistics": {
       "get": {
         "description": "Returns HalJson objects (with _links). Supports the `study_statistics` scope.",
+        "operationId": "get_study_statistics",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -13247,12 +13424,14 @@
         "summary": "Retrieve statistics for a single Study 🔭",
         "tags": [
           "study-statistics"
-        ]
+        ],
+        "x-castor-module": "Studies"
       }
     },
     "/study/{study_id}/study-metadata": {
       "get": {
         "description": "Only supports the `record` scope. Other scopes should use the /study/{study_id} endpoint.",
+        "operationId": "get_study_metadata",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -13307,12 +13486,14 @@
         "summary": "Retrieve information about a single Study 🔭",
         "tags": [
           "study"
-        ]
+        ],
+        "x-castor-module": "Studies"
       }
     },
     "/study/{study_id}/survey": {
       "get": {
         "description": "Gets `Survey` objects. Surveys consist of Survey Forms. Multiple surveys can be combined in\nSurvey Packages, which are being sent to respondents using Survey Package Instances.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_surveys",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -13405,12 +13586,14 @@
         "summary": "Retrieve list of available Surveys",
         "tags": [
           "survey"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       }
     },
     "/study/{study_id}/survey-package": {
       "get": {
         "description": "Gets `SurveyPackage` objects. A Survey Package is a collection of 1 or more Surveys.\nSurveyPackages get instantiated through SurveyPackageInstances, which are the objects\nto which datapoints really get stored.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_survey_packages",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -13494,12 +13677,14 @@
         "summary": "Retrieve list of available Survey Packages",
         "tags": [
           "survey"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       }
     },
     "/study/{study_id}/survey-package-instance": {
       "get": {
         "description": "Gets `SurveyPackageInstance` objects, which are 'instantiations' of SurveyPackages.\nThe SurveyPackageInstance (SPI) is the entity to which the data gets saved, for which email invitations are sent, etc.\nAlways requires a study_id to be given. Can be paged and filtered.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_survey_package_instances",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -13667,7 +13852,8 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "finished_after"
           },
           {
             "description": "Filter survey package invitations that has finished date greater or equal to provided.",
@@ -13676,7 +13862,8 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "finished_on_or_after"
           },
           {
             "description": "Filter survey package invitations that has finished date lower than provided.",
@@ -13685,7 +13872,8 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "finished_before"
           },
           {
             "description": "Filter survey package invitations that has finished date lower or equal to provided.",
@@ -13694,7 +13882,8 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "finished_on_or_before"
           }
         ],
         "responses": {
@@ -13875,10 +14064,12 @@
         "summary": "Retrieve list of available SurveyPackageInstances",
         "tags": [
           "survey"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       },
       "post": {
         "description": "Creates an instantiation of a SurveyPackage for a specific Record.",
+        "operationId": "create_survey_package_instance",
         "parameters": [
           {
             "description": "The ID of the study to retrieve survey package instances for",
@@ -13950,12 +14141,14 @@
         "summary": "Creates a SurveyPackageInstance and (optionally) send the email invite directly.",
         "tags": [
           "survey"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       }
     },
     "/study/{study_id}/survey-package-instance/{survey_package_instance_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links)",
+        "operationId": "get_survey_package_instance",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14039,10 +14232,12 @@
         "summary": "Retrieve a single Survey Package Instance",
         "tags": [
           "survey"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       },
       "patch": {
         "description": "\nThe endpoint allows updating **either** the `locked` status or the `sent_on` datetime of a SurveyPackageInstance.\n\n⚠️ These options are **mutually exclusive**—only one operation is allowed per request.\n\n### Locking/Unlocking\n- Accepts a `boolean` (`true` or `false`).\n- Used to **lock or unlock** a SurveyPackageInstance.\n\n### Marking as sent\n- Accepts a **past** date in **UTC format** (`YYYY-MM-DD HH:MM:SS`).\n- Only applicable for unsent SurveyPackageInstances in the `Created` status.\n- Updating `sent_on` will:\n  - Set **both** `available_from` and `sent_on` to the submitted date.\n  - Update the SurveyPackageInstance status to `Sent`.",
+        "operationId": "update_survey_package_instance",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14117,12 +14312,14 @@
         "summary": "Updates a SurveyPackageInstance. Can be used to lock/unlock or mark as sent.",
         "tags": [
           "survey"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       }
     },
     "/study/{study_id}/survey-package/{survey_package_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_survey_package",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14185,12 +14382,14 @@
         "summary": "Retrieve a single Survey Package",
         "tags": [
           "survey"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       }
     },
     "/study/{study_id}/survey/{survey_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_survey",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14253,12 +14452,14 @@
         "summary": "Retrieve a single Survey",
         "tags": [
           "survey"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       }
     },
     "/study/{study_id}/survey/{survey_id}/survey-form": {
       "get": {
         "description": "Gets `SurveyForm` objects, which are Forms that are collected only once per survey.\nSurveyForms are placed in a Survey and contain Fields.\nAlways requires a study_id and a survey_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_survey_forms",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14351,12 +14552,14 @@
         "summary": "Retrieve list of available SurveyForms of a specific Survey",
         "tags": [
           "survey-form"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       }
     },
     "/study/{study_id}/survey/{survey_id}/survey-form/{survey_form_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_survey_form",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14419,12 +14622,14 @@
         "summary": "Retrieve a single SurveyForm",
         "tags": [
           "survey-form"
-        ]
+        ],
+        "x-castor-module": "Surveys"
       }
     },
     "/study/{study_id}/user": {
       "get": {
         "description": "Returns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_study_users",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14473,10 +14678,12 @@
         "summary": "Retrieve a list of users who have access to the study, including their assigned roles per site.",
         "tags": [
           "study-user"
-        ]
+        ],
+        "x-castor-module": "StudyUsers"
       },
       "post": {
         "description": "",
+        "operationId": "add_study_user",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14540,11 +14747,13 @@
         "summary": "Add a user to the study.",
         "tags": [
           "study-user"
-        ]
+        ],
+        "x-castor-module": "StudyUsers"
       }
     },
     "/study/{study_id}/user/{user_id}": {
       "delete": {
+        "operationId": "remove_study_user",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14598,10 +14807,12 @@
         "summary": "Removes a user from the study.",
         "tags": [
           "study-user"
-        ]
+        ],
+        "x-castor-module": "StudyUsers"
       },
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_study_user",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14666,10 +14877,12 @@
         "summary": "Retrieve a single user, including their assigned roles per site.",
         "tags": [
           "study-user"
-        ]
+        ],
+        "x-castor-module": "StudyUsers"
       },
       "put": {
         "description": "Removes all of a users permissions and replaces them with the provided payload.",
+        "operationId": "update_study_user",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14740,12 +14953,14 @@
         "summary": "Replace a single user's role assignments.",
         "tags": [
           "study-user"
-        ]
+        ],
+        "x-castor-module": "StudyUsers"
       }
     },
     "/study/{study_id}/verification": {
       "get": {
         "description": "Gets `Verification` objects. Can be paged",
+        "operationId": "list_verifications",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14894,12 +15109,14 @@
         "summary": "Retrieve list of study verifications",
         "tags": [
           "verification"
-        ]
+        ],
+        "x-castor-module": "Verifications"
       }
     },
     "/study/{study_id}/visit": {
       "get": {
         "description": "Gets `Visit` objects.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",
+        "operationId": "list_visits",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -14983,12 +15200,14 @@
         "summary": "Retrieve list of available visits",
         "tags": [
           "visit"
-        ]
+        ],
+        "x-castor-module": "Forms"
       }
     },
     "/study/{study_id}/visit/{visit_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "get_visit",
         "parameters": [
           {
             "description": "The ID of the study for which this call should be made",
@@ -15042,12 +15261,14 @@
         "summary": "Retrieve a single Visit",
         "tags": [
           "visit"
-        ]
+        ],
+        "x-castor-module": "Forms"
       }
     },
     "/user": {
       "get": {
         "description": "Returns HalJson objects (with _links).",
+        "operationId": "list_users",
         "responses": {
           "200": {
             "content": {
@@ -15084,12 +15305,14 @@
         "summary": "Retrieve a list of users the currently authenticated user is authorized to see. Default to own User.",
         "tags": [
           "user"
-        ]
+        ],
+        "x-castor-module": "Users"
       }
     },
     "/user/{user_id}": {
       "get": {
         "description": "Returns HalJson objects (with _links)",
+        "operationId": "get_user",
         "parameters": [
           {
             "description": "The ID of the user to retrieve",
@@ -15134,7 +15357,8 @@
         "summary": "Retrieve a single User",
         "tags": [
           "user"
-        ]
+        ],
+        "x-castor-module": "Users"
       }
     }
   },

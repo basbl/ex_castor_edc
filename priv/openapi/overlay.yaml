@@ -72,3 +72,298 @@ actions:
       Duplicates GET .../data-points/repeating-data-instance/{repeating_data_instance_id}
       through the older serialiser.
     remove: true
+
+  # Operation names and modules
+  #
+  # Every operation gets an operationId, which names its function, and an
+  # x-castor-module, which names the module it's generated into. Upstream
+  # has neither, and its tags are too fine-grained to become modules.
+
+  # Countries
+  - target: $.paths['/country'].get
+    update: {operationId: list_countries, x-castor-module: Countries}
+  - target: $.paths['/country/{country_id}'].get
+    update: {operationId: get_country, x-castor-module: Countries}
+
+  # Users
+  - target: $.paths['/user'].get
+    update: {operationId: list_users, x-castor-module: Users}
+  - target: $.paths['/user/{user_id}'].get
+    update: {operationId: get_user, x-castor-module: Users}
+
+  # Studies
+  - target: $.paths['/study'].get
+    update: {operationId: list_studies, x-castor-module: Studies}
+  - target: $.paths['/study/{study_id}'].get
+    update: {operationId: get_study, x-castor-module: Studies}
+  - target: $.paths['/study/{study_id}/statistics'].get
+    update: {operationId: get_study_statistics, x-castor-module: Studies}
+  - target: $.paths['/study/{study_id}/study-metadata'].get
+    update: {operationId: get_study_metadata, x-castor-module: Studies}
+
+  # StudyUsers
+  - target: $.paths['/study/{study_id}/user'].get
+    update: {operationId: list_study_users, x-castor-module: StudyUsers}
+  - target: $.paths['/study/{study_id}/user/{user_id}'].get
+    update: {operationId: get_study_user, x-castor-module: StudyUsers}
+  - target: $.paths['/study/{study_id}/user'].post
+    update: {operationId: add_study_user, x-castor-module: StudyUsers}
+  - target: $.paths['/study/{study_id}/user/{user_id}'].put
+    update: {operationId: update_study_user, x-castor-module: StudyUsers}
+  - target: $.paths['/study/{study_id}/user/{user_id}'].delete
+    update: {operationId: remove_study_user, x-castor-module: StudyUsers}
+
+  # Roles
+  - target: $.paths['/study/{study_id}/role'].get
+    update: {operationId: list_roles, x-castor-module: Roles}
+  - target: $.paths['/study/{study_id}/role/{role_name}'].get
+    update: {operationId: get_role, x-castor-module: Roles}
+  - target: $.paths['/study/{study_id}/role'].post
+    update: {operationId: create_role, x-castor-module: Roles}
+
+  # Sites
+  - target: $.paths['/study/{study_id}/site'].get
+    update: {operationId: list_sites, x-castor-module: Sites}
+  - target: $.paths['/study/{study_id}/site/{site_id}'].get
+    update: {operationId: get_site, x-castor-module: Sites}
+  - target: $.paths['/study/{study_id}/site'].post
+    update: {operationId: create_site, x-castor-module: Sites}
+
+  # Participants
+  - target: $.paths['/study/{study_id}/participant'].get
+    update: {operationId: list_participants, x-castor-module: Participants}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}'].get
+    update: {operationId: get_participant, x-castor-module: Participants}
+  - target: $.paths['/study/{study_id}/participant'].post
+    update: {operationId: create_participant, x-castor-module: Participants}
+  - target: $.paths['/study/{study_id}/participant-progress/forms'].get
+    update: {operationId: list_form_progress, x-castor-module: Participants}
+  - target: $.paths['/study/{study_id}/participant-progress/{participant_id}/visit'].get
+    update: {operationId: list_visit_progress, x-castor-module: Participants}
+  - target: $.paths['/study/{study_id}/participant-progress/{participant_id}/repeating-data'].get
+    update: {operationId: list_repeating_data_progress, x-castor-module: Participants}
+
+  # Randomization
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/randomization'].get
+    update: {operationId: get_randomization, x-castor-module: Randomization}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/randomization'].post
+    update: {operationId: randomize_participant, x-castor-module: Randomization}
+
+  # DeviceTokens
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/device-token'].get
+    update: {operationId: get_device_token, x-castor-module: DeviceTokens}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/device-token'].post
+    update: {operationId: register_device_token, x-castor-module: DeviceTokens}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/device-token'].patch
+    update: {operationId: update_device_token, x-castor-module: DeviceTokens}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/device-token'].delete
+    update: {operationId: delete_device_token, x-castor-module: DeviceTokens}
+
+  # EConsent
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/econsent'].get
+    update: {operationId: get_econsent, x-castor-module: EConsent}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/econsent'].post
+    update: {operationId: create_econsent_links, x-castor-module: EConsent}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/econsent'].patch
+    update: {operationId: update_econsent_link, x-castor-module: EConsent}
+
+  # DataPoints
+  - target: $.paths['/study/{study_id}/data-points/study'].get
+    update: {operationId: list_study_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance'].get
+    update: {operationId: list_repeating_data_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].get
+    update: {operationId: list_repeating_data_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance'].get
+    update: {operationId: list_survey_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance/{survey_instance_id}'].get
+    update: {operationId: list_survey_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/data-points/survey-package-instance/{survey_package_instance_id}'].get
+    update: {operationId: list_survey_package_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/study'].get
+    update: {operationId: list_participant_study_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance'].get
+    update: {operationId: list_participant_repeating_data_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].get
+    update: {operationId: list_participant_repeating_data_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-instance'].get
+    update: {operationId: list_participant_survey_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-instance/{survey_instance_id}'].get
+    update: {operationId: list_participant_survey_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance/{survey_package_instance_id}'].get
+    update: {operationId: list_participant_survey_package_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/study'].post
+    update: {operationId: upsert_study_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].post
+    update: {operationId: upsert_repeating_data_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-instance/{survey_instance_id}'].post
+    update: {operationId: upsert_survey_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance/{survey_package_instance_id}'].post
+    update: {operationId: upsert_survey_package_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance'].post
+    update: {operationId: create_survey_package_instance_with_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/study-data-point/{field_id}'].get
+    update: {operationId: get_study_data_point, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/study-data-point/{field_id}'].post
+    update: {operationId: create_study_data_point, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/survey/{survey_instance_id}/{field_id}'].get
+    update: {operationId: get_survey_data_point, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/survey/{survey_instance_id}/{field_id}'].post
+    update: {operationId: create_survey_data_point, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/repeating-data/{repeating_data_instance_id}/{field_id}'].get
+    update: {operationId: get_repeating_data_data_point, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/repeating-data/{repeating_data_instance_id}/{field_id}'].post
+    update: {operationId: create_repeating_data_data_point, x-castor-module: DataPoints}
+
+  # Fields
+  - target: $.paths['/study/{study_id}/field'].get
+    update: {operationId: list_fields, x-castor-module: Fields}
+  - target: $.paths['/study/{study_id}/field/{field_id}'].get
+    update: {operationId: get_field, x-castor-module: Fields}
+  - target: $.paths['/study/{study_id}/field-dependency'].get
+    update: {operationId: list_field_dependencies, x-castor-module: Fields}
+  - target: $.paths['/study/{study_id}/field-dependency/{fieldDependency_id}'].get
+    update: {operationId: get_field_dependency, x-castor-module: Fields}
+  - target: $.paths['/study/{study_id}/field-validation'].get
+    update: {operationId: list_field_validations, x-castor-module: Fields}
+  - target: $.paths['/study/{study_id}/field-validation/{fieldValidation_id}'].get
+    update: {operationId: get_field_validation, x-castor-module: Fields}
+
+  # OptionGroups
+  - target: $.paths['/study/{study_id}/field-optiongroup'].get
+    update: {operationId: list_option_groups, x-castor-module: OptionGroups}
+  - target: $.paths['/study/{study_id}/field-optiongroup/{optiongroup_id}'].get
+    update: {operationId: get_option_group, x-castor-module: OptionGroups}
+
+  # Forms
+  - target: $.paths['/study/{study_id}/form'].get
+    update: {operationId: list_forms, x-castor-module: Forms}
+  - target: $.paths['/study/{study_id}/form/{form_id}'].get
+    update: {operationId: get_form, x-castor-module: Forms}
+  - target: $.paths['/study/{study_id}/visit'].get
+    update: {operationId: list_visits, x-castor-module: Forms}
+  - target: $.paths['/study/{study_id}/visit/{visit_id}'].get
+    update: {operationId: get_visit, x-castor-module: Forms}
+
+  # Metadata
+  - target: $.paths['/study/{study_id}/metadata'].get
+    update: {operationId: list_metadata, x-castor-module: Metadata}
+  - target: $.paths['/study/{study_id}/metadata/{metadata_id}'].get
+    update: {operationId: get_metadata, x-castor-module: Metadata}
+  - target: $.paths['/study/{study_id}/metadatatype'].get
+    update: {operationId: list_metadata_types, x-castor-module: Metadata}
+  - target: $.paths['/study/{study_id}/metadatatype/{metadatatype_id}'].get
+    update: {operationId: get_metadata_type, x-castor-module: Metadata}
+
+  # RepeatingData
+  - target: $.paths['/study/{study_id}/repeating-data'].get
+    update: {operationId: list_repeating_data, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/repeating-data/{repeating_data_id}'].get
+    update: {operationId: get_repeating_data, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/repeating-data/{repeating_data_id}/repeating-data-form'].get
+    update: {operationId: list_repeating_data_forms, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/repeating-data/{repeating_data_id}/repeating-data-form/{repeating_data_form_id}'].get
+    update: {operationId: get_repeating_data_form, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/repeating-data-instance'].get
+    update: {operationId: list_repeating_data_instances, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/repeating-data-instance/{repeating_data_instance_id}'].get
+    update: {operationId: get_repeating_data_instance, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].get
+    update: {operationId: list_participant_repeating_data_instances, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance/{repeating_data_instance_id}'].get
+    update: {operationId: get_participant_repeating_data_instance, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].post
+    update: {operationId: create_repeating_data_instance, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance-collection'].post
+    update: {operationId: create_repeating_data_instances, x-castor-module: RepeatingData}
+
+  # Surveys
+  - target: $.paths['/study/{study_id}/survey'].get
+    update: {operationId: list_surveys, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey/{survey_id}'].get
+    update: {operationId: get_survey, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey/{survey_id}/survey-form'].get
+    update: {operationId: list_survey_forms, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey/{survey_id}/survey-form/{survey_form_id}'].get
+    update: {operationId: get_survey_form, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey-package'].get
+    update: {operationId: list_survey_packages, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey-package/{survey_package_id}'].get
+    update: {operationId: get_survey_package, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey-package-instance'].get
+    update: {operationId: list_survey_package_instances, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey-package-instance/{survey_package_instance_id}'].get
+    update: {operationId: get_survey_package_instance, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey-package-instance'].post
+    update: {operationId: create_survey_package_instance, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey-package-instance/{survey_package_instance_id}'].patch
+    update: {operationId: update_survey_package_instance, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/survey-package-instance/{survey_package_instance_id}'].patch
+    update: {operationId: update_participant_survey_package_instance, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/survey-package-instance'].patch
+    update: {operationId: update_participant_survey_package_instances, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/compliance'].post
+    update: {operationId: list_survey_compliance, x-castor-module: Surveys}
+
+  # Queries
+  - target: $.paths['/study/{study_id}/query'].get
+    update: {operationId: list_queries, x-castor-module: Queries}
+  - target: $.paths['/study/{study_id}/query/{query_id}'].get
+    update: {operationId: get_query, x-castor-module: Queries}
+
+  # Verifications
+  - target: $.paths['/study/{study_id}/verification'].get
+    update: {operationId: list_verifications, x-castor-module: Verifications}
+
+  # Exports
+  - target: $.paths['/study/{study_id}/export'].post
+    update: {operationId: queue_exports, x-castor-module: Exports}
+  - target: $.paths['/study/{study_id}/export'].get
+    update: {operationId: list_exports, x-castor-module: Exports}
+  - target: $.paths['/study/{study_id}/export/{id}/download'].get
+    update: {operationId: download_export, x-castor-module: Exports}
+
+  # Parameter names
+  #
+  # Parameters whose wire name isn't snake_case, or doesn't read well as an
+  # Elixir option, get an x-castor-name. The client sends the wire name.
+  - target: $.paths.*.*.parameters[?@.name == 'fieldDependency_id']
+    update: {x-castor-name: field_dependency_id}
+  - target: $.paths.*.*.parameters[?@.name == 'fieldValidation_id']
+    update: {x-castor-name: field_validation_id}
+  - target: $.paths.*.*.parameters[?@.name == 'optiongroup_id']
+    update: {x-castor-name: option_group_id}
+  - target: $.paths.*.*.parameters[?@.name == 'metadatatype_id']
+    update: {x-castor-name: metadata_type_id}
+  - target: $.paths.*.*.parameters[?@.name == 'participantId[]']
+    update: {x-castor-name: participant_ids}
+  - target: $.paths.*.*.parameters[?@.name == 'siteId[]']
+    update: {x-castor-name: site_ids}
+  - target: $.paths.*.*.parameters[?@.name == 'participantStatus[]']
+    update: {x-castor-name: participant_statuses}
+  - target: $.paths.*.*.parameters[?@.name == 'surveyPackageId[]']
+    update: {x-castor-name: survey_package_ids}
+  - target: $.paths.*.*.parameters[?@.name == 'surveyPackageStatus[]']
+    update: {x-castor-name: survey_package_statuses}
+  - target: $.paths.*.*.parameters[?@.name == 'availabilityStart']
+    update: {x-castor-name: availability_start}
+  - target: $.paths.*.*.parameters[?@.name == 'availabilityEnd']
+    update: {x-castor-name: availability_end}
+  - target: $.paths.*.*.parameters[?@.name == 'complianceOption']
+    update: {x-castor-name: compliance_option}
+  - target: $.paths.*.*.parameters[?@.name == 'parentId']
+    update: {x-castor-name: parent_id}
+  - target: $.paths.*.*.parameters[?@.name == 'parentType']
+    update: {x-castor-name: parent_type}
+  - target: $.paths.*.*.parameters[?@.name == 'field[]']
+    update: {x-castor-name: fields}
+  - target: $.paths.*.*.parameters[?@.name == 'finished_on[gt]']
+    update: {x-castor-name: finished_after}
+  - target: $.paths.*.*.parameters[?@.name == 'finished_on[gte]']
+    update: {x-castor-name: finished_on_or_after}
+  - target: $.paths.*.*.parameters[?@.name == 'finished_on[lt]']
+    update: {x-castor-name: finished_before}
+  - target: $.paths.*.*.parameters[?@.name == 'finished_on[lte]']
+    update: {x-castor-name: finished_on_or_before}
+  - target: $.paths['/study/{study_id}/export/{id}/download'].get.parameters[?@.name == 'id']
+    update: {x-castor-name: export_id}
