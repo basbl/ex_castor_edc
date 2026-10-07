@@ -36,3 +36,5 @@ jobs:
         run: mix do compile --warnings-as-errors, coveralls
       - name: Run credo
         run: mix credo --strict
+      - name: Audit dependencies
+        run: mix do deps.audit + hex.audit

@@ -5,6 +5,15 @@ defmodule CastorEDC.MixProject do
   @source_url "https://github.com/basbl/ex_castor_edc/"
   @homepage_url "https://www.castoredc.com/"
 
+  # hackney advisories, fixed only in hackney 4.x. Hackney leaves together
+  # with Tesla during the move to Req, and this list leaves with it.
+  @ignored_advisories ~w(
+    GHSA-gp9c-pm5m-5cxr
+    GHSA-j9wq-vxxc-94wf
+    GHSA-mp55-p8c9-rfw2
+    GHSA-pj7v-xfvx-wmjq
+  )
+
   def project do
     [
       name: "ExCastorEDC",
@@ -18,6 +27,8 @@ defmodule CastorEDC.MixProject do
         ignore_warnings: ".dialyzer_ignore.exs"
       ],
       start_permanent: Mix.env() == :prod,
+      hex: [ignore_advisories: @ignored_advisories],
+      aliases: aliases(),
       deps: deps(),
       package: package(),
       docs: docs()
@@ -85,7 +96,14 @@ defmodule CastorEDC.MixProject do
       {:styler, "~> 1.12", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4.8", only: [:dev, :test], runtime: false},
+      {:mix_audit, "~> 2.1.5", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.40.4", only: :dev, runtime: false}
+    ]
+  end
+
+  defp aliases do
+    [
+      "deps.audit": ["deps.audit --ignore-advisory-ids #{Enum.join(@ignored_advisories, ",")}"]
     ]
   end
 end
