@@ -1326,6 +1326,83 @@
         },
         "type": "object"
       },
+      "ExportEntry": {
+        "properties": {
+          "completed_on": {
+            "$ref": "#/components/schemas/PhpDateTime"
+          },
+          "created_by": {
+            "description": "The ID of the user who requested the export.",
+            "type": "string"
+          },
+          "created_on": {
+            "$ref": "#/components/schemas/PhpDateTime"
+          },
+          "expires_on": {
+            "$ref": "#/components/schemas/PhpDateTime"
+          },
+          "export_name": {
+            "description": "The export type, despite the name.",
+            "enum": [
+              "audit_trail",
+              "domain_mapping",
+              "empty_crf",
+              "form_structure",
+              "participant_casebook",
+              "participant_data",
+              "queries",
+              "sites",
+              "survey_compliance",
+              "uploaded_files",
+              "validations"
+            ],
+            "type": "string",
+            "x-castor-rename": "type"
+          },
+          "export_type": {
+            "description": "The export format, despite the name.",
+            "enum": [
+              "csv",
+              "excel",
+              "spss",
+              "sas_xpt",
+              "sas_7bdat",
+              "odm",
+              "pdf",
+              "xml",
+              "zip"
+            ],
+            "type": "string",
+            "x-castor-rename": "format"
+          },
+          "file_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "file_size": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "id": {
+            "format": "UUID",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "queued",
+              "in_progress",
+              "ready",
+              "failed"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "ExportSuccess": {
         "properties": {
           "description": {
@@ -2733,6 +2810,22 @@
           }
         },
         "type": "object"
+      },
+      "PhpDateTime": {
+        "description": "A PHP DateTime object as the API serialises it: a local date and time in `date` (YYYY-MM-DD HH:MM:SS.ffffff) and a named time zone in `timezone`.",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "timezone_type": {
+            "type": "integer"
+          }
+        },
+        "type": "object",
+        "x-castor-type": "datetime"
       },
       "Query": {
         "properties": {
@@ -7539,14 +7632,30 @@
               "application/json": {
                 "schema": {
                   "properties": {
-                    "items": {
-                      "items": {
-                        "$ref": "#/components/schemas/Export"
+                    "_embedded": {
+                      "properties": {
+                        "items": {
+                          "items": {
+                            "$ref": "#/components/schemas/ExportEntry"
+                          },
+                          "type": "array"
+                        }
                       },
-                      "type": "array"
+                      "type": "object"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "page_count": {
+                      "type": "integer"
+                    },
+                    "page_size": {
+                      "type": "integer"
+                    },
+                    "total_items": {
+                      "type": "integer"
                     }
                   },
-                  "title": "Export entry",
                   "type": "object"
                 }
               }
@@ -7708,11 +7817,19 @@
         ],
         "responses": {
           "200": {
+            "content": {
+              "application/zip": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
             "description": "Binary data stream"
           },
           "400": {
             "content": {
-              "application/json": {
+              "application/zip": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
                 }
@@ -7722,7 +7839,7 @@
           },
           "404": {
             "content": {
-              "application/json": {
+              "application/zip": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
                 }
@@ -7732,7 +7849,7 @@
           },
           "429": {
             "content": {
-              "application/json": {
+              "application/zip": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
                 }
@@ -7742,7 +7859,7 @@
           },
           "default": {
             "content": {
-              "application/json": {
+              "application/zip": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
                 }
