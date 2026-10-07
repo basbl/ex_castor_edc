@@ -7,20 +7,26 @@ on:
   workflow_dispatch:
 
 env:
-  ELIXIR_VERSION: 1.13
-  OTP_VERSION: 24.2
   MIX_ENV: test
 
 jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
       - name: Install Erlang & Elixir
         uses: erlef/setup-beam@v1
         with:
-          otp-version: "${{ env.OTP_VERSION }}"
-          elixir-version: "${{ env.ELIXIR_VERSION }}"
+          version-file: .tool-versions
+          version-type: strict
+      - name: Cache deps and build
+        uses: actions/cache@v6
+        with:
+          path: |
+            deps
+            _build
+          key: mix-${{ runner.os }}-${{ hashFiles('.tool-versions', 'mix.lock') }}
+          restore-keys: mix-${{ runner.os }}-${{ hashFiles('.tool-versions') }}-
       - name: Install mix dependencies
         run: mix deps.get
       - name: Check formatting
@@ -28,4 +34,4 @@ jobs:
       - name: Run tests
         run: mix do compile --warnings-as-errors, test
       - name: Run credo
-        run: mix do compile --warnings-as-errors, credo --strict
+        run: mix credo --strict
