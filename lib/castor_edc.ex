@@ -75,6 +75,12 @@ defmodule CastorEDC do
 
       CastorEDC.new(client_id: id, client_secret: secret, receive_timeout: 30_000)
 
+  Requests go over HTTP/2, which every Castor EDC server speaks, so
+  concurrent requests share one connection instead of opening one each.
+  To use HTTP/1 instead, for a proxy that doesn't speak HTTP/2 for
+  example, pass `connect_options: [protocols: [:http1]]`. More concurrent
+  connections come from Finch's `:count` pool option, through `finch: [count: n]`.
+
   Raises `ArgumentError` when it finds neither credentials nor an access
   token.
   """
@@ -84,10 +90,28 @@ defmodule CastorEDC do
       Keyword.split(options, [:client_id, :client_secret, :access_token, :base_url, :rate_limit, :max_rate_limit_wait])
 
     [base_url: own[:base_url] || configured(:base_url) || @default_base_url, user_agent: @user_agent]
-    |> Keyword.merge(req_options)
+    |> Keyword.merge(http2(req_options))
     |> Req.new()
     |> CastorEDC.RateLimit.attach(Keyword.take(own, [:rate_limit, :max_rate_limit_wait]))
     |> authenticate_with(credentials!(own))
+  end
+
+  # Multiplex over HTTP/2 unless told otherwise. Req takes the protocols from
+  # :connect_options, or from :finch when that holds pool options; it can't
+  # have both, and a named Finch pool is configured where it's started.
+  defp http2(options) do
+    case Keyword.fetch(options, :finch) do
+      {:ok, finch} when is_list(finch) ->
+        if Keyword.has_key?(finch, :name),
+          do: options,
+          else: Keyword.put(options, :finch, Keyword.put_new(finch, :protocols, [:http2]))
+
+      {:ok, _named_pool} ->
+        options
+
+      :error ->
+        Keyword.update(options, :connect_options, [protocols: [:http2]], &Keyword.put_new(&1, :protocols, [:http2]))
+    end
   end
 
   defp credentials!(own) do

@@ -37,6 +37,23 @@ defmodule CastorEDC.NewTest do
     assert request.options.receive_timeout == 30_000
   end
 
+  test "multiplexes requests over HTTP/2 unless told otherwise" do
+    assert CastorEDC.new(access_token: "token").options.connect_options == [protocols: [:http2]]
+
+    assert CastorEDC.new(access_token: "token", connect_options: [timeout: 1000]).options.connect_options ==
+             [protocols: [:http2], timeout: 1000]
+
+    assert CastorEDC.new(access_token: "token", connect_options: [protocols: [:http1]]).options.connect_options ==
+             [protocols: [:http1]]
+
+    # Req can't take both :finch and :connect_options.
+    request = CastorEDC.new(access_token: "token", finch: [count: 4])
+    assert request.options.finch == [protocols: [:http2], count: 4]
+    refute Map.has_key?(request.options, :connect_options)
+
+    assert CastorEDC.new(access_token: "token", finch: [name: MyFinch]).options.finch == [name: MyFinch]
+  end
+
   test "falls back to the application environment, then to environment variables" do
     Application.put_env(:ex_castor_edc, :client_id, "configured-id")
     System.put_env("CASTOR_EDC_CLIENT_SECRET", "env-secret")
