@@ -152,7 +152,7 @@ defmodule CastorEDC.Generator.Renderer do
       result_doc(operation)
     ]
 
-    sections |> Enum.filter(& &1) |> Enum.join("\n\n") |> doc()
+    sections |> Enum.filter(&(&1 && String.trim(upstream_text(&1)) != "")) |> Enum.join("\n\n") |> doc()
   end
 
   defp sentence(text) do
@@ -315,7 +315,25 @@ defmodule CastorEDC.Generator.Renderer do
     |> String.replace(~r/\n(?=.)/, "\n  ")
   end
 
-  defp clean(text), do: text |> String.replace(~s|"""|, ~s|'''|) |> String.trim()
+  defp clean(text) do
+    text
+    |> upstream_text()
+    |> String.replace(~s|"""|, ~s|'''|)
+    |> String.trim()
+  end
+
+  # The spec's descriptions talk about the HAL format of responses, which the
+  # client hides, and use a little HTML, which docs render as Markdown.
+  @doc false
+  def upstream_text(text) do
+    text
+    |> String.replace(~r/[^.\n]*\bHalJson\b[^.\n]*\.?/, "")
+    |> String.replace(~r"</?b>", "**")
+    |> String.replace(~r"</?i>", "_")
+    |> String.replace(~r"<br\s*/?>", "\n")
+    |> String.replace(~r/[ \t]+\n/, "\n")
+    |> String.replace(~r/\n{3,}/, "\n\n")
+  end
 
   # Text for one list item: on one line.
   defp inline(text), do: text |> clean() |> String.replace(~r/\s*\n\s*/, " ")

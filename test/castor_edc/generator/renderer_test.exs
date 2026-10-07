@@ -97,6 +97,14 @@ defmodule CastorEDC.Generator.RendererTest do
     assert Renderer.model(large) =~ "credo:disable-for-this-file Credo.Check.Warning.StructFieldAmount"
   end
 
+  test "leaves the spec's HAL wording out and turns its HTML into Markdown" do
+    assert Renderer.upstream_text("Gets sites.\nReturns HalJson objects (with _links).\nCan be paged.") ==
+             "Gets sites.\n\nCan be paged."
+
+    assert Renderer.upstream_text("<b>Sites</b> to create: <br/> <i>name</i> of the site") ==
+             "**Sites** to create:\n _name_ of the site"
+  end
+
   test "keeps descriptions inside the heredoc" do
     assert Renderer.doc("first\nsecond\n\nfourth  ") == "first\n  second\n\n  fourth"
     assert Renderer.doc(~s|has """ inside|) == "has ''' inside"
