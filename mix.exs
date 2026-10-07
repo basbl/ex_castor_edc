@@ -24,8 +24,10 @@ defmodule CastorEDC.MixProject do
       dialyzer: [
         plt_local_path: "priv/plts",
         plt_core_path: "priv/plts",
-        ignore_warnings: ".dialyzer_ignore.exs"
+        ignore_warnings: ".dialyzer_ignore.exs",
+        plt_add_apps: [:eex, :ex_unit, :mix]
       ],
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       hex: [ignore_advisories: @ignored_advisories],
       aliases: aliases(),
@@ -67,8 +69,15 @@ defmodule CastorEDC.MixProject do
     ]
   end
 
+  # gen/ holds the client generator and its Mix tasks: development tooling
+  # that is compiled in :dev and :test only and isn't part of the package.
+  defp elixirc_paths(:dev), do: ["lib", "gen"]
+  defp elixirc_paths(:test), do: ["lib", "gen", "test/support"]
+  defp elixirc_paths(_env), do: ["lib"]
+
   defp package do
     [
+      files: ~w(lib .formatter.exs mix.exs README.md CHANGELOG.md LICENSE.md),
       description: "Elixir wrapper for the Castor EDC API",
       maintainers: ["Bas Bloembergen"],
       licenses: ["MIT"],

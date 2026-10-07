@@ -23,6 +23,7 @@
         #
         included: [
           "lib/",
+          "gen/",
           "src/",
           "test/",
           "web/",
