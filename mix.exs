@@ -71,9 +71,9 @@ defmodule CastorEDC.MixProject do
       {:tesla, "~> 1.4"},
       {:hackney, "~> 1.13"},
       {:exvcr, "~> 0.11", only: :test},
-      {:excoveralls, "~> 0.10", only: :test},
-      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.27", only: :dev, runtime: false}
+      {:excoveralls, "~> 0.18.5", only: :test},
+      {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.40.4", only: :dev, runtime: false}
     ]
   end
 end
