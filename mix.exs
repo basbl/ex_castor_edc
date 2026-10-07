@@ -99,7 +99,6 @@ defmodule CastorEDC.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:jason, ">= 1.0.0"},
       {:castore, "~> 1.0"},
       {:req, "~> 0.7.5"},
       {:telemetry, "~> 1.4"},

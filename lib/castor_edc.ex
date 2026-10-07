@@ -179,18 +179,18 @@ defmodule CastorEDC do
   defp handle_authentication_response({:error, reason}, _client), do: {:error, reason}
 
   defp handle_authentication_response({:ok, %Tesla.Env{body: body, status: 200}}, client) do
-    access_token = Jason.decode!(body)["access_token"]
+    access_token = JSON.decode!(body)["access_token"]
     {:ok, Client.update_token(client, access_token)}
   end
 
   defp handle_authentication_response({_, %Tesla.Env{body: body}}, _) do
-    error_description = Jason.decode!(body)["error_description"]
+    error_description = JSON.decode!(body)["error_description"]
     {:error, error_description}
   end
 
   defp default_middleware(%Client{access_token: token, options: opts}) do
     middleware = [
-      {Tesla.Middleware.JSON, []},
+      {Tesla.Middleware.JSON, engine: JSON},
       {Tesla.Middleware.BearerAuth, token: token},
       {Headers, [{"Accept", "application/json"}, {"User-Agent", opts[:user_agent]}]}
     ]
@@ -209,7 +209,7 @@ defmodule CastorEDC do
   end
 
   defp process_response_body(""), do: nil
-  defp process_response_body(body) when is_binary(body), do: Jason.decode!(body)
+  defp process_response_body(body) when is_binary(body), do: JSON.decode!(body)
   defp process_response_body(body), do: body
 
   defp handle_response({:error, reason}), do: {:error, reason}

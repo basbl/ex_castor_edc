@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - **Breaking:** Elixir 1.20 or later is required.
 - **Breaking:** `CastorEDC.Client` is renamed to `CastorEDC.Legacy.Client`, making room for the new Req-based client. It goes away in 1.0.
 - Dependencies are updated to their latest compatible versions, so the library builds on OTP 29.
+- JSON is encoded and decoded with Elixir's built-in `JSON` module; the library no longer depends on Jason.
 
 ## [0.4.1] - 2023-04-30
 
