@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- **Breaking:** the modules under `CastorEDC.Common` are replaced by generated ones: `Countries.list/1` and `find/2` become `CastorEDC.Countries.list_countries/2` and `get_country/3`; `Sites` become `CastorEDC.Sites.list_sites`, `get_site` and `create_site`; `Studies` become `CastorEDC.Studies.list_studies` and `get_study`; `Studies.Roles` become `CastorEDC.Roles.list_roles`, `get_role` and `create_role`; `Studies.Users` become `CastorEDC.StudyUsers.list_study_users` and `get_study_user`; `Users` become `CastorEDC.Users.list_users` and `get_user`.
 - **Breaking:** Elixir 1.20 or later is required.
 - **Breaking:** `CastorEDC.Client` is renamed to `CastorEDC.Legacy.Client`, making room for the new Req-based client. It goes away in 1.0.
 - Dependencies are updated to their latest compatible versions, so the library builds on OTP 29.
