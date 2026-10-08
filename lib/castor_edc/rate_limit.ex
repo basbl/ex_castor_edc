@@ -27,7 +27,9 @@ defmodule CastorEDC.RateLimit do
   When the API answers 429 anyway (other processes or machines may share
   the allowance), the client waits until the window resets and sends the
   request again, at most three times, as long as the wait is within
-  `:max_rate_limit_wait` (60 seconds by default). A 429 is refused before
+  `:max_rate_limit_wait` (60 seconds by default). A 429 whose headers say
+  requests remain isn't about the rate limit (batch exports answer one when
+  too many run at once), and is returned as is. A 429 is refused before
   anything happens, so this is safe for any request. With
   `rate_limit: :error`, or when the wait would be longer, the client doesn't
   wait: a request it knows would be refused isn't sent and returns a
@@ -135,7 +137,7 @@ defmodule CastorEDC.RateLimit do
 
     with :wait <- mode,
          true <- attempts < @max_attempts,
-         %{reset_at: %DateTime{} = reset_at} <- parse(response),
+         %{reset_at: %DateTime{} = reset_at} <- limit_reached(response),
          wait when wait <= max_wait <- max(DateTime.diff(reset_at, now(request), :millisecond), 0) do
       sleep(request, wait)
 
@@ -158,9 +160,17 @@ defmodule CastorEDC.RateLimit do
   # Seconds until the window of a rate-limited response resets.
   @spec retry_after(Req.Response.t()) :: non_neg_integer() | nil
   def retry_after(response) do
-    case parse(response) do
+    case limit_reached(response) do
       %{reset_at: %DateTime{} = reset_at} -> max(DateTime.diff(reset_at, DateTime.utc_now(), :second), 0)
       _unknown -> nil
+    end
+  end
+
+  # The rate limit of a 429 response, unless it says requests remain.
+  defp limit_reached(response) do
+    case parse(response) do
+      %{remaining: remaining} when is_integer(remaining) and remaining > 0 -> nil
+      rate_limit -> rate_limit
     end
   end
 

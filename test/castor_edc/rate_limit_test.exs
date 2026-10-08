@@ -154,6 +154,25 @@ defmodule CastorEDC.RateLimitRetryTest do
              Client.request(limited_client(sequence([no_reset])), @operation)
   end
 
+  test "returns a 429 whose headers say requests remain, such as the batch export limit" do
+    too_many_exports =
+      json(%{"description" => "Number of requested concurrent exports exceeds configured maximum (3)."},
+        status: 429,
+        headers: %{
+          "x-ratelimit-limit" => ["100"],
+          "x-ratelimit-remaining" => ["95"],
+          "x-ratelimit-retry-after" => [Integer.to_string(@now + 30)]
+        }
+      )
+
+    assert {:error, %Error{status: 429, retry_after: nil, rate_limit: %{remaining: 95}}} =
+             Client.request(limited_client(sequence([too_many_exports])), @operation)
+
+    refute_received {:slept, _ms}
+    assert_requested()
+    refute_received {:castor_edc_request, _request}
+  end
+
   test "tells how many seconds are left on a 429" do
     reset = DateTime.utc_now() |> DateTime.shift(minute: 2) |> DateTime.to_unix() |> Integer.to_string()
     response = json(%{}, status: 429, headers: %{"x-ratelimit-retry-after" => [reset]})
