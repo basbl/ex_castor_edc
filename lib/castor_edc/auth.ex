@@ -88,7 +88,7 @@ defmodule CastorEDC.Auth do
 
   # The token request goes to the same server, through the same adapter and
   # connection options as the request it's for, but without its steps.
-  defp fetch_token(request, {:client_credentials, client_id, client_secret}) do
+  defp fetch_token(request, {:client_credentials, client_id, %CastorEDC.Auth.Secret{value: client_secret}}) do
     token_request =
       [
         method: :post,

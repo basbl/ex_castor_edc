@@ -9,6 +9,8 @@ defmodule CastorEDC do
   The client is a `Req.Request`; see `new/1` for the options.
   """
 
+  alias CastorEDC.Auth.Secret
+
   @default_base_url "https://data.castoredc.com"
   @missing_credentials """
   no Castor EDC credentials found.
@@ -106,9 +108,14 @@ defmodule CastorEDC do
     client_secret = setting(own, :client_secret, "CASTOR_EDC_CLIENT_SECRET")
 
     cond do
-      present?(token) -> {:access_token, token}
-      present?(client_id) and present?(client_secret) -> {:client_credentials, client_id, client_secret}
-      true -> raise ArgumentError, @missing_credentials
+      present?(token) ->
+        {:access_token, token}
+
+      present?(client_id) and present?(client_secret) ->
+        {:client_credentials, client_id, Secret.new(client_secret)}
+
+      true ->
+        raise ArgumentError, @missing_credentials
     end
   end
 

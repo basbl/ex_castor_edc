@@ -2,6 +2,8 @@ defmodule CastorEDC.NewTest do
   # Not async: some tests change the application and OS environment.
   use ExUnit.Case, async: false
 
+  alias CastorEDC.Auth.Secret
+
   setup do
     for key <- [:client_id, :client_secret, :base_url], do: Application.delete_env(:ex_castor_edc, key)
 
@@ -22,7 +24,10 @@ defmodule CastorEDC.NewTest do
     assert %Req.Request{} = request
     assert request.options.base_url == "https://data.castoredc.com"
     assert request.options.user_agent == "ex_castor_edc/" <> Mix.Project.config()[:version]
-    assert Req.Request.get_private(request, :castor_edc_credentials) == {:client_credentials, "id", "secret"}
+
+    assert Req.Request.get_private(request, :castor_edc_credentials) ==
+             {:client_credentials, "id", Secret.new("secret")}
+
     assert Req.Request.get_header(request, "authorization") == []
   end
 
@@ -65,7 +70,7 @@ defmodule CastorEDC.NewTest do
     request = CastorEDC.new()
 
     assert Req.Request.get_private(request, :castor_edc_credentials) ==
-             {:client_credentials, "configured-id", "env-secret"}
+             {:client_credentials, "configured-id", Secret.new("env-secret")}
 
     assert request.options.base_url == "https://uk.castoredc.com"
   end
@@ -79,6 +84,14 @@ defmodule CastorEDC.NewTest do
 
     System.put_env("CASTOR_EDC_BASE_URL", "")
     assert CastorEDC.new(access_token: "token").options.base_url == "https://data.castoredc.com"
+  end
+
+  test "keeps the client secret out of the client's inspect output" do
+    client = CastorEDC.new(client_id: "id", client_secret: "very-secret")
+    output = inspect(client, limit: :infinity, printable_limit: :infinity)
+
+    refute output =~ "very-secret"
+    assert output =~ "#CastorEDC.Auth.Secret<redacted>"
   end
 
   test "raises with instructions when there are no credentials" do

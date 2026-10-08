@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## Unreleased
 
+### Fixed
+
+- A client's client secret no longer shows when the client is inspected, as in a log, an IEx session or a notebook's output.
+
 ## [1.0.0-rc.1] - 2026-10-08
 
 ### Added
