@@ -54,9 +54,9 @@ defmodule CastorEDC.E2E.ExportTest do
   end
 
   # Exports a study or environment may not offer: casebooks are a feature
-  # a study has to have enabled, and an environment may not run the PDF and
-  # XML export workers (the API then answers 500 when queuing).
-  @optional [:empty_crf, :form_structure, :participant_casebook]
+  # a study has to have enabled (the API answers 400 when queuing), and an
+  # environment may not render PDFs (the export job fails).
+  @optional [:empty_crf, :participant_casebook]
 
   for type <- Request.types() do
     test "exports #{type} and unzips it", %{client: client, study: study} do
@@ -71,5 +71,6 @@ defmodule CastorEDC.E2E.ExportTest do
     end
   end
 
-  defp unavailable?(type, %Error{status: status}), do: type in @optional and status in [400, 500]
+  defp unavailable?(type, %Error{status: status, code: code}),
+    do: type in @optional and (status == 400 or code == :export_failed)
 end
