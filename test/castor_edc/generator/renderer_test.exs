@@ -123,6 +123,13 @@ defmodule CastorEDC.Generator.RendererTest do
       assert source =~ "Returns a `CastorEDC.Page` of `t:CastorEDC.Model.Site.t/0` records."
     end
 
+    test "documents streaming a download to disk", %{modules: modules} do
+      source = modules["Exports"]
+
+      assert source =~ "{:ok, binary() | Collectable.t()}"
+      assert source =~ "`into: File.stream!(path)` streams it to\n  disk"
+    end
+
     test "sends the operation and decodes the response", %{sites: sites, site: site} do
       client = client(json(%{"id" => "S2", "siteName" => "Castor"}))
 

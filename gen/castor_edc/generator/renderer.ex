@@ -94,7 +94,8 @@ defmodule CastorEDC.Generator.Renderer do
   def result_spec(%Spec.Operation{items: items} = operation) when is_binary(items),
     do: "CastorEDC.Page.t(#{record_spec(operation)})"
 
-  def result_spec(%Spec.Operation{decode: nil, accept: "*/*"}), do: "binary()"
+  # With `into:`, Req returns what the file was collected into instead.
+  def result_spec(%Spec.Operation{decode: nil, accept: "*/*"}), do: "binary() | Collectable.t()"
   def result_spec(%Spec.Operation{decode: nil}), do: "term()"
   def result_spec(%Spec.Operation{decode: module}), do: "#{inspect(module)}.t()"
 
@@ -186,6 +187,14 @@ defmodule CastorEDC.Generator.Renderer do
       ["  * `body` - a map, sent as JSON#{if body.description, do: ": " <> inline(body.description), else: ""}" | fields],
       "\n"
     )
+  end
+
+  defp options_doc(%Spec.Operation{query_params: [], accept: "*/*"}) do
+    """
+    Every option is passed to `Req`. The file comes back as a binary, unless
+    `:into` collects it elsewhere: `into: File.stream!(path)` streams it to
+    disk, and the result is then the stream.\
+    """
   end
 
   defp options_doc(%Spec.Operation{query_params: []}), do: "Every option is passed to `Req`."

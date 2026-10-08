@@ -30,10 +30,12 @@ defmodule CastorEDC.Exports do
     * `study_id` - The ID of the study for which this call should be made
     * `export_id` - The ID of the Export to download
 
-  Every option is passed to `Req`.
+  Every option is passed to `Req`. The file comes back as a binary, unless
+  `:into` collects it elsewhere: `into: File.stream!(path)` streams it to
+  disk, and the result is then the stream.
   """
   @spec download_export(CastorEDC.client(), String.t(), String.t(), keyword()) ::
-          {:ok, binary()} | {:error, CastorEDC.Error.t()}
+          {:ok, binary() | Collectable.t()} | {:error, CastorEDC.Error.t()}
   def download_export(client, study_id, export_id, opts \\ []) do
     Client.request(client, operation(:download_export, %{"study_id" => study_id, "id" => export_id}, opts))
   end
@@ -41,7 +43,7 @@ defmodule CastorEDC.Exports do
   @doc ~S"""
   The same as `download_export/4`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec download_export!(CastorEDC.client(), String.t(), String.t(), keyword()) :: binary()
+  @spec download_export!(CastorEDC.client(), String.t(), String.t(), keyword()) :: binary() | Collectable.t()
   def download_export!(client, study_id, export_id, opts \\ []) do
     Client.request!(client, operation(:download_export, %{"study_id" => study_id, "id" => export_id}, opts))
   end
