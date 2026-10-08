@@ -56,7 +56,7 @@ defmodule CastorEDC.Test do
     options =
       if Keyword.has_key?(options, :client_id), do: options, else: Keyword.put_new(options, :access_token, "test-token")
 
-    [retry: false, adapter: &Adapter.run/1]
+    [retry: false, adapter: Adapter]
     |> Keyword.merge(options)
     |> CastorEDC.new()
     |> Req.Request.put_private(:castor_edc_stub, {self(), responder})
