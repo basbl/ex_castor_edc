@@ -35,11 +35,7 @@ defmodule CastorEDC.MixProject do
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.html": :test,
-        "coveralls.post": :test,
-        vcr: :test,
-        "vcr.delete": :test,
-        "vcr.check": :test,
-        "vcr.show": :test
+        "coveralls.post": :test
       ]
     ]
   end
@@ -93,7 +89,6 @@ defmodule CastorEDC.MixProject do
       {:req, "~> 0.7.5"},
       {:telemetry, "~> 1.4"},
       {:tz, "~> 0.28"},
-      {:exvcr, "~> 0.11", only: :test},
       {:excoveralls, "~> 0.18.5", only: :test},
       {:styler, "~> 1.12", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false},
