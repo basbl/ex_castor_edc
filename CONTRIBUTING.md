@@ -29,6 +29,7 @@ Each commit is one logical change that leaves the build green.
 - Tooling, mechanical changes, behaviour changes and deletions go in separate commits.
   The exception is adopting a formatter plugin, which goes in one commit with the reformat it causes.
 - A commit that adds behaviour includes its tests.
+- A change to `priv/openapi/overlay.yaml` or to the generator includes the rebuilt `priv/openapi/castor_edc.json` and the regenerated client (`mix castor_edc.spec.build` and `mix castor_edc.gen.client`); `mix quality` fails when they're out of date.
 - Replacements happen in three steps: add the new thing beside the old, move callers over, then delete the old one.
 - A user-visible or breaking change updates `CHANGELOG.md` in the commit that makes it.
 - Messages are imperative and in sentence case, without a prefix (`Add pagination stream`), with a body explaining why when the subject doesn't.
