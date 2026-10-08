@@ -397,6 +397,16 @@ defmodule CastorEDC.ExportTest do
       assert assert_requested().url.path == "/api/study/#{@study}/export/export-1/download"
     end
 
+    test "wait an hour for a PDF, and 15 minutes for the rest" do
+      for {type, timeout} <- [empty_crf: to_timeout(hour: 1), sites: to_timeout(minute: 15)] do
+        running = list([entry("export-1", %{"status" => "in_progress", "export_name" => Atom.to_string(type)})])
+        client = client(fn request -> if request.method == :post, do: queued(["export-1"]), else: running end)
+
+        assert {:error, %Error{code: :export_timeout}} = apply(Export, type, [clocked(client), @study])
+        assert Enum.sum(slept()) == timeout
+      end
+    end
+
     test "send the format, filters and options" do
       entry = entry("export-1", %{"export_name" => "participant_data", "export_type" => "spss"})
       client = [] |> zip_of() |> flow(entry) |> client() |> clocked()

@@ -132,6 +132,10 @@ defmodule CastorEDC.Export do
   @statuses ~w(queued in_progress ready failed)a
 
   @default_timeout to_timeout(minute: 15)
+  # PDFs take minutes to render: ten for a modest study, longer for a big
+  # one.
+  @pdf_types [:participant_casebook, :empty_crf]
+  @pdf_timeout to_timeout(hour: 1)
   @first_poll to_timeout(second: 1)
   @max_poll to_timeout(second: 15)
   # How long an export may be missing from the list before it's taken not
@@ -188,7 +192,7 @@ defmodule CastorEDC.Export do
       * `:unzip` - when `true`, unzips the export: into the `:into`
         directory, or in memory. The struct's `:files` lists what was in it.
       * `:timeout` - how long to wait for the export, queuing included, in
-        milliseconds or `:infinity`; 15 minutes by default
+        milliseconds or `:infinity`; #{if type in @pdf_types, do: "an hour", else: "15 minutes"} by default
       * `:poll_interval` - the first wait before checking on the export,
         see `await/4`
 
@@ -210,7 +214,7 @@ defmodule CastorEDC.Export do
 
     client = to_client(client)
     started = monotonic(client)
-    timeout = Keyword.get(wait_opts, :timeout, @default_timeout)
+    timeout = Keyword.get(wait_opts, :timeout, if(type in @pdf_types, do: @pdf_timeout, else: @default_timeout))
     since = DateTime.add(DateTime.utc_now(), -@since_margin, :millisecond)
 
     with {:ok, [id]} <- queue(client, study_id, [{type, export_opts}], timeout: timeout),
