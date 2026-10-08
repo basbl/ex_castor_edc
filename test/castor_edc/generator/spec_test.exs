@@ -3,6 +3,7 @@ defmodule CastorEDC.Generator.SpecTest do
 
   alias CastorEDC.Generator.Spec
   alias CastorEDC.Model.Site
+  alias CastorEDC.Model.Tag
 
   doctest CastorEDC.Generator.Naming
 
@@ -100,7 +101,7 @@ defmodule CastorEDC.Generator.SpecTest do
     fields = Map.new(models["Site"].fields, &{&1.name, &1})
 
     assert fields |> Map.keys() |> Enum.sort() ==
-             ["country", "country_id", "created_on", "id", "site_name", "tags", "value"]
+             ["country", "country_id", "created_on", "id", "labels", "site_name", "tags", "value"]
 
     assert hd(models["Site"].fields).name == "id"
     assert fields["id"].required
@@ -108,7 +109,9 @@ defmodule CastorEDC.Generator.SpecTest do
     assert fields["site_name"].wires == ["siteName"]
     assert fields["value"].wires == ["field_value", "value"]
     assert fields["created_on"].decode == {:cast, :datetime}
-    assert fields["tags"].decode == {:list, CastorEDC.Model.Tag}
+    assert fields["tags"].decode == {:list, Tag}
+    assert fields["labels"].decode == {:list, Tag}
+    assert fields["labels"].type == {:list, {:model, Tag}}
     assert fields["country"].decode == {:one, CastorEDC.Model.Country}
     assert fields["country"].wires == ["_embedded.country"]
     assert fields["country_id"].type == {:integer, nil}

@@ -130,6 +130,7 @@ defmodule CastorEDC.GeneratorSample do
               "field_value" => %{"type" => "string", "x-castor-rename" => "value"},
               "value" => %{"type" => "string"},
               "tags" => %{"type" => "array", "items" => %{"$ref" => "#/components/schemas/Tag"}},
+              "labels" => %{"type" => ["array", "null"], "items" => %{"$ref" => "#/components/schemas/Tag"}},
               "_links" => %{"$ref" => "#/components/schemas/LinksSingle"},
               "_embedded" => %{
                 "type" => "object",

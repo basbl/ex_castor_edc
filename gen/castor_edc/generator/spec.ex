@@ -327,7 +327,7 @@ defmodule CastorEDC.Generator.Spec do
   end
 
   defp field_decode(document, property) do
-    case property do
+    case non_null(property) do
       %{"x-castor-type" => type} ->
         {:cast, String.to_atom(type)}
 
@@ -350,12 +350,11 @@ defmodule CastorEDC.Generator.Spec do
 
   @doc false
   def type_doc(document, schema) do
-    case schema do
+    case non_null(schema) do
       %{"x-castor-type" => "naive_datetime"} -> {:naive_datetime, nil}
       %{"x-castor-type" => "datetime"} -> {:datetime, nil}
       %{"$ref" => ref} -> ref_type(document, ref)
       %{"type" => "array"} = array -> {:list, type_doc(document, array["items"] || %{})}
-      %{"type" => [type | _null]} -> {String.to_atom(type), schema["enum"]}
       %{"type" => type} when is_binary(type) -> {String.to_atom(type), schema["enum"]}
       _untyped -> {:any, nil}
     end
@@ -371,6 +370,17 @@ defmodule CastorEDC.Generator.Spec do
 
   # A referenced schema becomes a model when it's an object, and isn't
   # cast to an Elixir type instead.
+  # A nullable schema has `"type": [type, "null"]` in OpenAPI 3.1; every
+  # field can be nil anyway, so only the type matters.
+  defp non_null(%{"type" => types} = schema) when is_list(types) do
+    case List.delete(types, "null") do
+      [type] -> %{schema | "type" => type}
+      _several -> schema
+    end
+  end
+
+  defp non_null(schema), do: schema
+
   defp model_ref?(document, ref) do
     schema = deref(document, %{"$ref" => ref})
     is_nil(schema["x-castor-type"]) and (schema["type"] == "object" or Map.has_key?(schema, "properties"))
