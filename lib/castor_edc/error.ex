@@ -132,7 +132,7 @@ defmodule CastorEDC.Error do
     end
   end
 
-  defp first_text(body, keys) when is_map(body) do
+  defp first_text(body, keys) when is_map(body) and not is_struct(body) do
     Enum.find_value(keys, fn key ->
       case body[key] do
         text when is_binary(text) and text != "" -> text
