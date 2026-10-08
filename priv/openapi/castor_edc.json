@@ -1667,11 +1667,8 @@
             "type": "array"
           },
           "option_group": {
-            "default": null,
-            "items": {
-              "$ref": "#/components/schemas/FieldOptionGroup"
-            },
-            "type": "array"
+            "$ref": "#/components/schemas/FieldOptionGroup",
+            "description": "The field's option group, when listed with include=optiongroup and the field has options."
           },
           "parent_id": {
             "description": "The field's parent id",

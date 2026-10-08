@@ -36,7 +36,7 @@ defmodule CastorEDC.Model.Field do
     * `:field_variable_name` (string) - The Field's variable name
     * `:id` (string) - Unique identifier of the Field (same as field_id)
     * `:metadata_points` (list of `t:CastorEDC.Model.Metadata.t/0`)
-    * `:option_group` (list of `t:CastorEDC.Model.FieldOptionGroup.t/0`)
+    * `:option_group` (`t:CastorEDC.Model.FieldOptionGroup.t/0`) - The field's option group, when listed with include=optiongroup and the field has options.
     * `:parent_id` (string) - The field's parent id
     * `:randomize_option_order` (boolean) - If enabled, the order of options should be randomized (only applies to dropdown, radio, and checkbox fields)
     * `:repeating_data_id` (string)
@@ -115,7 +115,7 @@ defmodule CastorEDC.Model.Field do
           field_variable_name: String.t() | nil,
           id: String.t() | nil,
           metadata_points: [Metadata.t()] | nil,
-          option_group: [FieldOptionGroup.t()] | nil,
+          option_group: FieldOptionGroup.t() | nil,
           parent_id: String.t() | nil,
           randomize_option_order: boolean() | nil,
           repeating_data_id: String.t() | nil,
@@ -157,7 +157,7 @@ defmodule CastorEDC.Model.Field do
       field_variable_name: data["field_variable_name"],
       id: data["id"],
       metadata_points: CastorEDC.Model.list(data["metadata_points"] || embedded["metadata_points"], Metadata),
-      option_group: CastorEDC.Model.list(data["option_group"] || embedded["option_group"], FieldOptionGroup),
+      option_group: CastorEDC.Model.one(data["option_group"] || embedded["option_group"], FieldOptionGroup),
       parent_id: data["parent_id"],
       randomize_option_order: data["randomize_option_order"],
       repeating_data_id: data["report_id"],

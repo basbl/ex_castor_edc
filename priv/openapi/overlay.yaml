@@ -1103,3 +1103,14 @@ actions:
             locked: {type: boolean}
             sdv: {type: boolean, description: Whether the form is source data verified.}
             signed: {type: boolean}
+
+  - target: $.definitions.Field.properties.option_group
+    description: >-
+      With include=optiongroup the API sends a field's option group as one
+      object (and null for fields without options), not a list.
+    remove: true
+  - target: $.definitions.Field.properties
+    update:
+      option_group:
+        $ref: '#/definitions/FieldOptionGroup'
+        description: The field's option group, when listed with include=optiongroup and the field has options.
