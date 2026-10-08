@@ -51,7 +51,9 @@ defmodule CastorEDC.MixProject do
         "Data Collection": ~r"CastorEDC.DataCollection",
         "Study Protocol": ~r"CastorEDC.StudyProtocol"
       ],
-      extras: ["notebook/getting_started.livemd", "guides/migrating-to-1.0.md"]
+      extras: ["README.md", "notebook/getting_started.livemd", "guides/migrating-to-1.0.md", "CHANGELOG.md"],
+      # The CHANGELOG names functions of earlier releases.
+      skip_code_autolink_to: ["CastorEDC.authenticate/1", "CastorEDC.Client.new/2"]
     ]
   end
 
