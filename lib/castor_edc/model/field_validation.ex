@@ -9,6 +9,7 @@ defmodule CastorEDC.Model.FieldValidation do
 
     * `:field_id` (string) - The field that uses this validation
     * `:id` (string) - Unique identifier of the FieldValidation
+    * `:operator` (string) - The comparison the validation makes, such as `>`.
     * `:reference_type` (string, one of `field`, `value`) - The type of validation reference. "field" means comparing against another field, "value" means comparing against a static value
     * `:referenced_field_id` (string) - The ID of the referenced field for field-to-field validations or null for value validations
     * `:text` (string) - The message of the validation
@@ -17,14 +18,15 @@ defmodule CastorEDC.Model.FieldValidation do
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
 
-  @known ~w(field_id id reference_type referenced_field_id text type value)
+  @known ~w(field_id id operator reference_type referenced_field_id text type value)
   @known_embedded ~w()
 
-  defstruct [:field_id, :id, :reference_type, :referenced_field_id, :text, :type, :value, extra: %{}]
+  defstruct [:field_id, :id, :operator, :reference_type, :referenced_field_id, :text, :type, :value, extra: %{}]
 
   @type t :: %__MODULE__{
           field_id: String.t() | nil,
           id: String.t() | nil,
+          operator: String.t() | nil,
           reference_type: String.t() | nil,
           referenced_field_id: String.t() | nil,
           text: String.t() | nil,
@@ -41,6 +43,7 @@ defmodule CastorEDC.Model.FieldValidation do
     %__MODULE__{
       field_id: data["field_id"],
       id: data["id"],
+      operator: data["operator"],
       reference_type: data["reference_type"],
       referenced_field_id: data["referenced_field_id"],
       text: data["text"],

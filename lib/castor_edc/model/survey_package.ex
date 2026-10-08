@@ -15,7 +15,6 @@ defmodule CastorEDC.Model.SurveyPackage do
     * `:default_invitation` (string) - The default invitation message used for invitation messages in Markdown format. Must contain a {url} tag.
     * `:default_invitation_subject` (string) - The default email subject used in the invitation messages.
     * `:description` (string) - Description of the SurveyPackage
-    * `:embbeded` (list of `t:CastorEDC.Model.Survey.t/0`) - The list of Surveys that are included in this package
     * `:expire_after_hours` (integer) - Expire after x hours, for mobile enabled SurveyPackages
     * `:field_pagination` (string, one of `none`, `forms`) - Whether mobile SurveyPackage fields should be paginated and how
     * `:finish_url` (string) - The URL where a participant is forwarded to upon completion of data entry
@@ -32,13 +31,12 @@ defmodule CastorEDC.Model.SurveyPackage do
     * `:sender_name` (string) - Name shown as sender on the email invitation
     * `:show_form_navigator` (boolean) - Whether the step navigator is shown in the survey data entry view
     * `:survey_package_id` (string) - Unique identifier for the SurveyPackage. Synonymous to id.
+    * `:surveys` (array) - The surveys in this package.
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
 
-  alias CastorEDC.Model.Survey
-
-  @known ~w(allow_step_navigation allow_open_survey_link as_needed auto_5s_redirect auto_lock_on_finish default_invitation default_invitation_subject description _embbeded expire_after_hours field_pagination finish_url id intro_text is_mobile is_repeatable is_resumable is_training name outro_text pre_redirect_text sender_email sender_name show_step_navigator survey_package_id)
-  @known_embedded ~w(_embbeded)
+  @known ~w(allow_step_navigation allow_open_survey_link as_needed auto_5s_redirect auto_lock_on_finish default_invitation default_invitation_subject description expire_after_hours field_pagination finish_url id intro_text is_mobile is_repeatable is_resumable is_training name outro_text pre_redirect_text sender_email sender_name show_step_navigator survey_package_id surveys)
+  @known_embedded ~w()
 
   defstruct [
     :allow_form_navigation,
@@ -49,7 +47,6 @@ defmodule CastorEDC.Model.SurveyPackage do
     :default_invitation,
     :default_invitation_subject,
     :description,
-    :embbeded,
     :expire_after_hours,
     :field_pagination,
     :finish_url,
@@ -66,6 +63,7 @@ defmodule CastorEDC.Model.SurveyPackage do
     :sender_name,
     :show_form_navigator,
     :survey_package_id,
+    :surveys,
     extra: %{}
   ]
 
@@ -78,7 +76,6 @@ defmodule CastorEDC.Model.SurveyPackage do
           default_invitation: String.t() | nil,
           default_invitation_subject: String.t() | nil,
           description: String.t() | nil,
-          embbeded: [Survey.t()] | nil,
           expire_after_hours: integer() | nil,
           field_pagination: String.t() | nil,
           finish_url: String.t() | nil,
@@ -95,6 +92,7 @@ defmodule CastorEDC.Model.SurveyPackage do
           sender_name: String.t() | nil,
           show_form_navigator: boolean() | nil,
           survey_package_id: String.t() | nil,
+          surveys: term() | nil,
           extra: %{optional(String.t()) => term()}
         }
 
@@ -112,7 +110,6 @@ defmodule CastorEDC.Model.SurveyPackage do
       default_invitation: data["default_invitation"],
       default_invitation_subject: data["default_invitation_subject"],
       description: data["description"],
-      embbeded: CastorEDC.Model.list(data["_embbeded"] || embedded["_embbeded"], Survey),
       expire_after_hours: data["expire_after_hours"],
       field_pagination: data["field_pagination"],
       finish_url: data["finish_url"],
@@ -129,6 +126,7 @@ defmodule CastorEDC.Model.SurveyPackage do
       sender_name: data["sender_name"],
       show_form_navigator: data["show_step_navigator"],
       survey_package_id: data["survey_package_id"],
+      surveys: data["surveys"],
       extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }
   end

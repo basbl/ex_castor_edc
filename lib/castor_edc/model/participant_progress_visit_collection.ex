@@ -8,8 +8,9 @@ defmodule CastorEDC.Model.ParticipantProgressVisitCollection do
   ## Fields
 
     * `:complete` (integer) - Completion status of a visit (0 - Not started, 1 - In Progress, 2 - Done)
-    * `:forms` (list of any)
+    * `:forms` (list of object) - The progress of each form.
     * `:locked` (boolean) - If this visit instance is source data locked
+    * `:participant_id` (string)
     * `:progress` (integer) - Percentage of completion
     * `:sdv` (boolean) - If this visit instance is source data verified
     * `:signed` (boolean) - If this visit instance is source data signed
@@ -17,15 +18,16 @@ defmodule CastorEDC.Model.ParticipantProgressVisitCollection do
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
 
-  @known ~w(complete locked progress sdv signed visit_id)
-  @known_embedded ~w(forms)
+  @known ~w(complete forms locked participant_id progress sdv signed visit_id)
+  @known_embedded ~w()
 
-  defstruct [:complete, :forms, :locked, :progress, :sdv, :signed, :visit_id, extra: %{}]
+  defstruct [:complete, :forms, :locked, :participant_id, :progress, :sdv, :signed, :visit_id, extra: %{}]
 
   @type t :: %__MODULE__{
           complete: integer() | nil,
-          forms: [term()] | nil,
+          forms: [map()] | nil,
           locked: boolean() | nil,
+          participant_id: String.t() | nil,
           progress: integer() | nil,
           sdv: boolean() | nil,
           signed: boolean() | nil,
@@ -40,8 +42,9 @@ defmodule CastorEDC.Model.ParticipantProgressVisitCollection do
 
     %__MODULE__{
       complete: data["complete"],
-      forms: embedded["forms"],
+      forms: data["forms"],
       locked: data["locked"],
+      participant_id: data["participant_id"],
       progress: data["progress"],
       sdv: data["sdv"],
       signed: data["signed"],

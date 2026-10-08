@@ -7,6 +7,7 @@ defmodule CastorEDC.Model.FieldOption do
 
   ## Fields
 
+    * `:domain_variable_name_override` (string) - The variable name to use for this option in domain mappings, when it differs.
     * `:group_order` (integer) - The position of the option within the group
     * `:id` (string) - Unique identifier of the Option
     * `:name` (string) - The Option name
@@ -14,12 +15,13 @@ defmodule CastorEDC.Model.FieldOption do
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
 
-  @known ~w(groupOrder id name value)
+  @known ~w(domainVariableNameOverride groupOrder id name value)
   @known_embedded ~w()
 
-  defstruct [:group_order, :id, :name, :value, extra: %{}]
+  defstruct [:domain_variable_name_override, :group_order, :id, :name, :value, extra: %{}]
 
   @type t :: %__MODULE__{
+          domain_variable_name_override: String.t() | nil,
           group_order: integer() | nil,
           id: String.t() | nil,
           name: String.t() | nil,
@@ -33,6 +35,7 @@ defmodule CastorEDC.Model.FieldOption do
     embedded = if is_map(data["_embedded"]), do: data["_embedded"], else: %{}
 
     %__MODULE__{
+      domain_variable_name_override: data["domainVariableNameOverride"],
       group_order: data["groupOrder"],
       id: data["id"],
       name: data["name"],

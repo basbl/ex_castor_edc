@@ -1535,6 +1535,11 @@
           "_links": {
             "$ref": "#/components/schemas/LinksSingle"
           },
+          "additional_config": {
+            "as the field type defines it.": null,
+            "description": "Extra configuration of the field",
+            "type": "string"
+          },
           "dependency_children": {
             "description": "List of child field dependencies (fields that depend on this field)",
             "items": {
@@ -1554,6 +1559,10 @@
               "$ref": "#/components/schemas/FieldDomain"
             },
             "type": "array"
+          },
+          "exclude_on_data_export": {
+            "description": "Whether exports leave the field out.",
+            "type": "boolean"
           },
           "field_enforce_decimals": {
             "default": null,
@@ -1587,6 +1596,30 @@
             "description": "Length parameter to derive UI input width for this field",
             "type": "integer"
           },
+          "field_max": {
+            "description": "The highest value allowed.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "field_max_label": {
+            "description": "The label of the highest value",
+            "for sliders.": null,
+            "type": "string"
+          },
+          "field_min": {
+            "description": "The lowest value allowed.",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "field_min_label": {
+            "description": "The label of the lowest value",
+            "for sliders.": null,
+            "type": "string"
+          },
           "field_number": {
             "description": "The Field's position within a step",
             "type": "integer"
@@ -1605,6 +1638,10 @@
             "description": "Slider step value",
             "format": "float",
             "type": "number"
+          },
+          "field_summary_template": {
+            "description": "The template of a summary field.",
+            "type": "string"
           },
           "field_type": {
             "description": "The Field type",
@@ -1738,6 +1775,14 @@
       },
       "FieldOption": {
         "properties": {
+          "domainVariableNameOverride": {
+            "description": "The variable name to use for this option in domain mappings, when it differs.",
+            "type": [
+              "string",
+              "null"
+            ],
+            "x-castor-rename": "domain_variable_name_override"
+          },
           "groupOrder": {
             "description": "The position of the option within the group",
             "type": "integer"
@@ -1843,6 +1888,10 @@
           "id": {
             "description": "Unique identifier of the FieldValidation",
             "format": "integer",
+            "type": "string"
+          },
+          "operator": {
+            "description": "The comparison the validation makes, such as `>`.",
             "type": "string"
           },
           "reference_type": {
@@ -2545,6 +2594,9 @@
           "_links": {
             "$ref": "#/components/schemas/LinksSingle"
           },
+          "archived": {
+            "type": "boolean"
+          },
           "archived_reason": {
             "type": "string"
           },
@@ -2593,6 +2645,13 @@
           },
           "randomization_group_name": {
             "type": "string"
+          },
+          "randomized_id": {
+            "description": "The participant's randomization ID.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "randomized_on": {
             "$ref": "#/components/schemas/DateTime"
@@ -2677,43 +2736,6 @@
       },
       "ParticipantProgressRepeatingDataCollection": {
         "properties": {
-          "_embedded": {
-            "properties": {
-              "forms": {
-                "items": {
-                  "properties": {
-                    "complete": {
-                      "description": "Completion status of a form (0 - Not started, 1 - In Progress, 2 - Done)",
-                      "type": "integer"
-                    },
-                    "form_id": {
-                      "description": "Unique identifier of the form",
-                      "format": "uuid",
-                      "type": "string"
-                    },
-                    "locked": {
-                      "description": "If this form was already locked",
-                      "type": "boolean"
-                    },
-                    "progress": {
-                      "description": "Percentage of completion",
-                      "type": "integer"
-                    },
-                    "sdv": {
-                      "description": "If this form is source data verified",
-                      "type": "boolean"
-                    },
-                    "signed": {
-                      "description": "If this form was already signed",
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "type": "array"
-              }
-            },
-            "type": "object"
-          },
           "archived": {
             "description": "Flags whether this repeating data is archived",
             "type": "boolean"
@@ -2721,6 +2743,37 @@
           "complete": {
             "description": "Completion status of a repeating data instance (0 - Not started, 1 - In Progress, 2 - Done)",
             "type": "integer"
+          },
+          "forms": {
+            "description": "The progress of each form.",
+            "items": {
+              "properties": {
+                "complete": {
+                  "description": "0 when not started, 1 when in progress, 2 when done.",
+                  "type": "integer"
+                },
+                "form_id": {
+                  "format": "UUID",
+                  "type": "string"
+                },
+                "locked": {
+                  "type": "boolean"
+                },
+                "progress": {
+                  "description": "Percentage of completion.",
+                  "type": "integer"
+                },
+                "sdv": {
+                  "description": "Whether the form is source data verified.",
+                  "type": "boolean"
+                },
+                "signed": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
           },
           "locked": {
             "description": "If this repeating data instance is source data locked",
@@ -2730,6 +2783,9 @@
             "default": null,
             "description": "Unique identifier of the parent",
             "format": "uuid",
+            "type": "string"
+          },
+          "participant_id": {
             "type": "string"
           },
           "progress": {
@@ -2759,50 +2815,47 @@
       },
       "ParticipantProgressVisitCollection": {
         "properties": {
-          "_embedded": {
-            "properties": {
-              "forms": {
-                "items": {
-                  "properties": {
-                    "complete": {
-                      "description": "Completion status of a form (0 - Not started, 1 - In Progress, 2 - Done)",
-                      "type": "integer"
-                    },
-                    "form_id": {
-                      "description": "Unique identifier of the form",
-                      "format": "uuid",
-                      "type": "string"
-                    },
-                    "locked": {
-                      "description": "If this form was already locked",
-                      "type": "boolean"
-                    },
-                    "progress": {
-                      "description": "Percentage of completion",
-                      "type": "integer"
-                    },
-                    "sdv": {
-                      "description": "If this form is source data verified",
-                      "type": "boolean"
-                    },
-                    "signed": {
-                      "description": "If this form was already signed",
-                      "type": "boolean"
-                    }
-                  }
-                },
-                "type": "array"
-              }
-            },
-            "type": "object"
-          },
           "complete": {
             "description": "Completion status of a visit (0 - Not started, 1 - In Progress, 2 - Done)",
             "type": "integer"
           },
+          "forms": {
+            "description": "The progress of each form.",
+            "items": {
+              "properties": {
+                "complete": {
+                  "description": "0 when not started, 1 when in progress, 2 when done.",
+                  "type": "integer"
+                },
+                "form_id": {
+                  "format": "UUID",
+                  "type": "string"
+                },
+                "locked": {
+                  "type": "boolean"
+                },
+                "progress": {
+                  "description": "Percentage of completion.",
+                  "type": "integer"
+                },
+                "sdv": {
+                  "description": "Whether the form is source data verified.",
+                  "type": "boolean"
+                },
+                "signed": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
           "locked": {
             "description": "If this visit instance is source data locked",
             "type": "boolean"
+          },
+          "participant_id": {
+            "type": "string"
           },
           "progress": {
             "description": "Percentage of completion",
@@ -3570,6 +3623,10 @@
           },
           "repeating data_name": {
             "description": "Name of the repeating data.",
+            "type": "string"
+          },
+          "repeating_data_name": {
+            "description": "The name of the repeating data this is an instance of.",
             "type": "string"
           },
           "status": {
@@ -4603,6 +4660,11 @@
             "format": "dateTime",
             "type": "string"
           },
+          "crf_id": {
+            "description": "The ID of the study's case report form.",
+            "format": "UUID",
+            "type": "string"
+          },
           "domain": {
             "type": "string"
           },
@@ -4678,6 +4740,11 @@
           },
           "created_on": {
             "format": "dateTime",
+            "type": "string"
+          },
+          "crf_id": {
+            "description": "The ID of the study's case report form.",
+            "format": "UUID",
             "type": "string"
           },
           "domain": {
@@ -5355,6 +5422,9 @@
             ],
             "type": "string"
           },
+          "footer_text": {
+            "type": "string"
+          },
           "form_numbering": {
             "description": "Setting whether field numbers are rendered on this form.",
             "enum": [
@@ -5438,13 +5508,6 @@
       },
       "SurveyPackage": {
         "properties": {
-          "_embbeded": {
-            "description": "The list of Surveys that are included in this package",
-            "items": {
-              "$ref": "#/components/schemas/Survey"
-            },
-            "type": "array"
-          },
           "_links": {
             "$ref": "#/components/schemas/LinksSingle"
           },
@@ -5556,6 +5619,16 @@
             "description": "Unique identifier for the SurveyPackage. Synonymous to id.",
             "format": "UUID",
             "type": "string"
+          },
+          "surveys": {
+            "description": "The surveys in this package.",
+            "items": {
+              "$ref": "#/components/schemas/Survey"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
           }
         },
         "type": "object"

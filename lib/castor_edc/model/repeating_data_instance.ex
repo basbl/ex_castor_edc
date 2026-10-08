@@ -24,7 +24,7 @@ defmodule CastorEDC.Model.RepeatingDataInstance do
 
   alias CastorEDC.Model.RepeatingData
 
-  @known ~w(archived created_by created_on id name parent_id parent_type participant_id repeating data_name status)
+  @known ~w(archived created_by created_on id name parent_id parent_type participant_id repeating data_name repeating_data_name status)
   @known_embedded ~w(repeating_data)
 
   defstruct [
@@ -72,7 +72,7 @@ defmodule CastorEDC.Model.RepeatingDataInstance do
       parent_type: data["parent_type"],
       participant_id: data["participant_id"],
       repeating_data: CastorEDC.Model.one(embedded["repeating_data"], RepeatingData),
-      repeating_data_name: data["repeating data_name"],
+      repeating_data_name: data["repeating data_name"] || data["repeating_data_name"],
       status: data["status"],
       extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }

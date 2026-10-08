@@ -9,9 +9,10 @@ defmodule CastorEDC.Model.ParticipantProgressRepeatingDataCollection do
 
     * `:archived` (boolean) - Flags whether this repeating data is archived
     * `:complete` (integer) - Completion status of a repeating data instance (0 - Not started, 1 - In Progress, 2 - Done)
-    * `:forms` (list of any)
+    * `:forms` (list of object) - The progress of each form.
     * `:locked` (boolean) - If this repeating data instance is source data locked
     * `:parent_id` (string) - Unique identifier of the parent
+    * `:participant_id` (string)
     * `:progress` (integer) - Percentage of completion
     * `:repeating_data_id` (string) - Unique identifier of the repeating data
     * `:repeating_data_instance_id` (string) - 
@@ -20,8 +21,8 @@ defmodule CastorEDC.Model.ParticipantProgressRepeatingDataCollection do
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
 
-  @known ~w(archived complete locked parent_id progress repeating_data_id repeating_data_instance_id sdv signed)
-  @known_embedded ~w(forms)
+  @known ~w(archived complete forms locked parent_id participant_id progress repeating_data_id repeating_data_instance_id sdv signed)
+  @known_embedded ~w()
 
   defstruct [
     :archived,
@@ -29,6 +30,7 @@ defmodule CastorEDC.Model.ParticipantProgressRepeatingDataCollection do
     :forms,
     :locked,
     :parent_id,
+    :participant_id,
     :progress,
     :repeating_data_id,
     :repeating_data_instance_id,
@@ -40,9 +42,10 @@ defmodule CastorEDC.Model.ParticipantProgressRepeatingDataCollection do
   @type t :: %__MODULE__{
           archived: boolean() | nil,
           complete: integer() | nil,
-          forms: [term()] | nil,
+          forms: [map()] | nil,
           locked: boolean() | nil,
           parent_id: String.t() | nil,
+          participant_id: String.t() | nil,
           progress: integer() | nil,
           repeating_data_id: String.t() | nil,
           repeating_data_instance_id: String.t() | nil,
@@ -59,9 +62,10 @@ defmodule CastorEDC.Model.ParticipantProgressRepeatingDataCollection do
     %__MODULE__{
       archived: data["archived"],
       complete: data["complete"],
-      forms: embedded["forms"],
+      forms: data["forms"],
       locked: data["locked"],
       parent_id: data["parent_id"],
+      participant_id: data["participant_id"],
       progress: data["progress"],
       repeating_data_id: data["repeating_data_id"],
       repeating_data_instance_id: data["repeating_data_instance_id"],

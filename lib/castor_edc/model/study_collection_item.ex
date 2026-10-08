@@ -9,6 +9,7 @@ defmodule CastorEDC.Model.StudyCollectionItem do
 
     * `:created_by` (string)
     * `:created_on` (string)
+    * `:crf_id` (string) - The ID of the study's case report form.
     * `:domain` (string)
     * `:duration` (number)
     * `:encryption` (boolean)
@@ -30,12 +31,13 @@ defmodule CastorEDC.Model.StudyCollectionItem do
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
 
-  @known ~w(created_by created_on domain duration encryption expected_centers expected_records first_live_on gcp_enabled live main_contact name on_site_epro_mode_enabled premium_support_enabled randomization_enabled slug study_id surveys_enabled trial_registry_id version)
+  @known ~w(created_by created_on crf_id domain duration encryption expected_centers expected_records first_live_on gcp_enabled live main_contact name on_site_epro_mode_enabled premium_support_enabled randomization_enabled slug study_id surveys_enabled trial_registry_id version)
   @known_embedded ~w()
 
   defstruct [
     :created_by,
     :created_on,
+    :crf_id,
     :domain,
     :duration,
     :encryption,
@@ -60,6 +62,7 @@ defmodule CastorEDC.Model.StudyCollectionItem do
   @type t :: %__MODULE__{
           created_by: String.t() | nil,
           created_on: String.t() | nil,
+          crf_id: String.t() | nil,
           domain: String.t() | nil,
           duration: number() | nil,
           encryption: boolean() | nil,
@@ -89,6 +92,7 @@ defmodule CastorEDC.Model.StudyCollectionItem do
     %__MODULE__{
       created_by: data["created_by"],
       created_on: data["created_on"],
+      crf_id: data["crf_id"],
       domain: data["domain"],
       duration: data["duration"],
       encryption: data["encryption"],

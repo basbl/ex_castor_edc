@@ -2,14 +2,19 @@
 # Do not edit it by hand: change the overlay or the generator and run the task again.
 
 defmodule CastorEDC.Model.Field do
+  # The API's object has this many fields; a struct this large is a hash map
+  # rather than a flat one, which is fine here.
+  # credo:disable-for-this-file Credo.Check.Warning.StructFieldAmount
   @moduledoc ~S"""
   The `Field` object of the API.
 
   ## Fields
 
+    * `:additional_config` (string) - Extra configuration of the field
     * `:dependency_children` (list of `t:CastorEDC.Model.FieldDependencyNested.t/0`) - List of child field dependencies (fields that depend on this field)
     * `:dependency_parents` (list of `t:CastorEDC.Model.FieldDependencyNested.t/0`) - List of parent field dependencies (fields that this field depends on)
     * `:domains` (list of `t:CastorEDC.Model.FieldDomain.t/0`)
+    * `:exclude_on_data_export` (boolean) - Whether exports leave the field out.
     * `:field_enforce_decimals` (boolean) - If enabled, it requires decimals digits in data-entry
     * `:field_hidden` (integer) - If enabled, it hides the field in data-entry. Returns 1 for hidden, 0 for visible
     * `:field_id` (string) - Unique identifier of the Field (same as id)
@@ -17,10 +22,15 @@ defmodule CastorEDC.Model.Field do
     * `:field_info` (string) - Information about the field. It is shown during data-entry
     * `:field_label` (string) - The Field label
     * `:field_length` (integer) - Length parameter to derive UI input width for this field
+    * `:field_max` (number) - The highest value allowed.
+    * `:field_max_label` (string) - The label of the highest value
+    * `:field_min` (number) - The lowest value allowed.
+    * `:field_min_label` (string) - The label of the lowest value
     * `:field_number` (integer) - The Field's position within a step
     * `:field_required` (integer) - If enabled, it makes the field required (cannot be left empty). Returns 1 for required, 0 for not required
     * `:field_slider_step` (string) - Slider step (Deprecated. Use field_slider_step_value instead)
     * `:field_slider_step_value` (number) - Slider step value
+    * `:field_summary_template` (string) - The template of a summary field.
     * `:field_type` (string) - The Field type
     * `:field_units` (string) - The field's measurement unit
     * `:field_variable_name` (string) - The Field's variable name
@@ -40,13 +50,15 @@ defmodule CastorEDC.Model.Field do
   alias CastorEDC.Model.FieldValidation
   alias CastorEDC.Model.Metadata
 
-  @known ~w(dependency_children dependency_parents domains field_enforce_decimals field_hidden field_id field_image field_info field_label field_length field_number field_required field_slider_step field_slider_step_value field_type field_units field_variable_name id metadata_points option_group parent_id randomize_option_order report_id validations)
+  @known ~w(additional_config dependency_children dependency_parents domains exclude_on_data_export field_enforce_decimals field_hidden field_id field_image field_info field_label field_length field_max field_max_label field_min field_min_label field_number field_required field_slider_step field_slider_step_value field_summary_template field_type field_units field_variable_name id metadata_points option_group parent_id randomize_option_order report_id validations)
   @known_embedded ~w(dependency_children dependency_parents domains metadata_points option_group validations)
 
   defstruct [
+    :additional_config,
     :dependency_children,
     :dependency_parents,
     :domains,
+    :exclude_on_data_export,
     :field_enforce_decimals,
     :field_hidden,
     :field_id,
@@ -54,10 +66,15 @@ defmodule CastorEDC.Model.Field do
     :field_info,
     :field_label,
     :field_length,
+    :field_max,
+    :field_max_label,
+    :field_min,
+    :field_min_label,
     :field_number,
     :field_required,
     :field_slider_step,
     :field_slider_step_value,
+    :field_summary_template,
     :field_type,
     :field_units,
     :field_variable_name,
@@ -72,9 +89,11 @@ defmodule CastorEDC.Model.Field do
   ]
 
   @type t :: %__MODULE__{
+          additional_config: String.t() | nil,
           dependency_children: [FieldDependencyNested.t()] | nil,
           dependency_parents: [FieldDependencyNested.t()] | nil,
           domains: [FieldDomain.t()] | nil,
+          exclude_on_data_export: boolean() | nil,
           field_enforce_decimals: boolean() | nil,
           field_hidden: integer() | nil,
           field_id: String.t() | nil,
@@ -82,10 +101,15 @@ defmodule CastorEDC.Model.Field do
           field_info: String.t() | nil,
           field_label: String.t() | nil,
           field_length: integer() | nil,
+          field_max: number() | nil,
+          field_max_label: String.t() | nil,
+          field_min: number() | nil,
+          field_min_label: String.t() | nil,
           field_number: integer() | nil,
           field_required: integer() | nil,
           field_slider_step: String.t() | nil,
           field_slider_step_value: number() | nil,
+          field_summary_template: String.t() | nil,
           field_type: String.t() | nil,
           field_units: String.t() | nil,
           field_variable_name: String.t() | nil,
@@ -105,11 +129,13 @@ defmodule CastorEDC.Model.Field do
     embedded = if is_map(data["_embedded"]), do: data["_embedded"], else: %{}
 
     %__MODULE__{
+      additional_config: data["additional_config"],
       dependency_children:
         CastorEDC.Model.list(data["dependency_children"] || embedded["dependency_children"], FieldDependencyNested),
       dependency_parents:
         CastorEDC.Model.list(data["dependency_parents"] || embedded["dependency_parents"], FieldDependencyNested),
       domains: CastorEDC.Model.list(data["domains"] || embedded["domains"], FieldDomain),
+      exclude_on_data_export: data["exclude_on_data_export"],
       field_enforce_decimals: data["field_enforce_decimals"],
       field_hidden: data["field_hidden"],
       field_id: data["field_id"],
@@ -117,10 +143,15 @@ defmodule CastorEDC.Model.Field do
       field_info: data["field_info"],
       field_label: data["field_label"],
       field_length: data["field_length"],
+      field_max: data["field_max"],
+      field_max_label: data["field_max_label"],
+      field_min: data["field_min"],
+      field_min_label: data["field_min_label"],
       field_number: data["field_number"],
       field_required: data["field_required"],
       field_slider_step: data["field_slider_step"],
       field_slider_step_value: data["field_slider_step_value"],
+      field_summary_template: data["field_summary_template"],
       field_type: data["field_type"],
       field_units: data["field_units"],
       field_variable_name: data["field_variable_name"],

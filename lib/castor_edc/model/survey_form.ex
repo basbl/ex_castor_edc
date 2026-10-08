@@ -8,6 +8,7 @@ defmodule CastorEDC.Model.SurveyForm do
   ## Fields
 
     * `:field_alignment` (string, one of `left-aligned`, `center-aligned`) - Sets how fields & responses are aligned in survey data entry.
+    * `:footer_text` (string)
     * `:form_numbering` (string, one of `visible`, `hidden`) - Setting whether field numbers are rendered on this form.
     * `:id` (string) - Unique identifier of the SurveyForm (same as survey_form_id)
     * `:label_bold_if_required` (boolean) - Render field labels in bold if the field is required. Defaults to `true`.
@@ -21,11 +22,12 @@ defmodule CastorEDC.Model.SurveyForm do
 
   alias CastorEDC.Model.Survey
 
-  @known ~w(field_alignment form_numbering id label_bold_if_required survey_form_description survey_form_id survey_form_name survey_form_number)
+  @known ~w(field_alignment footer_text form_numbering id label_bold_if_required survey_form_description survey_form_id survey_form_name survey_form_number)
   @known_embedded ~w(survey)
 
   defstruct [
     :field_alignment,
+    :footer_text,
     :form_numbering,
     :id,
     :label_bold_if_required,
@@ -39,6 +41,7 @@ defmodule CastorEDC.Model.SurveyForm do
 
   @type t :: %__MODULE__{
           field_alignment: String.t() | nil,
+          footer_text: String.t() | nil,
           form_numbering: String.t() | nil,
           id: String.t() | nil,
           label_bold_if_required: boolean() | nil,
@@ -57,6 +60,7 @@ defmodule CastorEDC.Model.SurveyForm do
 
     %__MODULE__{
       field_alignment: data["field_alignment"],
+      footer_text: data["footer_text"],
       form_numbering: data["form_numbering"],
       id: data["id"],
       label_bold_if_required: data["label_bold_if_required"],

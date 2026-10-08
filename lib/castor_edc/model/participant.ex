@@ -7,6 +7,7 @@ defmodule CastorEDC.Model.Participant do
 
   ## Fields
 
+    * `:archived` (boolean)
     * `:archived_reason` (string)
     * `:ccr_patient_id` (string)
     * `:created_by` (string)
@@ -22,6 +23,7 @@ defmodule CastorEDC.Model.Participant do
     * `:progress` (number)
     * `:randomization_group` (integer)
     * `:randomization_group_name` (string)
+    * `:randomized_id` (string) - The participant's randomization ID.
     * `:randomized_on` (`DateTime`) - A serialized PHP DateTime object.
     * `:site` (`t:CastorEDC.Model.Site.t/0`)
     * `:status` (string) - Deprecated: use the locked property instead
@@ -33,10 +35,11 @@ defmodule CastorEDC.Model.Participant do
   alias CastorEDC.Model.ParticipantStatus
   alias CastorEDC.Model.Site
 
-  @known ~w(archived_reason ccr_patient_id created_by created_on deleted id last_opened_step locked mobile_my_details_enabled mobile_ui_version participant_id participant_status progress randomization_group randomization_group_name randomized_on site status updated_by updated_on)
+  @known ~w(archived archived_reason ccr_patient_id created_by created_on deleted id last_opened_step locked mobile_my_details_enabled mobile_ui_version participant_id participant_status progress randomization_group randomization_group_name randomized_id randomized_on site status updated_by updated_on)
   @known_embedded ~w(participant_status site)
 
   defstruct [
+    :archived,
     :archived_reason,
     :ccr_patient_id,
     :created_by,
@@ -52,6 +55,7 @@ defmodule CastorEDC.Model.Participant do
     :progress,
     :randomization_group,
     :randomization_group_name,
+    :randomized_id,
     :randomized_on,
     :site,
     :status,
@@ -61,6 +65,7 @@ defmodule CastorEDC.Model.Participant do
   ]
 
   @type t :: %__MODULE__{
+          archived: boolean() | nil,
           archived_reason: String.t() | nil,
           ccr_patient_id: String.t() | nil,
           created_by: String.t() | nil,
@@ -76,6 +81,7 @@ defmodule CastorEDC.Model.Participant do
           progress: number() | nil,
           randomization_group: integer() | nil,
           randomization_group_name: String.t() | nil,
+          randomized_id: String.t() | nil,
           randomized_on: DateTime.t() | nil,
           site: Site.t() | nil,
           status: String.t() | nil,
@@ -90,6 +96,7 @@ defmodule CastorEDC.Model.Participant do
     embedded = if is_map(data["_embedded"]), do: data["_embedded"], else: %{}
 
     %__MODULE__{
+      archived: data["archived"],
       archived_reason: data["archived_reason"],
       ccr_patient_id: data["ccr_patient_id"],
       created_by: data["created_by"],
@@ -106,6 +113,7 @@ defmodule CastorEDC.Model.Participant do
       progress: data["progress"],
       randomization_group: data["randomization_group"],
       randomization_group_name: data["randomization_group_name"],
+      randomized_id: data["randomized_id"],
       randomized_on: CastorEDC.Model.cast(data["randomized_on"], :datetime),
       site: CastorEDC.Model.one(data["site"] || embedded["site"], Site),
       status: data["status"],

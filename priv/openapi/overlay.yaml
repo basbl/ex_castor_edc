@@ -1012,3 +1012,94 @@ actions:
           participants, and survey compliance.
         Users: The users the credentials can see.
         Verifications: Verifications (such as source data verification) of a study's data.
+
+  # Fields the spec leaves out
+  #
+  # What a running API sends that the spec doesn't describe, found by
+  # decoding the recorded fixtures.
+
+  - target: $.definitions.Field.properties
+    update:
+      additional_config: {type: string, description: Extra configuration of the field, as the field type defines it.}
+      exclude_on_data_export: {type: boolean, description: Whether exports leave the field out.}
+      field_min: {type: number, x-nullable: true, description: The lowest value allowed.}
+      field_min_label: {type: string, description: The label of the lowest value, for sliders.}
+      field_max: {type: number, x-nullable: true, description: The highest value allowed.}
+      field_max_label: {type: string, description: The label of the highest value, for sliders.}
+      field_summary_template: {type: string, description: The template of a summary field.}
+  - target: $.definitions.FieldOption.properties
+    update:
+      domainVariableNameOverride:
+        type: string
+        x-nullable: true
+        description: The variable name to use for this option in domain mappings, when it differs.
+        x-castor-rename: domain_variable_name_override
+  - target: $.definitions.FieldValidation.properties
+    update:
+      operator: {type: string, description: "The comparison the validation makes, such as `>`."}
+  - target: $.definitions.Participant.properties
+    update:
+      archived: {type: boolean}
+      randomized_id: {type: string, x-nullable: true, description: The participant's randomization ID.}
+  - target: $.definitions.RepeatingDataInstance.properties
+    update:
+      repeating_data_name: {type: string, description: The name of the repeating data this is an instance of.}
+  - target: $.definitions.Study.properties
+    update:
+      crf_id: {type: string, format: UUID, description: The ID of the study's case report form.}
+  - target: $.definitions.StudyCollectionItem.properties
+    update:
+      crf_id: {type: string, format: UUID, description: The ID of the study's case report form.}
+  - target: $.definitions.SurveyForm.properties
+    update:
+      footer_text: {type: string}
+  - target: $.definitions.SurveyPackage.properties._embbeded
+    description: >-
+      A misspelt `_embedded`; the surveys of a package come under `surveys`,
+      which is null when the package isn't listed with them.
+    remove: true
+  - target: $.definitions.SurveyPackage.properties
+    update:
+      surveys:
+        type: array
+        x-nullable: true
+        description: The surveys in this package.
+        items: {$ref: '#/definitions/Survey'}
+
+  # The progress collections put their forms at the top level, not under
+  # _embedded as the spec says, and name the participant.
+
+  - target: $.definitions.ParticipantProgressVisitCollection.properties._embedded
+    remove: true
+  - target: $.definitions.ParticipantProgressRepeatingDataCollection.properties._embedded
+    remove: true
+  - target: $.definitions.ParticipantProgressVisitCollection.properties
+    update:
+      participant_id: {type: string}
+      forms:
+        type: array
+        description: The progress of each form.
+        items:
+          type: object
+          properties:
+            form_id: {type: string, format: UUID}
+            complete: {type: integer, description: "0 when not started, 1 when in progress, 2 when done."}
+            progress: {type: integer, description: Percentage of completion.}
+            locked: {type: boolean}
+            sdv: {type: boolean, description: Whether the form is source data verified.}
+            signed: {type: boolean}
+  - target: $.definitions.ParticipantProgressRepeatingDataCollection.properties
+    update:
+      participant_id: {type: string}
+      forms:
+        type: array
+        description: The progress of each form.
+        items:
+          type: object
+          properties:
+            form_id: {type: string, format: UUID}
+            complete: {type: integer, description: "0 when not started, 1 when in progress, 2 when done."}
+            progress: {type: integer, description: Percentage of completion.}
+            locked: {type: boolean}
+            sdv: {type: boolean, description: Whether the form is source data verified.}
+            signed: {type: boolean}
