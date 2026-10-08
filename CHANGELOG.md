@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## Unreleased
 
+## [1.0.0-rc.1] - 2026-10-08
+
 ### Added
 
 - Modules for 92 operations of the API, generated from its corrected spec (`CastorEDC.Participants`, `CastorEDC.DataPoints` and 16 more), with structs for their responses under `CastorEDC.Model`. Paged collections also have `stream_` functions.
@@ -76,6 +78,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Initial release.
 
+[1.0.0-rc.1]: https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1
 [0.4.1]: https://hex.pm/packages/ex_castor_edc/0.4.1
 [0.4.0]: https://hex.pm/packages/ex_castor_edc/0.4.0
 [0.3.0]: https://hex.pm/packages/ex_castor_edc/0.3.0

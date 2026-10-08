@@ -1,7 +1,7 @@
 defmodule CastorEDC.MixProject do
   use Mix.Project
 
-  @version "0.4.1"
+  @version "1.0.0-rc.1"
   @source_url "https://github.com/basbl/ex_castor_edc"
   @homepage_url "https://www.castoredc.com/"
 
