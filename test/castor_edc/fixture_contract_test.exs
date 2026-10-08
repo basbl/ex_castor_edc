@@ -1,7 +1,8 @@
 defmodule CastorEDC.FixtureContractTest do
   @moduledoc """
   Every recorded response in test/fixtures decodes through the generated
-  client without leaving anything in a struct's `extra`.
+  client without leaving anything in a struct's `extra`, and the generated
+  function sends the request the fixture was recorded with.
 
   A failure means the fixtures, the corrected spec and the generated
   structs have drifted apart: the API sends a field the spec doesn't
@@ -43,6 +44,10 @@ defmodule CastorEDC.FixtureContractTest do
         if(operation.body, do: [%{}], else: []) ++ [[]]
 
     assert {:ok, result} = apply(module, String.to_atom(operation.name), arguments)
+
+    request = assert_requested()
+    assert request.method == meta["method"] |> String.downcase() |> String.to_atom()
+    assert request.url.path == URI.decode(meta["path"])
 
     undescribed = result |> undescribed([]) |> Enum.uniq()
 
