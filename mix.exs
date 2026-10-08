@@ -2,7 +2,7 @@ defmodule CastorEDC.MixProject do
   use Mix.Project
 
   @version "0.4.1"
-  @source_url "https://github.com/basbl/ex_castor_edc/"
+  @source_url "https://github.com/basbl/ex_castor_edc"
   @homepage_url "https://www.castoredc.com/"
 
   def project do
@@ -104,12 +104,16 @@ defmodule CastorEDC.MixProject do
   defp package do
     [
       files: ~w(lib priv/openapi/castor_edc.json .formatter.exs mix.exs README.md CHANGELOG.md LICENSE.md),
-      description: "Elixir wrapper for the Castor EDC API",
+      description:
+        "Client for the Castor EDC API: every endpoint, with authentication, paging, rate limits, " <>
+          "batch exports and decoded field values.",
       maintainers: ["Bas Bloembergen"],
       licenses: ["MIT"],
       links: %{
         "GitHub" => @source_url,
-        "Homepage" => @homepage_url
+        "Changelog" => "https://hexdocs.pm/ex_castor_edc/changelog.html",
+        "Castor EDC API" => "https://data.castoredc.com/api",
+        "Castor" => @homepage_url
       }
     ]
   end
