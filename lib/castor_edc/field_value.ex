@@ -10,6 +10,11 @@ defmodule CastorEDC.FieldValue do
   | `numeric`, `slider` | `"42"`, `"3.14"` | an integer or a float |
   | `year` | `"2015"` | an integer |
   | `calculation` | the result | a number when it is one, otherwise the string |
+  | `date` | `"07-10-2026"`, or `"07102026"` in older data | a `Date` |
+  | `date_partial` | `"00-05-2020"`, with `00` for unknown parts | a `CastorEDC.PartialDate` |
+  | `time` | `"12:30"` | a `Time` |
+  | `datetime` | `"07-10-2026;12:30"` | a `NaiveDateTime` |
+  | `numberdate` | `"5;07-10-2026"` | `{number, date}`, either of which can be `nil` |
   | `string`, `textarea` and others | text | the string |
   | any, when empty | `""` | `nil` |
   | any, when marked missing | `"##USER_MISSING_95##"` to `"##USER_MISSING_99##"` | a `CastorEDC.MissingValue` |
@@ -25,10 +30,22 @@ defmodule CastorEDC.FieldValue do
 
   alias CastorEDC.MissingValue
   alias CastorEDC.Model.Field
+  alias CastorEDC.PartialDate
 
   require Logger
 
-  @type t :: nil | String.t() | integer() | float() | MissingValue.t() | :encrypted
+  @type t ::
+          nil
+          | String.t()
+          | integer()
+          | float()
+          | Date.t()
+          | PartialDate.t()
+          | Time.t()
+          | NaiveDateTime.t()
+          | {integer() | float() | nil, Date.t() | nil}
+          | MissingValue.t()
+          | :encrypted
 
   @encrypted "*encrypted*"
   @warnings :castor_edc_warnings
@@ -78,7 +95,78 @@ defmodule CastorEDC.FieldValue do
     end
   end
 
+  defp read("date", raw), do: date(raw)
+  defp read("date_partial", raw), do: partial_date(raw)
+  defp read("time", raw), do: time(raw)
+
+  defp read("datetime", raw) do
+    with [date, time] <- String.split(raw, ";"),
+         {:ok, date} <- date(date),
+         {:ok, time} <- time(time) do
+      {:ok, NaiveDateTime.new!(date, time)}
+    else
+      _invalid -> :error
+    end
+  end
+
+  defp read("numberdate", raw) do
+    with [number, date] <- String.split(raw, ";"),
+         {:ok, number} <- optional(number, &number/1),
+         {:ok, date} <- optional(date, &date/1) do
+      {:ok, {number, date}}
+    else
+      _invalid -> :error
+    end
+  end
+
   defp read(_text, raw), do: {:ok, raw}
+
+  defp optional("", _read), do: {:ok, nil}
+  defp optional(raw, read), do: read.(raw)
+
+  defp date(raw) do
+    with {:ok, {year, month, day}} <- date_parts(raw),
+         {:ok, date} <- Date.new(year, month, day) do
+      {:ok, date}
+    else
+      _invalid -> :error
+    end
+  end
+
+  defp partial_date(raw) do
+    with {:ok, {year, month, day}} <- date_parts(raw),
+         {:ok, partial_date} <- PartialDate.new(year, unknown(month), unknown(day)) do
+      {:ok, partial_date}
+    else
+      _invalid -> :error
+    end
+  end
+
+  defp unknown(0), do: nil
+  defp unknown(part), do: part
+
+  # dd-mm-yyyy, or ddmmyyyy as older data has it.
+  defp date_parts(<<day::binary-size(2), "-", month::binary-size(2), "-", year::binary-size(4)>>),
+    do: date_parts(day <> month <> year)
+
+  defp date_parts(<<day::binary-size(2), month::binary-size(2), year::binary-size(4)>>) do
+    with {:ok, day} <- digits(day), {:ok, month} <- digits(month), {:ok, year} <- digits(year) do
+      {:ok, {year, month, day}}
+    end
+  end
+
+  defp date_parts(_raw), do: :error
+
+  defp time(raw) do
+    case Time.from_iso8601(if byte_size(raw) == 5, do: raw <> ":00", else: raw) do
+      {:ok, time} -> {:ok, time}
+      {:error, _reason} -> :error
+    end
+  end
+
+  defp digits(raw) do
+    if raw =~ ~r/\A\d+\z/, do: integer(raw), else: :error
+  end
 
   defp number(raw) do
     with :error <- integer(raw) do

@@ -6,6 +6,7 @@ defmodule CastorEDC.FieldValueTest do
   alias CastorEDC.FieldValue
   alias CastorEDC.MissingValue
   alias CastorEDC.Model.Field
+  alias CastorEDC.PartialDate
 
   doctest FieldValue
 
@@ -58,6 +59,60 @@ defmodule CastorEDC.FieldValueTest do
     assert FieldValue.decode("22.5", "calculation") === 22.5
     assert FieldValue.decode("Obese", "calculation") == "Obese"
     assert FieldValue.decode("NaN", "calculation") == "NaN"
+  end
+
+  describe "dates and times" do
+    test "decodes dates, in both stored forms" do
+      assert FieldValue.decode("07-10-2026", "date") == ~D[2026-10-07]
+      assert FieldValue.decode("07102026", "date") == ~D[2026-10-07]
+      assert FieldValue.decode("29-02-2024", "date") == ~D[2024-02-29]
+    end
+
+    test "decodes partial dates" do
+      assert FieldValue.decode("00-05-2020", "date_partial") == %PartialDate{year: 2020, month: 5, day: nil}
+      assert FieldValue.decode("00-00-2020", "date_partial") == %PartialDate{year: 2020, month: nil, day: nil}
+      assert FieldValue.decode("03-05-2020", "date_partial") == %PartialDate{year: 2020, month: 5, day: 3}
+      assert FieldValue.decode("00002020", "date_partial") == %PartialDate{year: 2020}
+    end
+
+    test "decodes times" do
+      assert FieldValue.decode("12:30", "time") == ~T[12:30:00]
+      assert FieldValue.decode("08:05:09", "time") == ~T[08:05:09]
+    end
+
+    test "decodes dates with a time" do
+      assert FieldValue.decode("07-10-2026;12:30", "datetime") == ~N[2026-10-07 12:30:00]
+    end
+
+    test "decodes numbers with a date, either of which may be missing" do
+      assert FieldValue.decode("5;07-10-2026", "numberdate") == {5, ~D[2026-10-07]}
+      assert FieldValue.decode("2.5;07102026", "numberdate") == {2.5, ~D[2026-10-07]}
+      assert FieldValue.decode("5;", "numberdate") == {5, nil}
+      assert FieldValue.decode(";07-10-2026", "numberdate") == {nil, ~D[2026-10-07]}
+    end
+
+    test "keeps values that aren't dates or times as strings" do
+      capture_log(fn ->
+        for {raw, type} <- [
+              {"2026-10-07", "date"},
+              {"31-02-2026", "date"},
+              {"00-05-2020", "date"},
+              {"7-10-2026", "date"},
+              {"ab-cd-efgh", "date"},
+              {"03-00-2020", "date_partial"},
+              {"30-02-2020", "date_partial"},
+              {"25:00", "time"},
+              {"noon", "time"},
+              {"07-10-2026 12:30", "datetime"},
+              {"07-10-2026;", "datetime"},
+              {"five;07-10-2026", "numberdate"},
+              {"5;tomorrow", "numberdate"},
+              {"5", "numberdate"}
+            ] do
+          assert FieldValue.decode(raw, field(type)) == raw
+        end
+      end)
+    end
   end
 
   describe "a value that doesn't read as its type" do

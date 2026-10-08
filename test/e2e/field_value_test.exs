@@ -29,7 +29,7 @@ defmodule CastorEDC.E2E.FieldValueTest do
     assert capture_log(fn -> Enum.each(values, fn {field, raw} -> FieldValue.decode(raw, field) end) end) == ""
   end
 
-  for type <- ~w(numeric year calculation string textarea) do
+  for type <- ~w(numeric year calculation string textarea date date_partial time datetime numberdate) do
     test "decodes #{type} values", %{values: values} do
       check(values, unquote(type))
     end
@@ -53,4 +53,13 @@ defmodule CastorEDC.E2E.FieldValueTest do
   defp valid?("year", value), do: is_integer(value) and value in 1891..2100
   defp valid?("calculation", value), do: is_number(value) or is_binary(value)
   defp valid?(text, value) when text in ["string", "textarea"], do: is_binary(value)
+  defp valid?("date", value), do: is_struct(value, Date)
+  defp valid?("date_partial", value), do: is_struct(value, CastorEDC.PartialDate)
+  defp valid?("time", value), do: is_struct(value, Time)
+  defp valid?("datetime", value), do: is_struct(value, NaiveDateTime)
+
+  defp valid?("numberdate", {number, date}),
+    do: (is_number(number) or is_nil(number)) and (is_nil(date) or is_struct(date, Date))
+
+  defp valid?("numberdate", _value), do: false
 end
