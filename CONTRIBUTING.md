@@ -14,7 +14,7 @@ $ lefthook install
 ## Checks
 
 ```console
-$ mix precommit   # compile with warnings as errors, drop unused lock entries, format, Credo, tests
+$ mix precommit   # compile with warnings as errors, drop unused lock entries, format, Credo, tests with coverage
 $ mix quality     # dependency audits, format check, Credo, Dialyzer, docs with warnings as errors
 $ mix coveralls   # tests with coverage, failing below the threshold in coveralls.json
 ```

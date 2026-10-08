@@ -106,7 +106,7 @@ defmodule CastorEDC.MixProject do
 
   defp aliases do
     [
-      precommit: ["compile --warnings-as-errors", "deps.unlock --unused", "format", "credo --strict", "test"],
+      precommit: ["compile --warnings-as-errors", "deps.unlock --unused", "format", "credo --strict", "coveralls"],
       quality: [
         # hex.audit has to run first: once another task has loaded the
         # project's code paths, Mix no longer finds tasks from the Hex archive
