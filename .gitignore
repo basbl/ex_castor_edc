@@ -31,4 +31,4 @@ ex_castor_edc-*.tar
 
 # End-to-end configuration and the IDs the seed created
 /.env
-/test/e2e/.seeded.json
+/test/e2e/.seeded/

@@ -31,7 +31,7 @@ Copy `.env.example` to `.env`, fill it in, load it into your shell, and run:
 $ mix test --only e2e
 ```
 
-On its first run, the suite seeds the study with a participant and data (`mix castor_edc.e2e.seed`), and records what it created in `test/e2e/.seeded.json`; delete that file to seed again.
+On its first run, the suite seeds the study with a participant and data (`mix castor_edc.e2e.seed`), and records what it created in `test/e2e/.seeded/<study ID>.json`; delete that file to seed again.
 A study that has never been live allows only ten participants, so once it has them, the seed reuses the latest one.
 
 `mix castor_edc.fixtures.record` re-records `test/fixtures/` from the same study; commit a refresh on its own.

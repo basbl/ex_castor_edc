@@ -17,8 +17,8 @@ defmodule Mix.Tasks.CastorEdc.E2e.Seed do
   test study has them, the seed reuses its latest participant.
 
   Studies number their participants themselves, so the seed can't choose
-  IDs; it records the ones it created in `test/e2e/.seeded.json`, which
-  isn't committed. The end-to-end suite runs the seed when that file is
+  IDs; it records the ones it created in `test/e2e/.seeded/<study ID>.json`,
+  which isn't committed. The end-to-end suite runs the seed when that file is
   missing.
 
   Configured through the environment; see `CastorEDC.TestStudy`.
@@ -36,10 +36,10 @@ defmodule Mix.Tasks.CastorEdc.E2e.Seed do
   alias CastorEDC.Surveys
   alias CastorEDC.TestStudy
 
-  @seeded "test/e2e/.seeded.json"
-
   @doc false
-  def seeded_path, do: @seeded
+  # One file per study, so switching between test studies (on different
+  # servers, say) never mixes up their IDs.
+  def seeded_path, do: Path.join("test/e2e/.seeded", TestStudy.id() <> ".json")
 
   @impl Mix.Task
   def run(_args) do
@@ -51,8 +51,8 @@ defmodule Mix.Tasks.CastorEdc.E2e.Seed do
     end
 
     seeded = seed(TestStudy.client(), TestStudy.id())
-    File.mkdir_p!(Path.dirname(@seeded))
-    File.write!(@seeded, JSON.encode!(seeded))
+    File.mkdir_p!(Path.dirname(seeded_path()))
+    File.write!(seeded_path(), JSON.encode!(seeded))
 
     Mix.shell().info(
       "Seeded participant #{seeded["participant_id"]}: #{seeded["study_values"]} study values, " <>

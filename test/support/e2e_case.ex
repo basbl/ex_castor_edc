@@ -9,7 +9,7 @@ defmodule CastorEDC.E2ECase do
 
   The study may be transient. On the first run, `mix castor_edc.e2e.seed`
   fills it with a participant and data, and records what it created in
-  `test/e2e/.seeded.json`; every other ID comes from the study's own
+  `test/e2e/.seeded/<study ID>.json`; every other ID comes from the study's own
   collections. Delete that file to seed again.
   """
 
