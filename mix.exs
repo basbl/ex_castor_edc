@@ -5,15 +5,6 @@ defmodule CastorEDC.MixProject do
   @source_url "https://github.com/basbl/ex_castor_edc/"
   @homepage_url "https://www.castoredc.com/"
 
-  # hackney advisories, fixed only in hackney 4.x. Hackney leaves together
-  # with Tesla during the move to Req, and this list leaves with it.
-  @ignored_advisories ~w(
-    GHSA-gp9c-pm5m-5cxr
-    GHSA-j9wq-vxxc-94wf
-    GHSA-mp55-p8c9-rfw2
-    GHSA-pj7v-xfvx-wmjq
-  )
-
   def project do
     [
       name: "ExCastorEDC",
@@ -25,11 +16,10 @@ defmodule CastorEDC.MixProject do
         plt_local_path: "priv/plts",
         plt_core_path: "priv/plts",
         ignore_warnings: ".dialyzer_ignore.exs",
-        plt_add_apps: [:eex, :ex_unit, :mix, :yaml_elixir]
+        plt_add_apps: [:eex, :ex_unit, :mix, :yaml_elixir, :inets, :ssl, :public_key]
       ],
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      hex: [ignore_advisories: @ignored_advisories],
       aliases: aliases(),
       deps: deps(),
       package: package(),
@@ -103,8 +93,6 @@ defmodule CastorEDC.MixProject do
       {:req, "~> 0.7.5"},
       {:telemetry, "~> 1.4"},
       {:tz, "~> 0.28"},
-      {:tesla, "~> 1.4"},
-      {:hackney, "~> 1.13"},
       {:exvcr, "~> 0.11", only: :test},
       {:excoveralls, "~> 0.18.5", only: :test},
       {:styler, "~> 1.12", only: [:dev, :test], runtime: false},
@@ -118,7 +106,6 @@ defmodule CastorEDC.MixProject do
 
   defp aliases do
     [
-      "deps.audit": ["deps.audit --ignore-advisory-ids #{Enum.join(@ignored_advisories, ",")}"],
       precommit: ["compile --warnings-as-errors", "deps.unlock --unused", "format", "credo --strict", "test"],
       quality: [
         # hex.audit has to run first: once another task has loaded the
