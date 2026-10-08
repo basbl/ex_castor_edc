@@ -84,6 +84,12 @@ defmodule CastorEDC.Generator.SpecTest do
   test "keeps the flags of the corrections", %{operations: operations} do
     assert operations["list_repeating_data_instances"].not_found_is_empty
     assert operations["upsert_study_data_points"].partial_success
+
+    assert operations["upsert_repeating_data_instance_data_points"].fill_items == %{
+             "data" => %{"instance_id" => "repeating_data_instance_id"}
+           }
+
+    assert operations["upsert_study_data_points"].fill_items == %{}
     refute operations["list_sites"].not_found_is_empty
   end
 
@@ -120,5 +126,18 @@ defmodule CastorEDC.Generator.SpecTest do
   test "refuses operations without a name or module" do
     document = put_in(@document, ["paths", "/study/{study_id}/site/{site_id}", "get", "operationId"], nil)
     assert_raise ArgumentError, ~r/no operationId/, fn -> Spec.parse(document) end
+  end
+
+  test "refuses to fill items from a parameter the path doesn't have" do
+    document =
+      put_in(
+        @document,
+        ["paths", "/study/{study_id}/site/{site_id}", "get", "x-castor-fill-items"],
+        %{"data" => %{"instance_id" => "instance_id"}}
+      )
+
+    assert_raise ArgumentError, ~r/get_site fills items from \{instance_id\}, which isn't in its path/, fn ->
+      Spec.parse(document)
+    end
   end
 end

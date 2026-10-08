@@ -107,6 +107,22 @@ defmodule CastorEDC.GeneratorSample do
             "responses" => %{"200" => %{}}
           }
         },
+        "/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance/{repeating_data_instance_id}" =>
+          %{
+            "post" => %{
+              "operationId" => "upsert_repeating_data_instance_data_points",
+              "x-castor-module" => "DataPoints",
+              "x-castor-fill-items" => %{"data" => %{"instance_id" => "repeating_data_instance_id"}},
+              "requestBody" => %{
+                "content" => %{
+                  "application/json" => %{
+                    "schema" => %{"type" => "object", "properties" => %{"data" => %{"type" => "array"}}}
+                  }
+                }
+              },
+              "responses" => %{"201" => %{}}
+            }
+          },
         "/study/{study_id}/participant/{participant_id}/data-points/study" => %{
           "post" => %{
             "operationId" => "upsert_study_data_points",

@@ -123,6 +123,13 @@ defmodule CastorEDC.Generator.RendererTest do
       assert source =~ "Returns a `CastorEDC.Page` of `t:CastorEDC.Model.Site.t/0` records."
     end
 
+    test "fills list items from path parameters, and says so", %{modules: modules} do
+      source = modules["DataPoints"]
+
+      assert source =~ ~s(fill_items: %{"data" => %{"instance_id" => "repeating_data_instance_id"}})
+      assert source =~ "Each item of `data` that has no `instance_id` gets `repeating_data_instance_id`"
+    end
+
     test "documents streaming a download to disk", %{modules: modules} do
       source = modules["Exports"]
 

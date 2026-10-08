@@ -1130,3 +1130,11 @@ actions:
           field: {$ref: '#/definitions/Field'}
           participant: {$ref: '#/definitions/Participant'}
           repeating_data_instance: {$ref: '#/definitions/RepeatingDataInstance'}
+
+  - target: $.paths.*[?@.operationId == 'upsert_repeating_data_instance_data_points']
+    description: >-
+      Each value needs its repeating data instance's ID although the path has
+      it already (confirmed); the client fills it in.
+    update:
+      x-castor-fill-items:
+        data: {instance_id: repeating_data_instance_id}

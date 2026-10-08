@@ -75,6 +75,33 @@ defmodule CastorEDC.ClientTest do
       assert request.body |> IO.iodata_to_binary() |> JSON.decode!() == %{"site_name" => "Castor"}
     end
 
+    test "fills keys of the body's list items from path parameters" do
+      fill = %{"data" => %{"instance_id" => "instance_id"}}
+      path_params = %{"study_id" => "S1", "instance_id" => "I1"}
+
+      sent = fn body ->
+        Client.request(
+          client(json(%{}, status: 201)),
+          operation(method: :post, path_params: path_params, body: body, fill_items: fill)
+        )
+
+        assert_requested().body |> IO.iodata_to_binary() |> JSON.decode!()
+      end
+
+      assert sent.(%{"common" => %{}, "data" => [%{"field_id" => "F1"}, %{"field_id" => "F2", "instance_id" => "I2"}]}) ==
+               %{
+                 "common" => %{},
+                 "data" => [%{"field_id" => "F1", "instance_id" => "I1"}, %{"field_id" => "F2", "instance_id" => "I2"}]
+               }
+
+      assert sent.(%{data: [%{field_id: "F1"}, %{field_id: "F2", instance_id: "I2"}]}) ==
+               %{"data" => [%{"field_id" => "F1", "instance_id" => "I1"}, %{"field_id" => "F2", "instance_id" => "I2"}]}
+
+      assert sent.(%{"data" => "not a list"}) == %{"data" => "not a list"}
+      assert sent.(%{"other" => []}) == %{"other" => []}
+      assert sent.(%{"data" => ["not a map"]}) == %{"data" => ["not a map"]}
+    end
+
     test "marks the request with its route for rate limiting" do
       Client.request(client(json(%{})), operation([]))
 

@@ -1183,6 +1183,8 @@ defmodule CastorEDC.DataPoints do
       * `common` (`t:CastorEDC.Model.DataPointsCommonParameters.t/0`)
       * `data` (list of `t:CastorEDC.Model.RepeatingDataDataPointsFieldValueParameter.t/0`)
 
+      Each item of `data` that has no `instance_id` gets `repeating_data_instance_id`, so it doesn't need repeating.
+
   Every option is passed to `Req`.
 
   Returns what was saved and what wasn't; the `!` variant raises a `CastorEDC.Error` when anything wasn't.
@@ -1680,6 +1682,7 @@ defmodule CastorEDC.DataPoints do
       query_names: %{},
       body: body,
       partial_success: true,
+      fill_items: %{"data" => %{"instance_id" => "repeating_data_instance_id"}},
       decode: DataPointsResult
     ]
   end

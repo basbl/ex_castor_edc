@@ -55,6 +55,9 @@ defmodule CastorEDC.Client do
     * `:not_found_is_empty` - a 404 means an empty collection
     * `:decode` - the struct module the response, or each record, decodes
       into; without it the body is returned as it arrived
+    * `:fill_items` - keys of the body's list items to fill from path
+      parameters when an item doesn't have them, as `%{list => %{key =>
+      path parameter}}`
     * `:partial_success` - the response lists what was saved under `saved`
       (`success` on the wire) and what wasn't under `failed`; `request!/2`
       raises when anything failed
@@ -161,8 +164,43 @@ defmodule CastorEDC.Client do
 
   defp body(operation) do
     case Keyword.fetch(operation, :body) do
-      {:ok, body} -> [json: body]
+      {:ok, body} -> [json: fill_items(body, operation[:fill_items], operation[:path_params] || %{})]
       :error -> []
+    end
+  end
+
+  # The API wants some keys in every item of a list although the path
+  # already says them, such as each repeating data value's instance.
+  defp fill_items(body, fill_items, path_params) when is_map(body) and is_map(fill_items) do
+    Enum.reduce(fill_items, body, fn {list, keys}, body ->
+      case fetch_either(body, list) do
+        {:ok, {list_key, items}} when is_list(items) ->
+          Map.put(body, list_key, Enum.map(items, &fill_item(&1, keys, path_params)))
+
+        _no_list ->
+          body
+      end
+    end)
+  end
+
+  defp fill_items(body, _fill_items, _path_params), do: body
+
+  defp fill_item(item, keys, path_params) when is_map(item) do
+    Enum.reduce(keys, item, fn {key, param}, item ->
+      case fetch_either(item, key) do
+        {:ok, _present} -> item
+        :error -> Map.put(item, key, Map.fetch!(path_params, param))
+      end
+    end)
+  end
+
+  defp fill_item(item, _keys, _path_params), do: item
+
+  # Bodies are maps with string or atom keys.
+  defp fetch_either(map, key) do
+    case Enum.find(Map.keys(map), &(&1 == key or (is_atom(&1) and Atom.to_string(&1) == key))) do
+      nil -> :error
+      found -> {:ok, {found, Map.fetch!(map, found)}}
     end
   end
 

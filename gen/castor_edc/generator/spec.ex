@@ -44,7 +44,8 @@ defmodule CastorEDC.Generator.Spec do
       query_params: [],
       paged: false,
       not_found_is_empty: false,
-      partial_success: false
+      partial_success: false,
+      fill_items: %{}
     ]
 
     @type t :: %__MODULE__{}
@@ -143,8 +144,21 @@ defmodule CastorEDC.Generator.Spec do
        decode: decode(document, schema, operation["x-castor-items"], success),
        accept: accept(content_type),
        not_found_is_empty: operation["x-castor-not-found-is-empty"] == true,
-       partial_success: operation["x-castor-partial-success"] == true
+       partial_success: operation["x-castor-partial-success"] == true,
+       fill_items: fill_items(name, path, operation["x-castor-fill-items"])
      }}
+  end
+
+  # Keys of the body's list items that the client fills from a path
+  # parameter: `%{"data" => %{"instance_id" => "repeating_data_instance_id"}}`.
+  defp fill_items(_name, _path, nil), do: %{}
+
+  defp fill_items(name, path, fill_items) do
+    for {_list, keys} <- fill_items, {_key, param} <- keys, not String.contains?(path, "{#{param}}") do
+      raise ArgumentError, "#{name} fills items from {#{param}}, which isn't in its path #{path}"
+    end
+
+    fill_items
   end
 
   # Path parameters in the order the path names them, which is the order

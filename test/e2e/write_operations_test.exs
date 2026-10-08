@@ -51,6 +51,22 @@ defmodule CastorEDC.E2E.WriteOperationsTest do
     assert field_id == field.id
   end
 
+  test "writes repeating data values without repeating the instance in each", context do
+    %{client: client, study: study, ids: ids, change: change} = context
+    body = %{"common" => change, "data" => [%{"field_id" => ids["seeded"]["repeating_field_id"], "field_value" => "121"}]}
+
+    assert {:ok, %Model.DataPointsResult{saved: [saved], failed: []}} =
+             DataPoints.upsert_repeating_data_instance_data_points(
+               client,
+               study,
+               ids["participant_id"],
+               ids["repeating_data_instance_id"],
+               body
+             )
+
+    assert saved.field_id == ids["seeded"]["repeating_field_id"]
+  end
+
   test "reports values a bulk write didn't save", context do
     %{client: client, study: study, ids: ids, numeric: field, elsewhere: elsewhere, change: change} = context
 

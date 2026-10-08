@@ -138,6 +138,7 @@ defmodule CastorEDC.Generator.Renderer do
       max_page_size: present(operation.max_page_size),
       not_found_is_empty: present(operation.not_found_is_empty),
       partial_success: present(operation.partial_success),
+      fill_items: present(operation.fill_items),
       decode: present(operation.decode)
     ]
 
@@ -145,7 +146,7 @@ defmodule CastorEDC.Generator.Renderer do
   end
 
   # The source of an operation's setting, or nil to leave it out.
-  defp present(value) when value in [nil, false, []], do: nil
+  defp present(value) when value in [nil, false, [], %{}], do: nil
   defp present(value), do: inspect(value)
 
   @doc false
@@ -172,9 +173,18 @@ defmodule CastorEDC.Generator.Renderer do
 
   defp arguments_doc(operation) do
     params = Enum.map(operation.path_params, &("  * `#{&1.name}`" <> description(&1.description)))
-    body = if operation.body, do: [body_doc(operation.body)], else: []
+    body = if operation.body, do: [body_doc(operation.body)] ++ fill_items_doc(operation), else: []
 
     Enum.join(["## Arguments", "" | params ++ body], "\n")
+  end
+
+  defp fill_items_doc(operation) do
+    for {list, keys} <- Enum.sort(operation.fill_items), {key, wire} <- Enum.sort(keys) do
+      param = Enum.find(operation.path_params, &(&1.wire == wire))
+
+      "\n    Each item of `#{list}` that has no `#{key}` gets `#{param.name}`, " <>
+        "so it doesn't need repeating."
+    end
   end
 
   defp body_doc(body) do

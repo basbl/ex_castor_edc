@@ -96,8 +96,7 @@ defmodule Mix.Tasks.CastorEdc.E2e.Seed do
     repeating_result =
       DataPoints.upsert_repeating_data_instance_data_points!(client, study, participant.participant_id, instance.id, %{
         "common" => common,
-        # The API wants the instance in every value too, not only in the path.
-        "data" => Enum.map(values(repeating_fields), &Map.put(&1, "instance_id", instance.id))
+        "data" => values(repeating_fields)
       })
 
     survey = seed_survey(client, study, participant.participant_id, fields, common)
