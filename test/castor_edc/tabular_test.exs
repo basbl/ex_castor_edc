@@ -263,6 +263,38 @@ defmodule CastorEDC.TabularTest do
       assert %{context: nil, parent_id: nil, form_id: nil} = schema["f-orphan"]
     end
 
+    test "positions each field as the study orders it" do
+      forms =
+        page("forms", [
+          %{"id" => "form-2", "form_order" => 1, "_embedded" => %{"visit" => %{"id" => "visit-2", "visit_order" => 2}}},
+          %{"id" => "form-1", "form_order" => 3, "_embedded" => %{"visit" => %{"id" => "visit-1", "visit_order" => 1}}}
+        ])
+
+      fields =
+        page("fields", [
+          field("f-late", "numeric", "form-2", %{"field_number" => 1}),
+          field("f-second", "numeric", "form-1", %{"field_number" => 2}),
+          field("f-first", "numeric", "form-1", %{"field_number" => 1}) | Enum.drop(fields(), 3)
+        ])
+
+      routes = fn request ->
+        case String.replace_prefix(request.url.path, "/api/study/#{@study}", "") do
+          "/form" -> forms
+          "/field" -> fields
+          _other -> study(request)
+        end
+      end
+
+      assert {:ok, schema} = Tabular.schema(client(routes), @study)
+
+      assert schema |> Map.values() |> Enum.sort_by(& &1.position) |> Enum.map(& &1.field_id) ==
+               ~w(f-new f-first f-second f-late f-bp f-gad f-orphan)
+
+      assert schema["f-second"].position == {0, 1, 3, 2}
+      assert schema["f-bp"].position == {1, 0, 0, 0}
+      assert schema["f-orphan"].position == {3, 0, 0, 0}
+    end
+
     test "gives each field the type of its values, and keeps option groups" do
       assert {:ok, schema} = Tabular.schema(client(&study/1), @study)
 

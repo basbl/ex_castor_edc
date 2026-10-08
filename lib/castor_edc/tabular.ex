@@ -85,6 +85,9 @@ defmodule CastorEDC.Tabular do
       its form belongs to
     * `:form_id` and `:form_name` - its form
     * `:option_group` - the option group of an option field
+    * `:position` - where the field sits in the study: sorting columns by
+      it puts them in the order the study shows them, visit by visit and
+      form by form, then the repeating data and surveys
     * `:field` - the `CastorEDC.Model.Field` itself, which
       `CastorEDC.FieldValue.decode/2` takes
   """
@@ -100,6 +103,7 @@ defmodule CastorEDC.Tabular do
           form_id: String.t() | nil,
           form_name: String.t() | nil,
           option_group: CastorEDC.Model.FieldOptionGroup.t() | nil,
+          position: {non_neg_integer(), integer(), integer(), integer()},
           field: Field.t()
         }
 
@@ -373,33 +377,56 @@ defmodule CastorEDC.Tabular do
       form_id: form[:form_id],
       form_name: form[:form_name],
       option_group: field.option_group,
+      position: position(form[:position], field.field_number),
       field: field
     }
   end
+
+  # Fields on a form outside the visits, repeating data and surveys come
+  # last.
+  defp position(nil, field_number), do: position({length(@sources), 0, 0}, field_number)
+  defp position({context, parent, form}, field_number), do: {context, parent, form, field_number || 0}
 
   # Every form a field can sit on, by ID.
   defp forms(client, study_id) do
     study =
       for form <- Forms.stream_forms(client, study_id) do
-        form(:study, form.id, form.form_name, form.visit && form.visit.id, form.visit && form.visit.visit_name)
+        visit = form.visit || %{id: nil, visit_name: nil, visit_order: nil}
+
+        form(
+          :study,
+          form.id,
+          form.form_name,
+          visit.id,
+          visit.visit_name,
+          {0, visit.visit_order || 0, form.form_order || 0}
+        )
       end
 
     repeating_data =
-      for repeating_data <- RepeatingData.stream_repeating_data(client, study_id),
+      for {repeating_data, index} <- Enum.with_index(RepeatingData.stream_repeating_data(client, study_id)),
           form <- RepeatingData.stream_repeating_data_forms(client, study_id, repeating_data.id) do
-        form(:repeating_data, form.id, form.repeating_data_form_name, repeating_data.id, repeating_data.name)
+        position = {1, index, form.repeating_data_form_number || 0}
+        form(:repeating_data, form.id, form.repeating_data_form_name, repeating_data.id, repeating_data.name, position)
       end
 
     surveys =
-      for survey <- Surveys.stream_surveys(client, study_id),
+      for {survey, index} <- Enum.with_index(Surveys.stream_surveys(client, study_id)),
           form <- Surveys.stream_survey_forms(client, study_id, survey.id) do
-        form(:survey, form.id, form.survey_form_name, survey.id, survey.name)
+        form(:survey, form.id, form.survey_form_name, survey.id, survey.name, {2, index, form.survey_form_number || 0})
       end
 
     Map.new(study ++ repeating_data ++ surveys, &{&1.form_id, &1})
   end
 
-  defp form(context, form_id, form_name, parent_id, parent_name) do
-    %{context: context, form_id: form_id, form_name: form_name, parent_id: parent_id, parent_name: parent_name}
+  defp form(context, form_id, form_name, parent_id, parent_name, position) do
+    %{
+      context: context,
+      form_id: form_id,
+      form_name: form_name,
+      parent_id: parent_id,
+      parent_name: parent_name,
+      position: position
+    }
   end
 end
