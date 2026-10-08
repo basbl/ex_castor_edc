@@ -194,7 +194,8 @@ defmodule CastorEDC.Export.Request do
   defp object(values, schema, what) when is_list(values) or is_map(values) do
     properties = schema["properties"] || %{}
 
-    Map.new(values, fn {key, value} ->
+    values
+    |> Map.new(fn {key, value} ->
       name = to_string(key)
 
       case properties do
@@ -210,9 +211,20 @@ defmodule CastorEDC.Export.Request do
                   (properties |> Map.keys() |> Enum.sort() |> Enum.map_join(", ", &":#{&1}"))
       end
     end)
+    |> put_defaults(schema)
   end
 
   defp object(values, _schema, what), do: invalid(values, "a keyword list", what)
+
+  # The API fails on some properties left out, which the overlay marks
+  # required and gives a default.
+  defp put_defaults(object, schema) do
+    for name <- schema["required"] || [],
+        not Map.has_key?(object, name),
+        %{"default" => default} = property <- [schema["properties"][name]],
+        into: object,
+        do: {name, value(default, property, name)}
+  end
 
   defp value(value, %{"type" => "object"} = schema, what), do: object(value, schema, what)
 

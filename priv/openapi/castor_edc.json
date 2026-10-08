@@ -123,6 +123,7 @@
                           "type": "object"
                         },
                         "paper_size": {
+                          "default": "a4paper",
                           "enum": [
                             "a4paper",
                             "letterpaper"
@@ -131,6 +132,9 @@
                           "type": "string"
                         }
                       },
+                      "required": [
+                        "paper_size"
+                      ],
                       "type": "object"
                     },
                     "format": {
@@ -235,12 +239,18 @@
                     "options": {
                       "properties": {
                         "include_annotations": {
+                          "default": true,
                           "type": "boolean"
                         },
                         "include_domains": {
+                          "default": true,
                           "type": "boolean"
                         }
                       },
+                      "required": [
+                        "include_annotations",
+                        "include_domains"
+                      ],
                       "type": "object"
                     }
                   },

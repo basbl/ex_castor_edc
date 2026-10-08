@@ -12,8 +12,21 @@ defmodule CastorEDC.Export.RequestTest do
   test "defaults to the type's first format" do
     assert Request.encode(:participant_data, []) == %{"format" => "csv"}
     assert Request.encode(:participant_casebook, []) == %{"format" => "pdf"}
-    assert Request.encode(:form_structure, []) == %{"format" => "xml"}
+    assert Request.encode(:form_structure, [])["format"] == "xml"
     assert Request.encode(:uploaded_files, []) == %{"format" => "zip"}
+  end
+
+  test "sends the defaults of what the API can't do without" do
+    assert Request.encode(:form_structure, []) == %{
+             "format" => "xml",
+             "options" => %{"include_annotations" => true, "include_domains" => true}
+           }
+
+    assert Request.encode(:form_structure, options: [include_domains: false])["options"] ==
+             %{"include_annotations" => true, "include_domains" => false}
+
+    assert Request.encode(:empty_crf, []) == %{"format" => "pdf", "filters" => %{"paper_size" => "a4paper"}}
+    assert Request.encode(:empty_crf, filters: [paper_size: :letterpaper])["filters"] == %{"paper_size" => "letterpaper"}
   end
 
   test "takes the format as an atom or a string" do

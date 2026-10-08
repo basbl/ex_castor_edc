@@ -872,6 +872,20 @@ actions:
         report_step: repeating_data_form
         report_field: repeating_data_field
         survey_step: survey_form
+  # The API reads these whether or not they're sent, and a missing one fails
+  # the request with a 500: a form structure export needs both options (true
+  # is what the export itself defaults to), and an empty CRF a paper size.
+  - target: $.definitions.BatchExportRequest.properties.exports.properties.form_structure.items.properties.options
+    update:
+      required: [include_annotations, include_domains]
+      properties:
+        include_annotations: {default: true}
+        include_domains: {default: true}
+  - target: $.definitions.BatchExportRequest.properties.exports.properties.empty_crf.items.properties.filters
+    update:
+      required: [paper_size]
+      properties:
+        paper_size: {default: a4paper}
   # Most participant data options only apply to some formats, and either to
   # the default export or to the grouped (domain based) one that `grouped:
   # true` asks for. The API refuses an option outside those with "Fields not
