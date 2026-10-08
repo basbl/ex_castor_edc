@@ -1117,3 +1117,16 @@ actions:
       option_group:
         $ref: '#/definitions/FieldOptionGroup'
         description: The field's option group, when listed with include=optiongroup and the field has options.
+
+  - target: $.definitions.DataPoint.properties
+    description: >-
+      Data points of a survey package instance name the package, and single
+      data points embed their field, participant and repeating data instance.
+    update:
+      survey_package_id: {type: string, format: UUID}
+      _embedded:
+        type: object
+        properties:
+          field: {$ref: '#/definitions/Field'}
+          participant: {$ref: '#/definitions/Participant'}
+          repeating_data_instance: {$ref: '#/definitions/RepeatingDataInstance'}

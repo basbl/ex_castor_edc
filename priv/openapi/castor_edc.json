@@ -1057,6 +1057,20 @@
       "DataPoint": {
         "description": "A stored value of one field, for a participant, in the context of the study, a survey (package) instance or a repeating data instance.",
         "properties": {
+          "_embedded": {
+            "properties": {
+              "field": {
+                "$ref": "#/components/schemas/Field"
+              },
+              "participant": {
+                "$ref": "#/components/schemas/Participant"
+              },
+              "repeating_data_instance": {
+                "$ref": "#/components/schemas/RepeatingDataInstance"
+              }
+            },
+            "type": "object"
+          },
           "field_id": {
             "format": "UUID",
             "type": "string"
@@ -1085,6 +1099,10 @@
             "type": "string"
           },
           "survey_name": {
+            "type": "string"
+          },
+          "survey_package_id": {
+            "format": "UUID",
             "type": "string"
           },
           "survey_package_instance_id": {

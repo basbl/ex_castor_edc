@@ -7,30 +7,42 @@ defmodule CastorEDC.Model.DataPoint do
 
   ## Fields
 
+    * `:field` (`t:CastorEDC.Model.Field.t/0`)
     * `:field_id` (string)
     * `:field_variable_name` (string) - Only present on single data points.
+    * `:participant` (`t:CastorEDC.Model.Participant.t/0`)
     * `:participant_id` (string)
+    * `:repeating_data_instance` (`t:CastorEDC.Model.RepeatingDataInstance.t/0`) - The repeating data instance is an instantiation of repeating data, a real copy of repeating data to which the data points get saved.
     * `:repeating_data_instance_id` (string)
     * `:repeating_data_instance_name` (string)
     * `:survey_instance_id` (string)
     * `:survey_name` (string)
+    * `:survey_package_id` (string)
     * `:survey_package_instance_id` (string)
     * `:updated_on` (`NaiveDateTime`) - When the value last changed, as YYYY-MM-DD HH:MM:SS.
     * `:value` (string) - The name collections use for the value.
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
 
-  @known ~w(field_id field_variable_name participant_id repeating_data_instance_id repeating_data_instance_name survey_instance_id survey_name survey_package_instance_id updated_on field_value value)
-  @known_embedded ~w()
+  alias CastorEDC.Model.Field
+  alias CastorEDC.Model.Participant
+  alias CastorEDC.Model.RepeatingDataInstance
+
+  @known ~w(field_id field_variable_name participant_id repeating_data_instance_id repeating_data_instance_name survey_instance_id survey_name survey_package_id survey_package_instance_id updated_on field_value value)
+  @known_embedded ~w(field participant repeating_data_instance)
 
   defstruct [
+    :field,
     :field_id,
     :field_variable_name,
+    :participant,
     :participant_id,
+    :repeating_data_instance,
     :repeating_data_instance_id,
     :repeating_data_instance_name,
     :survey_instance_id,
     :survey_name,
+    :survey_package_id,
     :survey_package_instance_id,
     :updated_on,
     :value,
@@ -38,13 +50,17 @@ defmodule CastorEDC.Model.DataPoint do
   ]
 
   @type t :: %__MODULE__{
+          field: Field.t() | nil,
           field_id: String.t() | nil,
           field_variable_name: String.t() | nil,
+          participant: Participant.t() | nil,
           participant_id: String.t() | nil,
+          repeating_data_instance: RepeatingDataInstance.t() | nil,
           repeating_data_instance_id: String.t() | nil,
           repeating_data_instance_name: String.t() | nil,
           survey_instance_id: String.t() | nil,
           survey_name: String.t() | nil,
+          survey_package_id: String.t() | nil,
           survey_package_instance_id: String.t() | nil,
           updated_on: NaiveDateTime.t() | nil,
           value: String.t() | nil,
@@ -57,13 +73,17 @@ defmodule CastorEDC.Model.DataPoint do
     embedded = if is_map(data["_embedded"]), do: data["_embedded"], else: %{}
 
     %__MODULE__{
+      field: CastorEDC.Model.one(embedded["field"], Field),
       field_id: data["field_id"],
       field_variable_name: data["field_variable_name"],
+      participant: CastorEDC.Model.one(embedded["participant"], Participant),
       participant_id: data["participant_id"],
+      repeating_data_instance: CastorEDC.Model.one(embedded["repeating_data_instance"], RepeatingDataInstance),
       repeating_data_instance_id: data["repeating_data_instance_id"],
       repeating_data_instance_name: data["repeating_data_instance_name"],
       survey_instance_id: data["survey_instance_id"],
       survey_name: data["survey_name"],
+      survey_package_id: data["survey_package_id"],
       survey_package_instance_id: data["survey_package_instance_id"],
       updated_on: CastorEDC.Model.cast(data["updated_on"], :naive_datetime),
       value: data["field_value"] || data["value"],
