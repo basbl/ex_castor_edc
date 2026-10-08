@@ -28,3 +28,7 @@ ex_castor_edc-*.tar
 
 # Dialyzer PLTs
 /priv/plts/
+
+# End-to-end configuration and the IDs the seed created
+/.env
+/test/e2e/.seeded.json

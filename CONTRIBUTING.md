@@ -21,6 +21,21 @@ $ mix coveralls   # tests with coverage, failing below the threshold in coverall
 
 CI runs `mix compile --warnings-as-errors`, `mix coveralls` and `mix quality`.
 
+## End-to-end tests
+
+The end-to-end suite runs the client against a Castor EDC test study.
+It needs credentials, so it isn't part of `mix test` or CI.
+Copy `.env.example` to `.env`, fill it in, load it into your shell, and run:
+
+```console
+$ mix test --only e2e
+```
+
+On its first run, the suite seeds the study with a participant and data (`mix castor_edc.e2e.seed`), and records what it created in `test/e2e/.seeded.json`; delete that file to seed again.
+A study that has never been live allows only ten participants, so once it has them, the seed reuses the latest one.
+
+`mix castor_edc.fixtures.record` re-records `test/fixtures/` from the same study; commit a refresh on its own.
+
 ## Commits
 
 Each commit is one logical change that leaves the build green.
