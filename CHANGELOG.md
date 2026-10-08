@@ -16,7 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `CastorEDC.Client.request/2` runs an operation and returns `{:ok, result}` or `{:error, %CastorEDC.Error{}}`; collections come back as a `CastorEDC.Page`.
 - `CastorEDC.Export` runs batch exports in one call per type (`participant_data/3`, `sites/3` and nine more): it queues the export, checking its format, filters and options against the spec, waits until it is ready by polling with backoff, and downloads it, in memory or streamed to disk, unzipped if asked. While three exports are running it waits for a slot. The steps are public too, and each emits telemetry.
 - `CastorEDC.FieldValue.decode/2` turns the strings the API sends as data point values into Elixir values by field type, with `CastorEDC.MissingValue` for values marked missing and `CastorEDC.PartialDate` for dates with unknown parts. Grids, uploads and locations decode too. `CastorEDC.FieldValue.label/2` gives the names of chosen options.
-- `CastorEDC.Tabular.schema/2` describes a study's fields for tables: variable names, whether they collect data in the study, a repeating data or a survey, and the type of their values.
+- `CastorEDC.Tabular.schema/2` describes a study's fields for tables: variable names, whether they collect data in the study, a repeating data or a survey, and the type of their values. `CastorEDC.Tabular.data_points/3` streams every value the study collected, decoded, one row per value.
 
 ### Changed
 

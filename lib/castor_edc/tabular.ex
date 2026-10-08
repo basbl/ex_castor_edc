@@ -4,12 +4,27 @@ defmodule CastorEDC.Tabular do
 
   `schema/2` describes the study's fields: their variable names, where they
   collect data, and the Elixir type their values decode to.
+  `data_points/3` streams every value the study collected, decoded, as
+  rows:
+
+      client
+      |> CastorEDC.Tabular.data_points(study_id)
+      |> Enum.take(1)
+      #=> [%{participant_id: "000001", site_id: "...", source: :study, instance_id: nil,
+      #=>    parent_id: nil, field_id: "...", variable_name: "weight", value: 72.5,
+      #=>    raw_value: "72.5", updated_on: ~N[2026-10-07 21:49:55]}]
+
+  This long format, one row per value, holds the study's, repeating data's
+  and surveys' values alike and loses nothing, which makes it the default.
   """
 
+  alias CastorEDC.DataPoints
   alias CastorEDC.Error
   alias CastorEDC.Fields
+  alias CastorEDC.FieldValue
   alias CastorEDC.Forms
   alias CastorEDC.Model.Field
+  alias CastorEDC.Participants
   alias CastorEDC.RepeatingData
   alias CastorEDC.Surveys
 
@@ -79,6 +94,35 @@ defmodule CastorEDC.Tabular do
           field: Field.t()
         }
 
+  @typedoc """
+  A value, as `data_points/3` gives it:
+
+    * `:participant_id` and `:site_id` - whose value it is, and their site
+    * `:source` - where it was collected, as in `t:context/0`
+    * `:instance_id` - the repeating data instance or survey instance it
+      belongs to, or `nil` for the study's values
+    * `:parent_id` - the repeating data or survey, or `nil` for the
+      study's values
+    * `:field_id` and `:variable_name` - its field
+    * `:value` - decoded with `CastorEDC.FieldValue.decode/2`
+    * `:raw_value` - the string the API sent
+    * `:updated_on` - when it last changed
+  """
+  @type row :: %{
+          participant_id: String.t(),
+          site_id: String.t() | nil,
+          source: context(),
+          instance_id: String.t() | nil,
+          parent_id: String.t() | nil,
+          field_id: String.t(),
+          variable_name: String.t() | nil,
+          value: FieldValue.t(),
+          raw_value: String.t() | nil,
+          updated_on: NaiveDateTime.t() | nil
+        }
+
+  @sources [:study, :repeating_data, :survey]
+
   @types %{
     "numeric" => :number,
     "slider" => :number,
@@ -127,6 +171,80 @@ defmodule CastorEDC.Tabular do
   rescue
     error in Error -> {:error, error}
   end
+
+  @doc """
+  Streams the study's values as `t:row/0`s, one per value.
+
+  The stream fetches the schema and the participants (for their sites)
+  when it starts, then each source's values page by page, as it's
+  consumed. A failed request raises `CastorEDC.Error` where the stream is
+  consumed.
+
+  ## Options
+
+    * `:sources` - the sources to include, all of `[:study,
+      :repeating_data, :survey]` by default
+    * `:schema` - the result of `schema/2`, if you already have it
+  """
+  @spec data_points(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(row())
+  def data_points(client, study_id, opts \\ []) do
+    sources = Keyword.get(opts, :sources, @sources)
+
+    unknown = sources -- @sources
+    if unknown != [], do: raise(ArgumentError, "unknown source(s) #{inspect(unknown)}; expected #{inspect(@sources)}")
+
+    Stream.flat_map([nil], fn nil ->
+      schema = Keyword.get_lazy(opts, :schema, fn -> schema!(client, study_id) end)
+      sites = sites(client, study_id)
+
+      Stream.flat_map(sources, fn source ->
+        client
+        |> source_stream(study_id, source)
+        |> Stream.map(&row(&1, source, schema, sites))
+      end)
+    end)
+  end
+
+  defp schema!(client, study_id) do
+    case schema(client, study_id) do
+      {:ok, schema} -> schema
+      {:error, error} -> raise error
+    end
+  end
+
+  defp sites(client, study_id) do
+    for participant <- Participants.stream_participants(client, study_id), into: %{} do
+      {participant.participant_id, participant.site && participant.site.id}
+    end
+  end
+
+  defp source_stream(client, study_id, :study), do: DataPoints.stream_study_data_points(client, study_id)
+
+  defp source_stream(client, study_id, :repeating_data),
+    do: DataPoints.stream_repeating_data_data_points(client, study_id)
+
+  defp source_stream(client, study_id, :survey), do: DataPoints.stream_survey_data_points(client, study_id)
+
+  defp row(point, source, schema, sites) do
+    column = Map.get(schema, point.field_id)
+
+    %{
+      participant_id: point.participant_id,
+      site_id: Map.get(sites, point.participant_id),
+      source: source,
+      instance_id: instance_id(point, source),
+      parent_id: if(source != :study and column, do: column.parent_id),
+      field_id: point.field_id,
+      variable_name: column && column.variable_name,
+      value: FieldValue.decode(point.value, if(column, do: column.field, else: "string")),
+      raw_value: point.value,
+      updated_on: point.updated_on
+    }
+  end
+
+  defp instance_id(_point, :study), do: nil
+  defp instance_id(point, :repeating_data), do: point.repeating_data_instance_id
+  defp instance_id(point, :survey), do: point.survey_instance_id
 
   @doc """
   The Elixir type of a field type's values, as in `t:value_type/0`.

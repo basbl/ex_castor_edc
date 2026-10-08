@@ -37,32 +37,124 @@ defmodule CastorEDC.TabularTest do
     ]
   end
 
-  # Answers each collection the schema needs, by path.
+  # Answers each collection the schema and the rows need, by path.
   defp study(request) do
-    case String.replace_prefix(request.url.path, "/api/study/#{@study}", "") do
-      "/field" ->
-        page("fields", fields())
-
-      "/form" ->
+    routes = %{
+      "/field" => page("fields", fields()),
+      "/form" =>
         page("forms", [
           %{
             "id" => "form-1",
             "form_name" => "Baseline",
             "_embedded" => %{"visit" => %{"id" => "visit-1", "visit_name" => "Screening"}}
           }
-        ])
+        ]),
+      "/repeating-data" => page("repeatingData", [%{"id" => "rd-1", "name" => "Blood pressure"}]),
+      "/repeating-data/rd-1/repeating-data-form" =>
+        page("repeating_data_forms", [%{"id" => "rd-form-1", "repeating_data_form_name" => "Measurement"}]),
+      "/survey" => page("surveys", [%{"id" => "survey-1", "name" => "GAD-7"}]),
+      "/survey/survey-1/survey-form" =>
+        page("survey_forms", [%{"id" => "survey-form-1", "survey_form_name" => "Questions"}]),
+      "/participant" =>
+        page("participants", [
+          %{"participant_id" => "P1", "_embedded" => %{"site" => %{"id" => "site-1"}}},
+          %{"participant_id" => "P2", "_embedded" => %{"site" => %{"id" => "site-2"}}}
+        ]),
+      "/data-points/study" =>
+        page("items", [
+          point("P1", "f-weight", "72.5"),
+          point("P1", "f-sex", "1"),
+          point("P2", "f-weight", "##USER_MISSING_98##"),
+          point("P3", "f-gone", "x")
+        ]),
+      "/data-points/repeating-data-instance" =>
+        page("items", [point("P1", "f-bp", "120", %{"repeating_data_instance_id" => "rdi-1"})]),
+      "/data-points/survey-instance" => page("items", [point("P2", "f-gad", "0;2", %{"survey_instance_id" => "si-1"})])
+    }
 
-      "/repeating-data" ->
-        page("repeatingData", [%{"id" => "rd-1", "name" => "Blood pressure"}])
+    Map.fetch!(routes, String.replace_prefix(request.url.path, "/api/study/#{@study}", ""))
+  end
 
-      "/repeating-data/rd-1/repeating-data-form" ->
-        page("repeating_data_forms", [%{"id" => "rd-form-1", "repeating_data_form_name" => "Measurement"}])
+  defp point(participant, field, value, attrs \\ %{}) do
+    Map.merge(
+      %{
+        "participant_id" => participant,
+        "field_id" => field,
+        "field_value" => value,
+        "updated_on" => "2026-10-07 21:49:55"
+      },
+      attrs
+    )
+  end
 
-      "/survey" ->
-        page("surveys", [%{"id" => "survey-1", "name" => "GAD-7"}])
+  describe "data_points/3" do
+    test "streams every value as a row" do
+      rows = (&study/1) |> client() |> Tabular.data_points(@study) |> Enum.to_list()
 
-      "/survey/survey-1/survey-form" ->
-        page("survey_forms", [%{"id" => "survey-form-1", "survey_form_name" => "Questions"}])
+      assert [weight, sex, missing, gone, bp, gad] = rows
+
+      assert weight == %{
+               participant_id: "P1",
+               site_id: "site-1",
+               source: :study,
+               instance_id: nil,
+               parent_id: nil,
+               field_id: "f-weight",
+               variable_name: "var_f-weight",
+               value: 72.5,
+               raw_value: "72.5",
+               updated_on: ~N[2026-10-07 21:49:55]
+             }
+
+      assert %{value: "1", variable_name: "var_f-sex"} = sex
+      assert %{participant_id: "P2", site_id: "site-2", value: %CastorEDC.MissingValue{code: 98}} = missing
+      assert %{participant_id: "P3", site_id: nil, variable_name: nil, value: "x"} = gone
+
+      assert %{source: :repeating_data, instance_id: "rdi-1", parent_id: "rd-1", value: 120} = bp
+      assert %{source: :survey, instance_id: "si-1", parent_id: "survey-1", value: ["0", "2"]} = gad
+    end
+
+    test "only includes the sources asked for" do
+      rows = (&study/1) |> client() |> Tabular.data_points(@study, sources: [:survey]) |> Enum.to_list()
+      assert [%{source: :survey}] = rows
+    end
+
+    test "uses a schema it's given" do
+      {:ok, schema} = Tabular.schema(client(&study/1), @study)
+      for _request <- 1..6, do: assert_requested()
+
+      schema = put_in(schema["f-weight"].variable_name, "weight")
+      rows = (&study/1) |> client() |> Tabular.data_points(@study, schema: schema, sources: [:study]) |> Enum.to_list()
+
+      assert %{variable_name: "weight"} = hd(rows)
+      paths = for _request <- 1..2, do: assert_requested().url.path
+      assert paths == ["/api/study/#{@study}/participant", "/api/study/#{@study}/data-points/study"]
+      refute_received {:castor_edc_request, _request}
+    end
+
+    test "doesn't send a request before the stream is consumed" do
+      Tabular.data_points(client(&study/1), @study)
+      refute_received {:castor_edc_request, _request}
+    end
+
+    test "raises a failed request where the stream is consumed" do
+      for failing <- ["/participant", "/field"] do
+        client =
+          client(fn request ->
+            if String.ends_with?(request.url.path, failing),
+              do: json(%{"detail" => "Forbidden"}, status: 403),
+              else: study(request)
+          end)
+
+        stream = Tabular.data_points(client, @study)
+        assert_raise Error, fn -> Enum.to_list(stream) end
+      end
+    end
+
+    test "rejects an unknown source" do
+      assert_raise ArgumentError, ~r/unknown source\(s\) \[:reports\]/, fn ->
+        Tabular.data_points(client(&study/1), @study, sources: [:reports])
+      end
     end
   end
 
