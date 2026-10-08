@@ -16,6 +16,15 @@ defmodule CastorEDC.Tabular do
 
   This long format, one row per value, holds the study's, repeating data's
   and surveys' values alike and loses nothing, which makes it the default.
+  With `format: :wide`, there's a row per participant for the study's
+  values, and a row per instance for repeating data and surveys, with a
+  column per variable:
+
+      client
+      |> CastorEDC.Tabular.data_points(study_id, format: :wide)
+      |> Enum.take(1)
+      #=> [%{:participant_id => "000001", :site_id => "...", :source => :study, :instance_id => nil,
+      #=>    :parent_id => nil, "weight" => 72.5, "sex" => "1", "symptoms_1" => true, ...}]
   """
 
   alias CastorEDC.DataPoints
@@ -121,6 +130,21 @@ defmodule CastorEDC.Tabular do
           updated_on: NaiveDateTime.t() | nil
         }
 
+  @typedoc """
+  A participant's study values, or a repeating data or survey instance's
+  values, as `data_points/3` gives them with `format: :wide`: the keys of
+  `t:row/0` that say whose values they are, and a value for each variable,
+  under its name.
+  """
+  @type wide_row :: %{
+          required(:participant_id) => String.t(),
+          required(:site_id) => String.t() | nil,
+          required(:source) => context(),
+          required(:instance_id) => String.t() | nil,
+          required(:parent_id) => String.t() | nil,
+          optional(String.t()) => FieldValue.t() | boolean()
+        }
+
   @sources [:study, :repeating_data, :survey]
 
   @types %{
@@ -182,17 +206,47 @@ defmodule CastorEDC.Tabular do
 
   ## Options
 
+    * `:format` - `:long` (the default) or `:wide`, see below
     * `:sources` - the sources to include, all of `[:study,
       :repeating_data, :survey]` by default
     * `:schema` - the result of `schema/2`, if you already have it
+
+  ## Wide format
+
+  With `format: :wide`, the stream has a `t:wide_row/0` for each
+  participant with study values, and for each repeating data instance and
+  survey instance with values. Besides `:participant_id`, `:site_id`,
+  `:source`, `:instance_id` and `:parent_id`, each has a key for every
+  variable of its study, repeating data or survey (in the schema), with
+  the variable name as a string and `nil` where there's no value. Rows of
+  the same repeating data or survey share their keys, so each such group
+  makes a table.
+
+  A checkbox field becomes a column per option, named
+  `<variable>_<option value>`: `true` when checked, `false` when not, and
+  the field's value (`nil`, a `CastorEDC.MissingValue` or `:encrypted`)
+  when there's no list of checked options. A field without a variable name
+  is keyed by its ID, and values of fields the schema doesn't know are
+  left out.
+
+  The wide format has to see every value before it can build a row, so the
+  stream fetches them all when it starts.
   """
-  @spec data_points(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(row())
+  @spec data_points(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(row() | wide_row())
   def data_points(client, study_id, opts \\ []) do
     sources = Keyword.get(opts, :sources, @sources)
 
     unknown = sources -- @sources
     if unknown != [], do: raise(ArgumentError, "unknown source(s) #{inspect(unknown)}; expected #{inspect(@sources)}")
 
+    case Keyword.get(opts, :format, :long) do
+      :long -> long(client, study_id, sources, opts)
+      :wide -> wide(client, study_id, sources, opts)
+      other -> raise ArgumentError, "expected :format to be :long or :wide, got: #{inspect(other)}"
+    end
+  end
+
+  defp long(client, study_id, sources, opts) do
     Stream.flat_map([nil], fn nil ->
       schema = Keyword.get_lazy(opts, :schema, fn -> schema!(client, study_id) end)
       sites = sites(client, study_id)
@@ -204,6 +258,55 @@ defmodule CastorEDC.Tabular do
       end)
     end)
   end
+
+  defp wide(client, study_id, sources, opts) do
+    Stream.flat_map([nil], fn nil ->
+      schema = Keyword.get_lazy(opts, :schema, fn -> schema!(client, study_id) end)
+      columns = Enum.group_by(Map.values(schema), &{&1.context, if(&1.context != :study, do: &1.parent_id)})
+
+      client
+      |> long(study_id, sources, schema: schema)
+      |> Enum.filter(&Map.has_key?(schema, &1.field_id))
+      |> Enum.group_by(&{&1.source, &1.parent_id, &1.participant_id, &1.instance_id})
+      |> Enum.sort_by(fn {{source, parent, participant, instance}, _rows} ->
+        {Enum.find_index(@sources, &(&1 == source)), parent, participant, instance}
+      end)
+      |> Enum.map(fn {{source, parent, participant, instance}, values} ->
+        cells = columns |> Map.get({source, parent}, []) |> wide_cells(Map.new(values, &{&1.field_id, &1.value}))
+
+        Map.merge(Map.new(cells), %{
+          participant_id: participant,
+          site_id: hd(values).site_id,
+          source: source,
+          instance_id: instance,
+          parent_id: parent
+        })
+      end)
+    end)
+  end
+
+  @doc false
+  # The wide row's cells for the given columns and values by field ID.
+  @spec wide_cells([column()], %{String.t() => FieldValue.t()}) :: [{String.t(), FieldValue.t() | boolean()}]
+  def wide_cells(columns, values), do: Enum.flat_map(columns, &cells(&1, Map.get(values, &1.field_id)))
+
+  # A checkbox field has a column per option.
+  defp cells(%{field_type: "checkbox", option_group: %{options: [_option | _more] = options}} = column, value) do
+    for option <- options do
+      cell =
+        case value do
+          checked when is_list(checked) -> option.value in checked
+          other -> other
+        end
+
+      {"#{name(column)}_#{option.value}", cell}
+    end
+  end
+
+  defp cells(column, value), do: [{name(column), value}]
+
+  defp name(%{variable_name: name}) when is_binary(name) and name != "", do: name
+  defp name(%{field_id: id}), do: id
 
   defp schema!(client, study_id) do
     case schema(client, study_id) do

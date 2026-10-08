@@ -31,7 +31,12 @@ defmodule CastorEDC.TabularTest do
       }),
       field("f-remark", "remark", "form-1"),
       field("f-bp", "numeric", "rd-form-1"),
-      field("f-gad", "checkbox", "survey-form-1"),
+      field("f-gad", "checkbox", "survey-form-1", %{
+        "option_group" => %{
+          "id" => "og-2",
+          "options" => [%{"value" => "0", "name" => "Not at all"}, %{"value" => "1"}, %{"value" => "2"}]
+        }
+      }),
       field("f-orphan", "date", "elsewhere"),
       field("f-new", "hologram", "form-1")
     ]
@@ -154,6 +159,76 @@ defmodule CastorEDC.TabularTest do
     test "rejects an unknown source" do
       assert_raise ArgumentError, ~r/unknown source\(s\) \[:reports\]/, fn ->
         Tabular.data_points(client(&study/1), @study, sources: [:reports])
+      end
+    end
+  end
+
+  describe "data_points/3 in wide format" do
+    test "gives a row per participant, and per instance, with a column per variable" do
+      rows = (&study/1) |> client() |> Tabular.data_points(@study, format: :wide) |> Enum.to_list()
+
+      assert rows == [
+               %{
+                 :participant_id => "P1",
+                 :site_id => "site-1",
+                 :source => :study,
+                 :instance_id => nil,
+                 :parent_id => nil,
+                 "var_f-weight" => 72.5,
+                 "var_f-sex" => "1",
+                 "var_f-new" => nil
+               },
+               %{
+                 :participant_id => "P2",
+                 :site_id => "site-2",
+                 :source => :study,
+                 :instance_id => nil,
+                 :parent_id => nil,
+                 "var_f-weight" => CastorEDC.MissingValue.new(98),
+                 "var_f-sex" => nil,
+                 "var_f-new" => nil
+               },
+               %{
+                 :participant_id => "P1",
+                 :site_id => "site-1",
+                 :source => :repeating_data,
+                 :instance_id => "rdi-1",
+                 :parent_id => "rd-1",
+                 "var_f-bp" => 120
+               },
+               %{
+                 :participant_id => "P2",
+                 :site_id => "site-2",
+                 :source => :survey,
+                 :instance_id => "si-1",
+                 :parent_id => "survey-1",
+                 "var_f-gad_0" => true,
+                 "var_f-gad_1" => false,
+                 "var_f-gad_2" => true
+               }
+             ]
+    end
+
+    test "fills every checkbox column with a value that isn't a list" do
+      {:ok, schema} = Tabular.schema(client(&study/1), @study)
+      column = schema["f-gad"]
+
+      for value <- [nil, CastorEDC.MissingValue.new(95), :encrypted] do
+        rows = [%{column | variable_name: "gad"}]
+        assert Enum.all?(Tabular.wide_cells(rows, %{"f-gad" => value}), fn {_name, cell} -> cell == value end)
+      end
+    end
+
+    test "keys a field without a variable name by its ID" do
+      {:ok, schema} = Tabular.schema(client(&study/1), @study)
+      column = %{schema["f-weight"] | variable_name: nil}
+
+      assert Tabular.wide_cells([column], %{"f-weight" => 1}) == [{"f-weight", 1}]
+    end
+
+    test "rejects an unknown format" do
+      assert_raise ArgumentError, ~r/:format to be :long or :wide, got: :tall/, fn ->
+        Tabular.data_points(client(&study/1), @study, format: :tall)
       end
     end
   end

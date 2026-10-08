@@ -43,4 +43,21 @@ defmodule CastorEDC.E2E.TabularTest do
       assert row.source == :study == is_nil(row.instance_id)
     end
   end
+
+  test "gives wide rows with the same columns per study, repeating data and survey",
+       %{client: client, study: study, schema: schema} do
+    long = client |> Tabular.data_points(study, schema: schema) |> Enum.to_list()
+    wide = client |> Tabular.data_points(study, schema: schema, format: :wide) |> Enum.to_list()
+
+    assert length(wide) == long |> Enum.uniq_by(&{&1.source, &1.participant_id, &1.instance_id}) |> length()
+
+    for {_group, rows} <- Enum.group_by(wide, &{&1.source, &1.parent_id}) do
+      assert rows |> Enum.map(&Map.keys/1) |> Enum.uniq() |> length() == 1
+    end
+
+    for row <- long, schema[row.field_id].field_type not in ["checkbox"] do
+      wide_row = Enum.find(wide, &(&1.participant_id == row.participant_id and &1.instance_id == row.instance_id))
+      assert Map.fetch!(wide_row, row.variable_name) == row.value
+    end
+  end
 end
