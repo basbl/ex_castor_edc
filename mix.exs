@@ -51,7 +51,7 @@ defmodule CastorEDC.MixProject do
         "Data Collection": ~r"CastorEDC.DataCollection",
         "Study Protocol": ~r"CastorEDC.StudyProtocol"
       ],
-      extras: ["notebook/getting_started.livemd"]
+      extras: ["notebook/getting_started.livemd", "guides/migrating-to-1.0.md"]
     ]
   end
 
