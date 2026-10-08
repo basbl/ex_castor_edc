@@ -178,16 +178,18 @@ defmodule Mix.Tasks.CastorEdc.E2e.Seed do
       for field <- valued, value = value(field), do: %{"field_id" => field.id, "field_value" => value}
   end
 
-  defp value(%{field_type: "numeric"} = field), do: field |> number_in_range() |> to_string()
-  defp value(%{field_type: "slider"} = field), do: field |> number_in_range() |> to_string()
-  defp value(%{field_type: "year"}), do: "2015"
-  defp value(%{field_type: "date"}), do: "07-10-2026"
-  defp value(%{field_type: "time"}), do: "12:30"
-  defp value(%{field_type: "datetime"}), do: "07-10-2026;12:30"
-  defp value(%{field_type: type}) when type in ["string", "textarea"], do: "e2e text; with a semicolon"
-  defp value(%{field_type: type} = field) when type in ["radio", "dropdown"], do: field |> options() |> List.first()
-  defp value(%{field_type: "checkbox"} = field), do: field |> options() |> Enum.take(2) |> join_options()
-  defp value(_layout_or_unsupported), do: nil
+  @doc false
+  # A value the field accepts, or nil for a field that holds none.
+  def value(%{field_type: "numeric"} = field), do: field |> number_in_range() |> to_string()
+  def value(%{field_type: "slider"} = field), do: field |> number_in_range() |> to_string()
+  def value(%{field_type: "year"}), do: "2015"
+  def value(%{field_type: "date"}), do: "07-10-2026"
+  def value(%{field_type: "time"}), do: "12:30"
+  def value(%{field_type: "datetime"}), do: "07-10-2026;12:30"
+  def value(%{field_type: type}) when type in ["string", "textarea"], do: "e2e text; with a semicolon"
+  def value(%{field_type: type} = field) when type in ["radio", "dropdown"], do: field |> options() |> List.first()
+  def value(%{field_type: "checkbox"} = field), do: field |> options() |> Enum.take(2) |> join_options()
+  def value(_layout_or_unsupported), do: nil
 
   defp number_in_range(%{field_min: min, field_max: max}) do
     cond do
