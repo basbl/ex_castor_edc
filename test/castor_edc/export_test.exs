@@ -83,6 +83,27 @@ defmodule CastorEDC.ExportTest do
     Req.Request.put_private(client, :castor_edc_sleep, fn ms -> send(test, {:slept, ms}) end)
   end
 
+  # A clock that only sleeping moves forward, and that reports each sleep.
+  defp clocked(client) do
+    test = self()
+    {:ok, clock} = Agent.start_link(fn -> 0 end)
+
+    client
+    |> Req.Request.put_private(:castor_edc_monotonic, fn -> Agent.get(clock, & &1) end)
+    |> Req.Request.put_private(:castor_edc_sleep, fn ms ->
+      send(test, {:slept, ms})
+      Agent.update(clock, &(&1 + ms))
+    end)
+  end
+
+  defp slept do
+    receive do
+      {:slept, ms} -> [ms | slept()]
+    after
+      0 -> []
+    end
+  end
+
   defp sent_body(request), do: request.body |> IO.iodata_to_binary() |> JSON.decode!()
 
   describe "queue/4" do
@@ -197,6 +218,153 @@ defmodule CastorEDC.ExportTest do
 
     test "builds a client from options" do
       assert {:ok, ["export-1"]} = Export.queue([access_token: "t", adapter: QueuedAdapter], @study, [{:sites, []}])
+    end
+  end
+
+  describe "await/4" do
+    test "polls until the exports are ready, backing off, and returns them in order" do
+      client =
+        [
+          list([]),
+          list([entry("export-2", %{"status" => "queued"}), entry("export-1", %{"status" => "in_progress"})]),
+          list([entry("export-2", %{"status" => "in_progress"}), entry("export-1")]),
+          list([entry("export-2"), entry("export-1")])
+        ]
+        |> sequence()
+        |> client()
+        |> clocked()
+
+      assert {:ok, [%Export{id: "export-1", status: :ready}, %Export{id: "export-2", status: :ready}]} =
+               Export.await(client, @study, ["export-1", "export-2"])
+
+      assert slept() == [1000, 1500, 2250, 3375]
+    end
+
+    test "polls at most every 15 seconds" do
+      responses = List.duplicate(list([entry("export-1", %{"status" => "queued"})]), 9) ++ [list([entry("export-1")])]
+      client = responses |> sequence() |> client() |> clocked()
+
+      assert {:ok, [_export]} = Export.await(client, @study, ["export-1"], poll_interval: 5000)
+      assert slept() == [5000, 7500, 11_250, 15_000, 15_000, 15_000, 15_000, 15_000, 15_000, 15_000]
+    end
+
+    test "returns :export_failed as soon as an export fails" do
+      client =
+        [
+          list([
+            entry("export-1", %{"status" => "failed", "file_name" => nil}),
+            entry("export-2", %{"status" => "queued"})
+          ])
+        ]
+        |> sequence()
+        |> client()
+        |> clocked()
+
+      assert {:error, %Error{code: :export_failed, body: %Export{id: "export-1"}, message: message}} =
+               Export.await(client, @study, ["export-2", "export-1"])
+
+      assert message == "export export-1 (sites, csv) failed"
+    end
+
+    test "returns :export_timeout with the exports that aren't ready" do
+      client = [entry("export-1"), entry("export-2", %{"status" => "in_progress"})] |> list() |> client() |> clocked()
+
+      assert {:error, %Error{code: :export_timeout, message: message, details: details}} =
+               Export.await(client, @study, ["export-1", "export-2"], timeout: 4000)
+
+      assert message =~ "export(s) export-2 weren't ready after 4 seconds"
+      assert details == [%{code: "in_progress", message: "export-2", field: nil}]
+      assert slept() == [1000, 1500, 1500]
+    end
+
+    test "waits as long as it takes with timeout: :infinity" do
+      responses = List.duplicate(list([entry("export-1", %{"status" => "queued"})]), 80) ++ [list([entry("export-1")])]
+      client = responses |> sequence() |> client() |> clocked()
+
+      assert {:ok, [_export]} = Export.await(client, @study, ["export-1"], timeout: :infinity)
+      assert Enum.sum(slept()) > to_timeout(minute: 15)
+    end
+
+    test "takes an export missing from the list for a moment as queued" do
+      client = [list([]), list([]), list([entry("export-1")])] |> sequence() |> client() |> clocked()
+
+      assert {:ok, [%Export{id: "export-1"}]} = Export.await(client, @study, ["export-1"])
+    end
+
+    test "returns :export_not_found for an export that stays missing" do
+      client = [entry("other")] |> list() |> client() |> clocked()
+
+      assert {:error, %Error{code: :export_not_found}} = Export.await(client, @study, ["export-1"])
+      assert Enum.sum(slept()) in 30_000..45_000
+    end
+
+    test "stops paging at exports older than :since" do
+      old = entry("old", %{"created_on" => php_date("2026-10-01 10:00:00")})
+
+      client =
+        fn request ->
+          "1" = URI.decode_query(request.url.query)["page"]
+          list([entry("export-1"), old], 1, 9)
+        end
+        |> client()
+        |> clocked()
+
+      assert {:ok, [_export]} = Export.await(client, @study, ["export-1"], since: ~U[2026-10-07 00:00:00Z])
+      assert_requested()
+
+      client =
+        fn _request -> list([entry("export-2", %{"status" => "queued"}), old], 1, 9) end
+        |> client()
+        |> clocked()
+
+      assert {:error, %Error{code: :export_timeout}} =
+               Export.await(client, @study, ["export-1", "export-2"], since: ~U[2026-10-07 00:00:00Z], timeout: 1000)
+
+      assert_requested()
+      refute_received {:castor_edc_request, _request}
+    end
+
+    test "returns the error of a failed poll" do
+      client = %{} |> json(status: 500) |> client() |> clocked()
+
+      assert {:error, %Error{status: 500}} = Export.await(client, @study, ["export-1"])
+    end
+
+    test "emits telemetry for each poll and each finished export" do
+      events = [[:castor_edc, :export, :poll], [:castor_edc, :export, :completed], [:castor_edc, :export, :failed]]
+      ref = :telemetry_test.attach_event_handlers(self(), events)
+
+      client =
+        [
+          list([entry("export-1"), entry("export-2", %{"status" => "queued"})]),
+          list([entry("export-1"), entry("export-2")])
+        ]
+        |> sequence()
+        |> client()
+        |> clocked()
+
+      Export.await(client, @study, ["export-1", "export-2"])
+
+      assert_received {[:castor_edc, :export, :poll], ^ref, %{pending: 1}, %{study_id: @study}}
+      assert_received {[:castor_edc, :export, :poll], ^ref, %{pending: 0}, %{study_id: @study}}
+      assert_received {[:castor_edc, :export, :completed], ^ref, %{duration: first}, %{export: %Export{id: "export-1"}}}
+      assert_received {[:castor_edc, :export, :completed], ^ref, %{duration: second}, %{export: %Export{id: "export-2"}}}
+      refute_received {[:castor_edc, :export, :completed], ^ref, _measurements, _metadata}
+      assert first == System.convert_time_unit(1000, :millisecond, :native)
+      assert second == System.convert_time_unit(2500, :millisecond, :native)
+    end
+
+    test "emits telemetry on failure and timeout" do
+      events = [[:castor_edc, :export, :failed], [:castor_edc, :export, :timeout]]
+      ref = :telemetry_test.attach_event_handlers(self(), events)
+
+      client = [entry("export-1", %{"status" => "failed"})] |> list() |> client() |> clocked()
+      Export.await(client, @study, ["export-1"])
+      assert_received {[:castor_edc, :export, :failed], ^ref, _measurements, %{export: %Export{id: "export-1"}}}
+
+      client = [entry("export-1", %{"status" => "queued"})] |> list() |> client() |> clocked()
+      Export.await(client, @study, ["export-1"], timeout: 1000)
+      assert_received {[:castor_edc, :export, :timeout], ^ref, _measurements, %{export_ids: ["export-1"]}}
     end
   end
 

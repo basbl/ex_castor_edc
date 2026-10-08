@@ -6,8 +6,30 @@ defmodule CastorEDC.Export do
   ready, and download the result, which is always a zip. This module does
   each of those steps on top of `CastorEDC.Exports`.
 
-  `queue/4` queues exports, `status/3` looks one up, and `download/4`
-  downloads a ready one.
+  `queue/4` queues exports, `await/4` waits until they're ready,
+  `status/3` looks one up, and `download/4` downloads a ready one.
+
+  ## Waiting
+
+  The API has no way to wait for an export, so `await/4` polls the export
+  list: after 1 second, then each time half as long again, up to every 15
+  seconds. One poll covers every export being waited for. The polls go
+  through `CastorEDC.Client` like any other request, so they count against
+  the rate limit and appear in its telemetry.
+
+  ## Telemetry
+
+    * `[:castor_edc, :export, :queued]` - with the number of exports as
+      `:count`, and the `:study_id`, `:export_ids` and `:types` as metadata
+    * `[:castor_edc, :export, :poll]` - each time `await/4` checks, with the
+      number of exports still running as `:pending`, and the `:study_id`
+      and `:export_ids` as metadata
+    * `[:castor_edc, :export, :completed]` and `[:castor_edc, :export,
+      :failed]` - for each export `await/4` sees finish, with the time it
+      waited as `:duration` (in native time units), and the `:study_id` and
+      `:export` as metadata
+    * `[:castor_edc, :export, :timeout]` - when `await/4` gives up, with
+      `:duration`, and the `:study_id` and `:export_ids` as metadata
 
   ## Concurrent exports
 
@@ -93,6 +115,11 @@ defmodule CastorEDC.Export do
   @statuses ~w(queued in_progress ready failed)a
 
   @default_timeout to_timeout(minute: 15)
+  @first_poll to_timeout(second: 1)
+  @max_poll to_timeout(second: 15)
+  # How long an export may be missing from the list before it's taken not
+  # to exist. A new export is missing for a moment.
+  @listing_grace to_timeout(second: 30)
   @first_backoff to_timeout(second: 5)
   @max_backoff to_timeout(minute: 1)
 
@@ -199,6 +226,138 @@ defmodule CastorEDC.Export do
 
   defp sleep(client, milliseconds) do
     Req.Request.get_private(client, :castor_edc_sleep, &Process.sleep/1).(milliseconds)
+  end
+
+  @doc """
+  Waits until every export in `export_ids` is ready, and returns them in
+  the same order.
+
+  It doesn't download them: see `download/4`. When an export fails, it
+  returns an error with code `:export_failed` and the export in `body`
+  straight away. An ID that doesn't show up in the export list within 30
+  seconds returns an error with code `:export_not_found`.
+
+  ## Options
+
+    * `:timeout` - how long to wait, in milliseconds or `:infinity`; 15
+      minutes by default. Then it returns an error with code
+      `:export_timeout`, listing the exports that weren't ready in
+      `details`. They keep running, so you can call `await/4` again.
+    * `:poll_interval` - the first wait before checking, in milliseconds;
+      1 second by default
+    * `:since` - a `DateTime` from before the exports were queued, which
+      lets each check stop paging through the export list at older exports
+  """
+  @spec await(CastorEDC.client(), String.t(), [String.t()], keyword()) :: {:ok, [t()]} | {:error, Error.t()}
+  def await(client, study_id, export_ids, opts \\ []) do
+    client = to_client(client)
+
+    state = %{
+      client: client,
+      study_id: study_id,
+      ids: export_ids,
+      since: opts[:since],
+      timeout: Keyword.get(opts, :timeout, @default_timeout),
+      started: monotonic(client),
+      seen: MapSet.new()
+    }
+
+    poll(state, Keyword.get(opts, :poll_interval, @first_poll))
+  end
+
+  defp poll(state, interval) do
+    sleep(state.client, interval)
+
+    with {:ok, found} <- find(state.client, state.study_id, state.ids, state.since) do
+      waited = monotonic(state.client) - state.started
+      exports = Enum.map(state.ids, &Map.get(found, &1))
+      state = report(state, exports, waited)
+
+      case outcome(state, exports, waited) do
+        :pending -> poll(state, next_interval(state, interval, waited))
+        result -> result
+      end
+    end
+  end
+
+  defp outcome(state, exports, waited) do
+    missing = for {id, nil} <- Enum.zip(state.ids, exports), do: id
+
+    cond do
+      failed = Enum.find(exports, &match?(%__MODULE__{status: :failed}, &1)) -> {:error, failed(failed)}
+      Enum.all?(exports, &match?(%__MODULE__{status: :ready}, &1)) -> {:ok, exports}
+      missing != [] and waited >= @listing_grace -> {:error, not_found(missing)}
+      state.timeout != :infinity and waited >= state.timeout -> {:error, timed_out(state, exports, waited)}
+      true -> :pending
+    end
+  end
+
+  defp next_interval(state, interval, waited) do
+    next = min(round(interval * 1.5), @max_poll)
+    if state.timeout == :infinity, do: next, else: max(min(next, state.timeout - waited), 0)
+  end
+
+  defp report(state, exports, waited) do
+    pending = Enum.count(exports, &(&1 == nil or &1.status not in [:ready, :failed]))
+
+    :telemetry.execute([:castor_edc, :export, :poll], %{pending: pending}, %{
+      study_id: state.study_id,
+      export_ids: state.ids
+    })
+
+    finished =
+      for %__MODULE__{status: status, id: id} = export <- exports,
+          status in [:ready, :failed],
+          not MapSet.member?(state.seen, id),
+          do: export
+
+    duration = System.convert_time_unit(waited, :millisecond, :native)
+
+    for export <- finished do
+      event = if export.status == :ready, do: :completed, else: :failed
+
+      metadata = %{study_id: state.study_id, export: export}
+      :telemetry.execute([:castor_edc, :export, event], %{duration: duration}, metadata)
+    end
+
+    %{state | seen: Enum.into(finished, state.seen, & &1.id)}
+  end
+
+  defp failed(export) do
+    %Error{
+      message: "export #{export.id} (#{export.type}, #{export.format}) failed",
+      code: :export_failed,
+      body: export
+    }
+  end
+
+  defp timed_out(state, exports, waited) do
+    pending = for {id, export} <- Enum.zip(state.ids, exports), export == nil or export.status != :ready, do: {id, export}
+
+    :telemetry.execute(
+      [:castor_edc, :export, :timeout],
+      %{duration: System.convert_time_unit(waited, :millisecond, :native)},
+      %{study_id: state.study_id, export_ids: state.ids}
+    )
+
+    %Error{
+      message:
+        "export(s) #{Enum.map_join(pending, ", ", &elem(&1, 0))} weren't ready after #{div(waited, 1000)} seconds; " <>
+          "they keep running, so await them again later",
+      code: :export_timeout,
+      details: Enum.map(pending, fn {id, export} -> %{code: status_name(export), message: id, field: nil} end)
+    }
+  end
+
+  defp status_name(nil), do: "queued"
+  defp status_name(%__MODULE__{status: status}), do: to_string(status)
+
+  # Milliseconds on a clock that only goes forward; tests replace it.
+  defp monotonic(client) do
+    case Req.Request.get_private(client, :castor_edc_monotonic) do
+      nil -> System.monotonic_time(:millisecond)
+      clock -> clock.()
+    end
   end
 
   @doc """

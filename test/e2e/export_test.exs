@@ -5,23 +5,17 @@ defmodule CastorEDC.E2E.ExportTest do
 
   use CastorEDC.E2ECase, async: false
 
+  alias CastorEDC.Error
   alias CastorEDC.Export
-  alias CastorEDC.Exports
-  alias CastorEDC.Model.ExportSuccess
 
   @tag :tmp_dir
-  test "looks up a queued export and streams it to disk", %{client: client, study: study, tmp_dir: dir} do
-    assert {:ok, %ExportSuccess{queued_exports: [export_id]}} =
-             Exports.queue_exports(client, study, %{"exports" => %{"sites" => [%{"format" => "csv"}]}})
+  test "queues an export, waits for it and streams it to disk", %{client: client, study: study, tmp_dir: dir} do
+    since = DateTime.shift(DateTime.utc_now(), minute: -1)
+    assert {:ok, [export_id]} = Export.queue(client, study, [{:sites, []}])
 
-    export =
-      Enum.find_value(1..30, fn _attempt ->
-        Process.sleep(1000)
-        {:ok, export} = Export.status(client, study, export_id)
-        if export.status == :ready, do: export
-      end)
-
-    assert %Export{type: :sites, format: :csv, expires_on: %DateTime{}} = export
+    assert {:ok, [export]} = Export.await(client, study, [export_id], since: since, timeout: 60_000)
+    assert %Export{id: ^export_id, type: :sites, format: :csv, status: :ready, expires_on: %DateTime{}} = export
+    assert {:ok, ^export} = Export.status(client, study, export_id)
 
     assert {:ok, %Export{path: path}} = Export.download(client, study, export, into: dir)
     assert path == Path.join(dir, export.file_name)
@@ -32,9 +26,8 @@ defmodule CastorEDC.E2E.ExportTest do
   test "queues several types at once, returning the IDs in the order asked", %{client: client, study: study} do
     assert {:ok, [sites_id, queries_id]} = Export.queue(client, study, [{:sites, []}, {:queries, format: :excel}])
 
-    Process.sleep(2000)
-    assert {:ok, %Export{type: :sites, format: :csv}} = Export.status(client, study, sites_id)
-    assert {:ok, %Export{type: :queries, format: :excel}} = Export.status(client, study, queries_id)
+    assert {:ok, [%Export{type: :sites, format: :csv}, %Export{type: :queries, format: :excel}]} =
+             Export.await(client, study, [sites_id, queries_id], timeout: 60_000)
   end
 
   test "queues an export with filters and options", %{client: client, study: study} do
@@ -50,7 +43,12 @@ defmodule CastorEDC.E2E.ExportTest do
                 options: [display_options_as: :names, include_comments: true]}
              ])
 
-    Process.sleep(2000)
-    assert {:ok, %Export{type: :participant_data}} = Export.status(client, study, export_id)
+    assert {:ok, [%Export{type: :participant_data, status: :ready}]} =
+             Export.await(client, study, [export_id], timeout: 60_000)
+  end
+
+  test "doesn't find an export that doesn't exist", %{client: client, study: study} do
+    assert {:error, %Error{code: :export_not_found}} =
+             Export.status(client, study, "00000000-0000-0000-0000-000000000000")
   end
 end
