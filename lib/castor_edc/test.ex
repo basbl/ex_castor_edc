@@ -42,9 +42,9 @@ defmodule CastorEDC.Test do
   A client that answers every request with `response`.
 
   `response` is a `Req.Response`, an exception, or a function that takes the
-  `Req.Request` and returns one of those. Retries are off and an access token
-  is set, unless `options` says otherwise; the options go to
-  `CastorEDC.new/1`.
+  `Req.Request` and returns one of those. Retries are off, an access token
+  is set and the server is `https://data.castoredc.com`, unless `options`
+  says otherwise; the options go to `CastorEDC.new/1`.
 
   The requests go to the process that built the client.
   """
@@ -55,6 +55,10 @@ defmodule CastorEDC.Test do
 
     options =
       if Keyword.has_key?(options, :client_id), do: options, else: Keyword.put_new(options, :access_token, "test-token")
+
+    # The same server whatever the environment says, so tests don't depend
+    # on where they run.
+    options = Keyword.put_new(options, :base_url, "https://data.castoredc.com")
 
     [retry: false, adapter: Adapter]
     |> Keyword.merge(options)

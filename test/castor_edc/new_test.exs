@@ -4,7 +4,10 @@ defmodule CastorEDC.NewTest do
 
   setup do
     for key <- [:client_id, :client_secret, :base_url], do: Application.delete_env(:ex_castor_edc, key)
-    previous = for name <- ~w(CASTOR_EDC_CLIENT_ID CASTOR_EDC_CLIENT_SECRET), do: {name, System.get_env(name)}
+
+    previous =
+      for name <- ~w(CASTOR_EDC_CLIENT_ID CASTOR_EDC_CLIENT_SECRET CASTOR_EDC_BASE_URL), do: {name, System.get_env(name)}
+
     for {name, _value} <- previous, do: System.delete_env(name)
 
     on_exit(fn ->
@@ -65,6 +68,17 @@ defmodule CastorEDC.NewTest do
              {:client_credentials, "configured-id", "env-secret"}
 
     assert request.options.base_url == "https://uk.castoredc.com"
+  end
+
+  test "takes the server from CASTOR_EDC_BASE_URL, like the credentials" do
+    System.put_env("CASTOR_EDC_BASE_URL", "https://us.castoredc.com")
+    assert CastorEDC.new(access_token: "token").options.base_url == "https://us.castoredc.com"
+
+    assert CastorEDC.new(access_token: "token", base_url: "https://au.castoredc.com").options.base_url ==
+             "https://au.castoredc.com"
+
+    System.put_env("CASTOR_EDC_BASE_URL", "")
+    assert CastorEDC.new(access_token: "token").options.base_url == "https://data.castoredc.com"
   end
 
   test "raises with instructions when there are no credentials" do

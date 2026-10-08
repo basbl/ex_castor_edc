@@ -44,9 +44,10 @@ defmodule CastorEDC do
       environment variables.
     * `:access_token` - a token to send as is instead, such as a Castor
       Identity token. No credentials are needed then.
-    * `:base_url` - the Castor EDC server, `#{@default_base_url}` by
-      default. Studies in other regions live on other servers, such as
-      `https://us.castoredc.com`.
+    * `:base_url` - the Castor EDC server: the `:base_url` application
+      environment key, then the `CASTOR_EDC_BASE_URL` environment variable,
+      then `#{@default_base_url}`. Studies in other regions live on other
+      servers, such as `https://us.castoredc.com`.
     * `:rate_limit` - `:wait` (the default) to wait out the API's rate
       limit, or `:error` to get the 429 back right away; see
       `CastorEDC.RateLimit`.
@@ -72,7 +73,9 @@ defmodule CastorEDC do
     {own, req_options} =
       Keyword.split(options, [:client_id, :client_secret, :access_token, :base_url, :rate_limit, :max_rate_limit_wait])
 
-    [base_url: own[:base_url] || configured(:base_url) || @default_base_url, user_agent: @user_agent]
+    base_url = setting(own, :base_url, "CASTOR_EDC_BASE_URL")
+
+    [base_url: if(present?(base_url), do: base_url, else: @default_base_url), user_agent: @user_agent]
     |> Keyword.merge(http2(req_options))
     |> Req.new()
     |> CastorEDC.RateLimit.attach(Keyword.take(own, [:rate_limit, :max_rate_limit_wait]))

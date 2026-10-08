@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Modules for 92 operations of the API, generated from its corrected spec (`CastorEDC.Participants`, `CastorEDC.DataPoints` and 16 more), with structs for their responses under `CastorEDC.Model`. Paged collections also have `stream_` functions.
 - Requests go over HTTP/2, so concurrent requests share one connection; `connect_options: [protocols: [:http1]]` switches back.
-- `CastorEDC.new/1` builds a Req-based client from API credentials, the application environment or environment variables.
+- `CastorEDC.new/1` builds a Req-based client from API credentials and a server, given as options, in the application environment or in environment variables (`CASTOR_EDC_CLIENT_ID`, `CASTOR_EDC_CLIENT_SECRET`, `CASTOR_EDC_BASE_URL`).
 - Clients built from client credentials fetch, cache and renew access tokens themselves, and retry once with a new token on a 401.
 - The client stays within the API's rate limits: when a route's allowance is used up it waits for the window to reset, and a request that still gets a 429 is sent again after the reset. `rate_limit: :error` returns an error instead of waiting.
 - `CastorEDC.Client.request/2` runs an operation and returns `{:ok, result}` or `{:error, %CastorEDC.Error{}}`; collections come back as a `CastorEDC.Page`.
