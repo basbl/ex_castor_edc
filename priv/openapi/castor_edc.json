@@ -13513,68 +13513,6 @@
         "x-castor-module": "Studies"
       }
     },
-    "/study/{study_id}/study-metadata": {
-      "get": {
-        "description": "Only supports the `record` scope. Other scopes should use the /study/{study_id} endpoint.",
-        "operationId": "get_study_metadata",
-        "parameters": [
-          {
-            "description": "The ID of the study for which this call should be made",
-            "in": "path",
-            "name": "study_id",
-            "required": true,
-            "schema": {
-              "format": "UUID",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/hal+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StudyMetadata"
-                }
-              }
-            },
-            "description": "Retrieve information about a single Study"
-          },
-          "403": {
-            "content": {
-              "application/hal+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "default": {
-            "content": {
-              "application/hal+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            },
-            "description": "Unexpected error"
-          }
-        },
-        "security": [
-          {
-            "OAuth2ClientCredentials": [
-              "default"
-            ]
-          }
-        ],
-        "summary": "Retrieve information about a single Study 🔭",
-        "tags": [
-          "study"
-        ],
-        "x-castor-module": "Studies"
-      }
-    },
     "/study/{study_id}/survey": {
       "get": {
         "description": "Gets `Survey` objects. Surveys consist of Survey Forms. Multiple surveys can be combined in\nSurvey Packages, which are being sent to respondents using Survey Package Instances.\nAlways requires a study_id to be given. Can be paged.\nReturns HalJson responses (with _links for paging and to single objects).",

@@ -8,7 +8,6 @@ defmodule CastorEDC.Studies do
   ## Operations
 
     * `get_study/3` - Retrieve a single Study
-    * `get_study_metadata/3` - Retrieve information about a single Study 🔭
     * `get_study_statistics/3` - Retrieve statistics for a single Study 🔭
     * `list_studies/2` - Retrieve a list of studies the current authenticated user has access to.
 
@@ -19,7 +18,6 @@ defmodule CastorEDC.Studies do
   alias CastorEDC.Client
   alias CastorEDC.Model.Study
   alias CastorEDC.Model.StudyCollectionItem
-  alias CastorEDC.Model.StudyMetadata
   alias CastorEDC.Model.StudyStatistics
 
   @doc ~S"""
@@ -45,33 +43,6 @@ defmodule CastorEDC.Studies do
   @spec get_study!(CastorEDC.client(), String.t(), keyword()) :: Study.t()
   def get_study!(client, study_id, opts \\ []) do
     Client.request!(client, operation(:get_study, %{"study_id" => study_id}, opts))
-  end
-
-  @doc ~S"""
-  Retrieve information about a single Study 🔭.
-
-  Only supports the `record` scope. Other scopes should use the /study/{study_id} endpoint.
-
-  Sends `GET /api/study/{study_id}/study-metadata`. [API reference](https://data.castoredc.com/api#/study/get_study__study_id__study_metadata)
-
-  ## Arguments
-
-    * `study_id` - The ID of the study for which this call should be made
-
-  Every option is passed to `Req`.
-  """
-  @spec get_study_metadata(CastorEDC.client(), String.t(), keyword()) ::
-          {:ok, StudyMetadata.t()} | {:error, CastorEDC.Error.t()}
-  def get_study_metadata(client, study_id, opts \\ []) do
-    Client.request(client, operation(:get_study_metadata, %{"study_id" => study_id}, opts))
-  end
-
-  @doc ~S"""
-  The same as `get_study_metadata/3`, returning the result or raising `CastorEDC.Error`.
-  """
-  @spec get_study_metadata!(CastorEDC.client(), String.t(), keyword()) :: StudyMetadata.t()
-  def get_study_metadata!(client, study_id, opts \\ []) do
-    Client.request!(client, operation(:get_study_metadata, %{"study_id" => study_id}, opts))
   end
 
   @doc ~S"""
@@ -126,17 +97,6 @@ defmodule CastorEDC.Studies do
 
   defp operation(:get_study, path_params, opts) do
     [method: :get, path: "/api/study/{study_id}", path_params: path_params, query: opts, query_names: %{}, decode: Study]
-  end
-
-  defp operation(:get_study_metadata, path_params, opts) do
-    [
-      method: :get,
-      path: "/api/study/{study_id}/study-metadata",
-      path_params: path_params,
-      query: opts,
-      query_names: %{},
-      decode: StudyMetadata
-    ]
   end
 
   defp operation(:get_study_statistics, path_params, opts) do

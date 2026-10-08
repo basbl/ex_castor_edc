@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- Modules for 93 operations of the API, generated from its corrected spec (`CastorEDC.Participants`, `CastorEDC.DataPoints` and 16 more), with structs for their responses under `CastorEDC.Model`. Paged collections also have `stream_` functions.
+- Modules for 92 operations of the API, generated from its corrected spec (`CastorEDC.Participants`, `CastorEDC.DataPoints` and 16 more), with structs for their responses under `CastorEDC.Model`. Paged collections also have `stream_` functions.
 - Requests go over HTTP/2, so concurrent requests share one connection; `connect_options: [protocols: [:http1]]` switches back.
 - `CastorEDC.new/1` builds a Req-based client from API credentials, the application environment or environment variables.
 - Clients built from client credentials fetch, cache and renew access tokens themselves, and retry once with a new token on a 401.

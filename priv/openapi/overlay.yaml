@@ -57,6 +57,11 @@ actions:
       instance, from the participant app. The spec allows the default scope,
       but with it the API answers 500.
     remove: true
+  - target: $.paths['/study/{study_id}/study-metadata'].get
+    description: >-
+      Only supports the `record` scope, for the participant app, although the
+      spec lists the default scope; it answers 403 otherwise.
+    remove: true
   - target: $.paths['/study/{study_id}/participant/{participant_id}/econsent']
     description: The eConsent integration is internal to Castor.
     remove: true
@@ -117,8 +122,6 @@ actions:
     update: {operationId: get_study, x-castor-module: Studies}
   - target: $.paths['/study/{study_id}/statistics'].get
     update: {operationId: get_study_statistics, x-castor-module: Studies}
-  - target: $.paths['/study/{study_id}/study-metadata'].get
-    update: {operationId: get_study_metadata, x-castor-module: Studies}
 
   # StudyUsers
   - target: $.paths['/study/{study_id}/user'].get
