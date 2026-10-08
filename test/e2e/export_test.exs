@@ -7,6 +7,7 @@ defmodule CastorEDC.E2E.ExportTest do
 
   alias CastorEDC.Error
   alias CastorEDC.Export
+  alias CastorEDC.Export.Request
 
   @tag :tmp_dir
   test "queues an export, waits for it and streams it to disk", %{client: client, study: study, tmp_dir: dir} do
@@ -51,4 +52,24 @@ defmodule CastorEDC.E2E.ExportTest do
     assert {:error, %Error{code: :export_not_found}} =
              Export.status(client, study, "00000000-0000-0000-0000-000000000000")
   end
+
+  # Exports a study or environment may not offer: casebooks are a feature
+  # a study has to have enabled, and an environment may not run the PDF and
+  # XML export workers (the API then answers 500 when queuing).
+  @optional [:empty_crf, :form_structure, :participant_casebook]
+
+  for type <- Request.types() do
+    test "exports #{type} and unzips it", %{client: client, study: study} do
+      case Export.unquote(type)(client, study, unzip: true, timeout: 300_000) do
+        {:ok, %Export{type: unquote(type), status: :ready, files: [_file | _more] = files}} ->
+          assert Enum.all?(files, fn {name, contents} -> is_binary(name) and is_binary(contents) end)
+
+        {:error, %Error{} = error} ->
+          if not unavailable?(unquote(type), error), do: flunk(Exception.message(error))
+          IO.puts("\n#{unquote(type)} export: skipped, #{error.message}")
+      end
+    end
+  end
+
+  defp unavailable?(type, %Error{status: status}), do: type in @optional and status in [400, 500]
 end

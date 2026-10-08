@@ -89,6 +89,37 @@ defmodule CastorEDC.Export.RequestTest do
              %{"created_between_start" => "2026-01-01"}
   end
 
+  describe "doc/1" do
+    test "lists the formats, filters and options of every type" do
+      for type <- Request.types(), do: assert(Request.doc(type) =~ ~r/^Formats: `:\w+`/)
+    end
+
+    test "describes each kind of value" do
+      doc = Request.doc(:participant_data)
+
+      assert doc =~ "Formats: `:csv`, `:excel`, `:spss`, `:sas_xpt`, `:sas_7bdat`, `:odm` (`:csv` by default)."
+      assert doc =~ "* `:site_ids` (a list of strings)"
+      assert doc =~ "* `:locked` (boolean)"
+      assert doc =~ "* `:created_between_start` (a `Date`)"
+      assert doc =~ "* `:progress` (a list of values from `:not_started`, `:in_progress`, `:completed`, `:archived`)"
+      assert doc =~ "* `:elements` (a keyword list of `:forms`, `:repeating_data`, `:repeating_data_forms`,"
+      assert doc =~ "* `:grouped` (boolean; `false` by default) - Whether to group participant data by domain."
+
+      assert doc =~
+               "* `:display_options_as` (one of `:names`, `:numbers`; `:numbers` by default) - " <>
+                 "Whether Options are exported as numbers (values) or names (labels). " <>
+                 "Only applicable when `grouped` is set to false"
+
+      assert doc =~ "and names included. Only applicable"
+
+      assert Request.doc(:form_structure) =~ "* `:element_type` (one of `:all`, `:study`, `:visit`, `:form`,"
+      assert Request.doc(:form_structure) =~ "* `:element_id` (string)"
+      assert Request.doc(:survey_compliance) =~ "* `:availability_start` (a `Date` or `NaiveDateTime`)"
+      assert Request.doc(:survey_compliance) =~ "* `:compliance_value` (integer)"
+      assert Request.doc(:sites) == "Formats: `:csv` (`:csv` by default).\n\nFilters: none.\n\nOptions: none."
+    end
+  end
+
   describe "raises ArgumentError" do
     test "for an unknown type" do
       assert_raise ArgumentError, ~r/unknown export type :participants; expected one of :audit_trail/, fn ->

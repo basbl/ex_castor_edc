@@ -39,6 +39,79 @@ defmodule CastorEDC.Export.Request do
   end
 
   @doc false
+  # The formats, filters and options of a type, as Markdown for its docs.
+  @spec doc(atom()) :: String.t()
+  def doc(type) do
+    definition = definition(type)
+
+    formats =
+      "Formats: #{Enum.map_join(definition.formats, ", ", &"`#{inspect(&1)}`")} " <>
+        "(`#{inspect(hd(definition.formats))}` by default)."
+
+    Enum.join([formats, list_doc("Filters", definition.filters), list_doc("Options", definition.options)], "\n\n")
+  end
+
+  defp list_doc(title, schema) do
+    case schema["properties"] do
+      empty when empty in [nil, %{}] ->
+        "#{title}: none."
+
+      properties ->
+        items =
+          properties
+          |> Enum.sort_by(&elem(&1, 0))
+          |> Enum.map(fn {name, property} ->
+            "  * `:#{name}` (#{type_doc(property)})" <> description_doc(property["description"])
+          end)
+
+        Enum.join(["#{title}:", "" | items], "\n")
+    end
+  end
+
+  defp type_doc(%{"type" => "object", "properties" => properties}) do
+    keys = properties |> Map.keys() |> Enum.sort() |> Enum.map_join(", ", &"`:#{&1}`")
+    "a keyword list of #{keys}, each a list of IDs"
+  end
+
+  defp type_doc(%{"type" => "array", "items" => %{"enum" => enum} = items}),
+    do: "a list of values from " <> enum_doc(enum, items["x-castor-enum-names"] || %{})
+
+  defp type_doc(%{"type" => "array"}), do: "a list of strings"
+  defp type_doc(%{"type" => "boolean"} = property), do: "boolean" <> default_doc(property)
+  defp type_doc(%{"type" => "integer"}), do: "integer"
+
+  defp type_doc(%{"enum" => enum} = property) do
+    names = property["x-castor-enum-names"] || %{}
+    "one of " <> enum_doc(enum, names) <> default_doc(property, &inspect(enum_name(&1, names)))
+  end
+
+  defp type_doc(%{"format" => "date"}), do: "a `Date`"
+  defp type_doc(%{"format" => "date-time"}), do: "a `Date` or `NaiveDateTime`"
+  defp type_doc(_string), do: "string"
+
+  defp enum_doc(enum, names), do: Enum.map_join(enum, ", ", &"`#{inspect(enum_name(&1, names))}`")
+
+  defp default_doc(property, format \\ &inspect/1) do
+    case Map.fetch(property, "default") do
+      {:ok, default} -> "; `#{format.(default)}` by default"
+      :error -> ""
+    end
+  end
+
+  defp description_doc(nil), do: ""
+
+  defp description_doc(description) do
+    text =
+      description
+      |> String.replace(~r"(?<=[^.!?\s>])\s*(<br\s*/?>)+", ". ")
+      |> String.replace(~r"(<br\s*/?>)+", " ")
+      |> String.replace(~r"\s+", " ")
+      |> String.trim()
+
+    " - " <> text
+  end
+
+  @doc false
   @spec encode(atom(), keyword()) :: map()
   def encode(type, opts) do
     definition = definition(type)

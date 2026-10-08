@@ -6,8 +6,20 @@ defmodule CastorEDC.Export do
   ready, and download the result, which is always a zip. This module does
   each of those steps on top of `CastorEDC.Exports`.
 
-  `queue/4` queues exports, `await/4` waits until they're ready,
-  `status/3` looks one up, and `download/4` downloads a ready one.
+  There's a function for each type of export that does all three, such as
+  `participant_data/3`:
+
+      {:ok, %CastorEDC.Export{path: path}} =
+        CastorEDC.Export.participant_data(client, study_id,
+          format: :spss,
+          filters: [site_ids: [site_id]],
+          options: [include_comments: true],
+          into: "exports/"
+        )
+
+  The steps are functions too, for queuing several exports at once or
+  picking up later: `queue/4` queues exports, `await/4` waits until they're
+  ready, `status/3` looks one up, and `download/4` downloads a ready one.
 
   ## Waiting
 
@@ -51,7 +63,10 @@ defmodule CastorEDC.Export do
     * `:created_on`, `:completed_on` and `:expires_on` - when the export was
       queued, finished and stops being available (7 days later)
     * `:data` - the downloaded file, when `download/4` kept it in memory
-    * `:path` - where `download/4` saved the file, when given `:into`
+    * `:path` - where `download/4` saved the file, when given `:into`; with
+      `unzip: true`, the directory the files went into
+    * `:files` - with `unzip: true`, the files in the zip: their paths, or
+      `{name, contents}` tuples when the export was kept in memory
 
   Types, formats and statuses the client doesn't know stay strings.
   """
@@ -74,7 +89,8 @@ defmodule CastorEDC.Export do
     :completed_on,
     :expires_on,
     :data,
-    :path
+    :path,
+    :files
   ]
 
   @type type ::
@@ -106,7 +122,8 @@ defmodule CastorEDC.Export do
           completed_on: DateTime.t() | nil,
           expires_on: DateTime.t() | nil,
           data: binary() | nil,
-          path: Path.t() | nil
+          path: Path.t() | nil,
+          files: [Path.t()] | [{String.t(), binary()}] | nil
         }
 
   @types ~w(participant_data participant_casebook empty_crf form_structure queries survey_compliance
@@ -126,6 +143,133 @@ defmodule CastorEDC.Export do
   # The export list has no filter, so finding an export means paging
   # through it; large pages keep that to one request in the common case.
   @page_size 100
+
+  @summaries %{
+    participant_data:
+      "The study's collected data. In CSV, the zip holds a file for the study's fields, one for each " <>
+        "repeating data and one for each survey, together with lists of the variables and option groups.",
+    participant_casebook: "A casebook of each participant's data: a PDF per participant.",
+    empty_crf: "The study's forms as an empty case report form, in a single PDF.",
+    form_structure: "The study's structure: its visits, forms and fields, and those of its repeating data and surveys.",
+    queries: "The study's queries.",
+    survey_compliance: "Participants' compliance with their survey packages.",
+    validations: "The validation messages entered data triggered.",
+    uploaded_files: "The files uploaded to the study's upload fields.",
+    audit_trail: "The study's audit trail.",
+    domain_mapping: "The mapping of the study's fields to domains.",
+    sites: "The study's sites."
+  }
+
+  @notes %{
+    participant_data:
+      "The API skips the other filters when `participant_ids` is given, and filters on a creation or update " <>
+        "date only with both ends of the range.",
+    queries: "`elements` takes one kind of element at a time."
+  }
+
+  if @summaries |> Map.keys() |> Enum.sort() != Request.types() do
+    raise "CastorEDC.Export describes #{inspect(Map.keys(@summaries))}, but the spec has #{inspect(Request.types())}"
+  end
+
+  for type <- Request.types() do
+    @doc """
+    #{@summaries[type]}
+
+    Queues the export, waits until it's ready and downloads it. Without
+    `:into`, the zip comes back in memory, in `:data`.
+
+    #{Request.doc(type)}#{if note = @notes[type], do: "\n\n" <> note}
+
+    ## Options
+
+      * `:format`, `:filters` and `:options` - as above
+      * `:into` - a directory, or a file path, to stream the zip to, as for
+        `download/4`
+      * `:unzip` - when `true`, unzips the export: into the `:into`
+        directory, or in memory. The struct's `:files` lists what was in it.
+      * `:timeout` - how long to wait for the export, queuing included, in
+        milliseconds or `:infinity`; 15 minutes by default
+      * `:poll_interval` - the first wait before checking on the export,
+        see `await/4`
+
+    Any other option is passed to `Req` for the download.
+    """
+    @spec unquote(type)(CastorEDC.client(), String.t(), keyword()) :: {:ok, t()} | {:error, Error.t()}
+    def unquote(type)(client, study_id, opts \\ []), do: run(client, study_id, unquote(type), opts)
+  end
+
+  # Before the margin, the export can't have been queued; the server's
+  # clock may differ from ours.
+  @since_margin to_timeout(hour: 1)
+
+  defp run(client, study_id, type, opts) do
+    {export_opts, opts} = Keyword.split(opts, [:format, :filters, :options])
+    {wait_opts, opts} = Keyword.split(opts, [:timeout, :poll_interval])
+    {unzip, opts} = Keyword.pop(opts, :unzip, false)
+    {into, opts} = Keyword.pop(opts, :into)
+
+    client = to_client(client)
+    started = monotonic(client)
+    timeout = Keyword.get(wait_opts, :timeout, @default_timeout)
+    since = DateTime.add(DateTime.utc_now(), -@since_margin, :millisecond)
+
+    with {:ok, [id]} <- queue(client, study_id, [{type, export_opts}], timeout: timeout),
+         wait_opts = Keyword.merge(wait_opts, since: since, timeout: remaining(timeout, client, started)),
+         {:ok, [export]} <- await(client, study_id, [id], wait_opts),
+         {:ok, export} <- download(client, study_id, export, [into: into && into_dir(into, unzip)] ++ opts) do
+      if unzip, do: unzip(export), else: {:ok, export}
+    end
+  end
+
+  defp remaining(:infinity, _client, _started), do: :infinity
+  defp remaining(timeout, client, started), do: max(timeout - (monotonic(client) - started), 0)
+
+  # Unzipping needs a directory, so `into` is one, whether it exists or not.
+  defp into_dir(into, true), do: Path.join(into, "") <> "/"
+  defp into_dir(into, false), do: into
+
+  defp unzip(%__MODULE__{path: nil, data: data} = export) do
+    case :zip.unzip(data, [:memory]) do
+      {:ok, files} ->
+        {:ok, %{export | data: nil, files: Enum.map(files, fn {name, contents} -> {to_string(name), contents} end)}}
+
+      {:error, reason} ->
+        {:error, unzip_failed(export, reason)}
+    end
+  end
+
+  defp unzip(%__MODULE__{path: zip} = export) do
+    dir = Path.dirname(zip)
+
+    with {:ok, [_comment | entries]} <- :zip.list_dir(String.to_charlist(zip)),
+         :ok <- check_entries(entries),
+         {:ok, files} <- :zip.unzip(String.to_charlist(zip), cwd: String.to_charlist(dir)) do
+      File.rm!(zip)
+      {:ok, %{export | path: dir, files: Enum.map(files, &to_string/1)}}
+    else
+      {:error, reason} -> {:error, unzip_failed(export, reason)}
+    end
+  end
+
+  # A name that would land outside the directory.
+  defp check_entries(entries) do
+    unsafe =
+      for {:zip_file, name, _info, _comment, _offset, _size} <- entries,
+          name = to_string(name),
+          Path.type(name) != :relative or ".." in Path.split(name),
+          do: name
+
+    if unsafe == [], do: :ok, else: {:error, {:unsafe_names, unsafe}}
+  end
+
+  defp unzip_failed(export, reason) do
+    %Error{
+      message: "couldn't unzip export #{export.id}: #{inspect(reason)}",
+      code: :unzip_failed,
+      reason: reason,
+      body: export
+    }
+  end
 
   @doc """
   Queues exports, returning their IDs in the order of `requests`.

@@ -14,7 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Clients built from client credentials fetch, cache and renew access tokens themselves, and retry once with a new token on a 401.
 - The client stays within the API's rate limits: when a route's allowance is used up it waits for the window to reset, and a request that still gets a 429 is sent again after the reset. `rate_limit: :error` returns an error instead of waiting.
 - `CastorEDC.Client.request/2` runs an operation and returns `{:ok, result}` or `{:error, %CastorEDC.Error{}}`; collections come back as a `CastorEDC.Page`.
-- `CastorEDC.Export` queues batch exports, checking their formats, filters and options against the spec, waits until they are ready by polling with backoff, and downloads them, in memory or streamed to disk. While three exports are running it waits for a slot. Each step emits telemetry.
+- `CastorEDC.Export` runs batch exports in one call per type (`participant_data/3`, `sites/3` and nine more): it queues the export, checking its format, filters and options against the spec, waits until it is ready by polling with backoff, and downloads it, in memory or streamed to disk, unzipped if asked. While three exports are running it waits for a slot. The steps are public too, and each emits telemetry.
 
 ### Changed
 

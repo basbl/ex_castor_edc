@@ -368,6 +368,136 @@ defmodule CastorEDC.ExportTest do
     end
   end
 
+  defp zip_of(files) do
+    {:ok, {_name, zip}} =
+      :zip.create(~c"export.zip", Enum.map(files, fn {name, data} -> {~c"#{name}", data} end), [:memory])
+
+    zip
+  end
+
+  # Queued, then ready, then the zip.
+  defp flow(zip, list_entry \\ entry("export-1")) do
+    sequence([
+      queued(["export-1"]),
+      list([Map.put(list_entry, "expires_on", php_date("2999-01-01 07:00:00"))]),
+      Req.Response.new(status: 200, body: zip, headers: %{"content-type" => ["application/zip"]})
+    ])
+  end
+
+  describe "the per-type functions" do
+    test "queue the export, wait for it and download it" do
+      zip = zip_of([{"sites.csv", "Site Id;Name"}])
+      client = zip |> flow() |> client() |> clocked()
+
+      assert {:ok, %Export{id: "export-1", type: :sites, status: :ready, data: ^zip, files: nil}} =
+               Export.sites(client, @study)
+
+      assert sent_body(assert_requested()) == %{"exports" => %{"sites" => [%{"format" => "csv"}]}}
+      assert assert_requested().url.path == "/api/study/#{@study}/export"
+      assert assert_requested().url.path == "/api/study/#{@study}/export/export-1/download"
+    end
+
+    test "send the format, filters and options" do
+      entry = entry("export-1", %{"export_name" => "participant_data", "export_type" => "spss"})
+      client = [] |> zip_of() |> flow(entry) |> client() |> clocked()
+
+      assert {:ok, %Export{format: :spss}} =
+               Export.participant_data(client, @study,
+                 format: :spss,
+                 filters: [site_ids: ["S1"]],
+                 options: [include_comments: true]
+               )
+
+      assert sent_body(assert_requested()) == %{
+               "exports" => %{
+                 "participant_data" => [
+                   %{"format" => "spss", "filters" => %{"site_ids" => ["S1"]}, "options" => %{"include_comments" => true}}
+                 ]
+               }
+             }
+    end
+
+    test "raise on an invalid request before sending anything" do
+      assert_raise ArgumentError, ~r/:paper_size/, fn ->
+        Export.participant_data(client(queued([])), @study, filters: [paper_size: :a4paper])
+      end
+
+      refute_received {:castor_edc_request, _request}
+    end
+
+    test "unzip in memory" do
+      client = [{"sites.csv", "a"}, {"meta/info.txt", "b"}] |> zip_of() |> flow() |> client() |> clocked()
+
+      assert {:ok, %Export{data: nil, path: nil, files: files}} = Export.sites(client, @study, unzip: true)
+      assert files == [{"sites.csv", "a"}, {"meta/info.txt", "b"}]
+    end
+
+    @tag :tmp_dir
+    test "stream to disk and unzip there", %{tmp_dir: dir} do
+      client = [{"sites.csv", "a"}, {"meta/info.txt", "b"}] |> zip_of() |> flow() |> client() |> clocked()
+      target = Path.join(dir, "out")
+
+      assert {:ok, %Export{path: ^target, files: files}} = Export.sites(client, @study, into: target, unzip: true)
+      assert files == [Path.join(target, "sites.csv"), Path.join(target, "meta/info.txt")]
+      assert File.read!(Path.join(target, "meta/info.txt")) == "b"
+      assert target |> File.ls!() |> Enum.sort() == ["meta", "sites.csv"]
+    end
+
+    @tag :tmp_dir
+    test "stream to disk without unzipping", %{tmp_dir: dir} do
+      client = [{"sites.csv", "a"}] |> zip_of() |> flow() |> client() |> clocked()
+
+      assert {:ok, %Export{path: path, files: nil}} = Export.sites(client, @study, into: dir)
+      assert path == Path.join(dir, "export-1.zip")
+    end
+
+    @tag :tmp_dir
+    test "refuse to unzip names outside the directory", %{tmp_dir: dir} do
+      client = [{"../escape.txt", "x"}] |> zip_of() |> flow() |> client() |> clocked()
+
+      assert {:error, %Error{code: :unzip_failed, reason: {:unsafe_names, ["../escape.txt"]}}} =
+               Export.sites(client, @study, into: Path.join(dir, "out"), unzip: true)
+
+      refute File.exists?(Path.join(dir, "escape.txt"))
+    end
+
+    test "return :unzip_failed for a download that isn't a zip" do
+      client = "not a zip" |> flow() |> client() |> clocked()
+
+      assert {:error, %Error{code: :unzip_failed}} = Export.sites(client, @study, unzip: true)
+    end
+
+    test "count the wait for a slot against the timeout" do
+      client =
+        [too_many(), queued(["export-1"]), list([entry("export-1", %{"status" => "queued"})])]
+        |> sequence()
+        |> client()
+        |> clocked()
+
+      assert {:error, %Error{code: :export_timeout}} = Export.sites(client, @study, timeout: 6000)
+      assert slept() == [5000, 1000]
+    end
+
+    test "return the error of any step" do
+      client = %{"detail" => "Forbidden"} |> json(status: 403) |> client() |> clocked()
+      assert {:error, %Error{status: 403}} = Export.queries(client, @study)
+
+      failed = entry("export-1", %{"status" => "failed"})
+      client = [queued(["export-1"]), list([failed])] |> sequence() |> client() |> clocked()
+      assert {:error, %Error{code: :export_failed}} = Export.audit_trail(client, @study)
+    end
+
+    test "exist for every export type, documented with its formats, filters and options" do
+      {:docs_v1, _anno, _language, _format, _moduledoc, _metadata, docs} = Code.fetch_docs(Export)
+
+      for type <- CastorEDC.Export.Request.types() do
+        assert function_exported?(Export, type, 3)
+        assert [%{"en" => doc}] = for({{:function, ^type, 3}, _anno, _sig, doc, _meta} <- docs, do: doc)
+        assert doc =~ "Formats: "
+      end
+    end
+  end
+
   describe "status/3" do
     test "finds an export in the export list" do
       client = client(json(fixture("list_exports")))
