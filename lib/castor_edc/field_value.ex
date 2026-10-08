@@ -17,6 +17,9 @@ defmodule CastorEDC.FieldValue do
   | `numberdate` | `"5;07-10-2026"` | `{number, date}`, either of which can be `nil` |
   | `radio`, `dropdown` | the chosen option's value, such as `"2"` | the value, as a string |
   | `checkbox` | the checked options' values, such as `"0;1"` | a list of the values |
+  | `grid` | JSON, row by column: `{"0":{"0":"5"}}` | `%{row => %{column => cell}}`, with integer rows and columns, and each cell decoded like text |
+  | `upload` | `"-- Uploaded File: scan.pdf --"`, or `"- - Uploaded file - -"` when the name can't be read | `{:upload, name}`, with `nil` for an unknown name |
+  | `geolocation` | `"52.36;4.90"` | `{latitude, longitude}` |
   | `string`, `textarea` and others | text | the string |
   | any, when empty | `""` | `nil` |
   | any, when marked missing | `"##USER_MISSING_95##"` to `"##USER_MISSING_99##"` | a `CastorEDC.MissingValue` |
@@ -51,6 +54,13 @@ defmodule CastorEDC.FieldValue do
           | NaiveDateTime.t()
           | {integer() | float() | nil, Date.t() | nil}
           | [String.t()]
+          | %{
+              optional(integer() | String.t()) => %{
+                optional(integer() | String.t()) => String.t() | MissingValue.t() | nil
+              }
+            }
+          | {:upload, String.t() | nil}
+          | {float(), float()}
           | MissingValue.t()
           | :encrypted
 
@@ -155,7 +165,55 @@ defmodule CastorEDC.FieldValue do
 
   defp read("checkbox", raw), do: {:ok, String.split(raw, ";")}
 
+  defp read("grid", raw) do
+    with {:ok, rows} when is_map(rows) <- JSON.decode(raw),
+         true <- Enum.all?(rows, fn {_row, cells} -> is_map(cells) end) do
+      {:ok, Map.new(rows, fn {row, cells} -> {key(row), Map.new(cells, &cell/1)} end)}
+    else
+      _invalid -> :error
+    end
+  end
+
+  defp read("upload", "- - Uploaded file - -"), do: {:ok, {:upload, nil}}
+
+  defp read("upload", "-- Uploaded File: " <> rest) do
+    case String.split_at(rest, -3) do
+      {name, " --"} -> {:ok, {:upload, name}}
+      _invalid -> :error
+    end
+  end
+
+  defp read("upload", _raw), do: :error
+
+  defp read("geolocation", raw) do
+    with [latitude, longitude] <- String.split(raw, ";"),
+         {:ok, latitude} <- coordinate(latitude),
+         {:ok, longitude} <- coordinate(longitude) do
+      {:ok, {latitude, longitude}}
+    else
+      _invalid -> :error
+    end
+  end
+
   defp read(_text, raw), do: {:ok, raw}
+
+  defp key(key) do
+    case Integer.parse(key) do
+      {integer, ""} -> integer
+      _other -> key
+    end
+  end
+
+  defp cell({column, value}) when is_binary(value), do: {key(column), decode(value, "string")}
+  defp cell({column, value}) when is_number(value), do: {key(column), to_string(value)}
+  defp cell({column, _value}), do: {key(column), nil}
+
+  defp coordinate(raw) do
+    case number(String.trim(raw)) do
+      {:ok, number} -> {:ok, number / 1}
+      :error -> :error
+    end
+  end
 
   defp optional("", _read), do: {:ok, nil}
   defp optional(raw, read), do: read.(raw)

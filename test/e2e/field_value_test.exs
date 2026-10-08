@@ -30,7 +30,7 @@ defmodule CastorEDC.E2E.FieldValueTest do
   end
 
   for type <-
-        ~w(numeric year calculation string textarea date date_partial time datetime numberdate radio dropdown checkbox) do
+        ~w(numeric year calculation string textarea date date_partial time datetime numberdate radio dropdown checkbox grid upload geolocation) do
     test "decodes #{type} values", %{values: values} do
       check(values, unquote(type))
     end
@@ -65,6 +65,11 @@ defmodule CastorEDC.E2E.FieldValueTest do
   defp valid?("numberdate", _value), do: false
   defp valid?(option, value) when option in ["radio", "dropdown"], do: is_binary(value)
   defp valid?("checkbox", values), do: is_list(values) and Enum.all?(values, &is_binary/1)
+  defp valid?("grid", rows), do: is_map(rows) and Enum.all?(rows, fn {_row, cells} -> is_map(cells) end)
+  defp valid?("upload", value), do: match?({:upload, _name}, value)
+
+  defp valid?("geolocation", value),
+    do: match?({latitude, longitude} when is_float(latitude) and is_float(longitude), value)
 
   test "finds the name of every chosen option", %{values: values} do
     for {%{field_type: type} = field, raw} <- values, type in ~w(radio dropdown checkbox) do

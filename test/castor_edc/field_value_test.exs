@@ -149,6 +149,45 @@ defmodule CastorEDC.FieldValueTest do
     end
   end
 
+  describe "grids, uploads and locations" do
+    test "decodes a grid as rows of cells" do
+      assert FieldValue.decode(~s({"0":{"0":"5","1":""},"1":{"0":"text","1":"##USER_MISSING_96##"}}), "grid") == %{
+               0 => %{0 => "5", 1 => nil},
+               1 => %{0 => "text", 1 => MissingValue.new(96)}
+             }
+    end
+
+    test "keeps grid keys that aren't numbers, and reads numbers and nulls in cells" do
+      assert FieldValue.decode(~s({"a":{"b":7,"c":null}}), "grid") == %{"a" => %{"b" => "7", "c" => nil}}
+    end
+
+    test "decodes an upload as the file's name" do
+      assert FieldValue.decode("-- Uploaded File: scan 1.pdf --", "upload") == {:upload, "scan 1.pdf"}
+      assert FieldValue.decode("- - Uploaded file - -", "upload") == {:upload, nil}
+    end
+
+    test "decodes a location as latitude and longitude" do
+      assert FieldValue.decode("52.3676;4.9041", "geolocation") == {52.3676, 4.9041}
+      assert FieldValue.decode("-33; 151", "geolocation") == {-33.0, 151.0}
+    end
+
+    test "keeps grids, uploads and locations it can't read as strings" do
+      capture_log(fn ->
+        for {raw, type} <- [
+              {"{not json", "grid"},
+              {~s(["a"]), "grid"},
+              {~s({"0":"a"}), "grid"},
+              {"scan.pdf", "upload"},
+              {"-- Uploaded File: scan.pdf", "upload"},
+              {"52.3", "geolocation"},
+              {"north;south", "geolocation"}
+            ] do
+          assert FieldValue.decode(raw, field(type)) == raw
+        end
+      end)
+    end
+  end
+
   describe "a value that doesn't read as its type" do
     test "comes back as the string, with a warning" do
       field = field("numeric", field_variable_name: "weight")
