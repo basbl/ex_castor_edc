@@ -6,6 +6,11 @@ defmodule CastorEDC.ExportTest do
 
   @study "study-1"
 
+  defmodule QueuedAdapter do
+    @moduledoc false
+    def run(request), do: {request, CastorEDC.Case.json(%{"queued_exports" => ["export-1"]}, status: 201)}
+  end
+
   defp entry(id, attrs \\ %{}) do
     Map.merge(
       %{
@@ -55,6 +60,143 @@ defmodule CastorEDC.ExportTest do
     fn request ->
       into = Enum.into([body], request.into)
       Req.Response.new(status: status, body: into, headers: %{"content-type" => ["application/json"]})
+    end
+  end
+
+  defp queued(ids), do: json(%{"success" => true, "description" => "Queued", "queued_exports" => ids}, status: 201)
+
+  defp too_many do
+    json(%{"description" => "Number of requested concurrent exports exceeds configured maximum (3)."},
+      status: 429,
+      headers: %{"x-ratelimit-remaining" => ["95"], "x-ratelimit-retry-after" => ["1791452962"]}
+    )
+  end
+
+  # Answers with the given responses in order.
+  defp sequence(responses) do
+    {:ok, agent} = Agent.start_link(fn -> responses end)
+    fn _request -> Agent.get_and_update(agent, fn [next | rest] -> {next, rest} end) end
+  end
+
+  defp sleepy(client) do
+    test = self()
+    Req.Request.put_private(client, :castor_edc_sleep, fn ms -> send(test, {:slept, ms}) end)
+  end
+
+  defp sent_body(request), do: request.body |> IO.iodata_to_binary() |> JSON.decode!()
+
+  describe "queue/4" do
+    test "queues an export and returns its ID" do
+      client = client(queued(["export-1"]))
+
+      assert {:ok, ["export-1"]} =
+               Export.queue(client, @study, [{:participant_data, format: :spss, options: [grouped: true]}])
+
+      request = assert_requested()
+      assert request.method == :post
+      assert request.url.path == "/api/study/#{@study}/export"
+      assert request.headers["accept"] == ["application/json"]
+
+      assert sent_body(request) == %{
+               "exports" => %{"participant_data" => [%{"format" => "spss", "options" => %{"grouped" => true}}]}
+             }
+    end
+
+    test "queues several exports in one request, returning the IDs in the order asked" do
+      client = client(queued(["data-1", "data-2", "queries-1", "sites-1"]))
+
+      requests = [
+        {:sites, []},
+        {:participant_data, format: :csv},
+        {:queries, format: :excel},
+        {:participant_data, format: :spss}
+      ]
+
+      assert {:ok, ["sites-1", "data-1", "queries-1", "data-2"]} = Export.queue(client, @study, requests)
+
+      assert assert_requested() |> sent_body() |> Map.fetch!("exports") == %{
+               "participant_data" => [%{"format" => "csv"}, %{"format" => "spss"}],
+               "queries" => [%{"format" => "excel"}],
+               "sites" => [%{"format" => "csv"}]
+             }
+    end
+
+    test "writes the types in the order the API's IDs come back in" do
+      client = client(queued(["a", "b", "c"]))
+
+      Export.queue(client, @study, [{:sites, []}, {:audit_trail, []}, {:queries, []}])
+
+      body = IO.iodata_to_binary(assert_requested().body)
+      assert :binary.match(body, "audit_trail") < :binary.match(body, "queries")
+      assert :binary.match(body, "queries") < :binary.match(body, "sites")
+    end
+
+    test "raises before sending anything when a request is invalid" do
+      client = client(queued([]))
+
+      assert_raise ArgumentError, fn -> Export.queue(client, @study, [{:sites, format: :pdf}]) end
+      refute_received {:castor_edc_request, _request}
+    end
+
+    test "returns the API's error" do
+      client = client(json(%{"description" => "Export format not supported for the requested export type."}, status: 400))
+
+      assert {:error, %Error{status: 400, message: "Export format not supported for the requested export type."}} =
+               Export.queue(client, @study, [{:sites, []}])
+    end
+
+    test "waits for a slot while three exports are running, backing off" do
+      client = [too_many(), too_many(), too_many(), queued(["export-1"])] |> sequence() |> client() |> sleepy()
+
+      assert {:ok, ["export-1"]} = Export.queue(client, @study, [{:sites, []}])
+
+      assert_received {:slept, 5000}
+      assert_received {:slept, 10_000}
+      assert_received {:slept, 20_000}
+      refute_received {:slept, _ms}
+    end
+
+    test "backs off to a minute at most" do
+      responses = List.duplicate(too_many(), 6) ++ [queued(["export-1"])]
+      client = responses |> sequence() |> client() |> sleepy()
+
+      assert {:ok, ["export-1"]} = Export.queue(client, @study, [{:sites, []}], timeout: :infinity)
+
+      for ms <- [5000, 10_000, 20_000, 40_000, 60_000, 60_000], do: assert_received({:slept, ^ms})
+    end
+
+    test "gives up with :too_many_exports once the timeout is used up" do
+      client = too_many() |> client() |> sleepy()
+
+      assert {:error, %Error{status: 429, code: :too_many_exports, message: message}} =
+               Export.queue(client, @study, [{:sites, []}], timeout: 30_000)
+
+      assert message =~ "no slot came free in 15 seconds"
+      assert_received {:slept, 5000}
+      assert_received {:slept, 10_000}
+      refute_received {:slept, _ms}
+    end
+
+    test "doesn't wait with rate_limit: :error" do
+      client = too_many() |> client(rate_limit: :error) |> sleepy()
+
+      assert {:error, %Error{code: :too_many_exports, message: "three exports are already running"}} =
+               Export.queue(client, @study, [{:sites, []}])
+
+      refute_received {:slept, _ms}
+    end
+
+    test "emits a telemetry event" do
+      ref = :telemetry_test.attach_event_handlers(self(), [[:castor_edc, :export, :queued]])
+
+      Export.queue(client(queued(["export-1"])), @study, [{:sites, []}])
+
+      assert_received {[:castor_edc, :export, :queued], ^ref, %{count: 1},
+                       %{study_id: @study, export_ids: ["export-1"], types: [:sites]}}
+    end
+
+    test "builds a client from options" do
+      assert {:ok, ["export-1"]} = Export.queue([access_token: "t", adapter: QueuedAdapter], @study, [{:sites, []}])
     end
   end
 

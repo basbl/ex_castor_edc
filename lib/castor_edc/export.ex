@@ -6,7 +6,17 @@ defmodule CastorEDC.Export do
   ready, and download the result, which is always a zip. This module does
   each of those steps on top of `CastorEDC.Exports`.
 
-  `status/3` looks up an export, and `download/4` downloads a ready one.
+  `queue/4` queues exports, `status/3` looks one up, and `download/4`
+  downloads a ready one.
+
+  ## Concurrent exports
+
+  The API runs at most three exports per user at a time, and refuses to
+  queue more. With `rate_limit: :wait` (the default of `CastorEDC.new/1`),
+  `queue/4` waits for a slot, trying again after 5 seconds, then 10, 20,
+  40 and every 60, for as long as its `:timeout` allows. With
+  `rate_limit: :error`, or once the time is up, it returns an error with
+  code `:too_many_exports`.
 
   ## The struct
 
@@ -25,8 +35,10 @@ defmodule CastorEDC.Export do
   """
 
   alias CastorEDC.Error
+  alias CastorEDC.Export.Request
   alias CastorEDC.Exports
   alias CastorEDC.Model.ExportEntry
+  alias CastorEDC.Model.ExportSuccess
 
   defstruct [
     :id,
@@ -80,16 +92,123 @@ defmodule CastorEDC.Export do
   @formats ~w(csv excel spss sas_xpt sas_7bdat odm pdf xml zip)a
   @statuses ~w(queued in_progress ready failed)a
 
+  @default_timeout to_timeout(minute: 15)
+  @first_backoff to_timeout(second: 5)
+  @max_backoff to_timeout(minute: 1)
+
   # The export list has no filter, so finding an export means paging
   # through it; large pages keep that to one request in the common case.
   @page_size 100
+
+  @doc """
+  Queues exports, returning their IDs in the order of `requests`.
+
+  `requests` is a list of `{type, opts}` tuples, all sent in one request:
+
+      {:ok, [data_id, sites_id]} =
+        CastorEDC.Export.queue(client, study_id, [
+          {:participant_data, format: :spss, filters: [site_ids: [site_id]]},
+          {:sites, []}
+        ])
+
+  Each export takes these options:
+
+    * `:format` - one of the type's formats, by default its first
+    * `:filters` and `:options` - keyword lists of the type's filters and
+      options. Values are given as Elixir values: lists, booleans, integers,
+      `Date`s (and `NaiveDateTime`s where the API takes a time too), and
+      atoms for values from a fixed set, such as
+      `display_options_as: :names` or `element_type: :visit`.
+
+  A type, format, filter or option the API doesn't support, or a value of
+  the wrong kind, raises `ArgumentError`.
+
+  ## Options
+
+    * `:timeout` - how long to wait for a free slot when three exports are
+      already running (see [Concurrent exports](#module-concurrent-exports)),
+      in milliseconds or `:infinity`; 15 minutes by default
+  """
+  @spec queue(CastorEDC.client(), String.t(), [{type(), keyword()}], keyword()) ::
+          {:ok, [String.t()]} | {:error, Error.t()}
+  def queue(client, study_id, requests, opts \\ []) do
+    client = to_client(client)
+    timeout = Keyword.get(opts, :timeout, @default_timeout)
+
+    # The API answers with the IDs in the order of the request body, where
+    # the types come in the order Jason writes the map's keys: sorted, for
+    # a map this small. Keeping the requests in that order maps the IDs
+    # back to them.
+    indexed =
+      requests
+      |> Enum.with_index(fn {type, export_opts}, index ->
+        {Atom.to_string(type), index, Request.encode(type, export_opts)}
+      end)
+      |> Enum.sort_by(fn {type, index, _entry} -> {type, index} end)
+
+    exports = Enum.group_by(indexed, &elem(&1, 0), &elem(&1, 2))
+
+    with {:ok, %ExportSuccess{queued_exports: ids}} <- send_queue(client, study_id, exports, timeout) do
+      ids =
+        indexed
+        |> Enum.zip(ids)
+        |> Enum.sort_by(fn {{_type, index, _entry}, _id} -> index end)
+        |> Enum.map(&elem(&1, 1))
+
+      :telemetry.execute([:castor_edc, :export, :queued], %{count: length(ids)}, %{
+        study_id: study_id,
+        export_ids: ids,
+        types: Enum.map(requests, &elem(&1, 0))
+      })
+
+      {:ok, ids}
+    end
+  end
+
+  defp send_queue(client, study_id, exports, timeout, waited \\ 0, backoff \\ @first_backoff) do
+    case Exports.queue_exports(client, study_id, %{"exports" => exports}) do
+      {:error, %Error{status: 429, retry_after: nil} = error} ->
+        if wait_for_slot?(client, timeout, waited, backoff) do
+          sleep(client, backoff)
+          send_queue(client, study_id, exports, timeout, waited + backoff, min(backoff * 2, @max_backoff))
+        else
+          {:error, too_many_exports(error, waited)}
+        end
+
+      result ->
+        result
+    end
+  end
+
+  defp wait_for_slot?(client, timeout, waited, backoff) do
+    {mode, _max_wait} = Req.Request.get_private(client, :castor_edc_rate_limit, {:wait, nil})
+    mode == :wait and (timeout == :infinity or waited + backoff <= timeout)
+  end
+
+  defp too_many_exports(error, waited) do
+    message =
+      if waited > 0,
+        do: "three exports are already running, and no slot came free in #{div(waited, 1000)} seconds",
+        else: "three exports are already running"
+
+    %{error | message: message, code: :too_many_exports}
+  end
+
+  defp to_client(%Req.Request{} = client), do: client
+  defp to_client(options) when is_list(options), do: CastorEDC.new(options)
+
+  defp sleep(client, milliseconds) do
+    Req.Request.get_private(client, :castor_edc_sleep, &Process.sleep/1).(milliseconds)
+  end
 
   @doc """
   The current state of an export.
 
   There's no endpoint for a single export, so this pages through the
   study's export list, newest first, until it finds `export_id`. An ID that
-  isn't in the list returns an error with code `:export_not_found`.
+  isn't in the list returns an error with code `:export_not_found`. That
+  includes an export queued a moment ago: it takes the API a few hundred
+  milliseconds to list it.
   """
   @spec status(CastorEDC.client(), String.t(), String.t()) :: {:ok, t()} | {:error, Error.t()}
   def status(client, study_id, export_id) do
