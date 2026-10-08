@@ -24,7 +24,7 @@ defmodule CastorEDC.Export.RequestTest do
   test "encodes filters and options by their schema" do
     entry =
       Request.encode(:participant_data,
-        format: :excel,
+        format: :csv,
         filters: [
           site_ids: ["S1", "S2"],
           locked: false,
@@ -33,11 +33,11 @@ defmodule CastorEDC.Export.RequestTest do
           last_updated_between_end: "2026-02-01",
           elements: [visits: ["V1"], repeating_data: []]
         ],
-        options: %{"grouped" => true, display_options_as: :names, export_missing_data_in: "separate_column"}
+        options: %{"grouped" => true, include_empty_rows: true, export_missing_data_in: "separate_column"}
       )
 
     assert entry == %{
-             "format" => "excel",
+             "format" => "csv",
              "filters" => %{
                "site_ids" => ["S1", "S2"],
                "locked" => false,
@@ -48,7 +48,7 @@ defmodule CastorEDC.Export.RequestTest do
              },
              "options" => %{
                "grouped" => true,
-               "display_options_as" => "names",
+               "include_empty_rows" => true,
                "export_missing_data_in" => "separate_column"
              }
            }
@@ -112,6 +112,13 @@ defmodule CastorEDC.Export.RequestTest do
 
       assert doc =~ "and names included. Only applicable"
 
+      assert doc =~
+               "Only applicable when `grouped` is set to true. " <>
+                 "Only applies to `:csv`, `:sas_xpt` or `:sas_7bdat` exports with `grouped: true`."
+
+      assert doc =~ "Only applies to `:csv` or `:excel` exports that aren't grouped."
+      assert doc =~ "by domain. Only applies to `:csv`, `:sas_xpt` or `:sas_7bdat`."
+
       assert Request.doc(:form_structure) =~ "* `:element_type` (one of `:all`, `:study`, `:visit`, `:form`,"
       assert Request.doc(:form_structure) =~ "* `:element_id` (string)"
       assert Request.doc(:survey_compliance) =~ "* `:availability_start` (a `Date` or `NaiveDateTime`)"
@@ -157,6 +164,26 @@ defmodule CastorEDC.Export.RequestTest do
       assert_raise ArgumentError, ~r/a queries export option :grouped isn't supported/, fn ->
         Request.encode(:queries, options: [grouped: true])
       end
+    end
+
+    test "for an option the format or grouping doesn't allow" do
+      assert_raise ArgumentError,
+                   ~r/the participant_data export option :export_missing_data_in only applies to `:csv`, `:sas_xpt` or `:sas_7bdat` exports with `grouped: true`; this export is csv/,
+                   fn -> Request.encode(:participant_data, options: [export_missing_data_in: :separate_column]) end
+
+      assert_raise ArgumentError,
+                   ~r/:include_queries only applies .* that aren't grouped; this export is csv and grouped/,
+                   fn ->
+                     Request.encode(:participant_data, options: [grouped: true, include_queries: true])
+                   end
+
+      assert_raise ArgumentError,
+                   ~r/:grouped only applies to `:csv`, `:sas_xpt` or `:sas_7bdat`; this export is excel/,
+                   fn ->
+                     Request.encode(:participant_data, format: :excel, options: [grouped: true])
+                   end
+
+      assert Request.encode(:participant_data, format: :excel, options: [include_queries: true])
     end
 
     test "for an option other than format, filters and options" do

@@ -57,11 +57,13 @@ defmodule CastorEDC.Export.Request do
         "#{title}: none."
 
       properties ->
+        requires = schema["x-castor-requires"] || %{}
+
         items =
           properties
           |> Enum.sort_by(&elem(&1, 0))
           |> Enum.map(fn {name, property} ->
-            "  * `:#{name}` (#{type_doc(property)})" <> description_doc(property["description"])
+            "  * `:#{name}` (#{type_doc(property)})" <> details_doc(property["description"], requires[name])
           end)
 
         Enum.join(["#{title}:", "" | items], "\n")
@@ -98,17 +100,22 @@ defmodule CastorEDC.Export.Request do
     end
   end
 
-  defp description_doc(nil), do: ""
+  defp details_doc(nil, nil), do: ""
+  defp details_doc(description, nil), do: " - " <> description_text(description)
+  defp details_doc(nil, requirement), do: " - Only applies #{requirement_doc(requirement)}."
 
-  defp description_doc(description) do
-    text =
-      description
-      |> String.replace(~r"(?<=[^.!?\s>])\s*(<br\s*/?>)+", ". ")
-      |> String.replace(~r"(<br\s*/?>)+", " ")
-      |> String.replace(~r"\s+", " ")
-      |> String.trim()
+  defp details_doc(description, requirement) do
+    text = description_text(description)
+    text = if text =~ ~r/[.!?]\z/, do: text, else: text <> "."
+    " - #{text} Only applies #{requirement_doc(requirement)}."
+  end
 
-    " - " <> text
+  defp description_text(description) do
+    description
+    |> String.replace(~r"(?<=[^.!?\s>])\s*(<br\s*/?>)+", ". ")
+    |> String.replace(~r"(<br\s*/?>)+", " ")
+    |> String.replace(~r"\s+", " ")
+    |> String.trim()
   end
 
   @doc false
@@ -126,11 +133,46 @@ defmodule CastorEDC.Export.Request do
     end
 
     format = to_format(format, type, definition.formats)
+    options = object(options, definition.options, "#{type} export option")
+    check_requires(options, format, definition.options["x-castor-requires"], type)
 
     %{"format" => format}
     |> put_object("filters", object(filters, definition.filters, "#{type} export filter"))
-    |> put_object("options", object(options, definition.options, "#{type} export option"))
+    |> put_object("options", options)
   end
+
+  # Options that apply only to some formats, and to the grouped export or
+  # the default one, as `x-castor-requires` says.
+  defp check_requires(_options, _format, nil, _type), do: :ok
+
+  defp check_requires(options, format, requires, type) do
+    grouped = options["grouped"] == true
+
+    for {name, _value} <- options, requirement = requires[name], not met?(requirement, format, grouped) do
+      raise ArgumentError,
+            "the #{type} export option :#{name} only applies #{requirement_doc(requirement)}; " <>
+              "this export is #{format}#{if grouped, do: " and grouped"}"
+    end
+
+    :ok
+  end
+
+  defp met?(requirement, format, grouped) do
+    format in requirement["formats"] and Map.get(requirement, "grouped", grouped) == grouped
+  end
+
+  defp requirement_doc(requirement) do
+    formats = "to #{requirement["formats"] |> Enum.map(&"`#{inspect(String.to_atom(&1))}`") |> or_join()}"
+
+    case requirement["grouped"] do
+      nil -> formats
+      true -> formats <> " exports with `grouped: true`"
+      false -> formats <> " exports that aren't grouped"
+    end
+  end
+
+  defp or_join([one]), do: one
+  defp or_join(list), do: Enum.join(Enum.drop(list, -1), ", ") <> " or " <> List.last(list)
 
   defp to_format(format, type, formats) do
     case Enum.find(formats, &(&1 == format or Atom.to_string(&1) == format)) do

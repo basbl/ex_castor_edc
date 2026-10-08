@@ -513,7 +513,93 @@
                           "type": "boolean"
                         }
                       },
-                      "type": "object"
+                      "type": "object",
+                      "x-castor-requires": {
+                        "display_options_as": {
+                          "formats": [
+                            "csv",
+                            "excel"
+                          ],
+                          "grouped": false
+                        },
+                        "export_coded_options_as": {
+                          "formats": [
+                            "csv",
+                            "sas_xpt",
+                            "sas_7bdat"
+                          ],
+                          "grouped": true
+                        },
+                        "export_dates_as": {
+                          "formats": [
+                            "sas_xpt",
+                            "sas_7bdat"
+                          ],
+                          "grouped": true
+                        },
+                        "export_missing_data_in": {
+                          "formats": [
+                            "csv",
+                            "sas_xpt",
+                            "sas_7bdat"
+                          ],
+                          "grouped": true
+                        },
+                        "grouped": {
+                          "formats": [
+                            "csv",
+                            "sas_xpt",
+                            "sas_7bdat"
+                          ]
+                        },
+                        "include_comments": {
+                          "formats": [
+                            "csv",
+                            "excel"
+                          ],
+                          "grouped": false
+                        },
+                        "include_empty_rows": {
+                          "formats": [
+                            "csv",
+                            "sas_xpt",
+                            "sas_7bdat"
+                          ],
+                          "grouped": true
+                        },
+                        "include_encrypted_fields": {
+                          "formats": [
+                            "csv",
+                            "excel",
+                            "spss",
+                            "sas_xpt",
+                            "sas_7bdat"
+                          ],
+                          "grouped": false
+                        },
+                        "include_queries": {
+                          "formats": [
+                            "csv",
+                            "excel"
+                          ],
+                          "grouped": false
+                        },
+                        "include_survey_metadata": {
+                          "formats": [
+                            "csv",
+                            "sas_xpt",
+                            "sas_7bdat"
+                          ],
+                          "grouped": true
+                        },
+                        "include_verifications": {
+                          "formats": [
+                            "csv",
+                            "excel"
+                          ],
+                          "grouped": false
+                        }
+                      }
                     }
                   },
                   "required": [

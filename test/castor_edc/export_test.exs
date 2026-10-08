@@ -111,7 +111,7 @@ defmodule CastorEDC.ExportTest do
       client = client(queued(["export-1"]))
 
       assert {:ok, ["export-1"]} =
-               Export.queue(client, @study, [{:participant_data, format: :spss, options: [grouped: true]}])
+               Export.queue(client, @study, [{:participant_data, format: :sas_xpt, options: [grouped: true]}])
 
       request = assert_requested()
       assert request.method == :post
@@ -119,7 +119,7 @@ defmodule CastorEDC.ExportTest do
       assert request.headers["accept"] == ["application/json"]
 
       assert sent_body(request) == %{
-               "exports" => %{"participant_data" => [%{"format" => "spss", "options" => %{"grouped" => true}}]}
+               "exports" => %{"participant_data" => [%{"format" => "sas_xpt", "options" => %{"grouped" => true}}]}
              }
     end
 
@@ -405,13 +405,17 @@ defmodule CastorEDC.ExportTest do
                Export.participant_data(client, @study,
                  format: :spss,
                  filters: [site_ids: ["S1"]],
-                 options: [include_comments: true]
+                 options: [include_encrypted_fields: true]
                )
 
       assert sent_body(assert_requested()) == %{
                "exports" => %{
                  "participant_data" => [
-                   %{"format" => "spss", "filters" => %{"site_ids" => ["S1"]}, "options" => %{"include_comments" => true}}
+                   %{
+                     "format" => "spss",
+                     "filters" => %{"site_ids" => ["S1"]},
+                     "options" => %{"include_encrypted_fields" => true}
+                   }
                  ]
                }
              }

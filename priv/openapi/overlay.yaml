@@ -872,6 +872,24 @@ actions:
         report_step: repeating_data_form
         report_field: repeating_data_field
         survey_step: survey_form
+  # Most participant data options only apply to some formats, and either to
+  # the default export or to the grouped (domain based) one that `grouped:
+  # true` asks for. The API refuses an option outside those with "Fields not
+  # allowed for this request", which the spec doesn't mention.
+  - target: $.definitions.BatchExportRequest.properties.exports.properties.participant_data.items.properties.options
+    update:
+      x-castor-requires:
+        grouped: {formats: [csv, sas_xpt, sas_7bdat]}
+        include_encrypted_fields: {formats: [csv, excel, spss, sas_xpt, sas_7bdat], grouped: false}
+        include_comments: {formats: [csv, excel], grouped: false}
+        include_queries: {formats: [csv, excel], grouped: false}
+        include_verifications: {formats: [csv, excel], grouped: false}
+        display_options_as: {formats: [csv, excel], grouped: false}
+        export_missing_data_in: {formats: [csv, sas_xpt, sas_7bdat], grouped: true}
+        include_empty_rows: {formats: [csv, sas_xpt, sas_7bdat], grouped: true}
+        include_survey_metadata: {formats: [csv, sas_xpt, sas_7bdat], grouped: true}
+        export_coded_options_as: {formats: [csv, sas_xpt, sas_7bdat], grouped: true}
+        export_dates_as: {formats: [sas_xpt, sas_7bdat], grouped: true}
 
   # Data point writes
   #
