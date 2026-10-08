@@ -1,7 +1,0 @@
-{
-  "method": "POST",
-  "operation": "create_participant",
-  "path": "/api/study/7AD4616E-B169-4F9E-9982-F626099B84C0/participant",
-  "query": null,
-  "status": 201
-}
