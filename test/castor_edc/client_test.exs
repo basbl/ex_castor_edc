@@ -210,24 +210,29 @@ defmodule CastorEDC.ClientTelemetryTest do
 
   @operation [method: :get, path: "/api/study/{study_id}", path_params: %{"study_id" => "S1"}, query_names: %{}]
 
+  # Other async tests send requests too, and the handler sees their events,
+  # so each test uses a server of its own and only looks at its events.
   setup do
     events = [[:castor_edc, :request, :start], [:castor_edc, :request, :stop]]
-    %{ref: :telemetry_test.attach_event_handlers(self(), events)}
+    base_url = "https://telemetry-#{System.unique_integer([:positive])}.invalid"
+    %{ref: :telemetry_test.attach_event_handlers(self(), events), base_url: base_url}
   end
 
-  test "spans every operation, with the route rather than the path", %{ref: ref} do
-    Client.request(client(json(%{})), @operation)
+  test "spans every operation, with the route rather than the path", %{ref: ref, base_url: base_url} do
+    Client.request(client(json(%{}), base_url: base_url), @operation)
 
-    assert_received {[:castor_edc, :request, :start], ^ref, %{system_time: _time}, start}
-    assert %{method: :get, route: "/api/study/{study_id}", base_url: "https://data.castoredc.com"} = start
+    assert_received {[:castor_edc, :request, :start], ^ref, %{system_time: _time}, %{base_url: ^base_url} = start}
+    assert %{method: :get, route: "/api/study/{study_id}"} = start
 
-    assert_received {[:castor_edc, :request, :stop], ^ref, %{duration: duration}, %{status: :ok}}
+    assert_received {[:castor_edc, :request, :stop], ^ref, %{duration: duration}, %{base_url: ^base_url} = stop}
+    assert %{status: :ok} = stop
     assert is_integer(duration)
   end
 
-  test "reports a failure's status and error", %{ref: ref} do
-    Client.request(client(json(%{"detail" => "Gone"}, status: 404)), @operation)
+  test "reports a failure's status and error", %{ref: ref, base_url: base_url} do
+    Client.request(client(json(%{"detail" => "Gone"}, status: 404), base_url: base_url), @operation)
 
-    assert_received {[:castor_edc, :request, :stop], ^ref, _measurements, %{status: 404, error: %CastorEDC.Error{}}}
+    assert_received {[:castor_edc, :request, :stop], ^ref, _measurements,
+                     %{base_url: ^base_url, status: 404, error: %CastorEDC.Error{}}}
   end
 end
