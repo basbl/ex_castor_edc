@@ -47,10 +47,48 @@ defmodule CastorEDC.MixProject do
       source_url: @source_url,
       homepage_url: @homepage_url,
       groups_for_modules: [
-        Common: ~r"CastorEDC.Common",
-        "Data Collection": ~r"CastorEDC.DataCollection",
-        "Study Protocol": ~r"CastorEDC.StudyProtocol"
+        Core: [
+          CastorEDC,
+          CastorEDC.Client,
+          CastorEDC.Auth,
+          CastorEDC.Error,
+          CastorEDC.Page,
+          CastorEDC.Pagination,
+          CastorEDC.RateLimit,
+          CastorEDC.Export,
+          CastorEDC.FieldValue,
+          CastorEDC.MissingValue,
+          CastorEDC.PartialDate,
+          CastorEDC.Tabular,
+          CastorEDC.Test
+        ],
+        Endpoints: [
+          CastorEDC.Countries,
+          CastorEDC.DataPoints,
+          CastorEDC.Exports,
+          CastorEDC.Fields,
+          CastorEDC.Forms,
+          CastorEDC.Metadata,
+          CastorEDC.OptionGroups,
+          CastorEDC.Participants,
+          CastorEDC.Queries,
+          CastorEDC.Randomization,
+          CastorEDC.RepeatingData,
+          CastorEDC.Roles,
+          CastorEDC.Sites,
+          CastorEDC.Studies,
+          CastorEDC.StudyUsers,
+          CastorEDC.Surveys,
+          CastorEDC.Users,
+          CastorEDC.Verifications
+        ],
+        Responses: ~r/^CastorEDC\.Model/
       ],
+      # The generator and its tasks are development tooling, compiled in :dev
+      # but not part of the package.
+      filter_modules: fn module, _metadata ->
+        not String.starts_with?(inspect(module), ["CastorEDC.Generator", "CastorEDC.TestStudy", "Mix.Tasks.CastorEdc"])
+      end,
       extras: ["README.md", "notebook/getting_started.livemd", "guides/migrating-to-1.0.md", "CHANGELOG.md"],
       # The CHANGELOG names functions of earlier releases.
       skip_code_autolink_to: ["CastorEDC.authenticate/1", "CastorEDC.Client.new/2"]

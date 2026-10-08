@@ -110,7 +110,14 @@ For analysis, [ex_castor_edc_explorer](https://github.com/basbl/ex_castor_edc_ex
 
 ## How it's built
 
-The API's published spec describes it only partly, and sometimes wrongly. `priv/openapi/upstream.json` is that spec as published; `priv/openapi/overlay.yaml` corrects it (names, schemas, paging, error bodies, and what the API really does), and `mix castor_edc.spec.build` applies it to give `priv/openapi/castor_edc.json`. `mix castor_edc.gen.client` generates the endpoint modules and response structs from that, on a small handwritten core: `CastorEDC.Client`, `CastorEDC.Auth`, `CastorEDC.RateLimit`, `CastorEDC.Pagination` and `CastorEDC.Error`. A weekly workflow fetches the published spec and opens an issue when it drifts.
+The API's published spec describes it only partly, and sometimes wrongly. `priv/openapi/upstream.json` is that spec as published, and `priv/openapi/overlay.yaml` corrects it: names, schemas, paging, error bodies, and what the API really does. Two tasks turn them into code:
+
+```console
+$ mix castor_edc.spec.build   # upstream.json and overlay.yaml into priv/openapi/castor_edc.json
+$ mix castor_edc.gen.client   # castor_edc.json into the endpoint modules and response structs
+```
+
+The generated modules sit on a small handwritten core: `CastorEDC.Client`, `CastorEDC.Auth`, `CastorEDC.RateLimit`, `CastorEDC.Pagination` and `CastorEDC.Error`. A weekly workflow fetches the published spec and opens an issue when it drifts.
 
 ## Development
 
