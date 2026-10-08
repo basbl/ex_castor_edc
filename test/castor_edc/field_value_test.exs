@@ -6,6 +6,8 @@ defmodule CastorEDC.FieldValueTest do
   alias CastorEDC.FieldValue
   alias CastorEDC.MissingValue
   alias CastorEDC.Model.Field
+  alias CastorEDC.Model.FieldOption
+  alias CastorEDC.Model.FieldOptionGroup
   alias CastorEDC.PartialDate
 
   doctest FieldValue
@@ -112,6 +114,38 @@ defmodule CastorEDC.FieldValueTest do
           assert FieldValue.decode(raw, field(type)) == raw
         end
       end)
+    end
+  end
+
+  describe "options" do
+    @group %FieldOptionGroup{
+      options: [
+        %FieldOption{value: "0", name: "None"},
+        %FieldOption{value: "1", name: "Mild"},
+        %FieldOption{value: "2", name: "Severe"}
+      ]
+    }
+
+    test "decodes a radio or dropdown value as the option's value" do
+      assert FieldValue.decode("2", "radio") == "2"
+      assert FieldValue.decode("197", "dropdown") == "197"
+    end
+
+    test "decodes a checkbox value as the list of checked values" do
+      assert FieldValue.decode("0;1", "checkbox") == ["0", "1"]
+      assert FieldValue.decode("2", "checkbox") == ["2"]
+    end
+
+    test "looks up an option's name" do
+      assert FieldValue.label("2", @group) == "Severe"
+      assert FieldValue.label("3", @group) == nil
+      assert FieldValue.label(["0", "1"], @group) == ["None", "Mild"]
+    end
+
+    test "looks up names through a field listed with its option group" do
+      assert FieldValue.label("1", %Field{field_type: "radio", option_group: @group}) == "Mild"
+      assert FieldValue.label("1", %Field{field_type: "radio", option_group: nil}) == nil
+      assert FieldValue.label("1", %FieldOptionGroup{options: nil}) == nil
     end
   end
 

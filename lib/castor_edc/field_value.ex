@@ -15,6 +15,8 @@ defmodule CastorEDC.FieldValue do
   | `time` | `"12:30"` | a `Time` |
   | `datetime` | `"07-10-2026;12:30"` | a `NaiveDateTime` |
   | `numberdate` | `"5;07-10-2026"` | `{number, date}`, either of which can be `nil` |
+  | `radio`, `dropdown` | the chosen option's value, such as `"2"` | the value, as a string |
+  | `checkbox` | the checked options' values, such as `"0;1"` | a list of the values |
   | `string`, `textarea` and others | text | the string |
   | any, when empty | `""` | `nil` |
   | any, when marked missing | `"##USER_MISSING_95##"` to `"##USER_MISSING_99##"` | a `CastorEDC.MissingValue` |
@@ -23,6 +25,9 @@ defmodule CastorEDC.FieldValue do
   Layout types without values, such as `remark` and `repeated_measures`,
   decode like text.
 
+  Options are stored by value, not by name: `label/2` looks up the name the
+  user saw.
+
   `decode/2` never raises. A value that doesn't read as its type comes back
   as the string it arrived as, and the first such value of each field logs
   a warning.
@@ -30,6 +35,7 @@ defmodule CastorEDC.FieldValue do
 
   alias CastorEDC.MissingValue
   alias CastorEDC.Model.Field
+  alias CastorEDC.Model.FieldOptionGroup
   alias CastorEDC.PartialDate
 
   require Logger
@@ -44,6 +50,7 @@ defmodule CastorEDC.FieldValue do
           | Time.t()
           | NaiveDateTime.t()
           | {integer() | float() | nil, Date.t() | nil}
+          | [String.t()]
           | MissingValue.t()
           | :encrypted
 
@@ -82,6 +89,33 @@ defmodule CastorEDC.FieldValue do
     end
   end
 
+  @doc """
+  The name of the option with the given value, as the user saw it.
+
+  `options` is the field's `CastorEDC.Model.FieldOptionGroup`, or the field
+  itself when it was listed with `include: "optiongroup"`. A list of values,
+  as a checkbox field has, gives a list of names. A value the option group
+  doesn't have gives `nil`.
+
+      iex> yes = %CastorEDC.Model.FieldOption{value: "1", name: "Yes"}
+      iex> no = %CastorEDC.Model.FieldOption{value: "0", name: "No"}
+      iex> group = %CastorEDC.Model.FieldOptionGroup{options: [yes, no]}
+      iex> CastorEDC.FieldValue.label("1", group)
+      "Yes"
+      iex> CastorEDC.FieldValue.label(["0", "1"], group)
+      ["No", "Yes"]
+  """
+  @spec label(String.t() | [String.t()], FieldOptionGroup.t() | Field.t() | nil) ::
+          String.t() | [String.t() | nil] | nil
+  def label(values, options) when is_list(values), do: Enum.map(values, &label(&1, options))
+  def label(value, %Field{option_group: group}), do: label(value, group)
+
+  def label(value, %FieldOptionGroup{options: options}) when is_binary(value) do
+    Enum.find_value(options || [], fn option -> if option.value == value, do: option.name end)
+  end
+
+  def label(_value, _options), do: nil
+
   defp type(%Field{field_type: type}), do: type
   defp type(type) when is_binary(type), do: type
 
@@ -118,6 +152,8 @@ defmodule CastorEDC.FieldValue do
       _invalid -> :error
     end
   end
+
+  defp read("checkbox", raw), do: {:ok, String.split(raw, ";")}
 
   defp read(_text, raw), do: {:ok, raw}
 

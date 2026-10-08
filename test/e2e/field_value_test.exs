@@ -29,7 +29,8 @@ defmodule CastorEDC.E2E.FieldValueTest do
     assert capture_log(fn -> Enum.each(values, fn {field, raw} -> FieldValue.decode(raw, field) end) end) == ""
   end
 
-  for type <- ~w(numeric year calculation string textarea date date_partial time datetime numberdate) do
+  for type <-
+        ~w(numeric year calculation string textarea date date_partial time datetime numberdate radio dropdown checkbox) do
     test "decodes #{type} values", %{values: values} do
       check(values, unquote(type))
     end
@@ -62,4 +63,19 @@ defmodule CastorEDC.E2E.FieldValueTest do
     do: (is_number(number) or is_nil(number)) and (is_nil(date) or is_struct(date, Date))
 
   defp valid?("numberdate", _value), do: false
+  defp valid?(option, value) when option in ["radio", "dropdown"], do: is_binary(value)
+  defp valid?("checkbox", values), do: is_list(values) and Enum.all?(values, &is_binary/1)
+
+  test "finds the name of every chosen option", %{values: values} do
+    for {%{field_type: type} = field, raw} <- values, type in ~w(radio dropdown checkbox) do
+      case FieldValue.decode(raw, field) do
+        value when is_binary(value) or is_list(value) ->
+          assert value |> List.wrap() |> FieldValue.label(field) |> Enum.all?(&is_binary/1),
+                 "#{inspect(value)} isn't in the option group of #{field.field_variable_name}"
+
+        _empty_or_missing ->
+          :ok
+      end
+    end
+  end
 end
