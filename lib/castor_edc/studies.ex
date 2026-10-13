@@ -17,7 +17,6 @@ defmodule CastorEDC.Studies do
 
   alias CastorEDC.Client
   alias CastorEDC.Model.Study
-  alias CastorEDC.Model.StudyCollectionItem
   alias CastorEDC.Model.StudyStatistics
 
   @doc ~S"""
@@ -79,10 +78,10 @@ defmodule CastorEDC.Studies do
 
   Every option is passed to `Req`.
 
-  Returns a `CastorEDC.Page` of `t:CastorEDC.Model.StudyCollectionItem.t/0` records.
+  Returns a `CastorEDC.Page` of `t:CastorEDC.Model.Study.t/0` records.
   """
   @spec list_studies(CastorEDC.client(), keyword()) ::
-          {:ok, CastorEDC.Page.t(StudyCollectionItem.t())} | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(Study.t())} | {:error, CastorEDC.Error.t()}
   def list_studies(client, opts \\ []) do
     Client.request(client, operation(:list_studies, %{}, opts))
   end
@@ -90,7 +89,7 @@ defmodule CastorEDC.Studies do
   @doc ~S"""
   The same as `list_studies/2`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_studies!(CastorEDC.client(), keyword()) :: CastorEDC.Page.t(StudyCollectionItem.t())
+  @spec list_studies!(CastorEDC.client(), keyword()) :: CastorEDC.Page.t(Study.t())
   def list_studies!(client, opts \\ []) do
     Client.request!(client, operation(:list_studies, %{}, opts))
   end
@@ -118,7 +117,7 @@ defmodule CastorEDC.Studies do
       query: opts,
       query_names: %{},
       items: "_embedded.study",
-      decode: StudyCollectionItem
+      decode: Study
     ]
   end
 end

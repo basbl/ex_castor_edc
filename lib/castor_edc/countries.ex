@@ -16,7 +16,6 @@ defmodule CastorEDC.Countries do
 
   alias CastorEDC.Client
   alias CastorEDC.Model.Country
-  alias CastorEDC.Model.CountryWithNoHalLinks
 
   @doc ~S"""
   Retrieve a single Country.
@@ -53,10 +52,10 @@ defmodule CastorEDC.Countries do
 
   Every option is passed to `Req`.
 
-  Returns a `CastorEDC.Page` of `t:CastorEDC.Model.CountryWithNoHalLinks.t/0` records.
+  Returns a `CastorEDC.Page` of `t:CastorEDC.Model.Country.t/0` records.
   """
   @spec list_countries(CastorEDC.client(), keyword()) ::
-          {:ok, CastorEDC.Page.t(CountryWithNoHalLinks.t())} | {:error, CastorEDC.Error.t()}
+          {:ok, CastorEDC.Page.t(Country.t())} | {:error, CastorEDC.Error.t()}
   def list_countries(client, opts \\ []) do
     Client.request(client, operation(:list_countries, %{}, opts))
   end
@@ -64,7 +63,7 @@ defmodule CastorEDC.Countries do
   @doc ~S"""
   The same as `list_countries/2`, returning the result or raising `CastorEDC.Error`.
   """
-  @spec list_countries!(CastorEDC.client(), keyword()) :: CastorEDC.Page.t(CountryWithNoHalLinks.t())
+  @spec list_countries!(CastorEDC.client(), keyword()) :: CastorEDC.Page.t(Country.t())
   def list_countries!(client, opts \\ []) do
     Client.request!(client, operation(:list_countries, %{}, opts))
   end
@@ -88,7 +87,7 @@ defmodule CastorEDC.Countries do
       query: opts,
       query_names: %{},
       items: "results",
-      decode: CountryWithNoHalLinks
+      decode: Country
     ]
   end
 end

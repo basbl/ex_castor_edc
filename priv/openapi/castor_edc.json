@@ -1074,37 +1074,6 @@
         },
         "type": "object"
       },
-      "CountryWithNoHalLinks": {
-        "properties": {
-          "country_cca2": {
-            "description": "Two-letter country abbreviation",
-            "type": "string"
-          },
-          "country_cca3": {
-            "description": "Three-letter country abbreviation",
-            "type": "string"
-          },
-          "country_id": {
-            "description": "Unique identifier of the Country (same as id)",
-            "format": "int32",
-            "type": "integer"
-          },
-          "country_name": {
-            "description": "The Country name",
-            "type": "string"
-          },
-          "country_tld": {
-            "description": "Top level domain name for country",
-            "type": "string"
-          },
-          "id": {
-            "description": "Unique identifier of the Country (same as country_id)",
-            "format": "int32",
-            "type": "integer"
-          }
-        },
-        "type": "object"
-      },
       "Data": {
         "properties": {
           "Date": {
@@ -4587,7 +4556,7 @@
           },
           "success": {
             "items": {
-              "$ref": "#/components/schemas/SiteNoLinks"
+              "$ref": "#/components/schemas/Site"
             },
             "type": "array"
           },
@@ -4612,37 +4581,6 @@
             "type": "string"
           },
           "message": {
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "SiteNoLinks": {
-        "properties": {
-          "abbreviation": {
-            "type": "string"
-          },
-          "code": {
-            "type": "string"
-          },
-          "country_id": {
-            "type": "integer"
-          },
-          "deleted": {
-            "type": "boolean"
-          },
-          "id": {
-            "format": "UUID",
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "order": {
-            "type": "integer"
-          },
-          "site_id": {
-            "format": "UUID",
             "type": "string"
           }
         },
@@ -4806,86 +4744,6 @@
             "format": "dateTime",
             "type": "string",
             "x-castor-type": "naive_datetime"
-          },
-          "live": {
-            "type": "boolean"
-          },
-          "main_contact": {
-            "format": "UUID",
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "on_site_epro_mode_enabled": {
-            "type": "boolean"
-          },
-          "premium_support_enabled": {
-            "type": "boolean"
-          },
-          "randomization_enabled": {
-            "type": "boolean"
-          },
-          "slug": {
-            "type": "string"
-          },
-          "study_id": {
-            "format": "UUID",
-            "type": "string"
-          },
-          "surveys_enabled": {
-            "type": "boolean"
-          },
-          "trial_registry_id": {
-            "type": "string"
-          },
-          "version": {
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "StudyCollectionItem": {
-        "properties": {
-          "_links": {
-            "$ref": "#/components/schemas/LinksSingle"
-          },
-          "created_by": {
-            "type": "string"
-          },
-          "created_on": {
-            "format": "dateTime",
-            "type": "string",
-            "x-castor-type": "naive_datetime"
-          },
-          "crf_id": {
-            "description": "The ID of the study's case report form.",
-            "format": "UUID",
-            "type": "string"
-          },
-          "domain": {
-            "type": "string"
-          },
-          "duration": {
-            "type": "number"
-          },
-          "encryption": {
-            "type": "boolean"
-          },
-          "expected_centers": {
-            "type": "integer"
-          },
-          "expected_records": {
-            "type": "integer",
-            "x-castor-rename": "expected_participants"
-          },
-          "first_live_on": {
-            "format": "dateTime",
-            "type": "string",
-            "x-castor-type": "naive_datetime"
-          },
-          "gcp_enabled": {
-            "type": "boolean"
           },
           "live": {
             "type": "boolean"
@@ -6659,7 +6517,7 @@
                   "properties": {
                     "results": {
                       "items": {
-                        "$ref": "#/components/schemas/CountryWithNoHalLinks"
+                        "$ref": "#/components/schemas/Country"
                       },
                       "type": "array"
                     },
@@ -6765,7 +6623,7 @@
                       "properties": {
                         "study": {
                           "items": {
-                            "$ref": "#/components/schemas/StudyCollectionItem"
+                            "$ref": "#/components/schemas/Study"
                           },
                           "type": "array"
                         }

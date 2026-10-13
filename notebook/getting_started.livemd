@@ -61,7 +61,7 @@ Let's list the studies your credentials have access to.
 studies
 ```
 
-Responses are decoded into structs, such as `CastorEDC.Model.StudyCollectionItem` here.
+Responses are decoded into structs, such as `CastorEDC.Model.Study` here.
 Pick a study to look into.
 
 ```elixir

@@ -8,15 +8,15 @@ defmodule CastorEDC.Model.SiteCollection do
   ## Fields
 
     * `:failed` (list of `t:CastorEDC.Model.SiteCreationFailed.t/0`)
-    * `:success` (list of `t:CastorEDC.Model.SiteNoLinks.t/0`)
+    * `:success` (list of `t:CastorEDC.Model.Site.t/0`)
     * `:total_failed` (integer)
     * `:total_processed` (integer)
     * `:total_success` (integer)
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
 
+  alias CastorEDC.Model.Site
   alias CastorEDC.Model.SiteCreationFailed
-  alias CastorEDC.Model.SiteNoLinks
 
   @known ~w(failed success total_failed total_processed total_success)
   @known_embedded ~w(failed success)
@@ -25,7 +25,7 @@ defmodule CastorEDC.Model.SiteCollection do
 
   @type t :: %__MODULE__{
           failed: [SiteCreationFailed.t()] | nil,
-          success: [SiteNoLinks.t()] | nil,
+          success: [Site.t()] | nil,
           total_failed: integer() | nil,
           total_processed: integer() | nil,
           total_success: integer() | nil,
@@ -39,7 +39,7 @@ defmodule CastorEDC.Model.SiteCollection do
 
     %__MODULE__{
       failed: CastorEDC.Model.list(data["failed"] || embedded["failed"], SiteCreationFailed),
-      success: CastorEDC.Model.list(data["success"] || embedded["success"], SiteNoLinks),
+      success: CastorEDC.Model.list(data["success"] || embedded["success"], Site),
       total_failed: data["total_failed"],
       total_processed: data["total_processed"],
       total_success: data["total_success"],

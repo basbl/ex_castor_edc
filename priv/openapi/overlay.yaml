@@ -819,6 +819,33 @@ actions:
           type: string
           description: The message of errors that carry neither `detail` nor `errors`.
 
+  # One struct per resource
+  #
+  # Upstream describes some lists with a copy of the resource's schema minus a
+  # field or two (no `_links`, no last data point date), which would make a
+  # second struct for the same thing: a `%Country{}` match would miss every
+  # country from the list. The lists use the resource's schema instead, and
+  # the copies go.
+
+  - target: $.paths['/country'].get.responses['200'].schema.properties.results.items
+    description: CountryWithNoHalLinks is Country without `_links`.
+    update: {$ref: '#/definitions/Country'}
+  - target: $.paths['/study'].get.responses['200'].schema.properties._embedded.properties.study.items
+    description: StudyCollectionItem is Study without `last_datapoint_collected_on`.
+    update: {$ref: '#/definitions/Study'}
+  - target: $.definitions.SiteCollection.properties.success.items
+    description: SiteNoLinks is Site without `_links` and the date formats.
+    update: {$ref: '#/definitions/Site'}
+  - target: $.definitions.CountryWithNoHalLinks
+    description: Replaced by Country above.
+    remove: true
+  - target: $.definitions.StudyCollectionItem
+    description: Replaced by Study above.
+    remove: true
+  - target: $.definitions.SiteNoLinks
+    description: Replaced by Site above.
+    remove: true
+
   # Dates sent as text
   #
   # These are typed as plain strings, but they're dates and times as
@@ -832,12 +859,6 @@ actions:
     description: A date and time as YYYY-MM-DD HH:MM:SS, typed as a plain string.
     update: {x-castor-type: naive_datetime}
   - target: $.definitions.Study.properties.last_datapoint_collected_on
-    description: A date and time as YYYY-MM-DD HH:MM:SS, typed as a plain string.
-    update: {x-castor-type: naive_datetime}
-  - target: $.definitions.StudyCollectionItem.properties.created_on
-    description: A date and time as YYYY-MM-DD HH:MM:SS, typed as a plain string.
-    update: {x-castor-type: naive_datetime}
-  - target: $.definitions.StudyCollectionItem.properties.first_live_on
     description: A date and time as YYYY-MM-DD HH:MM:SS, typed as a plain string.
     update: {x-castor-type: naive_datetime}
   - target: $.definitions.RepeatingDataInstance.properties.created_on
@@ -854,8 +875,6 @@ actions:
   # terminology, and field_slider_step is a slider's increment.
 
   - target: $.definitions.Study.properties.expected_records
-    update: {x-castor-rename: expected_participants}
-  - target: $.definitions.StudyCollectionItem.properties.expected_records
     update: {x-castor-rename: expected_participants}
   - target: $.definitions.StudyStatistics.properties.records
     update: {x-castor-rename: participants}
@@ -1105,9 +1124,6 @@ actions:
     update:
       repeating_data_name: {type: string, description: The name of the repeating data this is an instance of.}
   - target: $.definitions.Study.properties
-    update:
-      crf_id: {type: string, format: UUID, description: The ID of the study's case report form.}
-  - target: $.definitions.StudyCollectionItem.properties
     update:
       crf_id: {type: string, format: UUID, description: The ID of the study's case report form.}
   - target: $.definitions.SurveyForm.properties
