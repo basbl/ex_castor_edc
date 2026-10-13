@@ -4,7 +4,6 @@
 defmodule CastorEDC.Model.RepeatingDataInstanceCollection do
   @moduledoc ~S"""
   Allows the creation of multiple repeating data instances at once.
-  Always requires a study_id to be given.
 
   ## Fields
 

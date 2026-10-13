@@ -60,7 +60,7 @@ defmodule CastorEDC.Exports do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `100`) - The size of pages
+    * `:page_size` (integer, at most `100`; a larger one is lowered to it) - The size of pages
 
   Any other option is passed to `Req`.
 
@@ -107,7 +107,7 @@ defmodule CastorEDC.Exports do
 
     * `study_id` - The ID of the study for which this call should be made.
     * `body` - a map, sent as JSON: Please note that this endpoint is currently in beta and implementation details may change. Export format, options, and filters depend on the export type. All filters are optional. Please find a description of some parameters below. - filters.participant_ids: **If provided, other filters will be skipped.** - queries.elements: Only one type at a time is supported, so provide either repeating_data, visits or visit_forms key. - survey_compliance.parent_id: Visit/Repeating data UUID. To demonstrate use of all supported ENUM values, following notation is used in request payload: **empty | visit | repeating_data** - meaning in this example, all three values are supported.
-      * `exports` (object, always present)
+      * `exports` (object, required)
 
   Every option is passed to `Req`.
   """

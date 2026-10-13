@@ -43,8 +43,6 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   Create a field result for a repeating data instance.
 
-  Create a field result for a repeating data instance.
-
   Sends `POST /api/study/{study_id}/participant/{participant_id}/data-point/repeating-data/{repeating_data_instance_id}/{field_id}`. [API reference](https://data.castoredc.com/api#/repeating-data-data-entry/post_study__study_id__participant__participant_id__data_point_repeating_data__repeating_data_instance_id___field_id_)
 
   ## Arguments
@@ -253,7 +251,10 @@ defmodule CastorEDC.DataPoints do
     * `participant_id` - The ID of the participant for which this call should be made
     * `body` - a map, sent as JSON: Parameters common to all data points that will be created.You can provide an additional "all_fields_filled_on" parameter to mark the actual time the Survey Package Instance has been completed
       * `all_fields_filled_on` (string) - The UTC date and time the Survey Package Instance has been completed and all its fields have been filled
-      * `data` (list of `t:CastorEDC.Model.RepeatableSurveyDataPointsFieldValueParameter.t/0`)
+      * `data` (list of map)
+        * `field_id` (string, required) - The field identifier
+        * `field_value` (string, required) - The value
+        * `survey_id` (string, required) - The SurveyId to save the data-points for
       * `survey_package_id` (string) - The ID of the repeatable survey package for which a new survey package instance should be created.
       * `survey_package_instance_id` (string) - Optional client-provided UUID for the survey package instance. If not provided, the server will generate one. If provided and already exists, the request will return a 400 error.
 
@@ -456,8 +457,6 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   Retrieves a list of all repeating data data collected for this participant.
 
-  Returns an array of objects. Paged.
-
   Sends `GET /api/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance`. [API reference](https://data.castoredc.com/api#/data-points/get_study__study_id__participant__participant_id__data_points_repeating_data_instance)
 
   ## Arguments
@@ -505,8 +504,6 @@ defmodule CastorEDC.DataPoints do
 
   @doc ~S"""
   Retrieves a list of all repeating data data collected for this repeating data instance.
-
-  Returns an array of objects. Unpaged.
 
   Sends `GET /api/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance/{repeating_data_instance_id}`. [API reference](https://data.castoredc.com/api#/data-points/get_study__study_id__participant__participant_id__data_points_repeating_data_instance__repeating_data_instance_id_)
 
@@ -588,8 +585,6 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   Retrieves a list of all study data collected for this participant.
 
-  Returns an array of objects. Unpaged.
-
   Sends `GET /api/study/{study_id}/participant/{participant_id}/data-points/study`. [API reference](https://data.castoredc.com/api#/data-points/get_study__study_id__participant__participant_id__data_points_study)
 
   ## Arguments
@@ -638,8 +633,6 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   Retrieves a list of all survey data collected for this participant.
 
-  Returns an array of objects. Unpaged.
-
   Sends `GET /api/study/{study_id}/participant/{participant_id}/data-points/survey-instance`. [API reference](https://data.castoredc.com/api#/data-points/get_study__study_id__participant__participant_id__data_points_survey_instance)
 
   ## Arguments
@@ -687,8 +680,6 @@ defmodule CastorEDC.DataPoints do
 
   @doc ~S"""
   Retrieves a list of all survey data collected for this survey instance.
-
-  Returns an array of objects. Unpaged.
 
   Sends `GET /api/study/{study_id}/participant/{participant_id}/data-points/survey-instance/{survey_instance_id}`. [API reference](https://data.castoredc.com/api#/data-points/get_study__study_id__participant__participant_id__data_points_survey_instance__survey_instance_id_)
 
@@ -739,7 +730,7 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   Retrieves a list of all survey data collected for this survey package instance 🔭.
 
-  Returns an array of objects. Unpaged. Supports the `record` scope.
+  Supports the `record` scope.
 
   Sends `GET /api/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance/{survey_package_instance_id}`. [API reference](https://data.castoredc.com/api#/data-points/get_study__study_id__participant__participant_id__data_points_survey_package_instance__survey_package_instance_id_)
 
@@ -821,8 +812,6 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   Retrieves a list of all repeating data data collected for all participants.
 
-  Returns an array of objects. Paged.
-
   Sends `GET /api/study/{study_id}/data-points/repeating-data-instance`. [API reference](https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_repeating_data_instance)
 
   ## Arguments
@@ -834,7 +823,7 @@ defmodule CastorEDC.DataPoints do
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
-    * `:page_size` (integer, at most `5000`) - The number of records per page.
+    * `:page_size` (integer, at most `5000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -873,8 +862,6 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   Retrieves a list of all repeating data data collected for this repeating data instance.
 
-  Returns an array of objects. Paged.
-
   Sends `GET /api/study/{study_id}/data-points/repeating-data-instance/{repeating_data_instance_id}`. [API reference](https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_repeating_data_instance__repeating_data_instance_id_)
 
   ## Arguments
@@ -887,7 +874,7 @@ defmodule CastorEDC.DataPoints do
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
-    * `:page_size` (integer, at most `5000`) - The number of records per page.
+    * `:page_size` (integer, at most `5000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -942,8 +929,6 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   Retrieves a list of all study data collected for all participants.
 
-  Returns an array of objects. Paged.
-
   Sends `GET /api/study/{study_id}/data-points/study`. [API reference](https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_study)
 
   ## Arguments
@@ -955,7 +940,7 @@ defmodule CastorEDC.DataPoints do
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
-    * `:page_size` (integer, at most `5000`) - The number of records per page.
+    * `:page_size` (integer, at most `5000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -994,8 +979,6 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   Retrieves a list of all survey data collected for all participants.
 
-  Returns an array of objects. Paged.
-
   Sends `GET /api/study/{study_id}/data-points/survey-instance`. [API reference](https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_survey_instance)
 
   ## Arguments
@@ -1007,7 +990,7 @@ defmodule CastorEDC.DataPoints do
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
-    * `:page_size` (integer, at most `5000`) - The number of records per page.
+    * `:page_size` (integer, at most `5000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -1046,8 +1029,6 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   Retrieves a list of all survey data collected for this survey instance.
 
-  Returns an array of objects. Paged.
-
   Sends `GET /api/study/{study_id}/data-points/survey-instance/{survey_instance_id}`. [API reference](https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_survey_instance__survey_instance_id_)
 
   ## Arguments
@@ -1060,7 +1041,7 @@ defmodule CastorEDC.DataPoints do
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
-    * `:page_size` (integer, at most `5000`) - The number of records per page.
+    * `:page_size` (integer, at most `5000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -1115,8 +1096,6 @@ defmodule CastorEDC.DataPoints do
   @doc ~S"""
   Retrieves a list of all survey data collected for this survey package instance.
 
-  Returns an array of objects. Paged.
-
   Sends `GET /api/study/{study_id}/data-points/survey-package-instance/{survey_package_instance_id}`. [API reference](https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_survey_package_instance__survey_package_instance_id_)
 
   ## Arguments
@@ -1129,7 +1108,7 @@ defmodule CastorEDC.DataPoints do
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
-    * `:page_size` (integer, at most `5000`) - The number of records per page.
+    * `:page_size` (integer, at most `5000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -1192,8 +1171,15 @@ defmodule CastorEDC.DataPoints do
     * `participant_id` - The ID of the participant for which this call should be made
     * `repeating_data_instance_id` - The ID of the repeating data instance to save the data-points on.
     * `body` - a map, sent as JSON: Parameters common to all data points that will be changed change_reason is required when changing an existing data point for a study with Good Clinical Practice functionality enabled. confirmed_changes and change_reason are required when updating a signed or verified form.
-      * `common` (`t:CastorEDC.Model.DataPointsCommonParameters.t/0`)
-      * `data` (list of `t:CastorEDC.Model.RepeatingDataDataPointsFieldValueParameter.t/0`)
+      * `common` (map)
+        * `change_reason` (string) - The reason for changing an existing data-point (required if Good Clinical Practice functionality is enabled for the given Study)
+        * `confirmed_changes` (boolean) - User confirmed consequent changes after this field value update (i.e. automatic dependency clearing, signature drops, verification drops).
+      * `data` (list of map)
+        * `field_id` (string, required) - The field identifier
+        * `field_value` (string, required) - The value
+        * `instance_id` (string, required) - The Repeating Data Instance identifier of the RepeatingDataInstance to save the data points on.
+        * `change_reason` (string) - The reason for changing an existing data-point (required if Good Clinical Practice functionality is enabled for the given Study)
+        * `confirmed_changes` (boolean) - User confirmed consequent changes after this field value update
 
       Each item of `data` that has no `instance_id` gets `repeating_data_instance_id`, so it doesn't need repeating.
 
@@ -1277,8 +1263,14 @@ defmodule CastorEDC.DataPoints do
     * `study_id` - The ID of the study for which this call should be made
     * `participant_id` - The ID of the participant for which this call should be made
     * `body` - a map, sent as JSON: Parameters common to all data points that will be changed change_reason is required when changing an existing data point for a study with Good Clinical Practice functionality enabled. confirmed_changes and change_reason are required when updating a signed or verified form.
-      * `common` (`t:CastorEDC.Model.DataPointsCommonParameters.t/0`)
-      * `data` (list of `t:CastorEDC.Model.StudyDataPointsFieldValueParameter.t/0`)
+      * `common` (map)
+        * `change_reason` (string) - The reason for changing an existing data-point (required if Good Clinical Practice functionality is enabled for the given Study)
+        * `confirmed_changes` (boolean) - User confirmed consequent changes after this field value update (i.e. automatic dependency clearing, signature drops, verification drops).
+      * `data` (list of map)
+        * `field_id` (string, required) - The field identifier
+        * `field_value` (string, required) - The value
+        * `change_reason` (string) - The reason for changing an existing data-point (required if Good Clinical Practice functionality is enabled for the given Study)
+        * `confirmed_changes` (boolean) - User confirmed consequent changes after this field value update
 
   Every option is passed to `Req`.
 
@@ -1315,7 +1307,10 @@ defmodule CastorEDC.DataPoints do
     * `participant_id` - The ID of the participant for which this call should be made
     * `survey_instance_id` - The ID of the survey instance to save all data-points to.
     * `body` - a map, sent as JSON: Parameters common to all data points that will be changed.
-      * `data` (list of `t:CastorEDC.Model.SurveyDataPointsFieldValueParameter.t/0`)
+      * `data` (list of map)
+        * `field_id` (string, required) - The field identifier
+        * `field_value` (string, required) - The value
+        * `instance_id` (string, required) - The Survey(Package)InstanceId to save the data-points for
 
   Every option is passed to `Req`.
 
@@ -1364,7 +1359,10 @@ defmodule CastorEDC.DataPoints do
     * `survey_package_instance_id` - The ID of the survey package instance to save all data-points to.
     * `body` - a map, sent as JSON: Parameters common to all data points that will be changed.You can provide an additional "all_fields_filled_on" parameter to mark the actual time the Survey Package Instance has been completed
       * `all_fields_filled_on` (string) - The UTC date and time the Survey Package Instance has been completed and all its fields have been filled
-      * `data` (list of `t:CastorEDC.Model.SurveyDataPointsFieldValueParameter.t/0`)
+      * `data` (list of map)
+        * `field_id` (string, required) - The field identifier
+        * `field_value` (string, required) - The value
+        * `instance_id` (string, required) - The Survey(Package)InstanceId to save the data-points for
 
   Every option is passed to `Req`.
 

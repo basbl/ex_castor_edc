@@ -20,7 +20,7 @@ defmodule CastorEDC.Verifications do
   @doc ~S"""
   Retrieve list of study verifications.
 
-  Gets `Verification` objects. Can be paged
+  Gets `Verification` objects.
 
   Sends `GET /api/study/{study_id}/verification`. [API reference](https://data.castoredc.com/api#/verification/get_study__study_id__verification)
 
@@ -36,7 +36,7 @@ defmodule CastorEDC.Verifications do
     * `:verification_type` (string) - Filter verifications based on a comma separated list of verification type ids
     * `:entity_type` (string) - Filter verifications based on a comma separated list of entity types. Valid values are 'report step', 'field', 'step'
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 

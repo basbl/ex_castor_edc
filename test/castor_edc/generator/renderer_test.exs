@@ -98,8 +98,12 @@ defmodule CastorEDC.Generator.RendererTest do
   end
 
   test "leaves the spec's HAL wording out and turns its HTML into Markdown" do
-    assert Renderer.upstream_text("Gets sites.\nReturns HalJson objects (with _links).\nCan be paged.") ==
-             "Gets sites.\n\nCan be paged."
+    assert Renderer.upstream_text("Gets sites.\nReturns HalJson objects (with _links).\nCan be paged.") == "Gets sites."
+
+    assert Renderer.upstream_text(
+             "Returns an array of objects. Paged.\nAlways requires a study_id to be given. Listed."
+           ) ==
+             "Listed."
 
     assert Renderer.upstream_text("<b>Sites</b> to create: <br/> <i>name</i> of the site") ==
              "**Sites** to create:\n _name_ of the site"
@@ -119,7 +123,7 @@ defmodule CastorEDC.Generator.RendererTest do
       assert source =~ "* `get_site/4` - Retrieve a single Site"
       assert source =~ "Sends `GET /api/study/{study_id}/site/{site_id}`."
       assert source =~ "* `:field_ids` (list of string, sent comma-separated)"
-      assert source =~ "* `:page_size` (integer, at most `1000`)"
+      assert source =~ "* `:page_size` (integer, at most `1000`; a larger one is lowered to it)"
       assert source =~ "Returns a `CastorEDC.Page` of `t:CastorEDC.Model.Site.t/0` records."
     end
 

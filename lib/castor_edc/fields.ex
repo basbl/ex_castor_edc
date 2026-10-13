@@ -122,7 +122,6 @@ defmodule CastorEDC.Fields do
   Retrieve list of available fieldDependency.
 
   Gets `FieldDependency` objects.
-  Always requires a study_id to be given. Can be paged.
 
   Sends `GET /api/study/{study_id}/field-dependency`. [API reference](https://data.castoredc.com/api#/field-dependency/get_study__study_id__field_dependency)
 
@@ -133,7 +132,7 @@ defmodule CastorEDC.Fields do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -173,7 +172,6 @@ defmodule CastorEDC.Fields do
   Retrieve list of available field-validations.
 
   Gets `FieldValidation` objects.
-  Always requires a study_id to be given. Can be paged.
 
   Use the `include_referenced_field` query parameter to control field-to-field validations:
   - When `false` (default): Only value-based validations are returned for backward compatibility
@@ -189,7 +187,7 @@ defmodule CastorEDC.Fields do
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
     * `:include_referenced_field` (boolean, defaults to `false`) - Include validations with referenced field. When false (default), only value-based validations are returned. (Deprecated: check API changelog for more information)
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -229,7 +227,6 @@ defmodule CastorEDC.Fields do
   Retrieves the list of all available fields.
 
   Gets `Field` objects.
-  Always requires a study_id to be given. Can be paged.
 
   Sends `GET /api/study/{study_id}/field`. [API reference](https://data.castoredc.com/api#/field/get_study__study_id__field)
 
@@ -241,7 +238,7 @@ defmodule CastorEDC.Fields do
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
     * `:include` (list of string, sent comma-separated) - The extra properties to include in the Field array. Currently it supports 'metadata', 'validations', 'optiongroup', 'dependencies'. List separated by ','. Use like: ?include=metadata,validations,optiongroup. Separation by '|' is deprecated and will be removed in the next major release.
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 

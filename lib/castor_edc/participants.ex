@@ -38,7 +38,7 @@ defmodule CastorEDC.Participants do
 
     * `study_id` - The ID of the study for which this call should be made
     * `body` - a map, sent as JSON: Participant to add to the Study _participant_id_ can only be set if your study's participant id generation strategy is set to _Patient Study ID (free text)_ and is then a required parameter. If your study uses clinical identifiers via ccr_patient_id you can supply this as an optional parameter.
-      * `site_id` (string, always present)
+      * `site_id` (string, required)
       * `ccr_patient_id` (string)
       * `email_address` (string)
       * `participant_id` (string)
@@ -132,8 +132,8 @@ defmodule CastorEDC.Participants do
   Streams every record `list_form_progress/3` pages through.
 
   Takes the same arguments and options. Pages are fetched as the stream is
-  consumed, as large as the API allows unless `:page_size` says otherwise;
-  see `CastorEDC.Pagination`.
+  consumed, in the API's default page size unless `:page_size` says
+  otherwise; see `CastorEDC.Pagination`.
   """
   @spec stream_form_progress(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(ParticipantProgress.t())
   def stream_form_progress(client, study_id, opts \\ []) do
@@ -147,7 +147,7 @@ defmodule CastorEDC.Participants do
   @doc ~S"""
   Retrieve list of study participants.
 
-  Gets `Participant` objects. Can be paged.
+  Gets `Participant` objects.
 
   Sends `GET /api/study/{study_id}/participant`. [API reference](https://data.castoredc.com/api#/participant/get_study__study_id__participant)
 
@@ -161,7 +161,7 @@ defmodule CastorEDC.Participants do
     * `:site_id` (string) - Site UUID to filter on. Use like: ?site=SITE_ID
     * `:archived` (boolean) - `true` for only archived participants, `false` for only unarchived ones; all participants when left out.
     * `:fields` (a map of keys to values, sent as `field[key]=value`) - Filter participants on field values (participant, survey, report fields). Multiple fields can be defined. Use like: ?field[ID1]=VALUE1&field[ID2]=VALUE2
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -211,7 +211,7 @@ defmodule CastorEDC.Participants do
 
     * `:archived` (boolean) - `true` for only archived repeating data instances, `false` (what the API does when it's left out) for only unarchived ones.
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `100`) - The size of pages
+    * `:page_size` (integer, at most `100`; a larger one is lowered to it) - The size of pages
 
   Any other option is passed to `Req`.
 
@@ -268,7 +268,7 @@ defmodule CastorEDC.Participants do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `100`) - The size of pages
+    * `:page_size` (integer, at most `100`; a larger one is lowered to it) - The size of pages
 
   Any other option is passed to `Req`.
 

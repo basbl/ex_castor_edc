@@ -164,7 +164,7 @@ defmodule CastorEDC.Generator.Renderer do
   def operation_doc(operation) do
     sections = [
       operation.summary && sentence(operation.summary),
-      operation.description && operation.description != operation.summary && operation.description,
+      operation.description && not same_text?(operation.description, operation.summary) && operation.description,
       "Sends `#{operation.method |> Atom.to_string() |> String.upcase()} #{operation.path}`. " <>
         "[API reference](#{operation.doc_url})",
       arguments_doc(operation),
@@ -174,6 +174,11 @@ defmodule CastorEDC.Generator.Renderer do
 
     sections |> Enum.filter(&(&1 && String.trim(upstream_text(&1)) != "")) |> Enum.join("\n\n") |> doc()
   end
+
+  defp same_text?(_text, nil), do: false
+
+  defp same_text?(text, other),
+    do: String.trim_trailing(String.trim(text), ".") == String.trim_trailing(String.trim(other), ".")
 
   defp sentence(text) do
     text = text |> inline() |> String.trim_trailing(".")
@@ -199,10 +204,7 @@ defmodule CastorEDC.Generator.Renderer do
   end
 
   defp body_doc(body) do
-    fields =
-      Enum.map(body.fields, fn field ->
-        "    * `#{List.first(field.wires)}` (#{field_type_doc(field)})" <> description(field.description)
-      end)
+    fields = Enum.flat_map(body.fields, &body_field_doc(&1, "    "))
 
     Enum.join(
       [
@@ -238,7 +240,8 @@ defmodule CastorEDC.Generator.Renderer do
         [
           param.encoding == :csv && "sent comma-separated",
           param.default != nil && "defaults to `#{inspect(param.default)}`",
-          param.wire == "page_size" && operation.max_page_size && "at most `#{operation.max_page_size}`"
+          param.wire == "page_size" && operation.max_page_size &&
+            "at most `#{operation.max_page_size}`; a larger one is lowered to it"
         ],
         & &1
       )
@@ -331,6 +334,18 @@ defmodule CastorEDC.Generator.Renderer do
   defp spec({:object, _enum}), do: "map()"
   defp spec(_other), do: "term()"
 
+  # A field, and the fields of an object it holds, one level further in.
+  defp body_field_doc(field, indent) do
+    type = if field.required, do: type_doc(field.type) <> ", required", else: type_doc(field.type)
+    line = "#{indent}* `#{List.first(field.wires)}` (#{type})" <> description(field.description)
+
+    case field.type do
+      {:fields, fields} -> [line | Enum.flat_map(fields, &body_field_doc(&1, indent <> "  "))]
+      {:list, {:fields, fields}} -> [line | Enum.flat_map(fields, &body_field_doc(&1, indent <> "  "))]
+      _other -> [line]
+    end
+  end
+
   @doc false
   def field_type_doc(%Spec.Field{type: type, required: required}) do
     if required, do: type_doc(type) <> ", always present", else: type_doc(type)
@@ -339,6 +354,7 @@ defmodule CastorEDC.Generator.Renderer do
   @doc false
   def type_doc({:list, item}), do: "list of " <> type_doc(item)
   def type_doc({:model, module}), do: "`t:#{inspect(module)}.t/0`"
+  def type_doc({:fields, _fields}), do: "map"
   def type_doc({:datetime, _enum}), do: "`DateTime`"
   def type_doc({:naive_datetime, _enum}), do: "`NaiveDateTime`"
   def type_doc({:any, _enum}), do: "any"
@@ -373,6 +389,10 @@ defmodule CastorEDC.Generator.Renderer do
   def upstream_text(text) do
     text
     |> String.replace(~r/[^.\n]*\bHalJson\b[^.\n]*\.?/, "")
+    # What the generated arguments and return line already say.
+    |> String.replace(~r/Returns an array of objects\. (?:Paged|Unpaged)\.\s*/, "")
+    |> String.replace(~r/Always requires a study_id(?: and a \w+)? to be given\.\s*/, "")
+    |> String.replace(~r/\s*Can be paged(?: and filtered)?\.?/, "")
     |> String.replace(~r"</?b>", "**")
     |> String.replace(~r"</?i>", "_")
     |> String.replace(~r"<br\s*/?>", "\n")

@@ -36,8 +36,9 @@ defmodule <%= inspect(group.module) %> do
   Streams every record `<%= operation.name %>/<%= CastorEDC.Generator.Renderer.arity(operation) %>` pages through.
 
   Takes the same arguments and options. Pages are fetched as the stream is
-  consumed, as large as the API allows unless `:page_size` says otherwise;
-  see `CastorEDC.Pagination`.
+<%= if operation.max_page_size do %>  consumed, as large as the API allows unless `:page_size` says otherwise;
+  see `CastorEDC.Pagination`.<% else %>  consumed, in the API's default page size unless `:page_size` says
+  otherwise; see `CastorEDC.Pagination`.<% end %>
   """
   @spec <%= CastorEDC.Generator.Renderer.stream_name(operation) %>(<%= CastorEDC.Generator.Renderer.spec_arguments(operation) %>) :: Enumerable.t(<%= CastorEDC.Generator.Renderer.record_spec(operation) %>)
   def <%= CastorEDC.Generator.Renderer.stream_name(operation) %>(<%= CastorEDC.Generator.Renderer.arguments(operation, true) %>) do

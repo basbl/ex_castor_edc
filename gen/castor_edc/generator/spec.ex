@@ -108,8 +108,48 @@ defmodule CastorEDC.Generator.Spec do
       end)
       |> Enum.sort_by(& &1.name)
 
-    %__MODULE__{base_path: base_path, groups: groups, models: models(document, schemas)}
+    models = models(document, schemas)
+    known = MapSet.new(models, & &1.module)
+    names = Map.new(Map.keys(schemas), &{Naming.model_module(&1), &1})
+
+    groups =
+      Enum.map(groups, fn group ->
+        %{group | operations: Enum.map(group.operations, &inline_body(&1, document, known, names))}
+      end)
+
+    %__MODULE__{base_path: base_path, groups: groups, models: models}
   end
+
+  # A request body can refer to schemas no response reaches, which get no
+  # struct: their fields are listed in the body's docs instead.
+  defp inline_body(%Operation{body: %Body{} = body} = operation, document, known, names) do
+    %{operation | body: %{body | fields: Enum.map(body.fields, &inline_field(&1, document, known, names, 3))}}
+  end
+
+  defp inline_body(operation, _document, _known, _names), do: operation
+
+  defp inline_field(field, document, known, names, depth),
+    do: %{field | type: inline_type(field.type, document, known, names, depth)}
+
+  defp inline_type({:list, item}, document, known, names, depth),
+    do: {:list, inline_type(item, document, known, names, depth)}
+
+  defp inline_type({:model, module} = type, document, known, names, depth) do
+    with false <- MapSet.member?(known, module),
+         true <- depth > 0,
+         %{} = name <- names[module] && %{name: names[module]} do
+      fields =
+        document
+        |> fields(%{"$ref" => "#/components/schemas/" <> name.name})
+        |> Enum.map(&inline_field(&1, document, known, names, depth - 1))
+
+      {:fields, fields}
+    else
+      _known_or_too_deep -> type
+    end
+  end
+
+  defp inline_type(type, _document, _known, _names, _depth), do: type
 
   defp base_path(document) do
     case document["servers"] do

@@ -54,7 +54,6 @@ defmodule CastorEDC.OptionGroups do
   Retrieves the list of all available FieldOptionGroups.
 
   Gets `FieldOptionGroup` objects.
-  Always requires a study_id to be given. Can be paged.
 
   Sends `GET /api/study/{study_id}/field-optiongroup`. [API reference](https://data.castoredc.com/api#/field-optiongroup/get_study__study_id__field_optiongroup)
 
@@ -65,7 +64,7 @@ defmodule CastorEDC.OptionGroups do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 

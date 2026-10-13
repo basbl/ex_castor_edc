@@ -78,7 +78,6 @@ defmodule CastorEDC.Forms do
 
   Gets `Form` objects, which are Forms that are collected only once per participant.
   Forms are placed in a Visit and contain Fields.
-  Always requires a study_id to be given. Can be paged.
 
   Sends `GET /api/study/{study_id}/form`. [API reference](https://data.castoredc.com/api#/form/get_study__study_id__form)
 
@@ -89,7 +88,7 @@ defmodule CastorEDC.Forms do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -129,7 +128,6 @@ defmodule CastorEDC.Forms do
   Retrieve list of available visits.
 
   Gets `Visit` objects.
-  Always requires a study_id to be given. Can be paged.
 
   Sends `GET /api/study/{study_id}/visit`. [API reference](https://data.castoredc.com/api#/visit/get_study__study_id__visit)
 
@@ -140,7 +138,7 @@ defmodule CastorEDC.Forms do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 

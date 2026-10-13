@@ -49,8 +49,8 @@ defmodule CastorEDC.RepeatingData do
     * `study_id` - The ID of the study to create a repeating data instance for
     * `participant_id` - The ID of the participant to create a repeating data instance for
     * `body` - a map, sent as JSON: Repeating Data Instance details to create the object.
-      * `repeating_data_id` (string, always present) - The identifier of the repeating data that should be instantiated in this repeating data instance
-      * `repeating_data_name_custom` (string, always present) - The name of the repeating data instance. Must be unique within the given participant.
+      * `repeating_data_id` (string, required) - The identifier of the repeating data that should be instantiated in this repeating data instance
+      * `repeating_data_name_custom` (string, required) - The name of the repeating data instance. Must be unique within the given participant.
       * `parent_id` (string) - Identifier of the visit or repeating data instance to attach the new repeating data instance to.
 
   Every option is passed to `Req`.
@@ -106,7 +106,10 @@ defmodule CastorEDC.RepeatingData do
     * `study_id` - The ID of the study to create the repeating data instances for
     * `participant_id` - The ID of the participant to create the repeating data instances for
     * `body` - a map, sent as JSON: Repeating data instance collection data with the details to create them.
-      * `data` (list of `t:CastorEDC.Model.NewRepeatingDataInstance.t/0`, always present)
+      * `data` (list of map, required)
+        * `repeating_data_id` (string, required) - The identifier of the repeating data that should be instantiated in this repeating data instance
+        * `repeating_data_name_custom` (string, required) - The name of the repeating data instance. Must be unique within the given participant.
+        * `parent_id` (string) - Identifier of the visit or repeating data instance to attach the new repeating data instance to.
 
   Every option is passed to `Req`.
 
@@ -320,7 +323,6 @@ defmodule CastorEDC.RepeatingData do
 
   Gets `RepeatingDataPackageInstance` objects, which are 'instantiations' of Repeating Data.
   The Repeating Data Instance is the entity to which the data gets saved.
-  Always requires a study_id to be given. Can be paged.
 
   Sends `GET /api/study/{study_id}/participant/{participant_id}/repeating-data-instance`. [API reference](https://data.castoredc.com/api#/repeating-data-instance/get_study__study_id__participant__participant_id__repeating_data_instance)
 
@@ -333,7 +335,7 @@ defmodule CastorEDC.RepeatingData do
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
     * `:archived` (boolean) - `true` for only archived repeating data instances, `false` (what the API does when it's left out) for only unarchived ones.
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -390,7 +392,6 @@ defmodule CastorEDC.RepeatingData do
 
   Gets `RepeatingData` objects. Repeating Datas are used for repeating measurements or events, that have a 1::N
   relationship with the Participant.
-  Always requires a study_id to be given. Can be paged.
 
   Sends `GET /api/study/{study_id}/repeating-data`. [API reference](https://data.castoredc.com/api#/repeating-data/get_study__study_id__repeating_data)
 
@@ -401,7 +402,7 @@ defmodule CastorEDC.RepeatingData do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -442,7 +443,6 @@ defmodule CastorEDC.RepeatingData do
 
   Gets `RepeatingDataForm` objects, which are Forms that are collected only once per Repeating Data.
   RepeatingDataForms are placed in a Repeating Data and contain Fields.
-  Always requires a study_id to be given. Can be paged.
 
   Sends `GET /api/study/{study_id}/repeating-data/{repeating_data_id}/repeating-data-form`. [API reference](https://data.castoredc.com/api#/repeating-data-form/get_study__study_id__repeating_data__repeating_data_id__repeating_data_form)
 
@@ -454,7 +454,7 @@ defmodule CastorEDC.RepeatingData do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -503,7 +503,6 @@ defmodule CastorEDC.RepeatingData do
 
   Gets `RepeatingDataPackageInstance` objects, which are 'instantiations' of Repeating Data.
   The Repeating Data Instance is the entity to which the data gets saved.
-  Always requires a study_id to be given. Can be paged.
 
   Sends `GET /api/study/{study_id}/repeating-data-instance`. [API reference](https://data.castoredc.com/api#/repeating-data-instance/get_study__study_id__repeating_data_instance)
 
@@ -515,7 +514,7 @@ defmodule CastorEDC.RepeatingData do
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
     * `:archived` (boolean) - `true` for only archived repeating data instances, `false` (what the API does when it's left out) for only unarchived ones.
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 

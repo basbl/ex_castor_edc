@@ -47,7 +47,7 @@ defmodule CastorEDC.Queries do
   @doc ~S"""
   Retrieve list of study queries.
 
-  Gets `Query` objects. Can be paged
+  Gets `Query` objects.
 
   Sends `GET /api/study/{study_id}/query`. [API reference](https://data.castoredc.com/api#/query/get_study__study_id__query)
 
@@ -58,7 +58,7 @@ defmodule CastorEDC.Queries do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 

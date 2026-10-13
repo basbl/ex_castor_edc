@@ -35,7 +35,9 @@ defmodule CastorEDC.StudyUsers do
       * `email` (string)
       * `manage_permissions` (`t:CastorEDC.Model.ManagementPermissions.t/0`)
       * `message` (string)
-      * `role_assignments` (list of `t:CastorEDC.Model.RoleAssignmentObject.t/0`)
+      * `role_assignments` (list of map)
+        * `role_name` (string)
+        * `site_id` (string)
       * `send_invite_email` (boolean)
 
   Every option is passed to `Req`.
@@ -147,7 +149,9 @@ defmodule CastorEDC.StudyUsers do
     * `body` - a map, sent as JSON
       * `default_role_assignment` (integer)
       * `manage_permissions` (`t:CastorEDC.Model.ManagementPermissions.t/0`)
-      * `role_assignments` (list of `t:CastorEDC.Model.RoleAssignmentObject.t/0`)
+      * `role_assignments` (list of map)
+        * `role_name` (string)
+        * `site_id` (string)
 
   Every option is passed to `Req`.
   """

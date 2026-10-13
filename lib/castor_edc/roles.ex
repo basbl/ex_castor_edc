@@ -29,7 +29,7 @@ defmodule CastorEDC.Roles do
 
     * `study_id` - The ID of the study for which this call should be made
     * `body` - a map, sent as JSON: Role to add
-      * `name` (string, always present) - Role name
+      * `name` (string, required) - Role name
       * `description` (string) - Role description
       * `permissions` (object)
 

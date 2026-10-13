@@ -42,9 +42,9 @@ defmodule CastorEDC.Surveys do
 
     * `study_id` - The ID of the study to retrieve survey package instances for
     * `body` - a map, sent as JSON: SurveyPackageInstance details to create the object.
-      * `ccr_patient_id` (string, always present) - The CCR Patient identifier of the Participant to create this SurveyPackageInstance for. Should exist already. Cannot be combined with participant_id. One of "participant_id" or "ccr_patient_id" is required.
-      * `participant_id` (string, always present) - The identifier of the Participant to create this SurveyPackageInstance for. Should exist already. Cannot be combined with ccr_patient_id. One of "participant_id" or "ccr_patient_id" is required.
-      * `survey_package_id` (string, always present) - The identifier of the SurveyPackage that should be instantiated in this SurveyPackageInstance.
+      * `ccr_patient_id` (string, required) - The CCR Patient identifier of the Participant to create this SurveyPackageInstance for. Should exist already. Cannot be combined with participant_id. One of "participant_id" or "ccr_patient_id" is required.
+      * `participant_id` (string, required) - The identifier of the Participant to create this SurveyPackageInstance for. Should exist already. Cannot be combined with ccr_patient_id. One of "participant_id" or "ccr_patient_id" is required.
+      * `survey_package_id` (string, required) - The identifier of the SurveyPackage that should be instantiated in this SurveyPackageInstance.
       * `auto_lock_on_finish` (boolean) - Whether the SurveyPackageInstance should be automatically locked when the survey respondent clicks the finish button at the end of data entry .
       * `available_from` (string) - UTC date and time when the Survey Package Instance should be scheduled. The provided value is converted to server time during creation. Web surveys are scheduled based on **date**, while mobile surveys use **date and time**. If `available_from` is in the past or today, the survey is sent immediately. If in the future, it will be scheduled accordingly. If left empty, the Survey Package Instance will be created but not scheduled.
       * `email_address` (string) - The email address this SurveyPackageInstance will be sent to. If no email_address is provided in the request the system will try to use the Participant's stored email address. The email address is stored encrypted.
@@ -268,8 +268,8 @@ defmodule CastorEDC.Surveys do
   Streams every record `list_survey_compliance/3` pages through.
 
   Takes the same arguments and options. Pages are fetched as the stream is
-  consumed, as large as the API allows unless `:page_size` says otherwise;
-  see `CastorEDC.Pagination`.
+  consumed, in the API's default page size unless `:page_size` says
+  otherwise; see `CastorEDC.Pagination`.
   """
   @spec stream_survey_compliance(CastorEDC.client(), String.t(), keyword()) :: Enumerable.t(Compliance.t())
   def stream_survey_compliance(client, study_id, opts \\ []) do
@@ -285,7 +285,6 @@ defmodule CastorEDC.Surveys do
 
   Gets `SurveyForm` objects, which are Forms that are collected only once per survey.
   SurveyForms are placed in a Survey and contain Fields.
-  Always requires a study_id and a survey_id to be given. Can be paged.
 
   Sends `GET /api/study/{study_id}/survey/{survey_id}/survey-form`. [API reference](https://data.castoredc.com/api#/survey-form/get_study__study_id__survey__survey_id__survey_form)
 
@@ -297,7 +296,7 @@ defmodule CastorEDC.Surveys do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -338,7 +337,6 @@ defmodule CastorEDC.Surveys do
 
   Gets `SurveyPackageInstance` objects, which are 'instantiations' of SurveyPackages.
   The SurveyPackageInstance (SPI) is the entity to which the data gets saved, for which email invitations are sent, etc.
-  Always requires a study_id to be given. Can be paged and filtered.
 
   Sends `GET /api/study/{study_id}/survey-package-instance`. [API reference](https://data.castoredc.com/api#/survey/get_study__study_id__survey_package_instance)
 
@@ -349,7 +347,7 @@ defmodule CastorEDC.Surveys do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `1000`) - The size of pages
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The size of pages
     * `:participant_id` (string) - Filter survey package invitations based on participant id. Cannot be combined with "ccr_patient_id"
     * `:ccr_patient_id` (string) - Filter survey package invitations based on CCR patient id. Cannot be combined with "participant_id"
     * `:sort` (string) - The field to sort on, the default is `createdOn`. All available ones are: availableFrom, progress, createdOn, updatedOn, sentOn, locked, archived, record_id, siteName, survey_package_name, status, finishedOn, startedOn, isMobile, expiresOn
@@ -411,7 +409,6 @@ defmodule CastorEDC.Surveys do
   Gets `SurveyPackage` objects. A Survey Package is a collection of 1 or more Surveys.
   SurveyPackages get instantiated through SurveyPackageInstances, which are the objects
   to which datapoints really get stored.
-  Always requires a study_id to be given. Can be paged.
 
   Sends `GET /api/study/{study_id}/survey-package`. [API reference](https://data.castoredc.com/api#/survey/get_study__study_id__survey_package)
 
@@ -422,7 +419,7 @@ defmodule CastorEDC.Surveys do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
@@ -463,7 +460,6 @@ defmodule CastorEDC.Surveys do
 
   Gets `Survey` objects. Surveys consist of Survey Forms. Multiple surveys can be combined in
   Survey Packages, which are being sent to respondents using Survey Package Instances.
-  Always requires a study_id to be given. Can be paged.
 
   Sends `GET /api/study/{study_id}/survey`. [API reference](https://data.castoredc.com/api#/survey/get_study__study_id__survey)
 
@@ -475,7 +471,7 @@ defmodule CastorEDC.Surveys do
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
     * `:include` (list of string, sent comma-separated) - Adds the option of including survey forms in the query. Use like: ?include=forms
-    * `:page_size` (integer, at most `1000`) - The number of records per page.
+    * `:page_size` (integer, at most `1000`; a larger one is lowered to it) - The number of records per page.
 
   Any other option is passed to `Req`.
 
