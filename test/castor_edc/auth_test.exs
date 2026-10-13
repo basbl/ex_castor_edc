@@ -29,7 +29,12 @@ defmodule CastorEDC.AuthTest do
         "/oauth/token" ->
           :counters.add(tokens, 1, 1)
           send(test_pid, {:token_request, request})
-          json(%{"access_token" => "token-#{:counters.get(tokens, 1)}", "expires_in" => 18_000, "token_type" => "Bearer"})
+
+          json(%{
+            "access_token" => "token-#{:counters.get(tokens, 1)}",
+            "expires_in" => 18_000,
+            "token_type" => "Bearer"
+          })
 
         _api ->
           answer_api(request, Keyword.get(options, :rejected, []))

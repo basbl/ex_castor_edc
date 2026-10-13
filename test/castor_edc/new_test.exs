@@ -8,7 +8,8 @@ defmodule CastorEDC.NewTest do
     for key <- [:client_id, :client_secret, :base_url], do: Application.delete_env(:ex_castor_edc, key)
 
     previous =
-      for name <- ~w(CASTOR_EDC_CLIENT_ID CASTOR_EDC_CLIENT_SECRET CASTOR_EDC_BASE_URL), do: {name, System.get_env(name)}
+      for name <- ~w(CASTOR_EDC_CLIENT_ID CASTOR_EDC_CLIENT_SECRET CASTOR_EDC_BASE_URL),
+          do: {name, System.get_env(name)}
 
     for {name, _value} <- previous, do: System.delete_env(name)
 

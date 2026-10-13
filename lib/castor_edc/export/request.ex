@@ -247,7 +247,8 @@ defmodule CastorEDC.Export.Request do
 
   defp value(value, %{"enum" => enum} = schema, what), do: enum_value(value, enum, schema["x-castor-enum-names"], what)
 
-  defp value(%Date{} = date, %{"format" => format}, _what) when format in ["date", "date-time"], do: Date.to_iso8601(date)
+  defp value(%Date{} = date, %{"format" => format}, _what) when format in ["date", "date-time"],
+    do: Date.to_iso8601(date)
 
   # The API reads times in its own zone, so a DateTime is first moved there.
   defp value(%DateTime{} = datetime, %{"format" => "date-time"} = schema, what),
@@ -262,7 +263,10 @@ defmodule CastorEDC.Export.Request do
 
   defp value(value, %{"type" => "string"}, _what) when is_binary(value), do: value
   defp value(value, %{"type" => "string", "format" => "date"}, what), do: invalid(value, "a Date or a string", what)
-  defp value(value, %{"type" => "string", "format" => "date-time"}, what), do: invalid(value, "a date or a string", what)
+
+  defp value(value, %{"type" => "string", "format" => "date-time"}, what),
+    do: invalid(value, "a date or a string", what)
+
   defp value(value, %{"type" => "string"}, what), do: invalid(value, "a string", what)
 
   # Enum values are given as atoms (`:in_progress` for "In Progress") or as

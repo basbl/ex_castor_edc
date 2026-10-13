@@ -142,7 +142,8 @@ defmodule CastorEDC.Generator.Renderer do
       decode: present(operation.decode)
     ]
 
-    "[" <> (entries |> Enum.filter(&elem(&1, 1)) |> Enum.map_join(", ", fn {key, value} -> "#{key}: #{value}" end)) <> "]"
+    "[" <>
+      (entries |> Enum.filter(&elem(&1, 1)) |> Enum.map_join(", ", fn {key, value} -> "#{key}: #{value}" end)) <> "]"
   end
 
   # The source of an operation's setting, or nil to leave it out.
@@ -194,7 +195,10 @@ defmodule CastorEDC.Generator.Renderer do
       end)
 
     Enum.join(
-      ["  * `body` - a map, sent as JSON#{if body.description, do: ": " <> inline(body.description), else: ""}" | fields],
+      [
+        "  * `body` - a map, sent as JSON#{if body.description, do: ": " <> inline(body.description), else: ""}"
+        | fields
+      ],
       "\n"
     )
   end

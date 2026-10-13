@@ -160,7 +160,8 @@ defmodule CastorEDC.ExportTest do
     end
 
     test "returns the API's error" do
-      client = client(json(%{"description" => "Export format not supported for the requested export type."}, status: 400))
+      client =
+        client(json(%{"description" => "Export format not supported for the requested export type."}, status: 400))
 
       assert {:error, %Error{status: 400, message: "Export format not supported for the requested export type."}} =
                Export.queue(client, @study, [{:sites, []}])
@@ -351,7 +352,10 @@ defmodule CastorEDC.ExportTest do
       assert_received {[:castor_edc, :export, :poll], ^ref, %{pending: 1}, %{study_id: @study}}
       assert_received {[:castor_edc, :export, :poll], ^ref, %{pending: 0}, %{study_id: @study}}
       assert_received {[:castor_edc, :export, :completed], ^ref, %{duration: first}, %{export: %Export{id: "export-1"}}}
-      assert_received {[:castor_edc, :export, :completed], ^ref, %{duration: second}, %{export: %Export{id: "export-2"}}}
+
+      assert_received {[:castor_edc, :export, :completed], ^ref, %{duration: second},
+                       %{export: %Export{id: "export-2"}}}
+
       refute_received {[:castor_edc, :export, :completed], ^ref, _measurements, _metadata}
       assert first == System.convert_time_unit(1000, :millisecond, :native)
       assert second == System.convert_time_unit(2500, :millisecond, :native)

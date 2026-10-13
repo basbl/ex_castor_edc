@@ -51,7 +51,11 @@ defmodule CastorEDC.RateLimitTest do
     Client.request(client(json(%{}), base_url: base_url), operation("/api/study/{study_id}/visit"))
     assert RateLimit.lookup(assert_requested()) == nil
 
-    Client.request(client(json(%{}), base_url: base_url, access_token: "other"), operation("/api/study/{study_id}/field"))
+    Client.request(
+      client(json(%{}), base_url: base_url, access_token: "other"),
+      operation("/api/study/{study_id}/field")
+    )
+
     assert RateLimit.lookup(assert_requested()) == nil
 
     assert RateLimit.lookup(field).remaining == 5999
@@ -218,7 +222,9 @@ defmodule CastorEDC.RateLimitRetryTest do
 
   test "ignores a reset time that isn't a Unix timestamp in seconds" do
     responder = fn _request ->
-      json(%{"ok" => true}, headers: %{"x-ratelimit-retry-after" => ["1760000000000"], "x-ratelimit-remaining" => ["5"]})
+      json(%{"ok" => true},
+        headers: %{"x-ratelimit-retry-after" => ["1760000000000"], "x-ratelimit-remaining" => ["5"]}
+      )
     end
 
     assert {:ok, %{"ok" => true}} = Client.request(limited_client(responder), @operation)

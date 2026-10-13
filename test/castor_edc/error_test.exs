@@ -28,7 +28,9 @@ defmodule CastorEDC.ErrorTest do
       "type" => @problem,
       "title" => "Unprocessable Entity",
       "status" => 422,
-      "errors" => [%{"http_code" => 422, "message" => "Invalid site", "error_code" => "INVALID_SITE", "id" => "a1b2c3d4"}]
+      "errors" => [
+        %{"http_code" => 422, "message" => "Invalid site", "error_code" => "INVALID_SITE", "id" => "a1b2c3d4"}
+      ]
     }
 
     error = Error.from_response(response(422, body))
@@ -42,7 +44,9 @@ defmodule CastorEDC.ErrorTest do
   test "reads the body of the layers in front of the endpoints" do
     body = %{
       "success" => false,
-      "errors" => [%{"id" => "9f8e7d6c", "code" => "CODE_QUOTA_EXCEEDED", "message" => "Too many requests", "data" => []}]
+      "errors" => [
+        %{"id" => "9f8e7d6c", "code" => "CODE_QUOTA_EXCEEDED", "message" => "Too many requests", "data" => []}
+      ]
     }
 
     error = Error.from_response(response(429, body))
@@ -72,7 +76,9 @@ defmodule CastorEDC.ErrorTest do
 
   test "lists validation messages, in the message and as details" do
     body = %{
-      "validation_messages" => %{"page_size" => %{"notBetween" => "The input is not between '1' and '1000', inclusively"}},
+      "validation_messages" => %{
+        "page_size" => %{"notBetween" => "The input is not between '1' and '1000', inclusively"}
+      },
       "type" => @problem,
       "title" => "Unprocessable Entity",
       "status" => 422,

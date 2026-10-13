@@ -271,7 +271,10 @@ defmodule CastorEDC.Tabular do
       schema = Keyword.get_lazy(opts, :schema, fn -> schema!(client, study_id) end)
       # Fields on no form have their values with the study's own.
       columns =
-        Enum.group_by(Map.values(schema), &{&1.context || :study, if(&1.context not in [nil, :study], do: &1.parent_id)})
+        Enum.group_by(
+          Map.values(schema),
+          &{&1.context || :study, if(&1.context not in [nil, :study], do: &1.parent_id)}
+        )
 
       client
       |> long(study_id, sources, schema: schema)

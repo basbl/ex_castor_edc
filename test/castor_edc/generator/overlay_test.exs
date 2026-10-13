@@ -32,7 +32,8 @@ defmodule CastorEDC.Generator.OverlayTest do
       "update" => %{"operationId" => "list_studies", "x-castor" => %{"module" => "Studies"}}
     }
 
-    result = Overlay.apply!(@document, overlay([action, %{action | "update" => %{"x-castor" => %{"items" => "study"}}}]))
+    result =
+      Overlay.apply!(@document, overlay([action, %{action | "update" => %{"x-castor" => %{"items" => "study"}}}]))
 
     assert result["paths"]["/study"]["get"] == %{
              "summary" => "List studies",

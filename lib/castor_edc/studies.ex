@@ -95,7 +95,14 @@ defmodule CastorEDC.Studies do
   end
 
   defp operation(:get_study, path_params, opts) do
-    [method: :get, path: "/api/study/{study_id}", path_params: path_params, query: opts, query_names: %{}, decode: Study]
+    [
+      method: :get,
+      path: "/api/study/{study_id}",
+      path_params: path_params,
+      query: opts,
+      query_names: %{},
+      decode: Study
+    ]
   end
 
   defp operation(:get_study_statistics, path_params, opts) do

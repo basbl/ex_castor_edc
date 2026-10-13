@@ -483,7 +483,8 @@ defmodule CastorEDC.Export do
   end
 
   defp timed_out(state, exports, waited) do
-    pending = for {id, export} <- Enum.zip(state.ids, exports), export == nil or export.status != :ready, do: {id, export}
+    pending =
+      for {id, export} <- Enum.zip(state.ids, exports), export == nil or export.status != :ready, do: {id, export}
 
     :telemetry.execute(
       [:castor_edc, :export, :timeout],

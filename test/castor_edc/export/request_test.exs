@@ -26,7 +26,10 @@ defmodule CastorEDC.Export.RequestTest do
              %{"include_annotations" => true, "include_domains" => false}
 
     assert Request.encode(:empty_crf, []) == %{"format" => "pdf", "filters" => %{"paper_size" => "a4paper"}}
-    assert Request.encode(:empty_crf, filters: [paper_size: :letterpaper])["filters"] == %{"paper_size" => "letterpaper"}
+
+    assert Request.encode(:empty_crf, filters: [paper_size: :letterpaper])["filters"] == %{
+             "paper_size" => "letterpaper"
+           }
   end
 
   test "takes the format as an atom or a string" do
@@ -158,9 +161,11 @@ defmodule CastorEDC.Export.RequestTest do
     end
 
     test "for an unknown filter or option, listing the known ones" do
-      assert_raise ArgumentError, ~r/unknown participant_data export filter :site_id; expected one of .*:site_ids/, fn ->
-        Request.encode(:participant_data, filters: [site_id: "S1"])
-      end
+      assert_raise ArgumentError,
+                   ~r/unknown participant_data export filter :site_id; expected one of .*:site_ids/,
+                   fn ->
+                     Request.encode(:participant_data, filters: [site_id: "S1"])
+                   end
 
       assert_raise ArgumentError, ~r/unknown empty_crf export option :title_page/, fn ->
         Request.encode(:empty_crf, options: [title_page: true])

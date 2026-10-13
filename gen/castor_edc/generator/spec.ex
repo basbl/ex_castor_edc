@@ -198,7 +198,8 @@ defmodule CastorEDC.Generator.Spec do
 
   defp response_content(%{"content" => content}) when map_size(content) > 0 do
     type =
-      Enum.find(["application/hal+json", "application/json"], &Map.has_key?(content, &1)) || content |> Map.keys() |> hd()
+      Enum.find(["application/hal+json", "application/json"], &Map.has_key?(content, &1)) ||
+        content |> Map.keys() |> hd()
 
     {type, content[type]["schema"]}
   end
@@ -287,7 +288,9 @@ defmodule CastorEDC.Generator.Spec do
     map |> Map.delete("_links") |> Map.values() |> Enum.reduce(seen, &collect_refs(&1, document, &2))
   end
 
-  defp collect_refs(list, document, seen) when is_list(list), do: Enum.reduce(list, seen, &collect_refs(&1, document, &2))
+  defp collect_refs(list, document, seen) when is_list(list),
+    do: Enum.reduce(list, seen, &collect_refs(&1, document, &2))
+
   defp collect_refs(_scalar, _document, seen), do: seen
 
   defp model(document, name, schema) do

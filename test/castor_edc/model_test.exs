@@ -59,7 +59,10 @@ defmodule CastorEDC.ModelTest do
   end
 
   test "casts PHP DateTimes with an offset zone to UTC" do
-    assert Model.cast(%{"date" => "2026-10-07 21:08:46.000000", "timezone_type" => 1, "timezone" => "+02:00"}, :datetime) ==
+    assert Model.cast(
+             %{"date" => "2026-10-07 21:08:46.000000", "timezone_type" => 1, "timezone" => "+02:00"},
+             :datetime
+           ) ==
              ~U[2026-10-07 19:08:46.000000Z]
 
     assert Model.cast(%{"date" => "2026-10-07 21:08:46", "timezone" => "-0530"}, :datetime) == ~U[2026-10-08 02:38:46Z]

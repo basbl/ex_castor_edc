@@ -94,7 +94,9 @@ defmodule CastorEDC.GeneratorSample do
               %{"name" => "id", "in" => "path", "x-castor-name" => "export_id", "schema" => %{"type" => "string"}}
             ],
             "responses" => %{
-              "200" => %{"content" => %{"application/zip" => %{"schema" => %{"type" => "string", "format" => "binary"}}}}
+              "200" => %{
+                "content" => %{"application/zip" => %{"schema" => %{"type" => "string", "format" => "binary"}}}
+              }
             }
           }
         },

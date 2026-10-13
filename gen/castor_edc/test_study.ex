@@ -112,7 +112,8 @@ defmodule CastorEDC.TestStudy do
 
   defp first_id(client, path, items, key, ids) do
     with {:ok, url} <- fill(path, ids),
-         {:ok, %Req.Response{status: 200, body: body}} <- Req.get(client, url: url, headers: [accept: "application/json"]),
+         {:ok, %Req.Response{status: 200, body: body}} <-
+           Req.get(client, url: url, headers: [accept: "application/json"]),
          [record | _rest] <- records(body, items) do
       record[key]
     else
@@ -129,8 +130,11 @@ defmodule CastorEDC.TestStudy do
     |> Regex.scan(path)
     |> Enum.reduce_while({:ok, path}, fn [placeholder, name], {:ok, path} ->
       case ids do
-        %{^name => value} -> {:cont, {:ok, String.replace(path, placeholder, URI.encode(value, &URI.char_unreserved?/1))}}
-        _missing -> {:halt, :missing}
+        %{^name => value} ->
+          {:cont, {:ok, String.replace(path, placeholder, URI.encode(value, &URI.char_unreserved?/1))}}
+
+        _missing ->
+          {:halt, :missing}
       end
     end)
   end

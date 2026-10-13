@@ -615,7 +615,11 @@ defmodule CastorEDC.DataPoints do
   def list_participant_study_data_points(client, study_id, participant_id, opts \\ []) do
     Client.request(
       client,
-      operation(:list_participant_study_data_points, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
+      operation(
+        :list_participant_study_data_points,
+        %{"study_id" => study_id, "participant_id" => participant_id},
+        opts
+      )
     )
   end
 
@@ -627,7 +631,11 @@ defmodule CastorEDC.DataPoints do
   def list_participant_study_data_points!(client, study_id, participant_id, opts \\ []) do
     Client.request!(
       client,
-      operation(:list_participant_study_data_points, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
+      operation(
+        :list_participant_study_data_points,
+        %{"study_id" => study_id, "participant_id" => participant_id},
+        opts
+      )
     )
   end
 
@@ -657,7 +665,11 @@ defmodule CastorEDC.DataPoints do
   def list_participant_survey_data_points(client, study_id, participant_id, opts \\ []) do
     Client.request(
       client,
-      operation(:list_participant_survey_data_points, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
+      operation(
+        :list_participant_survey_data_points,
+        %{"study_id" => study_id, "participant_id" => participant_id},
+        opts
+      )
     )
   end
 
@@ -669,7 +681,11 @@ defmodule CastorEDC.DataPoints do
   def list_participant_survey_data_points!(client, study_id, participant_id, opts \\ []) do
     Client.request!(
       client,
-      operation(:list_participant_survey_data_points, %{"study_id" => study_id, "participant_id" => participant_id}, opts)
+      operation(
+        :list_participant_survey_data_points,
+        %{"study_id" => study_id, "participant_id" => participant_id},
+        opts
+      )
     )
   end
 
