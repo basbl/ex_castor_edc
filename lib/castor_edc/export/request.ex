@@ -5,6 +5,9 @@ defmodule CastorEDC.Export.Request do
   # vendored spec, so a typo raises here rather than coming back from the
   # API as a 400 (or being ignored).
 
+  # The zone of the API's times without one, on data.castoredc.com.
+  @server_time_zone "Europe/Amsterdam"
+
   @spec_path Path.expand("../../../priv/openapi/castor_edc.json", __DIR__)
   @external_resource @spec_path
 
@@ -88,7 +91,10 @@ defmodule CastorEDC.Export.Request do
   end
 
   defp type_doc(%{"format" => "date"}), do: "a `Date`"
-  defp type_doc(%{"format" => "date-time"}), do: "a `Date` or `NaiveDateTime`"
+
+  defp type_doc(%{"format" => "date-time"}),
+    do: "a `Date`, a `NaiveDateTime` in the server's time (Europe/Amsterdam) or a `DateTime`, to the minute"
+
   defp type_doc(_string), do: "string"
 
   defp enum_doc(enum, names), do: Enum.map_join(enum, ", ", &"`#{inspect(enum_name(&1, names))}`")
@@ -243,8 +249,13 @@ defmodule CastorEDC.Export.Request do
 
   defp value(%Date{} = date, %{"format" => format}, _what) when format in ["date", "date-time"], do: Date.to_iso8601(date)
 
+  # The API reads times in its own zone, so a DateTime is first moved there.
   defp value(%DateTime{} = datetime, %{"format" => "date-time"} = schema, what),
-    do: value(DateTime.to_naive(datetime), schema, what)
+    do:
+      datetime
+      |> DateTime.shift_zone!(@server_time_zone, Tz.TimeZoneDatabase)
+      |> DateTime.to_naive()
+      |> value(schema, what)
 
   defp value(%NaiveDateTime{} = datetime, %{"format" => "date-time"}, _what),
     do: Calendar.strftime(datetime, "%Y-%m-%d %H:%M")

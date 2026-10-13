@@ -638,6 +638,20 @@ defmodule CastorEDC.ExportTest do
     end
 
     @tag :tmp_dir
+    test "keeps the server's file name inside the directory", %{tmp_dir: dir} do
+      into = Path.join(dir, "exports")
+      File.mkdir_p!(into)
+
+      for {name, saved} <- [{"../../escape.zip", "escape.zip"}, {"/etc/passwd", "passwd"}, {"..", "export-1.zip"}] do
+        export = ready(%{file_name: name})
+        assert {:ok, %Export{path: path}} = Export.download(client(&zip/1), @study, export, into: into)
+        assert path == Path.join(into, saved)
+      end
+
+      assert File.ls!(dir) == ["exports"]
+    end
+
+    @tag :tmp_dir
     test "creates a directory given with a trailing slash", %{tmp_dir: dir} do
       client = client(&zip/1)
 

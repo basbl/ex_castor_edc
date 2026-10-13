@@ -16,6 +16,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - The token request passes on Req's `:plug` option, so a client built for `Req.Test` works, and reads a token lifetime given as text instead of raising.
 - Req's own retry no longer runs on top of the rate limit handling: a 429 was retried up to three more times with Req's backoff, so `rate_limit: :error` waited seconds and returned a made-up error instead of the API's 429, and `:wait` sent up to seven requests instead of four. Clients retry what Req's default does, but never a 429.
 - A rate limit reset time that isn't a Unix timestamp in seconds no longer crashes every request; and waiting out a 429 adds the same jitter as waiting before a request, so a clock ahead of the server's doesn't retry before the window resets.
+- Export date-time filters take a `DateTime` in the server's time (Europe/Amsterdam): one was sent as its own wall clock, so a UTC time was read an hour or two off. They're documented as to the minute, as the API takes them.
+- An export saved into a directory keeps the server's file name inside it: a name with directories in it could have put the file, and what was unzipped from it, elsewhere.
 - A client's client secret no longer shows when the client is inspected, as in a log, an IEx session or a notebook's output.
 
 ## [1.0.0-rc.1] - 2026-10-08

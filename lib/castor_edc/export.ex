@@ -621,8 +621,17 @@ defmodule CastorEDC.Export do
 
   defp target(into, export) do
     if File.dir?(into) or String.ends_with?(into, "/"),
-      do: Path.join(into, export.file_name || "#{export.id}.zip"),
+      do: Path.join(into, file_name(export)),
       else: into
+  end
+
+  # The server's file name without any directories, so it can't put the
+  # file anywhere but `into`.
+  defp file_name(export) do
+    case export.file_name && Path.basename(export.file_name) do
+      name when name in [nil, "", ".", ".."] -> "#{export.id}.zip"
+      name -> name
+    end
   end
 
   # A refused download streams its error body into the file too. It belongs

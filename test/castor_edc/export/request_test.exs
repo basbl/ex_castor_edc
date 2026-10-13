@@ -96,7 +96,8 @@ defmodule CastorEDC.Export.RequestTest do
         filters: [availability_start: ~N[2026-01-01 11:11:59], availability_end: ~U[2026-02-01 08:00:00Z]]
       )["filters"]
 
-    assert filters == %{"availability_start" => "2026-01-01 11:11", "availability_end" => "2026-02-01 08:00"}
+    # A DateTime moves to the server's time (Amsterdam, UTC+1 in winter).
+    assert filters == %{"availability_start" => "2026-01-01 11:11", "availability_end" => "2026-02-01 09:00"}
 
     assert Request.encode(:queries, filters: [created_between_start: ~D[2026-01-01]])["filters"] ==
              %{"created_between_start" => "2026-01-01"}
@@ -134,7 +135,10 @@ defmodule CastorEDC.Export.RequestTest do
 
       assert Request.doc(:form_structure) =~ "* `:element_type` (one of `:all`, `:study`, `:visit`, `:form`,"
       assert Request.doc(:form_structure) =~ "* `:element_id` (string)"
-      assert Request.doc(:survey_compliance) =~ "* `:availability_start` (a `Date` or `NaiveDateTime`)"
+
+      assert Request.doc(:survey_compliance) =~
+               "* `:availability_start` (a `Date`, a `NaiveDateTime` in the server's time"
+
       assert Request.doc(:survey_compliance) =~ "* `:compliance_value` (integer)"
       assert Request.doc(:sites) == "Formats: `:csv` (`:csv` by default).\n\nFilters: none.\n\nOptions: none."
     end
