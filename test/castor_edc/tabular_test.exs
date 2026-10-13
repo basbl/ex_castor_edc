@@ -176,7 +176,8 @@ defmodule CastorEDC.TabularTest do
                  :parent_id => nil,
                  "var_f-weight" => 72.5,
                  "var_f-sex" => "1",
-                 "var_f-new" => nil
+                 "var_f-new" => nil,
+                 "var_f-orphan" => nil
                },
                %{
                  :participant_id => "P2",
@@ -186,7 +187,8 @@ defmodule CastorEDC.TabularTest do
                  :parent_id => nil,
                  "var_f-weight" => CastorEDC.MissingValue.new(98),
                  "var_f-sex" => nil,
-                 "var_f-new" => nil
+                 "var_f-new" => nil,
+                 "var_f-orphan" => nil
                },
                %{
                  :participant_id => "P1",
@@ -224,6 +226,23 @@ defmodule CastorEDC.TabularTest do
       column = %{schema["f-weight"] | variable_name: nil}
 
       assert Tabular.wide_cells([column], %{"f-weight" => 1}) == [{"f-weight", 1}]
+    end
+
+    test "names columns that would share a name after their field IDs" do
+      {:ok, schema} = Tabular.schema(client(&study/1), @study)
+      columns = [%{schema["f-gad"] | variable_name: "sym"}, %{schema["f-weight"] | variable_name: "sym_1"}]
+      cells = Tabular.wide_cells(columns, %{"f-gad" => ["1"], "f-weight" => 72})
+
+      assert cells == [{"sym_0", false}, {"f-gad_1", true}, {"sym_2", false}, {"f-weight", 72}]
+    end
+
+    test "keeps the values of fields on no form with the study's own" do
+      {:ok, schema} = Tabular.schema(client(&study/1), @study)
+      schema = Map.update!(schema, "f-weight", &%{&1 | context: nil, parent_id: nil})
+
+      rows = (&study/1) |> client() |> Tabular.data_points(@study, format: :wide, schema: schema) |> Enum.to_list()
+      study_rows = Enum.filter(rows, &(&1.source == :study))
+      assert Enum.any?(study_rows, &(&1["var_f-weight"] == 72.5))
     end
 
     test "rejects an unknown format" do

@@ -230,8 +230,11 @@ defmodule CastorEDC.Tabular do
   `<variable>_<option value>`: `true` when checked, `false` when not, and
   the field's value (`nil`, a `CastorEDC.MissingValue` or `:encrypted`)
   when there's no list of checked options. A field without a variable name
-  is keyed by its ID, and values of fields the schema doesn't know are
-  left out.
+  is keyed by its ID, and so are both columns when two would share a name
+  (such as a checkbox `sym` with option `1` and a field `sym_1`):
+  `<field ID>` or `<field ID>_<option value>`. Fields on no form the study
+  knows count as the study's own, and values of fields the schema doesn't
+  know are left out.
 
   The wide format has to see every value before it can build a row, so the
   stream fetches them all when it starts.
@@ -266,7 +269,9 @@ defmodule CastorEDC.Tabular do
   defp wide(client, study_id, sources, opts) do
     Stream.flat_map([nil], fn nil ->
       schema = Keyword.get_lazy(opts, :schema, fn -> schema!(client, study_id) end)
-      columns = Enum.group_by(Map.values(schema), &{&1.context, if(&1.context != :study, do: &1.parent_id)})
+      # Fields on no form have their values with the study's own.
+      columns =
+        Enum.group_by(Map.values(schema), &{&1.context || :study, if(&1.context not in [nil, :study], do: &1.parent_id)})
 
       client
       |> long(study_id, sources, schema: schema)
@@ -292,7 +297,17 @@ defmodule CastorEDC.Tabular do
   @doc false
   # The wide row's cells for the given columns and values by field ID.
   @spec wide_cells([column()], %{String.t() => FieldValue.t()}) :: [{String.t(), FieldValue.t() | boolean()}]
-  def wide_cells(columns, values), do: Enum.flat_map(columns, &cells(&1, Map.get(values, &1.field_id)))
+  def wide_cells(columns, values) do
+    cells = Enum.flat_map(columns, &cells(&1, Map.get(values, &1.field_id)))
+    taken = cells |> Enum.frequencies_by(&elem(&1, 0)) |> Map.filter(fn {_name, count} -> count > 1 end)
+
+    # Two columns with one name, such as a checkbox `sym` with option `1` and
+    # a field named `sym_1`, are both named after their field ID instead, so
+    # neither value is lost.
+    Enum.map(cells, fn {name, id_name, value} ->
+      {if(Map.has_key?(taken, name), do: id_name, else: name), value}
+    end)
+  end
 
   # A checkbox field has a column per option.
   defp cells(%{field_type: "checkbox", option_group: %{options: [_option | _more] = options}} = column, value) do
@@ -303,11 +318,11 @@ defmodule CastorEDC.Tabular do
           other -> other
         end
 
-      {"#{name(column)}_#{option.value}", cell}
+      {"#{name(column)}_#{option.value}", "#{column.field_id}_#{option.value}", cell}
     end
   end
 
-  defp cells(column, value), do: [{name(column), value}]
+  defp cells(column, value), do: [{name(column), column.field_id, value}]
 
   defp name(%{variable_name: name}) when is_binary(name) and name != "", do: name
   defp name(%{field_id: id}), do: id

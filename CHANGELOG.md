@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Export date-time filters take a `DateTime` in the server's time (Europe/Amsterdam): one was sent as its own wall clock, so a UTC time was read an hour or two off. They're documented as to the minute, as the API takes them.
 - An export saved into a directory keeps the server's file name inside it: a name with directories in it could have put the file, and what was unzipped from it, elsewhere.
 - A PHP DateTime with an offset zone (`+02:00`) decodes to a UTC `DateTime` instead of staying a map, and a local time a clock change skips becomes the moment after the gap, as PHP reads it. `CastorEDC.FieldValue.decode/2` takes the field type as an atom too, instead of raising.
+- `CastorEDC.Tabular.data_points/3`'s wide format no longer loses values: columns that would share a name (a checkbox `sym` with option `1` and a field `sym_1`) are both named after their field ID, and fields on no form the study knows are the study's own instead of vanishing from the rows.
 - A client's client secret no longer shows when the client is inspected, as in a log, an IEx session or a notebook's output.
 
 ## [1.0.0-rc.1] - 2026-10-08
