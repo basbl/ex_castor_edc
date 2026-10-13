@@ -4,7 +4,9 @@ defmodule CastorEDC.Client do
 
   The generated modules (`CastorEDC.Participants` and the rest) describe
   each operation, from its path to the struct its response decodes into,
-  and hand that description to `request/2`. This module does everything
+  and hand that description to this module's `request/2`, which isn't part
+  of the public API: the description's format may change in any release.
+  This module does everything
   that's the same for all of them: building the URL, sending the
   caller's options under the names the API knows them by, unwrapping
   collections into `CastorEDC.Page`s, decoding responses into structs, and
@@ -30,38 +32,38 @@ defmodule CastorEDC.Client do
   alias CastorEDC.Error
   alias CastorEDC.Page
 
+  @typedoc false
   @type operation :: keyword()
 
-  @doc """
-  Runs one operation.
-
-  `client` is a client from `CastorEDC.new/1`, or the options to build one
-  with. `operation` describes the operation:
-
-    * `:method` - the HTTP method
-    * `:path` - the path template, such as `"/api/study/{study_id}/site"`
-    * `:path_params` - the values of the template's placeholders, as a map
-    * `:query` - the caller's options
-    * `:query_names` - each option the operation takes, mapped to its name
-      on the wire; options it doesn't take are passed to `Req`
-    * `:list_params` - options that are lists, sent comma-separated
-    * `:body` - the request body, sent as JSON
-    * `:accept` - the `Accept` header, `application/hal+json` by default
-    * `:items` - where a collection's records sit in the response body, as
-      a dot-separated path (`"_embedded.participants"`); the result is then a
-      `CastorEDC.Page`
-    * `:max_page_size` - the largest `page_size` the API accepts; larger
-      ones are lowered to it
-    * `:not_found_is_empty` - a 404 means an empty collection
-    * `:decode` - the struct module the response, or each record, decodes
-      into; without it the body is returned as it arrived
-    * `:fill_items` - keys of the body's list items to fill from path
-      parameters when an item doesn't have them, as `%{list => %{key =>
-      path parameter}}`
-    * `:partial_success` - the response lists what was saved under `saved`
-      (`success` on the wire) and what wasn't under `failed`; `request!/2`
-      raises when anything failed
-  """
+  # Runs one operation.
+  #
+  # `client` is a client from `CastorEDC.new/1`, or the options to build one
+  # with. `operation` describes the operation:
+  #
+  #   * `:method` - the HTTP method
+  #   * `:path` - the path template, such as `"/api/study/{study_id}/site"`
+  #   * `:path_params` - the values of the template's placeholders, as a map
+  #   * `:query` - the caller's options
+  #   * `:query_names` - each option the operation takes, mapped to its name
+  #     on the wire; options it doesn't take are passed to `Req`
+  #   * `:list_params` - options that are lists, sent comma-separated
+  #   * `:body` - the request body, sent as JSON
+  #   * `:accept` - the `Accept` header, `application/hal+json` by default
+  #   * `:items` - where a collection's records sit in the response body, as
+  #     a dot-separated path (`"_embedded.participants"`); the result is then a
+  #     `CastorEDC.Page`
+  #   * `:max_page_size` - the largest `page_size` the API accepts; larger
+  #     ones are lowered to it
+  #   * `:not_found_is_empty` - a 404 means an empty collection
+  #   * `:decode` - the struct module the response, or each record, decodes
+  #     into; without it the body is returned as it arrived
+  #   * `:fill_items` - keys of the body's list items to fill from path
+  #     parameters when an item doesn't have them, as `%{list => %{key =>
+  #     path parameter}}`
+  #   * `:partial_success` - the response lists what was saved under `saved`
+  #     (`success` on the wire) and what wasn't under `failed`; `request!/2`
+  #     raises when anything failed
+  @doc false
   @spec request(CastorEDC.client(), operation()) :: {:ok, term()} | {:error, Error.t()}
   def request(client, operation) do
     {query, req_options} = split_options(operation[:query] || [], operation[:query_names] || %{})
@@ -90,9 +92,8 @@ defmodule CastorEDC.Client do
   defp result_metadata({:ok, _result}), do: %{status: :ok}
   defp result_metadata({:error, %Error{status: status} = error}), do: %{status: status, error: error}
 
-  @doc """
-  Runs one operation, returning its result or raising `CastorEDC.Error`.
-  """
+  # Runs one operation, returning its result or raising `CastorEDC.Error`.
+  @doc false
   @spec request!(CastorEDC.client(), operation()) :: term()
   def request!(client, operation) do
     case request(client, operation) do

@@ -66,9 +66,8 @@ defmodule CastorEDC.RateLimit do
     end
   end
 
-  @doc """
-  The rate limit last recorded for the route of `request`, or `nil`.
-  """
+  # The rate limit last recorded for the route of `request`, or `nil`.
+  @doc false
   @spec lookup(Req.Request.t()) :: t() | nil
   def lookup(request) do
     with key when key != nil <- key(request),

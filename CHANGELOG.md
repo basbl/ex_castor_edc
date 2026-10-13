@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## Unreleased
 
+### Changed
+
+- `CastorEDC.Client.request/2` and `request!/2`, the operation descriptions they take, the `CastorEDC.Model` decoding helpers and `CastorEDC.RateLimit.lookup/1` are no longer documented: they're how the generated modules work, not public API, and may change in any release.
+
 ### Fixed
 
 - A client with the right client ID but another secret no longer reuses a token another client cached: tokens are cached per client ID and a hash of the secret, so a wrong or revoked secret always means asking the API.

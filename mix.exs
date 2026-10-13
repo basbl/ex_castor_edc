@@ -91,7 +91,12 @@ defmodule CastorEDC.MixProject do
       end,
       extras: ["README.md", "notebook/getting_started.livemd", "guides/migrating-to-1.0.md", "CHANGELOG.md"],
       # The CHANGELOG names functions of earlier releases.
-      skip_code_autolink_to: ["CastorEDC.authenticate/1", "CastorEDC.Client.new/2"]
+      skip_code_autolink_to: [
+        "CastorEDC.authenticate/1",
+        "CastorEDC.Client.new/2",
+        "CastorEDC.Client.request/2",
+        "CastorEDC.RateLimit.lookup/1"
+      ]
     ]
   end
 
