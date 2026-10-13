@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- The docs say which time zone the API's times are in: a data point's `updated_on`, and the other times without a zone, are the server's local time (Europe/Amsterdam on data.castoredc.com), `updated_after` shows how to build one from them, and decoded `DateTime`s say they're in the server's zone. They also say that a cleared value stays in the data point lists, empty, and that a participant's `updated_on` is to the minute.
 - Options that are lists sent as one key per value, such as `list_survey_compliance`'s `:participant_ids`, `:site_ids`, `:participant_statuses`, `:survey_package_ids` and `:survey_package_statuses`, raised instead of being sent. `list_participants`' `:fields` filter, documented as a list but used by the API as `field[ID]=VALUE`, is a map of field IDs to values, and works.
 - A client with the right client ID but another secret no longer reuses a token another client cached: tokens are cached per client ID and a hash of the secret, so a wrong or revoked secret always means asking the API.
 - The token request passes on Req's `:plug` option, so a client built for `Req.Test` works, and reads a token lifetime given as text instead of raising.

@@ -119,7 +119,11 @@ defmodule CastorEDC.Tabular do
     * `:field_id` and `:variable_name` - its field
     * `:value` - decoded with `CastorEDC.FieldValue.decode/2`
     * `:raw_value` - the string the API sent
-    * `:updated_on` - when it last changed
+    * `:updated_on` - when it last changed, in the server's local time
+      (Europe/Amsterdam on data.castoredc.com), not UTC
+
+  A value that was cleared is still listed, with `value: nil` and
+  `raw_value: ""`.
   """
   @type row :: %{
           participant_id: String.t(),

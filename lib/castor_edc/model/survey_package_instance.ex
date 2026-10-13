@@ -11,15 +11,15 @@ defmodule CastorEDC.Model.SurveyPackageInstance do
 
   ## Fields
 
-    * `:all_fields_filled_on` (`DateTime`) - A serialized PHP DateTime object.
+    * `:all_fields_filled_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
     * `:archived` (boolean) - Archived SurveyPackageInstances are invisible to the enduser. Invitations will not be sent and data will not be exported .
     * `:auto_lock_on_finish` (boolean) - Whether this SurveyPackageInstance shall be locked upon completion
-    * `:available_from` (`DateTime`) - A serialized PHP DateTime object.
+    * `:available_from` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
     * `:created_by` (string) - The user ID of the user who created this instance.
-    * `:created_on` (`DateTime`) - A serialized PHP DateTime object.
-    * `:expire_on` (`DateTime`) - A serialized PHP DateTime object.
-    * `:finished_on` (`DateTime`) - A serialized PHP DateTime object.
-    * `:first_opened_on` (`DateTime`) - A serialized PHP DateTime object.
+    * `:created_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:expire_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:finished_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:first_opened_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
     * `:id` (string) - Unique id of the SurveyPackageInstance. Synonymous to survey_package_instance_id
     * `:invitation_content` (string) - The email invitation message for this SurveyPackageInstance.
     * `:invitation_subject` (string) - The  email subject used in the invitation message for this SurveyPackageInstance.
@@ -29,12 +29,12 @@ defmodule CastorEDC.Model.SurveyPackageInstance do
     * `:participant` (`t:CastorEDC.Model.Participant.t/0`)
     * `:participant_id` (string) - The identifier of the Participant this SurveyPackageInstance belongs to.
     * `:progress` (integer) - The progress of the SurveyPackageInstance, from 0 to 100
-    * `:received_on` (`DateTime`) - A serialized PHP DateTime object.
-    * `:sent_on` (`DateTime`) - A serialized PHP DateTime object.
+    * `:received_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:sent_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
     * `:site` (`t:CastorEDC.Model.Site.t/0`)
     * `:site_id` (string) - The identifier of the Site this SurveyPackageInstance's Participant belongs to
     * `:site_name` (string) - The name of the Site this SurveyPackageInstance's Participant belongs to .
-    * `:started_on` (`DateTime`) - A serialized PHP DateTime object.
+    * `:started_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
     * `:status` (string) - The status of the survey package instance
     * `:survey_instances` (list of object)
     * `:survey_package` (`t:CastorEDC.Model.SurveyPackage.t/0`)

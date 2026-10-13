@@ -468,7 +468,7 @@ defmodule CastorEDC.DataPoints do
   ## Options
 
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
-    * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
+    * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
 
   Any other option is passed to `Req`.
 
@@ -519,7 +519,7 @@ defmodule CastorEDC.DataPoints do
   ## Options
 
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
-    * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
+    * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
 
   Any other option is passed to `Req`.
 
@@ -600,7 +600,7 @@ defmodule CastorEDC.DataPoints do
   ## Options
 
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
-    * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
+    * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
 
   Any other option is passed to `Req`.
 
@@ -650,7 +650,7 @@ defmodule CastorEDC.DataPoints do
   ## Options
 
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
-    * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
+    * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
 
   Any other option is passed to `Req`.
 
@@ -701,7 +701,7 @@ defmodule CastorEDC.DataPoints do
   ## Options
 
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
-    * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
+    * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
 
   Any other option is passed to `Req`.
 
@@ -752,7 +752,7 @@ defmodule CastorEDC.DataPoints do
   ## Options
 
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
-    * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
+    * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
 
   Any other option is passed to `Req`.
 
@@ -832,7 +832,7 @@ defmodule CastorEDC.DataPoints do
   ## Options
 
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
-    * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
+    * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
     * `:page_size` (integer, at most `5000`) - The number of records per page.
 
@@ -885,7 +885,7 @@ defmodule CastorEDC.DataPoints do
   ## Options
 
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
-    * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
+    * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
     * `:page_size` (integer, at most `5000`) - The number of records per page.
 
@@ -953,7 +953,7 @@ defmodule CastorEDC.DataPoints do
   ## Options
 
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
-    * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
+    * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
     * `:page_size` (integer, at most `5000`) - The number of records per page.
 
@@ -1005,7 +1005,7 @@ defmodule CastorEDC.DataPoints do
   ## Options
 
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
-    * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
+    * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
     * `:page_size` (integer, at most `5000`) - The number of records per page.
 
@@ -1058,7 +1058,7 @@ defmodule CastorEDC.DataPoints do
   ## Options
 
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
-    * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
+    * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
     * `:page_size` (integer, at most `5000`) - The number of records per page.
 
@@ -1127,7 +1127,7 @@ defmodule CastorEDC.DataPoints do
   ## Options
 
     * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
-    * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
+    * `:updated_after` (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
     * `:page_size` (integer, at most `5000`) - The number of records per page.
 

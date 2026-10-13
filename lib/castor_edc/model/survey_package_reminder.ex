@@ -9,7 +9,7 @@ defmodule CastorEDC.Model.SurveyPackageReminder do
 
     * `:id` (string) - Unique id of the SurveyPackageReminder
     * `:message` (string) - The email content used in the reminder message for this SurveyPackage
-    * `:send_on` (`DateTime`) - A serialized PHP DateTime object.
+    * `:send_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
     * `:subject` (string) - The email subject used in the reminder message for this SurveyPackage
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """

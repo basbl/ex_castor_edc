@@ -9,7 +9,7 @@ defmodule CastorEDC.Model.Verification do
 
     * `:changed_field` (string)
     * `:dropped_by` (string)
-    * `:dropped_on` (`DateTime`) - A serialized PHP DateTime object.
+    * `:dropped_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
     * `:entity_id` (string)
     * `:entity_type` (string)
     * `:id` (integer)
@@ -18,7 +18,7 @@ defmodule CastorEDC.Model.Verification do
     * `:status` (string) - The status of the verification, can be 'active' or 'dropped'
     * `:verification_type` (`t:CastorEDC.Model.VerificationType.t/0`)
     * `:verified_by` (string)
-    * `:verified_on` (`DateTime`) - A serialized PHP DateTime object.
+    * `:verified_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
 

@@ -1141,7 +1141,7 @@
             "type": "string"
           },
           "field_value": {
-            "description": "The name collections use for the value.",
+            "description": "The stored value, always a string; see CastorEDC.FieldValue for decoding it by field type. A value that was cleared stays in the lists, as an empty string with its own updated_on.",
             "type": "string",
             "x-castor-rename": "value"
           },
@@ -1175,7 +1175,7 @@
             "type": "string"
           },
           "updated_on": {
-            "description": "When the value last changed, as YYYY-MM-DD HH:MM:SS.",
+            "description": "When the value last changed, in the server's local time (Europe/Amsterdam on data.castoredc.com), not UTC.",
             "type": [
               "string",
               "null"
@@ -1183,7 +1183,7 @@
             "x-castor-type": "naive_datetime"
           },
           "value": {
-            "description": "The stored value, always a string; see CastorEDC.FieldValue for decoding it by field type.",
+            "description": "The stored value, always a string; see CastorEDC.FieldValue for decoding it by field type. A value that was cleared stays in the lists, as an empty string with its own updated_on.",
             "type": "string"
           }
         },
@@ -1292,7 +1292,7 @@
         "type": "object"
       },
       "DateTime": {
-        "description": "A serialized PHP DateTime object.",
+        "description": "A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.",
         "properties": {
           "date": {
             "description": "Date and time in Y-m-d H:i:s.u format.",
@@ -2747,7 +2747,8 @@
             "type": "string"
           },
           "updated_on": {
-            "$ref": "#/components/schemas/DateTime"
+            "$ref": "#/components/schemas/DateTime",
+            "description": "When the participant last changed, which includes every value entered for them, to the minute only."
           }
         },
         "type": "object"
@@ -7027,7 +7028,7 @@
             "style": "form"
           },
           {
-            "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
+            "description": "Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!(\"Europe/Amsterdam\", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.",
             "in": "query",
             "name": "updated_after",
             "required": false,
@@ -7162,7 +7163,7 @@
             "style": "form"
           },
           {
-            "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
+            "description": "Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!(\"Europe/Amsterdam\", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.",
             "in": "query",
             "name": "updated_after",
             "required": false,
@@ -7288,7 +7289,7 @@
             "style": "form"
           },
           {
-            "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
+            "description": "Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!(\"Europe/Amsterdam\", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.",
             "in": "query",
             "name": "updated_after",
             "required": false,
@@ -7414,7 +7415,7 @@
             "style": "form"
           },
           {
-            "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
+            "description": "Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!(\"Europe/Amsterdam\", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.",
             "in": "query",
             "name": "updated_after",
             "required": false,
@@ -7549,7 +7550,7 @@
             "style": "form"
           },
           {
-            "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
+            "description": "Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!(\"Europe/Amsterdam\", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.",
             "in": "query",
             "name": "updated_after",
             "required": false,
@@ -7684,7 +7685,7 @@
             "style": "form"
           },
           {
-            "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
+            "description": "Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!(\"Europe/Amsterdam\", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.",
             "in": "query",
             "name": "updated_after",
             "required": false,
@@ -10353,7 +10354,7 @@
             "style": "form"
           },
           {
-            "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
+            "description": "Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!(\"Europe/Amsterdam\", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.",
             "in": "query",
             "name": "updated_after",
             "required": false,
@@ -10469,7 +10470,7 @@
             "style": "form"
           },
           {
-            "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
+            "description": "Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!(\"Europe/Amsterdam\", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.",
             "in": "query",
             "name": "updated_after",
             "required": false,
@@ -10691,7 +10692,7 @@
             "style": "form"
           },
           {
-            "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
+            "description": "Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!(\"Europe/Amsterdam\", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.",
             "in": "query",
             "name": "updated_after",
             "required": false,
@@ -10899,7 +10900,7 @@
             "style": "form"
           },
           {
-            "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
+            "description": "Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!(\"Europe/Amsterdam\", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.",
             "in": "query",
             "name": "updated_after",
             "required": false,
@@ -11015,7 +11016,7 @@
             "style": "form"
           },
           {
-            "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
+            "description": "Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!(\"Europe/Amsterdam\", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.",
             "in": "query",
             "name": "updated_after",
             "required": false,
@@ -11345,7 +11346,7 @@
             "style": "form"
           },
           {
-            "description": "ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.",
+            "description": "Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time (Europe/Amsterdam on data.castoredc.com), so build it with `updated_on |> DateTime.from_naive!(\"Europe/Amsterdam\", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.",
             "in": "query",
             "name": "updated_after",
             "required": false,

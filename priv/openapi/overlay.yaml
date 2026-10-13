@@ -432,6 +432,23 @@ actions:
       stream for it, so the option would only change the result's shape.
     remove: true
 
+  # Times
+
+  - target: $.paths.*.*.parameters[?@.name == 'updated_after']
+    description: Says which time the watermark is in, and how to build one.
+    update:
+      description: >-
+        Only data points updated strictly after this time, as ISO 8601 with an
+        offset. Data points' updated_on is the server's local time
+        (Europe/Amsterdam on data.castoredc.com), so build it with
+        `updated_on |> DateTime.from_naive!("Europe/Amsterdam", Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
+  - target: $.definitions.Participant.properties.updated_on
+    description: Notes the precision, which the API doesn't.
+    update:
+      description: >-
+        When the participant last changed, which includes every value entered
+        for them, to the minute only.
+
   # Collections and pagination
   #
   # x-castor-items is where the records of a collection sit in the response:
@@ -723,17 +740,23 @@ actions:
             type: string
             description: >-
               The stored value, always a string; see CastorEDC.FieldValue
-              for decoding it by field type.
+              for decoding it by field type. A value that was cleared stays
+              in the lists, as an empty string with its own updated_on.
           field_value:
             type: string
-            description: The name collections use for the value.
+            description: >-
+              The stored value, always a string; see CastorEDC.FieldValue
+              for decoding it by field type. A value that was cleared stays
+              in the lists, as an empty string with its own updated_on.
             x-castor-rename: value
           participant_id: {type: string}
           updated_on:
             type: string
             x-nullable: true
             x-castor-type: naive_datetime
-            description: When the value last changed, as YYYY-MM-DD HH:MM:SS.
+            description: >-
+              When the value last changed, in the server's local time
+              (Europe/Amsterdam on data.castoredc.com), not UTC.
           repeating_data_instance_id: {type: string, format: UUID}
           repeating_data_instance_name: {type: string}
           survey_instance_id: {type: string, format: UUID}
@@ -818,8 +841,12 @@ actions:
     description: >-
       A serialised PHP DateTime object: a local date and time in `date`
       (YYYY-MM-DD HH:MM:SS.ffffff) and a named time zone in `timezone`. The
-      client turns it into a DateTime in that zone.
-    update: {x-castor-type: datetime}
+      client turns it into a DateTime in that zone, and describes it so.
+    update:
+      x-castor-type: datetime
+      description: >-
+        A DateTime in the server's time zone (Europe/Amsterdam on
+        data.castoredc.com); compare it with DateTime.compare/2.
   - target: $.paths['/study/{study_id}/export'].get.responses['200'].schema
     description: Replaced below; the described shape doesn't match the response.
     remove: true

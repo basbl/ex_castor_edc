@@ -346,7 +346,7 @@ defmodule CastorEDC.Generator.Spec do
     %Field{
       name: property["x-castor-rename"] || Naming.snake(key),
       wires: [wire],
-      description: deref(document, property)["description"] || property["description"],
+      description: property["description"] || deref(document, property)["description"],
       type: type_doc(document, property),
       decode: field_decode(document, property),
       required: required

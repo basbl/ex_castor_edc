@@ -11,7 +11,7 @@ defmodule CastorEDC.Model.Participant do
     * `:archived_reason` (string)
     * `:ccr_patient_id` (string)
     * `:created_by` (string)
-    * `:created_on` (`DateTime`) - A serialized PHP DateTime object.
+    * `:created_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
     * `:deleted` (boolean)
     * `:id` (string)
     * `:last_opened_form` (string)
@@ -24,11 +24,11 @@ defmodule CastorEDC.Model.Participant do
     * `:randomization_group` (integer)
     * `:randomization_group_name` (string)
     * `:randomized_id` (string) - The participant's randomization ID.
-    * `:randomized_on` (`DateTime`) - A serialized PHP DateTime object.
+    * `:randomized_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
     * `:site` (`t:CastorEDC.Model.Site.t/0`)
     * `:status` (string) - Deprecated: use the locked property instead
     * `:updated_by` (string)
-    * `:updated_on` (`DateTime`) - A serialized PHP DateTime object.
+    * `:updated_on` (`DateTime`) - When the participant last changed, which includes every value entered for them, to the minute only.
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
 
