@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - A rate limit reset time that isn't a Unix timestamp in seconds no longer crashes every request; and waiting out a 429 adds the same jitter as waiting before a request, so a clock ahead of the server's doesn't retry before the window resets.
 - Export date-time filters take a `DateTime` in the server's time (Europe/Amsterdam): one was sent as its own wall clock, so a UTC time was read an hour or two off. They're documented as to the minute, as the API takes them.
 - An export saved into a directory keeps the server's file name inside it: a name with directories in it could have put the file, and what was unzipped from it, elsewhere.
+- A PHP DateTime with an offset zone (`+02:00`) decodes to a UTC `DateTime` instead of staying a map, and a local time a clock change skips becomes the moment after the gap, as PHP reads it. `CastorEDC.FieldValue.decode/2` takes the field type as an atom too, instead of raising.
 - A client's client secret no longer shows when the client is inspected, as in a log, an IEx session or a notebook's output.
 
 ## [1.0.0-rc.1] - 2026-10-08

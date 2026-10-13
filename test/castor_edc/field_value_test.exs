@@ -36,6 +36,11 @@ defmodule CastorEDC.FieldValueTest do
     end
   end
 
+  test "takes the field type as an atom too" do
+    assert FieldValue.decode("42", :numeric) == 42
+    assert FieldValue.decode("05-10-2026", :date) == ~D[2026-10-05]
+  end
+
   test "decodes numbers" do
     for type <- ~w(numeric slider) do
       assert FieldValue.decode("42", type) === 42

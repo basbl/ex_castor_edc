@@ -80,7 +80,7 @@ defmodule CastorEDC.FieldValue do
       iex> CastorEDC.FieldValue.decode("", "year")
       nil
   """
-  @spec decode(String.t() | nil, Field.t() | String.t()) :: t()
+  @spec decode(String.t() | nil, Field.t() | String.t() | atom()) :: t()
   def decode(raw, field)
   def decode(nil, _field), do: nil
   def decode("", _field), do: nil
@@ -128,6 +128,7 @@ defmodule CastorEDC.FieldValue do
 
   defp type(%Field{field_type: type}), do: type
   defp type(type) when is_binary(type), do: type
+  defp type(type) when is_atom(type), do: Atom.to_string(type)
 
   defp read(type, raw) when type in ["numeric", "slider"], do: number(raw)
   defp read("year", raw), do: integer(raw)

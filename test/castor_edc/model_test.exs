@@ -51,6 +51,28 @@ defmodule CastorEDC.ModelTest do
     assert Model.cast(value, :datetime).utc_offset + Model.cast(value, :datetime).std_offset == 7200
   end
 
+  test "takes the moment after the gap for a skipped local time, as PHP does" do
+    value = %{"date" => "2026-03-29 02:30:00.000000", "timezone" => "Europe/Amsterdam"}
+    datetime = Model.cast(value, :datetime)
+    assert DateTime.to_naive(datetime) == ~N[2026-03-29 03:00:00]
+    assert datetime.zone_abbr == "CEST"
+  end
+
+  test "casts PHP DateTimes with an offset zone to UTC" do
+    assert Model.cast(%{"date" => "2026-10-07 21:08:46.000000", "timezone_type" => 1, "timezone" => "+02:00"}, :datetime) ==
+             ~U[2026-10-07 19:08:46.000000Z]
+
+    assert Model.cast(%{"date" => "2026-10-07 21:08:46", "timezone" => "-0530"}, :datetime) == ~U[2026-10-08 02:38:46Z]
+
+    abbreviated = %{"date" => "2026-10-07 21:08:46", "timezone_type" => 2, "timezone" => "CEST"}
+    assert Model.cast(abbreviated, :datetime) == abbreviated
+
+    assert Model.cast(%{"date" => "2026-10-07 21:08:46", "timezone" => "+2"}, :datetime) == %{
+             "date" => "2026-10-07 21:08:46",
+             "timezone" => "+2"
+           }
+  end
+
   test "casts ISO 8601 strings to datetimes" do
     assert Model.cast("2026-10-07T19:08:46Z", :datetime) == ~U[2026-10-07 19:08:46Z]
   end

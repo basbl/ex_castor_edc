@@ -80,14 +80,30 @@ defmodule CastorEDC.Model do
 
   def cast(value, _type), do: value
 
-  # A local time that falls in a DST gap or overlap still has to become one
-  # moment; take the earlier reading, as PHP does.
+  # A local time that falls in a DST overlap or gap still has to become one
+  # moment; as PHP does, take the earlier reading of an ambiguous time, and
+  # the moment after the gap for a skipped one.
+  defp from_naive(naive, "+" <> _offset = zone), do: from_offset(naive, zone)
+  defp from_naive(naive, "-" <> _offset = zone), do: from_offset(naive, zone)
+
   defp from_naive(naive, zone) do
     case DateTime.from_naive(naive, zone, Tz.TimeZoneDatabase) do
       {:ok, datetime} -> {:ok, datetime}
       {:ambiguous, first, _second} -> {:ok, first}
-      {:gap, before, _after} -> {:ok, before}
+      {:gap, _before, after_gap} -> {:ok, after_gap}
       {:error, reason} -> {:error, reason}
+    end
+  end
+
+  # PHP's offset zones ("+02:00", timezone_type 1) become UTC.
+  defp from_offset(naive, offset) do
+    case Regex.run(~r/^([+-])(\d{2}):?(\d{2})$/, offset) do
+      [_all, sign, hours, minutes] ->
+        seconds = (String.to_integer(hours) * 3600 + String.to_integer(minutes) * 60) * if(sign == "+", do: 1, else: -1)
+        {:ok, naive |> NaiveDateTime.add(-seconds) |> DateTime.from_naive!("Etc/UTC")}
+
+      nil ->
+        {:error, :invalid_offset}
     end
   end
 end
