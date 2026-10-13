@@ -190,13 +190,16 @@ defmodule CastorEDC.Export do
       * `:into` - a directory, or a file path, to stream the zip to, as for
         `download/4`
       * `:unzip` - when `true`, unzips the export: into the `:into`
-        directory, or in memory. The struct's `:files` lists what was in it.
+        directory (a file path given as `:into` becomes a directory of that
+        name), or in memory. The struct's `:files` lists what was in it.
       * `:timeout` - how long to wait for the export, queuing included, in
         milliseconds or `:infinity`; #{if type in @pdf_types, do: "an hour", else: "15 minutes"} by default
       * `:poll_interval` - the first wait before checking on the export,
         see `await/4`
 
-    Any other option is passed to `Req` for the download.
+    Any other option is passed to `Req` for the download. A format, filter
+    or option the export doesn't take raises `ArgumentError` before anything
+    is sent.
     """
     @spec unquote(type)(CastorEDC.client(), String.t(), keyword()) :: {:ok, t()} | {:error, Error.t()}
     def unquote(type)(client, study_id, opts \\ []), do: run(client, study_id, unquote(type), opts)

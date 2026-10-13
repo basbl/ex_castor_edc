@@ -56,7 +56,7 @@ defmodule CastorEDC.FieldValue do
           | [String.t()]
           | %{
               optional(integer() | String.t()) => %{
-                optional(integer() | String.t()) => String.t() | MissingValue.t() | nil
+                optional(integer() | String.t()) => String.t() | MissingValue.t() | :encrypted | nil
               }
             }
           | {:upload, String.t() | nil}

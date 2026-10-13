@@ -6,7 +6,9 @@ defmodule CastorEDC.Model do
   generated from the same spec as the operations. Nested objects are
   decoded into their own structs. A field the spec doesn't name is kept,
   under its wire name, in the struct's `extra` map, so a response survives
-  the API adding a field; `_links` and `_embedded` are left out.
+  the API adding a field; `_links` and `_embedded` are left out. A value
+  the client can't read as its documented type, such as a date in an
+  unexpected format, stays as it arrived rather than raising.
 
   The generated `new/1` functions decode with this module's helpers, which
   aren't part of the public API.
