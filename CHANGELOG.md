@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- `CastorEDC.Error` has `export_ids` and `result` for errors the client makes itself, and lists its own codes. The export errors carry the exports' IDs in `export_ids` (an `:export_timeout`'s pending IDs were in `details` as messages) and the export in `result` (it was in `body`), and `:not_saved` the write's result in `result`. `body` and `details` are only ever what the API sent.
 - Creating sites and repeating data instances answers like a bulk data point write, and the client now treats it alike: `CastorEDC.Model.SiteCollection` and `RepeatingDataInstanceCollection` list what was created under `saved` (it was `success`), and `create_site!/4` and `create_repeating_data_instances!/5` raise a `CastorEDC.Error` with `code: :not_saved` when anything wasn't, as the data point `!` functions do.
 - Lists return the same struct as fetching one record: `list_countries` gives `CastorEDC.Model.Country`s, `list_studies` `CastorEDC.Model.Study`s, and a created site comes back as a `CastorEDC.Model.Site`. `CountryWithNoHalLinks`, `StudyCollectionItem` and `SiteNoLinks`, copies of those with a field or two less, are gone.
 - A study's `created_on`, `first_live_on` and `last_datapoint_collected_on` (in `CastorEDC.Model.Study`), and a repeating data instance's `created_on`, are `NaiveDateTime`s in the server's time, as a data point's `updated_on` is, instead of strings.

@@ -260,7 +260,8 @@ defmodule CastorEDC.ExportTest do
         |> client()
         |> clocked()
 
-      assert {:error, %Error{code: :export_failed, body: %Export{id: "export-1"}, message: message}} =
+      assert {:error,
+              %Error{code: :export_failed, result: %Export{id: "export-1"}, export_ids: ["export-1"], message: message}} =
                Export.await(client, @study, ["export-2", "export-1"])
 
       assert message == "export export-1 (sites, csv) failed"
@@ -269,11 +270,11 @@ defmodule CastorEDC.ExportTest do
     test "returns :export_timeout with the exports that aren't ready" do
       client = [entry("export-1"), entry("export-2", %{"status" => "in_progress"})] |> list() |> client() |> clocked()
 
-      assert {:error, %Error{code: :export_timeout, message: message, details: details}} =
+      assert {:error, %Error{code: :export_timeout, message: message, export_ids: ["export-2"], result: [pending]}} =
                Export.await(client, @study, ["export-1", "export-2"], timeout: 4000)
 
       assert message =~ "export(s) export-2 weren't ready after 4 seconds"
-      assert details == [%{code: "in_progress", message: "export-2", field: nil}]
+      assert %Export{id: "export-2", status: :in_progress} = pending
       assert slept() == [1000, 1500, 1500]
     end
 
@@ -294,7 +295,9 @@ defmodule CastorEDC.ExportTest do
     test "returns :export_not_found for an export that stays missing" do
       client = [entry("other")] |> list() |> client() |> clocked()
 
-      assert {:error, %Error{code: :export_not_found}} = Export.await(client, @study, ["export-1"])
+      assert {:error, %Error{code: :export_not_found, export_ids: ["export-1"], details: []}} =
+               Export.await(client, @study, ["export-1"])
+
       assert Enum.sum(slept()) in 30_000..45_000
     end
 

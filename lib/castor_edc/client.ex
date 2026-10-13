@@ -114,7 +114,7 @@ defmodule CastorEDC.Client do
         message: "#{length(failed)} item(s) were not saved: " <> Enum.map_join(failed, "; ", &failure_message/1),
         code: :not_saved,
         details: Enum.map(failed, &%{code: get(&1, :code), message: get(&1, :message), field: get(&1, :field_id)}),
-        body: result
+        result: result
       }
     end
   end

@@ -216,6 +216,8 @@ defmodule CastorEDC.ClientTest do
       assert error.code == :not_saved
       assert error.message == "1 item(s) were not saved: f2: Unsupported field type"
       assert error.details == [%{code: "BAD_REQUEST", message: "Unsupported field type", field: "f2"}]
+      assert %{"failed" => [_failure]} = error.result
+      assert error.body == nil
     end
 
     test "treats creating sites like a bulk write, raising when a site wasn't created" do

@@ -271,7 +271,8 @@ defmodule CastorEDC.Export do
       message: "couldn't unzip export #{export.id}: #{inspect(reason)}",
       code: :unzip_failed,
       reason: reason,
-      body: export
+      export_ids: [export.id],
+      result: export
     }
   end
 
@@ -381,7 +382,7 @@ defmodule CastorEDC.Export do
   the same order.
 
   It doesn't download them: see `download/4`. When an export fails, it
-  returns an error with code `:export_failed` and the export in `body`
+  returns an error with code `:export_failed` and the export in `result`
   straight away. An ID that doesn't show up in the export list within 30
   seconds returns an error with code `:export_not_found`.
 
@@ -389,8 +390,9 @@ defmodule CastorEDC.Export do
 
     * `:timeout` - how long to wait, in milliseconds or `:infinity`; 15
       minutes by default. Then it returns an error with code
-      `:export_timeout`, listing the exports that weren't ready in
-      `details`. They keep running, so you can call `await/4` again.
+      `:export_timeout`, with the IDs of the exports that weren't ready in
+      `export_ids`. They keep running, so you can call `await/4` with
+      those IDs again.
     * `:poll_interval` - the first wait before checking, in milliseconds;
       1 second by default
     * `:since` - a `DateTime` from before the exports were queued, which
@@ -475,7 +477,8 @@ defmodule CastorEDC.Export do
     %Error{
       message: "export #{export.id} (#{export.type}, #{export.format}) failed",
       code: :export_failed,
-      body: export
+      export_ids: [export.id],
+      result: export
     }
   end
 
@@ -493,12 +496,10 @@ defmodule CastorEDC.Export do
         "export(s) #{Enum.map_join(pending, ", ", &elem(&1, 0))} weren't ready after #{div(waited, 1000)} seconds; " <>
           "they keep running, so await them again later",
       code: :export_timeout,
-      details: Enum.map(pending, fn {id, export} -> %{code: status_name(export), message: id, field: nil} end)
+      export_ids: Enum.map(pending, &elem(&1, 0)),
+      result: for({_id, %__MODULE__{} = export} <- pending, do: export)
     }
   end
-
-  defp status_name(nil), do: "queued"
-  defp status_name(%__MODULE__{status: status}), do: to_string(status)
 
   # Milliseconds on a clock that only goes forward; tests replace it.
   defp monotonic(client) do
@@ -561,7 +562,7 @@ defmodule CastorEDC.Export do
     %Error{
       message: "the study's export list has no export with ID #{Enum.join(export_ids, ", ")}",
       code: :export_not_found,
-      details: Enum.map(export_ids, &%{code: "export_not_found", message: &1, field: nil})
+      export_ids: export_ids
     }
   end
 
@@ -654,7 +655,8 @@ defmodule CastorEDC.Export do
     %Error{
       message: "export #{export.id} expired on #{DateTime.to_iso8601(export.expires_on)}",
       code: :export_expired,
-      body: export
+      export_ids: [export.id],
+      result: export
     }
   end
 
@@ -662,7 +664,8 @@ defmodule CastorEDC.Export do
     %Error{
       message: "export #{export.id} isn't ready to download: its status is #{inspect(export.status)}",
       code: :export_not_ready,
-      body: export
+      export_ids: [export.id],
+      result: export
     }
   end
 
