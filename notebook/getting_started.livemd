@@ -97,8 +97,6 @@ site_input = Kino.Input.select("Test site", site_options)
 site_id = Kino.Input.read(site_input)
 ```
 
-<!-- livebook:{"branch_parent_index":4} -->
-
 ## Participants
 
 `CastorEDC.Participants` lists, reads and creates participants.
@@ -172,10 +170,15 @@ client
 |> Enum.take(10)
 ```
 
-To fetch only some fields, pass their IDs:
+To fetch only some fields, pass their IDs, such as those of the first three numeric fields:
 
 ```elixir
-field_ids = fields |> Enum.filter(&(&1.field_type == "numeric")) |> Enum.take(3) |> Enum.map(& &1.id)
+field_ids =
+  client
+  |> CastorEDC.Fields.stream_fields(study_id)
+  |> Stream.filter(&(&1.field_type == "numeric"))
+  |> Enum.take(3)
+  |> Enum.map(& &1.id)
 
 client
 |> CastorEDC.DataPoints.stream_study_data_points(study_id, field_ids: field_ids)
