@@ -641,6 +641,13 @@ defmodule CastorEDC.Surveys do
         parent_id: "parentId",
         parent_type: "parentType"
       },
+      repeated_params: [
+        :participant_ids,
+        :site_ids,
+        :participant_statuses,
+        :survey_package_ids,
+        :survey_package_statuses
+      ],
       accept: "application/json",
       items: "data",
       decode: Compliance

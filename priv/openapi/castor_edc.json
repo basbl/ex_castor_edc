@@ -9330,16 +9330,14 @@
           },
           {
             "description": "Filter participants on field values (participant, survey, report fields).\nMultiple fields can be defined.\nUse like: ?field[ID1]=VALUE1&field[ID2]=VALUE2",
+            "explode": true,
             "in": "query",
-            "name": "field[]",
+            "name": "field",
             "required": false,
             "schema": {
-              "items": {
-                "format": "uuid",
-                "type": "string"
-              },
-              "type": "array"
+              "type": "object"
             },
+            "style": "deepObject",
             "x-castor-name": "fields"
           },
           {

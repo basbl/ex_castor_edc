@@ -47,6 +47,8 @@ defmodule CastorEDC.Client do
   #   * `:query_names` - each option the operation takes, mapped to its name
   #     on the wire; options it doesn't take are passed to `Req`
   #   * `:list_params` - options that are lists, sent comma-separated
+  #   * `:repeated_params` - options that are lists, sent as one key per value
+  #   * `:map_params` - options that are maps, sent as `name[key]=value`
   #   * `:body` - the request body, sent as JSON
   #   * `:accept` - the `Accept` header, `application/hal+json` by default
   #   * `:items` - where a collection's records sit in the response body, as
@@ -72,7 +74,11 @@ defmodule CastorEDC.Client do
       [
         method: Keyword.fetch!(operation, :method),
         url: interpolate(Keyword.fetch!(operation, :path), operation[:path_params] || %{}),
-        params: query |> join_lists(operation[:list_params] || []) |> clamp_page_size(operation[:max_page_size]),
+        params:
+          query
+          |> join_lists(operation[:list_params] || [])
+          |> expand(operation[:repeated_params] || [], operation[:map_params] || [])
+          |> clamp_page_size(operation[:max_page_size]),
         headers: [accept: operation[:accept] || "application/hal+json"]
       ] ++ body(operation) ++ req_options
 
@@ -152,6 +158,24 @@ defmodule CastorEDC.Client do
         else: {name, wire, value}
     end)
   end
+
+  # A repeated option is sent as one key per value, and a map option as
+  # `name[key]=value` per entry.
+  defp expand(query, repeated_params, map_params) do
+    Enum.flat_map(query, &expand_one(&1, repeated_params, map_params))
+  end
+
+  defp expand_one({name, wire, values} = param, repeated_params, _map_params) when is_list(values) do
+    if name in repeated_params, do: Enum.map(values, &{name, wire, &1}), else: [param]
+  end
+
+  defp expand_one({name, wire, values} = param, _repeated_params, map_params) when is_map(values) do
+    if name in map_params,
+      do: values |> Enum.sort() |> Enum.map(fn {key, value} -> {name, "#{wire}[#{key}]", value} end),
+      else: [param]
+  end
+
+  defp expand_one(param, _repeated_params, _map_params), do: [param]
 
   defp clamp_page_size(query, max) do
     Enum.map(query, fn

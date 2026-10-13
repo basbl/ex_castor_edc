@@ -357,8 +357,20 @@ actions:
     update: {x-castor-name: parent_id}
   - target: $.paths.*.*.parameters[?@.name == 'parentType']
     update: {x-castor-name: parent_type}
+  - target: $.paths.*.*.parameters[?@.name == 'field[]'].items
+    description: The filter below takes a map, not a list of IDs.
+    remove: true
   - target: $.paths.*.*.parameters[?@.name == 'field[]']
-    update: {x-castor-name: fields}
+    description: >-
+      Filters participants on field values, used as `field[ID]=VALUE` per
+      field, so a map of field IDs to values rather than the list of IDs
+      upstream describes; the wire name is `field`, with the ID in brackets.
+    update:
+      name: field
+      type: object
+      style: deepObject
+      explode: true
+      x-castor-name: fields
   - target: $.paths.*.*.parameters[?@.name == 'finished_on[gt]']
     update: {x-castor-name: finished_after}
   - target: $.paths.*.*.parameters[?@.name == 'finished_on[gte]']

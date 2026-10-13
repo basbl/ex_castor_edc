@@ -53,7 +53,7 @@ defmodule CastorEDC.Generator.Spec do
 
   defmodule Param do
     @moduledoc "A path or query parameter of an operation."
-    defstruct [:name, :wire, :description, :type, :default, :maximum, list: false, required: false]
+    defstruct [:name, :wire, :description, :type, :default, :maximum, encoding: :plain, required: false]
     @type t :: %__MODULE__{}
   end
 
@@ -182,10 +182,18 @@ defmodule CastorEDC.Generator.Spec do
       type: type_doc(document, schema),
       default: schema["default"],
       maximum: schema["maximum"],
-      list: schema["type"] == "array" and parameter["explode"] == false,
+      encoding: encoding(schema, parameter),
       required: parameter["required"] == true
     }
   end
+
+  # How a query parameter's value goes on the wire: as it is, a list joined
+  # with commas (`explode: false`), a list as one key per value (OpenAPI's
+  # default for arrays), or a map as `name[key]=value` (`deepObject`).
+  defp encoding(%{"type" => "array"}, %{"explode" => false}), do: :csv
+  defp encoding(%{"type" => "array"}, _parameter), do: :repeat
+  defp encoding(%{"type" => "object"}, %{"style" => "deepObject"}), do: :map
+  defp encoding(_schema, _parameter), do: :plain
 
   defp success_response(operation) do
     responses = operation["responses"] || %{}

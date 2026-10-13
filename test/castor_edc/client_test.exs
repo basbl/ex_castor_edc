@@ -51,6 +51,30 @@ defmodule CastorEDC.ClientTest do
       assert URI.decode_query(assert_requested().url.query) == %{"field_ids" => "a,b"}
     end
 
+    test "sends repeated parameters as one key per value" do
+      operation =
+        operation(query_names: %{site_ids: "siteId[]"}, repeated_params: [:site_ids], query: [site_ids: ["a", "b"]])
+
+      Client.request(client(json(%{})), operation)
+
+      assert assert_requested().url.query |> URI.query_decoder() |> Enum.to_list() == [
+               {"siteId[]", "a"},
+               {"siteId[]", "b"}
+             ]
+    end
+
+    test "sends map parameters as one key per entry, with the entry's key in brackets" do
+      operation =
+        operation(query_names: %{fields: "field"}, map_params: [:fields], query: [fields: %{"f2" => "1", "f1" => "x"}])
+
+      Client.request(client(json(%{})), operation)
+
+      assert assert_requested().url.query |> URI.query_decoder() |> Enum.to_list() == [
+               {"field[f1]", "x"},
+               {"field[f2]", "1"}
+             ]
+    end
+
     test "lowers a page size above the operation's maximum" do
       Client.request(client(json(%{})), operation(max_page_size: 1000, query: [page_size: 5000]))
       assert URI.decode_query(assert_requested().url.query) == %{"page_size" => "1000"}

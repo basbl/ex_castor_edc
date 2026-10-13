@@ -114,6 +114,10 @@ defmodule CastorEDC.Generator.Renderer do
     ":#{operation.name}, %{#{path_params}}#{body}, opts"
   end
 
+  defp params_encoded(operation, encoding) do
+    for %Spec.Param{encoding: ^encoding, name: name} <- operation.query_params, do: String.to_atom(name)
+  end
+
   @doc false
   def operation_pattern(operation) do
     body = if operation.body, do: ", body", else: ""
@@ -123,7 +127,9 @@ defmodule CastorEDC.Generator.Renderer do
   @doc false
   def operation_body(operation) do
     query_names = Enum.map_join(operation.query_params, ", ", &"#{&1.name}: #{inspect(&1.wire)}")
-    list_params = for %Spec.Param{list: true, name: name} <- operation.query_params, do: String.to_atom(name)
+    list_params = params_encoded(operation, :csv)
+    repeated_params = params_encoded(operation, :repeat)
+    map_params = params_encoded(operation, :map)
 
     entries = [
       method: inspect(operation.method),
@@ -132,6 +138,8 @@ defmodule CastorEDC.Generator.Renderer do
       query: "opts",
       query_names: "%{#{query_names}}",
       list_params: present(list_params),
+      repeated_params: present(repeated_params),
+      map_params: present(map_params),
       body: if(operation.body, do: "body"),
       accept: present(operation.accept),
       items: present(operation.items),
@@ -226,14 +234,19 @@ defmodule CastorEDC.Generator.Renderer do
     details =
       Enum.filter(
         [
-          param.list && "a list, sent comma-separated",
+          param.encoding == :csv && "a list, sent comma-separated",
           param.default != nil && "defaults to `#{inspect(param.default)}`",
           param.wire == "page_size" && operation.max_page_size && "at most `#{operation.max_page_size}`"
         ],
         & &1
       )
 
-    Enum.join([type_doc(param.type) | details], ", ")
+    type =
+      if param.encoding == :map,
+        do: "a map of keys to values, sent as `#{param.wire}[key]=value`",
+        else: type_doc(param.type)
+
+    Enum.join([type | details], ", ")
   end
 
   defp result_doc(%Spec.Operation{items: items} = operation) when is_binary(items) do

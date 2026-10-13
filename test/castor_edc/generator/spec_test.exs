@@ -46,11 +46,11 @@ defmodule CastorEDC.Generator.SpecTest do
   test "reads query parameters, lists and paging", %{operations: operations} do
     list = operations["list_sites"]
 
-    assert Enum.map(list.query_params, &{&1.name, &1.wire, &1.list}) == [
-             {"page", "page", false},
-             {"page_size", "page_size", false},
-             {"field_ids", "field_ids", true},
-             {"site_ids", "siteId[]", false}
+    assert Enum.map(list.query_params, &{&1.name, &1.wire, &1.encoding}) == [
+             {"page", "page", :plain},
+             {"page_size", "page_size", :plain},
+             {"field_ids", "field_ids", :csv},
+             {"site_ids", "siteId[]", :plain}
            ]
 
     assert hd(list.query_params).default == 1

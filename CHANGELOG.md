@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- Options that are lists sent as one key per value, such as `list_survey_compliance`'s `:participant_ids`, `:site_ids`, `:participant_statuses`, `:survey_package_ids` and `:survey_package_statuses`, raised instead of being sent. `list_participants`' `:fields` filter, documented as a list but used by the API as `field[ID]=VALUE`, is a map of field IDs to values, and works.
 - A client with the right client ID but another secret no longer reuses a token another client cached: tokens are cached per client ID and a hash of the secret, so a wrong or revoked secret always means asking the API.
 - The token request passes on Req's `:plug` option, so a client built for `Req.Test` works, and reads a token lifetime given as text instead of raising.
 - Req's own retry no longer runs on top of the rate limit handling: a 429 was retried up to three more times with Req's backoff, so `rate_limit: :error` waited seconds and returned a made-up error instead of the API's 429, and `:wait` sent up to seven requests instead of four. Clients retry what Req's default does, but never a 429.
