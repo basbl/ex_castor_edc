@@ -61,6 +61,11 @@ defmodule CastorEDC do
 
       CastorEDC.new(client_id: id, client_secret: secret, receive_timeout: 30_000)
 
+  Like Req by default, the client retries GET and HEAD requests that fail
+  for a passing reason (a timeout, a closed connection, a 408 or a 5xx),
+  but not a 429, which `CastorEDC.RateLimit` handles; pass `retry:` to
+  change that.
+
   Requests go over HTTP/2, which every Castor EDC server speaks, so
   concurrent requests share one connection instead of opening one each.
   To use HTTP/1 instead, for a proxy that doesn't speak HTTP/2 for
@@ -77,7 +82,11 @@ defmodule CastorEDC do
 
     base_url = setting(own, :base_url, "CASTOR_EDC_BASE_URL")
 
-    [base_url: if(present?(base_url), do: base_url, else: @default_base_url), user_agent: @user_agent]
+    [
+      base_url: if(present?(base_url), do: base_url, else: @default_base_url),
+      user_agent: @user_agent,
+      retry: &CastorEDC.RateLimit.retry?/2
+    ]
     |> Keyword.merge(http2(req_options))
     |> Req.new()
     |> CastorEDC.RateLimit.attach(Keyword.take(own, [:rate_limit, :max_rate_limit_wait]))

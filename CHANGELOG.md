@@ -14,6 +14,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - A client with the right client ID but another secret no longer reuses a token another client cached: tokens are cached per client ID and a hash of the secret, so a wrong or revoked secret always means asking the API.
 - The token request passes on Req's `:plug` option, so a client built for `Req.Test` works, and reads a token lifetime given as text instead of raising.
+- Req's own retry no longer runs on top of the rate limit handling: a 429 was retried up to three more times with Req's backoff, so `rate_limit: :error` waited seconds and returned a made-up error instead of the API's 429, and `:wait` sent up to seven requests instead of four. Clients retry what Req's default does, but never a 429.
+- A rate limit reset time that isn't a Unix timestamp in seconds no longer crashes every request; and waiting out a 429 adds the same jitter as waiting before a request, so a clock ahead of the server's doesn't retry before the window resets.
 - A client's client secret no longer shows when the client is inspected, as in a log, an IEx session or a notebook's output.
 
 ## [1.0.0-rc.1] - 2026-10-08

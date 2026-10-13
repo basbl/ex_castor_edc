@@ -108,10 +108,16 @@ defmodule CastorEDC.RateLimitRetryTest do
     |> Req.Request.put_private(:castor_edc_sleep, fn ms -> send(test, {:slept, ms}) end)
   end
 
+  # A wait is the time until the reset plus up to a quarter of a second.
+  defp assert_slept(ms) do
+    assert_received {:slept, slept}
+    assert slept > ms and slept <= ms + 250
+  end
+
   test "waits until the window resets and sends the request again" do
     assert {:ok, %{"ok" => true}} = Client.request(limited_client(sequence([limited(30)])), @operation)
 
-    assert_received {:slept, 30_000}
+    assert_slept(30_000)
     assert_requested()
     assert_requested()
   end
@@ -120,14 +126,14 @@ defmodule CastorEDC.RateLimitRetryTest do
     assert {:ok, %{"ok" => true}} =
              Client.request(limited_client(sequence([limited(1)])), Keyword.put(@operation, :method, :post))
 
-    assert_received {:slept, 1000}
+    assert_slept(1000)
   end
 
   test "gives up after three attempts" do
     client = limited_client(sequence(List.duplicate(limited(1), 4)))
 
     assert {:error, %Error{status: 429}} = Client.request(client, @operation)
-    for _attempt <- 1..3, do: assert_received({:slept, 1000})
+    for _attempt <- 1..3, do: assert_slept(1000)
     refute_received {:slept, _ms}
   end
 
@@ -185,6 +191,43 @@ defmodule CastorEDC.RateLimitRetryTest do
 
   test "rejects an unknown rate_limit mode" do
     assert_raise ArgumentError, ~r/:rate_limit/, fn -> client(json(%{}), rate_limit: :ignore) end
+  end
+
+  describe "retry?/2" do
+    @get %Req.Request{method: :get}
+
+    test "retries what Req's default does, for GET and HEAD" do
+      assert CastorEDC.RateLimit.retry?(@get, Req.Response.new(status: 503))
+      assert CastorEDC.RateLimit.retry?(%Req.Request{method: :head}, Req.Response.new(status: 408))
+      assert CastorEDC.RateLimit.retry?(@get, %Req.TransportError{reason: :timeout})
+      assert CastorEDC.RateLimit.retry?(@get, %Req.HTTPError{protocol: :http2, reason: :unprocessed})
+      refute CastorEDC.RateLimit.retry?(@get, Req.Response.new(status: 404))
+      refute CastorEDC.RateLimit.retry?(@get, %Req.TransportError{reason: :nxdomain})
+      refute CastorEDC.RateLimit.retry?(%Req.Request{method: :post}, Req.Response.new(status: 503))
+    end
+
+    test "never retries a 429, which the rate limit handling waits out" do
+      refute CastorEDC.RateLimit.retry?(@get, Req.Response.new(status: 429))
+    end
+
+    test "is the default of clients from CastorEDC.new/1, unless retry: says otherwise" do
+      assert CastorEDC.new(access_token: "t").options.retry == (&CastorEDC.RateLimit.retry?/2)
+      assert CastorEDC.new(access_token: "t", retry: false).options.retry == false
+    end
+  end
+
+  test "ignores a reset time that isn't a Unix timestamp in seconds" do
+    responder = fn _request ->
+      json(%{"ok" => true}, headers: %{"x-ratelimit-retry-after" => ["1760000000000"], "x-ratelimit-remaining" => ["5"]})
+    end
+
+    assert {:ok, %{"ok" => true}} = Client.request(limited_client(responder), @operation)
+
+    assert %{remaining: 5, reset_at: nil} =
+             CastorEDC.RateLimit.parse(%{
+               "x-ratelimit-retry-after" => ["1760000000000"],
+               "x-ratelimit-remaining" => ["5"]
+             })
   end
 end
 

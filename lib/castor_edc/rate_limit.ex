@@ -25,8 +25,9 @@ defmodule CastorEDC.RateLimit do
   as metadata.
 
   When the API answers 429 anyway (other processes or machines may share
-  the allowance), the client waits until the window resets and sends the
-  request again, at most three times, as long as the wait is within
+  the allowance), the client waits until the window resets (plus the same
+  jitter) and sends the request again, at most three times, as long as the
+  wait is within
   `:max_rate_limit_wait` (60 seconds by default). A 429 whose headers say
   requests remain isn't about the rate limit (batch exports answer one when
   too many run at once), and is returned as is. A 429 is refused before
@@ -61,7 +62,7 @@ defmodule CastorEDC.RateLimit do
     reset = header_integer(headers, "x-ratelimit-retry-after")
 
     if limit || remaining || reset do
-      %{limit: limit, remaining: remaining, reset_at: reset && DateTime.from_unix!(reset)}
+      %{limit: limit, remaining: remaining, reset_at: reset_at(reset)}
     end
   end
 
@@ -92,6 +93,34 @@ defmodule CastorEDC.RateLimit do
     |> Req.Request.prepend_request_steps(castor_edc_throttle: &throttle/1)
     |> Req.Request.prepend_response_steps(castor_edc_rate_limit: &record/1, castor_edc_rate_limit_retry: &retry/1)
   end
+
+  # A reset time that isn't a Unix timestamp in seconds, such as one in
+  # milliseconds, is no reset time.
+  defp reset_at(nil), do: nil
+
+  defp reset_at(seconds) do
+    case DateTime.from_unix(seconds) do
+      {:ok, datetime} -> datetime
+      {:error, _reason} -> nil
+    end
+  end
+
+  @doc false
+  # Req's retry for clients from CastorEDC.new/1: what its default
+  # (:safe_transient) retries, but never a 429, which the rate limit
+  # handling waits out itself.
+  @spec retry?(Req.Request.t(), Req.Response.t() | Exception.t()) :: boolean()
+  def retry?(_request, %Req.Response{status: 429}), do: false
+
+  def retry?(%Req.Request{method: method}, response_or_exception) when method in [:get, :head],
+    do: transient?(response_or_exception)
+
+  def retry?(_request, _response_or_exception), do: false
+
+  defp transient?(%Req.Response{status: status}), do: status in [408, 500, 502, 503, 504]
+  defp transient?(%Req.TransportError{reason: reason}), do: reason in [:timeout, :econnrefused, :closed]
+  defp transient?(%Req.HTTPError{protocol: :http2, reason: :unprocessed}), do: true
+  defp transient?(_other), do: false
 
   @doc false
   def throttle(request) do
@@ -139,7 +168,9 @@ defmodule CastorEDC.RateLimit do
          true <- attempts < @max_attempts,
          %{reset_at: %DateTime{} = reset_at} <- limit_reached(response),
          wait when wait <= max_wait <- max(DateTime.diff(reset_at, now(request), :millisecond), 0) do
-      sleep(request, wait)
+      # The jitter also keeps a clock ahead of the server's from retrying
+      # before the window has reset.
+      sleep(request, wait + :rand.uniform(@max_jitter))
 
       {request, response_or_exception} =
         request
