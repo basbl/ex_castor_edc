@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## Unreleased
 
+### Changed
+
+- The package no longer includes `priv/openapi/castor_edc.json`, the OpenAPI document the client is generated from; nothing reads it at runtime, and it stays in the repository.
+
 ### Fixed
 
 - A client's client secret no longer shows when the client is inspected, as in a log, an IEx session or a notebook's output.
