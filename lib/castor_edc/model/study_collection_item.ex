@@ -8,14 +8,14 @@ defmodule CastorEDC.Model.StudyCollectionItem do
   ## Fields
 
     * `:created_by` (string)
-    * `:created_on` (string)
+    * `:created_on` (`NaiveDateTime`)
     * `:crf_id` (string) - The ID of the study's case report form.
     * `:domain` (string)
     * `:duration` (number)
     * `:encryption` (boolean)
     * `:expected_centers` (integer)
     * `:expected_participants` (integer)
-    * `:first_live_on` (string)
+    * `:first_live_on` (`NaiveDateTime`)
     * `:gcp_enabled` (boolean)
     * `:live` (boolean)
     * `:main_contact` (string)
@@ -61,14 +61,14 @@ defmodule CastorEDC.Model.StudyCollectionItem do
 
   @type t :: %__MODULE__{
           created_by: String.t() | nil,
-          created_on: String.t() | nil,
+          created_on: NaiveDateTime.t() | nil,
           crf_id: String.t() | nil,
           domain: String.t() | nil,
           duration: number() | nil,
           encryption: boolean() | nil,
           expected_centers: integer() | nil,
           expected_participants: integer() | nil,
-          first_live_on: String.t() | nil,
+          first_live_on: NaiveDateTime.t() | nil,
           gcp_enabled: boolean() | nil,
           live: boolean() | nil,
           main_contact: String.t() | nil,
@@ -91,14 +91,14 @@ defmodule CastorEDC.Model.StudyCollectionItem do
 
     %__MODULE__{
       created_by: data["created_by"],
-      created_on: data["created_on"],
+      created_on: CastorEDC.Model.cast(data["created_on"], :naive_datetime),
       crf_id: data["crf_id"],
       domain: data["domain"],
       duration: data["duration"],
       encryption: data["encryption"],
       expected_centers: data["expected_centers"],
       expected_participants: data["expected_records"],
-      first_live_on: data["first_live_on"],
+      first_live_on: CastorEDC.Model.cast(data["first_live_on"], :naive_datetime),
       gcp_enabled: data["gcp_enabled"],
       live: data["live"],
       main_contact: data["main_contact"],

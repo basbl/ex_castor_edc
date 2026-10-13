@@ -10,7 +10,7 @@ defmodule CastorEDC.Model.RepeatingDataInstance do
 
     * `:archived` (boolean) - Is the repeating data instance archived?
     * `:created_by` (string) - ID of the user who created the repeating data instance.
-    * `:created_on` (string) - the date the repeating data instance was created.
+    * `:created_on` (`NaiveDateTime`) - the date the repeating data instance was created.
     * `:id` (string) - Unique id of the repeating data instance.
     * `:name` (string) - Name of the repeating data instance.
     * `:parent_id` (string) - The parent id.
@@ -45,7 +45,7 @@ defmodule CastorEDC.Model.RepeatingDataInstance do
   @type t :: %__MODULE__{
           archived: boolean() | nil,
           created_by: String.t() | nil,
-          created_on: String.t() | nil,
+          created_on: NaiveDateTime.t() | nil,
           id: String.t() | nil,
           name: String.t() | nil,
           parent_id: String.t() | nil,
@@ -65,7 +65,7 @@ defmodule CastorEDC.Model.RepeatingDataInstance do
     %__MODULE__{
       archived: data["archived"],
       created_by: data["created_by"],
-      created_on: data["created_on"],
+      created_on: CastorEDC.Model.cast(data["created_on"], :naive_datetime),
       id: data["id"],
       name: data["name"],
       parent_id: data["parent_id"],

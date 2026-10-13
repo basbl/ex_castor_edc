@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- A study's `created_on`, `first_live_on` and `last_datapoint_collected_on` (in `CastorEDC.Model.Study` and `StudyCollectionItem`), and a repeating data instance's `created_on`, are `NaiveDateTime`s in the server's time, as a data point's `updated_on` is, instead of strings.
 - `CastorEDC.Client.request/2` and `request!/2`, the operation descriptions they take, the `CastorEDC.Model` decoding helpers and `CastorEDC.RateLimit.lookup/1` are no longer documented: they're how the generated modules work, not public API, and may change in any release.
 
 ### Fixed

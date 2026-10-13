@@ -3708,7 +3708,8 @@
           "created_on": {
             "description": "the date the repeating data instance was created.",
             "format": "dateTime",
-            "type": "string"
+            "type": "string",
+            "x-castor-type": "naive_datetime"
           },
           "id": {
             "description": "Unique id of the repeating data instance.",
@@ -4769,7 +4770,8 @@
           },
           "created_on": {
             "format": "dateTime",
-            "type": "string"
+            "type": "string",
+            "x-castor-type": "naive_datetime"
           },
           "crf_id": {
             "description": "The ID of the study's case report form.",
@@ -4794,14 +4796,16 @@
           },
           "first_live_on": {
             "format": "dateTime",
-            "type": "string"
+            "type": "string",
+            "x-castor-type": "naive_datetime"
           },
           "gcp_enabled": {
             "type": "boolean"
           },
           "last_datapoint_collected_on": {
             "format": "dateTime",
-            "type": "string"
+            "type": "string",
+            "x-castor-type": "naive_datetime"
           },
           "live": {
             "type": "boolean"
@@ -4851,7 +4855,8 @@
           },
           "created_on": {
             "format": "dateTime",
-            "type": "string"
+            "type": "string",
+            "x-castor-type": "naive_datetime"
           },
           "crf_id": {
             "description": "The ID of the study's case report form.",
@@ -4876,7 +4881,8 @@
           },
           "first_live_on": {
             "format": "dateTime",
-            "type": "string"
+            "type": "string",
+            "x-castor-type": "naive_datetime"
           },
           "gcp_enabled": {
             "type": "boolean"
