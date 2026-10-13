@@ -103,7 +103,7 @@ defmodule CastorEDC.MixProject do
 
   defp package do
     [
-      files: ~w(lib .formatter.exs mix.exs README.md CHANGELOG.md LICENSE.md),
+      files: ~w(lib priv/openapi/castor_edc.json .formatter.exs mix.exs README.md CHANGELOG.md LICENSE.md),
       description:
         "Client for the Castor EDC API: every endpoint, with authentication, paging, rate limits, " <>
           "batch exports and decoded field values.",

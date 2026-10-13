@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## Unreleased
 
-### Changed
-
-- The package no longer includes `priv/openapi/castor_edc.json`, the OpenAPI document the client is generated from; nothing reads it at runtime, and it stays in the repository.
-
 ### Fixed
 
 - A client with the right client ID but another secret no longer reuses a token another client cached: tokens are cached per client ID and a hash of the secret, so a wrong or revoked secret always means asking the API.
