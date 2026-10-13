@@ -988,8 +988,21 @@ actions:
             description: Only when the write created a survey package instance.
   - target: $.paths.*[?@.operationId == 'upsert_study_data_points' || @.operationId == 'upsert_repeating_data_instance_data_points' || @.operationId == 'upsert_survey_instance_data_points' || @.operationId == 'upsert_survey_package_instance_data_points' || @.operationId == 'create_survey_package_instance_with_data_points']
     update: {x-castor-partial-success: true}
-  - target: $.paths.*[?@['x-castor-partial-success'] == true].responses['201'].schema
+  - target: $.paths.*[?@['x-castor-partial-success'] == true && @.operationId != 'create_site' && @.operationId != 'create_repeating_data_instances'].responses['201'].schema
     update: {$ref: '#/definitions/DataPointsResult'}
+  - target: $.paths.*[?@.operationId == 'create_site' || @.operationId == 'create_repeating_data_instances']
+    description: >-
+      Creating sites and repeating data instances answers like a bulk data
+      point write: 201 with what was created under `success` and what
+      wasn't under `failed`. The client treats them alike, so their `!`
+      functions raise when anything failed.
+    update: {x-castor-partial-success: true}
+  - target: $.definitions.SiteCollection.properties.success
+    description: Named as in DataPointsResult.
+    update: {x-castor-rename: saved}
+  - target: $.definitions.RepeatingDataInstanceCollection.properties.success
+    description: Named as in DataPointsResult.
+    update: {x-castor-rename: saved}
 
   # Collection schemas
   #

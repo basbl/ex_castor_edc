@@ -109,6 +109,8 @@ defmodule CastorEDC.RepeatingData do
       * `data` (list of `t:CastorEDC.Model.NewRepeatingDataInstance.t/0`, always present)
 
   Every option is passed to `Req`.
+
+  Returns what was saved and what wasn't; the `!` variant raises a `CastorEDC.Error` when anything wasn't.
   """
   @spec create_repeating_data_instances(CastorEDC.client(), String.t(), String.t(), map(), keyword()) ::
           {:ok, RepeatingDataInstanceCollection.t()} | {:error, CastorEDC.Error.t()}
@@ -669,6 +671,7 @@ defmodule CastorEDC.RepeatingData do
       query: opts,
       query_names: %{},
       body: body,
+      partial_success: true,
       decode: RepeatingDataInstanceCollection
     ]
   end

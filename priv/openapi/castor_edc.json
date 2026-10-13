@@ -3730,7 +3730,8 @@
             "items": {
               "$ref": "#/components/schemas/RepeatingDataInstance"
             },
-            "type": "array"
+            "type": "array",
+            "x-castor-rename": "saved"
           },
           "total_failed": {
             "type": "integer"
@@ -4558,7 +4559,8 @@
             "items": {
               "$ref": "#/components/schemas/Site"
             },
-            "type": "array"
+            "type": "array",
+            "x-castor-rename": "saved"
           },
           "total_failed": {
             "type": "integer"
@@ -12009,7 +12011,8 @@
         "tags": [
           "repeating-data-instance"
         ],
-        "x-castor-module": "RepeatingData"
+        "x-castor-module": "RepeatingData",
+        "x-castor-partial-success": true
       }
     },
     "/study/{study_id}/participant/{participant_id}/repeating-data-instance/{repeating_data_instance_id}": {
@@ -13370,7 +13373,8 @@
         "tags": [
           "site"
         ],
-        "x-castor-module": "Sites"
+        "x-castor-module": "Sites",
+        "x-castor-partial-success": true
       }
     },
     "/study/{study_id}/site/{site_id}": {

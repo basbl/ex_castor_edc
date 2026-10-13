@@ -214,8 +214,24 @@ defmodule CastorEDC.ClientTest do
         end
 
       assert error.code == :not_saved
-      assert error.message == "1 value(s) were not saved: f2: Unsupported field type"
+      assert error.message == "1 item(s) were not saved: f2: Unsupported field type"
       assert error.details == [%{code: "BAD_REQUEST", message: "Unsupported field type", field: "f2"}]
+    end
+
+    test "treats creating sites like a bulk write, raising when a site wasn't created" do
+      body = %{
+        "success" => [%{"id" => "site-1", "name" => "Amsterdam"}],
+        "failed" => [%{"id" => "ref-1", "code" => "DUPLICATE", "message" => "The abbreviation is taken"}],
+        "total_failed" => 1
+      }
+
+      client = client(json(body, status: 201))
+
+      assert {:ok, %CastorEDC.Model.SiteCollection{saved: [%CastorEDC.Model.Site{id: "site-1"}], failed: [_failure]}} =
+               CastorEDC.Sites.create_site(client, "S1", %{})
+
+      error = assert_raise Error, fn -> CastorEDC.Sites.create_site!(client, "S1", %{}) end
+      assert error.message == "1 item(s) were not saved: The abbreviation is taken"
     end
 
     test "returns a partially successful write when everything was saved" do

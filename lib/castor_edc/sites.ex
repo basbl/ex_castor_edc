@@ -33,6 +33,8 @@ defmodule CastorEDC.Sites do
     * `body` - a map, sent as JSON: **Sites** to be created: **name** of the Site, **abbreviation** of the Site (between 2 and 6 characters), **code** of the Site, max 3 characters long, **country_id** of the Site.
 
   Every option is passed to `Req`.
+
+  Returns what was saved and what wasn't; the `!` variant raises a `CastorEDC.Error` when anything wasn't.
   """
   @spec create_site(CastorEDC.client(), String.t(), map(), keyword()) ::
           {:ok, SiteCollection.t()} | {:error, CastorEDC.Error.t()}
@@ -157,6 +159,7 @@ defmodule CastorEDC.Sites do
       query: opts,
       query_names: %{},
       body: body,
+      partial_success: true,
       decode: SiteCollection
     ]
   end

@@ -102,7 +102,7 @@ defmodule CastorEDC.Client do
     end
   end
 
-  # A write that saved some values and not others still answers 201. The
+  # A write that saved some items and not others still answers 201. The
   # `!` variant shouldn't return as if everything was saved.
   defp check_partial_success!(result, operation) do
     failed = if operation[:partial_success], do: failures(result), else: []
@@ -111,7 +111,7 @@ defmodule CastorEDC.Client do
       result
     else
       raise %Error{
-        message: "#{length(failed)} value(s) were not saved: " <> Enum.map_join(failed, "; ", &failure_message/1),
+        message: "#{length(failed)} item(s) were not saved: " <> Enum.map_join(failed, "; ", &failure_message/1),
         code: :not_saved,
         details: Enum.map(failed, &%{code: get(&1, :code), message: get(&1, :message), field: get(&1, :field_id)}),
         body: result
@@ -123,7 +123,12 @@ defmodule CastorEDC.Client do
   defp failures(%{"failed" => failed}) when is_list(failed), do: failed
   defp failures(_result), do: []
 
-  defp failure_message(failure), do: "#{get(failure, :field_id)}: #{get(failure, :message)}"
+  defp failure_message(failure) do
+    case get(failure, :field_id) do
+      nil -> "#{get(failure, :message)}"
+      field_id -> "#{field_id}: #{get(failure, :message)}"
+    end
+  end
 
   defp get(map, key) when is_map(map), do: Map.get(map, key) || Map.get(map, Atom.to_string(key))
 

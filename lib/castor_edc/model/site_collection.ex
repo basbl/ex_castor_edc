@@ -8,7 +8,7 @@ defmodule CastorEDC.Model.SiteCollection do
   ## Fields
 
     * `:failed` (list of `t:CastorEDC.Model.SiteCreationFailed.t/0`)
-    * `:success` (list of `t:CastorEDC.Model.Site.t/0`)
+    * `:saved` (list of `t:CastorEDC.Model.Site.t/0`)
     * `:total_failed` (integer)
     * `:total_processed` (integer)
     * `:total_success` (integer)
@@ -21,11 +21,11 @@ defmodule CastorEDC.Model.SiteCollection do
   @known ~w(failed success total_failed total_processed total_success)
   @known_embedded ~w(failed success)
 
-  defstruct [:failed, :success, :total_failed, :total_processed, :total_success, extra: %{}]
+  defstruct [:failed, :saved, :total_failed, :total_processed, :total_success, extra: %{}]
 
   @type t :: %__MODULE__{
           failed: [SiteCreationFailed.t()] | nil,
-          success: [Site.t()] | nil,
+          saved: [Site.t()] | nil,
           total_failed: integer() | nil,
           total_processed: integer() | nil,
           total_success: integer() | nil,
@@ -39,7 +39,7 @@ defmodule CastorEDC.Model.SiteCollection do
 
     %__MODULE__{
       failed: CastorEDC.Model.list(data["failed"] || embedded["failed"], SiteCreationFailed),
-      success: CastorEDC.Model.list(data["success"] || embedded["success"], Site),
+      saved: CastorEDC.Model.list(data["success"] || embedded["success"], Site),
       total_failed: data["total_failed"],
       total_processed: data["total_processed"],
       total_success: data["total_success"],
