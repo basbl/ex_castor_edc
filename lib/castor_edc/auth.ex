@@ -9,8 +9,10 @@ defmodule CastorEDC.Auth do
       client credentials grant, unless one is cached that's valid for at
       least another minute. Tokens last five hours, and the API issues no
       refresh token for this grant, so an expired one is simply replaced.
-    * Tokens are cached per server and client ID, so every process using the
-      same credentials shares them. Two processes that miss the cache at the
+    * Tokens are cached per server and credentials (the client ID and a hash
+      of the secret), so every process using the same credentials shares
+      them, and a client with the right ID but another secret never gets
+      another client's token. Two processes that miss the cache at the
       same moment may both fetch one, which is harmless: every token stays
       valid until it expires.
     * When the API answers 401 anyway, the cached token is dropped and the
@@ -22,6 +24,7 @@ defmodule CastorEDC.Auth do
   the last seven days; that error has `code: :login_required`.
   """
 
+  alias CastorEDC.Auth.Secret
   alias CastorEDC.Error
 
   @table :castor_edc_tokens
@@ -37,8 +40,8 @@ defmodule CastorEDC.Auth do
 
   @doc false
   def authenticate(request) do
-    {:client_credentials, client_id, _secret} = credentials = Req.Request.get_private(request, :castor_edc_credentials)
-    key = {request.options.base_url, client_id}
+    credentials = Req.Request.get_private(request, :castor_edc_credentials)
+    key = key(request, credentials)
 
     case cached(key, now(request)) do
       {:ok, token} -> bearer(request, token)
@@ -62,8 +65,7 @@ defmodule CastorEDC.Auth do
     if Req.Request.get_private(request, :castor_edc_reauthenticated) do
       {request, response}
     else
-      {:client_credentials, client_id, _secret} = Req.Request.get_private(request, :castor_edc_credentials)
-      :ets.delete(@table, {request.options.base_url, client_id})
+      :ets.delete(@table, key(request, Req.Request.get_private(request, :castor_edc_credentials)))
 
       {request, response_or_exception} =
         request
@@ -77,6 +79,11 @@ defmodule CastorEDC.Auth do
 
   def reauthenticate(request_response), do: request_response
 
+  # A digest of the secret, not the secret, so the table never holds it.
+  defp key(request, {:client_credentials, client_id, %Secret{value: secret}}) do
+    {request.options.base_url, client_id, :crypto.hash(:sha256, secret)}
+  end
+
   defp cached(key, now) do
     case :ets.lookup(@table, key) do
       [{^key, token, expires_at}] when expires_at - @leeway > now -> {:ok, token}
@@ -88,7 +95,7 @@ defmodule CastorEDC.Auth do
 
   # The token request goes to the same server, through the same adapter and
   # connection options as the request it's for, but without its steps.
-  defp fetch_token(request, {:client_credentials, client_id, %CastorEDC.Auth.Secret{value: client_secret}}) do
+  defp fetch_token(request, {:client_credentials, client_id, %Secret{value: client_secret}}) do
     token_request =
       [
         method: :post,

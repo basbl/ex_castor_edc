@@ -83,6 +83,11 @@ defmodule CastorEDC.AuthTest do
 
     other = credentials_client(responder, context, client_id: "other-id")
     assert {:ok, %{"authorization" => "Bearer token-2"}} = Client.request(other, @operation)
+
+    # The right client ID with another secret doesn't get the cached token:
+    # it has to ask for one, which the API refuses for a wrong secret.
+    wrong = credentials_client(responder, context, client_secret: "wrong")
+    assert {:ok, %{"authorization" => "Bearer token-3"}} = Client.request(wrong, @operation)
   end
 
   test "fetches a new token and retries once when the API answers 401", context do
