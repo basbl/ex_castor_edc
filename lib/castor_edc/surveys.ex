@@ -81,7 +81,7 @@ defmodule CastorEDC.Surveys do
 
   ## Options
 
-    * `:include` (string) - Adds the option of including survey forms in the query. Use like: ?include=forms
+    * `:include` (list of string, sent comma-separated) - Adds the option of including survey forms in the query. Use like: ?include=forms
 
   Any other option is passed to `Req`.
   """
@@ -152,7 +152,7 @@ defmodule CastorEDC.Surveys do
 
   ## Options
 
-    * `:include` (string) - Adds the option of including fields in the query. Use like: ?include=fields
+    * `:include` (list of string, sent comma-separated) - Adds the option of including fields in the query. Use like: ?include=fields
 
   Any other option is passed to `Req`.
   """
@@ -474,7 +474,7 @@ defmodule CastorEDC.Surveys do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:include` (string) - Adds the option of including survey forms in the query. Use like: ?include=forms
+    * `:include` (list of string, sent comma-separated) - Adds the option of including survey forms in the query. Use like: ?include=forms
     * `:page_size` (integer, at most `1000`) - The number of records per page.
 
   Any other option is passed to `Req`.
@@ -579,6 +579,7 @@ defmodule CastorEDC.Surveys do
       path_params: path_params,
       query: opts,
       query_names: %{include: "include"},
+      list_params: [:include],
       decode: Survey
     ]
   end
@@ -601,6 +602,7 @@ defmodule CastorEDC.Surveys do
       path_params: path_params,
       query: opts,
       query_names: %{include: "include"},
+      list_params: [:include],
       decode: SurveyPackage
     ]
   end
@@ -722,6 +724,7 @@ defmodule CastorEDC.Surveys do
       path_params: path_params,
       query: opts,
       query_names: %{page: "page", include: "include", page_size: "page_size"},
+      list_params: [:include],
       items: "_embedded.surveys",
       max_page_size: 1000,
       decode: Survey

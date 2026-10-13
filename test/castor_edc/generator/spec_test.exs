@@ -82,7 +82,7 @@ defmodule CastorEDC.Generator.SpecTest do
   end
 
   test "keeps the flags of the corrections", %{operations: operations} do
-    assert operations["list_repeating_data_instances"].not_found_is_empty
+    assert operations["list_repeating_data_instances"].not_found_is_empty == "There are no repeating data instances."
     assert operations["upsert_study_data_points"].partial_success
 
     assert operations["upsert_repeating_data_instance_data_points"].fill_items == %{

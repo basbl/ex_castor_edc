@@ -51,6 +51,14 @@ defmodule CastorEDC.ClientTest do
       assert URI.decode_query(assert_requested().url.query) == %{"field_ids" => "a,b"}
     end
 
+    test "sends booleans of flag parameters as 1 or 0" do
+      for {value, sent} <- [{true, "1"}, {false, "0"}] do
+        operation = operation(query_names: %{archived: "archived"}, flag_params: [:archived], query: [archived: value])
+        Client.request(client(json(%{})), operation)
+        assert URI.decode_query(assert_requested().url.query) == %{"archived" => sent}
+      end
+    end
+
     test "sends repeated parameters as one key per value" do
       operation =
         operation(query_names: %{site_ids: "siteId[]"}, repeated_params: [:site_ids], query: [site_ids: ["a", "b"]])
@@ -199,10 +207,25 @@ defmodule CastorEDC.ClientTest do
       assert {:ok, %Page{entries: [], page_count: 0}} =
                Client.request(
                  client(not_found),
-                 operation(items: "_embedded.repeatingDataInstance", not_found_is_empty: true)
+                 operation(
+                   items: "_embedded.repeatingDataInstance",
+                   not_found_is_empty: "There are no repeating data instances."
+                 )
                )
 
       assert {:error, %Error{status: 404}} = Client.request(client(not_found), operation(items: "_embedded.sites"))
+
+      # A participant that doesn't exist is a 404 too, and stays an error.
+      no_participant = json(%{"detail" => "The request you made was malformed"}, status: 404)
+
+      assert {:error, %Error{status: 404}} =
+               Client.request(
+                 client(no_participant),
+                 operation(
+                   items: "_embedded.repeatingDataInstance",
+                   not_found_is_empty: "There are no repeating data instances."
+                 )
+               )
     end
 
     test "with an error status becomes an error" do

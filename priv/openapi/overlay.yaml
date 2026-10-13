@@ -382,6 +382,56 @@ actions:
   - target: $.paths['/study/{study_id}/export/{id}/download'].get.parameters[?@.name == 'id']
     update: {x-castor-name: export_id}
 
+  # Option types
+  #
+  # The same kind of option takes the same kind of value everywhere: a
+  # boolean for a yes or no, sent as 1 or 0 where the API takes an integer
+  # (x-castor-wire), and a list for what to include.
+
+  - target: $.paths.*.*.parameters[?@.name == 'archived' && @.type == 'integer']
+    description: Accepts 0 or 1, so a boolean, as list_survey_package_instances' archived is.
+    update: {type: boolean, x-castor-wire: integer}
+  - target: $.paths.*.*.parameters[?@.name == 'validations' && @.type == 'integer']
+    description: Set to 1 to include each field's validations, so a boolean.
+    update: {type: boolean, x-castor-wire: integer}
+  - target: $.paths.*.*.parameters[?@.name == 'validations' && @.default == 0]
+    description: The default of false, spelt as the boolean.
+    update: {default: false}
+  - target: $.paths.*[?@.operationId == 'list_participants'].parameters[?@.name == 'archived']
+    description: Described as the boolean it now is.
+    update:
+      description: >-
+        `true` for only archived participants, `false` for only unarchived
+        ones; all participants when left out.
+  - target: $.paths.*[?@.operationId == 'list_repeating_data_instances' || @.operationId == 'list_participant_repeating_data_instances' || @.operationId == 'list_repeating_data_progress'].parameters[?@.name == 'archived']
+    description: Described as the boolean it now is.
+    update:
+      description: >-
+        `true` for only archived repeating data instances, `false` (what the
+        API does when it's left out) for only unarchived ones.
+  - target: $.paths.*.*.parameters[?@.name == 'validations']
+    description: Described as the boolean it now is.
+    update: {description: Whether to include each field's validations.}
+  - target: $.paths.*.*.parameters[?@.name == 'include' && @.type == 'string']
+    description: >-
+      Takes what to include comma-separated, like list_fields' include, so a
+      list there too.
+    update: {type: array, items: {type: string}, collectionFormat: csv}
+  - target: $.paths.*.*.parameters[?@.name == 'site' && @.in == 'query']
+    description: A single site's ID.
+    update: {x-castor-name: site_id}
+  - target: $.paths.*.*.parameters[?@.name == 'upload_file']
+    description: >-
+      Uploading a file with a data point needs a multipart request, which
+      the client doesn't send: it writes values as JSON.
+    remove: true
+  - target: $.paths.*.*.parameters[?@.name == 'enable_pagination']
+    description: >-
+      Whether to page the participant's repeating data values. The client
+      lists them unpaged, as the operation does by default, and has no
+      stream for it, so the option would only change the result's shape.
+    remove: true
+
   # Collections and pagination
   #
   # x-castor-items is where the records of a collection sit in the response:
@@ -586,13 +636,17 @@ actions:
   - target: $.paths['/study/{study_id}/repeating-data-instance'].get
     description: >-
       Without repeating data instances the API answers 404 ("There are no
-      repeating data instances.") instead of an empty collection.
-    update: {x-castor-not-found-is-empty: true}
+      repeating data instances.") instead of an empty collection. Only that
+      404 is an empty page: a participant that doesn't exist is a 404 too,
+      with another detail, and stays an error.
+    update: {x-castor-not-found-is-empty: There are no repeating data instances.}
   - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].get
     description: >-
       Without repeating data instances the API answers 404 ("There are no
-      repeating data instances.") instead of an empty collection.
-    update: {x-castor-not-found-is-empty: true}
+      repeating data instances.") instead of an empty collection. Only that
+      404 is an empty page: a participant that doesn't exist is a 404 too,
+      with another detail, and stays an error.
+    update: {x-castor-not-found-is-empty: There are no repeating data instances.}
 
   # Integer types
   #

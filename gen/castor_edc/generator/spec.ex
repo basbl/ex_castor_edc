@@ -43,7 +43,7 @@ defmodule CastorEDC.Generator.Spec do
       path_params: [],
       query_params: [],
       paged: false,
-      not_found_is_empty: false,
+      not_found_is_empty: nil,
       partial_success: false,
       fill_items: %{}
     ]
@@ -143,7 +143,7 @@ defmodule CastorEDC.Generator.Spec do
        items: operation["x-castor-items"],
        decode: decode(document, schema, operation["x-castor-items"], success),
        accept: accept(content_type),
-       not_found_is_empty: operation["x-castor-not-found-is-empty"] == true,
+       not_found_is_empty: operation["x-castor-not-found-is-empty"],
        partial_success: operation["x-castor-partial-success"] == true,
        fill_items: fill_items(name, path, operation["x-castor-fill-items"])
      }}
@@ -187,9 +187,11 @@ defmodule CastorEDC.Generator.Spec do
     }
   end
 
-  # How a query parameter's value goes on the wire: as it is, a list joined
+  # How a query parameter's value goes on the wire: as it is, a boolean as 1
+  # or 0 (`x-castor-wire: integer`), a list joined
   # with commas (`explode: false`), a list as one key per value (OpenAPI's
   # default for arrays), or a map as `name[key]=value` (`deepObject`).
+  defp encoding(%{"type" => "boolean"}, %{"x-castor-wire" => "integer"}), do: :flag
   defp encoding(%{"type" => "array"}, %{"explode" => false}), do: :csv
   defp encoding(%{"type" => "array"}, _parameter), do: :repeat
   defp encoding(%{"type" => "object"}, %{"style" => "deepObject"}), do: :map

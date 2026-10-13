@@ -9317,16 +9317,18 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "x-castor-name": "site_id"
           },
           {
-            "description": "Extract only archived participants or only unarchived participants. Accepted values are 0,1. Not specifying this parameter results in extracting all participants, regardless of state",
+            "description": "`true` for only archived participants, `false` for only unarchived ones; all participants when left out.",
             "in": "query",
             "name": "archived",
             "required": false,
             "schema": {
-              "type": "integer"
-            }
+              "type": "boolean"
+            },
+            "x-castor-wire": "integer"
           },
           {
             "description": "Filter participants on field values (participant, survey, report fields).\nMultiple fields can be defined.\nUse like: ?field[ID1]=VALUE1&field[ID2]=VALUE2",
@@ -9611,13 +9613,14 @@
             }
           },
           {
-            "description": "Extract only archived repeating data or only unarchived repeating data. Accepted values are 0,1. Default value is 0.",
+            "description": "`true` for only archived repeating data instances, `false` (what the API does when it's left out) for only unarchived ones.",
             "in": "query",
             "name": "archived",
             "required": false,
             "schema": {
-              "type": "integer"
-            }
+              "type": "boolean"
+            },
+            "x-castor-wire": "integer"
           },
           {
             "description": "The page to retrieve",
@@ -9941,14 +9944,15 @@
             }
           },
           {
-            "description": "Set to 1 to include the list of validations for each field",
+            "description": "Whether to include each field's validations.",
             "in": "query",
             "name": "validations",
             "required": false,
             "schema": {
-              "default": 0,
-              "type": "integer"
-            }
+              "default": false,
+              "type": "boolean"
+            },
+            "x-castor-wire": "integer"
           }
         ],
         "responses": {
@@ -10031,7 +10035,7 @@
         ],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/x-www-form-urlencoded": {
               "schema": {
                 "properties": {
                   "change_reason": {
@@ -10044,11 +10048,6 @@
                   },
                   "field_value": {
                     "description": "The value. If empty, it will clear any stored value, including uploaded files.",
-                    "type": "string"
-                  },
-                  "upload_file": {
-                    "description": "Optional field. If supplied, the \"field_value\" parameter needs to be omitted. The contents will be uploaded. The upload limit is 2MB",
-                    "format": "binary",
                     "type": "string"
                   }
                 },
@@ -10152,14 +10151,15 @@
             }
           },
           {
-            "description": "Set to 1 to include the list of validations for each field",
+            "description": "Whether to include each field's validations.",
             "in": "query",
             "name": "validations",
             "required": false,
             "schema": {
-              "default": 0,
-              "type": "integer"
-            }
+              "default": false,
+              "type": "boolean"
+            },
+            "x-castor-wire": "integer"
           }
         ],
         "responses": {
@@ -10243,7 +10243,7 @@
         ],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/x-www-form-urlencoded": {
               "schema": {
                 "properties": {
                   "change_reason": {
@@ -10252,11 +10252,6 @@
                   },
                   "field_value": {
                     "description": "The value. If empty, it will clear any stored value, including uploaded files.",
-                    "type": "string"
-                  },
-                  "upload_file": {
-                    "description": "Optional field. If supplied, the \"field_value\" parameter needs to be omitted. The contents will be uploaded. The upload limit is 2MB",
-                    "format": "binary",
                     "type": "string"
                   }
                 },
@@ -10340,16 +10335,6 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "description": "If pagination should be used or not",
-            "in": "query",
-            "name": "enable_pagination",
-            "required": false,
-            "schema": {
-              "default": false,
-              "type": "boolean"
             }
           },
           {
@@ -11718,13 +11703,14 @@
             }
           },
           {
-            "description": "Extract only archived repeating data or only unarchived repeating data. Accepted values are 0,1. Default value is 0.",
+            "description": "`true` for only archived repeating data instances, `false` (what the API does when it's left out) for only unarchived ones.",
             "in": "query",
             "name": "archived",
             "required": false,
             "schema": {
-              "type": "integer"
-            }
+              "type": "boolean"
+            },
+            "x-castor-wire": "integer"
           },
           {
             "description": "The number of records per page.",
@@ -11807,7 +11793,7 @@
         "x-castor-items": "_embedded.repeatingDataInstance",
         "x-castor-max-page-size": 1000,
         "x-castor-module": "RepeatingData",
-        "x-castor-not-found-is-empty": true
+        "x-castor-not-found-is-empty": "There are no repeating data instances."
       },
       "post": {
         "description": "Creates an instance of Repeating Data for a specific Participant. Repeating Data Instances are the objects on which data points are\nstored and are required to be created before that happens. They can have a custom name that has to be unique within\na given participant.<br/>\nRepeating Data Instances can have a parent defined to create a tree-like structure of parent/child information elements. Parents\ncan be either a visit or another repeating data instance and have to be defined with parent_type and parent_id.<br/>\nTo store data on repeated measures repeating data, the parent_type and parent_id should always point to the visit or\nrepeating data instance on which the repeated measure field is present.\n",
@@ -12118,14 +12104,15 @@
             }
           },
           {
-            "description": "Set to 1 to include the list of validations for each field",
+            "description": "Whether to include each field's validations.",
             "in": "query",
             "name": "validations",
             "required": false,
             "schema": {
-              "default": 0,
-              "type": "integer"
-            }
+              "default": false,
+              "type": "boolean"
+            },
+            "x-castor-wire": "integer"
           }
         ],
         "responses": {
@@ -12198,7 +12185,7 @@
         ],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/x-www-form-urlencoded": {
               "schema": {
                 "properties": {
                   "change_reason": {
@@ -12211,11 +12198,6 @@
                   },
                   "field_value": {
                     "description": "The value. If empty, it will clear any stored value, including uploaded files.",
-                    "type": "string"
-                  },
-                  "upload_file": {
-                    "description": "Optional field. If supplied, the \"field_value\" parameter needs to be omitted. The contents will be uploaded. The upload limit is 2MB",
-                    "format": "binary",
                     "type": "string"
                   }
                 },
@@ -12560,13 +12542,14 @@
             }
           },
           {
-            "description": "Extract only archived repeating data or only unarchived repeating data. Accepted values are 0,1. Default value is 0.",
+            "description": "`true` for only archived repeating data instances, `false` (what the API does when it's left out) for only unarchived ones.",
             "in": "query",
             "name": "archived",
             "required": false,
             "schema": {
-              "type": "integer"
-            }
+              "type": "boolean"
+            },
+            "x-castor-wire": "integer"
           },
           {
             "description": "The number of records per page.",
@@ -12649,7 +12632,7 @@
         "x-castor-items": "_embedded.repeatingDataInstance",
         "x-castor-max-page-size": 1000,
         "x-castor-module": "RepeatingData",
-        "x-castor-not-found-is-empty": true
+        "x-castor-not-found-is-empty": "There are no repeating data instances."
       }
     },
     "/study/{study_id}/repeating-data-instance/{repeating_data_instance_id}": {
@@ -13525,12 +13508,17 @@
           },
           {
             "description": "Adds the option of including survey forms in the query. Use like: ?include=forms",
+            "explode": false,
             "in": "query",
             "name": "include",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           },
           {
             "description": "The number of records per page.",
@@ -14381,12 +14369,17 @@
           },
           {
             "description": "Adds the option of including fields in the query. Use like: ?include=fields",
+            "explode": false,
             "in": "query",
             "name": "include",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           }
         ],
         "responses": {
@@ -14451,12 +14444,17 @@
           },
           {
             "description": "Adds the option of including survey forms in the query. Use like: ?include=forms",
+            "explode": false,
             "in": "query",
             "name": "include",
             "required": false,
             "schema": {
-              "type": "string"
-            }
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
           }
         ],
         "responses": {

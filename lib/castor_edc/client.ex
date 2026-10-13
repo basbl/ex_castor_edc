@@ -49,6 +49,7 @@ defmodule CastorEDC.Client do
   #   * `:list_params` - options that are lists, sent comma-separated
   #   * `:repeated_params` - options that are lists, sent as one key per value
   #   * `:map_params` - options that are maps, sent as `name[key]=value`
+  #   * `:flag_params` - options that are booleans, sent as 1 or 0
   #   * `:body` - the request body, sent as JSON
   #   * `:accept` - the `Accept` header, `application/hal+json` by default
   #   * `:items` - where a collection's records sit in the response body, as
@@ -56,7 +57,8 @@ defmodule CastorEDC.Client do
   #     `CastorEDC.Page`
   #   * `:max_page_size` - the largest `page_size` the API accepts; larger
   #     ones are lowered to it
-  #   * `:not_found_is_empty` - a 404 means an empty collection
+  #   * `:not_found_is_empty` - the `detail` of the 404 the API answers for
+  #     an empty collection, which then becomes an empty page
   #   * `:decode` - the struct module the response, or each record, decodes
   #     into; without it the body is returned as it arrived
   #   * `:fill_items` - keys of the body's list items to fill from path
@@ -78,6 +80,7 @@ defmodule CastorEDC.Client do
           query
           |> join_lists(operation[:list_params] || [])
           |> expand(operation[:repeated_params] || [], operation[:map_params] || [])
+          |> flags(operation[:flag_params] || [])
           |> clamp_page_size(operation[:max_page_size]),
         headers: [accept: operation[:accept] || "application/hal+json"]
       ] ++ body(operation) ++ req_options
@@ -159,6 +162,9 @@ defmodule CastorEDC.Client do
     end)
   end
 
+  defp empty_collection?(detail, %Req.Response{body: %{"detail" => detail}}) when is_binary(detail), do: true
+  defp empty_collection?(_detail, _response), do: false
+
   # A repeated option is sent as one key per value, and a map option as
   # `name[key]=value` per entry.
   defp expand(query, repeated_params, map_params) do
@@ -176,6 +182,15 @@ defmodule CastorEDC.Client do
   end
 
   defp expand_one(param, _repeated_params, _map_params), do: [param]
+
+  # Booleans of options the API takes as 1 or 0.
+  defp flags(query, flag_params), do: Enum.map(query, &flag(&1, flag_params))
+
+  defp flag({name, wire, value} = param, flag_params) when is_boolean(value) do
+    if name in flag_params, do: {name, wire, if(value, do: 1, else: 0)}, else: param
+  end
+
+  defp flag(param, _flag_params), do: param
 
   defp clamp_page_size(query, max) do
     Enum.map(query, fn
@@ -239,7 +254,9 @@ defmodule CastorEDC.Client do
   end
 
   defp handle({:ok, %Req.Response{status: 404} = response}, operation) do
-    if operation[:not_found_is_empty], do: {:ok, Page.empty()}, else: {:error, Error.from_response(response)}
+    if empty_collection?(operation[:not_found_is_empty], response),
+      do: {:ok, Page.empty()},
+      else: {:error, Error.from_response(response)}
   end
 
   defp handle({:ok, %Req.Response{} = response}, _operation), do: {:error, Error.from_response(response)}

@@ -36,7 +36,7 @@ defmodule CastorEDC.Fields do
 
   ## Options
 
-    * `:include` (list of string, a list, sent comma-separated) - The extra properties to include in the Field array. Currently it supports 'metadata', 'validations', 'optiongroup', 'dependencies'. List separated by ','. Use like: ?include=metadata,validations,optiongroup. Separation by '|' is deprecated and will be removed in the next major release.
+    * `:include` (list of string, sent comma-separated) - The extra properties to include in the Field array. Currently it supports 'metadata', 'validations', 'optiongroup', 'dependencies'. List separated by ','. Use like: ?include=metadata,validations,optiongroup. Separation by '|' is deprecated and will be removed in the next major release.
 
   Any other option is passed to `Req`.
   """
@@ -240,7 +240,7 @@ defmodule CastorEDC.Fields do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:include` (list of string, a list, sent comma-separated) - The extra properties to include in the Field array. Currently it supports 'metadata', 'validations', 'optiongroup', 'dependencies'. List separated by ','. Use like: ?include=metadata,validations,optiongroup. Separation by '|' is deprecated and will be removed in the next major release.
+    * `:include` (list of string, sent comma-separated) - The extra properties to include in the Field array. Currently it supports 'metadata', 'validations', 'optiongroup', 'dependencies'. List separated by ','. Use like: ?include=metadata,validations,optiongroup. Separation by '|' is deprecated and will be removed in the next major release.
     * `:page_size` (integer, at most `1000`) - The number of records per page.
 
   Any other option is passed to `Req`.

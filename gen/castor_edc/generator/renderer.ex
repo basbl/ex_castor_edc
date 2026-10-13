@@ -130,6 +130,7 @@ defmodule CastorEDC.Generator.Renderer do
     list_params = params_encoded(operation, :csv)
     repeated_params = params_encoded(operation, :repeat)
     map_params = params_encoded(operation, :map)
+    flag_params = params_encoded(operation, :flag)
 
     entries = [
       method: inspect(operation.method),
@@ -140,6 +141,7 @@ defmodule CastorEDC.Generator.Renderer do
       list_params: present(list_params),
       repeated_params: present(repeated_params),
       map_params: present(map_params),
+      flag_params: present(flag_params),
       body: if(operation.body, do: "body"),
       accept: present(operation.accept),
       items: present(operation.items),
@@ -234,7 +236,7 @@ defmodule CastorEDC.Generator.Renderer do
     details =
       Enum.filter(
         [
-          param.encoding == :csv && "a list, sent comma-separated",
+          param.encoding == :csv && "sent comma-separated",
           param.default != nil && "defaults to `#{inspect(param.default)}`",
           param.wire == "page_size" && operation.max_page_size && "at most `#{operation.max_page_size}`"
         ],

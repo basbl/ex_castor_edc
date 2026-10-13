@@ -57,7 +57,6 @@ defmodule CastorEDC.DataPoints do
       * `change_reason` (string) - Required change reason when changing an existing data point that is verified or signed, or when GCP is enabled and there is already a data point that is being changed.
       * `confirmed_changes` (boolean) - Required when changing an existing data point that is verified or signed. Note that you also have to provide "change_reason".
       * `field_value` (string) - The value. If empty, it will clear any stored value, including uploaded files.
-      * `upload_file` (string) - Optional field. If supplied, the "field_value" parameter needs to be omitted. The contents will be uploaded. The upload limit is 2MB
 
   Every option is passed to `Req`.
   """
@@ -147,7 +146,6 @@ defmodule CastorEDC.DataPoints do
       * `change_reason` (string) - Required change reason when changing an existing data point that is verified or signed, or when GCP is enabled and there is already a data point that is being changed.
       * `confirmed_changes` (boolean) - Required when changing an existing data point that is verified or signed. Note that you also have to provide "change_reason".
       * `field_value` (string) - The value. If empty, it will clear any stored value, including uploaded files.
-      * `upload_file` (string) - Optional field. If supplied, the "field_value" parameter needs to be omitted. The contents will be uploaded. The upload limit is 2MB
 
   Every option is passed to `Req`.
   """
@@ -198,7 +196,6 @@ defmodule CastorEDC.DataPoints do
     * `body` - a map, sent as JSON
       * `change_reason` (string) - Required change reason when GCP is enabled and there is already a data point that is being changed.
       * `field_value` (string) - The value. If empty, it will clear any stored value, including uploaded files.
-      * `upload_file` (string) - Optional field. If supplied, the "field_value" parameter needs to be omitted. The contents will be uploaded. The upload limit is 2MB
 
   Every option is passed to `Req`.
   """
@@ -309,7 +306,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:validations` (integer, defaults to `0`) - Set to 1 to include the list of validations for each field
+    * `:validations` (boolean, defaults to `false`) - Whether to include each field's validations.
 
   Any other option is passed to `Req`.
   """
@@ -365,7 +362,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:validations` (integer, defaults to `0`) - Set to 1 to include the list of validations for each field
+    * `:validations` (boolean, defaults to `false`) - Whether to include each field's validations.
 
   Any other option is passed to `Req`.
   """
@@ -413,7 +410,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:validations` (integer, defaults to `0`) - Set to 1 to include the list of validations for each field
+    * `:validations` (boolean, defaults to `false`) - Whether to include each field's validations.
 
   Any other option is passed to `Req`.
   """
@@ -470,8 +467,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:enable_pagination` (boolean, defaults to `false`) - If pagination should be used or not
-    * `:field_ids` (list of string, a list, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
+    * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
 
   Any other option is passed to `Req`.
@@ -522,7 +518,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:field_ids` (list of string, a list, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
+    * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
 
   Any other option is passed to `Req`.
@@ -603,7 +599,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:field_ids` (list of string, a list, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
+    * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
 
   Any other option is passed to `Req`.
@@ -653,7 +649,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:field_ids` (list of string, a list, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
+    * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
 
   Any other option is passed to `Req`.
@@ -704,7 +700,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:field_ids` (list of string, a list, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
+    * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
 
   Any other option is passed to `Req`.
@@ -755,7 +751,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:field_ids` (list of string, a list, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
+    * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
 
   Any other option is passed to `Req`.
@@ -835,7 +831,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:field_ids` (list of string, a list, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
+    * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
     * `:page_size` (integer, at most `5000`) - The number of records per page.
@@ -888,7 +884,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:field_ids` (list of string, a list, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
+    * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
     * `:page_size` (integer, at most `5000`) - The number of records per page.
@@ -956,7 +952,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:field_ids` (list of string, a list, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
+    * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
     * `:page_size` (integer, at most `5000`) - The number of records per page.
@@ -1008,7 +1004,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:field_ids` (list of string, a list, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
+    * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
     * `:page_size` (integer, at most `5000`) - The number of records per page.
@@ -1061,7 +1057,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:field_ids` (list of string, a list, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
+    * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
     * `:page_size` (integer, at most `5000`) - The number of records per page.
@@ -1130,7 +1126,7 @@ defmodule CastorEDC.DataPoints do
 
   ## Options
 
-    * `:field_ids` (list of string, a list, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
+    * `:field_ids` (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.
     * `:updated_after` (string) - ISO 8601 datetime with timezone (e.g., 2024-01-01T00:00:00Z or 2024-01-01T00:00:00+01:00). Only data points updated strictly after this timestamp will be returned.
     * `:page` (integer, defaults to `1`) - The page to retrieve.
     * `:page_size` (integer, at most `5000`) - The number of records per page.
@@ -1448,6 +1444,7 @@ defmodule CastorEDC.DataPoints do
       path_params: path_params,
       query: opts,
       query_names: %{validations: "validations"},
+      flag_params: [:validations],
       decode: DataPoint
     ]
   end
@@ -1459,6 +1456,7 @@ defmodule CastorEDC.DataPoints do
       path_params: path_params,
       query: opts,
       query_names: %{validations: "validations"},
+      flag_params: [:validations],
       decode: DataPoint
     ]
   end
@@ -1470,6 +1468,7 @@ defmodule CastorEDC.DataPoints do
       path_params: path_params,
       query: opts,
       query_names: %{validations: "validations"},
+      flag_params: [:validations],
       decode: DataPoint
     ]
   end
@@ -1480,7 +1479,7 @@ defmodule CastorEDC.DataPoints do
       path: "/api/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance",
       path_params: path_params,
       query: opts,
-      query_names: %{enable_pagination: "enable_pagination", field_ids: "field_ids", updated_after: "updated_after"},
+      query_names: %{field_ids: "field_ids", updated_after: "updated_after"},
       list_params: [:field_ids],
       items: "_embedded.items",
       decode: DataPoint

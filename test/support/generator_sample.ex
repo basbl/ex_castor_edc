@@ -105,7 +105,7 @@ defmodule CastorEDC.GeneratorSample do
             "operationId" => "list_repeating_data_instances",
             "x-castor-module" => "RepeatingData",
             "x-castor-items" => "_embedded.repeatingDataInstance",
-            "x-castor-not-found-is-empty" => true,
+            "x-castor-not-found-is-empty" => "There are no repeating data instances.",
             "responses" => %{"200" => %{}}
           }
         },

@@ -158,8 +158,8 @@ defmodule CastorEDC.Participants do
   ## Options
 
     * `:page` (integer, defaults to `1`) - The page to retrieve
-    * `:site` (string) - Site UUID to filter on. Use like: ?site=SITE_ID
-    * `:archived` (integer) - Extract only archived participants or only unarchived participants. Accepted values are 0,1. Not specifying this parameter results in extracting all participants, regardless of state
+    * `:site_id` (string) - Site UUID to filter on. Use like: ?site=SITE_ID
+    * `:archived` (boolean) - `true` for only archived participants, `false` for only unarchived ones; all participants when left out.
     * `:fields` (a map of keys to values, sent as `field[key]=value`) - Filter participants on field values (participant, survey, report fields). Multiple fields can be defined. Use like: ?field[ID1]=VALUE1&field[ID2]=VALUE2
     * `:page_size` (integer, at most `1000`) - The number of records per page.
 
@@ -209,7 +209,7 @@ defmodule CastorEDC.Participants do
 
   ## Options
 
-    * `:archived` (integer) - Extract only archived repeating data or only unarchived repeating data. Accepted values are 0,1. Default value is 0.
+    * `:archived` (boolean) - `true` for only archived repeating data instances, `false` (what the API does when it's left out) for only unarchived ones.
     * `:page` (integer, defaults to `1`) - The page to retrieve
     * `:page_size` (integer, at most `100`) - The size of pages
 
@@ -341,8 +341,9 @@ defmodule CastorEDC.Participants do
       path: "/api/study/{study_id}/participant",
       path_params: path_params,
       query: opts,
-      query_names: %{page: "page", site: "site", archived: "archived", fields: "field", page_size: "page_size"},
+      query_names: %{page: "page", site_id: "site", archived: "archived", fields: "field", page_size: "page_size"},
       map_params: [:fields],
+      flag_params: [:archived],
       items: "_embedded.participants",
       max_page_size: 1000,
       decode: Participant
@@ -356,6 +357,7 @@ defmodule CastorEDC.Participants do
       path_params: path_params,
       query: opts,
       query_names: %{archived: "archived", page: "page", page_size: "page_size"},
+      flag_params: [:archived],
       accept: "application/json",
       items: "_embedded.items",
       max_page_size: 100,

@@ -118,7 +118,7 @@ defmodule CastorEDC.Generator.RendererTest do
       assert source == Renderer.format(source)
       assert source =~ "* `get_site/4` - Retrieve a single Site"
       assert source =~ "Sends `GET /api/study/{study_id}/site/{site_id}`."
-      assert source =~ "* `:field_ids` (list of string, a list, sent comma-separated)"
+      assert source =~ "* `:field_ids` (list of string, sent comma-separated)"
       assert source =~ "* `:page_size` (integer, at most `1000`)"
       assert source =~ "Returns a `CastorEDC.Page` of `t:CastorEDC.Model.Site.t/0` records."
     end
