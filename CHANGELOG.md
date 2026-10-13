@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Fixed
 
 - A client with the right client ID but another secret no longer reuses a token another client cached: tokens are cached per client ID and a hash of the secret, so a wrong or revoked secret always means asking the API.
+- The token request passes on Req's `:plug` option, so a client built for `Req.Test` works, and reads a token lifetime given as text instead of raising.
 - A client's client secret no longer shows when the client is inspected, as in a log, an IEx session or a notebook's output.
 
 ## [1.0.0-rc.1] - 2026-10-08

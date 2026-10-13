@@ -115,6 +115,39 @@ defmodule CastorEDC.AuthTest do
     assert message =~ "at least every seven days"
   end
 
+  test "reads a token's lifetime given as text, or lasting an hour when it can't", context do
+    for {expires_in, renewed_after} <- [{"18000", 18_000}, {"soon", 3600}, {nil, 3600}, {-5, 3600}] do
+      context = %{context | base_url: "https://test-#{System.unique_integer([:positive])}.invalid"}
+      tokens = :counters.new(1, [])
+
+      responder = fn
+        %{url: %{path: "/oauth/token"}} ->
+          :counters.add(tokens, 1, 1)
+          json(%{"access_token" => "token-#{:counters.get(tokens, 1)}", "expires_in" => expires_in})
+
+        request ->
+          answer_api(request, [])
+      end
+
+      client = credentials_client(responder, context)
+      assert {:ok, %{"authorization" => "Bearer token-1"}} = Client.request(client, @operation)
+
+      Agent.update(context.clock, &(&1 + renewed_after - 61))
+      assert {:ok, %{"authorization" => "Bearer token-1"}} = Client.request(client, @operation)
+      Agent.update(context.clock, &(&1 + 2))
+      assert {:ok, %{"authorization" => "Bearer token-2"}} = Client.request(client, @operation)
+    end
+  end
+
+  test "explains a refusal whose reason isn't text", context do
+    responder = fn _request -> json(%{"reason" => %{"code" => 7}}, status: 403) end
+
+    assert {:error, %Error{code: :login_required, message: message}} =
+             Client.request(credentials_client(responder, context), @operation)
+
+    assert message =~ ~s(%{"code" => 7})
+  end
+
   test "reports any other refused token request", context do
     responder = fn _request -> json(%{"error_description" => "Invalid client"}, status: 400) end
 

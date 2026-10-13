@@ -110,14 +110,14 @@ defmodule CastorEDC.Auth do
       |> Req.new()
       |> Req.merge(
         request.options
-        |> Map.take([:connect_options, :finch, :receive_timeout, :pool_timeout, :inet6])
+        |> Map.take([:connect_options, :finch, :receive_timeout, :pool_timeout, :inet6, :plug])
         |> Enum.to_list()
       )
       |> Map.put(:private, Map.delete(request.private, :castor_edc_credentials))
 
     case Req.request(token_request) do
       {:ok, %Req.Response{status: 200, body: %{"access_token" => token} = body}} ->
-        {:ok, token, Map.get(body, "expires_in", 3600)}
+        {:ok, token, expires_in(body["expires_in"])}
 
       {:ok, %Req.Response{status: 403, body: %{"reason" => reason}} = response} ->
         error = Error.from_response(response)
@@ -127,7 +127,7 @@ defmodule CastorEDC.Auth do
            error
            | code: :login_required,
              message:
-               "the token request was refused: #{reason} Accounts that sign in through SSO or " <>
+               "the token request was refused: #{reason_text(reason)} Accounts that sign in through SSO or " <>
                  "Castor Identity have to log in to the Castor EDC web application at least every seven days."
          }}
 
@@ -139,6 +139,22 @@ defmodule CastorEDC.Auth do
         {:error, Error.from_exception(exception)}
     end
   end
+
+  # Seconds the token lasts: an hour when the answer doesn't say, or says it
+  # in a way that can't be read.
+  defp expires_in(seconds) when is_integer(seconds) and seconds > 0, do: seconds
+
+  defp expires_in(seconds) when is_binary(seconds) do
+    case Integer.parse(seconds) do
+      {seconds, ""} when seconds > 0 -> seconds
+      _other -> 3600
+    end
+  end
+
+  defp expires_in(_missing), do: 3600
+
+  defp reason_text(reason) when is_binary(reason), do: reason
+  defp reason_text(reason), do: inspect(reason)
 
   defp now(request) do
     case Req.Request.get_private(request, :castor_edc_clock) do
