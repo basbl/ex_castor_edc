@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>CastorEDC.Model.Field — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">CastorEDC.<wbr />Model.<wbr />Field</span> 
+      <small class="app-vsn" translate="no">(ExCastorEDC v1.0.0-rc.1)</small>
+
+    </h1>
+
+<a href="CastorEDC.Model.Field.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/model/field.ex#L4" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>The <code class="inline">Field</code> object of the API.</p><h2 id="module-fields" class="section-heading"><a href="#module-fields" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Fields</span></h2><ul><li><code class="inline">:additional_config</code> (string) - Extra configuration of the field</li><li><code class="inline">:dependency_children</code> (list of <a href="CastorEDC.Model.FieldDependencyNested.html#t:t/0"><code class="inline">CastorEDC.Model.FieldDependencyNested.t/0</code></a>) - List of child field dependencies (fields that depend on this field)</li><li><code class="inline">:dependency_parents</code> (list of <a href="CastorEDC.Model.FieldDependencyNested.html#t:t/0"><code class="inline">CastorEDC.Model.FieldDependencyNested.t/0</code></a>) - List of parent field dependencies (fields that this field depends on)</li><li><code class="inline">:domains</code> (list of <a href="CastorEDC.Model.FieldDomain.html#t:t/0"><code class="inline">CastorEDC.Model.FieldDomain.t/0</code></a>)</li><li><code class="inline">:exclude_on_data_export</code> (boolean) - Whether exports leave the field out.</li><li><code class="inline">:field_enforce_decimals</code> (boolean) - If enabled, it requires decimals digits in data-entry</li><li><code class="inline">:field_hidden</code> (integer) - If enabled, it hides the field in data-entry. Returns 1 for hidden, 0 for visible</li><li><code class="inline">:field_id</code> (string) - Unique identifier of the Field (same as id)</li><li><code class="inline">:field_image</code> (string) - URL to the image for the Image field type</li><li><code class="inline">:field_info</code> (string) - Information about the field. It is shown during data-entry</li><li><code class="inline">:field_label</code> (string) - The Field label</li><li><code class="inline">:field_length</code> (integer) - Length parameter to derive UI input width for this field</li><li><code class="inline">:field_max</code> (number) - The highest value allowed.</li><li><code class="inline">:field_max_label</code> (string) - The label of the highest value</li><li><code class="inline">:field_min</code> (number) - The lowest value allowed.</li><li><code class="inline">:field_min_label</code> (string) - The label of the lowest value</li><li><code class="inline">:field_number</code> (integer) - The Field's position within a step</li><li><code class="inline">:field_required</code> (integer) - If enabled, it makes the field required (cannot be left empty). Returns 1 for required, 0 for not required</li><li><code class="inline">:field_slider_step</code> (string) - Slider step (Deprecated. Use field_slider_step_value instead)</li><li><code class="inline">:field_slider_step_value</code> (number) - Slider step value</li><li><code class="inline">:field_summary_template</code> (string) - The template of a summary field.</li><li><code class="inline">:field_type</code> (string) - The Field type</li><li><code class="inline">:field_units</code> (string) - The field's measurement unit</li><li><code class="inline">:field_variable_name</code> (string) - The Field's variable name</li><li><code class="inline">:id</code> (string) - Unique identifier of the Field (same as field_id)</li><li><code class="inline">:metadata_points</code> (list of <a href="CastorEDC.Model.Metadata.html#t:t/0"><code class="inline">CastorEDC.Model.Metadata.t/0</code></a>)</li><li><code class="inline">:option_group</code> (<a href="CastorEDC.Model.FieldOptionGroup.html#t:t/0"><code class="inline">CastorEDC.Model.FieldOptionGroup.t/0</code></a>) - The field's option group, when listed with include=optiongroup and the field has options.</li><li><code class="inline">:parent_id</code> (string) - The field's parent id</li><li><code class="inline">:randomize_option_order</code> (boolean) - If enabled, the order of options should be randomized (only applies to dropdown, radio, and checkbox fields)</li><li><code class="inline">:repeating_data_id</code> (string)</li><li><code class="inline">:validations</code> (list of <a href="CastorEDC.Model.FieldValidation.html#t:t/0"><code class="inline">CastorEDC.Model.FieldValidation.t/0</code></a>)</li><li><code class="inline">:extra</code> - every key the API sent that this struct doesn't name, under the API's own name.</li></ul>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-types summary">
+  <h3>
+    <a href="#types">Types</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:t/0" data-no-tooltip="" translate="no">t()</a>
+
+      </div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h2>
+
+    <div class="types-list">
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">t()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/model/field.ex#L91" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> t() :: %CastorEDC.Model.Field{
+  additional_config: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  dependency_children: [<a href="CastorEDC.Model.FieldDependencyNested.html#t:t/0">CastorEDC.Model.FieldDependencyNested.t</a>()] | nil,
+  dependency_parents: [<a href="CastorEDC.Model.FieldDependencyNested.html#t:t/0">CastorEDC.Model.FieldDependencyNested.t</a>()] | nil,
+  domains: [<a href="CastorEDC.Model.FieldDomain.html#t:t/0">CastorEDC.Model.FieldDomain.t</a>()] | nil,
+  exclude_on_data_export: <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">boolean</a>() | nil,
+  extra: %{optional(<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()) =&gt; <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">term</a>()},
+  field_enforce_decimals: <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">boolean</a>() | nil,
+  field_hidden: <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">integer</a>() | nil,
+  field_id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  field_image: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  field_info: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  field_label: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  field_length: <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">integer</a>() | nil,
+  field_max: <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">number</a>() | nil,
+  field_max_label: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  field_min: <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">number</a>() | nil,
+  field_min_label: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  field_number: <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">integer</a>() | nil,
+  field_required: <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">integer</a>() | nil,
+  field_slider_step: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  field_slider_step_value: <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">number</a>() | nil,
+  field_summary_template: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  field_type: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  field_units: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  field_variable_name: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  metadata_points: [<a href="CastorEDC.Model.Metadata.html#t:t/0">CastorEDC.Model.Metadata.t</a>()] | nil,
+  option_group: <a href="CastorEDC.Model.FieldOptionGroup.html#t:t/0">CastorEDC.Model.FieldOptionGroup.t</a>() | nil,
+  parent_id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  randomize_option_order: <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">boolean</a>() | nil,
+  repeating_data_id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  validations: [<a href="CastorEDC.Model.FieldValidation.html#t:t/0">CastorEDC.Model.FieldValidation.t</a>()] | nil
+}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

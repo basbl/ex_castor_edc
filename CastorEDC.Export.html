@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>CastorEDC.Export — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">CastorEDC.<wbr />Export</span> 
+      <small class="app-vsn" translate="no">(ExCastorEDC v1.0.0-rc.1)</small>
+
+    </h1>
+
+<a href="CastorEDC.Export.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L1" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>Batch exports: a study's data, structure, queries and more, as files.</p><p>The API runs an export as a background job. You queue it, wait until it's
+ready, and download the result, which is always a zip. This module does
+each of those steps on top of <a href="CastorEDC.Exports.html"><code class="inline">CastorEDC.Exports</code></a>.</p><p>There's a function for each type of export that does all three, such as
+<a href="#participant_data/3"><code class="inline">participant_data/3</code></a>:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="group-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="group-2">%</span><span class="nc" data-group-id="group-2">CastorEDC.Export</span><span class="p" data-group-id="group-2">{</span><span class="ss">path</span><span class="p">:</span><span class="w"> </span><span class="n">path</span><span class="p" data-group-id="group-2">}</span><span class="p" data-group-id="group-1">}</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="nc">CastorEDC.Export</span><span class="o">.</span><span class="n">participant_data</span><span class="p" data-group-id="group-3">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p">,</span><span class="w">
+    </span><span class="ss">format</span><span class="p">:</span><span class="w"> </span><span class="ss">:spss</span><span class="p">,</span><span class="w">
+    </span><span class="ss">filters</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="group-4">[</span><span class="ss">site_ids</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="group-5">[</span><span class="n">site_id</span><span class="p" data-group-id="group-5">]</span><span class="p" data-group-id="group-4">]</span><span class="p">,</span><span class="w">
+    </span><span class="ss">options</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="group-6">[</span><span class="ss">include_comments</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="group-6">]</span><span class="p">,</span><span class="w">
+    </span><span class="ss">into</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exports/&quot;</span><span class="w">
+  </span><span class="p" data-group-id="group-3">)</span></code></pre><p>The steps are functions too, for queuing several exports at once or
+picking up later: <a href="#queue/4"><code class="inline">queue/4</code></a> queues exports, <a href="#await/4"><code class="inline">await/4</code></a> waits until they're
+ready, <a href="#status/3"><code class="inline">status/3</code></a> looks one up, and <a href="#download/4"><code class="inline">download/4</code></a> downloads a ready one.</p><h2 id="module-waiting" class="section-heading"><a href="#module-waiting" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Waiting</span></h2><p>The API has no way to wait for an export, so <a href="#await/4"><code class="inline">await/4</code></a> polls the export
+list: after 1 second, then each time half as long again, up to every 15
+seconds. One poll covers every export being waited for. The polls go
+through <a href="CastorEDC.Client.html"><code class="inline">CastorEDC.Client</code></a> like any other request, so they count against
+the rate limit and appear in its telemetry.</p><h2 id="module-telemetry" class="section-heading"><a href="#module-telemetry" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Telemetry</span></h2><ul><li><code class="inline">[:castor_edc, :export, :queued]</code> - with the number of exports as
+<code class="inline">:count</code>, and the <code class="inline">:study_id</code>, <code class="inline">:export_ids</code> and <code class="inline">:types</code> as metadata</li><li><code class="inline">[:castor_edc, :export, :poll]</code> - each time <a href="#await/4"><code class="inline">await/4</code></a> checks, with the
+number of exports still running as <code class="inline">:pending</code>, and the <code class="inline">:study_id</code>
+and <code class="inline">:export_ids</code> as metadata</li><li><code class="inline">[:castor_edc, :export, :completed]</code> and <code class="inline">[:castor_edc, :export, :failed]</code> - for each export <a href="#await/4"><code class="inline">await/4</code></a> sees finish, with the time it
+waited as <code class="inline">:duration</code> (in native time units), and the <code class="inline">:study_id</code> and
+<code class="inline">:export</code> as metadata</li><li><code class="inline">[:castor_edc, :export, :timeout]</code> - when <a href="#await/4"><code class="inline">await/4</code></a> gives up, with
+<code class="inline">:duration</code>, and the <code class="inline">:study_id</code> and <code class="inline">:export_ids</code> as metadata</li></ul><h2 id="module-concurrent-exports" class="section-heading"><a href="#module-concurrent-exports" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Concurrent exports</span></h2><p>The API runs at most three exports per user at a time, and refuses to
+queue more. With <code class="inline">rate_limit: :wait</code> (the default of <a href="CastorEDC.html#new/1"><code class="inline">CastorEDC.new/1</code></a>),
+<a href="#queue/4"><code class="inline">queue/4</code></a> waits for a slot, trying again after 5 seconds, then 10, 20,
+40 and every 60, for as long as its <code class="inline">:timeout</code> allows. With
+<code class="inline">rate_limit: :error</code>, or once the time is up, it returns an error with
+code <code class="inline">:too_many_exports</code>.</p><h2 id="module-the-struct" class="section-heading"><a href="#module-the-struct" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">The struct</span></h2><ul><li><code class="inline">:id</code> - the export's ID</li><li><code class="inline">:type</code> - the export type, such as <code class="inline">:participant_data</code></li><li><code class="inline">:format</code> - the file format, such as <code class="inline">:csv</code></li><li><code class="inline">:status</code> - <code class="inline">:queued</code>, <code class="inline">:in_progress</code>, <code class="inline">:ready</code> or <code class="inline">:failed</code></li><li><code class="inline">:file_name</code> and <code class="inline">:file_size</code> - the file, once the export is ready</li><li><code class="inline">:created_by</code> - the ID of the user who queued the export</li><li><code class="inline">:created_on</code>, <code class="inline">:completed_on</code> and <code class="inline">:expires_on</code> - when the export was
+queued, finished and stops being available (7 days later)</li><li><code class="inline">:data</code> - the downloaded file, when <a href="#download/4"><code class="inline">download/4</code></a> kept it in memory</li><li><code class="inline">:path</code> - where <a href="#download/4"><code class="inline">download/4</code></a> saved the file, when given <code class="inline">:into</code>; with
+<code class="inline">unzip: true</code>, the directory the files went into</li><li><code class="inline">:files</code> - with <code class="inline">unzip: true</code>, the files in the zip: their paths, or
+<code class="inline">{name, contents}</code> tuples when the export was kept in memory</li></ul><p>Types, formats and statuses the client doesn't know stay strings.</p>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-types summary">
+  <h3>
+    <a href="#types">Types</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:format/0" data-no-tooltip="" translate="no">format()</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:status/0" data-no-tooltip="" translate="no">status()</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:t/0" data-no-tooltip="" translate="no">t()</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:type/0" data-no-tooltip="" translate="no">type()</a>
+
+      </div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h3>
+    <a href="#functions">Functions</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#audit_trail/3" data-no-tooltip="" translate="no">audit_trail(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The study's audit trail.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#await/4" data-no-tooltip="" translate="no">await(client, study_id, export_ids, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Waits until every export in <code class="inline">export_ids</code> is ready, and returns them in
+the same order.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#domain_mapping/3" data-no-tooltip="" translate="no">domain_mapping(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The mapping of the study's fields to domains.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#download/4" data-no-tooltip="" translate="no">download(client, study_id, export, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Downloads a ready export.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#empty_crf/3" data-no-tooltip="" translate="no">empty_crf(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The study's forms as an empty case report form, in a single PDF.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#form_structure/3" data-no-tooltip="" translate="no">form_structure(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The study's structure: its visits, forms and fields, and those of its repeating data and surveys.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#participant_casebook/3" data-no-tooltip="" translate="no">participant_casebook(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>A casebook of each participant's data: a PDF per participant.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#participant_data/3" data-no-tooltip="" translate="no">participant_data(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The study's collected data. In CSV, the zip holds a file for the study's fields, one for each repeating data and one for each survey, together with lists of the variables and option groups.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#queries/3" data-no-tooltip="" translate="no">queries(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The study's queries.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#queue/4" data-no-tooltip="" translate="no">queue(client, study_id, requests, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Queues exports, returning their IDs in the order of <code class="inline">requests</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#sites/3" data-no-tooltip="" translate="no">sites(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The study's sites.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#status/3" data-no-tooltip="" translate="no">status(client, study_id, export_id)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The current state of an export.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#survey_compliance/3" data-no-tooltip="" translate="no">survey_compliance(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Participants' compliance with their survey packages.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#uploaded_files/3" data-no-tooltip="" translate="no">uploaded_files(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The files uploaded to the study's upload fields.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#validations/3" data-no-tooltip="" translate="no">validations(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The validation messages entered data triggered.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h2>
+
+    <div class="types-list">
+<section class="detail" id="t:format/0">
+
+  <div class="detail-header">
+    <a href="#t:format/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">format()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L109" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> format() ::
+  :csv | :excel | :spss | :sas_xpt | :sas_7bdat | :odm | :pdf | :xml | :zip</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:status/0">
+
+  <div class="detail-header">
+    <a href="#t:status/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">status()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L111" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> status() :: :queued | :in_progress | :ready | :failed</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">t()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L113" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> t() :: %CastorEDC.Export{
+  completed_on: <a href="https://elixir.hexdocs.pm/DateTime.html#t:t/0">DateTime.t</a>() | nil,
+  created_by: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  created_on: <a href="https://elixir.hexdocs.pm/DateTime.html#t:t/0">DateTime.t</a>() | nil,
+  data: <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">binary</a>() | nil,
+  expires_on: <a href="https://elixir.hexdocs.pm/DateTime.html#t:t/0">DateTime.t</a>() | nil,
+  file_name: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  file_size: <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">non_neg_integer</a>() | nil,
+  files: [<a href="https://elixir.hexdocs.pm/Path.html#t:t/0">Path.t</a>()] | [{<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">binary</a>()}] | nil,
+  format: <a href="#t:format/0">format</a>() | <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  path: <a href="https://elixir.hexdocs.pm/Path.html#t:t/0">Path.t</a>() | nil,
+  status: <a href="#t:status/0">status</a>() | <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  type: <a href="#t:type/0">type</a>() | <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil
+}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:type/0">
+
+  <div class="detail-header">
+    <a href="#t:type/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">type()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L96" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> type() ::
+  :participant_data
+  | :participant_casebook
+  | :empty_crf
+  | :form_structure
+  | :queries
+  | :survey_compliance
+  | :validations
+  | :uploaded_files
+  | :audit_trail
+  | :domain_mapping
+  | :sites</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h2>
+
+    <div class="functions-list">
+<section class="detail" id="audit_trail/3">
+
+    <span id="audit_trail/2"></span>
+
+  <div class="detail-header">
+    <a href="#audit_trail/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">audit_trail(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L205" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> audit_trail(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>The study's audit trail.</p><p>Queues the export, waits until it's ready and downloads it. Without
+<code class="inline">:into</code>, the zip comes back in memory, in <code class="inline">:data</code>.</p><p>Formats: <code class="inline">:csv</code> (<code class="inline">:csv</code> by default).</p><p>Filters: none.</p><p>Options: none.</p><h2 id="audit_trail/3-options" class="section-heading"><a href="#audit_trail/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:format</code>, <code class="inline">:filters</code> and <code class="inline">:options</code> - as above</li><li><code class="inline">:into</code> - a directory, or a file path, to stream the zip to, as for
+<a href="#download/4"><code class="inline">download/4</code></a></li><li><code class="inline">:unzip</code> - when <code class="inline">true</code>, unzips the export: into the <code class="inline">:into</code>
+directory (a file path given as <code class="inline">:into</code> becomes a directory of that
+name), or in memory. The struct's <code class="inline">:files</code> lists what was in it.</li><li><code class="inline">:timeout</code> - how long to wait for the export, queuing included, in
+milliseconds or <code class="inline">:infinity</code>; 15 minutes by default</li><li><code class="inline">:poll_interval</code> - the first wait before checking on the export,
+see <a href="#await/4"><code class="inline">await/4</code></a></li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a> for the download. A format, filter
+or option the export doesn't take raises <a href="https://elixir.hexdocs.pm/ArgumentError.html"><code class="inline">ArgumentError</code></a> before anything
+is sent.</p>
+  </section>
+</section>
+<section class="detail" id="await/4">
+
+    <span id="await/3"></span>
+
+  <div class="detail-header">
+    <a href="#await/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">await(client, study_id, export_ids, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L405" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> await(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), [<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()], <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, [<a href="#t:t/0">t</a>()]} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Waits until every export in <code class="inline">export_ids</code> is ready, and returns them in
+the same order.</p><p>It doesn't download them: see <a href="#download/4"><code class="inline">download/4</code></a>. When an export fails, it
+returns an error with code <code class="inline">:export_failed</code> and the export in <code class="inline">result</code>
+straight away. An ID that doesn't show up in the export list within 30
+seconds returns an error with code <code class="inline">:export_not_found</code>.</p><h2 id="await/4-options" class="section-heading"><a href="#await/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:timeout</code> - how long to wait, in milliseconds or <code class="inline">:infinity</code>; 15
+minutes by default. Then it returns an error with code
+<code class="inline">:export_timeout</code>, with the IDs of the exports that weren't ready in
+<code class="inline">export_ids</code>. They keep running, so you can call <a href="#await/4"><code class="inline">await/4</code></a> with
+those IDs again.</li><li><code class="inline">:poll_interval</code> - the first wait before checking, in milliseconds;
+1 second by default</li><li><code class="inline">:since</code> - a <a href="https://elixir.hexdocs.pm/DateTime.html"><code class="inline">DateTime</code></a> from before the exports were queued, which
+lets each check stop paging through the export list at older exports</li></ul>
+  </section>
+</section>
+<section class="detail" id="domain_mapping/3">
+
+    <span id="domain_mapping/2"></span>
+
+  <div class="detail-header">
+    <a href="#domain_mapping/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">domain_mapping(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L205" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> domain_mapping(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>The mapping of the study's fields to domains.</p><p>Queues the export, waits until it's ready and downloads it. Without
+<code class="inline">:into</code>, the zip comes back in memory, in <code class="inline">:data</code>.</p><p>Formats: <code class="inline">:csv</code> (<code class="inline">:csv</code> by default).</p><p>Filters: none.</p><p>Options: none.</p><h2 id="domain_mapping/3-options" class="section-heading"><a href="#domain_mapping/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:format</code>, <code class="inline">:filters</code> and <code class="inline">:options</code> - as above</li><li><code class="inline">:into</code> - a directory, or a file path, to stream the zip to, as for
+<a href="#download/4"><code class="inline">download/4</code></a></li><li><code class="inline">:unzip</code> - when <code class="inline">true</code>, unzips the export: into the <code class="inline">:into</code>
+directory (a file path given as <code class="inline">:into</code> becomes a directory of that
+name), or in memory. The struct's <code class="inline">:files</code> lists what was in it.</li><li><code class="inline">:timeout</code> - how long to wait for the export, queuing included, in
+milliseconds or <code class="inline">:infinity</code>; 15 minutes by default</li><li><code class="inline">:poll_interval</code> - the first wait before checking on the export,
+see <a href="#await/4"><code class="inline">await/4</code></a></li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a> for the download. A format, filter
+or option the export doesn't take raises <a href="https://elixir.hexdocs.pm/ArgumentError.html"><code class="inline">ArgumentError</code></a> before anything
+is sent.</p>
+  </section>
+</section>
+<section class="detail" id="download/4">
+
+    <span id="download/3"></span>
+
+  <div class="detail-header">
+    <a href="#download/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">download(client, study_id, export, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L593" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> download(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="#t:t/0">t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Downloads a ready export.</p><p>Every export downloads as a zip. Without <code class="inline">:into</code>, the file comes back in
+memory, in the struct's <code class="inline">:data</code>.</p><h2 id="download/4-options" class="section-heading"><a href="#download/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:into</code> - save the file instead, streaming it to disk so it never sits
+in memory as a whole. An existing directory, or a path ending in <code class="inline">/</code>,
+saves it there under the export's file name; any other path is the
+file to write. Missing directories are created. The struct's <code class="inline">:path</code>
+says where the file went.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>An export that isn't ready returns an error with code <code class="inline">:export_not_ready</code>,
+and one past its expiry date an error with code <code class="inline">:export_expired</code>.</p>
+  </section>
+</section>
+<section class="detail" id="empty_crf/3">
+
+    <span id="empty_crf/2"></span>
+
+  <div class="detail-header">
+    <a href="#empty_crf/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">empty_crf(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L205" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> empty_crf(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>The study's forms as an empty case report form, in a single PDF.</p><p>Queues the export, waits until it's ready and downloads it. Without
+<code class="inline">:into</code>, the zip comes back in memory, in <code class="inline">:data</code>.</p><p>Formats: <code class="inline">:pdf</code> (<code class="inline">:pdf</code> by default).</p><p>Filters:</p><ul><li><code class="inline">:elements</code> (a keyword list of <code class="inline">:forms</code>, <code class="inline">:repeating_data</code>, <code class="inline">:repeating_data_forms</code>, <code class="inline">:survey_forms</code>, <code class="inline">:surveys</code>, <code class="inline">:visits</code>, each a list of IDs)</li><li><code class="inline">:paper_size</code> (one of <code class="inline">:a4paper</code>, <code class="inline">:letterpaper</code>; <code class="inline">:a4paper</code> by default)</li></ul><p>Options:</p><ul><li><code class="inline">:include_additional_info</code> (boolean)</li><li><code class="inline">:include_calculated_templates</code> (boolean)</li><li><code class="inline">:include_dependencies</code> (boolean)</li><li><code class="inline">:include_helptexts</code> (boolean)</li><li><code class="inline">:include_hidden_calculated_fields</code> (boolean)</li><li><code class="inline">:include_table_of_contents</code> (boolean)</li><li><code class="inline">:include_title_page</code> (boolean)</li><li><code class="inline">:include_validations</code> (boolean)</li><li><code class="inline">:inline_repeated_measure_forms</code> (boolean)</li><li><code class="inline">:start_forms_on_new_page</code> (boolean)</li></ul><h2 id="empty_crf/3-options" class="section-heading"><a href="#empty_crf/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:format</code>, <code class="inline">:filters</code> and <code class="inline">:options</code> - as above</li><li><code class="inline">:into</code> - a directory, or a file path, to stream the zip to, as for
+<a href="#download/4"><code class="inline">download/4</code></a></li><li><code class="inline">:unzip</code> - when <code class="inline">true</code>, unzips the export: into the <code class="inline">:into</code>
+directory (a file path given as <code class="inline">:into</code> becomes a directory of that
+name), or in memory. The struct's <code class="inline">:files</code> lists what was in it.</li><li><code class="inline">:timeout</code> - how long to wait for the export, queuing included, in
+milliseconds or <code class="inline">:infinity</code>; an hour by default</li><li><code class="inline">:poll_interval</code> - the first wait before checking on the export,
+see <a href="#await/4"><code class="inline">await/4</code></a></li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a> for the download. A format, filter
+or option the export doesn't take raises <a href="https://elixir.hexdocs.pm/ArgumentError.html"><code class="inline">ArgumentError</code></a> before anything
+is sent.</p>
+  </section>
+</section>
+<section class="detail" id="form_structure/3">
+
+    <span id="form_structure/2"></span>
+
+  <div class="detail-header">
+    <a href="#form_structure/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">form_structure(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L205" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> form_structure(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>The study's structure: its visits, forms and fields, and those of its repeating data and surveys.</p><p>Queues the export, waits until it's ready and downloads it. Without
+<code class="inline">:into</code>, the zip comes back in memory, in <code class="inline">:data</code>.</p><p>Formats: <code class="inline">:xml</code>, <code class="inline">:odm</code> (<code class="inline">:xml</code> by default).</p><p>Filters:</p><ul><li><code class="inline">:element_id</code> (string)</li><li><code class="inline">:element_type</code> (one of <code class="inline">:all</code>, <code class="inline">:study</code>, <code class="inline">:visit</code>, <code class="inline">:form</code>, <code class="inline">:field</code>, <code class="inline">:repeating_data</code>, <code class="inline">:repeating_data_item</code>, <code class="inline">:repeating_data_form</code>, <code class="inline">:repeating_data_field</code>, <code class="inline">:surveys</code>, <code class="inline">:survey</code>, <code class="inline">:survey_form</code>, <code class="inline">:survey_field</code>, <code class="inline">:survey_packages</code>, <code class="inline">:survey_package</code>)</li></ul><p>Options:</p><ul><li><code class="inline">:include_annotations</code> (boolean; <code class="inline">true</code> by default)</li><li><code class="inline">:include_domains</code> (boolean; <code class="inline">true</code> by default)</li></ul><h2 id="form_structure/3-options" class="section-heading"><a href="#form_structure/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:format</code>, <code class="inline">:filters</code> and <code class="inline">:options</code> - as above</li><li><code class="inline">:into</code> - a directory, or a file path, to stream the zip to, as for
+<a href="#download/4"><code class="inline">download/4</code></a></li><li><code class="inline">:unzip</code> - when <code class="inline">true</code>, unzips the export: into the <code class="inline">:into</code>
+directory (a file path given as <code class="inline">:into</code> becomes a directory of that
+name), or in memory. The struct's <code class="inline">:files</code> lists what was in it.</li><li><code class="inline">:timeout</code> - how long to wait for the export, queuing included, in
+milliseconds or <code class="inline">:infinity</code>; 15 minutes by default</li><li><code class="inline">:poll_interval</code> - the first wait before checking on the export,
+see <a href="#await/4"><code class="inline">await/4</code></a></li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a> for the download. A format, filter
+or option the export doesn't take raises <a href="https://elixir.hexdocs.pm/ArgumentError.html"><code class="inline">ArgumentError</code></a> before anything
+is sent.</p>
+  </section>
+</section>
+<section class="detail" id="participant_casebook/3">
+
+    <span id="participant_casebook/2"></span>
+
+  <div class="detail-header">
+    <a href="#participant_casebook/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">participant_casebook(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L205" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> participant_casebook(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>A casebook of each participant's data: a PDF per participant.</p><p>Queues the export, waits until it's ready and downloads it. Without
+<code class="inline">:into</code>, the zip comes back in memory, in <code class="inline">:data</code>.</p><p>Formats: <code class="inline">:pdf</code> (<code class="inline">:pdf</code> by default).</p><p>Filters:</p><ul><li><code class="inline">:paper_size</code> (one of <code class="inline">:a4paper</code>, <code class="inline">:letterpaper</code>)</li><li><code class="inline">:participant_ids</code> (a list of strings)</li></ul><p>Options: none.</p><h2 id="participant_casebook/3-options" class="section-heading"><a href="#participant_casebook/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:format</code>, <code class="inline">:filters</code> and <code class="inline">:options</code> - as above</li><li><code class="inline">:into</code> - a directory, or a file path, to stream the zip to, as for
+<a href="#download/4"><code class="inline">download/4</code></a></li><li><code class="inline">:unzip</code> - when <code class="inline">true</code>, unzips the export: into the <code class="inline">:into</code>
+directory (a file path given as <code class="inline">:into</code> becomes a directory of that
+name), or in memory. The struct's <code class="inline">:files</code> lists what was in it.</li><li><code class="inline">:timeout</code> - how long to wait for the export, queuing included, in
+milliseconds or <code class="inline">:infinity</code>; an hour by default</li><li><code class="inline">:poll_interval</code> - the first wait before checking on the export,
+see <a href="#await/4"><code class="inline">await/4</code></a></li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a> for the download. A format, filter
+or option the export doesn't take raises <a href="https://elixir.hexdocs.pm/ArgumentError.html"><code class="inline">ArgumentError</code></a> before anything
+is sent.</p>
+  </section>
+</section>
+<section class="detail" id="participant_data/3">
+
+    <span id="participant_data/2"></span>
+
+  <div class="detail-header">
+    <a href="#participant_data/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">participant_data(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L205" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> participant_data(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>The study's collected data. In CSV, the zip holds a file for the study's fields, one for each repeating data and one for each survey, together with lists of the variables and option groups.</p><p>Queues the export, waits until it's ready and downloads it. Without
+<code class="inline">:into</code>, the zip comes back in memory, in <code class="inline">:data</code>.</p><p>Formats: <code class="inline">:csv</code>, <code class="inline">:excel</code>, <code class="inline">:spss</code>, <code class="inline">:sas_xpt</code>, <code class="inline">:sas_7bdat</code>, <code class="inline">:odm</code> (<code class="inline">:csv</code> by default).</p><p>Filters:</p><ul><li><code class="inline">:created_between_end</code> (a <a href="https://elixir.hexdocs.pm/Date.html"><code class="inline">Date</code></a>)</li><li><code class="inline">:created_between_start</code> (a <a href="https://elixir.hexdocs.pm/Date.html"><code class="inline">Date</code></a>)</li><li><code class="inline">:created_by</code> (a list of strings)</li><li><code class="inline">:elements</code> (a keyword list of <code class="inline">:forms</code>, <code class="inline">:repeating_data</code>, <code class="inline">:repeating_data_forms</code>, <code class="inline">:survey_forms</code>, <code class="inline">:surveys</code>, <code class="inline">:visits</code>, each a list of IDs)</li><li><code class="inline">:last_updated_between_end</code> (a <a href="https://elixir.hexdocs.pm/Date.html"><code class="inline">Date</code></a>)</li><li><code class="inline">:last_updated_between_start</code> (a <a href="https://elixir.hexdocs.pm/Date.html"><code class="inline">Date</code></a>)</li><li><code class="inline">:locked</code> (boolean)</li><li><code class="inline">:participant_ids</code> (a list of strings)</li><li><code class="inline">:progress</code> (a list of values from <code class="inline">:not_started</code>, <code class="inline">:in_progress</code>, <code class="inline">:completed</code>, <code class="inline">:archived</code>)</li><li><code class="inline">:randomized</code> (boolean)</li><li><code class="inline">:sdv_pending</code> (boolean)</li><li><code class="inline">:site_ids</code> (a list of strings)</li><li><code class="inline">:subject_status_ids</code> (a list of strings)</li><li><code class="inline">:updated_by</code> (a list of strings)</li></ul><p>Options:</p><ul><li><code class="inline">:display_options_as</code> (one of <code class="inline">:names</code>, <code class="inline">:numbers</code>; <code class="inline">:numbers</code> by default) - Whether Options are exported as numbers (values) or names (labels). Only applicable when <code class="inline">grouped</code> is set to false. Only applies to <code class="inline">:csv</code> or <code class="inline">:excel</code> exports that aren't grouped.</li><li><code class="inline">:export_coded_options_as</code> (one of <code class="inline">:values</code>, <code class="inline">:values_and_names</code>; <code class="inline">:values</code> by default) - Whether Options are exported as values only, or in two columns with both values and names included. Only applicable when <code class="inline">grouped</code> is set to true. Only applies to <code class="inline">:csv</code>, <code class="inline">:sas_xpt</code> or <code class="inline">:sas_7bdat</code> exports with <code class="inline">grouped: true</code>.</li><li><code class="inline">:export_dates_as</code> (one of <code class="inline">:date</code>, <code class="inline">:text</code>; <code class="inline">:date</code> by default) - Export dates, date &amp; times, and time fields as SAS date/datetime/time types or as strings. Only applicable when <code class="inline">grouped</code> is set to true and <code class="inline">format</code> is <code class="inline">sas_xpt</code> or <code class="inline">sas_7bdat</code>. Only applies to <code class="inline">:sas_xpt</code> or <code class="inline">:sas_7bdat</code> exports with <code class="inline">grouped: true</code>.</li><li><code class="inline">:export_missing_data_in</code> (one of <code class="inline">:same_column</code>, <code class="inline">:separate_column</code>; <code class="inline">:same_column</code> by default) - Whether missing data annotations (reason for missing) are exported in the same column as the field, or in a separate column next to the field. Only applicable when <code class="inline">grouped</code> is set to true. Only applies to <code class="inline">:csv</code>, <code class="inline">:sas_xpt</code> or <code class="inline">:sas_7bdat</code> exports with <code class="inline">grouped: true</code>.</li><li><code class="inline">:grouped</code> (boolean; <code class="inline">false</code> by default) - Whether to group participant data by domain. Only applies to <code class="inline">:csv</code>, <code class="inline">:sas_xpt</code> or <code class="inline">:sas_7bdat</code>.</li><li><code class="inline">:include_comments</code> (boolean; <code class="inline">false</code> by default) - Include comments in the export. Only applicable when <code class="inline">grouped</code> is set to false. Only applies to <code class="inline">:csv</code> or <code class="inline">:excel</code> exports that aren't grouped.</li><li><code class="inline">:include_empty_rows</code> (boolean; <code class="inline">false</code> by default) - Include data from visits, repeating data instances, and survey instances that are not started yet. Only applicable when <code class="inline">grouped</code> is set to true. Only applies to <code class="inline">:csv</code>, <code class="inline">:sas_xpt</code> or <code class="inline">:sas_7bdat</code> exports with <code class="inline">grouped: true</code>.</li><li><code class="inline">:include_encrypted_fields</code> (boolean; <code class="inline">false</code> by default) - Include encrypted fields should be included in the export. Only applicable when <code class="inline">grouped</code> is false and Field Encryption is enabled. Only applies to <code class="inline">:csv</code>, <code class="inline">:excel</code>, <code class="inline">:spss</code>, <code class="inline">:sas_xpt</code> or <code class="inline">:sas_7bdat</code> exports that aren't grouped.</li><li><code class="inline">:include_queries</code> (boolean; <code class="inline">false</code> by default) - Include queries in the export. Only applicable when <code class="inline">grouped</code> is set to false. Only applies to <code class="inline">:csv</code> or <code class="inline">:excel</code> exports that aren't grouped.</li><li><code class="inline">:include_survey_metadata</code> (boolean; <code class="inline">false</code> by default) - Include survey metadata. Only applicable when <code class="inline">grouped</code> is set to true. Only applies to <code class="inline">:csv</code>, <code class="inline">:sas_xpt</code> or <code class="inline">:sas_7bdat</code> exports with <code class="inline">grouped: true</code>.</li><li><code class="inline">:include_verifications</code> (boolean; <code class="inline">false</code> by default) - Include verifications in the export. Only applicable when <code class="inline">grouped</code> is set to false. Only applies to <code class="inline">:csv</code> or <code class="inline">:excel</code> exports that aren't grouped.</li></ul><p>The API skips the other filters when <code class="inline">participant_ids</code> is given, and filters on a creation or update date only with both ends of the range.</p><h2 id="participant_data/3-options" class="section-heading"><a href="#participant_data/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:format</code>, <code class="inline">:filters</code> and <code class="inline">:options</code> - as above</li><li><code class="inline">:into</code> - a directory, or a file path, to stream the zip to, as for
+<a href="#download/4"><code class="inline">download/4</code></a></li><li><code class="inline">:unzip</code> - when <code class="inline">true</code>, unzips the export: into the <code class="inline">:into</code>
+directory (a file path given as <code class="inline">:into</code> becomes a directory of that
+name), or in memory. The struct's <code class="inline">:files</code> lists what was in it.</li><li><code class="inline">:timeout</code> - how long to wait for the export, queuing included, in
+milliseconds or <code class="inline">:infinity</code>; 15 minutes by default</li><li><code class="inline">:poll_interval</code> - the first wait before checking on the export,
+see <a href="#await/4"><code class="inline">await/4</code></a></li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a> for the download. A format, filter
+or option the export doesn't take raises <a href="https://elixir.hexdocs.pm/ArgumentError.html"><code class="inline">ArgumentError</code></a> before anything
+is sent.</p>
+  </section>
+</section>
+<section class="detail" id="queries/3">
+
+    <span id="queries/2"></span>
+
+  <div class="detail-header">
+    <a href="#queries/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">queries(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L205" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> queries(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>The study's queries.</p><p>Queues the export, waits until it's ready and downloads it. Without
+<code class="inline">:into</code>, the zip comes back in memory, in <code class="inline">:data</code>.</p><p>Formats: <code class="inline">:csv</code>, <code class="inline">:excel</code> (<code class="inline">:csv</code> by default).</p><p>Filters:</p><ul><li><code class="inline">:created_between_end</code> (a <a href="https://elixir.hexdocs.pm/Date.html"><code class="inline">Date</code></a>, a <a href="https://elixir.hexdocs.pm/NaiveDateTime.html"><code class="inline">NaiveDateTime</code></a> in the server's time or a <a href="https://elixir.hexdocs.pm/DateTime.html"><code class="inline">DateTime</code></a>, to the minute; see <a href="CastorEDC.html#time_zone/1"><code class="inline">CastorEDC.time_zone/1</code></a>)</li><li><code class="inline">:created_between_start</code> (a <a href="https://elixir.hexdocs.pm/Date.html"><code class="inline">Date</code></a>, a <a href="https://elixir.hexdocs.pm/NaiveDateTime.html"><code class="inline">NaiveDateTime</code></a> in the server's time or a <a href="https://elixir.hexdocs.pm/DateTime.html"><code class="inline">DateTime</code></a>, to the minute; see <a href="CastorEDC.html#time_zone/1"><code class="inline">CastorEDC.time_zone/1</code></a>)</li><li><code class="inline">:days_in_current_status_from</code> (integer)</li><li><code class="inline">:days_in_current_status_to</code> (integer)</li><li><code class="inline">:days_since_opened_from</code> (integer)</li><li><code class="inline">:days_since_opened_to</code> (integer)</li><li><code class="inline">:elements</code> (a keyword list of <code class="inline">:repeating_data</code>, <code class="inline">:visit_forms</code>, <code class="inline">:visits</code>, each a list of IDs)</li><li><code class="inline">:statuses</code> (a list of values from <code class="inline">:new</code>, <code class="inline">:open</code>, <code class="inline">:closed</code>, <code class="inline">:confirmed</code>, <code class="inline">:unconfirmed</code>, <code class="inline">:resolved</code>)</li><li><code class="inline">:updated_by</code> (a list of strings)</li></ul><p>Options: none.</p><p><code class="inline">elements</code> takes one kind of element at a time.</p><h2 id="queries/3-options" class="section-heading"><a href="#queries/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:format</code>, <code class="inline">:filters</code> and <code class="inline">:options</code> - as above</li><li><code class="inline">:into</code> - a directory, or a file path, to stream the zip to, as for
+<a href="#download/4"><code class="inline">download/4</code></a></li><li><code class="inline">:unzip</code> - when <code class="inline">true</code>, unzips the export: into the <code class="inline">:into</code>
+directory (a file path given as <code class="inline">:into</code> becomes a directory of that
+name), or in memory. The struct's <code class="inline">:files</code> lists what was in it.</li><li><code class="inline">:timeout</code> - how long to wait for the export, queuing included, in
+milliseconds or <code class="inline">:infinity</code>; 15 minutes by default</li><li><code class="inline">:poll_interval</code> - the first wait before checking on the export,
+see <a href="#await/4"><code class="inline">await/4</code></a></li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a> for the download. A format, filter
+or option the export doesn't take raises <a href="https://elixir.hexdocs.pm/ArgumentError.html"><code class="inline">ArgumentError</code></a> before anything
+is sent.</p>
+  </section>
+</section>
+<section class="detail" id="queue/4">
+
+    <span id="queue/3"></span>
+
+  <div class="detail-header">
+    <a href="#queue/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">queue(client, study_id, requests, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L313" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> queue(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), [{<a href="#t:type/0">type</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()}], <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, [<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()]} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Queues exports, returning their IDs in the order of <code class="inline">requests</code>.</p><p><code class="inline">requests</code> is a list of <code class="inline">{type, opts}</code> tuples, all sent in one request:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="group-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="group-2">[</span><span class="n">data_id</span><span class="p">,</span><span class="w"> </span><span class="n">sites_id</span><span class="p" data-group-id="group-2">]</span><span class="p" data-group-id="group-1">}</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="nc">CastorEDC.Export</span><span class="o">.</span><span class="n">queue</span><span class="p" data-group-id="group-3">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="group-4">[</span><span class="w">
+    </span><span class="p" data-group-id="group-5">{</span><span class="ss">:participant_data</span><span class="p">,</span><span class="w"> </span><span class="ss">format</span><span class="p">:</span><span class="w"> </span><span class="ss">:spss</span><span class="p">,</span><span class="w"> </span><span class="ss">filters</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="group-6">[</span><span class="ss">site_ids</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="group-7">[</span><span class="n">site_id</span><span class="p" data-group-id="group-7">]</span><span class="p" data-group-id="group-6">]</span><span class="p" data-group-id="group-5">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="group-8">{</span><span class="ss">:sites</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="group-9">[</span><span class="p" data-group-id="group-9">]</span><span class="p" data-group-id="group-8">}</span><span class="w">
+  </span><span class="p" data-group-id="group-4">]</span><span class="p" data-group-id="group-3">)</span></code></pre><p>Each export takes these options:</p><ul><li><code class="inline">:format</code> - one of the type's formats, by default its first</li><li><code class="inline">:filters</code> and <code class="inline">:options</code> - keyword lists of the type's filters and
+options. Values are given as Elixir values: lists, booleans, integers,
+<a href="https://elixir.hexdocs.pm/Date.html"><code class="inline">Date</code></a>s (and <a href="https://elixir.hexdocs.pm/NaiveDateTime.html"><code class="inline">NaiveDateTime</code></a>s where the API takes a time too), and
+atoms for values from a fixed set, such as
+<code class="inline">display_options_as: :names</code> or <code class="inline">element_type: :visit</code>.</li></ul><p>A type, format, filter or option the API doesn't support, or a value of
+the wrong kind, raises <a href="https://elixir.hexdocs.pm/ArgumentError.html"><code class="inline">ArgumentError</code></a>.</p><h2 id="queue/4-options" class="section-heading"><a href="#queue/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:timeout</code> - how long to wait for a free slot when three exports are
+already running (see <a href="#module-concurrent-exports">Concurrent exports</a>),
+in milliseconds or <code class="inline">:infinity</code>; 15 minutes by default</li></ul>
+  </section>
+</section>
+<section class="detail" id="sites/3">
+
+    <span id="sites/2"></span>
+
+  <div class="detail-header">
+    <a href="#sites/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">sites(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L205" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> sites(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>The study's sites.</p><p>Queues the export, waits until it's ready and downloads it. Without
+<code class="inline">:into</code>, the zip comes back in memory, in <code class="inline">:data</code>.</p><p>Formats: <code class="inline">:csv</code> (<code class="inline">:csv</code> by default).</p><p>Filters: none.</p><p>Options: none.</p><h2 id="sites/3-options" class="section-heading"><a href="#sites/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:format</code>, <code class="inline">:filters</code> and <code class="inline">:options</code> - as above</li><li><code class="inline">:into</code> - a directory, or a file path, to stream the zip to, as for
+<a href="#download/4"><code class="inline">download/4</code></a></li><li><code class="inline">:unzip</code> - when <code class="inline">true</code>, unzips the export: into the <code class="inline">:into</code>
+directory (a file path given as <code class="inline">:into</code> becomes a directory of that
+name), or in memory. The struct's <code class="inline">:files</code> lists what was in it.</li><li><code class="inline">:timeout</code> - how long to wait for the export, queuing included, in
+milliseconds or <code class="inline">:infinity</code>; 15 minutes by default</li><li><code class="inline">:poll_interval</code> - the first wait before checking on the export,
+see <a href="#await/4"><code class="inline">await/4</code></a></li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a> for the download. A format, filter
+or option the export doesn't take raises <a href="https://elixir.hexdocs.pm/ArgumentError.html"><code class="inline">ArgumentError</code></a> before anything
+is sent.</p>
+  </section>
+</section>
+<section class="detail" id="status/3">
+
+  <div class="detail-header">
+    <a href="#status/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">status(client, study_id, export_id)</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L526" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> status(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>The current state of an export.</p><p>There's no endpoint for a single export, so this pages through the
+study's export list, newest first, until it finds <code class="inline">export_id</code>. An ID that
+isn't in the list returns an error with code <code class="inline">:export_not_found</code>. That
+includes an export queued a moment ago: it takes the API a few hundred
+milliseconds to list it.</p>
+  </section>
+</section>
+<section class="detail" id="survey_compliance/3">
+
+    <span id="survey_compliance/2"></span>
+
+  <div class="detail-header">
+    <a href="#survey_compliance/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">survey_compliance(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L205" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> survey_compliance(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Participants' compliance with their survey packages.</p><p>Queues the export, waits until it's ready and downloads it. Without
+<code class="inline">:into</code>, the zip comes back in memory, in <code class="inline">:data</code>.</p><p>Formats: <code class="inline">:csv</code>, <code class="inline">:excel</code> (<code class="inline">:csv</code> by default).</p><p>Filters:</p><ul><li><code class="inline">:availability_end</code> (a <a href="https://elixir.hexdocs.pm/Date.html"><code class="inline">Date</code></a>, a <a href="https://elixir.hexdocs.pm/NaiveDateTime.html"><code class="inline">NaiveDateTime</code></a> in the server's time or a <a href="https://elixir.hexdocs.pm/DateTime.html"><code class="inline">DateTime</code></a>, to the minute; see <a href="CastorEDC.html#time_zone/1"><code class="inline">CastorEDC.time_zone/1</code></a>)</li><li><code class="inline">:availability_start</code> (a <a href="https://elixir.hexdocs.pm/Date.html"><code class="inline">Date</code></a>, a <a href="https://elixir.hexdocs.pm/NaiveDateTime.html"><code class="inline">NaiveDateTime</code></a> in the server's time or a <a href="https://elixir.hexdocs.pm/DateTime.html"><code class="inline">DateTime</code></a>, to the minute; see <a href="CastorEDC.html#time_zone/1"><code class="inline">CastorEDC.time_zone/1</code></a>)</li><li><code class="inline">:compliance_operator</code> (one of <code class="inline">:&gt;</code>, <code class="inline">:&lt;</code>, <code class="inline">:&gt;=</code>, <code class="inline">:&lt;=</code>, <code class="inline">:=</code>)</li><li><code class="inline">:compliance_value</code> (integer)</li><li><code class="inline">:mobile</code> (boolean)</li><li><code class="inline">:parent_id</code> (string)</li><li><code class="inline">:parent_type</code> (one of <code class="inline">:empty</code>, <code class="inline">:visit</code>, <code class="inline">:repeating_data</code>)</li><li><code class="inline">:participant_ids</code> (a list of strings)</li><li><code class="inline">:survey_package_ids</code> (a list of strings)</li><li><code class="inline">:survey_package_status</code> (a list of values from <code class="inline">:created</code>, <code class="inline">:completed</code>, <code class="inline">:failed</code>, <code class="inline">:in_progress</code>, <code class="inline">:locked</code>, <code class="inline">:received</code>, <code class="inline">:sent</code>, <code class="inline">:viewed</code>)</li></ul><p>Options: none.</p><h2 id="survey_compliance/3-options" class="section-heading"><a href="#survey_compliance/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:format</code>, <code class="inline">:filters</code> and <code class="inline">:options</code> - as above</li><li><code class="inline">:into</code> - a directory, or a file path, to stream the zip to, as for
+<a href="#download/4"><code class="inline">download/4</code></a></li><li><code class="inline">:unzip</code> - when <code class="inline">true</code>, unzips the export: into the <code class="inline">:into</code>
+directory (a file path given as <code class="inline">:into</code> becomes a directory of that
+name), or in memory. The struct's <code class="inline">:files</code> lists what was in it.</li><li><code class="inline">:timeout</code> - how long to wait for the export, queuing included, in
+milliseconds or <code class="inline">:infinity</code>; 15 minutes by default</li><li><code class="inline">:poll_interval</code> - the first wait before checking on the export,
+see <a href="#await/4"><code class="inline">await/4</code></a></li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a> for the download. A format, filter
+or option the export doesn't take raises <a href="https://elixir.hexdocs.pm/ArgumentError.html"><code class="inline">ArgumentError</code></a> before anything
+is sent.</p>
+  </section>
+</section>
+<section class="detail" id="uploaded_files/3">
+
+    <span id="uploaded_files/2"></span>
+
+  <div class="detail-header">
+    <a href="#uploaded_files/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">uploaded_files(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L205" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> uploaded_files(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>The files uploaded to the study's upload fields.</p><p>Queues the export, waits until it's ready and downloads it. Without
+<code class="inline">:into</code>, the zip comes back in memory, in <code class="inline">:data</code>.</p><p>Formats: <code class="inline">:zip</code> (<code class="inline">:zip</code> by default).</p><p>Filters:</p><ul><li><code class="inline">:participant_ids</code> (a list of strings)</li></ul><p>Options: none.</p><h2 id="uploaded_files/3-options" class="section-heading"><a href="#uploaded_files/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:format</code>, <code class="inline">:filters</code> and <code class="inline">:options</code> - as above</li><li><code class="inline">:into</code> - a directory, or a file path, to stream the zip to, as for
+<a href="#download/4"><code class="inline">download/4</code></a></li><li><code class="inline">:unzip</code> - when <code class="inline">true</code>, unzips the export: into the <code class="inline">:into</code>
+directory (a file path given as <code class="inline">:into</code> becomes a directory of that
+name), or in memory. The struct's <code class="inline">:files</code> lists what was in it.</li><li><code class="inline">:timeout</code> - how long to wait for the export, queuing included, in
+milliseconds or <code class="inline">:infinity</code>; 15 minutes by default</li><li><code class="inline">:poll_interval</code> - the first wait before checking on the export,
+see <a href="#await/4"><code class="inline">await/4</code></a></li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a> for the download. A format, filter
+or option the export doesn't take raises <a href="https://elixir.hexdocs.pm/ArgumentError.html"><code class="inline">ArgumentError</code></a> before anything
+is sent.</p>
+  </section>
+</section>
+<section class="detail" id="validations/3">
+
+    <span id="validations/2"></span>
+
+  <div class="detail-header">
+    <a href="#validations/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">validations(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/export.ex#L205" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> validations(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>The validation messages entered data triggered.</p><p>Queues the export, waits until it's ready and downloads it. Without
+<code class="inline">:into</code>, the zip comes back in memory, in <code class="inline">:data</code>.</p><p>Formats: <code class="inline">:csv</code>, <code class="inline">:excel</code> (<code class="inline">:csv</code> by default).</p><p>Filters:</p><ul><li><code class="inline">:form_collection_types</code> (a list of strings)</li><li><code class="inline">:participant_id</code> (a list of strings)</li><li><code class="inline">:sites</code> (a list of strings)</li><li><code class="inline">:triggered_after</code> (a <a href="https://elixir.hexdocs.pm/Date.html"><code class="inline">Date</code></a>)</li><li><code class="inline">:triggered_before</code> (a <a href="https://elixir.hexdocs.pm/Date.html"><code class="inline">Date</code></a>)</li><li><code class="inline">:validation_statuses</code> (a list of strings)</li><li><code class="inline">:validation_types</code> (a list of strings)</li></ul><p>Options: none.</p><h2 id="validations/3-options" class="section-heading"><a href="#validations/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:format</code>, <code class="inline">:filters</code> and <code class="inline">:options</code> - as above</li><li><code class="inline">:into</code> - a directory, or a file path, to stream the zip to, as for
+<a href="#download/4"><code class="inline">download/4</code></a></li><li><code class="inline">:unzip</code> - when <code class="inline">true</code>, unzips the export: into the <code class="inline">:into</code>
+directory (a file path given as <code class="inline">:into</code> becomes a directory of that
+name), or in memory. The struct's <code class="inline">:files</code> lists what was in it.</li><li><code class="inline">:timeout</code> - how long to wait for the export, queuing included, in
+milliseconds or <code class="inline">:infinity</code>; 15 minutes by default</li><li><code class="inline">:poll_interval</code> - the first wait before checking on the export,
+see <a href="#await/4"><code class="inline">await/4</code></a></li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a> for the download. A format, filter
+or option the export doesn't take raises <a href="https://elixir.hexdocs.pm/ArgumentError.html"><code class="inline">ArgumentError</code></a> before anything
+is sent.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

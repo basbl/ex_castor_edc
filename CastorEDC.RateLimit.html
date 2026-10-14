@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>CastorEDC.RateLimit — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">CastorEDC.<wbr />RateLimit</span> 
+      <small class="app-vsn" translate="no">(ExCastorEDC v1.0.0-rc.1)</small>
+
+    </h1>
+
+<a href="CastorEDC.RateLimit.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/rate_limit.ex#L1" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>Keeps track of the API's rate limits.</p><p>The API limits requests per user and per route, in fixed windows of ten
+minutes: 6,000 requests per route on data.castoredc.com, and fewer on
+some other servers. A route is a resource, so listing participants and
+fetching one draw from the same allowance. Every response says how much
+is left in these headers:</p><ul><li><code class="inline">X-RateLimit-Limit</code> - requests allowed in the window</li><li><code class="inline">X-RateLimit-Remaining</code> - requests left in it</li><li><code class="inline">X-RateLimit-Retry-After</code> - when the window resets, as a Unix
+timestamp (not a number of seconds, as <code class="inline">Retry-After</code> would be)</li></ul><p>The client records them for every route it uses, per server and
+credentials.</p><p>Before a request, the client checks its route. When the last response
+said nothing is left and the window hasn't reset yet, it waits for the
+reset (plus up to a quarter of a second, so waiting processes don't all
+fire at once) instead of sending a request the API would refuse. Each
+wait emits a <code class="inline">[:castor_edc, :rate_limit, :wait]</code> telemetry event, with
+the wait in milliseconds as <code class="inline">:duration</code> and the <code class="inline">:bucket</code> and <code class="inline">:base_url</code>
+as metadata.</p><p>When the API answers 429 anyway (other processes or machines may share
+the allowance), the client waits until the window resets (plus the same
+jitter) and sends the request again, at most three times, as long as the
+wait is within
+<code class="inline">:max_rate_limit_wait</code> (60 seconds by default). A 429 whose headers say
+requests remain isn't about the rate limit (batch exports answer one when
+too many run at once), and is returned as is. A 429 is refused before
+anything happens, so this is safe for any request. With
+<code class="inline">rate_limit: :error</code>, or when the wait would be longer, the client doesn't
+wait: a request it knows would be refused isn't sent and returns a
+<a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a> with <code class="inline">code: :rate_limited</code>, and a 429 is returned as
+is; either way the error's <code class="inline">retry_after</code> says how many seconds are left.
+Both options are given to <a href="CastorEDC.html#new/1"><code class="inline">CastorEDC.new/1</code></a>.</p><p>The client only knows what this node has seen. Several nodes sharing
+credentials still get the 429 handling.</p>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-types summary">
+  <h3>
+    <a href="#types">Types</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:t/0" data-no-tooltip="" translate="no">t()</a>
+
+      </div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h3>
+    <a href="#functions">Functions</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#bucket/1" data-no-tooltip="" translate="no">bucket(route)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The bucket an operation's requests count against: its path template
+without a trailing parameter, so a collection and its items share one.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#parse/1" data-no-tooltip="" translate="no">parse(headers)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Reads the rate limit headers of a response, or returns <code class="inline">nil</code> when it has
+none.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h2>
+
+    <div class="types-list">
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">t()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/rate_limit.ex#L50" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> t() :: %{
+  limit: <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">non_neg_integer</a>() | nil,
+  remaining: <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">non_neg_integer</a>() | nil,
+  reset_at: <a href="https://elixir.hexdocs.pm/DateTime.html#t:t/0">DateTime.t</a>() | nil
+}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h2>
+
+    <div class="functions-list">
+<section class="detail" id="bucket/1">
+
+  <div class="detail-header">
+    <a href="#bucket/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">bucket(route)</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/rate_limit.ex#L238" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> bucket(<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()) :: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()</pre>
+
+      </div>
+
+<p>The bucket an operation's requests count against: its path template
+without a trailing parameter, so a collection and its items share one.</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">CastorEDC.RateLimit</span><span class="o">.</span><span class="n">bucket</span><span class="p" data-group-id="group-1">(</span><span class="s">&quot;/api/study/{study_id}/field/{field_id}&quot;</span><span class="p" data-group-id="group-1">)</span><span class="w">
+</span><span class="s">&quot;/api/study/{study_id}/field&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">CastorEDC.RateLimit</span><span class="o">.</span><span class="n">bucket</span><span class="p" data-group-id="group-2">(</span><span class="s">&quot;/api/study/{study_id}/field&quot;</span><span class="p" data-group-id="group-2">)</span><span class="w">
+</span><span class="s">&quot;/api/study/{study_id}/field&quot;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="parse/1">
+
+  <div class="detail-header">
+    <a href="#parse/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">parse(headers)</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/rate_limit.ex#L57" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> parse(<a href="https://req.hexdocs.pm/0.7.5/Req.Response.html#t:t/0">Req.Response.t</a>() | %{optional(<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()) =&gt; [<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()]}) :: <a href="#t:t/0">t</a>() | nil</pre>
+
+      </div>
+
+<p>Reads the rate limit headers of a response, or returns <code class="inline">nil</code> when it has
+none.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

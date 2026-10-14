@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>CastorEDC.Surveys — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">CastorEDC.<wbr />Surveys</span> 
+      <small class="app-vsn" translate="no">(ExCastorEDC v1.0.0-rc.1)</small>
+
+    </h1>
+
+<a href="CastorEDC.Surveys.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L4" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>Surveys, their forms and packages, the instances sent to participants, and survey compliance.</p><h2 id="module-operations" class="section-heading"><a href="#module-operations" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Operations</span></h2><ul><li><a href="#create_survey_package_instance/4"><code class="inline">create_survey_package_instance/4</code></a> - Creates a SurveyPackageInstance and (optionally) send the email invite directly.</li><li><a href="#get_survey/4"><code class="inline">get_survey/4</code></a> - Retrieve a single Survey</li><li><a href="#get_survey_form/5"><code class="inline">get_survey_form/5</code></a> - Retrieve a single SurveyForm</li><li><a href="#get_survey_package/4"><code class="inline">get_survey_package/4</code></a> - Retrieve a single Survey Package</li><li><a href="#get_survey_package_instance/4"><code class="inline">get_survey_package_instance/4</code></a> - Retrieve a single Survey Package Instance</li><li><a href="#list_survey_compliance/3"><code class="inline">list_survey_compliance/3</code></a> - Retrieve participant survey compliance information</li><li><a href="#list_survey_forms/4"><code class="inline">list_survey_forms/4</code></a> - Retrieve list of available SurveyForms of a specific Survey</li><li><a href="#list_survey_package_instances/3"><code class="inline">list_survey_package_instances/3</code></a> - Retrieve list of available SurveyPackageInstances</li><li><a href="#list_survey_packages/3"><code class="inline">list_survey_packages/3</code></a> - Retrieve list of available Survey Packages</li><li><a href="#list_surveys/3"><code class="inline">list_surveys/3</code></a> - Retrieve list of available Surveys</li><li><a href="#update_survey_package_instance/5"><code class="inline">update_survey_package_instance/5</code></a> - Updates a SurveyPackageInstance. Can be used to lock/unlock or mark as sent.</li></ul><p>Every operation returns <code class="inline">{:ok, result}</code> or <code class="inline">{:error, %CastorEDC.Error{}}</code>,
+and has a <code class="inline">!</code> variant that returns the result or raises the error.</p>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-functions summary">
+  <h3>
+    <a href="#functions">Functions</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_survey_package_instance/4" data-no-tooltip="" translate="no">create_survey_package_instance(client, study_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Creates a SurveyPackageInstance and (optionally) send the email invite directly.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_survey_package_instance!/4" data-no-tooltip="" translate="no">create_survey_package_instance!(client, study_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#create_survey_package_instance/4"><code class="inline">create_survey_package_instance/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_survey/4" data-no-tooltip="" translate="no">get_survey(client, study_id, survey_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve a single Survey.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_survey!/4" data-no-tooltip="" translate="no">get_survey!(client, study_id, survey_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#get_survey/4"><code class="inline">get_survey/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_survey_form/5" data-no-tooltip="" translate="no">get_survey_form(client, study_id, survey_id, survey_form_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve a single SurveyForm.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_survey_form!/5" data-no-tooltip="" translate="no">get_survey_form!(client, study_id, survey_id, survey_form_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#get_survey_form/5"><code class="inline">get_survey_form/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_survey_package/4" data-no-tooltip="" translate="no">get_survey_package(client, study_id, survey_package_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve a single Survey Package.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_survey_package!/4" data-no-tooltip="" translate="no">get_survey_package!(client, study_id, survey_package_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#get_survey_package/4"><code class="inline">get_survey_package/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_survey_package_instance/4" data-no-tooltip="" translate="no">get_survey_package_instance(client, study_id, survey_package_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve a single Survey Package Instance.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_survey_package_instance!/4" data-no-tooltip="" translate="no">get_survey_package_instance!(client, study_id, survey_package_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#get_survey_package_instance/4"><code class="inline">get_survey_package_instance/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_compliance/3" data-no-tooltip="" translate="no">list_survey_compliance(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve participant survey compliance information.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_compliance!/3" data-no-tooltip="" translate="no">list_survey_compliance!(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_survey_compliance/3"><code class="inline">list_survey_compliance/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_forms/4" data-no-tooltip="" translate="no">list_survey_forms(client, study_id, survey_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve list of available SurveyForms of a specific Survey.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_forms!/4" data-no-tooltip="" translate="no">list_survey_forms!(client, study_id, survey_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_survey_forms/4"><code class="inline">list_survey_forms/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_package_instances/3" data-no-tooltip="" translate="no">list_survey_package_instances(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve list of available SurveyPackageInstances.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_package_instances!/3" data-no-tooltip="" translate="no">list_survey_package_instances!(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_survey_package_instances/3"><code class="inline">list_survey_package_instances/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_packages/3" data-no-tooltip="" translate="no">list_survey_packages(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve list of available Survey Packages.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_packages!/3" data-no-tooltip="" translate="no">list_survey_packages!(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_survey_packages/3"><code class="inline">list_survey_packages/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_surveys/3" data-no-tooltip="" translate="no">list_surveys(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve list of available Surveys.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_surveys!/3" data-no-tooltip="" translate="no">list_surveys!(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_surveys/3"><code class="inline">list_surveys/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_survey_compliance/3" data-no-tooltip="" translate="no">stream_survey_compliance(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_survey_compliance/3"><code class="inline">list_survey_compliance/3</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_survey_forms/4" data-no-tooltip="" translate="no">stream_survey_forms(client, study_id, survey_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_survey_forms/4"><code class="inline">list_survey_forms/4</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_survey_package_instances/3" data-no-tooltip="" translate="no">stream_survey_package_instances(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_survey_package_instances/3"><code class="inline">list_survey_package_instances/3</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_survey_packages/3" data-no-tooltip="" translate="no">stream_survey_packages(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_survey_packages/3"><code class="inline">list_survey_packages/3</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_surveys/3" data-no-tooltip="" translate="no">stream_surveys(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_surveys/3"><code class="inline">list_surveys/3</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#update_survey_package_instance/5" data-no-tooltip="" translate="no">update_survey_package_instance(client, study_id, survey_package_instance_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Updates a SurveyPackageInstance. Can be used to lock/unlock or mark as sent.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#update_survey_package_instance!/5" data-no-tooltip="" translate="no">update_survey_package_instance!(client, study_id, survey_package_instance_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#update_survey_package_instance/5"><code class="inline">update_survey_package_instance/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h2>
+
+    <div class="functions-list">
+<section class="detail" id="create_survey_package_instance/4">
+
+    <span id="create_survey_package_instance/3"></span>
+
+  <div class="detail-header">
+    <a href="#create_survey_package_instance/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_survey_package_instance(client, study_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L60" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_survey_package_instance(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Model.SurveyPackageInstance.html#t:t/0">CastorEDC.Model.SurveyPackageInstance.t</a>()}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Creates a SurveyPackageInstance and (optionally) send the email invite directly.</p><p>Creates an instantiation of a SurveyPackage for a specific Record.</p><p>Sends <code class="inline">POST /api/study/{study_id}/survey-package-instance</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey/post_study__study_id__survey_package_instance">API reference</a></p><h2 id="create_survey_package_instance/4-arguments" class="section-heading"><a href="#create_survey_package_instance/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study to retrieve survey package instances for</li><li><code class="inline">body</code> - a map, sent as JSON: SurveyPackageInstance details to create the object.<ul><li><code class="inline">ccr_patient_id</code> (string, required) - The CCR Patient identifier of the Participant to create this SurveyPackageInstance for. Should exist already. Cannot be combined with participant_id. One of &quot;participant_id&quot; or &quot;ccr_patient_id&quot; is required.</li><li><code class="inline">participant_id</code> (string, required) - The identifier of the Participant to create this SurveyPackageInstance for. Should exist already. Cannot be combined with ccr_patient_id. One of &quot;participant_id&quot; or &quot;ccr_patient_id&quot; is required.</li><li><code class="inline">survey_package_id</code> (string, required) - The identifier of the SurveyPackage that should be instantiated in this SurveyPackageInstance.</li><li><code class="inline">auto_lock_on_finish</code> (boolean) - Whether the SurveyPackageInstance should be automatically locked when the survey respondent clicks the finish button at the end of data entry .</li><li><code class="inline">available_from</code> (string) - UTC date and time when the Survey Package Instance should be scheduled. The provided value is converted to server time during creation. Web surveys are scheduled based on <strong>date</strong>, while mobile surveys use <strong>date and time</strong>. If <code class="inline">available_from</code> is in the past or today, the survey is sent immediately. If in the future, it will be scheduled accordingly. If left empty, the Survey Package Instance will be created but not scheduled.</li><li><code class="inline">email_address</code> (string) - The email address this SurveyPackageInstance will be sent to. If no email_address is provided in the request the system will try to use the Participant's stored email address. The email address is stored encrypted.</li><li><code class="inline">package_invitation</code> (string) - The contents of the invitation message that will be sent. If left empty will inherit the default contents from the SurveyPackage. Must contain a {url} tag that will be replaced with survey_url_string when sending the email. If sending a mobile Survey, it's recommended to reuse the default SurveyPackage invitation message or include the app store tags ({castorconnect-apple-store-link} and {castorconnect-google-store-link}) and the activation QR code tag ({CC-activation-QR}).</li><li><code class="inline">package_invitation_subject</code> (string) - The subject of the invitation message that will be sent. If left empty will inherit the default subject of the SurveyPackage .</li><li><code class="inline">parent_id</code> (string) - The UUID of the parent instance.</li><li><code class="inline">parent_type</code> (string) - 0: No parent. 1: The survey belongs to a visit. 2: The survey belongs to a repeating data instance.</li></ul></li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="create_survey_package_instance!/4">
+
+    <span id="create_survey_package_instance!/3"></span>
+
+  <div class="detail-header">
+    <a href="#create_survey_package_instance!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_survey_package_instance!(client, study_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L68" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_survey_package_instance!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="CastorEDC.Model.SurveyPackageInstance.html#t:t/0">CastorEDC.Model.SurveyPackageInstance.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#create_survey_package_instance/4"><code class="inline">create_survey_package_instance/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_survey/4">
+
+    <span id="get_survey/3"></span>
+
+  <div class="detail-header">
+    <a href="#get_survey/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_survey(client, study_id, survey_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L90" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_survey(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Model.Survey.html#t:t/0">CastorEDC.Model.Survey.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve a single Survey.</p><p>Sends <code class="inline">GET /api/study/{study_id}/survey/{survey_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey/get_study__study_id__survey__survey_id_">API reference</a></p><h2 id="get_survey/4-arguments" class="section-heading"><a href="#get_survey/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">survey_id</code> - The ID of the survey for which this call should be made</li></ul><h2 id="get_survey/4-options" class="section-heading"><a href="#get_survey/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:include</code> (list of string, sent comma-separated) - Adds the option of including survey forms in the query. Use like: ?include=forms</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_survey!/4">
+
+    <span id="get_survey!/3"></span>
+
+  <div class="detail-header">
+    <a href="#get_survey!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_survey!(client, study_id, survey_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L98" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_survey!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Model.Survey.html#t:t/0">CastorEDC.Model.Survey.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#get_survey/4"><code class="inline">get_survey/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_survey_form/5">
+
+    <span id="get_survey_form/4"></span>
+
+  <div class="detail-header">
+    <a href="#get_survey_form/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_survey_form(client, study_id, survey_id, survey_form_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L117" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_survey_form(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Model.SurveyForm.html#t:t/0">CastorEDC.Model.SurveyForm.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve a single SurveyForm.</p><p>Sends <code class="inline">GET /api/study/{study_id}/survey/{survey_id}/survey-form/{survey_form_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey-form/get_study__study_id__survey__survey_id__survey_form__survey_form_id_">API reference</a></p><h2 id="get_survey_form/5-arguments" class="section-heading"><a href="#get_survey_form/5-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">survey_id</code> - The ID of the survey for which this call should be made</li><li><code class="inline">survey_form_id</code> - ID of the SurveyForm to fetch</li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_survey_form!/5">
+
+    <span id="get_survey_form!/4"></span>
+
+  <div class="detail-header">
+    <a href="#get_survey_form!/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_survey_form!(client, study_id, survey_id, survey_form_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L132" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_survey_form!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="CastorEDC.Model.SurveyForm.html#t:t/0">CastorEDC.Model.SurveyForm.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#get_survey_form/5"><code class="inline">get_survey_form/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_survey_package/4">
+
+    <span id="get_survey_package/3"></span>
+
+  <div class="detail-header">
+    <a href="#get_survey_package/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_survey_package(client, study_id, survey_package_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L161" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_survey_package(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Model.SurveyPackage.html#t:t/0">CastorEDC.Model.SurveyPackage.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve a single Survey Package.</p><p>Sends <code class="inline">GET /api/study/{study_id}/survey-package/{survey_package_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey/get_study__study_id__survey_package__survey_package_id_">API reference</a></p><h2 id="get_survey_package/4-arguments" class="section-heading"><a href="#get_survey_package/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">survey_package_id</code> - Survey Package ID of the Survey Package to fetch</li></ul><h2 id="get_survey_package/4-options" class="section-heading"><a href="#get_survey_package/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:include</code> (list of string, sent comma-separated) - Adds the option of including fields in the query. Use like: ?include=fields</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_survey_package!/4">
+
+    <span id="get_survey_package!/3"></span>
+
+  <div class="detail-header">
+    <a href="#get_survey_package!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_survey_package!(client, study_id, survey_package_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L172" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_survey_package!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Model.SurveyPackage.html#t:t/0">CastorEDC.Model.SurveyPackage.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#get_survey_package/4"><code class="inline">get_survey_package/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_survey_package_instance/4">
+
+    <span id="get_survey_package_instance/3"></span>
+
+  <div class="detail-header">
+    <a href="#get_survey_package_instance/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_survey_package_instance(client, study_id, survey_package_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L193" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_survey_package_instance(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Model.SurveyPackageInstance.html#t:t/0">CastorEDC.Model.SurveyPackageInstance.t</a>()}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve a single Survey Package Instance.</p><p>Sends <code class="inline">GET /api/study/{study_id}/survey-package-instance/{survey_package_instance_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey/get_study__study_id__survey_package_instance__survey_package_instance_id_">API reference</a></p><h2 id="get_survey_package_instance/4-arguments" class="section-heading"><a href="#get_survey_package_instance/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">survey_package_instance_id</code> - Survey Package Instance ID of the Survey Package Instance to fetch</li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_survey_package_instance!/4">
+
+    <span id="get_survey_package_instance!/3"></span>
+
+  <div class="detail-header">
+    <a href="#get_survey_package_instance!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_survey_package_instance!(client, study_id, survey_package_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L208" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_survey_package_instance!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="CastorEDC.Model.SurveyPackageInstance.html#t:t/0">CastorEDC.Model.SurveyPackageInstance.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#get_survey_package_instance/4"><code class="inline">get_survey_package_instance/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_compliance/3">
+
+    <span id="list_survey_compliance/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_compliance/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_compliance(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L255" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_compliance(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.Compliance.html#t:t/0">CastorEDC.Model.Compliance.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve participant survey compliance information.</p><p>Retrieves participant survey compliance. Result is based on the site permissions of the API user.</p><p>Sends <code class="inline">POST /api/study/{study_id}/compliance</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey/post_study__study_id__compliance">API reference</a></p><h2 id="list_survey_compliance/3-arguments" class="section-heading"><a href="#list_survey_compliance/3-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li></ul><h2 id="list_survey_compliance/3-options" class="section-heading"><a href="#list_survey_compliance/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve</li><li><code class="inline">:page_size</code> (integer) - The size of pages</li><li><code class="inline">:sort</code> (string) - The field to sort on, the default is <code class="inline">participantId</code>. All available ones are: siteName, participantId, participantStatus, compliance, totalSurveys, completedSurveys</li><li><code class="inline">:dir</code> (string) - Sorting direction of the results ASC or DESC, defaults to ASC</li><li><code class="inline">:participant_ids</code> (list of string) - Returns compliance result filtered on given participants.</li><li><code class="inline">:availability_start</code> (string) - Returns all surveys available for completion between availabilityStart and availabilityEnd dates. Supported format Y-m-d H:i:s</li><li><code class="inline">:availability_end</code> (string) - Returns all surveys available for completion between availabilityStart and availabilityEnd dates Supported format Y-m-d H:i:s</li><li><code class="inline">:site_ids</code> (list of string) - Returns compliance result filtered on given sites.</li><li><code class="inline">:participant_statuses</code> (list of string) - Returns compliance result filtered on given participant statuses.</li><li><code class="inline">:survey_package_ids</code> (list of string) - Returns compliance result filtered on given survey packages.</li><li><code class="inline">:survey_package_statuses</code> (list of string) - Returns compliance result filtered on survey package status. Available ones are: Created, Completed, Failed, In Progress, Locked, Received, Sent, Viewed</li><li><code class="inline">:mobile</code> (boolean) - Filter on mobile surveys. Requires mobile surveys to be enabled on the study.</li><li><code class="inline">:compliance</code> (integer) - Compliance percentage to filter on, integer between 0 and 100. Requires complianceOption to be set.</li><li><code class="inline">:compliance_option</code> (string, one of <code class="inline">=</code>, <code class="inline">&gt;</code>, <code class="inline">&lt;</code>, <code class="inline">&lt;=</code>, <code class="inline">&gt;=</code>) - Logical operator to be combined with &quot;compliance&quot; parameter.</li><li><code class="inline">:parent_id</code> (string) - UUID of the visit or repeating data survey parent. Requires the &quot;parentType&quot; parameter.</li><li><code class="inline">:parent_type</code> (string, one of <code class="inline">0</code>, <code class="inline">1</code>, <code class="inline">2</code>) - 0: No parent. 1: Surveys belongs to a visit. 2: The surveys belongs to a repeating data instance.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.Compliance.html#t:t/0"><code class="inline">CastorEDC.Model.Compliance.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_compliance!/3">
+
+    <span id="list_survey_compliance!/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_compliance!/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_compliance!(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L263" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_compliance!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.Compliance.html#t:t/0">CastorEDC.Model.Compliance.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_survey_compliance/3"><code class="inline">list_survey_compliance/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_forms/4">
+
+    <span id="list_survey_forms/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_forms/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_forms(client, study_id, survey_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L307" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_forms(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.SurveyForm.html#t:t/0">CastorEDC.Model.SurveyForm.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve list of available SurveyForms of a specific Survey.</p><p>Gets <code class="inline">SurveyForm</code> objects, which are Forms that are collected only once per survey.
+SurveyForms are placed in a Survey and contain Fields.</p><p>Sends <code class="inline">GET /api/study/{study_id}/survey/{survey_id}/survey-form</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey-form/get_study__study_id__survey__survey_id__survey_form">API reference</a></p><h2 id="list_survey_forms/4-arguments" class="section-heading"><a href="#list_survey_forms/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">survey_id</code> - The ID of the survey for which this call should be made</li></ul><h2 id="list_survey_forms/4-options" class="section-heading"><a href="#list_survey_forms/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">1000</code>; a larger one is lowered to it) - The number of records per page.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.SurveyForm.html#t:t/0"><code class="inline">CastorEDC.Model.SurveyForm.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_forms!/4">
+
+    <span id="list_survey_forms!/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_forms!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_forms!(client, study_id, survey_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L315" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_forms!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.SurveyForm.html#t:t/0">CastorEDC.Model.SurveyForm.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_survey_forms/4"><code class="inline">list_survey_forms/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_package_instances/3">
+
+    <span id="list_survey_package_instances/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_package_instances/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_package_instances(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L376" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_package_instances(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.SurveyPackageInstance.html#t:t/0">CastorEDC.Model.SurveyPackageInstance.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve list of available SurveyPackageInstances.</p><p>Gets <code class="inline">SurveyPackageInstance</code> objects, which are 'instantiations' of SurveyPackages.
+The SurveyPackageInstance (SPI) is the entity to which the data gets saved, for which email invitations are sent, etc.</p><p>Sends <code class="inline">GET /api/study/{study_id}/survey-package-instance</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey/get_study__study_id__survey_package_instance">API reference</a></p><h2 id="list_survey_package_instances/3-arguments" class="section-heading"><a href="#list_survey_package_instances/3-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li></ul><h2 id="list_survey_package_instances/3-options" class="section-heading"><a href="#list_survey_package_instances/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">1000</code>; a larger one is lowered to it) - The size of pages</li><li><code class="inline">:participant_id</code> (string) - Filter survey package invitations based on participant id. Cannot be combined with &quot;ccr_patient_id&quot;</li><li><code class="inline">:ccr_patient_id</code> (string) - Filter survey package invitations based on CCR patient id. Cannot be combined with &quot;participant_id&quot;</li><li><code class="inline">:sort</code> (string) - The field to sort on, the default is <code class="inline">createdOn</code>. All available ones are: availableFrom, progress, createdOn, updatedOn, sentOn, locked, archived, record_id, siteName, survey_package_name, status, finishedOn, startedOn, isMobile, expiresOn</li><li><code class="inline">:dir</code> (string) - Sorting direction of the results ASC or DESC, defaults to ASC</li><li><code class="inline">:available_from_start</code> (string) - Filter on survey <code class="inline">available_from</code> field based on a date range. Requires available_from_end. Supported format Y-m-d H:i:s</li><li><code class="inline">:available_from_end</code> (string) - Filter on survey <code class="inline">available_from</code> field based on a date range. Requires available_from_start. Supported format Y-m-d H:i:s</li><li><code class="inline">:available</code> (boolean) - If the survey is available based on the current server datetime.</li><li><code class="inline">:archived</code> (boolean) - Filter on surveys that have been archived.</li><li><code class="inline">:repeatable</code> (boolean) - Filter on surveys that have been generated from a repeatable survey.</li><li><code class="inline">:training</code> (boolean) - Filter on surveys belonging to a training configured survey package.</li><li><code class="inline">:status</code> (string) - Status to filter on - available ones are: Created, Completed, Failed, In Progress, Locked, Received, Sent, Viewed</li><li><code class="inline">:availability_window_start</code> (string) - Filter to return surveys that were available for completion within the given time period. Requires availability_window_end. Supported format Y-m-d H:i:s</li><li><code class="inline">:availability_window_end</code> (string) - Filter to return surveys that were available for completion within the given time period. Requires availability_window_start. Supported format Y-m-d H:i:s</li><li><code class="inline">:finished_on</code> (string) - Filter survey package invitations based on finished date. Multiple modifiers can be applied. Supported formats: 2021-03-20, 2021-03-20 12:34:56, 2021-03-20T12:34:56Z</li><li><code class="inline">:finished_after</code> (string) - Filter survey package invitations that has finished date greater than provided.</li><li><code class="inline">:finished_on_or_after</code> (string) - Filter survey package invitations that has finished date greater or equal to provided.</li><li><code class="inline">:finished_before</code> (string) - Filter survey package invitations that has finished date lower than provided.</li><li><code class="inline">:finished_on_or_before</code> (string) - Filter survey package invitations that has finished date lower or equal to provided.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.SurveyPackageInstance.html#t:t/0"><code class="inline">CastorEDC.Model.SurveyPackageInstance.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_package_instances!/3">
+
+    <span id="list_survey_package_instances!/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_package_instances!/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_package_instances!(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L385" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_package_instances!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.SurveyPackageInstance.html#t:t/0">CastorEDC.Model.SurveyPackageInstance.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_survey_package_instances/3"><code class="inline">list_survey_package_instances/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_packages/3">
+
+    <span id="list_survey_packages/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_packages/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_packages(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L430" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_packages(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.SurveyPackage.html#t:t/0">CastorEDC.Model.SurveyPackage.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve list of available Survey Packages.</p><p>Gets <code class="inline">SurveyPackage</code> objects. A Survey Package is a collection of 1 or more Surveys.
+SurveyPackages get instantiated through SurveyPackageInstances, which are the objects
+to which datapoints really get stored.</p><p>Sends <code class="inline">GET /api/study/{study_id}/survey-package</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey/get_study__study_id__survey_package">API reference</a></p><h2 id="list_survey_packages/3-arguments" class="section-heading"><a href="#list_survey_packages/3-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li></ul><h2 id="list_survey_packages/3-options" class="section-heading"><a href="#list_survey_packages/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">1000</code>; a larger one is lowered to it) - The number of records per page.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.SurveyPackage.html#t:t/0"><code class="inline">CastorEDC.Model.SurveyPackage.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_packages!/3">
+
+    <span id="list_survey_packages!/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_packages!/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_packages!(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L438" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_packages!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.SurveyPackage.html#t:t/0">CastorEDC.Model.SurveyPackage.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_survey_packages/3"><code class="inline">list_survey_packages/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_surveys/3">
+
+    <span id="list_surveys/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_surveys/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_surveys(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L482" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_surveys(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.Survey.html#t:t/0">CastorEDC.Model.Survey.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve list of available Surveys.</p><p>Gets <code class="inline">Survey</code> objects. Surveys consist of Survey Forms. Multiple surveys can be combined in
+Survey Packages, which are being sent to respondents using Survey Package Instances.</p><p>Sends <code class="inline">GET /api/study/{study_id}/survey</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey/get_study__study_id__survey">API reference</a></p><h2 id="list_surveys/3-arguments" class="section-heading"><a href="#list_surveys/3-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li></ul><h2 id="list_surveys/3-options" class="section-heading"><a href="#list_surveys/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve</li><li><code class="inline">:include</code> (list of string, sent comma-separated) - Adds the option of including survey forms in the query. Use like: ?include=forms</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">1000</code>; a larger one is lowered to it) - The number of records per page.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.Survey.html#t:t/0"><code class="inline">CastorEDC.Model.Survey.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_surveys!/3">
+
+    <span id="list_surveys!/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_surveys!/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_surveys!(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L490" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_surveys!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.Survey.html#t:t/0">CastorEDC.Model.Survey.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_surveys/3"><code class="inline">list_surveys/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_survey_compliance/3">
+
+    <span id="stream_survey_compliance/2"></span>
+
+  <div class="detail-header">
+    <a href="#stream_survey_compliance/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_survey_compliance(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L275" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_survey_compliance(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.Compliance.html#t:t/0">CastorEDC.Model.Compliance.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_survey_compliance/3"><code class="inline">list_survey_compliance/3</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, in the API's default page size unless <code class="inline">:page_size</code> says
+otherwise; see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_survey_forms/4">
+
+    <span id="stream_survey_forms/3"></span>
+
+  <div class="detail-header">
+    <a href="#stream_survey_forms/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_survey_forms(client, study_id, survey_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L327" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_survey_forms(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.SurveyForm.html#t:t/0">CastorEDC.Model.SurveyForm.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_survey_forms/4"><code class="inline">list_survey_forms/4</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_survey_package_instances/3">
+
+    <span id="stream_survey_package_instances/2"></span>
+
+  <div class="detail-header">
+    <a href="#stream_survey_package_instances/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_survey_package_instances(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L398" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_survey_package_instances(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.SurveyPackageInstance.html#t:t/0">CastorEDC.Model.SurveyPackageInstance.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_survey_package_instances/3"><code class="inline">list_survey_package_instances/3</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_survey_packages/3">
+
+    <span id="stream_survey_packages/2"></span>
+
+  <div class="detail-header">
+    <a href="#stream_survey_packages/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_survey_packages(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L450" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_survey_packages(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.SurveyPackage.html#t:t/0">CastorEDC.Model.SurveyPackage.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_survey_packages/3"><code class="inline">list_survey_packages/3</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_surveys/3">
+
+    <span id="stream_surveys/2"></span>
+
+  <div class="detail-header">
+    <a href="#stream_surveys/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_surveys(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L502" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_surveys(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.Survey.html#t:t/0">CastorEDC.Model.Survey.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_surveys/3"><code class="inline">list_surveys/3</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="update_survey_package_instance/5">
+
+    <span id="update_survey_package_instance/4"></span>
+
+  <div class="detail-header">
+    <a href="#update_survey_package_instance/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">update_survey_package_instance(client, study_id, survey_package_instance_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L542" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> update_survey_package_instance(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Model.SurveyPackageInstance.html#t:t/0">CastorEDC.Model.SurveyPackageInstance.t</a>()}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Updates a SurveyPackageInstance. Can be used to lock/unlock or mark as sent.</p><p>The endpoint allows updating <strong>either</strong> the <code class="inline">locked</code> status or the <code class="inline">sent_on</code> datetime of a SurveyPackageInstance.</p><p>⚠️ These options are <strong>mutually exclusive</strong>—only one operation is allowed per request.</p><h3 id="update_survey_package_instance/5-locking-unlocking" class="section-heading"><a href="#update_survey_package_instance/5-locking-unlocking" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Locking/Unlocking</span></h3><ul><li>Accepts a <code class="inline">boolean</code> (<code class="inline">true</code> or <code class="inline">false</code>).</li><li>Used to <strong>lock or unlock</strong> a SurveyPackageInstance.</li></ul><h3 id="update_survey_package_instance/5-marking-as-sent" class="section-heading"><a href="#update_survey_package_instance/5-marking-as-sent" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Marking as sent</span></h3><ul><li>Accepts a <strong>past</strong> date in <strong>UTC format</strong> (<code class="inline">YYYY-MM-DD HH:MM:SS</code>).</li><li>Only applicable for unsent SurveyPackageInstances in the <code class="inline">Created</code> status.</li><li>Updating <code class="inline">sent_on</code> will:<ul><li>Set <strong>both</strong> <code class="inline">available_from</code> and <code class="inline">sent_on</code> to the submitted date.</li><li>Update the SurveyPackageInstance status to <code class="inline">Sent</code>.</li></ul></li></ul><p>Sends <code class="inline">PATCH /api/study/{study_id}/survey-package-instance/{survey_package_instance_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey/patch_study__study_id__survey_package_instance__survey_package_instance_id_">API reference</a></p><h2 id="update_survey_package_instance/5-arguments" class="section-heading"><a href="#update_survey_package_instance/5-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">survey_package_instance_id</code> - The ID of the SurveyPackageInstance to update.</li><li><code class="inline">body</code> - a map, sent as JSON: SurveyPackageInstance details to patch the object.<ul><li><code class="inline">locked</code> (boolean) - Set to true to lock or false to unlock the SurveyPackageInstance. Cannot be combined with &quot;status&quot;.</li><li><code class="inline">sent_on</code> (string) - The UTC date and time when the survey has been sent. Cannot be combined with &quot;locked&quot;.</li></ul></li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="update_survey_package_instance!/5">
+
+    <span id="update_survey_package_instance!/4"></span>
+
+  <div class="detail-header">
+    <a href="#update_survey_package_instance!/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">update_survey_package_instance!(client, study_id, survey_package_instance_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/surveys.ex#L559" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> update_survey_package_instance!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="CastorEDC.Model.SurveyPackageInstance.html#t:t/0">CastorEDC.Model.SurveyPackageInstance.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#update_survey_package_instance/5"><code class="inline">update_survey_package_instance/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

@@ -1,203 +1,205 @@
 # Using the Castor EDC API
 
 ```elixir
-# ## Fix for the free tier of Fly.io livebook
-# ## Allocate 2GB swap
-# System.cmd("fallocate", ["-l", "2G", "/swap"])
-# System.cmd("chmod", ["400", "/swap"])
-# System.cmd("mkswap", ["/swap"])
-# System.cmd("swapon", ["/swap"])
+# The published version, or the checkout CASTOR_EDC_PATH names.
+castor_edc =
+  case System.get_env("CASTOR_EDC_PATH") do
+    nil -> {:ex_castor_edc, "~> 1.0.0-rc.1"}
+    path -> {:ex_castor_edc, path: path}
+  end
 
 Mix.install([
-  {:ex_castor_edc, "~> 0.4.0"},
-  {:kino, "~> 0.6.1"}
+  castor_edc,
+  {:kino, "~> 0.19"}
 ])
 ```
 
 ## Introduction
 
-This notebook serves as an introduction on how to use the API wrapper. It's not meant to be an exhaustive guide.
+This notebook introduces the library. It isn't an exhaustive guide: the documentation lists every operation.
 
-## Authentication
+## Connecting
 
-Before we can start making requests to the API we need to have a `client_id` and a `client_secret`. You can get this information from the [account settings page](https://data.castoredc.com/account/settings).
-
-Enter your `client_id` and `client_secret` in the form below after evaluating the code-block.
+You need a client ID and a client secret, which you can create on your [account settings page](https://data.castoredc.com/account/settings).
+Enter them below, together with the region your studies are in, after evaluating the code block.
 
 ```elixir
-endpoints = [
-  {"https://data.castoredc.com/", "NL"},
-  {"https://uk.castoredc.com/", "UK"},
-  {"https://us.castoredc.com/", "US"},
-  {"https://au.castoredc.com/", "AU"}
+regions = [
+  {"https://data.castoredc.com", "NL"},
+  {"https://uk.castoredc.com", "UK"},
+  {"https://us.castoredc.com", "US"},
+  {"https://au.castoredc.com", "AU"}
 ]
 
-endpoint = Kino.Input.select("Region", endpoints) |> Kino.render()
-client_id = Kino.Input.text("Client Id") |> Kino.render()
-client_secret = Kino.Input.password("Client Secret") |> Kino.render()
+region = Kino.Input.select("Region", regions) |> Kino.render()
+client_id = Kino.Input.text("Client ID") |> Kino.render()
+client_secret = Kino.Input.password("Client secret") |> Kino.render()
 
 Kino.nothing()
 ```
 
-Next we need to exchange your `client_id` and `client_secret` for an access token. The access token can then be used to make other requests to the API.
+`CastorEDC.new/1` builds a client from them.
+It doesn't contact the API yet: the client fetches an access token with the first request, and renews it when it expires.
 
 ```elixir
 client =
-  CastorEDC.Client.new(
-    %{
-      client_id: Kino.Input.read(client_id),
-      client_secret: Kino.Input.read(client_secret)
-    },
-    endpoint: Kino.Input.read(endpoint)
+  CastorEDC.new(
+    client_id: Kino.Input.read(client_id),
+    client_secret: Kino.Input.read(client_secret),
+    base_url: Kino.Input.read(region)
   )
-
-{:ok, client} =
-  client
-  |> CastorEDC.authenticate()
-
-client
 ```
 
-## Performing authenticated API requests
+## Making requests
 
-Let's start at the beginning and fetch all of the studies that you have access to with your account.
+Every operation takes the client first and returns `{:ok, result}` or `{:error, %CastorEDC.Error{}}`.
+Each also has a `!` variant that returns the result directly and raises the error instead, which keeps a notebook short.
 
-All function calls return a 3 element tuple. The first element is the http status code, the second element is the decoded response from the API, and the last element is the raw response that came back from the server.
-
-We'll make extensive use of pattern-matching to collect that the data that we're interested in, while ignoring the rest.
-
-Most API calls support pagination but we'll mostly focus on the first page of the results. If you want to fetch the second page it's possible to pass the page number as a keyword option e.g. `page: 2`
+Collections come back as a `CastorEDC.Page`, with the records in `entries`.
+Let's list the studies your credentials have access to.
 
 ```elixir
-{200, %{"_embedded" => %{"study" => studies}}, _} = CastorEDC.Common.Studies.list(client)
+%CastorEDC.Page{entries: studies} = CastorEDC.Studies.list_studies!(client)
 
 studies
 ```
 
-Now that we have a list of all the studies we'll need to pick one to dig deeper into with further API requests.
+Responses are decoded into structs, such as `CastorEDC.Model.Study` here.
+Pick a study to look into.
 
 ```elixir
-studies =
+study_options =
   studies
-  |> Enum.map(&{&1["study_id"], &1["name"]})
-  |> Enum.sort(fn {_, a}, {_, b} -> a <= b end)
+  |> Enum.map(&{&1.study_id, &1.name})
+  |> Enum.sort_by(&elem(&1, 1))
 
-study_id = Kino.Input.select("Select a study", studies)
+study_input = Kino.Input.select("Study", study_options)
 ```
 
-Let's read the chosen study into an easily accessible variable that we can reuse with other requests.
-
 ```elixir
-study_id = Kino.Input.read(study_id)
+study_id = Kino.Input.read(study_input)
 ```
 
 ## Sites
 
-With a study id in our hands we can start digging, let's start with finding out which sites the study is being conducted at!
-
-You'll get the option to also run write calls against the API. Make sure that you've chosen a test site as to not put data where it doesn't belong.
+A study is conducted at one or more sites.
+Choose a test site: some of the requests below write data, and that data shouldn't end up where it doesn't belong.
 
 ```elixir
-{200, %{"_embedded" => %{"sites" => sites}}, _} = CastorEDC.Common.Sites.list(client, study_id)
+site_options =
+  client
+  |> CastorEDC.Sites.list_sites!(study_id)
+  |> Map.fetch!(:entries)
+  |> Enum.reject(& &1.deleted)
+  |> Enum.map(&{&1.id, &1.name})
 
-sites =
-  sites
-  |> Enum.filter(&(&1["deleted"] == false))
-  |> Enum.map(&{&1["id"], &1["name"]})
-
-site_id = Kino.Input.select("Choose your test site", sites)
+site_input = Kino.Input.select("Test site", site_options)
 ```
 
 ```elixir
-site_id = Kino.Input.read(site_id)
+site_id = Kino.Input.read(site_input)
 ```
-
-<!-- livebook:{"branch_parent_index":3} -->
 
 ## Participants
 
-The `CastorEDC.Participants` module is our gateway into fetching information about our participants. We can either fetch entire lists or fetch specific ones. With the `create` function we can even directly create new ones in our study.
-
-Let's start with fetching the first 10.
+`CastorEDC.Participants` lists, reads and creates participants.
+Options such as `page_size` are passed as a keyword list.
 
 ```elixir
-{200, %{"_embedded" => %{"participants" => participants}}, _} =
-  CastorEDC.DataCollection.Participants.list(client, study_id, page_size: 10)
+%CastorEDC.Page{entries: participants, total_items: total} =
+  CastorEDC.Participants.list_participants!(client, study_id, page_size: 10)
+
+IO.puts("#{length(participants)} of #{total} participants")
 
 participants
 ```
 
-As you can see we now have a list of all the participants enrolled in the the study. Let's take the first one from the list and find out more about it.
+A single participant has more detail, such as their site.
 
 ```elixir
-[%{"id" => participant_id} | _] = participants
+[first | _rest] = participants
 
-{200, participant, _} =
-  CastorEDC.DataCollection.Participants.find(client, study_id, participant_id)
-
-participant
+CastorEDC.Participants.get_participant!(client, study_id, first.participant_id)
 ```
 
-It's also possible to create new Participants via the API allowing for the enrollment of participants through external systems.
+You can also enrol participants through the API.
 
-**Before you evaluate the code-block below double-check the selected site, you also need participant creation permission for the given site.**
+**Before you evaluate the code block below, double-check the selected site: you need permission to create participants there.**
 
 ```elixir
-{201, new_participant, _} =
-  CastorEDC.DataCollection.Participants.create(client, study_id, %{site_id: site_id})
-
-new_participant
+CastorEDC.Participants.create_participant!(client, study_id, %{"site_id" => site_id})
 ```
 
 <!-- livebook:{"branch_parent_index":2} -->
 
-## Study Structure
+## Study structure
 
-It's also possible to fetch the elements
+A study's visits group its forms, and its forms hold its fields.
 
 ```elixir
-{200, %{"_embedded" => %{"visits" => visits}}, _} =
-  CastorEDC.StudyProtocol.Visits.list(client, study_id)
-
-visits
-|> Enum.sort(&(&1["phase_order"] <= &2["phase_order"]))
+client
+|> CastorEDC.Forms.stream_visits(study_id)
+|> Enum.sort_by(& &1.visit_order)
 ```
 
 ```elixir
-{200, %{"_embedded" => %{"forms" => forms}}, _} =
-  CastorEDC.StudyProtocol.Forms.list(client, study_id)
-
-forms
-|> Enum.sort(&(&1["step_order"] <= &2["step_order"]))
+client
+|> CastorEDC.Forms.stream_forms(study_id)
+|> Enum.sort_by(& &1.form_order)
 ```
 
-```elixir
-{200, %{"_embedded" => %{"fields" => fields}}, _} =
-  CastorEDC.StudyProtocol.Fields.list(client, study_id)
+Functions starting with `stream_` walk every page of a collection, fetching pages only as the stream is consumed.
+Here they fetch all fields, including the option groups of radio, dropdown and checkbox fields.
 
-fields
+```elixir
+fields =
+  client
+  |> CastorEDC.Fields.stream_fields(study_id, include: "optiongroup")
+  |> Enum.to_list()
+
+Enum.frequencies_by(fields, & &1.field_type)
 ```
 
 <!-- livebook:{"branch_parent_index":2} -->
 
-## Collected Data
+## Collected data
 
-## Study Data
-
-Fetching your study data is easy. Remember that this API call is paginated, so you'll need to make multiple API calls to actually get everything.
-
-As an example we'll only fetch the first 10 data points on page 1.
+The study's data points are a paged collection too.
+Values arrive as strings, whatever the field's type.
 
 ```elixir
-{200, %{"_embedded" => %{"items" => study_data_points}}, _} =
-  CastorEDC.DataCollection.DataPoints.StudyDataPointCollection.list(client, study_id,
-    page: 1,
-    page_size: 10
-  )
-
-study_data_points
+client
+|> CastorEDC.DataPoints.stream_study_data_points(study_id)
+|> Enum.take(10)
 ```
+
+To fetch only some fields, pass their IDs, such as those of the first three numeric fields:
+
+```elixir
+field_ids =
+  client
+  |> CastorEDC.Fields.stream_fields(study_id)
+  |> Stream.filter(&(&1.field_type == "numeric"))
+  |> Enum.take(3)
+  |> Enum.map(& &1.id)
+
+client
+|> CastorEDC.DataPoints.stream_study_data_points(study_id, field_ids: field_ids)
+|> Enum.take(10)
+```
+
+## Errors
+
+A request the API refuses returns a `CastorEDC.Error` with the status, a message and, when the API gives them, an error code and a request ID that Castor support can trace.
+
+```elixir
+CastorEDC.Participants.get_participant(client, study_id, "no-such-participant")
+```
+
+The client stays within the API's rate limits by itself: when a route's allowance is used up, it waits for the window to reset.
+Pass `rate_limit: :error` to `CastorEDC.new/1` to get an error instead.
 
 ## Wrapping up
 
-I hope that this notebook has given you a taste of how the library works. The documentation lists all of the available endpoints that you can use.
+This notebook gave a taste of how the library works.
+The documentation lists every operation, grouped by module: `CastorEDC.Participants`, `CastorEDC.DataPoints`, `CastorEDC.Surveys` and the rest.

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>Changelog — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-extra" id="main" data-type="extras">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>Changelog</h1>
+
+<a href="changelog.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/CHANGELOG.md#L1" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+<p>All notable changes to this project are documented in this file.</p><p>The format is based on <a rel="nofollow" href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>, and this project adheres to <a rel="nofollow" href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p><h2 id="1-0-0-rc-1-unreleased" class="section-heading"><a href="#1-0-0-rc-1-unreleased" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text"><a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1" title="">1.0.0-rc.1</a> - Unreleased</span></h2><p>A rewrite on <a href="https://hexdocs.pm/req">Req</a>, with a function for every operation of the API; see the migration guide.</p><h3 id="added" class="section-heading"><a href="#added" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Added</span></h3><ul><li>Modules for the API's 92 operations, generated from its corrected spec (<a href="CastorEDC.Participants.html"><code class="inline">CastorEDC.Participants</code></a>, <a href="CastorEDC.DataPoints.html"><code class="inline">CastorEDC.DataPoints</code></a> and 16 more), with structs for their responses under <a href="CastorEDC.Model.html"><code class="inline">CastorEDC.Model</code></a>.
+Paged collections also have <code class="inline">stream_</code> functions.
+The API's times without a zone decode to <a href="https://elixir.hexdocs.pm/NaiveDateTime.html"><code class="inline">NaiveDateTime</code></a>s in the server's time.</li><li><a href="CastorEDC.html#new/1"><code class="inline">CastorEDC.new/1</code></a> builds a client from API credentials and a server, given as options, in the application environment or in environment variables (<code class="inline">CASTOR_EDC_CLIENT_ID</code>, <code class="inline">CASTOR_EDC_CLIENT_SECRET</code>, <code class="inline">CASTOR_EDC_BASE_URL</code>).
+Requests go over HTTP/2; <code class="inline">connect_options: [protocols: [:http1]]</code> switches back.
+A client's inspect output hides its client secret.</li><li>Clients built from client credentials fetch, cache and renew access tokens themselves, and retry once with a new token on a 401.</li><li><a href="CastorEDC.html#time_zone/1"><code class="inline">CastorEDC.time_zone/1</code></a>, the time zone of a client's server, which the API's times without a zone are local to.
+The public servers' zones are built in; the <code class="inline">:time_zone</code> option (or <code class="inline">CASTOR_EDC_TIME_ZONE</code>) sets it for a private server.</li><li>The client stays within the API's rate limits: when a route's allowance is used up it waits for the window to reset, and a request that still gets a 429 is sent again after the reset.
+<code class="inline">rate_limit: :error</code> returns an error instead of waiting, and <code class="inline">:max_rate_limit_wait</code> caps the wait.</li><li><a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a> describes a failed request, whichever kind of error body the API sent, with the <code class="inline">request_id</code> Castor support can trace.</li><li>Bulk writes (data points, sites and repeating data instances) return what was <code class="inline">saved</code> and what <code class="inline">failed</code>, as the API answers 201 even when some fail; their <code class="inline">!</code> variants raise a <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a> with <code class="inline">code: :not_saved</code> when anything failed.
+The repeating data, survey and survey package instance writes fill in the <code class="inline">instance_id</code> each value needs from the instance in the path.</li><li>Uploading a file as a data point's value: <code class="inline">create_study_data_point</code>, <code class="inline">create_survey_data_point</code> and <code class="inline">create_repeating_data_data_point</code> take <code class="inline">&quot;upload_file&quot; =&gt; {file name, contents}</code> (or a <a href="https://elixir.hexdocs.pm/File.Stream.html"><code class="inline">File.Stream</code></a>) in the body, sent as multipart form data.</li><li><a href="CastorEDC.Export.html"><code class="inline">CastorEDC.Export</code></a> runs batch exports in one call per type (<code class="inline">participant_data/3</code>, <code class="inline">sites/3</code> and nine more): it checks the format, filters and options, queues the export, waits until it is ready and downloads it, in memory or to disk, unzipped if asked.
+While three exports are running it waits for a slot.
+The steps are public too, and each emits telemetry.</li><li><a href="CastorEDC.FieldValue.html#decode/2"><code class="inline">CastorEDC.FieldValue.decode/2</code></a> turns the strings the API sends as data point values into Elixir values by field type, with <a href="CastorEDC.MissingValue.html"><code class="inline">CastorEDC.MissingValue</code></a> for values marked missing and <a href="CastorEDC.PartialDate.html"><code class="inline">CastorEDC.PartialDate</code></a> for dates with unknown parts.
+Grids decode cell by cell by the grid's layout, and uploads, locations and encrypted values decode too.
+<a href="CastorEDC.FieldValue.html#label/2"><code class="inline">CastorEDC.FieldValue.label/2</code></a> gives the names of chosen options.</li><li><a href="CastorEDC.Tabular.html#schema/2"><code class="inline">CastorEDC.Tabular.schema/2</code></a> describes a study's fields for tables, and <a href="CastorEDC.Tabular.html#data_points/3"><code class="inline">CastorEDC.Tabular.data_points/3</code></a> streams every value the study collected, decoded, one row per value, or with <code class="inline">format: :wide</code> one row per participant or instance with a column per variable.</li><li><a href="CastorEDC.Test.html"><code class="inline">CastorEDC.Test</code></a> builds clients whose responses a test writes, for testing code that uses the library without a network.</li><li>A guide to migrating from 0.4, and a Livebook notebook to get started.</li></ul><h3 id="changed" class="section-heading"><a href="#changed" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Changed</span></h3><ul><li><strong>Breaking:</strong> <code class="inline">CastorEDC.authenticate/1</code> and <code class="inline">CastorEDC.Legacy.Client</code> are gone, and with them Tesla and Hackney: build a client with <a href="CastorEDC.html#new/1"><code class="inline">CastorEDC.new/1</code></a>, which fetches and renews tokens itself.</li><li><strong>Breaking:</strong> the remaining modules under <code class="inline">CastorEDC.DataCollection</code> are replaced by generated ones: <code class="inline">Queries</code> by <a href="CastorEDC.Queries.html"><code class="inline">CastorEDC.Queries</code></a> (<code class="inline">list_queries</code>, <code class="inline">get_query</code>), <code class="inline">RepeatingDataInstances</code> by <a href="CastorEDC.RepeatingData.html"><code class="inline">CastorEDC.RepeatingData</code></a> (<code class="inline">list_repeating_data_instances</code>, <code class="inline">get_repeating_data_instance</code>), <code class="inline">Statistics.find</code> by <a href="CastorEDC.Studies.html#get_study_statistics/3"><code class="inline">CastorEDC.Studies.get_study_statistics/3</code></a>, <code class="inline">SurveyPackageInstances</code> by <a href="CastorEDC.Surveys.html"><code class="inline">CastorEDC.Surveys</code></a> (<code class="inline">list_survey_package_instances</code>, <code class="inline">get_survey_package_instance</code>, <code class="inline">create_survey_package_instance</code>, <code class="inline">update_survey_package_instance</code>), and <code class="inline">Verifications</code> by <a href="CastorEDC.Verifications.html#list_verifications/3"><code class="inline">CastorEDC.Verifications.list_verifications/3</code></a>.</li><li><strong>Breaking:</strong> the data point modules under <code class="inline">CastorEDC.DataCollection.DataEntry</code> and <code class="inline">CastorEDC.DataCollection.DataPoints</code> are replaced by <a href="CastorEDC.DataPoints.html"><code class="inline">CastorEDC.DataPoints</code></a>: single data points by <code class="inline">get_study_data_point</code>, <code class="inline">create_study_data_point</code>, <code class="inline">get_survey_data_point</code>, <code class="inline">create_survey_data_point</code>, <code class="inline">get_repeating_data_data_point</code> and <code class="inline">create_repeating_data_data_point</code>; collections by <code class="inline">list_study_data_points</code>, <code class="inline">list_survey_data_points</code>, <code class="inline">list_repeating_data_data_points</code> and their per-instance and per-participant variants; bulk writes by <code class="inline">upsert_study_data_points</code> and its survey and repeating data variants, which return what was saved and what wasn't.</li><li><strong>Breaking:</strong> the participant modules under <code class="inline">CastorEDC.DataCollection</code> are replaced by generated ones: <code class="inline">Participants</code> by <a href="CastorEDC.Participants.html"><code class="inline">CastorEDC.Participants</code></a> (<code class="inline">list_participants</code>, <code class="inline">get_participant</code>, <code class="inline">create_participant</code>), <code class="inline">Participants.Progress</code> by <a href="CastorEDC.Participants.html#list_form_progress/3"><code class="inline">CastorEDC.Participants.list_form_progress/3</code></a>, <code class="inline">Participants.RepeatingDataInstances</code> by <a href="CastorEDC.RepeatingData.html"><code class="inline">CastorEDC.RepeatingData</code></a> (<code class="inline">list_participant_repeating_data_instances</code>, <code class="inline">get_participant_repeating_data_instance</code>, <code class="inline">create_repeating_data_instance</code>, <code class="inline">create_repeating_data_instances</code>), and <code class="inline">Randomization</code> by <a href="CastorEDC.Randomization.html"><code class="inline">CastorEDC.Randomization</code></a> (<code class="inline">get_randomization</code>, <code class="inline">randomize_participant</code>).
+<code class="inline">Participants.SurveyPackageInstances.patch</code> has no replacement: it needs the participant app's scope.</li><li><strong>Breaking:</strong> the modules under <code class="inline">CastorEDC.StudyProtocol</code> are replaced by generated ones: fields, field dependencies and field validations by <a href="CastorEDC.Fields.html"><code class="inline">CastorEDC.Fields</code></a> (<code class="inline">list_fields</code>, <code class="inline">get_field</code>, <code class="inline">list_field_dependencies</code>, <code class="inline">get_field_dependency</code>, <code class="inline">list_field_validations</code>, <code class="inline">get_field_validation</code>); forms and visits by <a href="CastorEDC.Forms.html"><code class="inline">CastorEDC.Forms</code></a> (<code class="inline">list_forms</code>, <code class="inline">get_form</code>, <code class="inline">list_visits</code>, <code class="inline">get_visit</code>); metadata and metadata types by <a href="CastorEDC.Metadata.html"><code class="inline">CastorEDC.Metadata</code></a>; option groups by <a href="CastorEDC.OptionGroups.html"><code class="inline">CastorEDC.OptionGroups</code></a>; repeating data and its forms by <a href="CastorEDC.RepeatingData.html"><code class="inline">CastorEDC.RepeatingData</code></a>; surveys, survey forms and survey packages by <a href="CastorEDC.Surveys.html"><code class="inline">CastorEDC.Surveys</code></a>.
+Every <code class="inline">list/2</code> becomes <code class="inline">list_&lt;things&gt;</code> and every <code class="inline">find/3</code> becomes <code class="inline">get_&lt;thing&gt;</code>.</li><li><strong>Breaking:</strong> the modules under <code class="inline">CastorEDC.Common</code> are replaced by generated ones: <code class="inline">Countries.list/1</code> and <code class="inline">find/2</code> become <a href="CastorEDC.Countries.html#list_countries/2"><code class="inline">CastorEDC.Countries.list_countries/2</code></a> and <code class="inline">get_country/3</code>; <code class="inline">Sites</code> become <code class="inline">CastorEDC.Sites.list_sites</code>, <code class="inline">get_site</code> and <code class="inline">create_site</code>; <code class="inline">Studies</code> become <code class="inline">CastorEDC.Studies.list_studies</code> and <code class="inline">get_study</code>; <code class="inline">Studies.Roles</code> become <code class="inline">CastorEDC.Roles.list_roles</code>, <code class="inline">get_role</code> and <code class="inline">create_role</code>; <code class="inline">Studies.Users</code> become <code class="inline">CastorEDC.StudyUsers.list_study_users</code> and <code class="inline">get_study_user</code>; <code class="inline">Users</code> become <code class="inline">CastorEDC.Users.list_users</code> and <code class="inline">get_user</code>.</li><li><strong>Breaking:</strong> Elixir 1.20 or later is required.</li><li>Dependencies are updated to their latest compatible versions, so the library builds on OTP 29.</li><li>JSON is encoded and decoded with Elixir's built-in <a href="https://elixir.hexdocs.pm/JSON.html"><code class="inline">JSON</code></a> module; the library no longer depends on Jason.</li></ul><h2 id="0-4-1-2023-04-30" class="section-heading"><a href="#0-4-1-2023-04-30" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text"><a href="https://hex.pm/packages/ex_castor_edc/0.4.1" title="">0.4.1</a> - 2023-04-30</span></h2><h3 id="fixed" class="section-heading"><a href="#fixed" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Fixed</span></h3><ul><li>Renames missed in 0.4.0.</li></ul><h2 id="0-4-0-2023-04-26" class="section-heading"><a href="#0-4-0-2023-04-26" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text"><a href="https://hex.pm/packages/ex_castor_edc/0.4.0" title="">0.4.0</a> - 2023-04-26</span></h2><h3 id="changed-1" class="section-heading"><a href="#changed-1" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Changed</span></h3><ul><li><strong>Breaking:</strong> module and function names follow the terminology of the Castor EDC API.</li></ul><h2 id="0-3-0-2022-08-25" class="section-heading"><a href="#0-3-0-2022-08-25" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text"><a href="https://hex.pm/packages/ex_castor_edc/0.3.0" title="">0.3.0</a> - 2022-08-25</span></h2><h3 id="added-1" class="section-heading"><a href="#added-1" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Added</span></h3><ul><li><code class="inline">CastorEDC.Client.new/2</code> accepts either client credentials or an existing access token.</li><li>The HTTP adapter is configurable, so clients other than Hackney can be used.</li><li>The user agent is configurable.</li></ul><h3 id="changed-2" class="section-heading"><a href="#changed-2" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Changed</span></h3><ul><li><strong>Breaking:</strong> errors return <code class="inline">{:error, reason}</code> instead of raising.</li><li><strong>Breaking:</strong> the endpoint is an option rather than an optional argument.</li><li><strong>Breaking:</strong> the <code class="inline">timeout</code> option is renamed to <code class="inline">global_timeout</code>.</li></ul><h2 id="0-2-0-2022-05-27" class="section-heading"><a href="#0-2-0-2022-05-27" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text"><a href="https://hex.pm/packages/ex_castor_edc/0.2.0" title="">0.2.0</a> - 2022-05-27</span></h2><h3 id="added-2" class="section-heading"><a href="#added-2" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Added</span></h3><ul><li>Report instance and survey package instance endpoints.</li><li>Creating and updating data point collections.</li><li>File uploads when creating a single data point.</li></ul><h3 id="changed-3" class="section-heading"><a href="#changed-3" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Changed</span></h3><ul><li><strong>Breaking:</strong> HTTP requests use Tesla instead of HTTPoison.</li></ul><h2 id="0-1-0-2022-05-18" class="section-heading"><a href="#0-1-0-2022-05-18" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text"><a href="https://hex.pm/packages/ex_castor_edc/0.1.0" title="">0.1.0</a> - 2022-05-18</span></h2><ul><li>Initial release.</li></ul>
+
+</div>
+
+<div class="bottom-actions" id="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="migrating-to-1-0.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+Migrating from 0.4 to 1.0
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+  </div>
+</div>
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+                (<a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1/show/CHANGELOG.md">current file</a>)
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

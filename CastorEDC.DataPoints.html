@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>CastorEDC.DataPoints — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">CastorEDC.<wbr />DataPoints</span> 
+      <small class="app-vsn" translate="no">(ExCastorEDC v1.0.0-rc.1)</small>
+
+    </h1>
+
+<a href="CastorEDC.DataPoints.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L4" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>The values collected for participants: reading them per study, per participant or per survey, repeating data or survey package instance, and writing them one at a time or in bulk. Values are strings; see CastorEDC.FieldValue for decoding them by field type.</p><h2 id="module-operations" class="section-heading"><a href="#module-operations" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Operations</span></h2><ul><li><a href="#create_repeating_data_data_point/7"><code class="inline">create_repeating_data_data_point/7</code></a> - Create a field result for a repeating data instance</li><li><a href="#create_study_data_point/6"><code class="inline">create_study_data_point/6</code></a> - Create a field result</li><li><a href="#create_survey_data_point/7"><code class="inline">create_survey_data_point/7</code></a> - Create a field result for a survey (package) instance 🔭</li><li><a href="#create_survey_package_instance_with_data_points/5"><code class="inline">create_survey_package_instance_with_data_points/5</code></a> - Create a new repeatable survey package instance and a collection of field values for it 🔭</li><li><a href="#get_repeating_data_data_point/6"><code class="inline">get_repeating_data_data_point/6</code></a> - Retrieve a single RepeatingDataInstanceFieldResult object</li><li><a href="#get_study_data_point/5"><code class="inline">get_study_data_point/5</code></a> - Retrieve a single FieldResult object</li><li><a href="#get_survey_data_point/6"><code class="inline">get_survey_data_point/6</code></a> - Retrieve a single SurveyInstanceFieldResult object 🔭</li><li><a href="#list_participant_repeating_data_data_points/4"><code class="inline">list_participant_repeating_data_data_points/4</code></a> - Retrieves a list of all repeating data data collected for this participant</li><li><a href="#list_participant_repeating_data_instance_data_points/5"><code class="inline">list_participant_repeating_data_instance_data_points/5</code></a> - Retrieves a list of all repeating data data collected for this repeating data instance</li><li><a href="#list_participant_study_data_points/4"><code class="inline">list_participant_study_data_points/4</code></a> - Retrieves a list of all study data collected for this participant</li><li><a href="#list_participant_survey_data_points/4"><code class="inline">list_participant_survey_data_points/4</code></a> - Retrieves a list of all survey data collected for this participant</li><li><a href="#list_participant_survey_instance_data_points/5"><code class="inline">list_participant_survey_instance_data_points/5</code></a> - Retrieves a list of all survey data collected for this survey instance</li><li><a href="#list_participant_survey_package_instance_data_points/5"><code class="inline">list_participant_survey_package_instance_data_points/5</code></a> - Retrieves a list of all survey data collected for this survey package instance 🔭</li><li><a href="#list_repeating_data_data_points/3"><code class="inline">list_repeating_data_data_points/3</code></a> - Retrieves a list of all repeating data data collected for all participants</li><li><a href="#list_repeating_data_instance_data_points/4"><code class="inline">list_repeating_data_instance_data_points/4</code></a> - Retrieves a list of all repeating data data collected for this repeating data instance</li><li><a href="#list_study_data_points/3"><code class="inline">list_study_data_points/3</code></a> - Retrieves a list of all study data collected for all participants</li><li><a href="#list_survey_data_points/3"><code class="inline">list_survey_data_points/3</code></a> - Retrieves a list of all survey data collected for all participants</li><li><a href="#list_survey_instance_data_points/4"><code class="inline">list_survey_instance_data_points/4</code></a> - Retrieves a list of all survey data collected for this survey instance</li><li><a href="#list_survey_package_instance_data_points/4"><code class="inline">list_survey_package_instance_data_points/4</code></a> - Retrieves a list of all survey data collected for this survey package instance</li><li><a href="#upsert_repeating_data_instance_data_points/6"><code class="inline">upsert_repeating_data_instance_data_points/6</code></a> - Create/update a collection of field values for a repeating data instance</li><li><a href="#upsert_study_data_points/5"><code class="inline">upsert_study_data_points/5</code></a> - Create/update a collection of field values for a study</li><li><a href="#upsert_survey_instance_data_points/6"><code class="inline">upsert_survey_instance_data_points/6</code></a> - Create/update a collection of field values for a survey instance</li><li><a href="#upsert_survey_package_instance_data_points/6"><code class="inline">upsert_survey_package_instance_data_points/6</code></a> - Create/update a collection of field values for a survey package instance</li></ul><p>Every operation returns <code class="inline">{:ok, result}</code> or <code class="inline">{:error, %CastorEDC.Error{}}</code>,
+and has a <code class="inline">!</code> variant that returns the result or raises the error.</p>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-functions summary">
+  <h3>
+    <a href="#functions">Functions</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_repeating_data_data_point/7" data-no-tooltip="" translate="no">create_repeating_data_data_point(client, study_id, participant_id, repeating_data_instance_id, field_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Create a field result for a repeating data instance.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_repeating_data_data_point!/7" data-no-tooltip="" translate="no">create_repeating_data_data_point!(client, study_id, participant_id, repeating_data_instance_id, field_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#create_repeating_data_data_point/7"><code class="inline">create_repeating_data_data_point/7</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_study_data_point/6" data-no-tooltip="" translate="no">create_study_data_point(client, study_id, participant_id, field_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Create a field result.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_study_data_point!/6" data-no-tooltip="" translate="no">create_study_data_point!(client, study_id, participant_id, field_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#create_study_data_point/6"><code class="inline">create_study_data_point/6</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_survey_data_point/7" data-no-tooltip="" translate="no">create_survey_data_point(client, study_id, participant_id, survey_instance_id, field_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Create a field result for a survey (package) instance 🔭.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_survey_data_point!/7" data-no-tooltip="" translate="no">create_survey_data_point!(client, study_id, participant_id, survey_instance_id, field_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#create_survey_data_point/7"><code class="inline">create_survey_data_point/7</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_survey_package_instance_with_data_points/5" data-no-tooltip="" translate="no">create_survey_package_instance_with_data_points(client, study_id, participant_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Create a new repeatable survey package instance and a collection of field values for it 🔭.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_survey_package_instance_with_data_points!/5" data-no-tooltip="" translate="no">create_survey_package_instance_with_data_points!(client, study_id, participant_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#create_survey_package_instance_with_data_points/5"><code class="inline">create_survey_package_instance_with_data_points/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_repeating_data_data_point/6" data-no-tooltip="" translate="no">get_repeating_data_data_point(client, study_id, participant_id, repeating_data_instance_id, field_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve a single RepeatingDataInstanceFieldResult object.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_repeating_data_data_point!/6" data-no-tooltip="" translate="no">get_repeating_data_data_point!(client, study_id, participant_id, repeating_data_instance_id, field_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#get_repeating_data_data_point/6"><code class="inline">get_repeating_data_data_point/6</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_study_data_point/5" data-no-tooltip="" translate="no">get_study_data_point(client, study_id, participant_id, field_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve a single FieldResult object.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_study_data_point!/5" data-no-tooltip="" translate="no">get_study_data_point!(client, study_id, participant_id, field_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#get_study_data_point/5"><code class="inline">get_study_data_point/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_survey_data_point/6" data-no-tooltip="" translate="no">get_survey_data_point(client, study_id, participant_id, survey_instance_id, field_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve a single SurveyInstanceFieldResult object 🔭.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_survey_data_point!/6" data-no-tooltip="" translate="no">get_survey_data_point!(client, study_id, participant_id, survey_instance_id, field_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#get_survey_data_point/6"><code class="inline">get_survey_data_point/6</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participant_repeating_data_data_points/4" data-no-tooltip="" translate="no">list_participant_repeating_data_data_points(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves a list of all repeating data data collected for this participant.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participant_repeating_data_data_points!/4" data-no-tooltip="" translate="no">list_participant_repeating_data_data_points!(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_participant_repeating_data_data_points/4"><code class="inline">list_participant_repeating_data_data_points/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participant_repeating_data_instance_data_points/5" data-no-tooltip="" translate="no">list_participant_repeating_data_instance_data_points(client, study_id, participant_id, repeating_data_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves a list of all repeating data data collected for this repeating data instance.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participant_repeating_data_instance_data_points!/5" data-no-tooltip="" translate="no">list_participant_repeating_data_instance_data_points!(client, study_id, participant_id, repeating_data_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_participant_repeating_data_instance_data_points/5"><code class="inline">list_participant_repeating_data_instance_data_points/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participant_study_data_points/4" data-no-tooltip="" translate="no">list_participant_study_data_points(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves a list of all study data collected for this participant.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participant_study_data_points!/4" data-no-tooltip="" translate="no">list_participant_study_data_points!(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_participant_study_data_points/4"><code class="inline">list_participant_study_data_points/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participant_survey_data_points/4" data-no-tooltip="" translate="no">list_participant_survey_data_points(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves a list of all survey data collected for this participant.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participant_survey_data_points!/4" data-no-tooltip="" translate="no">list_participant_survey_data_points!(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_participant_survey_data_points/4"><code class="inline">list_participant_survey_data_points/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participant_survey_instance_data_points/5" data-no-tooltip="" translate="no">list_participant_survey_instance_data_points(client, study_id, participant_id, survey_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves a list of all survey data collected for this survey instance.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participant_survey_instance_data_points!/5" data-no-tooltip="" translate="no">list_participant_survey_instance_data_points!(client, study_id, participant_id, survey_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_participant_survey_instance_data_points/5"><code class="inline">list_participant_survey_instance_data_points/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participant_survey_package_instance_data_points/5" data-no-tooltip="" translate="no">list_participant_survey_package_instance_data_points(client, study_id, participant_id, survey_package_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves a list of all survey data collected for this survey package instance 🔭.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participant_survey_package_instance_data_points!/5" data-no-tooltip="" translate="no">list_participant_survey_package_instance_data_points!(client, study_id, participant_id, survey_package_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_participant_survey_package_instance_data_points/5"><code class="inline">list_participant_survey_package_instance_data_points/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_repeating_data_data_points/3" data-no-tooltip="" translate="no">list_repeating_data_data_points(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves a list of all repeating data data collected for all participants.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_repeating_data_data_points!/3" data-no-tooltip="" translate="no">list_repeating_data_data_points!(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_repeating_data_data_points/3"><code class="inline">list_repeating_data_data_points/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_repeating_data_instance_data_points/4" data-no-tooltip="" translate="no">list_repeating_data_instance_data_points(client, study_id, repeating_data_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves a list of all repeating data data collected for this repeating data instance.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_repeating_data_instance_data_points!/4" data-no-tooltip="" translate="no">list_repeating_data_instance_data_points!(client, study_id, repeating_data_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_repeating_data_instance_data_points/4"><code class="inline">list_repeating_data_instance_data_points/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_study_data_points/3" data-no-tooltip="" translate="no">list_study_data_points(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves a list of all study data collected for all participants.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_study_data_points!/3" data-no-tooltip="" translate="no">list_study_data_points!(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_study_data_points/3"><code class="inline">list_study_data_points/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_data_points/3" data-no-tooltip="" translate="no">list_survey_data_points(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves a list of all survey data collected for all participants.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_data_points!/3" data-no-tooltip="" translate="no">list_survey_data_points!(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_survey_data_points/3"><code class="inline">list_survey_data_points/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_instance_data_points/4" data-no-tooltip="" translate="no">list_survey_instance_data_points(client, study_id, survey_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves a list of all survey data collected for this survey instance.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_instance_data_points!/4" data-no-tooltip="" translate="no">list_survey_instance_data_points!(client, study_id, survey_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_survey_instance_data_points/4"><code class="inline">list_survey_instance_data_points/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_package_instance_data_points/4" data-no-tooltip="" translate="no">list_survey_package_instance_data_points(client, study_id, survey_package_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves a list of all survey data collected for this survey package instance.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_survey_package_instance_data_points!/4" data-no-tooltip="" translate="no">list_survey_package_instance_data_points!(client, study_id, survey_package_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_survey_package_instance_data_points/4"><code class="inline">list_survey_package_instance_data_points/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_repeating_data_data_points/3" data-no-tooltip="" translate="no">stream_repeating_data_data_points(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_repeating_data_data_points/3"><code class="inline">list_repeating_data_data_points/3</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_repeating_data_instance_data_points/4" data-no-tooltip="" translate="no">stream_repeating_data_instance_data_points(client, study_id, repeating_data_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_repeating_data_instance_data_points/4"><code class="inline">list_repeating_data_instance_data_points/4</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_study_data_points/3" data-no-tooltip="" translate="no">stream_study_data_points(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_study_data_points/3"><code class="inline">list_study_data_points/3</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_survey_data_points/3" data-no-tooltip="" translate="no">stream_survey_data_points(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_survey_data_points/3"><code class="inline">list_survey_data_points/3</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_survey_instance_data_points/4" data-no-tooltip="" translate="no">stream_survey_instance_data_points(client, study_id, survey_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_survey_instance_data_points/4"><code class="inline">list_survey_instance_data_points/4</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_survey_package_instance_data_points/4" data-no-tooltip="" translate="no">stream_survey_package_instance_data_points(client, study_id, survey_package_instance_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_survey_package_instance_data_points/4"><code class="inline">list_survey_package_instance_data_points/4</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#upsert_repeating_data_instance_data_points/6" data-no-tooltip="" translate="no">upsert_repeating_data_instance_data_points(client, study_id, participant_id, repeating_data_instance_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Create/update a collection of field values for a repeating data instance.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#upsert_repeating_data_instance_data_points!/6" data-no-tooltip="" translate="no">upsert_repeating_data_instance_data_points!(client, study_id, participant_id, repeating_data_instance_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#upsert_repeating_data_instance_data_points/6"><code class="inline">upsert_repeating_data_instance_data_points/6</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#upsert_study_data_points/5" data-no-tooltip="" translate="no">upsert_study_data_points(client, study_id, participant_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Create/update a collection of field values for a study.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#upsert_study_data_points!/5" data-no-tooltip="" translate="no">upsert_study_data_points!(client, study_id, participant_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#upsert_study_data_points/5"><code class="inline">upsert_study_data_points/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#upsert_survey_instance_data_points/6" data-no-tooltip="" translate="no">upsert_survey_instance_data_points(client, study_id, participant_id, survey_instance_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Create/update a collection of field values for a survey instance.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#upsert_survey_instance_data_points!/6" data-no-tooltip="" translate="no">upsert_survey_instance_data_points!(client, study_id, participant_id, survey_instance_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#upsert_survey_instance_data_points/6"><code class="inline">upsert_survey_instance_data_points/6</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#upsert_survey_package_instance_data_points/6" data-no-tooltip="" translate="no">upsert_survey_package_instance_data_points(client, study_id, participant_id, survey_package_instance_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Create/update a collection of field values for a survey package instance.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#upsert_survey_package_instance_data_points!/6" data-no-tooltip="" translate="no">upsert_survey_package_instance_data_points!(client, study_id, participant_id, survey_package_instance_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#upsert_survey_package_instance_data_points/6"><code class="inline">upsert_survey_package_instance_data_points/6</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h2>
+
+    <div class="functions-list">
+<section class="detail" id="create_repeating_data_data_point/7">
+
+    <span id="create_repeating_data_data_point/6"></span>
+
+  <div class="detail-header">
+    <a href="#create_repeating_data_data_point/7" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_repeating_data_data_point(client, study_id, participant_id, repeating_data_instance_id, field_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L72" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_repeating_data_data_point(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: {:ok, <a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Create a field result for a repeating data instance.</p><p>Sends <code class="inline">POST /api/study/{study_id}/participant/{participant_id}/data-point/repeating-data/{repeating_data_instance_id}/{field_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/repeating-data-data-entry/post_study__study_id__participant__participant_id__data_point_repeating_data__repeating_data_instance_id___field_id_">API reference</a></p><h2 id="create_repeating_data_data_point/7-arguments" class="section-heading"><a href="#create_repeating_data_data_point/7-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant</li><li><code class="inline">repeating_data_instance_id</code> - ID of the repeating data instance</li><li><code class="inline">field_id</code> - ID of the field</li><li><code class="inline">body</code> - a map, sent as JSON<ul><li><code class="inline">change_reason</code> (string) - Required change reason when changing an existing data point that is verified or signed, or when GCP is enabled and there is already a data point that is being changed.</li><li><code class="inline">confirmed_changes</code> (boolean) - Required when changing an existing data point that is verified or signed. Note that you also have to provide &quot;change_reason&quot;.</li><li><code class="inline">field_value</code> (string) - The value. If empty, it will clear any stored value, including uploaded files.</li><li><code class="inline">upload_file</code> (string) - A file to upload as the value, instead of field_value: <code class="inline">{file name, contents}</code> or a <a href="https://elixir.hexdocs.pm/File.Stream.html"><code class="inline">File.Stream</code></a>. The request then goes as multipart form data. The upload limit is 2 MB.</li></ul></li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="create_repeating_data_data_point!/7">
+
+    <span id="create_repeating_data_data_point!/6"></span>
+
+  <div class="detail-header">
+    <a href="#create_repeating_data_data_point!/7" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_repeating_data_data_point!(client, study_id, participant_id, repeating_data_instance_id, field_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L109" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_repeating_data_data_point!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#create_repeating_data_data_point/7"><code class="inline">create_repeating_data_data_point/7</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="create_study_data_point/6">
+
+    <span id="create_study_data_point/5"></span>
+
+  <div class="detail-header">
+    <a href="#create_study_data_point/6" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_study_data_point(client, study_id, participant_id, field_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L154" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_study_data_point(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Create a field result.</p><p>Sends <code class="inline">POST /api/study/{study_id}/participant/{participant_id}/study-data-point/{field_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/study-data-entry/post_study__study_id__participant__participant_id__study_data_point__field_id_">API reference</a></p><h2 id="create_study_data_point/6-arguments" class="section-heading"><a href="#create_study_data_point/6-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant</li><li><code class="inline">field_id</code> - ID of the field</li><li><code class="inline">body</code> - a map, sent as JSON<ul><li><code class="inline">change_reason</code> (string) - Required change reason when changing an existing data point that is verified or signed, or when GCP is enabled and there is already a data point that is being changed.</li><li><code class="inline">confirmed_changes</code> (boolean) - Required when changing an existing data point that is verified or signed. Note that you also have to provide &quot;change_reason&quot;.</li><li><code class="inline">field_value</code> (string) - The value. If empty, it will clear any stored value, including uploaded files.</li><li><code class="inline">upload_file</code> (string) - A file to upload as the value, instead of field_value: <code class="inline">{file name, contents}</code> or a <a href="https://elixir.hexdocs.pm/File.Stream.html"><code class="inline">File.Stream</code></a>. The request then goes as multipart form data. The upload limit is 2 MB.</li></ul></li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="create_study_data_point!/6">
+
+    <span id="create_study_data_point!/5"></span>
+
+  <div class="detail-header">
+    <a href="#create_study_data_point!/6" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_study_data_point!(client, study_id, participant_id, field_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L171" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_study_data_point!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#create_study_data_point/6"><code class="inline">create_study_data_point/6</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="create_survey_data_point/7">
+
+    <span id="create_survey_data_point/6"></span>
+
+  <div class="detail-header">
+    <a href="#create_survey_data_point/7" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_survey_data_point(client, study_id, participant_id, survey_instance_id, field_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L205" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_survey_data_point(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: {:ok, <a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Create a field result for a survey (package) instance 🔭.</p><p>Create a field result for a survey (package) instance. Supports the <code class="inline">record</code> scope.</p><p>Sends <code class="inline">POST /api/study/{study_id}/participant/{participant_id}/data-point/survey/{survey_instance_id}/{field_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey-data-entry/post_study__study_id__participant__participant_id__data_point_survey__survey_instance_id___field_id_">API reference</a></p><h2 id="create_survey_data_point/7-arguments" class="section-heading"><a href="#create_survey_data_point/7-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant</li><li><code class="inline">survey_instance_id</code> - ID of the survey instance or its parent survey package instance</li><li><code class="inline">field_id</code> - The field identifier</li><li><code class="inline">body</code> - a map, sent as JSON<ul><li><code class="inline">change_reason</code> (string) - Required change reason when GCP is enabled and there is already a data point that is being changed.</li><li><code class="inline">field_value</code> (string) - The value. If empty, it will clear any stored value, including uploaded files.</li><li><code class="inline">upload_file</code> (string) - A file to upload as the value, instead of field_value: <code class="inline">{file name, contents}</code> or a <a href="https://elixir.hexdocs.pm/File.Stream.html"><code class="inline">File.Stream</code></a>. The request then goes as multipart form data. The upload limit is 2 MB.</li></ul></li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="create_survey_data_point!/7">
+
+    <span id="create_survey_data_point!/6"></span>
+
+  <div class="detail-header">
+    <a href="#create_survey_data_point!/7" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_survey_data_point!(client, study_id, participant_id, survey_instance_id, field_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L227" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_survey_data_point!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#create_survey_data_point/7"><code class="inline">create_survey_data_point/7</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="create_survey_package_instance_with_data_points/5">
+
+    <span id="create_survey_package_instance_with_data_points/4"></span>
+
+  <div class="detail-header">
+    <a href="#create_survey_package_instance_with_data_points/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_survey_package_instance_with_data_points(client, study_id, participant_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L270" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_survey_package_instance_with_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: {:ok, <a href="CastorEDC.Model.DataPointsResult.html#t:t/0">CastorEDC.Model.DataPointsResult.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Create a new repeatable survey package instance and a collection of field values for it 🔭.</p><p>Create a new repeatable survey package instance and a collection of field values for it</p><p>Sends <code class="inline">POST /api/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/post_study__study_id__participant__participant_id__data_points_survey_package_instance">API reference</a></p><h2 id="create_survey_package_instance_with_data_points/5-arguments" class="section-heading"><a href="#create_survey_package_instance_with_data_points/5-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant for which this call should be made</li><li><code class="inline">body</code> - a map, sent as JSON: Parameters common to all data points that will be created.You can provide an additional &quot;all_fields_filled_on&quot; parameter to mark the actual time the Survey Package Instance has been completed<ul><li><code class="inline">all_fields_filled_on</code> (string) - The UTC date and time the Survey Package Instance has been completed and all its fields have been filled</li><li><code class="inline">data</code> (list of map)<ul><li><code class="inline">field_id</code> (string, required) - The field identifier</li><li><code class="inline">field_value</code> (string, required) - The value</li><li><code class="inline">survey_id</code> (string, required) - The SurveyId to save the data-points for</li></ul></li><li><code class="inline">survey_package_id</code> (string) - The ID of the repeatable survey package for which a new survey package instance should be created.</li><li><code class="inline">survey_package_instance_id</code> (string) - Optional client-provided UUID for the survey package instance. If not provided, the server will generate one. If provided and already exists, the request will return a 400 error.</li></ul></li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns what was saved and what wasn't; the <code class="inline">!</code> variant raises a <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a> when anything wasn't.</p>
+  </section>
+</section>
+<section class="detail" id="create_survey_package_instance_with_data_points!/5">
+
+    <span id="create_survey_package_instance_with_data_points!/4"></span>
+
+  <div class="detail-header">
+    <a href="#create_survey_package_instance_with_data_points!/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_survey_package_instance_with_data_points!(client, study_id, participant_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L287" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_survey_package_instance_with_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="CastorEDC.Model.DataPointsResult.html#t:t/0">CastorEDC.Model.DataPointsResult.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#create_survey_package_instance_with_data_points/5"><code class="inline">create_survey_package_instance_with_data_points/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_repeating_data_data_point/6">
+
+    <span id="get_repeating_data_data_point/5"></span>
+
+  <div class="detail-header">
+    <a href="#get_repeating_data_data_point/6" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_repeating_data_data_point(client, study_id, participant_id, repeating_data_instance_id, field_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L319" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_repeating_data_data_point(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: {:ok, <a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve a single RepeatingDataInstanceFieldResult object.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant/{participant_id}/data-point/repeating-data/{repeating_data_instance_id}/{field_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/repeating-data-data-entry/get_study__study_id__participant__participant_id__data_point_repeating_data__repeating_data_instance_id___field_id_">API reference</a></p><h2 id="get_repeating_data_data_point/6-arguments" class="section-heading"><a href="#get_repeating_data_data_point/6-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - ID of the participant</li><li><code class="inline">repeating_data_instance_id</code> - ID of the repeating data instance</li><li><code class="inline">field_id</code> - ID of the field</li></ul><h2 id="get_repeating_data_data_point/6-options" class="section-heading"><a href="#get_repeating_data_data_point/6-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:validations</code> (boolean, defaults to <code class="inline">false</code>) - Whether to include each field's validations.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_repeating_data_data_point!/6">
+
+    <span id="get_repeating_data_data_point!/5"></span>
+
+  <div class="detail-header">
+    <a href="#get_repeating_data_data_point!/6" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_repeating_data_data_point!(client, study_id, participant_id, repeating_data_instance_id, field_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L340" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_repeating_data_data_point!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#get_repeating_data_data_point/6"><code class="inline">get_repeating_data_data_point/6</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_study_data_point/5">
+
+    <span id="get_study_data_point/4"></span>
+
+  <div class="detail-header">
+    <a href="#get_study_data_point/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_study_data_point(client, study_id, participant_id, field_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L375" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_study_data_point(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve a single FieldResult object.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant/{participant_id}/study-data-point/{field_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/study-data-entry/get_study__study_id__participant__participant_id__study_data_point__field_id_">API reference</a></p><h2 id="get_study_data_point/5-arguments" class="section-heading"><a href="#get_study_data_point/5-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study to retrieve FieldResults for</li><li><code class="inline">participant_id</code> - ID of the participant</li><li><code class="inline">field_id</code> - ID of the field</li></ul><h2 id="get_study_data_point/5-options" class="section-heading"><a href="#get_study_data_point/5-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:validations</code> (boolean, defaults to <code class="inline">false</code>) - Whether to include each field's validations.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_study_data_point!/5">
+
+    <span id="get_study_data_point!/4"></span>
+
+  <div class="detail-header">
+    <a href="#get_study_data_point!/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_study_data_point!(client, study_id, participant_id, field_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L390" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_study_data_point!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#get_study_data_point/5"><code class="inline">get_study_data_point/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_survey_data_point/6">
+
+    <span id="get_survey_data_point/5"></span>
+
+  <div class="detail-header">
+    <a href="#get_survey_data_point/6" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_survey_data_point(client, study_id, participant_id, survey_instance_id, field_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L423" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_survey_data_point(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: {:ok, <a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve a single SurveyInstanceFieldResult object 🔭.</p><p> Supports the <code class="inline">record</code> scope.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant/{participant_id}/data-point/survey/{survey_instance_id}/{field_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/survey-data-entry/get_study__study_id__participant__participant_id__data_point_survey__survey_instance_id___field_id_">API reference</a></p><h2 id="get_survey_data_point/6-arguments" class="section-heading"><a href="#get_survey_data_point/6-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - ID of the participant</li><li><code class="inline">survey_instance_id</code> - ID of the survey (package) instance</li><li><code class="inline">field_id</code> - ID of the field</li></ul><h2 id="get_survey_data_point/6-options" class="section-heading"><a href="#get_survey_data_point/6-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:validations</code> (boolean, defaults to <code class="inline">false</code>) - Whether to include each field's validations.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_survey_data_point!/6">
+
+    <span id="get_survey_data_point!/5"></span>
+
+  <div class="detail-header">
+    <a href="#get_survey_data_point!/6" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_survey_data_point!(client, study_id, participant_id, survey_instance_id, field_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L444" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_survey_data_point!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#get_survey_data_point/6"><code class="inline">get_survey_data_point/6</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_participant_repeating_data_data_points/4">
+
+    <span id="list_participant_repeating_data_data_points/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_participant_repeating_data_data_points/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participant_repeating_data_data_points(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L481" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participant_repeating_data_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieves a list of all repeating data data collected for this participant.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/get_study__study_id__participant__participant_id__data_points_repeating_data_instance">API reference</a></p><h2 id="list_participant_repeating_data_data_points/4-arguments" class="section-heading"><a href="#list_participant_repeating_data_data_points/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant for which this call should be made</li></ul><h2 id="list_participant_repeating_data_data_points/4-options" class="section-heading"><a href="#list_participant_repeating_data_data_points/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:field_ids</code> (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.</li><li><code class="inline">:updated_after</code> (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time, so build it with <code class="inline">updated_on |&gt; DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |&gt; DateTime.to_iso8601()</code>.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.DataPoint.html#t:t/0"><code class="inline">CastorEDC.Model.DataPoint.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_participant_repeating_data_data_points!/4">
+
+    <span id="list_participant_repeating_data_data_points!/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_participant_repeating_data_data_points!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participant_repeating_data_data_points!(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L497" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participant_repeating_data_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_participant_repeating_data_data_points/4"><code class="inline">list_participant_repeating_data_data_points/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_participant_repeating_data_instance_data_points/5">
+
+    <span id="list_participant_repeating_data_instance_data_points/4"></span>
+
+  <div class="detail-header">
+    <a href="#list_participant_repeating_data_instance_data_points/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participant_repeating_data_instance_data_points(client, study_id, participant_id, repeating_data_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L536" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participant_repeating_data_instance_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieves a list of all repeating data data collected for this repeating data instance.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance/{repeating_data_instance_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/get_study__study_id__participant__participant_id__data_points_repeating_data_instance__repeating_data_instance_id_">API reference</a></p><h2 id="list_participant_repeating_data_instance_data_points/5-arguments" class="section-heading"><a href="#list_participant_repeating_data_instance_data_points/5-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant for which this call should be made</li><li><code class="inline">repeating_data_instance_id</code> - The ID of the repeating data instance to retrieve all data-points from</li></ul><h2 id="list_participant_repeating_data_instance_data_points/5-options" class="section-heading"><a href="#list_participant_repeating_data_instance_data_points/5-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:field_ids</code> (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.</li><li><code class="inline">:updated_after</code> (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time, so build it with <code class="inline">updated_on |&gt; DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |&gt; DateTime.to_iso8601()</code>.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.DataPoint.html#t:t/0"><code class="inline">CastorEDC.Model.DataPoint.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_participant_repeating_data_instance_data_points!/5">
+
+    <span id="list_participant_repeating_data_instance_data_points!/4"></span>
+
+  <div class="detail-header">
+    <a href="#list_participant_repeating_data_instance_data_points!/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participant_repeating_data_instance_data_points!(client, study_id, participant_id, repeating_data_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L567" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participant_repeating_data_instance_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_participant_repeating_data_instance_data_points/5"><code class="inline">list_participant_repeating_data_instance_data_points/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_participant_study_data_points/4">
+
+    <span id="list_participant_study_data_points/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_participant_study_data_points/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participant_study_data_points(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L609" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participant_study_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieves a list of all study data collected for this participant.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant/{participant_id}/data-points/study</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/get_study__study_id__participant__participant_id__data_points_study">API reference</a></p><h2 id="list_participant_study_data_points/4-arguments" class="section-heading"><a href="#list_participant_study_data_points/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant for which this call should be made</li></ul><h2 id="list_participant_study_data_points/4-options" class="section-heading"><a href="#list_participant_study_data_points/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:field_ids</code> (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.</li><li><code class="inline">:updated_after</code> (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time, so build it with <code class="inline">updated_on |&gt; DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |&gt; DateTime.to_iso8601()</code>.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.DataPoint.html#t:t/0"><code class="inline">CastorEDC.Model.DataPoint.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_participant_study_data_points!/4">
+
+    <span id="list_participant_study_data_points!/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_participant_study_data_points!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participant_study_data_points!(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L625" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participant_study_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_participant_study_data_points/4"><code class="inline">list_participant_study_data_points/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_participant_survey_data_points/4">
+
+    <span id="list_participant_survey_data_points/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_participant_survey_data_points/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participant_survey_data_points(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L657" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participant_survey_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieves a list of all survey data collected for this participant.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant/{participant_id}/data-points/survey-instance</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/get_study__study_id__participant__participant_id__data_points_survey_instance">API reference</a></p><h2 id="list_participant_survey_data_points/4-arguments" class="section-heading"><a href="#list_participant_survey_data_points/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant for which this call should be made</li></ul><h2 id="list_participant_survey_data_points/4-options" class="section-heading"><a href="#list_participant_survey_data_points/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:field_ids</code> (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.</li><li><code class="inline">:updated_after</code> (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time, so build it with <code class="inline">updated_on |&gt; DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |&gt; DateTime.to_iso8601()</code>.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.DataPoint.html#t:t/0"><code class="inline">CastorEDC.Model.DataPoint.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_participant_survey_data_points!/4">
+
+    <span id="list_participant_survey_data_points!/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_participant_survey_data_points!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participant_survey_data_points!(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L673" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participant_survey_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_participant_survey_data_points/4"><code class="inline">list_participant_survey_data_points/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_participant_survey_instance_data_points/5">
+
+    <span id="list_participant_survey_instance_data_points/4"></span>
+
+  <div class="detail-header">
+    <a href="#list_participant_survey_instance_data_points/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participant_survey_instance_data_points(client, study_id, participant_id, survey_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L706" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participant_survey_instance_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieves a list of all survey data collected for this survey instance.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant/{participant_id}/data-points/survey-instance/{survey_instance_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/get_study__study_id__participant__participant_id__data_points_survey_instance__survey_instance_id_">API reference</a></p><h2 id="list_participant_survey_instance_data_points/5-arguments" class="section-heading"><a href="#list_participant_survey_instance_data_points/5-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant for which this call should be made</li><li><code class="inline">survey_instance_id</code> - The ID of the survey instance to retrieve all data-points from</li></ul><h2 id="list_participant_survey_instance_data_points/5-options" class="section-heading"><a href="#list_participant_survey_instance_data_points/5-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:field_ids</code> (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.</li><li><code class="inline">:updated_after</code> (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time, so build it with <code class="inline">updated_on |&gt; DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |&gt; DateTime.to_iso8601()</code>.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.DataPoint.html#t:t/0"><code class="inline">CastorEDC.Model.DataPoint.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_participant_survey_instance_data_points!/5">
+
+    <span id="list_participant_survey_instance_data_points!/4"></span>
+
+  <div class="detail-header">
+    <a href="#list_participant_survey_instance_data_points!/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participant_survey_instance_data_points!(client, study_id, participant_id, survey_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L722" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participant_survey_instance_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_participant_survey_instance_data_points/5"><code class="inline">list_participant_survey_instance_data_points/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_participant_survey_package_instance_data_points/5">
+
+    <span id="list_participant_survey_package_instance_data_points/4"></span>
+
+  <div class="detail-header">
+    <a href="#list_participant_survey_package_instance_data_points/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participant_survey_package_instance_data_points(client, study_id, participant_id, survey_package_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L763" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participant_survey_package_instance_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieves a list of all survey data collected for this survey package instance 🔭.</p><p>Supports the <code class="inline">record</code> scope.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance/{survey_package_instance_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/get_study__study_id__participant__participant_id__data_points_survey_package_instance__survey_package_instance_id_">API reference</a></p><h2 id="list_participant_survey_package_instance_data_points/5-arguments" class="section-heading"><a href="#list_participant_survey_package_instance_data_points/5-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant for which this call should be made</li><li><code class="inline">survey_package_instance_id</code> - The ID of the survey package instance to retrieve all data-points from.</li></ul><h2 id="list_participant_survey_package_instance_data_points/5-options" class="section-heading"><a href="#list_participant_survey_package_instance_data_points/5-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:field_ids</code> (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.</li><li><code class="inline">:updated_after</code> (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time, so build it with <code class="inline">updated_on |&gt; DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |&gt; DateTime.to_iso8601()</code>.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.DataPoint.html#t:t/0"><code class="inline">CastorEDC.Model.DataPoint.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_participant_survey_package_instance_data_points!/5">
+
+    <span id="list_participant_survey_package_instance_data_points!/4"></span>
+
+  <div class="detail-header">
+    <a href="#list_participant_survey_package_instance_data_points!/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participant_survey_package_instance_data_points!(client, study_id, participant_id, survey_package_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L794" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participant_survey_package_instance_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_participant_survey_package_instance_data_points/5"><code class="inline">list_participant_survey_package_instance_data_points/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_repeating_data_data_points/3">
+
+    <span id="list_repeating_data_data_points/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_repeating_data_data_points/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_repeating_data_data_points(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L837" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_repeating_data_data_points(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieves a list of all repeating data data collected for all participants.</p><p>Sends <code class="inline">GET /api/study/{study_id}/data-points/repeating-data-instance</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_repeating_data_instance">API reference</a></p><h2 id="list_repeating_data_data_points/3-arguments" class="section-heading"><a href="#list_repeating_data_data_points/3-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li></ul><h2 id="list_repeating_data_data_points/3-options" class="section-heading"><a href="#list_repeating_data_data_points/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:field_ids</code> (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.</li><li><code class="inline">:updated_after</code> (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time, so build it with <code class="inline">updated_on |&gt; DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |&gt; DateTime.to_iso8601()</code>.</li><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve.</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">5000</code>; a larger one is lowered to it) - The number of records per page.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.DataPoint.html#t:t/0"><code class="inline">CastorEDC.Model.DataPoint.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_repeating_data_data_points!/3">
+
+    <span id="list_repeating_data_data_points!/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_repeating_data_data_points!/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_repeating_data_data_points!(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L845" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_repeating_data_data_points!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_repeating_data_data_points/3"><code class="inline">list_repeating_data_data_points/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_repeating_data_instance_data_points/4">
+
+    <span id="list_repeating_data_instance_data_points/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_repeating_data_instance_data_points/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_repeating_data_instance_data_points(client, study_id, repeating_data_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L888" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_repeating_data_instance_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieves a list of all repeating data data collected for this repeating data instance.</p><p>Sends <code class="inline">GET /api/study/{study_id}/data-points/repeating-data-instance/{repeating_data_instance_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_repeating_data_instance__repeating_data_instance_id_">API reference</a></p><h2 id="list_repeating_data_instance_data_points/4-arguments" class="section-heading"><a href="#list_repeating_data_instance_data_points/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">repeating_data_instance_id</code> - The ID of the repeating data instance to retrieve all data-points from</li></ul><h2 id="list_repeating_data_instance_data_points/4-options" class="section-heading"><a href="#list_repeating_data_instance_data_points/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:field_ids</code> (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.</li><li><code class="inline">:updated_after</code> (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time, so build it with <code class="inline">updated_on |&gt; DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |&gt; DateTime.to_iso8601()</code>.</li><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve.</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">5000</code>; a larger one is lowered to it) - The number of records per page.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.DataPoint.html#t:t/0"><code class="inline">CastorEDC.Model.DataPoint.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_repeating_data_instance_data_points!/4">
+
+    <span id="list_repeating_data_instance_data_points!/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_repeating_data_instance_data_points!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_repeating_data_instance_data_points!(client, study_id, repeating_data_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L904" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_repeating_data_instance_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_repeating_data_instance_data_points/4"><code class="inline">list_repeating_data_instance_data_points/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_study_data_points/3">
+
+    <span id="list_study_data_points/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_study_data_points/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_study_data_points(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L954" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_study_data_points(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieves a list of all study data collected for all participants.</p><p>Sends <code class="inline">GET /api/study/{study_id}/data-points/study</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_study">API reference</a></p><h2 id="list_study_data_points/3-arguments" class="section-heading"><a href="#list_study_data_points/3-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li></ul><h2 id="list_study_data_points/3-options" class="section-heading"><a href="#list_study_data_points/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:field_ids</code> (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.</li><li><code class="inline">:updated_after</code> (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time, so build it with <code class="inline">updated_on |&gt; DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |&gt; DateTime.to_iso8601()</code>.</li><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve.</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">5000</code>; a larger one is lowered to it) - The number of records per page.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.DataPoint.html#t:t/0"><code class="inline">CastorEDC.Model.DataPoint.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_study_data_points!/3">
+
+    <span id="list_study_data_points!/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_study_data_points!/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_study_data_points!(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L962" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_study_data_points!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_study_data_points/3"><code class="inline">list_study_data_points/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_data_points/3">
+
+    <span id="list_survey_data_points/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_data_points/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_data_points(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1004" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_data_points(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieves a list of all survey data collected for all participants.</p><p>Sends <code class="inline">GET /api/study/{study_id}/data-points/survey-instance</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_survey_instance">API reference</a></p><h2 id="list_survey_data_points/3-arguments" class="section-heading"><a href="#list_survey_data_points/3-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li></ul><h2 id="list_survey_data_points/3-options" class="section-heading"><a href="#list_survey_data_points/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:field_ids</code> (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.</li><li><code class="inline">:updated_after</code> (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time, so build it with <code class="inline">updated_on |&gt; DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |&gt; DateTime.to_iso8601()</code>.</li><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve.</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">5000</code>; a larger one is lowered to it) - The number of records per page.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.DataPoint.html#t:t/0"><code class="inline">CastorEDC.Model.DataPoint.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_data_points!/3">
+
+    <span id="list_survey_data_points!/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_data_points!/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_data_points!(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1012" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_data_points!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_survey_data_points/3"><code class="inline">list_survey_data_points/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_instance_data_points/4">
+
+    <span id="list_survey_instance_data_points/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_instance_data_points/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_instance_data_points(client, study_id, survey_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1055" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_instance_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieves a list of all survey data collected for this survey instance.</p><p>Sends <code class="inline">GET /api/study/{study_id}/data-points/survey-instance/{survey_instance_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_survey_instance__survey_instance_id_">API reference</a></p><h2 id="list_survey_instance_data_points/4-arguments" class="section-heading"><a href="#list_survey_instance_data_points/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">survey_instance_id</code> - The ID of the survey instance to retrieve all data-points from</li></ul><h2 id="list_survey_instance_data_points/4-options" class="section-heading"><a href="#list_survey_instance_data_points/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:field_ids</code> (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.</li><li><code class="inline">:updated_after</code> (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time, so build it with <code class="inline">updated_on |&gt; DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |&gt; DateTime.to_iso8601()</code>.</li><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve.</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">5000</code>; a larger one is lowered to it) - The number of records per page.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.DataPoint.html#t:t/0"><code class="inline">CastorEDC.Model.DataPoint.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_instance_data_points!/4">
+
+    <span id="list_survey_instance_data_points!/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_instance_data_points!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_instance_data_points!(client, study_id, survey_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1071" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_instance_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_survey_instance_data_points/4"><code class="inline">list_survey_instance_data_points/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_package_instance_data_points/4">
+
+    <span id="list_survey_package_instance_data_points/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_package_instance_data_points/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_package_instance_data_points(client, study_id, survey_package_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1122" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_package_instance_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieves a list of all survey data collected for this survey package instance.</p><p>Sends <code class="inline">GET /api/study/{study_id}/data-points/survey-package-instance/{survey_package_instance_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/get_study__study_id__data_points_survey_package_instance__survey_package_instance_id_">API reference</a></p><h2 id="list_survey_package_instance_data_points/4-arguments" class="section-heading"><a href="#list_survey_package_instance_data_points/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">survey_package_instance_id</code> - The ID of the survey package instance to retrieve all data-points from.</li></ul><h2 id="list_survey_package_instance_data_points/4-options" class="section-heading"><a href="#list_survey_package_instance_data_points/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:field_ids</code> (list of string, sent comma-separated) - Comma-separated list of field UUIDs to filter the results. Only data points for the specified fields will be returned.</li><li><code class="inline">:updated_after</code> (string) - Only data points updated strictly after this time, as ISO 8601 with an offset. Data points' updated_on is the server's local time, so build it with <code class="inline">updated_on |&gt; DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |&gt; DateTime.to_iso8601()</code>.</li><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve.</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">5000</code>; a larger one is lowered to it) - The number of records per page.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.DataPoint.html#t:t/0"><code class="inline">CastorEDC.Model.DataPoint.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_survey_package_instance_data_points!/4">
+
+    <span id="list_survey_package_instance_data_points!/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_survey_package_instance_data_points!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_survey_package_instance_data_points!(client, study_id, survey_package_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1138" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_survey_package_instance_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_survey_package_instance_data_points/4"><code class="inline">list_survey_package_instance_data_points/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_repeating_data_data_points/3">
+
+    <span id="stream_repeating_data_data_points/2"></span>
+
+  <div class="detail-header">
+    <a href="#stream_repeating_data_data_points/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_repeating_data_data_points(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L857" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_repeating_data_data_points(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_repeating_data_data_points/3"><code class="inline">list_repeating_data_data_points/3</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_repeating_data_instance_data_points/4">
+
+    <span id="stream_repeating_data_instance_data_points/3"></span>
+
+  <div class="detail-header">
+    <a href="#stream_repeating_data_instance_data_points/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_repeating_data_instance_data_points(client, study_id, repeating_data_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L924" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_repeating_data_instance_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_repeating_data_instance_data_points/4"><code class="inline">list_repeating_data_instance_data_points/4</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_study_data_points/3">
+
+    <span id="stream_study_data_points/2"></span>
+
+  <div class="detail-header">
+    <a href="#stream_study_data_points/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_study_data_points(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L974" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_study_data_points(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_study_data_points/3"><code class="inline">list_study_data_points/3</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_survey_data_points/3">
+
+    <span id="stream_survey_data_points/2"></span>
+
+  <div class="detail-header">
+    <a href="#stream_survey_data_points/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_survey_data_points(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1024" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_survey_data_points(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_survey_data_points/3"><code class="inline">list_survey_data_points/3</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_survey_instance_data_points/4">
+
+    <span id="stream_survey_instance_data_points/3"></span>
+
+  <div class="detail-header">
+    <a href="#stream_survey_instance_data_points/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_survey_instance_data_points(client, study_id, survey_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1091" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_survey_instance_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_survey_instance_data_points/4"><code class="inline">list_survey_instance_data_points/4</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_survey_package_instance_data_points/4">
+
+    <span id="stream_survey_package_instance_data_points/3"></span>
+
+  <div class="detail-header">
+    <a href="#stream_survey_package_instance_data_points/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_survey_package_instance_data_points(client, study_id, survey_package_instance_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1158" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_survey_package_instance_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.DataPoint.html#t:t/0">CastorEDC.Model.DataPoint.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_survey_package_instance_data_points/4"><code class="inline">list_survey_package_instance_data_points/4</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="upsert_repeating_data_instance_data_points/6">
+
+    <span id="upsert_repeating_data_instance_data_points/5"></span>
+
+  <div class="detail-header">
+    <a href="#upsert_repeating_data_instance_data_points/6" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">upsert_repeating_data_instance_data_points(client, study_id, participant_id, repeating_data_instance_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1202" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> upsert_repeating_data_instance_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: {:ok, <a href="CastorEDC.Model.DataPointsResult.html#t:t/0">CastorEDC.Model.DataPointsResult.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Create/update a collection of field values for a repeating data instance.</p><p>Sends <code class="inline">POST /api/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance/{repeating_data_instance_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/post_study__study_id__participant__participant_id__data_points_repeating_data_instance__repeating_data_instance_id_">API reference</a></p><h2 id="upsert_repeating_data_instance_data_points/6-arguments" class="section-heading"><a href="#upsert_repeating_data_instance_data_points/6-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><p><code class="inline">study_id</code> - The ID of the study for which this call should be made</p></li><li><p><code class="inline">participant_id</code> - The ID of the participant for which this call should be made</p></li><li><p><code class="inline">repeating_data_instance_id</code> - The ID of the repeating data instance to save the data-points on.</p></li><li><p><code class="inline">body</code> - a map, sent as JSON: Parameters common to all data points that will be changed change_reason is required when changing an existing data point for a study with Good Clinical Practice functionality enabled. confirmed_changes and change_reason are required when updating a signed or verified form.</p><ul><li><code class="inline">common</code> (map)<ul><li><code class="inline">change_reason</code> (string) - The reason for changing an existing data-point (required if Good Clinical Practice functionality is enabled for the given Study)</li><li><code class="inline">confirmed_changes</code> (boolean) - User confirmed consequent changes after this field value update (i.e. automatic dependency clearing, signature drops, verification drops).</li></ul></li><li><code class="inline">data</code> (list of map)<ul><li><code class="inline">field_id</code> (string, required) - The field identifier</li><li><code class="inline">field_value</code> (string, required) - The value</li><li><code class="inline">instance_id</code> (string, required) - The Repeating Data Instance identifier of the RepeatingDataInstance to save the data points on.</li><li><code class="inline">change_reason</code> (string) - The reason for changing an existing data-point (required if Good Clinical Practice functionality is enabled for the given Study)</li><li><code class="inline">confirmed_changes</code> (boolean) - User confirmed consequent changes after this field value update</li></ul></li></ul><p>Each item of <code class="inline">data</code> that has no <code class="inline">instance_id</code> gets <code class="inline">repeating_data_instance_id</code>, so it doesn't need repeating.</p></li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns what was saved and what wasn't; the <code class="inline">!</code> variant raises a <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a> when anything wasn't.</p>
+  </section>
+</section>
+<section class="detail" id="upsert_repeating_data_instance_data_points!/6">
+
+    <span id="upsert_repeating_data_instance_data_points!/5"></span>
+
+  <div class="detail-header">
+    <a href="#upsert_repeating_data_instance_data_points!/6" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">upsert_repeating_data_instance_data_points!(client, study_id, participant_id, repeating_data_instance_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1236" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> upsert_repeating_data_instance_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="CastorEDC.Model.DataPointsResult.html#t:t/0">CastorEDC.Model.DataPointsResult.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#upsert_repeating_data_instance_data_points/6"><code class="inline">upsert_repeating_data_instance_data_points/6</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="upsert_study_data_points/5">
+
+    <span id="upsert_study_data_points/4"></span>
+
+  <div class="detail-header">
+    <a href="#upsert_study_data_points/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">upsert_study_data_points(client, study_id, participant_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1284" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> upsert_study_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok, <a href="CastorEDC.Model.DataPointsResult.html#t:t/0">CastorEDC.Model.DataPointsResult.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Create/update a collection of field values for a study.</p><p>Sends <code class="inline">POST /api/study/{study_id}/participant/{participant_id}/data-points/study</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/post_study__study_id__participant__participant_id__data_points_study">API reference</a></p><h2 id="upsert_study_data_points/5-arguments" class="section-heading"><a href="#upsert_study_data_points/5-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant for which this call should be made</li><li><code class="inline">body</code> - a map, sent as JSON: Parameters common to all data points that will be changed change_reason is required when changing an existing data point for a study with Good Clinical Practice functionality enabled. confirmed_changes and change_reason are required when updating a signed or verified form.<ul><li><code class="inline">common</code> (map)<ul><li><code class="inline">change_reason</code> (string) - The reason for changing an existing data-point (required if Good Clinical Practice functionality is enabled for the given Study)</li><li><code class="inline">confirmed_changes</code> (boolean) - User confirmed consequent changes after this field value update (i.e. automatic dependency clearing, signature drops, verification drops).</li></ul></li><li><code class="inline">data</code> (list of map)<ul><li><code class="inline">field_id</code> (string, required) - The field identifier</li><li><code class="inline">field_value</code> (string, required) - The value</li><li><code class="inline">change_reason</code> (string) - The reason for changing an existing data-point (required if Good Clinical Practice functionality is enabled for the given Study)</li><li><code class="inline">confirmed_changes</code> (boolean) - User confirmed consequent changes after this field value update</li></ul></li></ul></li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns what was saved and what wasn't; the <code class="inline">!</code> variant raises a <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a> when anything wasn't.</p>
+  </section>
+</section>
+<section class="detail" id="upsert_study_data_points!/5">
+
+    <span id="upsert_study_data_points!/4"></span>
+
+  <div class="detail-header">
+    <a href="#upsert_study_data_points!/5" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">upsert_study_data_points!(client, study_id, participant_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1295" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> upsert_study_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="CastorEDC.Model.DataPointsResult.html#t:t/0">CastorEDC.Model.DataPointsResult.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#upsert_study_data_points/5"><code class="inline">upsert_study_data_points/5</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="upsert_survey_instance_data_points/6">
+
+    <span id="upsert_survey_instance_data_points/5"></span>
+
+  <div class="detail-header">
+    <a href="#upsert_survey_instance_data_points/6" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">upsert_survey_instance_data_points(client, study_id, participant_id, survey_instance_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1326" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> upsert_survey_instance_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: {:ok, <a href="CastorEDC.Model.DataPointsResult.html#t:t/0">CastorEDC.Model.DataPointsResult.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Create/update a collection of field values for a survey instance.</p><p>Sends <code class="inline">POST /api/study/{study_id}/participant/{participant_id}/data-points/survey-instance/{survey_instance_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/post_study__study_id__participant__participant_id__data_points_survey_instance__survey_instance_id_">API reference</a></p><h2 id="upsert_survey_instance_data_points/6-arguments" class="section-heading"><a href="#upsert_survey_instance_data_points/6-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><p><code class="inline">study_id</code> - The ID of the study for which this call should be made</p></li><li><p><code class="inline">participant_id</code> - The ID of the participant for which this call should be made</p></li><li><p><code class="inline">survey_instance_id</code> - The ID of the survey instance to save all data-points to.</p></li><li><p><code class="inline">body</code> - a map, sent as JSON: Parameters common to all data points that will be changed.</p><ul><li><code class="inline">data</code> (list of map)<ul><li><code class="inline">field_id</code> (string, required) - The field identifier</li><li><code class="inline">field_value</code> (string, required) - The value</li><li><code class="inline">instance_id</code> (string, required) - The Survey(Package)InstanceId to save the data-points for</li></ul></li></ul><p>Each item of <code class="inline">data</code> that has no <code class="inline">instance_id</code> gets <code class="inline">survey_instance_id</code>, so it doesn't need repeating.</p></li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns what was saved and what wasn't; the <code class="inline">!</code> variant raises a <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a> when anything wasn't.</p>
+  </section>
+</section>
+<section class="detail" id="upsert_survey_instance_data_points!/6">
+
+    <span id="upsert_survey_instance_data_points!/5"></span>
+
+  <div class="detail-header">
+    <a href="#upsert_survey_instance_data_points!/6" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">upsert_survey_instance_data_points!(client, study_id, participant_id, survey_instance_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1343" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> upsert_survey_instance_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="CastorEDC.Model.DataPointsResult.html#t:t/0">CastorEDC.Model.DataPointsResult.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#upsert_survey_instance_data_points/6"><code class="inline">upsert_survey_instance_data_points/6</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="upsert_survey_package_instance_data_points/6">
+
+    <span id="upsert_survey_package_instance_data_points/5"></span>
+
+  <div class="detail-header">
+    <a href="#upsert_survey_package_instance_data_points/6" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">upsert_survey_package_instance_data_points(client, study_id, participant_id, survey_package_instance_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1387" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> upsert_survey_package_instance_data_points(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: {:ok, <a href="CastorEDC.Model.DataPointsResult.html#t:t/0">CastorEDC.Model.DataPointsResult.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Create/update a collection of field values for a survey package instance.</p><p>Sends <code class="inline">POST /api/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance/{survey_package_instance_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/data-points/post_study__study_id__participant__participant_id__data_points_survey_package_instance__survey_package_instance_id_">API reference</a></p><h2 id="upsert_survey_package_instance_data_points/6-arguments" class="section-heading"><a href="#upsert_survey_package_instance_data_points/6-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><p><code class="inline">study_id</code> - The ID of the study for which this call should be made</p></li><li><p><code class="inline">participant_id</code> - The ID of the participant for which this call should be made</p></li><li><p><code class="inline">survey_package_instance_id</code> - The ID of the survey package instance to save all data-points to.</p></li><li><p><code class="inline">body</code> - a map, sent as JSON: Parameters common to all data points that will be changed.You can provide an additional &quot;all_fields_filled_on&quot; parameter to mark the actual time the Survey Package Instance has been completed</p><ul><li><code class="inline">all_fields_filled_on</code> (string) - The UTC date and time the Survey Package Instance has been completed and all its fields have been filled</li><li><code class="inline">data</code> (list of map)<ul><li><code class="inline">field_id</code> (string, required) - The field identifier</li><li><code class="inline">field_value</code> (string, required) - The value</li><li><code class="inline">instance_id</code> (string, required) - The Survey(Package)InstanceId to save the data-points for</li></ul></li></ul><p>Each item of <code class="inline">data</code> that has no <code class="inline">instance_id</code> gets <code class="inline">survey_package_instance_id</code>, so it doesn't need repeating.</p></li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns what was saved and what wasn't; the <code class="inline">!</code> variant raises a <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a> when anything wasn't.</p>
+  </section>
+</section>
+<section class="detail" id="upsert_survey_package_instance_data_points!/6">
+
+    <span id="upsert_survey_package_instance_data_points!/5"></span>
+
+  <div class="detail-header">
+    <a href="#upsert_survey_package_instance_data_points!/6" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">upsert_survey_package_instance_data_points!(client, study_id, participant_id, survey_package_instance_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/data_points.ex#L1421" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> upsert_survey_package_instance_data_points!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="CastorEDC.Model.DataPointsResult.html#t:t/0">CastorEDC.Model.DataPointsResult.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#upsert_survey_package_instance_data_points/6"><code class="inline">upsert_survey_package_instance_data_points/6</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

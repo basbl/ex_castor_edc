@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>ExCastorEDC — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-extra" id="main" data-type="extras">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>ExCastorEDC</h1>
+
+<a href="readme.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/README.md#L1" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+<p><a href="https://hex.pm/packages/ex_castor_edc"><img src="https://img.shields.io/hexpm/v/ex_castor_edc.svg" alt="Package"/></a> <a href="https://hexdocs.pm/ex_castor_edc"><img src="http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat" alt="Documentation"/></a> <img src="https://github.com/basbl/ex_castor_edc/actions/workflows/ci.yml/badge.svg" alt="CI"/></p><p>An unofficial Elixir client for the <a rel="nofollow" href="https://data.castoredc.com/api">Castor EDC API</a>.</p><p>Every operation of the API has a function, generated from a corrected copy of its spec.
+The client takes care of authentication, paging, rate limits and batch exports, and decodes the values a study collected.</p><p>Coming from 0.4? See the <a href="migrating-to-1-0.html">migration guide</a>.</p><h2 id="installation" class="section-heading"><a href="#installation" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Installation</span></h2><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="group-1">do</span><span class="w">
+  </span><span class="p" data-group-id="group-2">[</span><span class="w">
+    </span><span class="p" data-group-id="group-3">{</span><span class="ss">:ex_castor_edc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 1.0.0-rc.1&quot;</span><span class="p" data-group-id="group-3">}</span><span class="w">
+  </span><span class="p" data-group-id="group-2">]</span><span class="w">
+</span><span class="k" data-group-id="group-1">end</span></code></pre><p>It needs Elixir 1.20 or later.</p><h2 id="usage" class="section-heading"><a href="#usage" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Usage</span></h2><p>Create API credentials on your <a rel="nofollow" href="https://data.castoredc.com/account/settings">account settings page</a>, and build a client from them:</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="group-1">(</span><span class="ss">client_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">client_secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="group-1">)</span></code></pre><p>The client fetches and renews its access token itself.
+The credentials can also come from the application environment or from <code class="inline">CASTOR_EDC_CLIENT_ID</code> and <code class="inline">CASTOR_EDC_CLIENT_SECRET</code>, and <code class="inline">:base_url</code> picks another server, such as <code class="inline">https://us.castoredc.com</code>.
+The client is a <a href="https://req.hexdocs.pm/0.7.5/Req.Request.html"><code class="inline">Req.Request</code></a>, so any other option goes to <a href="https://hexdocs.pm/req">Req</a>.</p><p>Every operation returns <code class="inline">{:ok, result}</code> or <code class="inline">{:error, %CastorEDC.Error{}}</code>, and has a <code class="inline">!</code> variant that returns the result or raises:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="group-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">study</span><span class="p" data-group-id="group-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Studies</span><span class="o">.</span><span class="n">get_study</span><span class="p" data-group-id="group-2">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p" data-group-id="group-2">)</span><span class="w">
+
+</span><span class="n">participant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Participants</span><span class="o">.</span><span class="n">get_participant!</span><span class="p" data-group-id="group-3">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;110001&quot;</span><span class="p" data-group-id="group-3">)</span><span class="w">
+</span><span class="n">participant</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">name</span></code></pre><p>Collections come back as a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a>, and paged operations also have a <code class="inline">stream_</code> function that fetches pages as the stream is consumed:</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">CastorEDC.Participants</span><span class="o">.</span><span class="n">stream_participants</span><span class="p" data-group-id="group-1">(</span><span class="n">study_id</span><span class="p" data-group-id="group-1">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">reject</span><span class="p" data-group-id="group-2">(</span><span class="o">&amp;</span><span class="w"> </span><span class="ni">&amp;1</span><span class="o">.</span><span class="n">archived</span><span class="p" data-group-id="group-2">)</span></code></pre><p>When a route's rate limit is used up, the client waits for it to reset; see <a href="CastorEDC.RateLimit.html"><code class="inline">CastorEDC.RateLimit</code></a>.</p><h2 id="exports" class="section-heading"><a href="#exports" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Exports</span></h2><p><a href="CastorEDC.Export.html"><code class="inline">CastorEDC.Export</code></a> queues a batch export, waits for it and downloads it, in one call:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="group-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">export</span><span class="p" data-group-id="group-1">}</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="nc">CastorEDC.Export</span><span class="o">.</span><span class="n">participant_data</span><span class="p" data-group-id="group-2">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p">,</span><span class="w"> </span><span class="ss">into</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exports/&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">unzip</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="group-2">)</span><span class="w">
+</span><span class="n">export</span><span class="o">.</span><span class="n">files</span></code></pre><h2 id="field-values" class="section-heading"><a href="#field-values" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Field values</span></h2><p>The API sends every value as a string.
+<a href="CastorEDC.FieldValue.html#decode/2"><code class="inline">CastorEDC.FieldValue.decode/2</code></a> reads it by the field's type, and <a href="CastorEDC.Tabular.html"><code class="inline">CastorEDC.Tabular</code></a> streams a study's values as rows, one per value or one per participant:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="group-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">schema</span><span class="p" data-group-id="group-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Tabular</span><span class="o">.</span><span class="n">schema</span><span class="p" data-group-id="group-2">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p" data-group-id="group-2">)</span><span class="w">
+</span><span class="n">rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Tabular</span><span class="o">.</span><span class="n">data_points</span><span class="p" data-group-id="group-3">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p">,</span><span class="w"> </span><span class="ss">schema</span><span class="p">:</span><span class="w"> </span><span class="n">schema</span><span class="p">,</span><span class="w"> </span><span class="ss">format</span><span class="p">:</span><span class="w"> </span><span class="ss">:wide</span><span class="p" data-group-id="group-3">)</span></code></pre><h2 id="testing-your-code" class="section-heading"><a href="#testing-your-code" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Testing your code</span></h2><p><a href="CastorEDC.Test.html"><code class="inline">CastorEDC.Test</code></a> builds clients whose responses your test writes, so code that uses the library can be tested without a network.</p><h2 id="contributing" class="section-heading"><a href="#contributing" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Contributing</span></h2><p>See <a rel="nofollow" href="https://github.com/basbl/ex_castor_edc/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p><h2 id="license" class="section-heading"><a href="#license" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">License</span></h2><p>MIT; see <a rel="nofollow" href="https://github.com/basbl/ex_castor_edc/blob/main/LICENSE.md">LICENSE.md</a>.</p>
+
+</div>
+
+<div class="bottom-actions" id="bottom-actions">
+  <div class="bottom-actions-item">
+
+  </div>
+  <div class="bottom-actions-item">
+
+      <a href="getting_started.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+Using the Castor EDC API
+        </span>
+      </a>
+
+  </div>
+</div>
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+                (<a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1/show/README.md">current file</a>)
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

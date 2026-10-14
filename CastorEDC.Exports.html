@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>CastorEDC.Exports — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">CastorEDC.<wbr />Exports</span> 
+      <small class="app-vsn" translate="no">(ExCastorEDC v1.0.0-rc.1)</small>
+
+    </h1>
+
+<a href="CastorEDC.Exports.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/exports.ex#L4" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>Batch exports: queuing them, listing them with their status, and downloading the result. CastorEDC.Export does all three in one call.</p><h2 id="module-operations" class="section-heading"><a href="#module-operations" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Operations</span></h2><ul><li><a href="#download_export/4"><code class="inline">download_export/4</code></a> - File download. Endpoint responds with binary stream.</li><li><a href="#list_exports/3"><code class="inline">list_exports/3</code></a> - Shows the status of previously requested exports</li><li><a href="#queue_exports/4"><code class="inline">queue_exports/4</code></a> - Request exports of multiple types.</li></ul><p>Every operation returns <code class="inline">{:ok, result}</code> or <code class="inline">{:error, %CastorEDC.Error{}}</code>,
+and has a <code class="inline">!</code> variant that returns the result or raises the error.</p>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-functions summary">
+  <h3>
+    <a href="#functions">Functions</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#download_export/4" data-no-tooltip="" translate="no">download_export(client, study_id, export_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>File download. Endpoint responds with binary stream.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#download_export!/4" data-no-tooltip="" translate="no">download_export!(client, study_id, export_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#download_export/4"><code class="inline">download_export/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_exports/3" data-no-tooltip="" translate="no">list_exports(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Shows the status of previously requested exports.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_exports!/3" data-no-tooltip="" translate="no">list_exports!(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_exports/3"><code class="inline">list_exports/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#queue_exports/4" data-no-tooltip="" translate="no">queue_exports(client, study_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Request exports of multiple types.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#queue_exports!/4" data-no-tooltip="" translate="no">queue_exports!(client, study_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#queue_exports/4"><code class="inline">queue_exports/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_exports/3" data-no-tooltip="" translate="no">stream_exports(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_exports/3"><code class="inline">list_exports/3</code></a> pages through.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h2>
+
+    <div class="functions-list">
+<section class="detail" id="download_export/4">
+
+    <span id="download_export/3"></span>
+
+  <div class="detail-header">
+    <a href="#download_export/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">download_export(client, study_id, export_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/exports.ex#L39" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> download_export(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">binary</a>() | <a href="https://elixir.hexdocs.pm/Collectable.html#t:t/0">Collectable.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>File download. Endpoint responds with binary stream.</p><p>Sends <code class="inline">GET /api/study/{study_id}/export/{id}/download</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/export/get_study__study_id__export__id__download">API reference</a></p><h2 id="download_export/4-arguments" class="section-heading"><a href="#download_export/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">export_id</code> - The ID of the Export to download</li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>. The file comes back as a binary, unless
+<code class="inline">:into</code> collects it elsewhere: <code class="inline">into: File.stream!(path)</code> streams it to
+disk, and the result is then the stream.</p>
+  </section>
+</section>
+<section class="detail" id="download_export!/4">
+
+    <span id="download_export!/3"></span>
+
+  <div class="detail-header">
+    <a href="#download_export!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">download_export!(client, study_id, export_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/exports.ex#L47" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> download_export!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">binary</a>() | <a href="https://elixir.hexdocs.pm/Collectable.html#t:t/0">Collectable.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#download_export/4"><code class="inline">download_export/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_exports/3">
+
+    <span id="list_exports/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_exports/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_exports(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/exports.ex#L71" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_exports(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.ExportEntry.html#t:t/0">CastorEDC.Model.ExportEntry.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Shows the status of previously requested exports.</p><p>Sends <code class="inline">GET /api/study/{study_id}/export</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/export/get_study__study_id__export">API reference</a></p><h2 id="list_exports/3-arguments" class="section-heading"><a href="#list_exports/3-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li></ul><h2 id="list_exports/3-options" class="section-heading"><a href="#list_exports/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">100</code>; a larger one is lowered to it) - The size of pages</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.ExportEntry.html#t:t/0"><code class="inline">CastorEDC.Model.ExportEntry.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_exports!/3">
+
+    <span id="list_exports!/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_exports!/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_exports!(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/exports.ex#L79" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_exports!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.ExportEntry.html#t:t/0">CastorEDC.Model.ExportEntry.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_exports/3"><code class="inline">list_exports/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="queue_exports/4">
+
+    <span id="queue_exports/3"></span>
+
+  <div class="detail-header">
+    <a href="#queue_exports/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">queue_exports(client, study_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/exports.ex#L116" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> queue_exports(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Model.ExportSuccess.html#t:t/0">CastorEDC.Model.ExportSuccess.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Request exports of multiple types.</p><p>This batch endpoint supports initiating multiple, distinct export types in a single request.</p><p>Sends <code class="inline">POST /api/study/{study_id}/export</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/default/post_study__study_id__export">API reference</a></p><h2 id="queue_exports/4-arguments" class="section-heading"><a href="#queue_exports/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made.</li><li><p><code class="inline">body</code> - a map, sent as JSON: Please note that this endpoint is currently in beta and implementation details may change. Export format, options, and filters depend on the export type. All filters are optional. Please find a description of some parameters below. - filters.participant_ids: <strong>If provided, other filters will be skipped.</strong> - queries.elements: Only one type at a time is supported, so provide either repeating_data, visits or visit_forms key. - survey_compliance.parent_id: Visit/Repeating data UUID. To demonstrate use of all supported ENUM values, following notation is used in request payload: <strong>empty | visit | repeating_data</strong> - meaning in this example, all three values are supported.</p><ul><li><code class="inline">exports</code> (object, required)</li></ul></li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="queue_exports!/4">
+
+    <span id="queue_exports!/3"></span>
+
+  <div class="detail-header">
+    <a href="#queue_exports!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">queue_exports!(client, study_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/exports.ex#L124" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> queue_exports!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Model.ExportSuccess.html#t:t/0">CastorEDC.Model.ExportSuccess.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#queue_exports/4"><code class="inline">queue_exports/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_exports/3">
+
+    <span id="stream_exports/2"></span>
+
+  <div class="detail-header">
+    <a href="#stream_exports/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_exports(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/exports.ex#L91" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_exports(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.ExportEntry.html#t:t/0">CastorEDC.Model.ExportEntry.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_exports/3"><code class="inline">list_exports/3</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>CastorEDC.Participants — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">CastorEDC.<wbr />Participants</span> 
+      <small class="app-vsn" translate="no">(ExCastorEDC v1.0.0-rc.1)</small>
+
+    </h1>
+
+<a href="CastorEDC.Participants.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L4" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>The participants of a study, and their progress through its forms.</p><h2 id="module-operations" class="section-heading"><a href="#module-operations" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Operations</span></h2><ul><li><a href="#create_participant/4"><code class="inline">create_participant/4</code></a> - Create a participant</li><li><a href="#get_participant/4"><code class="inline">get_participant/4</code></a> - Retrieve a single Participant 🔭</li><li><a href="#list_form_progress/3"><code class="inline">list_form_progress/3</code></a> - Retrieve information about forms filled for participants</li><li><a href="#list_participants/3"><code class="inline">list_participants/3</code></a> - Retrieve list of study participants</li><li><a href="#list_repeating_data_progress/4"><code class="inline">list_repeating_data_progress/4</code></a> - Fetch repeating data progress per participant</li><li><a href="#list_visit_progress/4"><code class="inline">list_visit_progress/4</code></a> - Fetch visit progress per participant</li></ul><p>Every operation returns <code class="inline">{:ok, result}</code> or <code class="inline">{:error, %CastorEDC.Error{}}</code>,
+and has a <code class="inline">!</code> variant that returns the result or raises the error.</p>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-functions summary">
+  <h3>
+    <a href="#functions">Functions</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_participant/4" data-no-tooltip="" translate="no">create_participant(client, study_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Create a participant.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_participant!/4" data-no-tooltip="" translate="no">create_participant!(client, study_id, body, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#create_participant/4"><code class="inline">create_participant/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_participant/4" data-no-tooltip="" translate="no">get_participant(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve a single Participant 🔭.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_participant!/4" data-no-tooltip="" translate="no">get_participant!(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#get_participant/4"><code class="inline">get_participant/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_form_progress/3" data-no-tooltip="" translate="no">list_form_progress(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve information about forms filled for participants.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_form_progress!/3" data-no-tooltip="" translate="no">list_form_progress!(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_form_progress/3"><code class="inline">list_form_progress/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participants/3" data-no-tooltip="" translate="no">list_participants(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieve list of study participants.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_participants!/3" data-no-tooltip="" translate="no">list_participants!(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_participants/3"><code class="inline">list_participants/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_repeating_data_progress/4" data-no-tooltip="" translate="no">list_repeating_data_progress(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Fetch repeating data progress per participant.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_repeating_data_progress!/4" data-no-tooltip="" translate="no">list_repeating_data_progress!(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_repeating_data_progress/4"><code class="inline">list_repeating_data_progress/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_visit_progress/4" data-no-tooltip="" translate="no">list_visit_progress(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Fetch visit progress per participant.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list_visit_progress!/4" data-no-tooltip="" translate="no">list_visit_progress!(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The same as <a href="#list_visit_progress/4"><code class="inline">list_visit_progress/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_form_progress/3" data-no-tooltip="" translate="no">stream_form_progress(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_form_progress/3"><code class="inline">list_form_progress/3</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_participants/3" data-no-tooltip="" translate="no">stream_participants(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_participants/3"><code class="inline">list_participants/3</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_repeating_data_progress/4" data-no-tooltip="" translate="no">stream_repeating_data_progress(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_repeating_data_progress/4"><code class="inline">list_repeating_data_progress/4</code></a> pages through.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stream_visit_progress/4" data-no-tooltip="" translate="no">stream_visit_progress(client, study_id, participant_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams every record <a href="#list_visit_progress/4"><code class="inline">list_visit_progress/4</code></a> pages through.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h2>
+
+    <div class="functions-list">
+<section class="detail" id="create_participant/4">
+
+    <span id="create_participant/3"></span>
+
+  <div class="detail-header">
+    <a href="#create_participant/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_participant(client, study_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L50" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_participant(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Model.Participant.html#t:t/0">CastorEDC.Model.Participant.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Create a participant.</p><p>Create a new participant for a specific study.</p><pre><code class="makeup elixir" translate="no"><span class="w">                </span><span class="nc">You</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">study</span><span class="err">&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">participant</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">generation</span><span class="w"> </span><span class="n">strategy</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="c">_Patient</span><span class="w"> </span><span class="nc">Study</span><span class="w"> </span><span class="nc">ID</span><span class="w"> </span><span class="p" data-group-id="group-1">(</span><span class="n">free</span><span class="w"> </span><span class="n">text</span><span class="p" data-group-id="group-1">)</span><span class="bp">_</span><span class="w">
+                </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">able</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">supply</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">own</span><span class="w"> </span><span class="n">participant</span><span class="w"> </span><span class="n">id</span></code></pre><p>Sends <code class="inline">POST /api/study/{study_id}/participant</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/participant/post_study__study_id__participant">API reference</a></p><h2 id="create_participant/4-arguments" class="section-heading"><a href="#create_participant/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">body</code> - a map, sent as JSON: Participant to add to the Study <em>participant_id</em> can only be set if your study's participant id generation strategy is set to <em>Patient Study ID (free text)</em> and is then a required parameter. If your study uses clinical identifiers via ccr_patient_id you can supply this as an optional parameter.<ul><li><code class="inline">site_id</code> (string, required)</li><li><code class="inline">ccr_patient_id</code> (string)</li><li><code class="inline">email_address</code> (string)</li><li><code class="inline">participant_id</code> (string)</li></ul></li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="create_participant!/4">
+
+    <span id="create_participant!/3"></span>
+
+  <div class="detail-header">
+    <a href="#create_participant!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_participant!(client, study_id, body, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L58" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_participant!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Model.Participant.html#t:t/0">CastorEDC.Model.Participant.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#create_participant/4"><code class="inline">create_participant/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_participant/4">
+
+    <span id="get_participant/3"></span>
+
+  <div class="detail-header">
+    <a href="#get_participant/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_participant(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L78" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_participant(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Model.Participant.html#t:t/0">CastorEDC.Model.Participant.t</a>()} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve a single Participant 🔭.</p><p>Supports the <code class="inline">record</code> scope.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant/{participant_id}</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/participant/get_study__study_id__participant__participant_id_">API reference</a></p><h2 id="get_participant/4-arguments" class="section-heading"><a href="#get_participant/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - Participant ID of the Participant to fetch</li></ul><p>Every option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get_participant!/4">
+
+    <span id="get_participant!/3"></span>
+
+  <div class="detail-header">
+    <a href="#get_participant!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_participant!(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L89" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_participant!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Model.Participant.html#t:t/0">CastorEDC.Model.Participant.t</a>()</pre>
+
+      </div>
+
+<p>The same as <a href="#get_participant/4"><code class="inline">get_participant/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_form_progress/3">
+
+    <span id="list_form_progress/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_form_progress/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_form_progress(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L119" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_form_progress(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.ParticipantProgress.html#t:t/0">CastorEDC.Model.ParticipantProgress.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve information about forms filled for participants.</p><p>Gets <code class="inline">Participant Progress</code> objects, which are Participant Forms that are going to show how much of a participant has been sdv\'d,
+signed and locked.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant-progress/forms</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/participant-progress/get_study__study_id__participant_progress_forms">API reference</a></p><h2 id="list_form_progress/3-arguments" class="section-heading"><a href="#list_form_progress/3-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li></ul><h2 id="list_form_progress/3-options" class="section-heading"><a href="#list_form_progress/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:page</code> (integer) - Page of participants to be returned</li><li><code class="inline">:page_size</code> (integer) - The number of records per page.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.ParticipantProgress.html#t:t/0"><code class="inline">CastorEDC.Model.ParticipantProgress.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_form_progress!/3">
+
+    <span id="list_form_progress!/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_form_progress!/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_form_progress!(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L127" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_form_progress!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.ParticipantProgress.html#t:t/0">CastorEDC.Model.ParticipantProgress.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_form_progress/3"><code class="inline">list_form_progress/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_participants/3">
+
+    <span id="list_participants/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_participants/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participants(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L172" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participants(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.Participant.html#t:t/0">CastorEDC.Model.Participant.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Retrieve list of study participants.</p><p>Gets <code class="inline">Participant</code> objects.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/participant/get_study__study_id__participant">API reference</a></p><h2 id="list_participants/3-arguments" class="section-heading"><a href="#list_participants/3-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li></ul><h2 id="list_participants/3-options" class="section-heading"><a href="#list_participants/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve</li><li><code class="inline">:site_id</code> (string) - Site UUID to filter on. Use like: ?site=SITE_ID</li><li><code class="inline">:archived</code> (boolean) - <code class="inline">true</code> for only archived participants, <code class="inline">false</code> for only unarchived ones; all participants when left out.</li><li><code class="inline">:fields</code> (a map of keys to values, sent as <code class="inline">field[key]=value</code>) - Filter participants on field values (participant, survey, report fields). Multiple fields can be defined. Use like: ?field[ID1]=VALUE1&amp;field[ID2]=VALUE2</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">1000</code>; a larger one is lowered to it) - The number of records per page.</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.Participant.html#t:t/0"><code class="inline">CastorEDC.Model.Participant.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_participants!/3">
+
+    <span id="list_participants!/2"></span>
+
+  <div class="detail-header">
+    <a href="#list_participants!/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_participants!(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L180" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_participants!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.Participant.html#t:t/0">CastorEDC.Model.Participant.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_participants/3"><code class="inline">list_participants/3</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_repeating_data_progress/4">
+
+    <span id="list_repeating_data_progress/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_repeating_data_progress/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_repeating_data_progress(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L222" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_repeating_data_progress(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  {:ok,
+   CastorEDC.Page.t(
+     <a href="CastorEDC.Model.ParticipantProgressRepeatingDataCollection.html#t:t/0">CastorEDC.Model.ParticipantProgressRepeatingDataCollection.t</a>()
+   )}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Fetch repeating data progress per participant.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant-progress/{participant_id}/repeating-data</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/participant-progress/get_study__study_id__participant_progress__participant_id__repeating_data">API reference</a></p><h2 id="list_repeating_data_progress/4-arguments" class="section-heading"><a href="#list_repeating_data_progress/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant for which to retrieve progress</li></ul><h2 id="list_repeating_data_progress/4-options" class="section-heading"><a href="#list_repeating_data_progress/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:archived</code> (boolean) - <code class="inline">true</code> for only archived repeating data instances, <code class="inline">false</code> (what the API does when it's left out) for only unarchived ones.</li><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">100</code>; a larger one is lowered to it) - The size of pages</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.ParticipantProgressRepeatingDataCollection.html#t:t/0"><code class="inline">CastorEDC.Model.ParticipantProgressRepeatingDataCollection.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_repeating_data_progress!/4">
+
+    <span id="list_repeating_data_progress!/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_repeating_data_progress!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_repeating_data_progress!(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L234" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_repeating_data_progress!(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  CastorEDC.Page.t(
+    <a href="CastorEDC.Model.ParticipantProgressRepeatingDataCollection.html#t:t/0">CastorEDC.Model.ParticipantProgressRepeatingDataCollection.t</a>()
+  )</pre>
+
+      </div>
+
+<p>The same as <a href="#list_repeating_data_progress/4"><code class="inline">list_repeating_data_progress/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="list_visit_progress/4">
+
+    <span id="list_visit_progress/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_visit_progress/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_visit_progress(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L279" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_visit_progress(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok,
+   <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.ParticipantProgressVisitCollection.html#t:t/0">CastorEDC.Model.ParticipantProgressVisitCollection.t</a>())}
+  | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Fetch visit progress per participant.</p><p>Sends <code class="inline">GET /api/study/{study_id}/participant-progress/{participant_id}/visit</code>. <a rel="nofollow" href="https://data.castoredc.com/api#/participant-progress/get_study__study_id__participant_progress__participant_id__visit">API reference</a></p><h2 id="list_visit_progress/4-arguments" class="section-heading"><a href="#list_visit_progress/4-arguments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Arguments</span></h2><ul><li><code class="inline">study_id</code> - The ID of the study for which this call should be made</li><li><code class="inline">participant_id</code> - The ID of the participant for which to retrieve progress</li></ul><h2 id="list_visit_progress/4-options" class="section-heading"><a href="#list_visit_progress/4-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:page</code> (integer, defaults to <code class="inline">1</code>) - The page to retrieve</li><li><code class="inline">:page_size</code> (integer, at most <code class="inline">100</code>; a larger one is lowered to it) - The size of pages</li></ul><p>Any other option is passed to <a href="https://req.hexdocs.pm/0.7.5/Req.html"><code class="inline">Req</code></a>.</p><p>Returns a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a> of <a href="CastorEDC.Model.ParticipantProgressVisitCollection.html#t:t/0"><code class="inline">CastorEDC.Model.ParticipantProgressVisitCollection.t/0</code></a> records.</p>
+  </section>
+</section>
+<section class="detail" id="list_visit_progress!/4">
+
+    <span id="list_visit_progress!/3"></span>
+
+  <div class="detail-header">
+    <a href="#list_visit_progress!/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">list_visit_progress!(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L291" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> list_visit_progress!(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="CastorEDC.Page.html#t:t/1">CastorEDC.Page.t</a>(<a href="CastorEDC.Model.ParticipantProgressVisitCollection.html#t:t/0">CastorEDC.Model.ParticipantProgressVisitCollection.t</a>())</pre>
+
+      </div>
+
+<p>The same as <a href="#list_visit_progress/4"><code class="inline">list_visit_progress/4</code></a>, returning the result or raising <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_form_progress/3">
+
+    <span id="stream_form_progress/2"></span>
+
+  <div class="detail-header">
+    <a href="#stream_form_progress/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_form_progress(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L139" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_form_progress(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.ParticipantProgress.html#t:t/0">CastorEDC.Model.ParticipantProgress.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_form_progress/3"><code class="inline">list_form_progress/3</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, in the API's default page size unless <code class="inline">:page_size</code> says
+otherwise; see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_participants/3">
+
+    <span id="stream_participants/2"></span>
+
+  <div class="detail-header">
+    <a href="#stream_participants/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_participants(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L192" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_participants(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.Participant.html#t:t/0">CastorEDC.Model.Participant.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_participants/3"><code class="inline">list_participants/3</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_repeating_data_progress/4">
+
+    <span id="stream_repeating_data_progress/3"></span>
+
+  <div class="detail-header">
+    <a href="#stream_repeating_data_progress/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_repeating_data_progress(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L250" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_repeating_data_progress(
+  <a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.ParticipantProgressRepeatingDataCollection.html#t:t/0">CastorEDC.Model.ParticipantProgressRepeatingDataCollection.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_repeating_data_progress/4"><code class="inline">list_repeating_data_progress/4</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="stream_visit_progress/4">
+
+    <span id="stream_visit_progress/3"></span>
+
+  <div class="detail-header">
+    <a href="#stream_visit_progress/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stream_visit_progress(client, study_id, participant_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/participants.ex#L307" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stream_visit_progress(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="CastorEDC.Model.ParticipantProgressVisitCollection.html#t:t/0">CastorEDC.Model.ParticipantProgressVisitCollection.t</a>())</pre>
+
+      </div>
+
+<p>Streams every record <a href="#list_visit_progress/4"><code class="inline">list_visit_progress/4</code></a> pages through.</p><p>Takes the same arguments and options. Pages are fetched as the stream is
+consumed, as large as the API allows unless <code class="inline">:page_size</code> says otherwise;
+see <a href="CastorEDC.Pagination.html"><code class="inline">CastorEDC.Pagination</code></a>.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

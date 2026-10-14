@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>CastorEDC.FieldValue — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">CastorEDC.<wbr />FieldValue</span> 
+      <small class="app-vsn" translate="no">(ExCastorEDC v1.0.0-rc.1)</small>
+
+    </h1>
+
+<a href="CastorEDC.FieldValue.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/field_value.ex#L1" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>Turns the values of data points into Elixir values.</p><p>The API sends every value as a string, the way it's stored, whatever the
+field's type. <a href="#decode/2"><code class="inline">decode/2</code></a> reads it according to the field's type:</p><table><thead><tr><th style="text-align: left;">Field type</th><th style="text-align: left;">Stored as</th><th style="text-align: left;">Decoded to</th></tr></thead><tbody><tr><td style="text-align: left;"><code class="inline">numeric</code>, <code class="inline">slider</code></td><td style="text-align: left;"><code class="inline">&quot;42&quot;</code>, <code class="inline">&quot;3.14&quot;</code></td><td style="text-align: left;">an integer or a float</td></tr><tr><td style="text-align: left;"><code class="inline">year</code></td><td style="text-align: left;"><code class="inline">&quot;2015&quot;</code></td><td style="text-align: left;">an integer</td></tr><tr><td style="text-align: left;"><code class="inline">calculation</code></td><td style="text-align: left;">the result</td><td style="text-align: left;">a number when it is one, otherwise the string</td></tr><tr><td style="text-align: left;"><code class="inline">date</code></td><td style="text-align: left;"><code class="inline">&quot;07-10-2026&quot;</code>, or <code class="inline">&quot;07102026&quot;</code> in older data</td><td style="text-align: left;">a <a href="https://elixir.hexdocs.pm/Date.html"><code class="inline">Date</code></a></td></tr><tr><td style="text-align: left;"><code class="inline">date_partial</code></td><td style="text-align: left;"><code class="inline">&quot;00-05-2020&quot;</code>, with <code class="inline">00</code> for unknown parts</td><td style="text-align: left;">a <a href="CastorEDC.PartialDate.html"><code class="inline">CastorEDC.PartialDate</code></a></td></tr><tr><td style="text-align: left;"><code class="inline">time</code></td><td style="text-align: left;"><code class="inline">&quot;12:30&quot;</code></td><td style="text-align: left;">a <a href="https://elixir.hexdocs.pm/Time.html"><code class="inline">Time</code></a></td></tr><tr><td style="text-align: left;"><code class="inline">datetime</code></td><td style="text-align: left;"><code class="inline">&quot;07-10-2026;12:30&quot;</code></td><td style="text-align: left;">a <a href="https://elixir.hexdocs.pm/NaiveDateTime.html"><code class="inline">NaiveDateTime</code></a></td></tr><tr><td style="text-align: left;"><code class="inline">numberdate</code></td><td style="text-align: left;"><code class="inline">&quot;5;07-10-2026&quot;</code></td><td style="text-align: left;"><code class="inline">{number, date}</code>, either of which can be <code class="inline">nil</code></td></tr><tr><td style="text-align: left;"><code class="inline">radio</code>, <code class="inline">dropdown</code></td><td style="text-align: left;">the chosen option's value, such as <code class="inline">&quot;2&quot;</code></td><td style="text-align: left;">the value, as a string</td></tr><tr><td style="text-align: left;"><code class="inline">checkbox</code></td><td style="text-align: left;">the checked options' values, such as <code class="inline">&quot;0;1&quot;</code></td><td style="text-align: left;">a list of the values</td></tr><tr><td style="text-align: left;"><code class="inline">grid</code> (the API doesn't take grid values in writes)</td><td style="text-align: left;">JSON, row by column: <code class="inline">{&quot;0&quot;:{&quot;0&quot;:&quot;5&quot;}}</code></td><td style="text-align: left;"><code class="inline">%{row =&gt; %{column =&gt; cell}}</code>, with integer rows and columns; given the field, each cell decoded by its row's or column's type from the grid's layout, and like text otherwise</td></tr><tr><td style="text-align: left;"><code class="inline">upload</code></td><td style="text-align: left;"><code class="inline">&quot;-- Uploaded File: scan.pdf --&quot;</code> from single data points, <code class="inline">&quot;- - Uploaded file - -&quot;</code> when the name can't be read, or JSON with the name base64-encoded (<code class="inline">{&quot;file_name&quot;:&quot;c2Nhbi5wZGY=&quot;,...}</code>) from the lists</td><td style="text-align: left;"><code class="inline">{:upload, name}</code>, with <code class="inline">nil</code> for an unknown name</td></tr><tr><td style="text-align: left;"><code class="inline">geolocation</code></td><td style="text-align: left;"><code class="inline">&quot;52.36;4.90&quot;</code></td><td style="text-align: left;"><code class="inline">{latitude, longitude}</code></td></tr><tr><td style="text-align: left;"><code class="inline">string</code>, <code class="inline">textarea</code> and others</td><td style="text-align: left;">text</td><td style="text-align: left;">the string</td></tr><tr><td style="text-align: left;">any, when empty</td><td style="text-align: left;"><code class="inline">&quot;&quot;</code></td><td style="text-align: left;"><code class="inline">nil</code></td></tr><tr><td style="text-align: left;">any, when marked missing</td><td style="text-align: left;"><code class="inline">&quot;##USER_MISSING_95##&quot;</code> to <code class="inline">&quot;##USER_MISSING_99##&quot;</code></td><td style="text-align: left;">a <a href="CastorEDC.MissingValue.html"><code class="inline">CastorEDC.MissingValue</code></a></td></tr><tr><td style="text-align: left;">any, when encrypted</td><td style="text-align: left;"><code class="inline">&quot;*encrypted*&quot;</code></td><td style="text-align: left;"><code class="inline">:encrypted</code></td></tr></tbody></table><p>Layout types without values, such as <code class="inline">remark</code> and <code class="inline">repeated_measures</code>,
+decode like text.</p><p>Options are stored by value, not by name: <a href="#label/2"><code class="inline">label/2</code></a> looks up the name the
+user saw.</p><p><a href="#decode/2"><code class="inline">decode/2</code></a> never raises. A value that doesn't read as its type comes back
+as the string it arrived as, and the first such value of each field logs
+a warning.</p>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-types summary">
+  <h3>
+    <a href="#types">Types</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:t/0" data-no-tooltip="" translate="no">t()</a>
+
+      </div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h3>
+    <a href="#functions">Functions</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#decode/2" data-no-tooltip="" translate="no">decode(raw, field)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Decodes a stored value for the field it belongs to.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#label/2" data-no-tooltip="" translate="no">label(values, options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The name of the option with the given value, as the user saw it.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h2>
+
+    <div class="types-list">
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">t()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/field_value.ex#L46" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> t() ::
+  nil
+  | <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()
+  | <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">integer</a>()
+  | <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">float</a>()
+  | <a href="https://elixir.hexdocs.pm/Date.html#t:t/0">Date.t</a>()
+  | <a href="CastorEDC.PartialDate.html#t:t/0">CastorEDC.PartialDate.t</a>()
+  | <a href="https://elixir.hexdocs.pm/Time.html#t:t/0">Time.t</a>()
+  | <a href="https://elixir.hexdocs.pm/NaiveDateTime.html#t:t/0">NaiveDateTime.t</a>()
+  | {<a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">integer</a>() | <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">float</a>() | nil, <a href="https://elixir.hexdocs.pm/Date.html#t:t/0">Date.t</a>() | nil}
+  | [<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()]
+  | %{
+      optional(<a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">integer</a>() | <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()) =&gt; %{
+        optional(<a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">integer</a>() | <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()) =&gt;
+          <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | <a href="CastorEDC.MissingValue.html#t:t/0">CastorEDC.MissingValue.t</a>() | :encrypted | nil
+      }
+    }
+  | {:upload, <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil}
+  | {<a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">float</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">float</a>()}
+  | <a href="CastorEDC.MissingValue.html#t:t/0">CastorEDC.MissingValue.t</a>()
+  | :encrypted</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h2>
+
+    <div class="functions-list">
+<section class="detail" id="decode/2">
+
+  <div class="detail-header">
+    <a href="#decode/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">decode(raw, field)</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/field_value.ex#L84" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> decode(<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil, <a href="CastorEDC.Model.Field.html#t:t/0">CastorEDC.Model.Field.t</a>() | <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">atom</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Decodes a stored value for the field it belongs to.</p><p><code class="inline">field</code> is a <a href="CastorEDC.Model.Field.html"><code class="inline">CastorEDC.Model.Field</code></a>, or just its type, such as
+<code class="inline">&quot;numeric&quot;</code>.</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">CastorEDC.FieldValue</span><span class="o">.</span><span class="n">decode</span><span class="p" data-group-id="group-1">(</span><span class="s">&quot;42&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;numeric&quot;</span><span class="p" data-group-id="group-1">)</span><span class="w">
+</span><span class="mi">42</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">CastorEDC.FieldValue</span><span class="o">.</span><span class="n">decode</span><span class="p" data-group-id="group-2">(</span><span class="s">&quot;##USER_MISSING_96##&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;numeric&quot;</span><span class="p" data-group-id="group-2">)</span><span class="w">
+</span><span class="p" data-group-id="group-3">%</span><span class="nc" data-group-id="group-3">CastorEDC.MissingValue</span><span class="p" data-group-id="group-3">{</span><span class="ss">code</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span><span class="p">,</span><span class="w"> </span><span class="ss">reason</span><span class="p">:</span><span class="w"> </span><span class="ss">:not_applicable</span><span class="p" data-group-id="group-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">CastorEDC.FieldValue</span><span class="o">.</span><span class="n">decode</span><span class="p" data-group-id="group-4">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;year&quot;</span><span class="p" data-group-id="group-4">)</span><span class="w">
+</span><span class="no">nil</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="label/2">
+
+  <div class="detail-header">
+    <a href="#label/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">label(values, options)</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/field_value.ex#L146" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> label(
+  <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | [<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()],
+  <a href="CastorEDC.Model.FieldOptionGroup.html#t:t/0">CastorEDC.Model.FieldOptionGroup.t</a>() | <a href="CastorEDC.Model.Field.html#t:t/0">CastorEDC.Model.Field.t</a>() | nil
+) :: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | [<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil] | nil</pre>
+
+      </div>
+
+<p>The name of the option with the given value, as the user saw it.</p><p><code class="inline">options</code> is the field's <a href="CastorEDC.Model.FieldOptionGroup.html"><code class="inline">CastorEDC.Model.FieldOptionGroup</code></a>, or the field
+itself when it was listed with <code class="inline">include: &quot;optiongroup&quot;</code>. A list of values,
+as a checkbox field has, gives a list of names. A value the option group
+doesn't have gives <code class="inline">nil</code>.</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">yes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="group-1">%</span><span class="nc" data-group-id="group-1">CastorEDC.Model.FieldOption</span><span class="p" data-group-id="group-1">{</span><span class="ss">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Yes&quot;</span><span class="p" data-group-id="group-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">no</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="group-2">%</span><span class="nc" data-group-id="group-2">CastorEDC.Model.FieldOption</span><span class="p" data-group-id="group-2">{</span><span class="ss">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;No&quot;</span><span class="p" data-group-id="group-2">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="group-3">%</span><span class="nc" data-group-id="group-3">CastorEDC.Model.FieldOptionGroup</span><span class="p" data-group-id="group-3">{</span><span class="ss">options</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="group-4">[</span><span class="n">yes</span><span class="p">,</span><span class="w"> </span><span class="n">no</span><span class="p" data-group-id="group-4">]</span><span class="p" data-group-id="group-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">CastorEDC.FieldValue</span><span class="o">.</span><span class="n">label</span><span class="p" data-group-id="group-5">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="p" data-group-id="group-5">)</span><span class="w">
+</span><span class="s">&quot;Yes&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">CastorEDC.FieldValue</span><span class="o">.</span><span class="n">label</span><span class="p" data-group-id="group-6">(</span><span class="p" data-group-id="group-7">[</span><span class="s">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p" data-group-id="group-7">]</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="p" data-group-id="group-6">)</span><span class="w">
+</span><span class="p" data-group-id="group-8">[</span><span class="s">&quot;No&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Yes&quot;</span><span class="p" data-group-id="group-8">]</span></code></pre>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

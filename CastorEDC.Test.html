@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>CastorEDC.Test — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">CastorEDC.<wbr />Test</span> 
+      <small class="app-vsn" translate="no">(ExCastorEDC v1.0.0-rc.1)</small>
+
+    </h1>
+
+<a href="CastorEDC.Test.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/test.ex#L1" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>A client for tests, whose responses the test writes and whose requests it
+can inspect.</p><p><a href="#client/2"><code class="inline">client/2</code></a> builds a client from <a href="CastorEDC.html#new/1"><code class="inline">CastorEDC.new/1</code></a> whose Req adapter never
+touches the network: it answers with the response the test gives and
+sends the request it would have made to the test process, where
+<a href="#requested/1"><code class="inline">requested/1</code></a> reads it back. Because only the adapter is replaced, every
+request and response step still runs, including authentication, rate
+limiting and decoding into structs.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Test</span><span class="o">.</span><span class="n">client</span><span class="p" data-group-id="group-1">(</span><span class="nc">CastorEDC.Test</span><span class="o">.</span><span class="n">json</span><span class="p" data-group-id="group-2">(</span><span class="p" data-group-id="group-3">%{</span><span class="s">&quot;study_id&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;S1&quot;</span><span class="p" data-group-id="group-3">}</span><span class="p" data-group-id="group-2">)</span><span class="p" data-group-id="group-1">)</span><span class="w">
+</span><span class="p" data-group-id="group-4">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">study</span><span class="p" data-group-id="group-4">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Studies</span><span class="o">.</span><span class="n">get_study</span><span class="p" data-group-id="group-5">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;S1&quot;</span><span class="p" data-group-id="group-5">)</span><span class="w">
+
+</span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Test</span><span class="o">.</span><span class="n">requested</span><span class="p" data-group-id="group-6">(</span><span class="p" data-group-id="group-6">)</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">path</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;/api/study/S1&quot;</span></code></pre><p>A function answers each request in turn, which suits operations that page:</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="nc">CastorEDC.Test</span><span class="o">.</span><span class="n">client</span><span class="p" data-group-id="group-1">(</span><span class="k" data-group-id="group-2">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">path</span><span class="w"> </span><span class="k" data-group-id="group-3">do</span><span class="w">
+      </span><span class="s">&quot;/api/study/S1/site&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">CastorEDC.Test</span><span class="o">.</span><span class="n">json</span><span class="p" data-group-id="group-4">(</span><span class="n">sites</span><span class="p" data-group-id="group-4">)</span><span class="w">
+      </span><span class="s">&quot;/api/study/S1/participant&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">CastorEDC.Test</span><span class="o">.</span><span class="n">json</span><span class="p" data-group-id="group-5">(</span><span class="n">participants</span><span class="p" data-group-id="group-5">)</span><span class="w">
+    </span><span class="k" data-group-id="group-3">end</span><span class="w">
+  </span><span class="k" data-group-id="group-2">end</span><span class="p" data-group-id="group-1">)</span></code></pre>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-functions summary">
+  <h3>
+    <a href="#functions">Functions</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#client/2" data-no-tooltip="" translate="no">client(response, options \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>A client that answers every request with <code class="inline">response</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#json/2" data-no-tooltip="" translate="no">json(body, options \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>A JSON response with the given status, 200 by default, and headers.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#requested/1" data-no-tooltip="" translate="no">requested(timeout \\ 100)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The next request a <a href="#client/2"><code class="inline">client/2</code></a> client sent, or <code class="inline">nil</code> when none arrives
+within <code class="inline">timeout</code> milliseconds.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h2>
+
+    <div class="functions-list">
+<section class="detail" id="client/2">
+
+    <span id="client/1"></span>
+
+  <div class="detail-header">
+    <a href="#client/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">client(response, options \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/test.ex#L53" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> client(
+  <a href="https://req.hexdocs.pm/0.7.5/Req.Response.html#t:t/0">Req.Response.t</a>()
+  | <a href="https://elixir.hexdocs.pm/Exception.html#t:t/0">Exception.t</a>()
+  | (<a href="https://req.hexdocs.pm/0.7.5/Req.Request.html#t:t/0">Req.Request.t</a>() -&gt; <a href="https://req.hexdocs.pm/0.7.5/Req.Response.html#t:t/0">Req.Response.t</a>() | <a href="https://elixir.hexdocs.pm/Exception.html#t:t/0">Exception.t</a>()),
+  <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="https://req.hexdocs.pm/0.7.5/Req.Request.html#t:t/0">Req.Request.t</a>()</pre>
+
+      </div>
+
+<p>A client that answers every request with <code class="inline">response</code>.</p><p><code class="inline">response</code> is a <a href="https://req.hexdocs.pm/0.7.5/Req.Response.html"><code class="inline">Req.Response</code></a>, an exception, or a function that takes the
+<a href="https://req.hexdocs.pm/0.7.5/Req.Request.html"><code class="inline">Req.Request</code></a> and returns one of those. Retries are off, an access token
+is set and the server is <code class="inline">https://data.castoredc.com</code>, unless <code class="inline">options</code>
+says otherwise; the options go to <a href="CastorEDC.html#new/1"><code class="inline">CastorEDC.new/1</code></a>.</p><p>The requests go to the process that built the client.</p>
+  </section>
+</section>
+<section class="detail" id="json/2">
+
+    <span id="json/1"></span>
+
+  <div class="detail-header">
+    <a href="#json/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">json(body, options \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/test.ex#L77" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> json(<a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">term</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) :: <a href="https://req.hexdocs.pm/0.7.5/Req.Response.html#t:t/0">Req.Response.t</a>()</pre>
+
+      </div>
+
+<p>A JSON response with the given status, 200 by default, and headers.</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Test</span><span class="o">.</span><span class="n">json</span><span class="p" data-group-id="group-1">(</span><span class="p" data-group-id="group-2">%{</span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="group-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">201</span><span class="p" data-group-id="group-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="group-3">{</span><span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="group-3">}</span><span class="w">
+</span><span class="p" data-group-id="group-4">{</span><span class="mi">201</span><span class="p">,</span><span class="w"> </span><span class="s">~s({&quot;id&quot;:1})</span><span class="p" data-group-id="group-4">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="requested/1">
+
+    <span id="requested/0"></span>
+
+  <div class="detail-header">
+    <a href="#requested/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">requested(timeout \\ 100)</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/test.ex#L88" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> requested(<a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">timeout</a>()) :: <a href="https://req.hexdocs.pm/0.7.5/Req.Request.html#t:t/0">Req.Request.t</a>() | nil</pre>
+
+      </div>
+
+<p>The next request a <a href="#client/2"><code class="inline">client/2</code></a> client sent, or <code class="inline">nil</code> when none arrives
+within <code class="inline">timeout</code> milliseconds.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

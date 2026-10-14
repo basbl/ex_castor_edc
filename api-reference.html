@@ -4,492 +4,908 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.29.4">
-    <meta name="project" content="ExCastorEDC v0.4.1">
-
-    <title>API Reference — ExCastorEDC v0.4.1</title>
-    <link rel="stylesheet" href="dist/html-elixir-HHVY3JYD.css" />
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
 
 
-    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
-    <script src="dist/handlebars.templates-XWGFFSCD.js"></script>
-    <script src="dist/sidebar_items-89CFD43E.js"></script>
+    <title>API Reference — ExCastorEDC v1.0.0-rc.1</title>
 
-      <script src="docs_config.js"></script>
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
 
-    <script async src="dist/html-JDI3AVDD.js"></script>
-
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
 
   </head>
-  <body data-type="extras" class="page-extra">
-    <script>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
 
-      try {
-        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+<div class="body-wrapper">
 
-        if (settings.theme === 'dark' ||
-           ((settings.theme === 'system' || settings.theme == null) &&
-             window.matchMedia('(prefers-color-scheme: dark)').matches)
-           ) {
-          document.body.classList.add('dark')
-        }
-      } catch (error) { }
-    </script>
-
-<div class="main">
-
-<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
   <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
 </button>
 
-<section class="sidebar">
-  <form class="sidebar-search" action="search.html">
-    <button type="submit" class="search-button" aria-label="Submit Search">
-      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
-    </button>
-    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
-      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
-    </button>
-    <label class="search-label">
-      <p class="sr-only">Search</p>
-      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
-    </label>
-  </form>
-
-  <div class="autocomplete">
-    <div class="autocomplete-results">
-    </div>
-  </div>
+<nav id="sidebar" class="sidebar">
 
   <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
 
-    <div class="sidebar-projectDetails">
-      <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
 ExCastorEDC
-      </a>
-      <div class="sidebar-projectVersion" translate="no">
-        v0.4.1
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
       </div>
     </div>
-    <ul class="sidebar-listNav">
-      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
 
-        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+<output role="status" id="toast"></output>
+
+<main class="content page-extra" id="main" data-type="extras">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>API Reference <small class="app-vsn">ExCastorEDC v#1.0.0-rc.1</small></h1>
+<a href="api-reference.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
 
 
-    </ul>
+      <a href="https://github.com/basbl/ex_castor_edc" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
   </div>
 
-  <div class="gradient"></div>
-  <ul id="full-list"></ul>
-</section>
-
-<section class="content">
-  <output role="status" id="toast"></output>
-  <div class="content-outer">
-    <div id="content" class="content-inner">
-
-<h1>
-<button class="icon-action display-settings">
-  <i class="ri-settings-3-line"></i>
-  <span class="sr-only">Settings</span>
-</button>
-
-
-
-  <span>API Reference <small class="app-vsn">ExCastorEDC v0.4.1</small></span>
-</h1>
-
-
-  <section class="details-list">
-    <h2 id="modules" class="section-heading">
-  <a href="#modules" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
-  <p class="sr-only">modules</p>
-  </a>
-  Modules
-</h2>
-
-    <div class="summary">
+    <section class="details-list">
+      <h2 id="modules" class="section-heading">Modules</h2>
+      <div class="summary">
 <div class="summary-row">
   <div class="summary-signature">
     <a href="CastorEDC.html" translate="no">CastorEDC</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Facilitates authentication against the Castor EDC API</p></div>
+    <div class="summary-synopsis"><p>An Elixir client for the <a href="https://data.castoredc.com/api">Castor EDC API</a>.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.Client.html" translate="no">CastorEDC.Client</a>
+    <a href="CastorEDC.Auth.html" translate="no">CastorEDC.<wbr />Auth</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Container for API client configuration values.</p></div>
+    <div class="summary-synopsis"><p>Gets and keeps access tokens for clients built from client credentials.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.Common.Countries.html" translate="no">CastorEDC.Common.Countries</a>
+    <a href="CastorEDC.Client.html" translate="no">CastorEDC.<wbr />Client</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to country related endpoints</p></div>
+    <div class="summary-synopsis"><p>Runs the operations of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.Common.Sites.html" translate="no">CastorEDC.Common.Sites</a>
+    <a href="CastorEDC.Countries.html" translate="no">CastorEDC.<wbr />Countries</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to site related endpoints</p></div>
+    <div class="summary-synopsis"><p>The countries Castor EDC knows, for site and participant addresses.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.Common.Studies.html" translate="no">CastorEDC.Common.Studies</a>
+    <a href="CastorEDC.DataPoints.html" translate="no">CastorEDC.<wbr />DataPoints</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to study related endpoints</p></div>
+    <div class="summary-synopsis"><p>The values collected for participants: reading them per study, per participant or per survey, repeating data or survey package instance, and writing them one at a time or in bulk. Values are strings; see CastorEDC.FieldValue for decoding them by field type.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.Common.Studies.Roles.html" translate="no">CastorEDC.Common.Studies.Roles</a>
+    <a href="CastorEDC.Error.html" translate="no">CastorEDC.<wbr />Error</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to role related endpoints within the study context</p></div>
+    <div class="summary-synopsis"><p>A failed request: one the API refused, one that never got an answer, or
+one the client gave up on.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.Common.Studies.Users.html" translate="no">CastorEDC.Common.Studies.Users</a>
+    <a href="CastorEDC.Export.html" translate="no">CastorEDC.<wbr />Export</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to user related endpoints within the study context</p></div>
+    <div class="summary-synopsis"><p>Batch exports: a study's data, structure, queries and more, as files.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.Common.Users.html" translate="no">CastorEDC.Common.Users</a>
+    <a href="CastorEDC.Exports.html" translate="no">CastorEDC.<wbr />Exports</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to user related endpoints</p></div>
+    <div class="summary-synopsis"><p>Batch exports: queuing them, listing them with their status, and downloading the result. CastorEDC.Export does all three in one call.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.DataEntry.RepeatingDataDataPoint.html" translate="no">CastorEDC.DataCollection.DataEntry.RepeatingDataDataPoint</a>
+    <a href="CastorEDC.FieldValue.html" translate="no">CastorEDC.<wbr />FieldValue</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to repeating data data point related endpoints</p></div>
+    <div class="summary-synopsis"><p>Turns the values of data points into Elixir values.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.DataEntry.StudyDataPoint.html" translate="no">CastorEDC.DataCollection.DataEntry.StudyDataPoint</a>
+    <a href="CastorEDC.Fields.html" translate="no">CastorEDC.<wbr />Fields</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to study data point related endpoints</p></div>
+    <div class="summary-synopsis"><p>The fields of a study, with their dependencies and validations.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.DataEntry.SurveyDataPoint.html" translate="no">CastorEDC.DataCollection.DataEntry.SurveyDataPoint</a>
+    <a href="CastorEDC.Forms.html" translate="no">CastorEDC.<wbr />Forms</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to survey data point related endpoints</p></div>
+    <div class="summary-synopsis"><p>The forms of a study and the visits that group them.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.DataPoints.RepeatingDataInstanceDataPointCollection.html" translate="no">CastorEDC.DataCollection.DataPoints.RepeatingDataInstanceDataPointCollection</a>
+    <a href="CastorEDC.Metadata.html" translate="no">CastorEDC.<wbr />Metadata</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to repeating data instance data point collection for all participants</p></div>
+    <div class="summary-synopsis"><p>Metadata attached to a study's elements, and the types of metadata.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.DataPoints.StudyDataPointCollection.html" translate="no">CastorEDC.DataCollection.DataPoints.StudyDataPointCollection</a>
+    <a href="CastorEDC.MissingValue.html" translate="no">CastorEDC.<wbr />MissingValue</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to study instance data point collection for all participants</p></div>
+    <div class="summary-synopsis"><p>A value the user marked as missing, with the reason they gave.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.DataPoints.SurveyInstanceDataPointCollection.html" translate="no">CastorEDC.DataCollection.DataPoints.SurveyInstanceDataPointCollection</a>
+    <a href="CastorEDC.Model.html" translate="no">CastorEDC.<wbr />Model</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to survey instance data point collection for all participants</p></div>
+    <div class="summary-synopsis"><p>The structs responses are decoded into, and the helpers that decode them.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.DataPoints.SurveyPackageInstanceDataPointCollection.html" translate="no">CastorEDC.DataCollection.DataPoints.SurveyPackageInstanceDataPointCollection</a>
+    <a href="CastorEDC.Model.Compliance.html" translate="no">CastorEDC.<wbr />Model.<wbr />Compliance</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to survey package instance data point collection for all participants</p></div>
+    <div class="summary-synopsis"><p>Compliance overview of participant surveys</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.Participants.html" translate="no">CastorEDC.DataCollection.Participants</a>
+    <a href="CastorEDC.Model.Country.html" translate="no">CastorEDC.<wbr />Model.<wbr />Country</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to participant related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">Country</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.Participants.Progress.html" translate="no">CastorEDC.DataCollection.Participants.Progress</a>
+    <a href="CastorEDC.Model.DataPoint.html" translate="no">CastorEDC.<wbr />Model.<wbr />DataPoint</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to participant progress related endpoints</p></div>
+    <div class="summary-synopsis"><p>A stored value of one field, for a participant, in the context of the study, a survey (package) instance or a repeating data instance.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.Participants.RepeatingDataInstances.html" translate="no">CastorEDC.DataCollection.Participants.RepeatingDataInstances</a>
+    <a href="CastorEDC.Model.DataPointFailure.html" translate="no">CastorEDC.<wbr />Model.<wbr />DataPointFailure</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to repeating data instance related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">DataPointFailure</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.Participants.SurveyPackageInstances.html" translate="no">CastorEDC.DataCollection.Participants.SurveyPackageInstances</a>
+    <a href="CastorEDC.Model.DataPointsResult.html" translate="no">CastorEDC.<wbr />Model.<wbr />DataPointsResult</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to survey package instance related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">DataPointsResult</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.Queries.html" translate="no">CastorEDC.DataCollection.Queries</a>
+    <a href="CastorEDC.Model.DefaultSiteRole.html" translate="no">CastorEDC.<wbr />Model.<wbr />DefaultSiteRole</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to query related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">DefaultSiteRole</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.Randomization.html" translate="no">CastorEDC.DataCollection.Randomization</a>
+    <a href="CastorEDC.Model.ExportEntry.html" translate="no">CastorEDC.<wbr />Model.<wbr />ExportEntry</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to randomization related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">ExportEntry</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.RepeatingDataInstances.html" translate="no">CastorEDC.DataCollection.RepeatingDataInstances</a>
+    <a href="CastorEDC.Model.ExportSuccess.html" translate="no">CastorEDC.<wbr />Model.<wbr />ExportSuccess</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to repeating data instance related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">ExportSuccess</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.Statistics.html" translate="no">CastorEDC.DataCollection.Statistics</a>
+    <a href="CastorEDC.Model.Field.html" translate="no">CastorEDC.<wbr />Model.<wbr />Field</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to statistics related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">Field</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.SurveyPackageInstances.html" translate="no">CastorEDC.DataCollection.SurveyPackageInstances</a>
+    <a href="CastorEDC.Model.FieldDependency.html" translate="no">CastorEDC.<wbr />Model.<wbr />FieldDependency</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to survey package instance related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">FieldDependency</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.DataCollection.Verifications.html" translate="no">CastorEDC.DataCollection.Verifications</a>
+    <a href="CastorEDC.Model.FieldDependencyNested.html" translate="no">CastorEDC.<wbr />Model.<wbr />FieldDependencyNested</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to verification related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">FieldDependencyNested</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.FieldDependencies.html" translate="no">CastorEDC.StudyProtocol.FieldDependencies</a>
+    <a href="CastorEDC.Model.FieldDomain.html" translate="no">CastorEDC.<wbr />Model.<wbr />FieldDomain</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to field dependency related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">FieldDomain</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.FieldValidations.html" translate="no">CastorEDC.StudyProtocol.FieldValidations</a>
+    <a href="CastorEDC.Model.FieldOption.html" translate="no">CastorEDC.<wbr />Model.<wbr />FieldOption</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to field validation related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">FieldOption</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.Fields.html" translate="no">CastorEDC.StudyProtocol.Fields</a>
+    <a href="CastorEDC.Model.FieldOptionGroup.html" translate="no">CastorEDC.<wbr />Model.<wbr />FieldOptionGroup</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to field related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">FieldOptionGroup</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.Forms.html" translate="no">CastorEDC.StudyProtocol.Forms</a>
+    <a href="CastorEDC.Model.FieldValidation.html" translate="no">CastorEDC.<wbr />Model.<wbr />FieldValidation</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to form related endpoints within the study context</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">FieldValidation</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.Metadata.html" translate="no">CastorEDC.StudyProtocol.Metadata</a>
+    <a href="CastorEDC.Model.Form.html" translate="no">CastorEDC.<wbr />Model.<wbr />Form</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to metadata related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">Form</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.MetadataTypes.html" translate="no">CastorEDC.StudyProtocol.MetadataTypes</a>
+    <a href="CastorEDC.Model.InstituteRecordsStatistics.html" translate="no">CastorEDC.<wbr />Model.<wbr />InstituteRecordsStatistics</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to metadata type related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">InstituteRecordsStatistics</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.OptionGroups.html" translate="no">CastorEDC.StudyProtocol.OptionGroups</a>
+    <a href="CastorEDC.Model.InvitationSuccess.html" translate="no">CastorEDC.<wbr />Model.<wbr />InvitationSuccess</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to option group related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">InvitationSuccess</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.RepeatingData.html" translate="no">CastorEDC.StudyProtocol.RepeatingData</a>
+    <a href="CastorEDC.Model.ManagementPermissions.html" translate="no">CastorEDC.<wbr />Model.<wbr />ManagementPermissions</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to repeating data related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">ManagementPermissions</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.RepeatingDataForms.html" translate="no">CastorEDC.StudyProtocol.RepeatingDataForms</a>
+    <a href="CastorEDC.Model.Metadata.html" translate="no">CastorEDC.<wbr />Model.<wbr />Metadata</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to repeating data form related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">Metadata</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.SurveyForms.html" translate="no">CastorEDC.StudyProtocol.SurveyForms</a>
+    <a href="CastorEDC.Model.MetadataType.html" translate="no">CastorEDC.<wbr />Model.<wbr />MetadataType</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to survey form related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">MetadataType</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.SurveyPackages.html" translate="no">CastorEDC.StudyProtocol.SurveyPackages</a>
+    <a href="CastorEDC.Model.Participant.html" translate="no">CastorEDC.<wbr />Model.<wbr />Participant</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to survey package related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">Participant</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.Surveys.html" translate="no">CastorEDC.StudyProtocol.Surveys</a>
+    <a href="CastorEDC.Model.ParticipantProgress.html" translate="no">CastorEDC.<wbr />Model.<wbr />ParticipantProgress</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to survey related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">ParticipantProgress</code> object of the API.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="CastorEDC.StudyProtocol.Visits.html" translate="no">CastorEDC.StudyProtocol.Visits</a>
+    <a href="CastorEDC.Model.ParticipantProgressRepeatingDataCollection.html" translate="no">CastorEDC.<wbr />Model.<wbr />ParticipantProgressRepeatingDataCollection</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Provides access to visit related endpoints</p></div>
+    <div class="summary-synopsis"><p>The <code class="inline">ParticipantProgressRepeatingDataCollection</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.ParticipantProgressVisitCollection.html" translate="no">CastorEDC.<wbr />Model.<wbr />ParticipantProgressVisitCollection</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">ParticipantProgressVisitCollection</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.ParticipantStatus.html" translate="no">CastorEDC.<wbr />Model.<wbr />ParticipantStatus</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">ParticipantStatus</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.Query.html" translate="no">CastorEDC.<wbr />Model.<wbr />Query</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">Query</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.QueryRemark.html" translate="no">CastorEDC.<wbr />Model.<wbr />QueryRemark</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">QueryRemark</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.RandomizationDetails.html" translate="no">CastorEDC.<wbr />Model.<wbr />RandomizationDetails</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">RandomizationDetails</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.RepeatingData.html" translate="no">CastorEDC.<wbr />Model.<wbr />RepeatingData</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">RepeatingData</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.RepeatingDataForm.html" translate="no">CastorEDC.<wbr />Model.<wbr />RepeatingDataForm</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">RepeatingDataForm</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.RepeatingDataInstance.html" translate="no">CastorEDC.<wbr />Model.<wbr />RepeatingDataInstance</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The repeating data instance is an instantiation of repeating data,
+a real copy of repeating data to which the data points get saved.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.RepeatingDataInstanceCollection.html" translate="no">CastorEDC.<wbr />Model.<wbr />RepeatingDataInstanceCollection</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Allows the creation of multiple repeating data instances at once.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.RepeatingDataInstanceCreationFailed.html" translate="no">CastorEDC.<wbr />Model.<wbr />RepeatingDataInstanceCreationFailed</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">RepeatingDataInstanceCreationFailed</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.Role.html" translate="no">CastorEDC.<wbr />Model.<wbr />Role</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">Role</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.RoleAssignmentUpdateSuccess.html" translate="no">CastorEDC.<wbr />Model.<wbr />RoleAssignmentUpdateSuccess</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">RoleAssignmentUpdateSuccess</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.RoleAssignments.html" translate="no">CastorEDC.<wbr />Model.<wbr />RoleAssignments</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">RoleAssignments</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.Site.html" translate="no">CastorEDC.<wbr />Model.<wbr />Site</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">Site</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.SiteCollection.html" translate="no">CastorEDC.<wbr />Model.<wbr />SiteCollection</a>
+
+  </div>
+
+    <div class="summary-synopsis"></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.SiteCreationFailed.html" translate="no">CastorEDC.<wbr />Model.<wbr />SiteCreationFailed</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">SiteCreationFailed</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.Study.html" translate="no">CastorEDC.<wbr />Model.<wbr />Study</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">Study</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.StudyRecordsStatistics.html" translate="no">CastorEDC.<wbr />Model.<wbr />StudyRecordsStatistics</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">StudyRecordsStatistics</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.StudyStatistics.html" translate="no">CastorEDC.<wbr />Model.<wbr />StudyStatistics</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">StudyStatistics</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.StudyUser.html" translate="no">CastorEDC.<wbr />Model.<wbr />StudyUser</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">StudyUser</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.Survey.html" translate="no">CastorEDC.<wbr />Model.<wbr />Survey</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">Survey</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.SurveyForm.html" translate="no">CastorEDC.<wbr />Model.<wbr />SurveyForm</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">SurveyForm</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.SurveyPackage.html" translate="no">CastorEDC.<wbr />Model.<wbr />SurveyPackage</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">SurveyPackage</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.SurveyPackageInstance.html" translate="no">CastorEDC.<wbr />Model.<wbr />SurveyPackageInstance</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The SurveyPackageInstance is an instantiation of a SurveyPackage,
+a real copy a SurveyPackage that gets sent to survey participants.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.SurveyPackageReminder.html" translate="no">CastorEDC.<wbr />Model.<wbr />SurveyPackageReminder</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">SurveyPackageReminder</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.User.html" translate="no">CastorEDC.<wbr />Model.<wbr />User</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">User</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.Verification.html" translate="no">CastorEDC.<wbr />Model.<wbr />Verification</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">Verification</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.VerificationType.html" translate="no">CastorEDC.<wbr />Model.<wbr />VerificationType</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">VerificationType</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Model.Visit.html" translate="no">CastorEDC.<wbr />Model.<wbr />Visit</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The <code class="inline">Visit</code> object of the API.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.OptionGroups.html" translate="no">CastorEDC.<wbr />OptionGroups</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The option groups behind radio, dropdown and checkbox fields.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Page.html" translate="no">CastorEDC.<wbr />Page</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>One page of a collection.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Pagination.html" translate="no">CastorEDC.<wbr />Pagination</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Walks a paged collection page by page.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.PartialDate.html" translate="no">CastorEDC.<wbr />PartialDate</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>A date whose day, or day and month, may be unknown.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Participants.html" translate="no">CastorEDC.<wbr />Participants</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The participants of a study, and their progress through its forms.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Queries.html" translate="no">CastorEDC.<wbr />Queries</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Queries raised on a study's data.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Randomization.html" translate="no">CastorEDC.<wbr />Randomization</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Randomizing participants and reading their randomization.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.RateLimit.html" translate="no">CastorEDC.<wbr />RateLimit</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Keeps track of the API's rate limits.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.RepeatingData.html" translate="no">CastorEDC.<wbr />RepeatingData</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Repeating data: its definitions and forms, and the instances created for participants.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Roles.html" translate="no">CastorEDC.<wbr />Roles</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The roles of a study.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Sites.html" translate="no">CastorEDC.<wbr />Sites</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The sites of a study.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Studies.html" translate="no">CastorEDC.<wbr />Studies</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The studies the credentials have access to, with their metadata and statistics.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.StudyUsers.html" translate="no">CastorEDC.<wbr />StudyUsers</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The users of a study, and their roles per site.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Surveys.html" translate="no">CastorEDC.<wbr />Surveys</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Surveys, their forms and packages, the instances sent to participants, and survey compliance.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Tabular.html" translate="no">CastorEDC.<wbr />Tabular</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>A study's data as rows, ready for a dataframe library.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Test.html" translate="no">CastorEDC.<wbr />Test</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>A client for tests, whose responses the test writes and whose requests it
+can inspect.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Users.html" translate="no">CastorEDC.<wbr />Users</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The users the credentials can see.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="CastorEDC.Verifications.html" translate="no">CastorEDC.<wbr />Verifications</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Verifications (such as source data verification) of a study's data.</p></div>
 
 </div>
 
-    </div>
-  </section>
+      </div>
+    </section>
 
 
-<div class="bottom-actions">
-  <div class="bottom-actions-item">
-
-  </div>
-  <div class="bottom-actions-item">
-
-      <a href="getting_started.html" class="bottom-actions-button" rel="next">
-        <span class="subheader">
-          Next Page →
-        </span>
-        <span class="title">
-Using the Castor EDC API
-        </span>
-      </a>
-
-  </div>
 </div>
-      <footer class="footer">
+    <footer class="footer">
+
         <p>
 
             <span class="line">
-              <a href="https://hex.pm/packages/ex_castor_edc/0.4.1" class="footer-hex-package">Hex Package</a>
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
 
-              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.1">Hex Preview</a>
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
 
             </span>
 
           <span class="line">
-            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
-              Search HexDocs
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
             </button>
 
-              <a href="ExCastorEDC.epub" title="ePub version">
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
                 Download ePub version
               </a>
 
@@ -498,17 +914,17 @@ Using the Castor EDC API
 
         <p class="built-using">
           Built using
-          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
 
             <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
 
         </p>
-      </footer>
-    </div>
-  </div>
-</section>
-</div>
 
+
+    </footer>
+  </div>
+</main>
+</div>
 
   </body>
 </html>

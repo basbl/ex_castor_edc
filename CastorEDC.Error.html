@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>CastorEDC.Error — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-exception" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">CastorEDC.<wbr />Error</span> <small>exception</small>
+      <small class="app-vsn" translate="no">(ExCastorEDC v1.0.0-rc.1)</small>
+
+    </h1>
+
+<a href="CastorEDC.Error.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/error.ex#L1" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>A failed request: one the API refused, one that never got an answer, or
+one the client gave up on.</p><p>Every operation returns <code class="inline">{:error, %CastorEDC.Error{}}</code> rather than raising,
+and the <code class="inline">!</code> variants raise it. A refused request has the HTTP <code class="inline">status</code>. A
+request that failed in transit has a <code class="inline">nil</code> status and the underlying
+exception in <code class="inline">reason</code>. An error the client makes itself has an atom
+<code class="inline">code</code> (see below), and a status only when a response caused it.</p><p>The API answers errors with several kinds of body: an RFC 7807 problem
+from inside an endpoint (with validation messages for some), and
+<code class="inline">{&quot;success&quot;: false, &quot;errors&quot;: [...]}</code> or <code class="inline">{&quot;success&quot;: false, &quot;reason&quot;: ...}</code>
+from the layers in front of it, such as rate limiting. Whichever arrives,
+the useful parts end up in the same fields:</p><ul><li><code class="inline">message</code> - what went wrong, in a sentence</li><li><code class="inline">code</code> - the API's error code, such as <code class="inline">&quot;CODE_QUOTA_EXCEEDED&quot;</code>, when
+it gives one, or an atom for errors the client recognises itself</li><li><code class="inline">details</code> - each individual error the API reported, as
+<code class="inline">%{code:, message:, field:}</code> maps (<code class="inline">field</code> is set for validation
+messages and for values a bulk write didn't save)</li><li><code class="inline">request_id</code> - a reference Castor support can trace</li><li><code class="inline">retry_after</code> - on a 429, the seconds until the rate limit resets</li><li><code class="inline">rate_limit</code> - the rate limit the response reported, see
+<a href="CastorEDC.RateLimit.html#parse/1"><code class="inline">CastorEDC.RateLimit.parse/1</code></a></li><li><code class="inline">body</code> and <code class="inline">headers</code> - the response as it arrived</li><li><code class="inline">export_ids</code> - for the export errors, the IDs of the exports concerned</li><li><code class="inline">result</code> - for some of the client's own errors, what it had when it
+gave up (see below)</li></ul><p>The client's own codes:</p><ul><li><code class="inline">:login_required</code> - the token endpoint refused an account that signs
+in through SSO or Castor Identity (see <a href="CastorEDC.Auth.html"><code class="inline">CastorEDC.Auth</code></a>)</li><li><code class="inline">:rate_limited</code> - the rate limit is used up and the client didn't wait
+(see <a href="CastorEDC.RateLimit.html"><code class="inline">CastorEDC.RateLimit</code></a>)</li><li><code class="inline">:not_saved</code> - a bulk write answered 201 but didn't save everything;
+only the <code class="inline">!</code> variants return it, with what was saved and what wasn't
+in <code class="inline">result</code>, and each failure in <code class="inline">details</code></li><li><code class="inline">:too_many_exports</code> - the API refused another batch export while too
+many run</li><li><code class="inline">:export_failed</code>, <code class="inline">:export_expired</code>, <code class="inline">:export_not_ready</code> - the export
+in <code class="inline">result</code> failed, expired, or isn't ready to download</li><li><code class="inline">:export_timeout</code> - the exports in <code class="inline">export_ids</code> weren't ready in time;
+they keep running, and <code class="inline">result</code> holds them as last seen</li><li><code class="inline">:export_not_found</code> - the study's export list has no export with an ID
+in <code class="inline">export_ids</code></li><li><code class="inline">:unzip_failed</code> - the export in <code class="inline">result</code> couldn't be unzipped; <code class="inline">reason</code>
+says why</li></ul>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-types summary">
+  <h3>
+    <a href="#types">Types</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:t/0" data-no-tooltip="" translate="no">t()</a>
+
+      </div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h2>
+
+    <div class="types-list">
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">t()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/error.ex#L70" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> t() :: %CastorEDC.Error{
+  __exception__: <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">term</a>(),
+  body: <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">term</a>(),
+  code: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">atom</a>() | nil,
+  details: [
+    %{
+      code: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+      message: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+      field: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil
+    }
+  ],
+  export_ids: [<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()],
+  headers: %{optional(<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()) =&gt; [<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()]} | nil,
+  message: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  rate_limit: <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">map</a>() | nil,
+  reason: <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">term</a>(),
+  request_id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  result: <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">term</a>(),
+  retry_after: <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">non_neg_integer</a>() | nil,
+  status: 100..599 | nil
+}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

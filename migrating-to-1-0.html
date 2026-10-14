@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>Migrating from 0.4 to 1.0 — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-extra" id="main" data-type="extras">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>Migrating from 0.4 to 1.0</h1>
+
+<a href="migrating-to-1-0.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/guides/migrating-to-1.0.md#L1" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+<p>1.0 is a rewrite.
+Every operation of the API has a function now, generated from a corrected copy of the API's spec, and the client runs on <a href="https://hexdocs.pm/req">Req</a> instead of Tesla.
+This guide takes a 0.4 program to 1.0: the client, the shape of results, each function's replacement, and what's new.</p><h2 id="requirements" class="section-heading"><a href="#requirements" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Requirements</span></h2><p>1.0 needs Elixir 1.20 or later.
+Tesla, Hackney and Jason are no longer dependencies; drop any configuration you had for them.</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="group-1">do</span><span class="w">
+  </span><span class="p" data-group-id="group-2">[</span><span class="w">
+    </span><span class="p" data-group-id="group-3">{</span><span class="ss">:ex_castor_edc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 1.0.0-rc.1&quot;</span><span class="p" data-group-id="group-3">}</span><span class="w">
+  </span><span class="p" data-group-id="group-2">]</span><span class="w">
+</span><span class="k" data-group-id="group-1">end</span></code></pre><h2 id="the-client" class="section-heading"><a href="#the-client" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">The client</span></h2><p>In 0.4, you built a client and then authenticated it:</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="nc">CastorEDC.Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="group-1">(</span><span class="p" data-group-id="group-2">%{</span><span class="ss">client_id</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="ss">client_secret</span><span class="p">:</span><span class="w"> </span><span class="n">secret</span><span class="p" data-group-id="group-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://us.castoredc.com/&quot;</span><span class="p" data-group-id="group-1">)</span><span class="w">
+</span><span class="p" data-group-id="group-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">client</span><span class="p" data-group-id="group-3">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC</span><span class="o">.</span><span class="n">authenticate</span><span class="p" data-group-id="group-4">(</span><span class="n">client</span><span class="p" data-group-id="group-4">)</span></code></pre><p>In 1.0, <a href="CastorEDC.html#new/1"><code class="inline">CastorEDC.new/1</code></a> builds a client that authenticates itself: it fetches an access token with the first request, renews it before it expires, and retries once with a new token if the API turns one down.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="nc">CastorEDC</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="group-1">(</span><span class="ss">client_id</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="ss">client_secret</span><span class="p">:</span><span class="w"> </span><span class="n">secret</span><span class="p">,</span><span class="w"> </span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://us.castoredc.com&quot;</span><span class="p" data-group-id="group-1">)</span></code></pre><ul><li>The credentials and server can also come from the application environment (<code class="inline">config :ex_castor_edc, client_id: ..., client_secret: ..., base_url: ...</code>) or from the <code class="inline">CASTOR_EDC_CLIENT_ID</code>, <code class="inline">CASTOR_EDC_CLIENT_SECRET</code> and <code class="inline">CASTOR_EDC_BASE_URL</code> environment variables, so <code class="inline">CastorEDC.new()</code> is often enough.</li><li><code class="inline">:endpoint</code> is now <code class="inline">:base_url</code>, without the trailing slash.</li><li>A long-lived token still works: <code class="inline">CastorEDC.new(access_token: token)</code>.</li><li>The client is a <a href="https://req.hexdocs.pm/0.7.5/Req.Request.html"><code class="inline">Req.Request</code></a>, and every option <a href="CastorEDC.html#new/1"><code class="inline">CastorEDC.new/1</code></a> doesn't know goes to Req.
+<code class="inline">:global_timeout</code> becomes Req's <code class="inline">:receive_timeout</code>; <code class="inline">:adapter</code> and <code class="inline">:adapter_options</code> have no equivalent, because Req uses Finch.
+Requests go over HTTP/2.</li><li><code class="inline">CastorEDC.authenticate(client)</code>, <code class="inline">CastorEDC.Client.new(credentials, options)</code>, <code class="inline">CastorEDC.Client.update_token(client, token)</code>, and the request helpers <code class="inline">CastorEDC.get(url, client, params)</code>, <code class="inline">post</code> and <code class="inline">patch</code>, are gone.</li></ul><p>Every function also accepts the options to build a client with, instead of the client itself: <code class="inline">CastorEDC.Studies.list_studies(client_id: id, client_secret: secret)</code>.</p><h2 id="results" class="section-heading"><a href="#results" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Results</span></h2><p>0.4 returned the status, the decoded JSON and the Tesla response, and left errors to you:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="group-1">{</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="group-2">%{</span><span class="s">&quot;_embedded&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="group-3">%{</span><span class="s">&quot;participants&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="n">participants</span><span class="p" data-group-id="group-3">}</span><span class="p" data-group-id="group-2">}</span><span class="p">,</span><span class="w"> </span><span class="c">_response</span><span class="p" data-group-id="group-1">}</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="nc">CastorEDC.DataCollection.Participants</span><span class="o">.</span><span class="n">list</span><span class="p" data-group-id="group-4">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p" data-group-id="group-4">)</span></code></pre><p>1.0 returns <code class="inline">{:ok, result}</code> or <code class="inline">{:error, %CastorEDC.Error{}}</code>, and each function has a <code class="inline">!</code> variant that returns the result or raises:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="group-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="group-2">%</span><span class="nc" data-group-id="group-2">CastorEDC.Page</span><span class="p" data-group-id="group-2">{</span><span class="ss">entries</span><span class="p">:</span><span class="w"> </span><span class="n">participants</span><span class="p" data-group-id="group-2">}</span><span class="p" data-group-id="group-1">}</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="nc">CastorEDC.Participants</span><span class="o">.</span><span class="n">list_participants</span><span class="p" data-group-id="group-3">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p" data-group-id="group-3">)</span><span class="w">
+</span><span class="n">participants</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">CastorEDC.Participants</span><span class="o">.</span><span class="n">list_participants!</span><span class="p" data-group-id="group-4">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p" data-group-id="group-4">)</span><span class="o">.</span><span class="n">entries</span></code></pre><ul><li>A single record is a struct under <a href="CastorEDC.Model.html"><code class="inline">CastorEDC.Model</code></a>, such as <a href="CastorEDC.Model.Participant.html"><code class="inline">CastorEDC.Model.Participant</code></a>, with snake_case fields and the current terminology: visits rather than phases, forms rather than steps, repeating data rather than reports.
+Dates and times are <a href="https://elixir.hexdocs.pm/DateTime.html"><code class="inline">DateTime</code></a>s, and <a href="https://elixir.hexdocs.pm/NaiveDateTime.html"><code class="inline">NaiveDateTime</code></a>s in the server's time where the API gives no zone (see <a href="CastorEDC.html#time_zone/1"><code class="inline">CastorEDC.time_zone/1</code></a>).
+Fields the spec doesn't describe are kept in <code class="inline">extra</code>.</li><li>A collection is a <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a>, with <code class="inline">entries</code>, <code class="inline">page</code>, <code class="inline">page_count</code>, <code class="inline">page_size</code> and <code class="inline">total_items</code>, whatever envelope the API used.
+An empty collection is an empty page, also where the API answers 404 for a participant without repeating data instances.</li><li>A bulk data point write returns a <a href="CastorEDC.Model.DataPointsResult.html"><code class="inline">CastorEDC.Model.DataPointsResult</code></a> with what was <code class="inline">saved</code> and what <code class="inline">failed</code>, because the API answers 201 even when values fail.
+The <code class="inline">!</code> variant raises when anything failed.</li><li>A failed request is a <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>, with the HTTP <code class="inline">status</code> (or <code class="inline">nil</code> and a <code class="inline">reason</code> when no answer came), the API's <code class="inline">message</code>, <code class="inline">code</code> and <code class="inline">details</code>, and the <code class="inline">request_id</code> Castor support can trace.</li></ul><h2 id="query-parameters" class="section-heading"><a href="#query-parameters" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Query parameters</span></h2><p>0.4 took query parameters as a keyword list of the API's names.
+In 1.0 they're options with snake_case names, listed in each function's docs, and any other option goes to Req:</p><pre><code class="makeup elixir" translate="no"><span class="nc">CastorEDC.DataCollection.Participants</span><span class="o">.</span><span class="n">list</span><span class="p" data-group-id="group-1">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p">,</span><span class="w"> </span><span class="ss">page</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="group-1">)</span><span class="w">
+</span><span class="nc">CastorEDC.Participants</span><span class="o">.</span><span class="n">list_participants</span><span class="p" data-group-id="group-2">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p">,</span><span class="w"> </span><span class="ss">page</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">page_size</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p" data-group-id="group-2">)</span></code></pre><p>Path parameters have consistent names too: <code class="inline">field_dependency_id</code>, <code class="inline">option_group_id</code>, <code class="inline">repeating_data_instance_id</code>.</p><h2 id="paging-and-streaming" class="section-heading"><a href="#paging-and-streaming" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Paging and streaming</span></h2><p>Paged operations have a <code class="inline">stream_</code> function that fetches the pages as the stream is consumed, at the largest page size the API allows:</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">CastorEDC.Participants</span><span class="o">.</span><span class="n">stream_participants</span><span class="p" data-group-id="group-1">(</span><span class="n">study_id</span><span class="p" data-group-id="group-1">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">filter</span><span class="p" data-group-id="group-2">(</span><span class="o">&amp;</span><span class="w"> </span><span class="ni">&amp;1</span><span class="o">.</span><span class="n">locked</span><span class="p" data-group-id="group-2">)</span></code></pre><h2 id="rate-limits" class="section-heading"><a href="#rate-limits" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Rate limits</span></h2><p>0.4 left rate limits to you.
+1.0 reads the API's rate limit headers, waits when a route's allowance is used up, and sends a request that still gets a 429 again once the window resets.
+<code class="inline">rate_limit: :error</code> returns the 429 as an error instead, and <code class="inline">:max_rate_limit_wait</code> caps the wait.
+See <a href="CastorEDC.RateLimit.html"><code class="inline">CastorEDC.RateLimit</code></a>.</p><h2 id="exports" class="section-heading"><a href="#exports" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Exports</span></h2><p>0.4 had no exports.
+1.0 runs the API's batch exports in one call per type, which queues the export, waits for it and downloads it:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="group-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">export</span><span class="p" data-group-id="group-1">}</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="nc">CastorEDC.Export</span><span class="o">.</span><span class="n">participant_data</span><span class="p" data-group-id="group-2">(</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">study_id</span><span class="p">,</span><span class="w"> </span><span class="ss">into</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exports/&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">unzip</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="group-2">)</span><span class="w">
+</span><span class="n">export</span><span class="o">.</span><span class="n">files</span></code></pre><p>The formats, filters and options of each type are checked before anything is sent; see <a href="CastorEDC.Export.html"><code class="inline">CastorEDC.Export</code></a>.
+The API's synchronous CSV exports are deprecated, and 1.0 doesn't offer them.</p><h2 id="field-values" class="section-heading"><a href="#field-values" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Field values</span></h2><p>The API sends every value as a string.
+<a href="CastorEDC.FieldValue.html#decode/2"><code class="inline">CastorEDC.FieldValue.decode/2</code></a> turns them into Elixir values by field type, with <a href="CastorEDC.MissingValue.html"><code class="inline">CastorEDC.MissingValue</code></a> for values marked missing and <a href="CastorEDC.PartialDate.html"><code class="inline">CastorEDC.PartialDate</code></a> for dates with unknown parts, and <a href="CastorEDC.Tabular.html"><code class="inline">CastorEDC.Tabular</code></a> turns a study's values into rows for a dataframe library.</p><h2 id="function-by-function" class="section-heading"><a href="#function-by-function" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Function by function</span></h2><p>Every 0.4 function has a 1.0 replacement, apart from <code class="inline">SurveyPackageInstances.patch/5</code>.
+<code class="inline">list</code> and <code class="inline">find</code> become <code class="inline">list_&lt;things&gt;</code> and <code class="inline">get_&lt;thing&gt;</code>; arguments keep their order.</p><table><thead><tr><th style="text-align: left;">0.4</th><th style="text-align: left;">1.0</th></tr></thead><tbody><tr><td style="text-align: left;"><code class="inline">Common.Countries.list/1</code>, <code class="inline">find/2</code></td><td style="text-align: left;"><a href="CastorEDC.Countries.html#list_countries/2"><code class="inline">CastorEDC.Countries.list_countries/2</code></a>, <code class="inline">get_country/3</code></td></tr><tr><td style="text-align: left;"><code class="inline">Common.Users.list/1</code>, <code class="inline">find/2</code></td><td style="text-align: left;"><a href="CastorEDC.Users.html#list_users/2"><code class="inline">CastorEDC.Users.list_users/2</code></a>, <code class="inline">get_user/3</code></td></tr><tr><td style="text-align: left;"><code class="inline">Common.Studies.list/1</code>, <code class="inline">find/2</code></td><td style="text-align: left;"><a href="CastorEDC.Studies.html#list_studies/2"><code class="inline">CastorEDC.Studies.list_studies/2</code></a>, <code class="inline">get_study/3</code></td></tr><tr><td style="text-align: left;"><code class="inline">Common.Studies.Users.list/2</code>, <code class="inline">find/3</code></td><td style="text-align: left;"><a href="CastorEDC.StudyUsers.html#list_study_users/3"><code class="inline">CastorEDC.StudyUsers.list_study_users/3</code></a>, <code class="inline">get_study_user/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">Common.Studies.Roles.list/2</code>, <code class="inline">find/3</code>, <code class="inline">create/3</code></td><td style="text-align: left;"><a href="CastorEDC.Roles.html#list_roles/3"><code class="inline">CastorEDC.Roles.list_roles/3</code></a>, <code class="inline">get_role/4</code>, <code class="inline">create_role/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">Common.Sites.list/3</code>, <code class="inline">find/4</code>, <code class="inline">create/3</code></td><td style="text-align: left;"><a href="CastorEDC.Sites.html#list_sites/3"><code class="inline">CastorEDC.Sites.list_sites/3</code></a>, <code class="inline">get_site/4</code>, <code class="inline">create_site/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.Participants.list/3</code>, <code class="inline">find/3</code>, <code class="inline">create/3</code></td><td style="text-align: left;"><a href="CastorEDC.Participants.html#list_participants/3"><code class="inline">CastorEDC.Participants.list_participants/3</code></a>, <code class="inline">get_participant/4</code>, <code class="inline">create_participant/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.Participants.Progress.list/3</code></td><td style="text-align: left;"><a href="CastorEDC.Participants.html#list_form_progress/3"><code class="inline">CastorEDC.Participants.list_form_progress/3</code></a></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.Participants.RepeatingDataInstances.list/4</code>, <code class="inline">find/4</code></td><td style="text-align: left;"><a href="CastorEDC.RepeatingData.html#list_participant_repeating_data_instances/4"><code class="inline">CastorEDC.RepeatingData.list_participant_repeating_data_instances/4</code></a>, <code class="inline">get_participant_repeating_data_instance/5</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.Participants.RepeatingDataInstances.create/4</code></td><td style="text-align: left;"><a href="CastorEDC.RepeatingData.html#create_repeating_data_instance/5"><code class="inline">CastorEDC.RepeatingData.create_repeating_data_instance/5</code></a>, or <code class="inline">create_repeating_data_instances/5</code> for a list</td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.Randomization.find/3</code>, <code class="inline">create/3</code></td><td style="text-align: left;"><a href="CastorEDC.Randomization.html#get_randomization/4"><code class="inline">CastorEDC.Randomization.get_randomization/4</code></a>, <code class="inline">randomize_participant/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.RepeatingDataInstances.list/3</code>, <code class="inline">find/3</code></td><td style="text-align: left;"><a href="CastorEDC.RepeatingData.html#list_repeating_data_instances/3"><code class="inline">CastorEDC.RepeatingData.list_repeating_data_instances/3</code></a>, <code class="inline">get_repeating_data_instance/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.Statistics.find/2</code></td><td style="text-align: left;"><a href="CastorEDC.Studies.html#get_study_statistics/3"><code class="inline">CastorEDC.Studies.get_study_statistics/3</code></a></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.SurveyPackageInstances.list/3</code>, <code class="inline">find/3</code></td><td style="text-align: left;"><a href="CastorEDC.Surveys.html#list_survey_package_instances/3"><code class="inline">CastorEDC.Surveys.list_survey_package_instances/3</code></a>, <code class="inline">get_survey_package_instance/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.SurveyPackageInstances.create/3</code>, <code class="inline">patch/4</code></td><td style="text-align: left;"><a href="CastorEDC.Surveys.html#create_survey_package_instance/4"><code class="inline">CastorEDC.Surveys.create_survey_package_instance/4</code></a>, <code class="inline">update_survey_package_instance/5</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.Queries.list/3</code>, <code class="inline">find/4</code></td><td style="text-align: left;"><a href="CastorEDC.Queries.html#list_queries/3"><code class="inline">CastorEDC.Queries.list_queries/3</code></a>, <code class="inline">get_query/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.Verifications.list/3</code></td><td style="text-align: left;"><a href="CastorEDC.Verifications.html#list_verifications/3"><code class="inline">CastorEDC.Verifications.list_verifications/3</code></a></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.DataEntry.StudyDataPoint.list/4</code></td><td style="text-align: left;"><a href="CastorEDC.DataPoints.html#list_participant_study_data_points/4"><code class="inline">CastorEDC.DataPoints.list_participant_study_data_points/4</code></a></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.DataEntry.StudyDataPoint.find/5</code>, <code class="inline">create/5</code></td><td style="text-align: left;"><a href="CastorEDC.DataPoints.html#get_study_data_point/5"><code class="inline">CastorEDC.DataPoints.get_study_data_point/5</code></a>, <code class="inline">create_study_data_point/6</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.DataEntry.SurveyDataPoint.list/5</code></td><td style="text-align: left;"><a href="CastorEDC.DataPoints.html#list_participant_survey_instance_data_points/5"><code class="inline">CastorEDC.DataPoints.list_participant_survey_instance_data_points/5</code></a></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.DataEntry.SurveyDataPoint.find/6</code>, <code class="inline">create/6</code></td><td style="text-align: left;"><a href="CastorEDC.DataPoints.html#get_survey_data_point/6"><code class="inline">CastorEDC.DataPoints.get_survey_data_point/6</code></a>, <code class="inline">create_survey_data_point/7</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.DataEntry.RepeatingDataDataPoint.list/5</code></td><td style="text-align: left;"><a href="CastorEDC.DataPoints.html#list_participant_repeating_data_instance_data_points/5"><code class="inline">CastorEDC.DataPoints.list_participant_repeating_data_instance_data_points/5</code></a></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.DataEntry.RepeatingDataDataPoint.find/6</code>, <code class="inline">create/6</code></td><td style="text-align: left;"><a href="CastorEDC.DataPoints.html#get_repeating_data_data_point/6"><code class="inline">CastorEDC.DataPoints.get_repeating_data_data_point/6</code></a>, <code class="inline">create_repeating_data_data_point/7</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.DataPoints.StudyDataPointCollection.list/3</code>, <code class="inline">create/4</code></td><td style="text-align: left;"><a href="CastorEDC.DataPoints.html#list_study_data_points/3"><code class="inline">CastorEDC.DataPoints.list_study_data_points/3</code></a>, <code class="inline">upsert_study_data_points/5</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.DataPoints.RepeatingDataInstanceDataPointCollection.list/3</code>, <code class="inline">find/4</code>, <code class="inline">create/5</code></td><td style="text-align: left;"><a href="CastorEDC.DataPoints.html#list_repeating_data_data_points/3"><code class="inline">CastorEDC.DataPoints.list_repeating_data_data_points/3</code></a>, <code class="inline">list_repeating_data_instance_data_points/4</code>, <code class="inline">upsert_repeating_data_instance_data_points/6</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.DataPoints.SurveyInstanceDataPointCollection.list/3</code>, <code class="inline">find/4</code>, <code class="inline">create/5</code></td><td style="text-align: left;"><a href="CastorEDC.DataPoints.html#list_survey_data_points/3"><code class="inline">CastorEDC.DataPoints.list_survey_data_points/3</code></a>, <code class="inline">list_survey_instance_data_points/4</code>, <code class="inline">upsert_survey_instance_data_points/6</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.DataPoints.SurveyPackageInstanceDataPointCollection.list/4</code>, <code class="inline">create/5</code></td><td style="text-align: left;"><a href="CastorEDC.DataPoints.html#list_survey_package_instance_data_points/4"><code class="inline">CastorEDC.DataPoints.list_survey_package_instance_data_points/4</code></a>, <code class="inline">upsert_survey_package_instance_data_points/6</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.Fields.list/3</code>, <code class="inline">find/4</code></td><td style="text-align: left;"><a href="CastorEDC.Fields.html#list_fields/3"><code class="inline">CastorEDC.Fields.list_fields/3</code></a>, <code class="inline">get_field/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.FieldDependencies.list/3</code>, <code class="inline">find/4</code></td><td style="text-align: left;"><a href="CastorEDC.Fields.html#list_field_dependencies/3"><code class="inline">CastorEDC.Fields.list_field_dependencies/3</code></a>, <code class="inline">get_field_dependency/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.FieldValidations.list/3</code>, <code class="inline">find/4</code></td><td style="text-align: left;"><a href="CastorEDC.Fields.html#list_field_validations/3"><code class="inline">CastorEDC.Fields.list_field_validations/3</code></a>, <code class="inline">get_field_validation/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.Forms.list/3</code>, <code class="inline">find/4</code></td><td style="text-align: left;"><a href="CastorEDC.Forms.html#list_forms/3"><code class="inline">CastorEDC.Forms.list_forms/3</code></a>, <code class="inline">get_form/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.Visits.list/3</code>, <code class="inline">find/4</code></td><td style="text-align: left;"><a href="CastorEDC.Forms.html#list_visits/3"><code class="inline">CastorEDC.Forms.list_visits/3</code></a>, <code class="inline">get_visit/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.Metadata.list/3</code>, <code class="inline">find/4</code></td><td style="text-align: left;"><a href="CastorEDC.Metadata.html#list_metadata/3"><code class="inline">CastorEDC.Metadata.list_metadata/3</code></a>, <code class="inline">get_metadata/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.MetadataTypes.list/3</code>, <code class="inline">find/4</code></td><td style="text-align: left;"><a href="CastorEDC.Metadata.html#list_metadata_types/3"><code class="inline">CastorEDC.Metadata.list_metadata_types/3</code></a>, <code class="inline">get_metadata_type/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.OptionGroups.list/3</code>, <code class="inline">find/4</code></td><td style="text-align: left;"><a href="CastorEDC.OptionGroups.html#list_option_groups/3"><code class="inline">CastorEDC.OptionGroups.list_option_groups/3</code></a>, <code class="inline">get_option_group/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.RepeatingData.list/3</code>, <code class="inline">find/3</code></td><td style="text-align: left;"><a href="CastorEDC.RepeatingData.html#list_repeating_data/3"><code class="inline">CastorEDC.RepeatingData.list_repeating_data/3</code></a>, <code class="inline">get_repeating_data/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.RepeatingDataForms.list/4</code>, <code class="inline">find/5</code></td><td style="text-align: left;"><a href="CastorEDC.RepeatingData.html#list_repeating_data_forms/4"><code class="inline">CastorEDC.RepeatingData.list_repeating_data_forms/4</code></a>, <code class="inline">get_repeating_data_form/5</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.Surveys.list/3</code>, <code class="inline">find/3</code></td><td style="text-align: left;"><a href="CastorEDC.Surveys.html#list_surveys/3"><code class="inline">CastorEDC.Surveys.list_surveys/3</code></a>, <code class="inline">get_survey/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.SurveyForms.list/4</code>, <code class="inline">find/5</code></td><td style="text-align: left;"><a href="CastorEDC.Surveys.html#list_survey_forms/4"><code class="inline">CastorEDC.Surveys.list_survey_forms/4</code></a>, <code class="inline">get_survey_form/5</code></td></tr><tr><td style="text-align: left;"><code class="inline">StudyProtocol.SurveyPackages.list/3</code>, <code class="inline">find/3</code></td><td style="text-align: left;"><a href="CastorEDC.Surveys.html#list_survey_packages/3"><code class="inline">CastorEDC.Surveys.list_survey_packages/3</code></a>, <code class="inline">get_survey_package/4</code></td></tr><tr><td style="text-align: left;"><code class="inline">DataCollection.Participants.SurveyPackageInstances.patch/5</code></td><td style="text-align: left;">none: the endpoint needs the participant app's scope</td></tr><tr><td style="text-align: left;"><code class="inline">create</code> of <code class="inline">DataCollection.DataEntry.StudyDataPoint</code>, <code class="inline">SurveyDataPoint</code> or <code class="inline">RepeatingDataDataPoint</code> with an <code class="inline">&quot;upload_file&quot;</code></td><td style="text-align: left;"><a href="CastorEDC.DataPoints.html#create_study_data_point/6"><code class="inline">CastorEDC.DataPoints.create_study_data_point/6</code></a>, <code class="inline">create_survey_data_point/7</code> or <code class="inline">create_repeating_data_data_point/7</code> with <code class="inline">&quot;upload_file&quot; =&gt; {file name, contents}</code> in the body, sent as multipart form data</td></tr></tbody></table><p>Every 1.0 function takes options last, so its arity is one more than its arguments; the table counts them.</p><h2 id="new-in-1-0" class="section-heading"><a href="#new-in-1-0" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">New in 1.0</span></h2><p>Besides exports and field values, 1.0 covers what 0.4 didn't: study users can be added, updated and removed (<a href="CastorEDC.StudyUsers.html"><code class="inline">CastorEDC.StudyUsers</code></a>), participant progress per visit and per repeating data (<a href="CastorEDC.Participants.html"><code class="inline">CastorEDC.Participants</code></a>), survey compliance (<a href="CastorEDC.Surveys.html#list_survey_compliance/3"><code class="inline">CastorEDC.Surveys.list_survey_compliance/3</code></a>), and survey package instances created with their data points (<a href="CastorEDC.DataPoints.html#create_survey_package_instance_with_data_points/5"><code class="inline">CastorEDC.DataPoints.create_survey_package_instance_with_data_points/5</code></a>).
+<a href="CastorEDC.Test.html"><code class="inline">CastorEDC.Test</code></a> builds clients for testing code that uses the library, without a network.
+The modules' docs list every operation.</p>
+
+</div>
+
+<div class="bottom-actions" id="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="getting_started.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+Using the Castor EDC API
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+      <a href="changelog.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+Changelog
+        </span>
+      </a>
+
+  </div>
+</div>
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+                (<a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1/show/guides/migrating-to-1.0.md">current file</a>)
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

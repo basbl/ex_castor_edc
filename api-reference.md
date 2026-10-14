@@ -1,0 +1,99 @@
+# ExCastorEDC v1.0.0-rc.1 - API Reference
+
+## Modules
+
+- Core
+  - [CastorEDC](CastorEDC.md): An Elixir client for the [Castor EDC API](https://data.castoredc.com/api).
+  - [CastorEDC.Auth](CastorEDC.Auth.md): Gets and keeps access tokens for clients built from client credentials.
+  - [CastorEDC.Client](CastorEDC.Client.md): Runs the operations of the API.
+  - [CastorEDC.Error](CastorEDC.Error.md): A failed request: one the API refused, one that never got an answer, or
+one the client gave up on.
+  - [CastorEDC.Export](CastorEDC.Export.md): Batch exports: a study's data, structure, queries and more, as files.
+  - [CastorEDC.FieldValue](CastorEDC.FieldValue.md): Turns the values of data points into Elixir values.
+  - [CastorEDC.MissingValue](CastorEDC.MissingValue.md): A value the user marked as missing, with the reason they gave.
+  - [CastorEDC.Page](CastorEDC.Page.md): One page of a collection.
+  - [CastorEDC.Pagination](CastorEDC.Pagination.md): Walks a paged collection page by page.
+  - [CastorEDC.PartialDate](CastorEDC.PartialDate.md): A date whose day, or day and month, may be unknown.
+  - [CastorEDC.RateLimit](CastorEDC.RateLimit.md): Keeps track of the API's rate limits.
+  - [CastorEDC.Tabular](CastorEDC.Tabular.md): A study's data as rows, ready for a dataframe library.
+  - [CastorEDC.Test](CastorEDC.Test.md): A client for tests, whose responses the test writes and whose requests it
+can inspect.
+
+- Endpoints
+  - [CastorEDC.Countries](CastorEDC.Countries.md): The countries Castor EDC knows, for site and participant addresses.
+  - [CastorEDC.DataPoints](CastorEDC.DataPoints.md): The values collected for participants: reading them per study, per participant or per survey, repeating data or survey package instance, and writing them one at a time or in bulk. Values are strings; see CastorEDC.FieldValue for decoding them by field type.
+  - [CastorEDC.Exports](CastorEDC.Exports.md): Batch exports: queuing them, listing them with their status, and downloading the result. CastorEDC.Export does all three in one call.
+  - [CastorEDC.Fields](CastorEDC.Fields.md): The fields of a study, with their dependencies and validations.
+  - [CastorEDC.Forms](CastorEDC.Forms.md): The forms of a study and the visits that group them.
+  - [CastorEDC.Metadata](CastorEDC.Metadata.md): Metadata attached to a study's elements, and the types of metadata.
+  - [CastorEDC.OptionGroups](CastorEDC.OptionGroups.md): The option groups behind radio, dropdown and checkbox fields.
+  - [CastorEDC.Participants](CastorEDC.Participants.md): The participants of a study, and their progress through its forms.
+  - [CastorEDC.Queries](CastorEDC.Queries.md): Queries raised on a study's data.
+  - [CastorEDC.Randomization](CastorEDC.Randomization.md): Randomizing participants and reading their randomization.
+  - [CastorEDC.RepeatingData](CastorEDC.RepeatingData.md): Repeating data: its definitions and forms, and the instances created for participants.
+  - [CastorEDC.Roles](CastorEDC.Roles.md): The roles of a study.
+  - [CastorEDC.Sites](CastorEDC.Sites.md): The sites of a study.
+  - [CastorEDC.Studies](CastorEDC.Studies.md): The studies the credentials have access to, with their metadata and statistics.
+  - [CastorEDC.StudyUsers](CastorEDC.StudyUsers.md): The users of a study, and their roles per site.
+  - [CastorEDC.Surveys](CastorEDC.Surveys.md): Surveys, their forms and packages, the instances sent to participants, and survey compliance.
+  - [CastorEDC.Users](CastorEDC.Users.md): The users the credentials can see.
+  - [CastorEDC.Verifications](CastorEDC.Verifications.md): Verifications (such as source data verification) of a study's data.
+
+- Responses
+  - [CastorEDC.Model](CastorEDC.Model.md): The structs responses are decoded into, and the helpers that decode them.
+  - [CastorEDC.Model.Compliance](CastorEDC.Model.Compliance.md): Compliance overview of participant surveys
+  - [CastorEDC.Model.Country](CastorEDC.Model.Country.md): The `Country` object of the API.
+  - [CastorEDC.Model.DataPoint](CastorEDC.Model.DataPoint.md): A stored value of one field, for a participant, in the context of the study, a survey (package) instance or a repeating data instance.
+  - [CastorEDC.Model.DataPointFailure](CastorEDC.Model.DataPointFailure.md): The `DataPointFailure` object of the API.
+  - [CastorEDC.Model.DataPointsResult](CastorEDC.Model.DataPointsResult.md): The `DataPointsResult` object of the API.
+  - [CastorEDC.Model.DefaultSiteRole](CastorEDC.Model.DefaultSiteRole.md): The `DefaultSiteRole` object of the API.
+  - [CastorEDC.Model.ExportEntry](CastorEDC.Model.ExportEntry.md): The `ExportEntry` object of the API.
+  - [CastorEDC.Model.ExportSuccess](CastorEDC.Model.ExportSuccess.md): The `ExportSuccess` object of the API.
+  - [CastorEDC.Model.Field](CastorEDC.Model.Field.md): The `Field` object of the API.
+  - [CastorEDC.Model.FieldDependency](CastorEDC.Model.FieldDependency.md): The `FieldDependency` object of the API.
+  - [CastorEDC.Model.FieldDependencyNested](CastorEDC.Model.FieldDependencyNested.md): The `FieldDependencyNested` object of the API.
+  - [CastorEDC.Model.FieldDomain](CastorEDC.Model.FieldDomain.md): The `FieldDomain` object of the API.
+  - [CastorEDC.Model.FieldOption](CastorEDC.Model.FieldOption.md): The `FieldOption` object of the API.
+  - [CastorEDC.Model.FieldOptionGroup](CastorEDC.Model.FieldOptionGroup.md): The `FieldOptionGroup` object of the API.
+  - [CastorEDC.Model.FieldValidation](CastorEDC.Model.FieldValidation.md): The `FieldValidation` object of the API.
+  - [CastorEDC.Model.Form](CastorEDC.Model.Form.md): The `Form` object of the API.
+  - [CastorEDC.Model.InstituteRecordsStatistics](CastorEDC.Model.InstituteRecordsStatistics.md): The `InstituteRecordsStatistics` object of the API.
+  - [CastorEDC.Model.InvitationSuccess](CastorEDC.Model.InvitationSuccess.md): The `InvitationSuccess` object of the API.
+  - [CastorEDC.Model.ManagementPermissions](CastorEDC.Model.ManagementPermissions.md): The `ManagementPermissions` object of the API.
+  - [CastorEDC.Model.Metadata](CastorEDC.Model.Metadata.md): The `Metadata` object of the API.
+  - [CastorEDC.Model.MetadataType](CastorEDC.Model.MetadataType.md): The `MetadataType` object of the API.
+  - [CastorEDC.Model.Participant](CastorEDC.Model.Participant.md): The `Participant` object of the API.
+  - [CastorEDC.Model.ParticipantProgress](CastorEDC.Model.ParticipantProgress.md): The `ParticipantProgress` object of the API.
+  - [CastorEDC.Model.ParticipantProgressRepeatingDataCollection](CastorEDC.Model.ParticipantProgressRepeatingDataCollection.md): The `ParticipantProgressRepeatingDataCollection` object of the API.
+  - [CastorEDC.Model.ParticipantProgressVisitCollection](CastorEDC.Model.ParticipantProgressVisitCollection.md): The `ParticipantProgressVisitCollection` object of the API.
+  - [CastorEDC.Model.ParticipantStatus](CastorEDC.Model.ParticipantStatus.md): The `ParticipantStatus` object of the API.
+  - [CastorEDC.Model.Query](CastorEDC.Model.Query.md): The `Query` object of the API.
+  - [CastorEDC.Model.QueryRemark](CastorEDC.Model.QueryRemark.md): The `QueryRemark` object of the API.
+  - [CastorEDC.Model.RandomizationDetails](CastorEDC.Model.RandomizationDetails.md): The `RandomizationDetails` object of the API.
+  - [CastorEDC.Model.RepeatingData](CastorEDC.Model.RepeatingData.md): The `RepeatingData` object of the API.
+  - [CastorEDC.Model.RepeatingDataForm](CastorEDC.Model.RepeatingDataForm.md): The `RepeatingDataForm` object of the API.
+  - [CastorEDC.Model.RepeatingDataInstance](CastorEDC.Model.RepeatingDataInstance.md): The repeating data instance is an instantiation of repeating data,
+a real copy of repeating data to which the data points get saved.
+  - [CastorEDC.Model.RepeatingDataInstanceCollection](CastorEDC.Model.RepeatingDataInstanceCollection.md): Allows the creation of multiple repeating data instances at once.
+  - [CastorEDC.Model.RepeatingDataInstanceCreationFailed](CastorEDC.Model.RepeatingDataInstanceCreationFailed.md): The `RepeatingDataInstanceCreationFailed` object of the API.
+  - [CastorEDC.Model.Role](CastorEDC.Model.Role.md): The `Role` object of the API.
+  - [CastorEDC.Model.RoleAssignmentUpdateSuccess](CastorEDC.Model.RoleAssignmentUpdateSuccess.md): The `RoleAssignmentUpdateSuccess` object of the API.
+  - [CastorEDC.Model.RoleAssignments](CastorEDC.Model.RoleAssignments.md): The `RoleAssignments` object of the API.
+  - [CastorEDC.Model.Site](CastorEDC.Model.Site.md): The `Site` object of the API.
+  - [CastorEDC.Model.SiteCollection](CastorEDC.Model.SiteCollection.md): 
+  - [CastorEDC.Model.SiteCreationFailed](CastorEDC.Model.SiteCreationFailed.md): The `SiteCreationFailed` object of the API.
+  - [CastorEDC.Model.Study](CastorEDC.Model.Study.md): The `Study` object of the API.
+  - [CastorEDC.Model.StudyRecordsStatistics](CastorEDC.Model.StudyRecordsStatistics.md): The `StudyRecordsStatistics` object of the API.
+  - [CastorEDC.Model.StudyStatistics](CastorEDC.Model.StudyStatistics.md): The `StudyStatistics` object of the API.
+  - [CastorEDC.Model.StudyUser](CastorEDC.Model.StudyUser.md): The `StudyUser` object of the API.
+  - [CastorEDC.Model.Survey](CastorEDC.Model.Survey.md): The `Survey` object of the API.
+  - [CastorEDC.Model.SurveyForm](CastorEDC.Model.SurveyForm.md): The `SurveyForm` object of the API.
+  - [CastorEDC.Model.SurveyPackage](CastorEDC.Model.SurveyPackage.md): The `SurveyPackage` object of the API.
+  - [CastorEDC.Model.SurveyPackageInstance](CastorEDC.Model.SurveyPackageInstance.md): The SurveyPackageInstance is an instantiation of a SurveyPackage,
+a real copy a SurveyPackage that gets sent to survey participants.
+  - [CastorEDC.Model.SurveyPackageReminder](CastorEDC.Model.SurveyPackageReminder.md): The `SurveyPackageReminder` object of the API.
+  - [CastorEDC.Model.User](CastorEDC.Model.User.md): The `User` object of the API.
+  - [CastorEDC.Model.Verification](CastorEDC.Model.Verification.md): The `Verification` object of the API.
+  - [CastorEDC.Model.VerificationType](CastorEDC.Model.VerificationType.md): The `VerificationType` object of the API.
+  - [CastorEDC.Model.Visit](CastorEDC.Model.Visit.md): The `Visit` object of the API.
+

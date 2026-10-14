@@ -4,390 +4,156 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.29.4">
-    <meta name="project" content="ExCastorEDC v0.4.1">
-
-    <title>CastorEDC.Client — ExCastorEDC v0.4.1</title>
-    <link rel="stylesheet" href="dist/html-elixir-HHVY3JYD.css" />
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
 
 
-    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
-    <script src="dist/handlebars.templates-XWGFFSCD.js"></script>
-    <script src="dist/sidebar_items-89CFD43E.js"></script>
+    <title>CastorEDC.Client — ExCastorEDC v1.0.0-rc.1</title>
 
-      <script src="docs_config.js"></script>
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
 
-    <script async src="dist/html-JDI3AVDD.js"></script>
-
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
 
   </head>
-  <body data-type="modules" class="page-module">
-    <script>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
 
-      try {
-        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+<div class="body-wrapper">
 
-        if (settings.theme === 'dark' ||
-           ((settings.theme === 'system' || settings.theme == null) &&
-             window.matchMedia('(prefers-color-scheme: dark)').matches)
-           ) {
-          document.body.classList.add('dark')
-        }
-      } catch (error) { }
-    </script>
-
-<div class="main">
-
-<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
   <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
 </button>
 
-<section class="sidebar">
-  <form class="sidebar-search" action="search.html">
-    <button type="submit" class="search-button" aria-label="Submit Search">
-      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
-    </button>
-    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
-      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
-    </button>
-    <label class="search-label">
-      <p class="sr-only">Search</p>
-      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
-    </label>
-  </form>
-
-  <div class="autocomplete">
-    <div class="autocomplete-results">
-    </div>
-  </div>
+<nav id="sidebar" class="sidebar">
 
   <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
 
-    <div class="sidebar-projectDetails">
-      <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
 ExCastorEDC
-      </a>
-      <div class="sidebar-projectVersion" translate="no">
-        v0.4.1
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
       </div>
     </div>
-    <ul class="sidebar-listNav">
-      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
 
-        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">CastorEDC.<wbr />Client</span> 
+      <small class="app-vsn" translate="no">(ExCastorEDC v1.0.0-rc.1)</small>
+
+    </h1>
+
+<a href="CastorEDC.Client.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
 
 
-    </ul>
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/client.ex#L1" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
   </div>
 
-  <div class="gradient"></div>
-  <ul id="full-list"></ul>
-</section>
 
-<section class="content">
-  <output role="status" id="toast"></output>
-  <div class="content-outer">
-    <div id="content" class="content-inner">
-
-<h1>
-<button class="icon-action display-settings">
-  <i class="ri-settings-3-line"></i>
-  <span class="sr-only">Settings</span>
-</button>
-
-
-    <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.1/lib/castor_edc/client.ex#L1" title="View Source" class="icon-action" rel="help">
-      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-      <span class="sr-only">View Source</span>
-    </a>
-
-  <span translate="no">CastorEDC.Client</span> 
-  <small class="app-vsn" translate="no">(ExCastorEDC v0.4.1)</small>
-
-</h1>
-
-
-  <section id="moduledoc">
-<p>Container for API client configuration values.</p>
-  </section>
-
-
-  <section id="summary" class="details-list">
-    <h1 class="section-heading">
-      <a class="hover-link" href="#summary">
-        <i class="ri-link-m" aria-hidden="true"></i>
-        <span class="sr-only">Link to this section</span>
-      </a>
-      Summary
-    </h1>
-<div class="summary-types summary">
-  <h2>
-    <a href="#types">Types</a>
-  </h2>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#t:credentials/0" translate="no">credentials()</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#t:t/0" translate="no">t()</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#t:url/0" translate="no">url()</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#t:uuid/0" translate="no">uuid()</a>
-
-      </div>
-
-    </div>
-
-</div>
-<div class="summary-functions summary">
-  <h2>
-    <a href="#functions">Functions</a>
-  </h2>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#new/2" translate="no">new(credentials, opts \\ [])</a>
-
-      </div>
-
-        <div class="summary-synopsis"><p>By default the client will use <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> as the endpoint</p></div>
-
-    </div>
+    <section id="moduledoc">
+<p>Runs the operations of the API.</p><p>The generated modules (<a href="CastorEDC.Participants.html"><code class="inline">CastorEDC.Participants</code></a> and the rest) describe
+each operation, from its path to the struct its response decodes into,
+and hand that description to this module's <code class="inline">request/2</code>, which isn't part
+of the public API: the description's format may change in any release.
+This module does everything
+that's the same for all of them: building the URL, sending the
+caller's options under the names the API knows them by, unwrapping
+collections into <a href="CastorEDC.Page.html"><code class="inline">CastorEDC.Page</code></a>s, decoding responses into structs, and
+turning failures into <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a>s.</p><p>Build the client these functions take with <a href="CastorEDC.html#new/1"><code class="inline">CastorEDC.new/1</code></a>.</p><h2 id="module-telemetry" class="section-heading"><a href="#module-telemetry" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Telemetry</span></h2><p>Every operation is wrapped in a <code class="inline">[:castor_edc, :request]</code> span:</p><ul><li><code class="inline">[:castor_edc, :request, :start]</code> - with <code class="inline">:method</code>, <code class="inline">:route</code> (the path
+template, such as <code class="inline">&quot;/api/study/{study_id}/site&quot;</code>, so metrics don't get a
+series per study) and <code class="inline">:base_url</code> as metadata</li><li><code class="inline">[:castor_edc, :request, :stop]</code> - with the <code class="inline">:duration</code>, and <code class="inline">:status</code>
+added to the metadata: <code class="inline">:ok</code>, or the error's HTTP status (<code class="inline">nil</code> when the
+request never got an answer) together with the <code class="inline">:error</code></li><li><code class="inline">[:castor_edc, :request, :exception]</code> - when something raised</li></ul><p>Retries and token requests happen within the span.</p>
+    </section>
 
 </div>
 
-  </section>
 
+    <footer class="footer">
 
-  <section id="types" class="details-list">
-    <h1 class="section-heading">
-      <a class="hover-link" href="#types">
-        <i class="ri-link-m" aria-hidden="true"></i>
-        <span class="sr-only">Link to this section</span>
-      </a>
-Types
-    </h1>
-    <div class="types-list">
-<section class="detail" id="t:credentials/0">
-
-  <div class="detail-header">
-    <a href="#t:credentials/0" class="detail-link" title="Link to this type">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature" translate="no">credentials()</h1>
-
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.1/lib/castor_edc/client.ex#L18" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@type</span> credentials() ::
-  %{client_id: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), client_secret: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()} | %{access_token: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()}</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:t/0">
-
-  <div class="detail-header">
-    <a href="#t:t/0" class="detail-link" title="Link to this type">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature" translate="no">t()</h1>
-
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.1/lib/castor_edc/client.ex#L20" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@type</span> t() :: %CastorEDC.Client{
-  access_token: nil | <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
-  client_id: nil | <a href="#t:uuid/0">uuid</a>(),
-  client_secret: nil | <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
-  endpoint: <a href="#t:url/0">url</a>(),
-  grant_type: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
-  options: [],
-  scope: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
-}</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:url/0">
-
-  <div class="detail-header">
-    <a href="#t:url/0" class="detail-link" title="Link to this type">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature" translate="no">url()</h1>
-
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.1/lib/castor_edc/client.ex#L15" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@type</span> url() :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:uuid/0">
-
-  <div class="detail-header">
-    <a href="#t:uuid/0" class="detail-link" title="Link to this type">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature" translate="no">uuid()</h1>
-
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.1/lib/castor_edc/client.ex#L16" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@type</span> uuid() :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
-
-      </div>
-
-
-  </section>
-</section>
-
-    </div>
-  </section>
-
-  <section id="functions" class="details-list">
-    <h1 class="section-heading">
-      <a class="hover-link" href="#functions">
-        <i class="ri-link-m" aria-hidden="true"></i>
-        <span class="sr-only">Link to this section</span>
-      </a>
-Functions
-    </h1>
-    <div class="functions-list">
-<section class="detail" id="new/2">
-
-    <span id="new/1"></span>
-
-  <div class="detail-header">
-    <a href="#new/2" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">new(credentials, opts \\ [])</h1>
-
-      <a href="https://github.com/basbl/ex_castor_edc/blob/0.4.1/lib/castor_edc/client.ex#L68" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> new(
-  <a href="#t:credentials/0">credentials</a>(),
-  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>()
-) :: <a href="#t:t/0">t</a>()</pre>
-
-      </div>
-
-<p>By default the client will use <a href="https://data.castoredc.com/">https://data.castoredc.com/</a> as the endpoint</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0226705029-1">(</span><span class="p" data-group-id="0226705029-2">%{</span><span class="ss">client_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">client_secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="0226705029-2">}</span><span class="p" data-group-id="0226705029-1">)</span></code></pre><p>You can pass a different endpoint as an option when your studies are located elsewhere e.g.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0088508668-1">(</span><span class="w">
-  </span><span class="p" data-group-id="0088508668-2">%{</span><span class="ss">client_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">client_secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="0088508668-2">}</span><span class="p">,</span><span class="w">
-  </span><span class="ss">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://us.castoredc.com/&quot;</span><span class="w">
-</span><span class="p" data-group-id="0088508668-1">)</span></code></pre><p>Alternatively, when you have a long-lived access token you can pass it in directly</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="2094326735-1">(</span><span class="p" data-group-id="2094326735-2">%{</span><span class="ss">access_token</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;access token&gt;&quot;</span><span class="p" data-group-id="2094326735-2">}</span><span class="p" data-group-id="2094326735-1">)</span></code></pre><p>Additionally it's possible to pass options e.g increasing the global_timeout.</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="9104341766-1">(</span><span class="w">
-  </span><span class="p" data-group-id="9104341766-2">%{</span><span class="ss">client_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">client_secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;client secret&gt;&quot;</span><span class="p" data-group-id="9104341766-2">}</span><span class="p">,</span><span class="w">
-  </span><span class="ss">global_timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">30_000</span><span class="w">
-</span><span class="p" data-group-id="9104341766-1">)</span></code></pre><h2 id="new/2-options" class="section-heading">
-  <a href="#new/2-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
-  <p class="sr-only">options</p>
-  </a>
-  Options
-</h2>
-<ul><li><code class="inline">:endpoint</code> - An alternative endpoint e.g. <a href="https://us.castoredc.com/">https://us.castoredc.com/</a></li><li><code class="inline">:global_timeout</code> - The global_timeout in milliseconds, by default it is 5000</li><li><code class="inline">:adapter</code> - Any module that implements the <a href="https://hexdocs.pm/tesla/1.6.0/Tesla.Adapter.html"><code class="inline">Tesla.Adapter</code></a> behavior</li><li><code class="inline">:adapter_options</code> - The supported options for the given adapter</li></ul>
-  </section>
-</section>
-
-    </div>
-  </section>
-
-      <footer class="footer">
         <p>
 
             <span class="line">
-              <a href="https://hex.pm/packages/ex_castor_edc/0.4.1" class="footer-hex-package">Hex Package</a>
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
 
-              <a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.1">Hex Preview</a>
-
-                (<a href="https://preview.hex.pm/preview/ex_castor_edc/0.4.1/show/lib/castor_edc/client.ex">current file</a>)
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
 
             </span>
 
           <span class="line">
-            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
-              Search HexDocs
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
             </button>
 
-              <a href="ExCastorEDC.epub" title="ePub version">
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
                 Download ePub version
               </a>
 
@@ -396,17 +162,17 @@ Functions
 
         <p class="built-using">
           Built using
-          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
 
             <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
 
         </p>
-      </footer>
-    </div>
-  </div>
-</section>
-</div>
 
+
+    </footer>
+  </div>
+</main>
+</div>
 
   </body>
 </html>

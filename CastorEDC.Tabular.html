@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.4">
+    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+
+
+    <title>CastorEDC.Tabular — ExCastorEDC v1.0.0-rc.1</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
+
+    <script defer src="dist/sidebar_items-9BD2C62B.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-MI33G4N7.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="https://www.castoredc.com/" class="sidebar-projectName" translate="no">
+ExCastorEDC
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0.0-rc.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of ExCastorEDC</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">CastorEDC.<wbr />Tabular</span> 
+      <small class="app-vsn" translate="no">(ExCastorEDC v1.0.0-rc.1)</small>
+
+    </h1>
+
+<a href="CastorEDC.Tabular.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/tabular.ex#L1" title="View Source" class="icon-action" rel="help nofollow">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>A study's data as rows, ready for a dataframe library.</p><p><a href="#schema/2"><code class="inline">schema/2</code></a> describes the study's fields: their variable names, where they
+collect data, and the Elixir type their values decode to.
+<a href="#data_points/3"><code class="inline">data_points/3</code></a> streams every value the study collected, decoded, as
+rows:</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">CastorEDC.Tabular</span><span class="o">.</span><span class="n">data_points</span><span class="p" data-group-id="group-1">(</span><span class="n">study_id</span><span class="p" data-group-id="group-1">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">take</span><span class="p" data-group-id="group-2">(</span><span class="mi">1</span><span class="p" data-group-id="group-2">)</span><span class="w">
+</span><span class="c1">#=&gt; [%{participant_id: &quot;000001&quot;, site_id: &quot;...&quot;, source: :study, instance_id: nil,</span><span class="w">
+</span><span class="c1">#=&gt;    parent_id: nil, field_id: &quot;...&quot;, variable_name: &quot;weight&quot;, value: 72.5,</span><span class="w">
+</span><span class="c1">#=&gt;    raw_value: &quot;72.5&quot;, updated_on: ~N[2026-10-07 21:49:55]}]</span></code></pre><p>This long format, one row per value, holds the study's, repeating data's
+and surveys' values alike and loses nothing, which makes it the default.
+With <code class="inline">format: :wide</code>, there's a row per participant for the study's
+values, and a row per instance for repeating data and surveys, with a
+column per variable:</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">CastorEDC.Tabular</span><span class="o">.</span><span class="n">data_points</span><span class="p" data-group-id="group-1">(</span><span class="n">study_id</span><span class="p">,</span><span class="w"> </span><span class="ss">format</span><span class="p">:</span><span class="w"> </span><span class="ss">:wide</span><span class="p" data-group-id="group-1">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">take</span><span class="p" data-group-id="group-2">(</span><span class="mi">1</span><span class="p" data-group-id="group-2">)</span><span class="w">
+</span><span class="c1">#=&gt; [%{:participant_id =&gt; &quot;000001&quot;, :site_id =&gt; &quot;...&quot;, :source =&gt; :study, :instance_id =&gt; nil,</span><span class="w">
+</span><span class="c1">#=&gt;    :parent_id =&gt; nil, &quot;weight&quot; =&gt; 72.5, &quot;sex&quot; =&gt; &quot;1&quot;, &quot;symptoms_1&quot; =&gt; true, ...}]</span></code></pre>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-types summary">
+  <h3>
+    <a href="#types">Types</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:column/0" data-no-tooltip="" translate="no">column()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>A field, as <a href="#schema/2"><code class="inline">schema/2</code></a> describes it</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:context/0" data-no-tooltip="" translate="no">context()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Where a field collects data: on a visit's forms, in repeating data, or in
+a survey.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:row/0" data-no-tooltip="" translate="no">row()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>A value, as <a href="#data_points/3"><code class="inline">data_points/3</code></a> gives it</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:value_type/0" data-no-tooltip="" translate="no">value_type()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The Elixir type of a field's decoded values (see
+<a href="CastorEDC.FieldValue.html"><code class="inline">CastorEDC.FieldValue</code></a>), apart from <code class="inline">nil</code>, <a href="CastorEDC.MissingValue.html"><code class="inline">CastorEDC.MissingValue</code></a> and
+<code class="inline">:encrypted</code>, which any field can hold</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wide_row/0" data-no-tooltip="" translate="no">wide_row()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>A participant's study values, or a repeating data or survey instance's
+values, as <a href="#data_points/3"><code class="inline">data_points/3</code></a> gives them with <code class="inline">format: :wide</code>: the keys of
+<a href="#t:row/0"><code class="inline">row/0</code></a> that say whose values they are, and a value for each variable,
+under its name.</p></div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h3>
+    <a href="#functions">Functions</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#data_points/3" data-no-tooltip="" translate="no">data_points(client, study_id, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Streams the study's values as <a href="#t:row/0"><code class="inline">row/0</code></a>s, one per value.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#schema/2" data-no-tooltip="" translate="no">schema(client, study_id)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Describes the study's fields, as a map of field IDs to <a href="#t:column/0"><code class="inline">column/0</code></a>s.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#value_type/1" data-no-tooltip="" translate="no">value_type(field_type)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The Elixir type of a field type's values, as in <a href="#t:value_type/0"><code class="inline">value_type/0</code></a>.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h2>
+
+    <div class="types-list">
+<section class="detail" id="t:column/0">
+
+  <div class="detail-header">
+    <a href="#t:column/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">column()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/tabular.ex#L94" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> column() :: %{
+  field_id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  variable_name: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  label: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  field_type: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  type: <a href="#t:value_type/0">value_type</a>(),
+  context: <a href="#t:context/0">context</a>() | nil,
+  parent_id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  parent_name: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  form_id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  form_name: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  option_group: <a href="CastorEDC.Model.FieldOptionGroup.html#t:t/0">CastorEDC.Model.FieldOptionGroup.t</a>() | nil,
+  position: {<a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">non_neg_integer</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">integer</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">integer</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#basic-types">integer</a>()},
+  field: <a href="CastorEDC.Model.Field.html#t:t/0">CastorEDC.Model.Field.t</a>()
+}</pre>
+
+      </div>
+
+<p>A field, as <a href="#schema/2"><code class="inline">schema/2</code></a> describes it:</p><ul><li><code class="inline">:field_id</code>, <code class="inline">:variable_name</code>, <code class="inline">:label</code> and <code class="inline">:field_type</code> - as the
+field has them</li><li><code class="inline">:type</code> - the Elixir type of its values</li><li><code class="inline">:context</code> - where it collects data, or <code class="inline">nil</code> when its form is in none
+of the study's visits, repeating data or surveys</li><li><code class="inline">:parent_id</code> and <code class="inline">:parent_name</code> - the visit, repeating data or survey
+its form belongs to</li><li><code class="inline">:form_id</code> and <code class="inline">:form_name</code> - its form</li><li><code class="inline">:option_group</code> - the option group of an option field</li><li><code class="inline">:position</code> - where the field sits in the study: sorting columns by
+it puts them in the order the study shows them, visit by visit and
+form by form, then the repeating data and surveys</li><li><code class="inline">:field</code> - the <a href="CastorEDC.Model.Field.html"><code class="inline">CastorEDC.Model.Field</code></a> itself, which
+<a href="CastorEDC.FieldValue.html#decode/2"><code class="inline">CastorEDC.FieldValue.decode/2</code></a> takes</li></ul>
+  </section>
+</section>
+<section class="detail" id="t:context/0">
+
+  <div class="detail-header">
+    <a href="#t:context/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">context()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/tabular.ex#L44" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> context() :: :study | :repeating_data | :survey</pre>
+
+      </div>
+
+<p>Where a field collects data: on a visit's forms, in repeating data, or in
+a survey.</p>
+  </section>
+</section>
+<section class="detail" id="t:row/0">
+
+  <div class="detail-header">
+    <a href="#t:row/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">row()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/tabular.ex#L128" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> row() :: %{
+  participant_id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  site_id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  source: <a href="#t:context/0">context</a>(),
+  instance_id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  parent_id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  field_id: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  variable_name: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  value: <a href="CastorEDC.FieldValue.html#t:t/0">CastorEDC.FieldValue.t</a>(),
+  raw_value: <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  updated_on: <a href="https://elixir.hexdocs.pm/NaiveDateTime.html#t:t/0">NaiveDateTime.t</a>() | nil
+}</pre>
+
+      </div>
+
+<p>A value, as <a href="#data_points/3"><code class="inline">data_points/3</code></a> gives it:</p><ul><li><code class="inline">:participant_id</code> and <code class="inline">:site_id</code> - whose value it is, and their site</li><li><code class="inline">:source</code> - where it was collected, as in <a href="#t:context/0"><code class="inline">context/0</code></a></li><li><code class="inline">:instance_id</code> - the repeating data instance or survey instance it
+belongs to, or <code class="inline">nil</code> for the study's values</li><li><code class="inline">:parent_id</code> - the repeating data or survey, or <code class="inline">nil</code> for the
+study's values</li><li><code class="inline">:field_id</code> and <code class="inline">:variable_name</code> - its field</li><li><code class="inline">:value</code> - decoded with <a href="CastorEDC.FieldValue.html#decode/2"><code class="inline">CastorEDC.FieldValue.decode/2</code></a></li><li><code class="inline">:raw_value</code> - the string the API sent</li><li><code class="inline">:updated_on</code> - when it last changed, in the server's local time
+(see <a href="CastorEDC.html#time_zone/1"><code class="inline">CastorEDC.time_zone/1</code></a>), not UTC</li></ul><p>A value that was cleared is still listed, with <code class="inline">value: nil</code> and
+<code class="inline">raw_value: &quot;&quot;</code>.</p>
+  </section>
+</section>
+<section class="detail" id="t:value_type/0">
+
+  <div class="detail-header">
+    <a href="#t:value_type/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">value_type()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/tabular.ex#L61" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> value_type() ::
+  :number
+  | :integer
+  | :string
+  | :date
+  | :time
+  | :naive_datetime
+  | :partial_date
+  | :number_or_string
+  | {:list, :string}
+  | {:number, :date}
+  | :grid
+  | :upload
+  | :geolocation</pre>
+
+      </div>
+
+<p>The Elixir type of a field's decoded values (see
+<a href="CastorEDC.FieldValue.html"><code class="inline">CastorEDC.FieldValue</code></a>), apart from <code class="inline">nil</code>, <a href="CastorEDC.MissingValue.html"><code class="inline">CastorEDC.MissingValue</code></a> and
+<code class="inline">:encrypted</code>, which any field can hold:</p><ul><li><code class="inline">:number</code> - an integer or a float</li><li><code class="inline">:integer</code>, <code class="inline">:string</code>, <code class="inline">:date</code>, <code class="inline">:time</code> and <code class="inline">:naive_datetime</code></li><li><code class="inline">:partial_date</code> - a <a href="CastorEDC.PartialDate.html"><code class="inline">CastorEDC.PartialDate</code></a></li><li><code class="inline">:number_or_string</code> - a calculation's result</li><li><code class="inline">{:list, :string}</code> - a checkbox field's checked values</li><li><code class="inline">{:number, :date}</code> - a number with a date</li><li><code class="inline">:grid</code> - a map of rows to maps of columns to cells</li><li><code class="inline">:upload</code> - <code class="inline">{:upload, name}</code></li><li><code class="inline">:geolocation</code> - <code class="inline">{latitude, longitude}</code></li></ul>
+  </section>
+</section>
+<section class="detail" id="t:wide_row/0">
+
+  <div class="detail-header">
+    <a href="#t:wide_row/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">wide_row()</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/tabular.ex#L147" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> wide_row() :: %{
+  :participant_id =&gt; <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(),
+  :site_id =&gt; <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  :source =&gt; <a href="#t:context/0">context</a>(),
+  :instance_id =&gt; <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  :parent_id =&gt; <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>() | nil,
+  optional(<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()) =&gt; <a href="CastorEDC.FieldValue.html#t:t/0">CastorEDC.FieldValue.t</a>() | <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">boolean</a>()
+}</pre>
+
+      </div>
+
+<p>A participant's study values, or a repeating data or survey instance's
+values, as <a href="#data_points/3"><code class="inline">data_points/3</code></a> gives them with <code class="inline">format: :wide</code>: the keys of
+<a href="#t:row/0"><code class="inline">row/0</code></a> that say whose values they are, and a value for each variable,
+under its name.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h2>
+
+    <div class="functions-list">
+<section class="detail" id="data_points/3">
+
+    <span id="data_points/2"></span>
+
+  <div class="detail-header">
+    <a href="#data_points/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">data_points(client, study_id, opts \\ [])</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/tabular.ex#L247" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> data_points(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>(), <a href="https://elixir.hexdocs.pm/typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="https://elixir.hexdocs.pm/Enumerable.html#t:t/1">Enumerable.t</a>(<a href="#t:row/0">row</a>() | <a href="#t:wide_row/0">wide_row</a>())</pre>
+
+      </div>
+
+<p>Streams the study's values as <a href="#t:row/0"><code class="inline">row/0</code></a>s, one per value.</p><p>The stream fetches the schema and the participants (for their sites)
+when it starts, then each source's values page by page, as it's
+consumed. A failed request raises <a href="CastorEDC.Error.html"><code class="inline">CastorEDC.Error</code></a> where the stream is
+consumed.</p><h2 id="data_points/3-options" class="section-heading"><a href="#data_points/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:format</code> - <code class="inline">:long</code> (the default) or <code class="inline">:wide</code>, see below</li><li><code class="inline">:sources</code> - the sources to include, all of <code class="inline">[:study, :repeating_data, :survey]</code> by default</li><li><code class="inline">:schema</code> - the result of <a href="#schema/2"><code class="inline">schema/2</code></a>, if you already have it</li></ul><h2 id="data_points/3-wide-format" class="section-heading"><a href="#data_points/3-wide-format" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Wide format</span></h2><p>With <code class="inline">format: :wide</code>, the stream has a <a href="#t:wide_row/0"><code class="inline">wide_row/0</code></a> for each
+participant with study values, and for each repeating data instance and
+survey instance with values. Besides <code class="inline">:participant_id</code>, <code class="inline">:site_id</code>,
+<code class="inline">:source</code>, <code class="inline">:instance_id</code> and <code class="inline">:parent_id</code>, each has a key for every
+variable of its study, repeating data or survey (in the schema), with
+the variable name as a string and <code class="inline">nil</code> where there's no value. Rows of
+the same repeating data or survey share their keys, so each such group
+makes a table.</p><p>A checkbox field becomes a column per option, named
+<code class="inline">&lt;variable&gt;_&lt;option value&gt;</code>: <code class="inline">true</code> when checked, <code class="inline">false</code> when not, and
+the field's value (<code class="inline">nil</code>, a <a href="CastorEDC.MissingValue.html"><code class="inline">CastorEDC.MissingValue</code></a> or <code class="inline">:encrypted</code>)
+when there's no list of checked options. A field without a variable name
+is keyed by its ID, and so are both columns when two would share a name
+(such as a checkbox <code class="inline">sym</code> with option <code class="inline">1</code> and a field <code class="inline">sym_1</code>):
+<code class="inline">&lt;field ID&gt;</code> or <code class="inline">&lt;field ID&gt;_&lt;option value&gt;</code>. Fields on no form the study
+knows count as the study's own, and values of fields the schema doesn't
+know are left out.</p><p>The wide format has to see every value before it can build a row, so the
+stream fetches them all when it starts.</p>
+  </section>
+</section>
+<section class="detail" id="schema/2">
+
+  <div class="detail-header">
+    <a href="#schema/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">schema(client, study_id)</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/tabular.ex#L193" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> schema(<a href="CastorEDC.html#t:client/0">CastorEDC.client</a>(), <a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()) ::
+  {:ok, %{required(<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()) =&gt; <a href="#t:column/0">column</a>()}} | {:error, <a href="CastorEDC.Error.html#t:t/0">CastorEDC.Error.t</a>()}</pre>
+
+      </div>
+
+<p>Describes the study's fields, as a map of field IDs to <a href="#t:column/0"><code class="inline">column/0</code></a>s.</p><p>Fields that only lay out a form, such as remarks, are left out. Fields of
+a type the client doesn't know have type <code class="inline">:string</code>.</p><p>It fetches every field with its option group, and every form: the
+study's, and those of each repeating data and survey, since only a
+field's form says where it collects data.</p>
+  </section>
+</section>
+<section class="detail" id="value_type/1">
+
+  <div class="detail-header">
+    <a href="#value_type/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">value_type(field_type)</h1>
+
+
+        <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/tabular.ex#L387" class="icon-action" rel="help nofollow" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> value_type(<a href="https://elixir.hexdocs.pm/String.html#t:t/0">String.t</a>()) :: <a href="#t:value_type/0">value_type</a>()</pre>
+
+      </div>
+
+<p>The Elixir type of a field type's values, as in <a href="#t:value_type/0"><code class="inline">value_type/0</code></a>.</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">CastorEDC.Tabular</span><span class="o">.</span><span class="n">value_type</span><span class="p" data-group-id="group-1">(</span><span class="s">&quot;numeric&quot;</span><span class="p" data-group-id="group-1">)</span><span class="w">
+</span><span class="ss">:number</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">CastorEDC.Tabular</span><span class="o">.</span><span class="n">value_type</span><span class="p" data-group-id="group-2">(</span><span class="s">&quot;checkbox&quot;</span><span class="p" data-group-id="group-2">)</span><span class="w">
+</span><span class="p" data-group-id="group-3">{</span><span class="ss">:list</span><span class="p">,</span><span class="w"> </span><span class="ss">:string</span><span class="p" data-group-id="group-3">}</span></code></pre>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="ExCastorEDC.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>
