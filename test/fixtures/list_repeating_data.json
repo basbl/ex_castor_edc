@@ -1,0 +1,69 @@
+{
+  "_embedded": {
+    "repeatingData": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data/81CF4C62-403C-4844-A186-C19EEDE14362"
+          }
+        },
+        "description": "Blood pressure measurements during physical exam.",
+        "id": "81CF4C62-403C-4844-A186-C19EEDE14362",
+        "name": "Blood pressure",
+        "repeating_data_id": "81CF4C62-403C-4844-A186-C19EEDE14362",
+        "type": "repeated_measure"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data/838BCBB6-DC0D-4E18-B54B-836C9BFC3DF2"
+          }
+        },
+        "description": "Adverse events",
+        "id": "838BCBB6-DC0D-4E18-B54B-836C9BFC3DF2",
+        "name": "Adverse event",
+        "repeating_data_id": "838BCBB6-DC0D-4E18-B54B-836C9BFC3DF2",
+        "type": "adverse_event"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data/C4DBC2A7-E030-4A34-BA1D-6128424C4C8F"
+          }
+        },
+        "description": "Alle mogelijke repeated measures zijn hier te bewerken",
+        "id": "C4DBC2A7-E030-4A34-BA1D-6128424C4C8F",
+        "name": "Medication",
+        "repeating_data_id": "C4DBC2A7-E030-4A34-BA1D-6128424C4C8F",
+        "type": "repeated_measure"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data/CC8504A9-26DC-4E42-85AB-D881957AB89D"
+          }
+        },
+        "description": "Follow-up visit",
+        "id": "CC8504A9-26DC-4E42-85AB-D881957AB89D",
+        "name": "Unscheduled visit",
+        "repeating_data_id": "CC8504A9-26DC-4E42-85AB-D881957AB89D",
+        "type": "unscheduled_phase"
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 25,
+  "total_items": 4
+}

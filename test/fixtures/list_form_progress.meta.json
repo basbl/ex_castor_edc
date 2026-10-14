@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "list_form_progress",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/participant-progress/forms",
+  "query": null,
+  "status": 200
+}

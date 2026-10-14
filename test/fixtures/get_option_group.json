@@ -1,0 +1,34 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-optiongroup/0020F5A6-60B1-42BF-9E90-97F587C3C163"
+    }
+  },
+  "description": "",
+  "id": "0020F5A6-60B1-42BF-9E90-97F587C3C163",
+  "layout": false,
+  "name": "Position",
+  "options": [
+    {
+      "domainVariableNameOverride": null,
+      "groupOrder": 0,
+      "id": "2FED6223-C791-46F4-AA95-2BEA366B4AE8",
+      "name": "Lying down",
+      "value": "1"
+    },
+    {
+      "domainVariableNameOverride": null,
+      "groupOrder": 1,
+      "id": "34486240-7CFE-4C09-A9D0-9033B9BA3BC4",
+      "name": "Sitting",
+      "value": "2"
+    },
+    {
+      "domainVariableNameOverride": null,
+      "groupOrder": 2,
+      "id": "568317AB-56B9-41EC-B867-660D380C0D26",
+      "name": "Standing",
+      "value": "3"
+    }
+  ]
+}

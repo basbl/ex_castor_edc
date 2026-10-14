@@ -1,0 +1,217 @@
+{
+  "_embedded": {
+    "forms": [
+      {
+        "_embedded": {
+          "visit": {
+            "_links": {
+              "self": {
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/3BB6D9B5-EF97-4F66-A25B-55EC43181C7B"
+              }
+            },
+            "id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B",
+            "visit_description": null,
+            "visit_duration": null,
+            "visit_id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B",
+            "visit_name": "Clinical and laboratory",
+            "visit_number": null,
+            "visit_order": 2
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data-instance/3F075142-968C-4773-AA66-9C2914FB6CD7"
+          }
+        },
+        "form_description": "Contains blood test data",
+        "form_id": "3F075142-968C-4773-AA66-9C2914FB6CD7",
+        "form_name": "Blood test",
+        "form_order": 4,
+        "id": "3F075142-968C-4773-AA66-9C2914FB6CD7"
+      },
+      {
+        "_embedded": {
+          "visit": {
+            "_links": {
+              "self": {
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/2EAC22F4-09FE-43ED-A6EE-F3514A1C997A"
+              }
+            },
+            "id": "2EAC22F4-09FE-43ED-A6EE-F3514A1C997A",
+            "visit_description": null,
+            "visit_duration": null,
+            "visit_id": "2EAC22F4-09FE-43ED-A6EE-F3514A1C997A",
+            "visit_name": "Patient characteristics",
+            "visit_number": null,
+            "visit_order": 1
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data-instance/47E81689-CE89-46CB-87DF-DA68CB2414BF"
+          }
+        },
+        "form_description": "",
+        "form_id": "47E81689-CE89-46CB-87DF-DA68CB2414BF",
+        "form_name": "Demographics",
+        "form_order": 1,
+        "id": "47E81689-CE89-46CB-87DF-DA68CB2414BF"
+      },
+      {
+        "_embedded": {
+          "visit": {
+            "_links": {
+              "self": {
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/F0CAEF50-ACA9-4535-A4FC-5DF471C239B3"
+              }
+            },
+            "id": "F0CAEF50-ACA9-4535-A4FC-5DF471C239B3",
+            "visit_description": null,
+            "visit_duration": null,
+            "visit_id": "F0CAEF50-ACA9-4535-A4FC-5DF471C239B3",
+            "visit_name": "Follow-up",
+            "visit_number": null,
+            "visit_order": 3
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data-instance/4C09CC02-F995-420E-94BE-51818341DDB7"
+          }
+        },
+        "form_description": "Contains physical exam data from this visit",
+        "form_id": "4C09CC02-F995-420E-94BE-51818341DDB7",
+        "form_name": "Physical exam",
+        "form_order": 6,
+        "id": "4C09CC02-F995-420E-94BE-51818341DDB7"
+      },
+      {
+        "_embedded": {
+          "visit": {
+            "_links": {
+              "self": {
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/2EAC22F4-09FE-43ED-A6EE-F3514A1C997A"
+              }
+            },
+            "id": "2EAC22F4-09FE-43ED-A6EE-F3514A1C997A",
+            "visit_description": null,
+            "visit_duration": null,
+            "visit_id": "2EAC22F4-09FE-43ED-A6EE-F3514A1C997A",
+            "visit_name": "Patient characteristics",
+            "visit_number": null,
+            "visit_order": 1
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data-instance/52652631-30C6-4329-8C14-580759C53222"
+          }
+        },
+        "form_description": "",
+        "form_id": "52652631-30C6-4329-8C14-580759C53222",
+        "form_name": "Diagnosis and medical history",
+        "form_order": 2,
+        "id": "52652631-30C6-4329-8C14-580759C53222"
+      },
+      {
+        "_embedded": {
+          "visit": {
+            "_links": {
+              "self": {
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/3BB6D9B5-EF97-4F66-A25B-55EC43181C7B"
+              }
+            },
+            "id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B",
+            "visit_description": null,
+            "visit_duration": null,
+            "visit_id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B",
+            "visit_name": "Clinical and laboratory",
+            "visit_number": null,
+            "visit_order": 2
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data-instance/91779714-9744-4E62-A3A0-BC9521113FC9"
+          }
+        },
+        "form_description": "Contains physical exam data",
+        "form_id": "91779714-9744-4E62-A3A0-BC9521113FC9",
+        "form_name": "Physical exam",
+        "form_order": 3,
+        "id": "91779714-9744-4E62-A3A0-BC9521113FC9"
+      },
+      {
+        "_embedded": {
+          "visit": {
+            "_links": {
+              "self": {
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/3BB6D9B5-EF97-4F66-A25B-55EC43181C7B"
+              }
+            },
+            "id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B",
+            "visit_description": null,
+            "visit_duration": null,
+            "visit_id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B",
+            "visit_name": "Clinical and laboratory",
+            "visit_number": null,
+            "visit_order": 2
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data-instance/AC8EB6A6-5F50-4306-B0F7-1FF92A451F09"
+          }
+        },
+        "form_description": "Registers all concomitant medications",
+        "form_id": "AC8EB6A6-5F50-4306-B0F7-1FF92A451F09",
+        "form_name": "Medication intake",
+        "form_order": 5,
+        "id": "AC8EB6A6-5F50-4306-B0F7-1FF92A451F09"
+      },
+      {
+        "_embedded": {
+          "visit": {
+            "_links": {
+              "self": {
+                "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/51833C50-5CDD-4160-9B36-00911DFDC809"
+              }
+            },
+            "id": "51833C50-5CDD-4160-9B36-00911DFDC809",
+            "visit_description": null,
+            "visit_duration": 0,
+            "visit_id": "51833C50-5CDD-4160-9B36-00911DFDC809",
+            "visit_name": "Outcome",
+            "visit_number": null,
+            "visit_order": 4
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data-instance/ECE715B8-DD70-4BB5-8805-9735DF35F449"
+          }
+        },
+        "form_description": "",
+        "form_id": "ECE715B8-DD70-4BB5-8805-9735DF35F449",
+        "form_name": "Outcome measures",
+        "form_order": 7,
+        "id": "ECE715B8-DD70-4BB5-8805-9735DF35F449"
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/form"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/form?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/form?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 25,
+  "total_items": 7
+}

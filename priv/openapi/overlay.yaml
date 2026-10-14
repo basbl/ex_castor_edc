@@ -1,0 +1,1340 @@
+# Corrections to the Castor EDC API spec, as an OpenAPI Overlay 1.0 document.
+#
+# `mix castor_edc.spec.build` applies these actions, in order, to
+# priv/openapi/upstream.json and writes the result to
+# priv/openapi/castor_edc.json, which the client is generated from.
+#
+# Every action says why it exists in its description. A target that selects
+# nothing fails the build: the upstream spec has changed under the
+# correction, and it needs another look. Every correction is also reported
+# upstream, so this file shrinks as the published spec improves.
+overlay: 1.0.0
+info:
+  title: Castor EDC API corrections
+  version: 1.0.0
+actions:
+  - target: $.paths['/']
+    description: >-
+      Upstream hides an undocumented endpoint (the participant PIN) by giving
+      it a `paths: {"/": []}` fragment, which leaves an empty list where a
+      path item object belongs, so the document doesn't validate.
+    remove: true
+
+  # Operations outside the client
+
+  - target: $.paths.*[?@.deprecated == true]
+    description: >-
+      Deprecated operations (58, mostly the record, report, phase and step
+      routes and the data point collections) get Sunset headers upstream and
+      aren't part of the client.
+    remove: true
+  - target: $.paths['/study/{study_id}/export'].post.tags[?@ == 'beta']
+    description: >-
+      Batch exports are tagged beta, but they're the supported way to export
+      (the synchronous CSV exports are deprecated), so the client keeps them.
+    remove: true
+  - target: $.paths.*[?@.tags[?@ == 'beta']]
+    description: >-
+      The other beta operations (audit trail, domains, monitoring
+      validations) may still change upstream and aren't part of the client.
+    remove: true
+  - target: $.paths.*[?@.tags[?@ == 'castor-internal']]
+    description: The custom export upload is for Castor's internal use.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/device-token']
+    description: >-
+      Device tokens belong to the participant app and need the `record`
+      scope, which is for Castor's own apps.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/survey-package-instance'].patch
+    description: >-
+      Marks survey package instances received or started from the
+      participant app; it needs the `record` scope.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/survey-package-instance/{survey_package_instance_id}'].patch
+    description: >-
+      Records when a participant started or received a survey package
+      instance, from the participant app. The spec allows the default scope,
+      but with it the API answers 500.
+    remove: true
+  - target: $.paths['/study/{study_id}/study-metadata'].get
+    description: >-
+      Only supports the `record` scope, for the participant app, although the
+      spec lists the default scope; it answers 403 otherwise.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/econsent']
+    description: The eConsent integration is internal to Castor.
+    remove: true
+  - target: $.paths['/study/{study_id}/export/data'].get
+    description: >-
+      The synchronous data export is deprecated, though the spec doesn't flag
+      it; batch exports replace it.
+    remove: true
+  - target: $.paths['/study/{study_id}/export/structure'].get
+    description: >-
+      The synchronous structure export is deprecated, though the spec doesn't
+      flag it; the form_structure batch export replaces it.
+    remove: true
+  - target: $.paths['/study/{study_id}/export/optiongroups'].get
+    description: >-
+      The synchronous option group export is deprecated, though the spec
+      doesn't flag it; listing option groups replaces it.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/study'].get
+    description: >-
+      Lists a participant's study data like GET .../data-points/study, but
+      through an older serialiser that names the value `value` instead of
+      `field_value`. The client keeps one operation per capability.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/survey/{survey_instance_id}'].get
+    description: >-
+      Duplicates GET .../data-points/survey-instance/{survey_instance_id}
+      through the older serialiser.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/repeating-data/{repeating_data_instance_id}'].get
+    description: >-
+      Duplicates GET .../data-points/repeating-data-instance/{repeating_data_instance_id}
+      through the older serialiser.
+    remove: true
+
+  # Operation names and modules
+  #
+  # Every operation gets an operationId, which names its function, and an
+  # x-castor-module, which names the module it's generated into. Upstream
+  # has neither, and its tags are too fine-grained to become modules.
+
+  # Countries
+  - target: $.paths['/country'].get
+    update: {operationId: list_countries, x-castor-module: Countries}
+  - target: $.paths['/country/{country_id}'].get
+    update: {operationId: get_country, x-castor-module: Countries}
+
+  # Users
+  - target: $.paths['/user'].get
+    update: {operationId: list_users, x-castor-module: Users}
+  - target: $.paths['/user/{user_id}'].get
+    update: {operationId: get_user, x-castor-module: Users}
+
+  # Studies
+  - target: $.paths['/study'].get
+    update: {operationId: list_studies, x-castor-module: Studies}
+  - target: $.paths['/study/{study_id}'].get
+    update: {operationId: get_study, x-castor-module: Studies}
+  - target: $.paths['/study/{study_id}/statistics'].get
+    update: {operationId: get_study_statistics, x-castor-module: Studies}
+
+  # StudyUsers
+  - target: $.paths['/study/{study_id}/user'].get
+    update: {operationId: list_study_users, x-castor-module: StudyUsers}
+  - target: $.paths['/study/{study_id}/user/{user_id}'].get
+    update: {operationId: get_study_user, x-castor-module: StudyUsers}
+  - target: $.paths['/study/{study_id}/user'].post
+    update: {operationId: add_study_user, x-castor-module: StudyUsers}
+  - target: $.paths['/study/{study_id}/user/{user_id}'].put
+    update: {operationId: update_study_user, x-castor-module: StudyUsers}
+  - target: $.paths['/study/{study_id}/user/{user_id}'].delete
+    update: {operationId: remove_study_user, x-castor-module: StudyUsers}
+
+  # Roles
+  - target: $.paths['/study/{study_id}/role'].get
+    update: {operationId: list_roles, x-castor-module: Roles}
+  - target: $.paths['/study/{study_id}/role/{role_name}'].get
+    update: {operationId: get_role, x-castor-module: Roles}
+  - target: $.paths['/study/{study_id}/role'].post
+    update: {operationId: create_role, x-castor-module: Roles}
+
+  # Sites
+  - target: $.paths['/study/{study_id}/site'].get
+    update: {operationId: list_sites, x-castor-module: Sites}
+  - target: $.paths['/study/{study_id}/site/{site_id}'].get
+    update: {operationId: get_site, x-castor-module: Sites}
+  - target: $.paths['/study/{study_id}/site'].post
+    update: {operationId: create_site, x-castor-module: Sites}
+
+  # Participants
+  - target: $.paths['/study/{study_id}/participant'].get
+    update: {operationId: list_participants, x-castor-module: Participants}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}'].get
+    update: {operationId: get_participant, x-castor-module: Participants}
+  - target: $.paths['/study/{study_id}/participant'].post
+    update: {operationId: create_participant, x-castor-module: Participants}
+  - target: $.paths['/study/{study_id}/participant-progress/forms'].get
+    update: {operationId: list_form_progress, x-castor-module: Participants}
+  - target: $.paths['/study/{study_id}/participant-progress/{participant_id}/visit'].get
+    update: {operationId: list_visit_progress, x-castor-module: Participants}
+  - target: $.paths['/study/{study_id}/participant-progress/{participant_id}/repeating-data'].get
+    update: {operationId: list_repeating_data_progress, x-castor-module: Participants}
+
+  # Randomization
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/randomization'].get
+    update: {operationId: get_randomization, x-castor-module: Randomization}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/randomization'].post
+    update: {operationId: randomize_participant, x-castor-module: Randomization}
+
+
+
+  # DataPoints
+  - target: $.paths['/study/{study_id}/data-points/study'].get
+    update: {operationId: list_study_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance'].get
+    update: {operationId: list_repeating_data_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].get
+    update: {operationId: list_repeating_data_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance'].get
+    update: {operationId: list_survey_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance/{survey_instance_id}'].get
+    update: {operationId: list_survey_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/data-points/survey-package-instance/{survey_package_instance_id}'].get
+    update: {operationId: list_survey_package_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/study'].get
+    update: {operationId: list_participant_study_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance'].get
+    update: {operationId: list_participant_repeating_data_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].get
+    update: {operationId: list_participant_repeating_data_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-instance'].get
+    update: {operationId: list_participant_survey_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-instance/{survey_instance_id}'].get
+    update: {operationId: list_participant_survey_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance/{survey_package_instance_id}'].get
+    update: {operationId: list_participant_survey_package_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/study'].post
+    update: {operationId: upsert_study_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].post
+    update: {operationId: upsert_repeating_data_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-instance/{survey_instance_id}'].post
+    update: {operationId: upsert_survey_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance/{survey_package_instance_id}'].post
+    update: {operationId: upsert_survey_package_instance_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance'].post
+    update: {operationId: create_survey_package_instance_with_data_points, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/study-data-point/{field_id}'].get
+    update: {operationId: get_study_data_point, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/study-data-point/{field_id}'].post
+    update: {operationId: create_study_data_point, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/survey/{survey_instance_id}/{field_id}'].get
+    update: {operationId: get_survey_data_point, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/survey/{survey_instance_id}/{field_id}'].post
+    update: {operationId: create_survey_data_point, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/repeating-data/{repeating_data_instance_id}/{field_id}'].get
+    update: {operationId: get_repeating_data_data_point, x-castor-module: DataPoints}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-point/repeating-data/{repeating_data_instance_id}/{field_id}'].post
+    update: {operationId: create_repeating_data_data_point, x-castor-module: DataPoints}
+
+  # Fields
+  - target: $.paths['/study/{study_id}/field'].get
+    update: {operationId: list_fields, x-castor-module: Fields}
+  - target: $.paths['/study/{study_id}/field/{field_id}'].get
+    update: {operationId: get_field, x-castor-module: Fields}
+  - target: $.paths['/study/{study_id}/field-dependency'].get
+    update: {operationId: list_field_dependencies, x-castor-module: Fields}
+  - target: $.paths['/study/{study_id}/field-dependency/{fieldDependency_id}'].get
+    update: {operationId: get_field_dependency, x-castor-module: Fields}
+  - target: $.paths['/study/{study_id}/field-validation'].get
+    update: {operationId: list_field_validations, x-castor-module: Fields}
+  - target: $.paths['/study/{study_id}/field-validation/{fieldValidation_id}'].get
+    update: {operationId: get_field_validation, x-castor-module: Fields}
+
+  # OptionGroups
+  - target: $.paths['/study/{study_id}/field-optiongroup'].get
+    update: {operationId: list_option_groups, x-castor-module: OptionGroups}
+  - target: $.paths['/study/{study_id}/field-optiongroup/{optiongroup_id}'].get
+    update: {operationId: get_option_group, x-castor-module: OptionGroups}
+
+  # Forms
+  - target: $.paths['/study/{study_id}/form'].get
+    update: {operationId: list_forms, x-castor-module: Forms}
+  - target: $.paths['/study/{study_id}/form/{form_id}'].get
+    update: {operationId: get_form, x-castor-module: Forms}
+  - target: $.paths['/study/{study_id}/visit'].get
+    update: {operationId: list_visits, x-castor-module: Forms}
+  - target: $.paths['/study/{study_id}/visit/{visit_id}'].get
+    update: {operationId: get_visit, x-castor-module: Forms}
+
+  # Metadata
+  - target: $.paths['/study/{study_id}/metadata'].get
+    update: {operationId: list_metadata, x-castor-module: Metadata}
+  - target: $.paths['/study/{study_id}/metadata/{metadata_id}'].get
+    update: {operationId: get_metadata, x-castor-module: Metadata}
+  - target: $.paths['/study/{study_id}/metadatatype'].get
+    update: {operationId: list_metadata_types, x-castor-module: Metadata}
+  - target: $.paths['/study/{study_id}/metadatatype/{metadatatype_id}'].get
+    update: {operationId: get_metadata_type, x-castor-module: Metadata}
+
+  # RepeatingData
+  - target: $.paths['/study/{study_id}/repeating-data'].get
+    update: {operationId: list_repeating_data, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/repeating-data/{repeating_data_id}'].get
+    update: {operationId: get_repeating_data, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/repeating-data/{repeating_data_id}/repeating-data-form'].get
+    update: {operationId: list_repeating_data_forms, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/repeating-data/{repeating_data_id}/repeating-data-form/{repeating_data_form_id}'].get
+    update: {operationId: get_repeating_data_form, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/repeating-data-instance'].get
+    update: {operationId: list_repeating_data_instances, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/repeating-data-instance/{repeating_data_instance_id}'].get
+    update: {operationId: get_repeating_data_instance, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].get
+    update: {operationId: list_participant_repeating_data_instances, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance/{repeating_data_instance_id}'].get
+    update: {operationId: get_participant_repeating_data_instance, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].post
+    update: {operationId: create_repeating_data_instance, x-castor-module: RepeatingData}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance-collection'].post
+    update: {operationId: create_repeating_data_instances, x-castor-module: RepeatingData}
+
+  # Surveys
+  - target: $.paths['/study/{study_id}/survey'].get
+    update: {operationId: list_surveys, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey/{survey_id}'].get
+    update: {operationId: get_survey, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey/{survey_id}/survey-form'].get
+    update: {operationId: list_survey_forms, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey/{survey_id}/survey-form/{survey_form_id}'].get
+    update: {operationId: get_survey_form, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey-package'].get
+    update: {operationId: list_survey_packages, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey-package/{survey_package_id}'].get
+    update: {operationId: get_survey_package, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey-package-instance'].get
+    update: {operationId: list_survey_package_instances, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey-package-instance/{survey_package_instance_id}'].get
+    update: {operationId: get_survey_package_instance, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey-package-instance'].post
+    update: {operationId: create_survey_package_instance, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/survey-package-instance/{survey_package_instance_id}'].patch
+    update: {operationId: update_survey_package_instance, x-castor-module: Surveys}
+  - target: $.paths['/study/{study_id}/compliance'].post
+    update: {operationId: list_survey_compliance, x-castor-module: Surveys}
+
+  # Queries
+  - target: $.paths['/study/{study_id}/query'].get
+    update: {operationId: list_queries, x-castor-module: Queries}
+  - target: $.paths['/study/{study_id}/query/{query_id}'].get
+    update: {operationId: get_query, x-castor-module: Queries}
+
+  # Verifications
+  - target: $.paths['/study/{study_id}/verification'].get
+    update: {operationId: list_verifications, x-castor-module: Verifications}
+
+  # Exports
+  - target: $.paths['/study/{study_id}/export'].post
+    update: {operationId: queue_exports, x-castor-module: Exports}
+  - target: $.paths['/study/{study_id}/export'].get
+    update: {operationId: list_exports, x-castor-module: Exports}
+  - target: $.paths['/study/{study_id}/export/{id}/download'].get
+    update: {operationId: download_export, x-castor-module: Exports}
+
+  # Parameter names
+  #
+  # Parameters whose wire name isn't snake_case, or doesn't read well as an
+  # Elixir option, get an x-castor-name. The client sends the wire name.
+  - target: $.paths.*.*.parameters[?@.name == 'fieldDependency_id']
+    update: {x-castor-name: field_dependency_id}
+  - target: $.paths.*.*.parameters[?@.name == 'fieldValidation_id']
+    update: {x-castor-name: field_validation_id}
+  - target: $.paths.*.*.parameters[?@.name == 'optiongroup_id']
+    update: {x-castor-name: option_group_id}
+  - target: $.paths.*.*.parameters[?@.name == 'metadatatype_id']
+    update: {x-castor-name: metadata_type_id}
+  - target: $.paths.*.*.parameters[?@.name == 'participantId[]']
+    update: {x-castor-name: participant_ids}
+  - target: $.paths.*.*.parameters[?@.name == 'siteId[]']
+    update: {x-castor-name: site_ids}
+  - target: $.paths.*.*.parameters[?@.name == 'participantStatus[]']
+    update: {x-castor-name: participant_statuses}
+  - target: $.paths.*.*.parameters[?@.name == 'surveyPackageId[]']
+    update: {x-castor-name: survey_package_ids}
+  - target: $.paths.*.*.parameters[?@.name == 'surveyPackageStatus[]']
+    update: {x-castor-name: survey_package_statuses}
+  - target: $.paths.*.*.parameters[?@.name == 'availabilityStart']
+    update: {x-castor-name: availability_start}
+  - target: $.paths.*.*.parameters[?@.name == 'availabilityEnd']
+    update: {x-castor-name: availability_end}
+  - target: $.paths.*.*.parameters[?@.name == 'complianceOption']
+    update: {x-castor-name: compliance_option}
+  - target: $.paths.*.*.parameters[?@.name == 'parentId']
+    update: {x-castor-name: parent_id}
+  - target: $.paths.*.*.parameters[?@.name == 'parentType']
+    update: {x-castor-name: parent_type}
+  - target: $.paths.*.*.parameters[?@.name == 'field[]'].items
+    description: The filter below takes a map, not a list of IDs.
+    remove: true
+  - target: $.paths.*.*.parameters[?@.name == 'field[]']
+    description: >-
+      Filters participants on field values, used as `field[ID]=VALUE` per
+      field, so a map of field IDs to values rather than the list of IDs
+      upstream describes; the wire name is `field`, with the ID in brackets.
+    update:
+      name: field
+      type: object
+      style: deepObject
+      explode: true
+      x-castor-name: fields
+  - target: $.paths.*.*.parameters[?@.name == 'finished_on[gt]']
+    update: {x-castor-name: finished_after}
+  - target: $.paths.*.*.parameters[?@.name == 'finished_on[gte]']
+    update: {x-castor-name: finished_on_or_after}
+  - target: $.paths.*.*.parameters[?@.name == 'finished_on[lt]']
+    update: {x-castor-name: finished_before}
+  - target: $.paths.*.*.parameters[?@.name == 'finished_on[lte]']
+    update: {x-castor-name: finished_on_or_before}
+  - target: $.paths['/study/{study_id}/export/{id}/download'].get.parameters[?@.name == 'id']
+    update: {x-castor-name: export_id}
+
+  # Option types
+  #
+  # The same kind of option takes the same kind of value everywhere: a
+  # boolean for a yes or no, sent as 1 or 0 where the API takes an integer
+  # (x-castor-wire), and a list for what to include.
+
+  - target: $.paths.*.*.parameters[?@.name == 'archived' && @.type == 'integer']
+    description: Accepts 0 or 1, so a boolean, as list_survey_package_instances' archived is.
+    update: {type: boolean, x-castor-wire: integer}
+  - target: $.paths.*.*.parameters[?@.name == 'validations' && @.type == 'integer']
+    description: Set to 1 to include each field's validations, so a boolean.
+    update: {type: boolean, x-castor-wire: integer}
+  - target: $.paths.*.*.parameters[?@.name == 'validations' && @.default == 0]
+    description: The default of false, spelt as the boolean.
+    update: {default: false}
+  - target: $.paths.*[?@.operationId == 'list_participants'].parameters[?@.name == 'archived']
+    description: Described as the boolean it now is.
+    update:
+      description: >-
+        `true` for only archived participants, `false` for only unarchived
+        ones; all participants when left out.
+  - target: $.paths.*[?@.operationId == 'list_repeating_data_instances' || @.operationId == 'list_participant_repeating_data_instances' || @.operationId == 'list_repeating_data_progress'].parameters[?@.name == 'archived']
+    description: Described as the boolean it now is.
+    update:
+      description: >-
+        `true` for only archived repeating data instances, `false` (what the
+        API does when it's left out) for only unarchived ones.
+  - target: $.paths.*.*.parameters[?@.name == 'validations']
+    description: Described as the boolean it now is.
+    update: {description: Whether to include each field's validations.}
+  - target: $.paths.*.*.parameters[?@.name == 'include' && @.type == 'string']
+    description: >-
+      Takes what to include comma-separated, like list_fields' include, so a
+      list there too.
+    update: {type: array, items: {type: string}, collectionFormat: csv}
+  - target: $.paths.*.*.parameters[?@.name == 'site' && @.in == 'query']
+    description: A single site's ID.
+    update: {x-castor-name: site_id}
+  - target: $.paths.*.*.parameters[?@.name == 'upload_file']
+    description: >-
+      Says what the client takes for the file; with it in the body, the
+      client sends the request as multipart form data instead of JSON.
+    update:
+      description: >-
+        A file to upload as the value, instead of field_value: `{file name,
+        contents}` or a `File.Stream`. The request then goes as multipart form
+        data. The upload limit is 2 MB.
+  - target: $.paths.*.*.parameters[?@.name == 'enable_pagination']
+    description: >-
+      Whether to page the participant's repeating data values. The client
+      lists them unpaged, as the operation does by default, and has no
+      stream for it, so the option would only change the result's shape.
+    remove: true
+
+  # Times
+
+  - target: $.paths.*.*.parameters[?@.name == 'updated_after']
+    description: Says which time the watermark is in, and how to build one.
+    update:
+      description: >-
+        Only data points updated strictly after this time, as ISO 8601 with an
+        offset. Data points' updated_on is the server's local time, so build
+        it with
+        `updated_on |> DateTime.from_naive!(CastorEDC.time_zone(client), Tz.TimeZoneDatabase) |> DateTime.to_iso8601()`.
+  - target: $.definitions.Participant.properties.updated_on
+    description: Notes the precision, which the API doesn't.
+    update:
+      description: >-
+        When the participant last changed, which includes every value entered
+        for them, to the minute only.
+
+  # Collections and pagination
+  #
+  # x-castor-items is where the records of a collection sit in the response:
+  # usually under `_embedded`, with a key that differs per operation and
+  # often from what the spec says (`metadatas`, not `steps`;
+  # `repeatingDataInstance`, not `repeatingDataInstances`), and in two cases
+  # in a body of its own (`results` for countries, `data` for survey
+  # compliance). x-castor-max-page-size is the largest page_size the API
+  # accepts; the client clamps to it, because a larger one is rejected with
+  # a 416 (or a 422 for survey package instances). Both were checked against
+  # a running API.
+  - target: $.paths['/study/{study_id}/site'].get
+    update: {x-castor-items: _embedded.sites, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/site'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/participant'].get
+    update: {x-castor-items: _embedded.participants, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/participant'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/participant-progress/forms'].get
+    update: {x-castor-items: _embedded.participants}
+  - target: $.paths['/study/{study_id}/participant-progress/forms'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page.}
+  - target: $.paths['/study/{study_id}/participant-progress/{participant_id}/visit'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 100}
+  - target: $.paths['/study/{study_id}/participant-progress/{participant_id}/repeating-data'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 100}
+  - target: $.paths['/study/{study_id}/data-points/study'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 5000}
+  - target: $.paths['/study/{study_id}/data-points/study'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page parameter.
+    update: {name: page, in: query, type: integer, default: 1, description: The page to retrieve.}
+  - target: $.paths['/study/{study_id}/data-points/study'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 5000}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 5000}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page parameter.
+    update: {name: page, in: query, type: integer, default: 1, description: The page to retrieve.}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 5000}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 5000}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page parameter.
+    update: {name: page, in: query, type: integer, default: 1, description: The page to retrieve.}
+  - target: $.paths['/study/{study_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 5000}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 5000}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page parameter.
+    update: {name: page, in: query, type: integer, default: 1, description: The page to retrieve.}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 5000}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance/{survey_instance_id}'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 5000}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance/{survey_instance_id}'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page parameter.
+    update: {name: page, in: query, type: integer, default: 1, description: The page to retrieve.}
+  - target: $.paths['/study/{study_id}/data-points/survey-instance/{survey_instance_id}'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 5000}
+  - target: $.paths['/study/{study_id}/data-points/survey-package-instance/{survey_package_instance_id}'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 5000}
+  - target: $.paths['/study/{study_id}/data-points/survey-package-instance/{survey_package_instance_id}'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page parameter.
+    update: {name: page, in: query, type: integer, default: 1, description: The page to retrieve.}
+  - target: $.paths['/study/{study_id}/data-points/survey-package-instance/{survey_package_instance_id}'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 5000}
+  - target: $.paths['/study/{study_id}/field'].get
+    update: {x-castor-items: _embedded.fields, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/field'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/field-dependency'].get
+    update: {x-castor-items: _embedded.fieldDependencies, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/field-dependency'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/field-validation'].get
+    update: {x-castor-items: _embedded.fieldValidations, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/field-validation'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/field-optiongroup'].get
+    update: {x-castor-items: _embedded.fieldOptionGroups, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/field-optiongroup'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/form'].get
+    update: {x-castor-items: _embedded.forms, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/form'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/visit'].get
+    update: {x-castor-items: _embedded.visits, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/visit'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/metadata'].get
+    update: {x-castor-items: _embedded.metadatas, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/metadata'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/metadatatype'].get
+    update: {x-castor-items: _embedded.metadatatypes, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/metadatatype'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/repeating-data'].get
+    update: {x-castor-items: _embedded.repeatingData, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/repeating-data'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/repeating-data/{repeating_data_id}/repeating-data-form'].get
+    update: {x-castor-items: _embedded.repeating_data_forms, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/repeating-data/{repeating_data_id}/repeating-data-form'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/repeating-data-instance'].get
+    update: {x-castor-items: _embedded.repeatingDataInstance, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/repeating-data-instance'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].get
+    update: {x-castor-items: _embedded.repeatingDataInstance, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/survey'].get
+    update: {x-castor-items: _embedded.surveys, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/survey'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/survey/{survey_id}/survey-form'].get
+    update: {x-castor-items: _embedded.survey_forms, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/survey/{survey_id}/survey-form'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/survey-package'].get
+    update: {x-castor-items: _embedded.survey_packages, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/survey-package'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/survey-package-instance'].get
+    update: {x-castor-items: _embedded.surveypackageinstance, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/compliance'].post
+    update: {x-castor-items: data}
+  - target: $.paths['/study/{study_id}/query'].get
+    update: {x-castor-items: _embedded.queries, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/query'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/verification'].get
+    update: {x-castor-items: _embedded.verifications, x-castor-max-page-size: 1000}
+  - target: $.paths['/study/{study_id}/verification'].get.parameters
+    description: The operation pages, but the spec doesn't declare its page_size parameter.
+    update: {name: page_size, in: query, type: integer, description: The number of records per page., maximum: 1000}
+  - target: $.paths['/study/{study_id}/export'].get
+    update: {x-castor-items: _embedded.items, x-castor-max-page-size: 100}
+  - target: $.paths['/country'].get
+    update: {x-castor-items: results}
+  - target: $.paths['/user'].get
+    update: {x-castor-items: _embedded.user}
+  - target: $.paths['/study'].get
+    update: {x-castor-items: _embedded.study}
+  - target: $.paths['/study/{study_id}/role'].get
+    update: {x-castor-items: _embedded.roles}
+  - target: $.paths['/study/{study_id}/user'].get
+    update: {x-castor-items: _embedded.studyUsers}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/study'].get
+    update: {x-castor-items: _embedded.items}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance'].get
+    update: {x-castor-items: _embedded.items}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance'].get.parameters[?@.name == 'page']
+    description: >-
+      Participant-level data point collections only page with
+      enable_pagination=true; the client fetches them whole.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance'].get.parameters[?@.name == 'page_size']
+    description: >-
+      Participant-level data point collections only page with
+      enable_pagination=true; the client fetches them whole.
+    remove: true
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/repeating-data-instance/{repeating_data_instance_id}'].get
+    update: {x-castor-items: _embedded.items}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-instance'].get
+    update: {x-castor-items: _embedded.items}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-instance/{survey_instance_id}'].get
+    update: {x-castor-items: _embedded.items}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/data-points/survey-package-instance/{survey_package_instance_id}'].get
+    update: {x-castor-items: _embedded.items}
+  - target: $.paths['/study/{study_id}/repeating-data-instance'].get
+    description: >-
+      Without repeating data instances the API answers 404 ("There are no
+      repeating data instances.") instead of an empty collection. Only that
+      404 is an empty page: a participant that doesn't exist is a 404 too,
+      with another detail, and stays an error.
+    update: {x-castor-not-found-is-empty: There are no repeating data instances.}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].get
+    description: >-
+      Without repeating data instances the API answers 404 ("There are no
+      repeating data instances.") instead of an empty collection. Only that
+      404 is an empty page: a participant that doesn't exist is a 404 too,
+      with another detail, and stays an error.
+    update: {x-castor-not-found-is-empty: There are no repeating data instances.}
+
+  # Integer types
+  #
+  # The spec types every counter and ordinal as `number`. These properties
+  # only ever hold whole numbers, so the client decodes them as integers.
+  # Durations, progress and slider steps can be fractional and stay numbers.
+  - target: $.definitions.*.properties.page
+    update: {type: integer}
+  - target: $.paths.*.*.responses.*.schema.properties.page
+    update: {type: integer}
+  - target: $.definitions.*.properties.page_count
+    update: {type: integer}
+  - target: $.paths.*.*.responses.*.schema.properties.page_count
+    update: {type: integer}
+  - target: $.definitions.*.properties.page_size
+    update: {type: integer}
+  - target: $.paths.*.*.responses.*.schema.properties.page_size
+    update: {type: integer}
+  - target: $.definitions.*.properties.total_items
+    update: {type: integer}
+  - target: $.paths.*.*.responses.*.schema.properties.total_items
+    update: {type: integer}
+  - target: $.paths.*.*.responses.*.schema.properties.total
+    update: {type: integer}
+  - target: $.paths.*.*.responses.*.schema.properties.totals
+    update: {type: integer}
+  - target: $.definitions.*.properties.total_processed
+    update: {type: integer}
+  - target: $.definitions.*.properties.total_success
+    update: {type: integer}
+  - target: $.definitions.*.properties.total_failed
+    update: {type: integer}
+  - target: $.definitions.*.properties.field_number
+    update: {type: integer}
+  - target: $.definitions.*.properties.field_length
+    update: {type: integer}
+  - target: $.definitions.*.properties.visit_number
+    update: {type: integer}
+  - target: $.definitions.*.properties.visit_order
+    update: {type: integer}
+  - target: $.definitions.*.properties.phase_order
+    update: {type: integer}
+  - target: $.definitions.*.properties.expected_centers
+    update: {type: integer}
+  - target: $.definitions.*.properties.expected_records
+    update: {type: integer}
+  - target: $.definitions.*.properties.randomization_group
+    update: {type: integer}
+  - target: $.definitions.*.properties.last_login.properties.timezone_type
+    update: {type: integer}
+
+  # Data points
+  #
+  # Upstream describes a data point with a different schema for each
+  # context (StudyFieldResultCollection, SurveyFieldResultCollection, …),
+  # names the value `field_value` in collections and `value` in single
+  # results, and describes `updated_on` as a Unix epoch while it's a
+  # `YYYY-MM-DD HH:MM:SS` string. The client has one DataPoint, with the
+  # value always under `value`.
+
+  - target: $.definitions
+    update:
+      DataPoint:
+        type: object
+        description: >-
+          A stored value of one field, for a participant, in the context of the
+          study, a survey (package) instance or a repeating data instance.
+        properties:
+          field_id: {type: string, format: UUID}
+          field_variable_name:
+            type: string
+            description: Only present on single data points.
+          value:
+            type: string
+            description: >-
+              The stored value, always a string; see CastorEDC.FieldValue
+              for decoding it by field type. A value that was cleared stays
+              in the lists, as an empty string with its own updated_on.
+          field_value:
+            type: string
+            description: >-
+              The stored value, always a string; see CastorEDC.FieldValue
+              for decoding it by field type. A value that was cleared stays
+              in the lists, as an empty string with its own updated_on.
+            x-castor-rename: value
+          participant_id: {type: string}
+          updated_on:
+            type: string
+            x-nullable: true
+            x-castor-type: naive_datetime
+            description: >-
+              When the value last changed, in the server's local time, not
+              UTC; see CastorEDC.time_zone/1.
+          repeating_data_instance_id: {type: string, format: UUID}
+          repeating_data_instance_name: {type: string}
+          survey_instance_id: {type: string, format: UUID}
+          survey_name: {type: string}
+          survey_package_instance_id: {type: string, format: UUID}
+  - target: $.paths.*[?@['x-castor-module'] == 'DataPoints'].responses['200'].schema.properties._embedded.properties.items.items
+    update: {$ref: '#/definitions/DataPoint'}
+  - target: $.paths.*[?@.operationId == 'get_study_data_point' || @.operationId == 'get_survey_data_point' || @.operationId == 'get_repeating_data_data_point'].responses['200'].schema
+    update: {$ref: '#/definitions/DataPoint'}
+
+  # Missing response schemas
+  #
+  # Responses the spec doesn't describe, as returned by a running API.
+
+  - target: $.paths.*[?@.operationId == 'create_study_data_point' || @.operationId == 'create_survey_data_point' || @.operationId == 'create_repeating_data_data_point'].responses['201']
+    description: Creating a single data point returns it, like reading it does.
+    update:
+      schema: {$ref: '#/definitions/DataPoint'}
+  - target: $.paths['/study/{study_id}/survey-package-instance/{survey_package_instance_id}'].patch.responses['200']
+    description: Updating a survey package instance returns it, like reading it does.
+    update:
+      schema: {$ref: '#/definitions/SurveyPackageInstance'}
+
+  # List parameters
+
+  - target: $.paths.*.*.parameters[?@.name == 'field_ids']
+    description: >-
+      field_ids is a list of field UUIDs that the API takes comma-separated;
+      the spec types it as a plain string.
+    update:
+      type: array
+      items: {type: string, format: UUID}
+      collectionFormat: csv
+
+  # Batch exports
+  #
+  # The export list's entries look nothing like the spec says: a finished
+  # export is `ready` (not `completed`), the dates are serialised PHP
+  # DateTime objects (not strings) like elsewhere in the API, `export_name` holds the export type and
+  # `export_type` its format, and `created_by` is a user ID. Every download
+  # is a zip.
+
+  - target: $.definitions
+    update:
+      ExportEntry:
+        type: object
+        properties:
+          id: {type: string, format: UUID}
+          status:
+            type: string
+            enum: [queued, in_progress, ready, failed]
+          export_name:
+            type: string
+            description: The export type, despite the name.
+            enum:
+              - audit_trail
+              - domain_mapping
+              - empty_crf
+              - form_structure
+              - participant_casebook
+              - participant_data
+              - queries
+              - sites
+              - survey_compliance
+              - uploaded_files
+              - validations
+            x-castor-rename: type
+          export_type:
+            type: string
+            description: The export format, despite the name.
+            enum: [csv, excel, spss, sas_xpt, sas_7bdat, odm, pdf, xml, zip]
+            x-castor-rename: format
+          created_by:
+            type: string
+            description: The ID of the user who requested the export.
+          created_on: {$ref: '#/definitions/DateTime'}
+          completed_on: {$ref: '#/definitions/DateTime'}
+          expires_on: {$ref: '#/definitions/DateTime'}
+          file_name: {type: string, x-nullable: true}
+          file_size: {type: integer, x-nullable: true}
+  - target: $.definitions.DateTime
+    description: >-
+      A serialised PHP DateTime object: a local date and time in `date`
+      (YYYY-MM-DD HH:MM:SS.ffffff) and a named time zone in `timezone`. The
+      client turns it into a DateTime in that zone, and describes it so.
+    update:
+      x-castor-type: datetime
+      description: >-
+        A DateTime in the server's time zone (see CastorEDC.time_zone/1);
+        compare it with DateTime.compare/2.
+  - target: $.paths['/study/{study_id}/export'].get.responses['200'].schema
+    description: Replaced below; the described shape doesn't match the response.
+    remove: true
+  - target: $.paths['/study/{study_id}/export'].get.responses['200']
+    update:
+      schema:
+        type: object
+        properties:
+          _embedded:
+            type: object
+            properties:
+              items:
+                type: array
+                items: {$ref: '#/definitions/ExportEntry'}
+          page: {type: integer}
+          page_count: {type: integer}
+          page_size: {type: integer}
+          total_items: {type: integer}
+  - target: $.paths['/study/{study_id}/export/{id}/download'].get
+    description: "The download is a zip archive, not JSON, and needs `Accept: */*`."
+    update:
+      produces: [application/zip]
+  - target: $.paths['/study/{study_id}/export/{id}/download'].get.responses['200']
+    update:
+      schema: {type: file}
+
+  # Errors
+  #
+  # The API answers errors with two different bodies: an RFC 7807 problem
+  # from inside an endpoint, and `{"success": false, "errors": [...]}` (or
+  # `{"success": false, "reason": ...}`) from the layers in front of it,
+  # such as rate limiting and maintenance. The spec only describes the
+  # first, and types its `errors` as an object while it's a list.
+  # CastorEDC.Error reads all of them; this describes them for reference.
+
+  - target: $.definitions.Error
+    update:
+      description: >-
+        Either an RFC 7807 problem (type, title, status, detail, and for some
+        errors `errors` or `validation_messages`), or a body from the layers
+        in front of the endpoints (success, errors or reason). Batch export
+        errors put the useful message in `description`.
+      properties:
+        description:
+          type: string
+          description: The message of batch export errors, which put a generic text in `detail`.
+        errors:
+          type: array
+          description: The individual errors, from either kind of body.
+          items:
+            type: object
+            properties:
+              id: {type: string, description: A reference Castor support can trace.}
+              code: {type: string}
+              error_code: {type: string}
+              http_code: {type: integer}
+              message: {type: string}
+              data: {}
+        success:
+          type: boolean
+          description: Always false, on errors from the layers in front of the endpoints.
+        reason:
+          type: string
+          description: The message of errors that carry neither `detail` nor `errors`.
+
+  # One struct per resource
+  #
+  # Upstream describes some lists with a copy of the resource's schema minus a
+  # field or two (no `_links`, no last data point date), which would make a
+  # second struct for the same thing: a `%Country{}` match would miss every
+  # country from the list. The lists use the resource's schema instead, and
+  # the copies go.
+
+  - target: $.paths['/country'].get.responses['200'].schema.properties.results.items
+    description: CountryWithNoHalLinks is Country without `_links`.
+    update: {$ref: '#/definitions/Country'}
+  - target: $.paths['/study'].get.responses['200'].schema.properties._embedded.properties.study.items
+    description: StudyCollectionItem is Study without `last_datapoint_collected_on`.
+    update: {$ref: '#/definitions/Study'}
+  - target: $.definitions.SiteCollection.properties.success.items
+    description: SiteNoLinks is Site without `_links` and the date formats.
+    update: {$ref: '#/definitions/Site'}
+  - target: $.definitions.CountryWithNoHalLinks
+    description: Replaced by Country above.
+    remove: true
+  - target: $.definitions.StudyCollectionItem
+    description: Replaced by Study above.
+    remove: true
+  - target: $.definitions.SiteNoLinks
+    description: Replaced by Site above.
+    remove: true
+
+  # Dates sent as text
+  #
+  # These are typed as plain strings, but they're dates and times as
+  # YYYY-MM-DD HH:MM:SS, in the server's time zone like a data point's
+  # updated_on, so the client reads them as NaiveDateTimes as it does that.
+
+  - target: $.definitions.Study.properties.created_on
+    description: A date and time as YYYY-MM-DD HH:MM:SS, typed as a plain string.
+    update: {x-castor-type: naive_datetime}
+  - target: $.definitions.Study.properties.first_live_on
+    description: A date and time as YYYY-MM-DD HH:MM:SS, typed as a plain string.
+    update: {x-castor-type: naive_datetime}
+  - target: $.definitions.Study.properties.last_datapoint_collected_on
+    description: A date and time as YYYY-MM-DD HH:MM:SS, typed as a plain string.
+    update: {x-castor-type: naive_datetime}
+  - target: $.definitions.RepeatingDataInstance.properties.created_on
+    description: A date and time as YYYY-MM-DD HH:MM:SS, typed as a plain string.
+    update: {x-castor-type: naive_datetime}
+
+  # Terminology
+  #
+  # The client speaks Castor's current terms: participant (not record),
+  # visit (not phase), form (not step) and repeating data (not report).
+  # Wire names stay as they are; x-castor-rename, x-castor-name and
+  # x-castor-enum-names give the client its names. Field types such as
+  # add_report_button keep their names, being identifiers rather than
+  # terminology, and field_slider_step is a slider's increment.
+
+  - target: $.definitions.Study.properties.expected_records
+    update: {x-castor-rename: expected_participants}
+  - target: $.definitions.StudyStatistics.properties.records
+    update: {x-castor-rename: participants}
+  - target: $.definitions.InstituteRecordsStatistics.properties.record_count
+    update: {x-castor-rename: participant_count}
+  - target: $.definitions.ManagementPermissions.properties.manage_records
+    update: {x-castor-rename: manage_participants}
+  - target: $.definitions.Participant.properties.last_opened_step
+    update: {x-castor-rename: last_opened_form}
+  - target: $.definitions.ParticipantProgress.properties.forms.items.properties.step_id
+    update: {x-castor-rename: form_id}
+  - target: $.definitions.Query.properties.record_id
+    update: {x-castor-rename: participant_id}
+  - target: $.definitions.Verification.properties.record_id
+    update: {x-castor-rename: participant_id}
+  - target: $.definitions.SurveyPackage.properties.allow_step_navigation
+    update: {x-castor-rename: allow_form_navigation}
+  - target: $.definitions.SurveyPackage.properties.show_step_navigator
+    update: {x-castor-rename: show_form_navigator}
+  - target: $.definitions.Field.properties
+    description: >-
+      Fields of repeating data carry the repeating data's ID under report_id,
+      which the spec doesn't declare.
+    update:
+      report_id:
+        type: string
+        format: UUID
+        x-nullable: true
+        x-castor-rename: repeating_data_id
+  - target: $.paths['/study/{study_id}/verification'].get.parameters[?@.name == 'record_id']
+    update: {x-castor-name: participant_id}
+  - target: $.definitions.BatchExportRequest.properties.exports.properties.form_structure.items.properties.filters.properties.element_type
+    update:
+      x-castor-enum-names:
+        phase: visit
+        step: form
+        reports: repeating_data
+        report: repeating_data_item
+        report_step: repeating_data_form
+        report_field: repeating_data_field
+        survey_step: survey_form
+  # The API reads these whether or not they're sent, and a missing one fails
+  # the request with a 500: a form structure export needs both options (true
+  # is what the export itself defaults to), and an empty CRF a paper size.
+  - target: $.definitions.BatchExportRequest.properties.exports.properties.form_structure.items.properties.options
+    update:
+      required: [include_annotations, include_domains]
+      properties:
+        include_annotations: {default: true}
+        include_domains: {default: true}
+  - target: $.definitions.BatchExportRequest.properties.exports.properties.empty_crf.items.properties.filters
+    update:
+      required: [paper_size]
+      properties:
+        paper_size: {default: a4paper}
+  # Most participant data options only apply to some formats, and either to
+  # the default export or to the grouped (domain based) one that `grouped:
+  # true` asks for. The API refuses an option outside those with "Fields not
+  # allowed for this request", which the spec doesn't mention.
+  - target: $.definitions.BatchExportRequest.properties.exports.properties.participant_data.items.properties.options
+    update:
+      x-castor-requires:
+        grouped: {formats: [csv, sas_xpt, sas_7bdat]}
+        include_encrypted_fields: {formats: [csv, excel, spss, sas_xpt, sas_7bdat], grouped: false}
+        include_comments: {formats: [csv, excel], grouped: false}
+        include_queries: {formats: [csv, excel], grouped: false}
+        include_verifications: {formats: [csv, excel], grouped: false}
+        display_options_as: {formats: [csv, excel], grouped: false}
+        export_missing_data_in: {formats: [csv, sas_xpt, sas_7bdat], grouped: true}
+        include_empty_rows: {formats: [csv, sas_xpt, sas_7bdat], grouped: true}
+        include_survey_metadata: {formats: [csv, sas_xpt, sas_7bdat], grouped: true}
+        export_coded_options_as: {formats: [csv, sas_xpt, sas_7bdat], grouped: true}
+        export_dates_as: {formats: [sas_xpt, sas_7bdat], grouped: true}
+
+  # Data point writes
+  #
+  # The bulk data point writes answer 201 even when some or all values fail,
+  # listing what was saved under `success` and what wasn't under `failed`.
+  # A value for a field outside the endpoint's context (a survey field sent
+  # to the study endpoint) fails as "Unsupported field type". The client
+  # returns a CastorEDC.DataPointsResult instead of hiding the failures in a
+  # success, and its `!` functions raise when anything failed.
+
+  - target: $.definitions
+    update:
+      DataPointFailure:
+        type: object
+        properties:
+          id: {type: string, description: A reference Castor support can trace.}
+          code: {type: string}
+          message: {type: string}
+          field_id: {type: string, format: UUID}
+          participant_id: {type: string}
+          data: {}
+      DataPointsResult:
+        type: object
+        properties:
+          success:
+            type: array
+            items: {$ref: '#/definitions/DataPoint'}
+            x-castor-rename: saved
+          failed:
+            type: array
+            items: {$ref: '#/definitions/DataPointFailure'}
+          total_processed: {type: integer}
+          total_success: {type: integer}
+          total_failed: {type: integer}
+          survey_package_instance_id:
+            type: string
+            format: UUID
+            description: Only when the write created a survey package instance.
+  - target: $.paths.*[?@.operationId == 'upsert_study_data_points' || @.operationId == 'upsert_repeating_data_instance_data_points' || @.operationId == 'upsert_survey_instance_data_points' || @.operationId == 'upsert_survey_package_instance_data_points' || @.operationId == 'create_survey_package_instance_with_data_points']
+    update: {x-castor-partial-success: true}
+  - target: $.paths.*[?@['x-castor-partial-success'] == true && @.operationId != 'create_site' && @.operationId != 'create_repeating_data_instances'].responses['201'].schema
+    update: {$ref: '#/definitions/DataPointsResult'}
+  - target: $.paths.*[?@.operationId == 'create_site' || @.operationId == 'create_repeating_data_instances']
+    description: >-
+      Creating sites and repeating data instances answers like a bulk data
+      point write: 201 with what was created under `success` and what
+      wasn't under `failed`. The client treats them alike, so their `!`
+      functions raise when anything failed.
+    update: {x-castor-partial-success: true}
+  - target: $.definitions.SiteCollection.properties.success
+    description: Named as in DataPointsResult.
+    update: {x-castor-rename: saved}
+  - target: $.definitions.RepeatingDataInstanceCollection.properties.success
+    description: Named as in DataPointsResult.
+    update: {x-castor-rename: saved}
+
+  # Collection schemas
+  #
+  # Some collections put their records under a different key than their
+  # schema says, or aren't described as HAL at all. These schemas describe
+  # where the records really are, so the client knows what they decode into.
+
+  - target: $.paths['/study/{study_id}/metadata'].get.responses['200'].schema.properties._embedded.properties
+    description: The records sit under `metadatas`, not `steps`.
+    update:
+      metadatas: {type: array, items: {$ref: '#/definitions/Metadata'}}
+  - target: $.paths['/study/{study_id}/metadatatype'].get.responses['200'].schema.properties._embedded.properties
+    description: The records sit under `metadatatypes`, not `steps`.
+    update:
+      metadatatypes: {type: array, items: {$ref: '#/definitions/MetadataType'}}
+  - target: $.paths['/study/{study_id}/repeating-data-instance'].get.responses['200'].schema.properties._embedded.properties
+    description: The records sit under `repeatingDataInstance`, not `repeatingDataInstances`.
+    update:
+      repeatingDataInstance: {type: array, items: {$ref: '#/definitions/RepeatingDataInstance'}}
+  - target: $.paths['/study/{study_id}/participant/{participant_id}/repeating-data-instance'].get.responses['200'].schema.properties._embedded.properties
+    description: The records sit under `repeatingDataInstance`, not `repeatingDataInstances`.
+    update:
+      repeatingDataInstance: {type: array, items: {$ref: '#/definitions/RepeatingDataInstance'}}
+  - target: $.paths['/user'].get.responses['200'].schema
+    description: Users come as a HAL collection under `user`, not as a bare array.
+    remove: true
+  - target: $.paths['/user'].get.responses['200']
+    update:
+      schema:
+        type: object
+        properties:
+          _embedded:
+            type: object
+            properties:
+              user: {type: array, items: {$ref: '#/definitions/User'}}
+          total_items: {type: integer}
+  - target: $.paths['/study/{study_id}/user'].get.responses['200'].schema
+    description: Study users come as a HAL collection under `studyUsers`, not as a bare array.
+    remove: true
+  - target: $.paths['/study/{study_id}/user'].get.responses['200']
+    update:
+      schema:
+        type: object
+        properties:
+          _embedded:
+            type: object
+            properties:
+              studyUsers: {type: array, items: {$ref: '#/definitions/StudyUser'}}
+          total_items: {type: integer}
+
+  # Missing schemas
+
+  - target: $.definitions.Site
+    description: The spec describes a site with nothing but its links; this is what the API returns.
+    update:
+      properties:
+        id: {type: string, format: UUID}
+        site_id: {type: string, format: UUID, description: The same as `id`.}
+        name: {type: string}
+        abbreviation: {type: string}
+        code: {type: string}
+        order: {type: integer}
+        deleted: {type: boolean}
+        country_id: {type: integer}
+        date_format: {type: string, description: "The site's date format, such as `Y-m-d`."}
+        date_display_format: {type: string, description: "The same format for display, such as `YYYY-MM-DD`."}
+
+  # Module descriptions
+
+  - target: $
+    description: The description of each module the client is generated into.
+    update:
+      x-castor-modules:
+        Countries: The countries Castor EDC knows, for site and participant addresses.
+        DataPoints: >-
+          The values collected for participants: reading them per study, per
+          participant or per survey, repeating data or survey package instance,
+          and writing them one at a time or in bulk. Values are strings; see
+          CastorEDC.FieldValue for decoding them by field type.
+        Exports: >-
+          Batch exports: queuing them, listing them with their status, and
+          downloading the result. CastorEDC.Export does all three in one call.
+        Fields: The fields of a study, with their dependencies and validations.
+        Forms: The forms of a study and the visits that group them.
+        Metadata: Metadata attached to a study's elements, and the types of metadata.
+        OptionGroups: The option groups behind radio, dropdown and checkbox fields.
+        Participants: The participants of a study, and their progress through its forms.
+        Queries: Queries raised on a study's data.
+        Randomization: Randomizing participants and reading their randomization.
+        RepeatingData: >-
+          Repeating data: its definitions and forms, and the instances created
+          for participants.
+        Roles: The roles of a study.
+        Sites: The sites of a study.
+        Studies: The studies the credentials have access to, with their metadata and statistics.
+        StudyUsers: The users of a study, and their roles per site.
+        Surveys: >-
+          Surveys, their forms and packages, the instances sent to
+          participants, and survey compliance.
+        Users: The users the credentials can see.
+        Verifications: Verifications (such as source data verification) of a study's data.
+
+  # Fields the spec leaves out
+  #
+  # What a running API sends that the spec doesn't describe, found by
+  # decoding the recorded fixtures.
+
+  - target: $.definitions.Field.properties
+    update:
+      additional_config: {type: string, description: Extra configuration of the field, as the field type defines it.}
+      exclude_on_data_export: {type: boolean, description: Whether exports leave the field out.}
+      field_min: {type: number, x-nullable: true, description: The lowest value allowed.}
+      field_min_label: {type: string, description: The label of the lowest value, for sliders.}
+      field_max: {type: number, x-nullable: true, description: The highest value allowed.}
+      field_max_label: {type: string, description: The label of the highest value, for sliders.}
+      field_summary_template: {type: string, description: The template of a summary field.}
+  - target: $.definitions.FieldOption.properties
+    update:
+      domainVariableNameOverride:
+        type: string
+        x-nullable: true
+        description: The variable name to use for this option in domain mappings, when it differs.
+        x-castor-rename: domain_variable_name_override
+  - target: $.definitions.FieldValidation.properties
+    update:
+      operator: {type: string, description: "The comparison the validation makes, such as `>`."}
+  - target: $.definitions.Participant.properties
+    update:
+      archived: {type: boolean}
+      randomized_id: {type: string, x-nullable: true, description: The participant's randomization ID.}
+  - target: $.definitions.RepeatingDataInstance.properties
+    update:
+      repeating_data_name: {type: string, description: The name of the repeating data this is an instance of.}
+  - target: $.definitions.Study.properties
+    update:
+      crf_id: {type: string, format: UUID, description: The ID of the study's case report form.}
+  - target: $.definitions.SurveyForm.properties
+    update:
+      footer_text: {type: string}
+  - target: $.definitions.SurveyPackage.properties._embbeded
+    description: >-
+      A misspelt `_embedded`; the surveys of a package come under `surveys`,
+      which is null when the package isn't listed with them.
+    remove: true
+  - target: $.definitions.SurveyPackage.properties
+    update:
+      surveys:
+        type: array
+        x-nullable: true
+        description: The surveys in this package.
+        items: {$ref: '#/definitions/Survey'}
+
+  # The progress collections put their forms at the top level, not under
+  # _embedded as the spec says, and name the participant.
+
+  - target: $.definitions.ParticipantProgressVisitCollection.properties._embedded
+    remove: true
+  - target: $.definitions.ParticipantProgressRepeatingDataCollection.properties._embedded
+    remove: true
+  - target: $.definitions.ParticipantProgressVisitCollection.properties
+    update:
+      participant_id: {type: string}
+      forms:
+        type: array
+        description: The progress of each form.
+        items:
+          type: object
+          properties:
+            form_id: {type: string, format: UUID}
+            complete: {type: integer, description: "0 when not started, 1 when in progress, 2 when done."}
+            progress: {type: integer, description: Percentage of completion.}
+            locked: {type: boolean}
+            sdv: {type: boolean, description: Whether the form is source data verified.}
+            signed: {type: boolean}
+  - target: $.definitions.ParticipantProgressRepeatingDataCollection.properties
+    update:
+      participant_id: {type: string}
+      forms:
+        type: array
+        description: The progress of each form.
+        items:
+          type: object
+          properties:
+            form_id: {type: string, format: UUID}
+            complete: {type: integer, description: "0 when not started, 1 when in progress, 2 when done."}
+            progress: {type: integer, description: Percentage of completion.}
+            locked: {type: boolean}
+            sdv: {type: boolean, description: Whether the form is source data verified.}
+            signed: {type: boolean}
+
+  - target: $.definitions.Field.properties.option_group
+    description: >-
+      With include=optiongroup the API sends a field's option group as one
+      object (and null for fields without options), not a list.
+    remove: true
+  - target: $.definitions.Field.properties
+    update:
+      option_group:
+        $ref: '#/definitions/FieldOptionGroup'
+        description: The field's option group, when listed with include=optiongroup and the field has options.
+
+  - target: $.definitions.DataPoint.properties
+    description: >-
+      Data points of a survey package instance name the package, and single
+      data points embed their field, participant and repeating data instance.
+    update:
+      survey_package_id: {type: string, format: UUID}
+      _embedded:
+        type: object
+        properties:
+          field: {$ref: '#/definitions/Field'}
+          participant: {$ref: '#/definitions/Participant'}
+          repeating_data_instance: {$ref: '#/definitions/RepeatingDataInstance'}
+
+  - target: $.paths.*[?@.operationId == 'upsert_repeating_data_instance_data_points']
+    description: >-
+      Each value needs its repeating data instance's ID although the path has
+      it already (confirmed); the client fills it in.
+    update:
+      x-castor-fill-items:
+        data: {instance_id: repeating_data_instance_id}
+
+  - target: $.paths.*[?@.operationId == 'upsert_survey_instance_data_points']
+    description: >-
+      Each value needs its survey instance's ID although the path has it
+      already (confirmed); the client fills it in.
+    update:
+      x-castor-fill-items:
+        data: {instance_id: survey_instance_id}
+
+  - target: $.paths.*[?@.operationId == 'upsert_survey_package_instance_data_points']
+    description: >-
+      Each value needs its survey package instance's ID although the path has
+      it already (confirmed: without it the API answers "Missing the instance
+      id"); the client fills it in.
+    update:
+      x-castor-fill-items:
+        data: {instance_id: survey_package_instance_id}

@@ -1,0 +1,55 @@
+<%= CastorEDC.Generator.Renderer.banner() %>
+
+defmodule <%= inspect(group.module) %> do
+  @moduledoc ~S"""
+  <%= CastorEDC.Generator.Renderer.group_intro(group) %>
+
+  ## Operations
+
+<%= for operation <- group.operations do %>    * `<%= operation.name %>/<%= CastorEDC.Generator.Renderer.arity(operation) %>`<%= CastorEDC.Generator.Renderer.operation_summary(operation) %>
+<% end %>
+  Every operation returns `{:ok, result}` or `{:error, %CastorEDC.Error{}}`,
+  and has a `!` variant that returns the result or raises the error.
+  """
+
+  alias CastorEDC.Client
+<%= if Enum.any?(group.operations, & &1.paged) do %>  alias CastorEDC.Pagination
+<% end %><%= for operation <- group.operations do %>
+  @doc ~S"""
+  <%= CastorEDC.Generator.Renderer.operation_doc(operation) %>
+  """
+  @spec <%= operation.name %>(<%= CastorEDC.Generator.Renderer.spec_arguments(operation) %>) ::
+          {:ok, <%= CastorEDC.Generator.Renderer.result_spec(operation) %>} | {:error, CastorEDC.Error.t()}
+  def <%= operation.name %>(<%= CastorEDC.Generator.Renderer.arguments(operation, true) %>) do
+    Client.request(client, operation(<%= CastorEDC.Generator.Renderer.operation_call(operation) %>))
+  end
+
+  @doc ~S"""
+  The same as `<%= operation.name %>/<%= CastorEDC.Generator.Renderer.arity(operation) %>`, returning the result or raising `CastorEDC.Error`.
+  """
+  @spec <%= operation.name %>!(<%= CastorEDC.Generator.Renderer.spec_arguments(operation) %>) :: <%= CastorEDC.Generator.Renderer.result_spec(operation) %>
+  def <%= operation.name %>!(<%= CastorEDC.Generator.Renderer.arguments(operation, true) %>) do
+    Client.request!(client, operation(<%= CastorEDC.Generator.Renderer.operation_call(operation) %>))
+  end
+<%= if operation.paged do %>
+  @doc ~S"""
+  Streams every record `<%= operation.name %>/<%= CastorEDC.Generator.Renderer.arity(operation) %>` pages through.
+
+  Takes the same arguments and options. Pages are fetched as the stream is
+<%= if operation.max_page_size do %>  consumed, as large as the API allows unless `:page_size` says otherwise;
+  see `CastorEDC.Pagination`.<% else %>  consumed, in the API's default page size unless `:page_size` says
+  otherwise; see `CastorEDC.Pagination`.<% end %>
+  """
+  @spec <%= CastorEDC.Generator.Renderer.stream_name(operation) %>(<%= CastorEDC.Generator.Renderer.spec_arguments(operation) %>) :: Enumerable.t(<%= CastorEDC.Generator.Renderer.record_spec(operation) %>)
+  def <%= CastorEDC.Generator.Renderer.stream_name(operation) %>(<%= CastorEDC.Generator.Renderer.arguments(operation, true) %>) do
+    Pagination.stream(
+      &<%= operation.name %>(<%= CastorEDC.Generator.Renderer.arguments(operation, false) %>, Keyword.merge(opts, &1)),
+      opts,
+      <%= inspect(operation.max_page_size) %>
+    )
+  end
+<% end %><% end %><%= for operation <- Enum.sort_by(group.operations, &(&1.body != nil)) do %>
+  defp operation(<%= CastorEDC.Generator.Renderer.operation_pattern(operation) %>) do
+    <%= CastorEDC.Generator.Renderer.operation_body(operation) %>
+  end
+<% end %>end

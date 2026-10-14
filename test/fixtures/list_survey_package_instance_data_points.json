@@ -1,0 +1,30 @@
+{
+  "_embedded": {
+    "items": [
+      {
+        "field_id": "02F173A8-DBAA-4246-A441-46B42A96DD2F",
+        "field_value": "1",
+        "participant_id": "000002",
+        "survey_instance_id": "11BC06EB-4FF9-4B7E-B47F-619BF37EDA1E",
+        "survey_name": "Short Form Health Survey SF-36",
+        "survey_package_instance_id": "D57233CC-526E-4F49-B613-B827ECE35A57",
+        "updated_on": "2026-10-07 21:50:42"
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/data-points/survey-package-instance/D57233CC-526E-4F49-B613-B827ECE35A57"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/data-points/survey-package-instance/D57233CC-526E-4F49-B613-B827ECE35A57?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/data-points/survey-package-instance/D57233CC-526E-4F49-B613-B827ECE35A57?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 500,
+  "total_items": 1
+}

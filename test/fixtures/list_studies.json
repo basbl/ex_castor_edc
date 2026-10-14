@@ -1,0 +1,964 @@
+{
+  "_embedded": {
+    "study": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/030E5222-31D9-4C1A-A4D1-F22D434A5E89"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-25 14:11:27",
+        "crf_id": "030E5222-31D9-4C1A-A4D1-F22D434A5E89",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "PX001 Structure Import",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "8vzArAfnmSVLWrVkyUYzY",
+        "study_id": "030E5222-31D9-4C1A-A4D1-F22D434A5E89",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/053EA11E-0482-4991-9649-6480C27F2A63"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-17 09:46:56",
+        "crf_id": "053EA11E-0482-4991-9649-6480C27F2A63",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28647] XML Structure File Fails to Import 2`",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "a69vaeB3uYufzsDo2mkCw",
+        "study_id": "053EA11E-0482-4991-9649-6480C27F2A63",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/1DCCF090-15FA-4B59-A6A9-F750DC660AC8"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-24 11:14:27",
+        "crf_id": "1DCCF090-15FA-4B59-A6A9-F750DC660AC8",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "Dummy to link to",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "jacLjN5qhJDH3boEJSgEK7",
+        "study_id": "1DCCF090-15FA-4B59-A6A9-F750DC660AC8",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.01"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/24FF1FD0-2A8C-4177-99D7-6C89FEC4A50E"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-20 12:08:42",
+        "crf_id": "24FF1FD0-2A8C-4177-99D7-6C89FEC4A50E",
+        "domain": "https://data.castoredc.com",
+        "duration": 48,
+        "encryption": false,
+        "expected_centers": 5,
+        "expected_records": 260,
+        "first_live_on": "2026-08-20 12:09:50",
+        "gcp_enabled": true,
+        "live": true,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28469] Cache SDV plan structure for live studies- #22301",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "RAcPxRhZRgnjGzVVbuTDb8",
+        "study_id": "24FF1FD0-2A8C-4177-99D7-6C89FEC4A50E",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/27677133-FE56-4BA7-82CB-8DDB70A01AD2"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-07 08:45:20",
+        "crf_id": "27677133-FE56-4BA7-82CB-8DDB70A01AD2",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28487] Show a visible link to the full option list for large option-group fields, whether answered or not",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "mAPFhVocs25FJVQqjAAd29",
+        "study_id": "27677133-FE56-4BA7-82CB-8DDB70A01AD2",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "1.01"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/2D46010D-50AC-45ED-8E17-1467BE20C98F"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-09-09 09:50:06",
+        "crf_id": "2D46010D-50AC-45ED-8E17-1467BE20C98F",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28792] Issue with SPSS",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "N5kemLBsU3yFE9xabp3A5A",
+        "study_id": "2D46010D-50AC-45ED-8E17-1467BE20C98F",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.71"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/3B5C78B7-032B-4502-8EEB-9F46677DF84F"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-07-27 20:16:44",
+        "crf_id": "3B5C78B7-032B-4502-8EEB-9F46677DF84F",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "Bigger study",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "fBaMaoRhCvxusKces4h2aC",
+        "study_id": "3B5C78B7-032B-4502-8EEB-9F46677DF84F",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/40E22B22-AA6B-4CD5-96F2-CB2EF9FD43F8"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-04 13:49:59",
+        "crf_id": "40E22B22-AA6B-4CD5-96F2-CB2EF9FD43F8",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28523] Grid field value isn't fit into Audit Trail cell in Casebook export",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "bDvLaSb3tiH9NJXRvuu2ZD",
+        "study_id": "40E22B22-AA6B-4CD5-96F2-CB2EF9FD43F8",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "1.21"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/45CDCC44-98B2-4805-AC5A-232C9F7289AC"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-13 10:30:31",
+        "crf_id": "45CDCC44-98B2-4805-AC5A-232C9F7289AC",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28603] Add measurement unit support for Calculation field in Empty CRF and Casebook",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "JFxRsAurhTkwaraqckFvRE",
+        "study_id": "45CDCC44-98B2-4805-AC5A-232C9F7289AC",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.41"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/485CA8F2-2A21-4839-BC60-DFEE4F671785"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-10 09:05:39",
+        "crf_id": "485CA8F2-2A21-4839-BC60-DFEE4F671785",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-27556] Measurement unit not available in Casebook & Empty CRF export",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "3kKDSFCXCLhEqKCAF2yrsE",
+        "study_id": "485CA8F2-2A21-4839-BC60-DFEE4F671785",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.81"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/50BDE64E-7455-49F2-8266-3C98E81B0415"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-19 11:47:41",
+        "crf_id": "50BDE64E-7455-49F2-8266-3C98E81B0415",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28671] Uploaded files export fails",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "ruhNWgZRhRxjRcJyQh5rNG",
+        "study_id": "50BDE64E-7455-49F2-8266-3C98E81B0415",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.61"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/5266FE4F-774B-4DC5-8D3D-0F221BEC1610"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-18 16:00:37",
+        "crf_id": "5266FE4F-774B-4DC5-8D3D-0F221BEC1610",
+        "domain": "https://data.castoredc.com",
+        "duration": 0,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": 0,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28665] RDI form signature statement is not updated re-signature in casebook export",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "CEGykfeCA3qBL4pZnVxgfG",
+        "study_id": "5266FE4F-774B-4DC5-8D3D-0F221BEC1610",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.71"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/61505B84-549F-4D98-BEC3-44EB11F3A75C"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-26 13:15:01",
+        "crf_id": "61505B84-549F-4D98-BEC3-44EB11F3A75C",
+        "domain": "https://data.castoredc.com",
+        "duration": 12,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": 5,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "on site ePRO",
+        "on_site_epro_mode_enabled": true,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "eUwkv7y3zATGT8NPREquKK",
+        "study_id": "61505B84-549F-4D98-BEC3-44EB11F3A75C",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/634CD3CE-ABB8-443B-B386-D23039E83E04"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-09-28 13:34:38",
+        "crf_id": "634CD3CE-ABB8-443B-B386-D23039E83E04",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28775] LFU upload testing",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "7FHCspu52SPdyCiCwMz4gK",
+        "study_id": "634CD3CE-ABB8-443B-B386-D23039E83E04",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.01"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/68A1530D-9146-48AE-919F-68C25411772D"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-09-21 11:04:46",
+        "crf_id": "68A1530D-9146-48AE-919F-68C25411772D",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28835] Latency when generating a survey using Open Survey Link",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "5j5dhdDNasnxVgG4Yh88dL",
+        "study_id": "68A1530D-9146-48AE-919F-68C25411772D",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/6A3A2A90-87CE-4C02-BE75-0C15B7F41B77"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-07-30 13:14:41",
+        "crf_id": "6A3A2A90-87CE-4C02-BE75-0C15B7F41B77",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "Sliders for Typst",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "DZAZeR2hRxwMa85nDiKKuL",
+        "study_id": "6A3A2A90-87CE-4C02-BE75-0C15B7F41B77",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "2.21"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/7D9ADDD7-202E-41FF-A9B4-7BA890DEF2A9"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-07-25 11:27:59",
+        "crf_id": "7D9ADDD7-202E-41FF-A9B4-7BA890DEF2A9",
+        "domain": "https://data.castoredc.com",
+        "duration": 12,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": 5,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "Simple Study",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": true,
+        "slug": "mycXLyPwZRor88NdCCvpMQ",
+        "study_id": "7D9ADDD7-202E-41FF-A9B4-7BA890DEF2A9",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "2.91"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/842DB2BA-4714-4FEC-A796-345A805F2251"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-11 12:12:12",
+        "crf_id": "842DB2BA-4714-4FEC-A796-345A805F2251",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28332] JWT TESTING STUDY",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "mAso4sHmsm5nR8UecMsVXR",
+        "study_id": "842DB2BA-4714-4FEC-A796-345A805F2251",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.21"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/891F9363-F135-424B-AC2E-C9AF20268305"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-13 11:33:39",
+        "crf_id": "891F9363-F135-424B-AC2E-C9AF20268305",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28036] Speed up value updates on visits with many RDIs",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "KbW27bAGVgp4hvD3mPKeQS",
+        "study_id": "891F9363-F135-424B-AC2E-C9AF20268305",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-10-07 21:01:07",
+        "crf_id": "8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "API Testing",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "7Ms2shPNe3gAKRzG5sBDTT",
+        "study_id": "8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/9CC5D0F4-0FA9-4C71-8709-F14EA5BA0596"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-09-09 09:25:03",
+        "crf_id": "9CC5D0F4-0FA9-4C71-8709-F14EA5BA0596",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28821] Grid field values rendered incorrectly",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "4bCwoVKC4D4xnyB82PwutV",
+        "study_id": "9CC5D0F4-0FA9-4C71-8709-F14EA5BA0596",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.81"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/9F52F8D7-DE9C-4C31-8474-CD3669A74F94"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-03 08:58:15",
+        "crf_id": "9F52F8D7-DE9C-4C31-8474-CD3669A74F94",
+        "domain": "https://data.castoredc.com",
+        "duration": 0,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": 0,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28329] Add signature statement to Participant Casebook",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "7gekSaUpPoopHzJZ83pnMW",
+        "study_id": "9F52F8D7-DE9C-4C31-8474-CD3669A74F94",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/A76BDCBD-50C6-4E68-8A90-F757110FA963"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-12 08:42:07",
+        "crf_id": "A76BDCBD-50C6-4E68-8A90-F757110FA963",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "PRODUCTION_[CAS-28332] JWT TESTING STUDY",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "m9sZZkqCeL7QaHb7ocYunX",
+        "study_id": "A76BDCBD-50C6-4E68-8A90-F757110FA963",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.0"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/BE94EF0B-B494-410A-9E82-996CDD5D66A7"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-03 11:57:26",
+        "crf_id": "BE94EF0B-B494-410A-9E82-996CDD5D66A7",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28418] Fix swapped firstRemark/lastRemark causing wrong \"Subject\" text in Casebook queries",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "qwYpEEUfGe8hibRvD7onub",
+        "study_id": "BE94EF0B-B494-410A-9E82-996CDD5D66A7",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/C55469BA-C964-4670-96A5-60F0EAB4C79C"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-17 13:11:25",
+        "crf_id": "C55469BA-C964-4670-96A5-60F0EAB4C79C",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28648] Investigate timeout error",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "VJ9xBxGBGFWoYHybbrZE8d",
+        "study_id": "C55469BA-C964-4670-96A5-60F0EAB4C79C",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.91"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/CA267819-150A-4B67-9E10-D56B6ED6BEDF"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-17 09:41:02",
+        "crf_id": "CA267819-150A-4B67-9E10-D56B6ED6BEDF",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28647] XML Structure File Fails to Import",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "FojygqZBSSYHUXijdAA8yd",
+        "study_id": "CA267819-150A-4B67-9E10-D56B6ED6BEDF",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/CDD18619-76D3-403E-BB2B-479449069228"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-09-28 13:35:46",
+        "crf_id": "CDD18619-76D3-403E-BB2B-479449069228",
+        "domain": "https://data.castoredc.com",
+        "duration": 0,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": 0,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28775] Regular upload testing",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "DmCt3uEZ7NVJ2zx9QqbKde",
+        "study_id": "CDD18619-76D3-403E-BB2B-479449069228",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.51"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/D1589F8C-8B49-4365-95C9-5B84DEE7B103"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-07-25 09:26:03",
+        "crf_id": "D1589F8C-8B49-4365-95C9-5B84DEE7B103",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 0,
+        "expected_records": 0,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "A recusandae tempora asperiores animi distinctio corporis occaecati.",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "a-recusandae-tempora-asperiores-animi-distinctio-corporis-occaecati",
+        "study_id": "D1589F8C-8B49-4365-95C9-5B84DEE7B103",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/D539E860-7B81-4036-85E7-A7DBF8D7797B"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-09-23 10:23:43",
+        "crf_id": "D539E860-7B81-4036-85E7-A7DBF8D7797B",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28805] Fix dropdown breaking when a selected option is deleted",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "9vzUZpJPEy5V2YE7GKmSwf",
+        "study_id": "D539E860-7B81-4036-85E7-A7DBF8D7797B",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.41"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/DB8FEA67-F3A1-42D4-AD17-6B084CF6055B"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-07-28 12:32:19",
+        "crf_id": "DB8FEA67-F3A1-42D4-AD17-6B084CF6055B",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28265] PXL STUDY",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "FgqJPDqBaNfseGM6srNh5h",
+        "study_id": "DB8FEA67-F3A1-42D4-AD17-6B084CF6055B",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/E7B34940-4323-4E85-8236-78F420FF726F"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-07-28 13:12:21",
+        "crf_id": "E7B34940-4323-4E85-8236-78F420FF726F",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28265] Pink Study",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "eAha2R6tJkpHsx2BtM3oEj",
+        "study_id": "E7B34940-4323-4E85-8236-78F420FF726F",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/F0AB5F00-0FB9-4C58-A5BB-06CE89785512"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-09-09 09:00:45",
+        "crf_id": "F0AB5F00-0FB9-4C58-A5BB-06CE89785512",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28817] Unable to create linked Test Study",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "EevTXCJW9PEPg2RwPLkkpk",
+        "study_id": "F0AB5F00-0FB9-4C58-A5BB-06CE89785512",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.11"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/F84DABBF-CE1E-4AFF-8D0B-9C13A1CC4D35"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-09-22 09:33:41",
+        "crf_id": "F84DABBF-CE1E-4AFF-8D0B-9C13A1CC4D35",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "[CAS-28909] AXS001 & AXS002 CC Data Request",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "fEZpibSjKbeDJjzsNAhBCn",
+        "study_id": "F84DABBF-CE1E-4AFF-8D0B-9C13A1CC4D35",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.01"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/FB81C5F5-28A8-4B5B-B8A2-CC76A05C762D"
+          }
+        },
+        "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "created_on": "2026-08-19 12:15:25",
+        "crf_id": "FB81C5F5-28A8-4B5B-B8A2-CC76A05C762D",
+        "domain": "https://data.castoredc.com",
+        "duration": null,
+        "encryption": false,
+        "expected_centers": 2,
+        "expected_records": null,
+        "first_live_on": null,
+        "gcp_enabled": true,
+        "live": false,
+        "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+        "name": "Uploaded files :(",
+        "on_site_epro_mode_enabled": false,
+        "premium_support_enabled": false,
+        "randomization_enabled": false,
+        "slug": "KDa3MMen8Geb4dxoPVYfkn",
+        "study_id": "FB81C5F5-28A8-4B5B-B8A2-CC76A05C762D",
+        "surveys_enabled": true,
+        "trial_registry_id": "",
+        "version": "0.61"
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study"
+    }
+  },
+  "total_items": 34
+}

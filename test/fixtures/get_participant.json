@@ -1,0 +1,54 @@
+{
+  "_embedded": {
+    "site": {
+      "_links": {
+        "self": {
+          "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/site/F58A7CB5-60BB-4280-8AB3-E6DADBC20946"
+        }
+      },
+      "abbreviation": "TES",
+      "code": "TES",
+      "country_id": 169,
+      "date_display_format": "YYYY-MM-DD",
+      "date_format": "Y-m-d",
+      "deleted": false,
+      "id": "F58A7CB5-60BB-4280-8AB3-E6DADBC20946",
+      "name": "Test Site",
+      "order": 0,
+      "site_id": "F58A7CB5-60BB-4280-8AB3-E6DADBC20946"
+    }
+  },
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/participant/000001"
+    }
+  },
+  "archived": false,
+  "archived_reason": null,
+  "ccr_patient_id": "",
+  "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+  "created_on": {
+    "date": "2026-10-07 21:06:33.000000",
+    "timezone": "Europe/Amsterdam",
+    "timezone_type": 3
+  },
+  "id": "000001",
+  "last_opened_step": "ECE715B8-DD70-4BB5-8805-9735DF35F449",
+  "locked": false,
+  "mobile_my_details_enabled": true,
+  "mobile_ui_version": "4.0",
+  "participant_id": "000001",
+  "participant_status": null,
+  "progress": 100,
+  "randomization_group": null,
+  "randomization_group_name": null,
+  "randomized_id": null,
+  "randomized_on": null,
+  "status": "open",
+  "updated_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+  "updated_on": {
+    "date": "2026-10-07 21:50:00.000000",
+    "timezone": "Europe/Amsterdam",
+    "timezone_type": 3
+  }
+}

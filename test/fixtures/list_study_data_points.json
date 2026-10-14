@@ -1,0 +1,345 @@
+{
+  "_embedded": {
+    "items": [
+      {
+        "field_id": "0BCF4329-E9F9-4D4F-B731-271B7970DF7E",
+        "field_value": "42",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:49:55"
+      },
+      {
+        "field_id": "12582F42-DD3F-4B23-A1FF-EE97569013D9",
+        "field_value": "31",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:50:46"
+      },
+      {
+        "field_id": "1B71BE3C-B9CE-4418-94CF-3A921D86B07E",
+        "field_value": "2015",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:49"
+      },
+      {
+        "field_id": "1B7E969E-F103-4AFE-99EA-1CAFD9401034",
+        "field_value": "2",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:07:26"
+      },
+      {
+        "field_id": "1E94C9DA-5FED-44D0-9469-2151AF0DC2B0",
+        "field_value": "8",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:49"
+      },
+      {
+        "field_id": "35904E15-37B2-451B-BA32-2A58D8BDB2B3",
+        "field_value": "07-10-2026",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:49"
+      },
+      {
+        "field_id": "370A1634-B2BC-4B4D-8114-98D72461E129",
+        "field_value": "3",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:07:26"
+      },
+      {
+        "field_id": "39BB8F6B-494D-4035-9468-2132D734A9DA",
+        "field_value": "197",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:07:26"
+      },
+      {
+        "field_id": "40A78E37-E98E-4A96-911A-A0505A53B60D",
+        "field_value": "14",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:07:26"
+      },
+      {
+        "field_id": "583E2021-DD11-454E-9B70-3B0C8DC72A4A",
+        "field_value": "11",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:49"
+      },
+      {
+        "field_id": "59A674EB-29A1-47FB-866C-98E513EDC2F2",
+        "field_value": "9",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:07:26"
+      },
+      {
+        "field_id": "5EAAEAFB-616E-41E7-A974-57C2C97B9C56",
+        "field_value": "",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:07:26"
+      },
+      {
+        "field_id": "6B5A3B58-ECBF-49AE-8C75-028D62ED67CF",
+        "field_value": "51",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:50"
+      },
+      {
+        "field_id": "6BEF5E53-DBD3-41A7-9401-005240DDC768",
+        "field_value": "07-10-2026",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:50"
+      },
+      {
+        "field_id": "73BE4F1C-FBA4-43B8-9578-1BF96B6120F9",
+        "field_value": "",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:07:26"
+      },
+      {
+        "field_id": "81C72920-E03D-4305-9955-9CE2F15B8333",
+        "field_value": "0;1",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:07:26"
+      },
+      {
+        "field_id": "8EE5B3BF-C481-496E-BEBA-C493478F3A31",
+        "field_value": "8",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:50"
+      },
+      {
+        "field_id": "8EF13672-90CB-424E-B20A-D348F1BAF148",
+        "field_value": "50",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:59"
+      },
+      {
+        "field_id": "98C4A0D3-DF88-4E37-A1E5-0295ABC2996B",
+        "field_value": "8",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:50"
+      },
+      {
+        "field_id": "A10A04C9-C861-47A7-AFC8-B5F5F092417E",
+        "field_value": "e2e probe text; with semicolon",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:50"
+      },
+      {
+        "field_id": "A9CA950E-3BCD-4D2E-ADAA-8B79FF409C70",
+        "field_value": "101",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:50"
+      },
+      {
+        "field_id": "ADF4D77D-2F61-4D7B-945C-AD7DEAA7166D",
+        "field_value": "8",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:50"
+      },
+      {
+        "field_id": "BA01D46F-092D-46FF-9DA3-2FE0C0C9F305",
+        "field_value": "31",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:51"
+      },
+      {
+        "field_id": "C02B0DC7-50B3-4F15-A394-98FC65A3CBF1",
+        "field_value": "9",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:07:26"
+      },
+      {
+        "field_id": "CA897416-1233-431F-A5B1-A7CE2E132B88",
+        "field_value": "1",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:07:26"
+      },
+      {
+        "field_id": "D0518B20-CB34-4402-A193-F1B8AAE994DE",
+        "field_value": "07-10-2026",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:51"
+      },
+      {
+        "field_id": "D32C79EA-98E4-4DCA-9B7B-8CF4D9EA4210",
+        "field_value": "2",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:51"
+      },
+      {
+        "field_id": "E4C5BB7D-29E2-414C-9847-C40570D91E89",
+        "field_value": "11",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:51"
+      },
+      {
+        "field_id": "E6AFF3B6-E130-4DB5-9707-09EDB70AF7D8",
+        "field_value": "8",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:51"
+      },
+      {
+        "field_id": "EE8DF5FA-8F2B-4705-9561-09A60B0B23D8",
+        "field_value": "07-10-2026",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:51"
+      },
+      {
+        "field_id": "F08047BF-87B3-4AFA-B180-19A7982F5C2A",
+        "field_value": "2015",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:51"
+      },
+      {
+        "field_id": "F6574AD8-9C20-49D4-8819-C6C0A30C2CDD",
+        "field_value": "31",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:51"
+      },
+      {
+        "field_id": "F9AD33BA-01F1-4135-8347-109AC6A55B45",
+        "field_value": "1",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:52"
+      },
+      {
+        "field_id": "FCE9D96D-6CA0-44FF-8AA1-E89F6B2699D1",
+        "field_value": "8",
+        "participant_id": "000001",
+        "updated_on": "2026-10-07 21:06:52"
+      },
+      {
+        "field_id": "0BCF4329-E9F9-4D4F-B731-271B7970DF7E",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:52"
+      },
+      {
+        "field_id": "1E94C9DA-5FED-44D0-9469-2151AF0DC2B0",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:52"
+      },
+      {
+        "field_id": "35904E15-37B2-451B-BA32-2A58D8BDB2B3",
+        "field_value": "##USER_MISSING_98##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:52"
+      },
+      {
+        "field_id": "583E2021-DD11-454E-9B70-3B0C8DC72A4A",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:52"
+      },
+      {
+        "field_id": "5EAAEAFB-616E-41E7-A974-57C2C97B9C56",
+        "field_value": "##USER_MISSING_98##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:52"
+      },
+      {
+        "field_id": "6B5A3B58-ECBF-49AE-8C75-028D62ED67CF",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:52"
+      },
+      {
+        "field_id": "6BEF5E53-DBD3-41A7-9401-005240DDC768",
+        "field_value": "##USER_MISSING_98##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:53"
+      },
+      {
+        "field_id": "8EE5B3BF-C481-496E-BEBA-C493478F3A31",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:53"
+      },
+      {
+        "field_id": "98C4A0D3-DF88-4E37-A1E5-0295ABC2996B",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:53"
+      },
+      {
+        "field_id": "A9CA950E-3BCD-4D2E-ADAA-8B79FF409C70",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:53"
+      },
+      {
+        "field_id": "ADF4D77D-2F61-4D7B-945C-AD7DEAA7166D",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:53"
+      },
+      {
+        "field_id": "BA01D46F-092D-46FF-9DA3-2FE0C0C9F305",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:53"
+      },
+      {
+        "field_id": "D0518B20-CB34-4402-A193-F1B8AAE994DE",
+        "field_value": "##USER_MISSING_98##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:53"
+      },
+      {
+        "field_id": "D32C79EA-98E4-4DCA-9B7B-8CF4D9EA4210",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:53"
+      },
+      {
+        "field_id": "E4C5BB7D-29E2-414C-9847-C40570D91E89",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:53"
+      },
+      {
+        "field_id": "E6AFF3B6-E130-4DB5-9707-09EDB70AF7D8",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:54"
+      },
+      {
+        "field_id": "EE8DF5FA-8F2B-4705-9561-09A60B0B23D8",
+        "field_value": "##USER_MISSING_98##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:54"
+      },
+      {
+        "field_id": "F6574AD8-9C20-49D4-8819-C6C0A30C2CDD",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:54"
+      },
+      {
+        "field_id": "F9AD33BA-01F1-4135-8347-109AC6A55B45",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:54"
+      },
+      {
+        "field_id": "FCE9D96D-6CA0-44FF-8AA1-E89F6B2699D1",
+        "field_value": "##USER_MISSING_95##",
+        "participant_id": "000002",
+        "updated_on": "2026-10-07 21:06:54"
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/data-points/study"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/data-points/study?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/data-points/study?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 500,
+  "total_items": 54
+}

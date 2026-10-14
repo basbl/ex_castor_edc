@@ -1,0 +1,6 @@
+# Git hooks, managed by lefthook: https://lefthook.dev
+# Install them once with `lefthook install`.
+pre-commit:
+  commands:
+    precommit:
+      run: mix precommit

@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "get_country",
+  "path": "/api/country/2",
+  "query": null,
+  "status": 200
+}

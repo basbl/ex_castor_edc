@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "get_user",
+  "path": "/api/user/62C48D56-7A78-45A0-9A26-9A2397F37804",
+  "query": null,
+  "status": 200
+}

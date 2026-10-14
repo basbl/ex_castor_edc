@@ -1,0 +1,77 @@
+{
+  "_embedded": {
+    "visits": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/2EAC22F4-09FE-43ED-A6EE-F3514A1C997A"
+          }
+        },
+        "id": "2EAC22F4-09FE-43ED-A6EE-F3514A1C997A",
+        "visit_description": null,
+        "visit_duration": null,
+        "visit_id": "2EAC22F4-09FE-43ED-A6EE-F3514A1C997A",
+        "visit_name": "Patient characteristics",
+        "visit_number": null,
+        "visit_order": 1
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/3BB6D9B5-EF97-4F66-A25B-55EC43181C7B"
+          }
+        },
+        "id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B",
+        "visit_description": null,
+        "visit_duration": null,
+        "visit_id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B",
+        "visit_name": "Clinical and laboratory",
+        "visit_number": null,
+        "visit_order": 2
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/51833C50-5CDD-4160-9B36-00911DFDC809"
+          }
+        },
+        "id": "51833C50-5CDD-4160-9B36-00911DFDC809",
+        "visit_description": null,
+        "visit_duration": 0,
+        "visit_id": "51833C50-5CDD-4160-9B36-00911DFDC809",
+        "visit_name": "Outcome",
+        "visit_number": null,
+        "visit_order": 4
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/F0CAEF50-ACA9-4535-A4FC-5DF471C239B3"
+          }
+        },
+        "id": "F0CAEF50-ACA9-4535-A4FC-5DF471C239B3",
+        "visit_description": null,
+        "visit_duration": null,
+        "visit_id": "F0CAEF50-ACA9-4535-A4FC-5DF471C239B3",
+        "visit_name": "Follow-up",
+        "visit_number": null,
+        "visit_order": 3
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 25,
+  "total_items": 4
+}

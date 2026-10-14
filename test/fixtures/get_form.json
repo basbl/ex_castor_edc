@@ -1,0 +1,28 @@
+{
+  "_embedded": {
+    "visit": {
+      "_links": {
+        "self": {
+          "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/3BB6D9B5-EF97-4F66-A25B-55EC43181C7B"
+        }
+      },
+      "id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B",
+      "visit_description": null,
+      "visit_duration": null,
+      "visit_id": "3BB6D9B5-EF97-4F66-A25B-55EC43181C7B",
+      "visit_name": "Clinical and laboratory",
+      "visit_number": null,
+      "visit_order": 2
+    }
+  },
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data-instance/3F075142-968C-4773-AA66-9C2914FB6CD7"
+    }
+  },
+  "form_description": "Contains blood test data",
+  "form_id": "3F075142-968C-4773-AA66-9C2914FB6CD7",
+  "form_name": "Blood test",
+  "form_order": 4,
+  "id": "3F075142-968C-4773-AA66-9C2914FB6CD7"
+}

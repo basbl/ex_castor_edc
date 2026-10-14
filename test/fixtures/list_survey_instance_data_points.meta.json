@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "list_survey_instance_data_points",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/data-points/survey-instance/11BC06EB-4FF9-4B7E-B47F-619BF37EDA1E",
+  "query": null,
+  "status": 200
+}

@@ -1,0 +1,99 @@
+{
+  "_embedded": {
+    "roles": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/role/Admin"
+          }
+        },
+        "description": "",
+        "name": "Admin",
+        "permissions": {
+          "add": true,
+          "catalyst_upload": false,
+          "decrypt": false,
+          "delete": true,
+          "edit": true,
+          "email_addresses": true,
+          "encrypt": false,
+          "export": true,
+          "lock": true,
+          "query": true,
+          "randomization_read": true,
+          "randomization_write": true,
+          "sdv": true,
+          "sign": true,
+          "survey_send": true,
+          "survey_view": true,
+          "validation": true,
+          "view": true
+        }
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/role/Monitor"
+          }
+        },
+        "description": "",
+        "name": "Monitor",
+        "permissions": {
+          "add": false,
+          "catalyst_upload": false,
+          "decrypt": false,
+          "delete": false,
+          "edit": false,
+          "email_addresses": false,
+          "encrypt": false,
+          "export": false,
+          "lock": false,
+          "query": true,
+          "randomization_read": false,
+          "randomization_write": false,
+          "sdv": true,
+          "sign": false,
+          "survey_send": false,
+          "survey_view": false,
+          "validation": true,
+          "view": true
+        }
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/role/Data-entry"
+          }
+        },
+        "description": "",
+        "name": "Data-entry",
+        "permissions": {
+          "add": true,
+          "catalyst_upload": false,
+          "decrypt": false,
+          "delete": false,
+          "edit": true,
+          "email_addresses": false,
+          "encrypt": false,
+          "export": false,
+          "lock": false,
+          "query": false,
+          "randomization_read": false,
+          "randomization_write": false,
+          "sdv": false,
+          "sign": false,
+          "survey_send": true,
+          "survey_view": true,
+          "validation": false,
+          "view": true
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/role"
+    }
+  },
+  "total_items": 3
+}

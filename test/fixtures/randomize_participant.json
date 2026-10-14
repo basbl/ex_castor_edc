@@ -1,0 +1,15 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/AFE56D62-0797-406B-9949-DD8DC65D6A75/record/110003/randomization"
+    }
+  },
+  "randomization_group": "2",
+  "randomization_group_name": "Group 2",
+  "randomized_id": "002",
+  "randomized_on": {
+    "date": "2022-05-13 13:59:54.313106",
+    "timezone": "Europe/Amsterdam",
+    "timezone_type": 3
+  }
+}

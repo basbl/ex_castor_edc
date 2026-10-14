@@ -1,0 +1,17 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/user/62C48D56-7A78-45A0-9A26-9A2397F37804"
+    }
+  },
+  "department": "Bla",
+  "email_address": "user@example.org",
+  "entity_id": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+  "full_name": "Test User",
+  "id": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+  "last_login": "2026-10-07 21:01:22",
+  "name_first": "Test User",
+  "name_last": "Test User",
+  "name_middle": "",
+  "user_id": "62C48D56-7A78-45A0-9A26-9A2397F37804"
+}

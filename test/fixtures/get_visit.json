@@ -1,0 +1,14 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/visit/2EAC22F4-09FE-43ED-A6EE-F3514A1C997A"
+    }
+  },
+  "id": "2EAC22F4-09FE-43ED-A6EE-F3514A1C997A",
+  "visit_description": null,
+  "visit_duration": null,
+  "visit_id": "2EAC22F4-09FE-43ED-A6EE-F3514A1C997A",
+  "visit_name": "Patient characteristics",
+  "visit_number": null,
+  "visit_order": 1
+}

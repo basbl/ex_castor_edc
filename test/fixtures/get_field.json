@@ -1,0 +1,38 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field/010F8DF8-1474-4981-8CA3-B37173E42EAB"
+    }
+  },
+  "additional_config": "",
+  "dependency_children": [],
+  "dependency_parents": [],
+  "domains": [],
+  "exclude_on_data_export": false,
+  "field_enforce_decimals": null,
+  "field_hidden": 0,
+  "field_id": "010F8DF8-1474-4981-8CA3-B37173E42EAB",
+  "field_image": "",
+  "field_info": "",
+  "field_label": "Outcome of AE",
+  "field_length": null,
+  "field_max": null,
+  "field_max_label": "",
+  "field_min": null,
+  "field_min_label": "",
+  "field_number": 7,
+  "field_required": 1,
+  "field_slider_step": null,
+  "field_slider_step_value": null,
+  "field_summary_template": "",
+  "field_type": "radio",
+  "field_units": "",
+  "field_variable_name": "AE_outcome",
+  "id": "010F8DF8-1474-4981-8CA3-B37173E42EAB",
+  "metadata_points": [],
+  "option_group": null,
+  "parent_id": "181DF10A-D072-4A30-912C-6632E5AB197B",
+  "randomize_option_order": false,
+  "report_id": "",
+  "validations": []
+}

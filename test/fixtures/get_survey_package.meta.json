@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "get_survey_package",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey-package/1430DFBE-526A-44AC-856E-BF44A99139B6",
+  "query": null,
+  "status": 200
+}

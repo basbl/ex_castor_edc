@@ -1,0 +1,13 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/country/2"
+    }
+  },
+  "country_cca2": "AW",
+  "country_cca3": "ABW",
+  "country_id": 2,
+  "country_name": "Aruba",
+  "country_tld": ".aw",
+  "id": 2
+}

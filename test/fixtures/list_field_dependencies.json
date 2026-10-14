@@ -1,0 +1,93 @@
+{
+  "_embedded": {
+    "fieldDependencies": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/68"
+          }
+        },
+        "child_id": "A10A04C9-C861-47A7-AFC8-B5F5F092417E",
+        "id": 68,
+        "operator": "==",
+        "parent_id": "40A78E37-E98E-4A96-911A-A0505A53B60D",
+        "value": "14"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/69"
+          }
+        },
+        "child_id": "1B71BE3C-B9CE-4418-94CF-3A921D86B07E",
+        "id": 69,
+        "operator": "!=",
+        "parent_id": "1B7E969E-F103-4AFE-99EA-1CAFD9401034",
+        "value": "0"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/70"
+          }
+        },
+        "child_id": "F9AD33BA-01F1-4135-8347-109AC6A55B45",
+        "id": 70,
+        "operator": "!=",
+        "parent_id": "1B7E969E-F103-4AFE-99EA-1CAFD9401034",
+        "value": "0"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/71"
+          }
+        },
+        "child_id": "6BEF5E53-DBD3-41A7-9401-005240DDC768",
+        "id": 71,
+        "operator": "==",
+        "parent_id": "370A1634-B2BC-4B4D-8114-98D72461E129",
+        "value": "3"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/72"
+          }
+        },
+        "child_id": "5EAAEAFB-616E-41E7-A974-57C2C97B9C56",
+        "id": 72,
+        "operator": "==",
+        "parent_id": "370A1634-B2BC-4B4D-8114-98D72461E129",
+        "value": "2"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/73"
+          }
+        },
+        "child_id": "73BE4F1C-FBA4-43B8-9578-1BF96B6120F9",
+        "id": 73,
+        "operator": "==",
+        "parent_id": "370A1634-B2BC-4B4D-8114-98D72461E129",
+        "value": "2"
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 25,
+  "total_items": 6
+}

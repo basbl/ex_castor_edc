@@ -1,0 +1,14 @@
+{
+  "_embedded": {
+    "metadatatypes": []
+  },
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/metadatatype"
+    }
+  },
+  "page": 0,
+  "page_count": 0,
+  "page_size": 25,
+  "total_items": 0
+}

@@ -1,0 +1,55 @@
+{
+  "_embedded": {
+    "sites": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/site/96460B59-42B7-4B26-99AB-4C032E954CF7"
+          }
+        },
+        "abbreviation": "CSTR",
+        "code": null,
+        "country_id": 169,
+        "date_display_format": "YYYY-MM-DD",
+        "date_format": "Y-m-d",
+        "deleted": false,
+        "id": "96460B59-42B7-4B26-99AB-4C032E954CF7",
+        "name": "Castor",
+        "order": 11,
+        "site_id": "96460B59-42B7-4B26-99AB-4C032E954CF7"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/site/F58A7CB5-60BB-4280-8AB3-E6DADBC20946"
+          }
+        },
+        "abbreviation": "TES",
+        "code": "TES",
+        "country_id": 169,
+        "date_display_format": "YYYY-MM-DD",
+        "date_format": "Y-m-d",
+        "deleted": false,
+        "id": "F58A7CB5-60BB-4280-8AB3-E6DADBC20946",
+        "name": "Test Site",
+        "order": 0,
+        "site_id": "F58A7CB5-60BB-4280-8AB3-E6DADBC20946"
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/site"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/site?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/site?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 25,
+  "total_items": 2
+}

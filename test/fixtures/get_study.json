@@ -1,0 +1,29 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD"
+    }
+  },
+  "created_by": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+  "created_on": "2026-10-07 21:01:07",
+  "crf_id": "8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD",
+  "domain": "https://data.castoredc.com",
+  "duration": null,
+  "encryption": false,
+  "expected_centers": 2,
+  "expected_records": null,
+  "first_live_on": null,
+  "gcp_enabled": true,
+  "last_datapoint_collected_on": "2026-10-07 21:50:46",
+  "live": false,
+  "main_contact": "62C48D56-7A78-45A0-9A26-9A2397F37804",
+  "name": "API Testing",
+  "on_site_epro_mode_enabled": false,
+  "premium_support_enabled": false,
+  "randomization_enabled": false,
+  "slug": "7Ms2shPNe3gAKRzG5sBDTT",
+  "study_id": "8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD",
+  "surveys_enabled": true,
+  "trial_registry_id": "",
+  "version": "0.11"
+}

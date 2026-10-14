@@ -9,23 +9,19 @@ concurrency:
   group: ${{ github.ref }}-docs
   cancel-in-progress: true
 
-env:
-  ELIXIR_VERSION: 1.13
-  OTP_VERSION: 24.2
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: "${{ env.OTP_VERSION }}"
-          elixir-version: "${{ env.ELIXIR_VERSION }}"
+          version-file: .tool-versions
+          version-type: strict
       - run: mix deps.get
       - run: mix docs
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.1
+        uses: JamesIves/github-pages-deploy-action@v4.9.0
         with:
           branch: gh-pages
           folder: doc

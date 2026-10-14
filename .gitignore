@@ -25,3 +25,10 @@ ex_castor_edc-*.tar
 
 # Temporary files for e.g. tests
 /tmp
+
+# Dialyzer PLTs
+/priv/plts/
+
+# End-to-end configuration and the IDs the seed created
+/.env
+/test/e2e/.seeded/

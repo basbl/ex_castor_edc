@@ -1,0 +1,33 @@
+{
+  "_embedded": {
+    "survey": {
+      "_links": {
+        "self": {
+          "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E"
+        }
+      },
+      "description": "",
+      "footer_text": null,
+      "id": "23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E",
+      "intro_text": "",
+      "name": "Generalised Anxiety Disorder Questionnaire (GAD-7)",
+      "outro_text": "",
+      "survey_forms": [],
+      "survey_id": "23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E"
+    }
+  },
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/survey/23ABEAB5-2D2A-45AE-92BA-2CD7D43F5D9E/survey-form/39DD5B79-CF47-4F62-93AF-1E0575397C4A"
+    }
+  },
+  "field_alignment": "left-aligned",
+  "footer_text": "",
+  "form_numbering": "visible",
+  "id": "39DD5B79-CF47-4F62-93AF-1E0575397C4A",
+  "label_bold_if_required": true,
+  "survey_form_description": "",
+  "survey_form_id": "39DD5B79-CF47-4F62-93AF-1E0575397C4A",
+  "survey_form_name": "GAD-7",
+  "survey_form_number": 1
+}

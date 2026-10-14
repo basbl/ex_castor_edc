@@ -1,0 +1,111 @@
+{
+  "_embedded": {
+    "fieldValidations": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-validation/38"
+          }
+        },
+        "field_id": "D478A81D-4C1E-45FE-BDC3-6BACA4E6FB0E",
+        "id": 38,
+        "operator": ">",
+        "reference_type": "value",
+        "referenced_field_id": null,
+        "text": "This date is in the future",
+        "type": "warning",
+        "value": "NOW"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-validation/39"
+          }
+        },
+        "field_id": "F9AD33BA-01F1-4135-8347-109AC6A55B45",
+        "id": 39,
+        "operator": "<=",
+        "reference_type": "value",
+        "referenced_field_id": null,
+        "text": "Enter number of packs per day, i.e. more than 0",
+        "type": "warning",
+        "value": "0"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-validation/40"
+          }
+        },
+        "field_id": "F9AD33BA-01F1-4135-8347-109AC6A55B45",
+        "id": 40,
+        "operator": ">=",
+        "reference_type": "value",
+        "referenced_field_id": null,
+        "text": "Enter number of packs per day (not number of cigarettes, cigars etc)",
+        "type": "warning",
+        "value": "4"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-validation/41"
+          }
+        },
+        "field_id": "D0518B20-CB34-4402-A193-F1B8AAE994DE",
+        "id": 41,
+        "operator": ">",
+        "reference_type": "value",
+        "referenced_field_id": null,
+        "text": "Date is in the future, please correct",
+        "type": "warning",
+        "value": "NOW"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-validation/42"
+          }
+        },
+        "field_id": "6BEF5E53-DBD3-41A7-9401-005240DDC768",
+        "id": 42,
+        "operator": ">",
+        "reference_type": "value",
+        "referenced_field_id": null,
+        "text": "Date of death is in the future!",
+        "type": "warning",
+        "value": "NOW"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-validation/43"
+          }
+        },
+        "field_id": "5EAAEAFB-616E-41E7-A974-57C2C97B9C56",
+        "id": 43,
+        "operator": ">",
+        "reference_type": "value",
+        "referenced_field_id": null,
+        "text": "Date is in the future!",
+        "type": "warning",
+        "value": "NOW"
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-validation"
+    },
+    "last": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-validation?page=1"
+    },
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-validation?page=1"
+    }
+  },
+  "page": 1,
+  "page_count": 1,
+  "page_size": 25,
+  "total_items": 6
+}

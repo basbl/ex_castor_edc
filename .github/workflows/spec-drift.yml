@@ -1,0 +1,55 @@
+name: Upstream spec drift
+
+# Fetches the published API spec every week and rebuilds our corrected copy,
+# so an upstream change shows up here before it shows up in a user's request.
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install Erlang & Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          version-file: .tool-versions
+          version-type: strict
+      - name: Cache deps and build
+        uses: actions/cache@v6
+        with:
+          path: |
+            deps
+            _build
+          key: mix-${{ runner.os }}-${{ hashFiles('.tool-versions') }}-${{ hashFiles('mix.lock') }}
+          restore-keys: mix-${{ runner.os }}-${{ hashFiles('.tool-versions') }}-
+      - name: Install mix dependencies
+        run: mix deps.get
+      - name: Fetch the published spec
+        run: mix castor_edc.spec.fetch
+      - name: Apply our corrections to it
+        run: mix castor_edc.spec.build
+      - name: Compare with the committed spec
+        run: git diff --stat --exit-code priv/openapi
+      - name: Report drift
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="Upstream API spec has drifted"
+          body="The weekly check found that the published Castor EDC API spec no longer matches priv/openapi/upstream.json, or that a correction in priv/openapi/overlay.yaml no longer applies. See $RUN_URL.
+
+          Run \`mix castor_edc.spec.fetch\` and \`mix castor_edc.spec.build\` locally, review the diff, and update the overlay where needed."
+          existing=$(gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "Still drifting: $RUN_URL"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi

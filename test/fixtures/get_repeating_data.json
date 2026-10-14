@@ -1,0 +1,12 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/repeating-data/81CF4C62-403C-4844-A186-C19EEDE14362"
+    }
+  },
+  "description": "Blood pressure measurements during physical exam.",
+  "id": "81CF4C62-403C-4844-A186-C19EEDE14362",
+  "name": "Blood pressure",
+  "repeating_data_id": "81CF4C62-403C-4844-A186-C19EEDE14362",
+  "type": "repeated_measure"
+}

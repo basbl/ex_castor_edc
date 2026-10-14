@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "get_field",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field/010F8DF8-1474-4981-8CA3-B37173E42EAB",
+  "query": null,
+  "status": 200
+}

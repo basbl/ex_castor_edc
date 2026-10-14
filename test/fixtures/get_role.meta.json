@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "get_role",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/role/Admin",
+  "query": null,
+  "status": 200
+}

@@ -1,0 +1,12 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://data.castoredc.com/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/field-dependency/68"
+    }
+  },
+  "child_id": "A10A04C9-C861-47A7-AFC8-B5F5F092417E",
+  "id": 68,
+  "operator": "==",
+  "parent_id": "40A78E37-E98E-4A96-911A-A0505A53B60D",
+  "value": "14"
+}

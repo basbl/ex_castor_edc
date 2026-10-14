@@ -1,0 +1,36 @@
+<%= CastorEDC.Generator.Renderer.banner() %>
+
+defmodule <%= inspect(model.module) %> do
+<%= if length(model.fields) >= 31 do %>  # The API's object has this many fields; a struct this large is a hash map
+  # rather than a flat one, which is fine here.
+  # credo:disable-for-this-file Credo.Check.Warning.StructFieldAmount
+<% end %>  @moduledoc ~S"""
+  <%= CastorEDC.Generator.Renderer.doc(model.description || "The `#{model.name}` object of the API.") %>
+
+  ## Fields
+
+<%= for field <- model.fields do %>    * `:<%= field.name %>` (<%= CastorEDC.Generator.Renderer.field_type_doc(field) %>)<%= CastorEDC.Generator.Renderer.field_description(field) %>
+<% end %>    * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
+  """
+
+  @known ~w(<%= Enum.join(CastorEDC.Generator.Renderer.known(model), " ") %>)
+  @known_embedded ~w(<%= Enum.join(CastorEDC.Generator.Renderer.known_embedded(model), " ") %>)
+
+  defstruct [<%= Enum.map_join(model.fields, ", ", &":#{&1.name}") %><%= if model.fields != [], do: ", " %>extra: %{}]
+
+  @type t :: %__MODULE__{
+<%= for field <- model.fields do %>          <%= field.name %>: <%= CastorEDC.Generator.Renderer.field_spec(field) %> | nil,
+<% end %>          extra: %{optional(String.t()) => term()}
+        }
+
+  @doc false
+  @spec new(map()) :: t()
+  def new(data) when is_map(data) do
+    embedded = if is_map(data["_embedded"]), do: data["_embedded"], else: %{}
+
+    %__MODULE__{
+<%= for field <- model.fields do %>      <%= field.name %>: <%= CastorEDC.Generator.Renderer.field_decode(field) %>,
+<% end %>      extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
+    }
+  end
+end

@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "list_participant_repeating_data_instance_data_points",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/participant/000001/data-points/repeating-data-instance/F01DF8F7-F20C-40F5-8325-411681CA31DB",
+  "query": null,
+  "status": 200
+}

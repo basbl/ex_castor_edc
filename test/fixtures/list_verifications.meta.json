@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "operation": "list_verifications",
+  "path": "/api/study/8EFF039F-DF0A-4855-A850-4ADEDDFAB4BD/verification",
+  "query": null,
+  "status": 200
+}
