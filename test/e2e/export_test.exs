@@ -58,9 +58,16 @@ defmodule CastorEDC.E2E.ExportTest do
   # environment may not render PDFs (the export job fails).
   @optional [:empty_crf, :participant_casebook]
 
+  # Rendering a PDF can take the server several minutes. The test outlasts
+  # the export's timeout, so a slow export fails as an `:export_timeout`.
+  @pdf_timeout to_timeout(minute: 10)
+
   for type <- Request.types() do
+    export_timeout = if type in @optional, do: @pdf_timeout, else: to_timeout(minute: 4)
+
+    @tag timeout: export_timeout + to_timeout(minute: 1)
     test "exports #{type} and unzips it", %{client: client, study: study} do
-      case Export.unquote(type)(client, study, unzip: true, timeout: 300_000) do
+      case Export.unquote(type)(client, study, unzip: true, timeout: unquote(export_timeout)) do
         {:ok, %Export{type: unquote(type), status: :ready, files: [_file | _more] = files}} ->
           assert Enum.all?(files, fn {name, contents} -> is_binary(name) and is_binary(contents) end)
 
