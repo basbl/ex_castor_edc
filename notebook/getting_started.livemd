@@ -2,7 +2,7 @@
 
 ```elixir
 # The checkout this notebook is in, or the one CASTOR_EDC_PATH names. Outside
-# a checkout, use {:ex_castor_edc, "~> 1.0"} instead.
+# a checkout, use {:ex_castor_edc, "~> 1.0.0-rc.1"} instead.
 castor_edc = System.get_env("CASTOR_EDC_PATH", Path.expand("..", __DIR__))
 
 Mix.install([

@@ -23,4 +23,24 @@ defmodule CastorEDC.PackageTest do
              "#{resource} is read at compile time but isn't in the package's files"
     end
   end
+
+  # The docs can't read the version from mix.exs, so this keeps the
+  # requirement they tell users to install with in step with it. A
+  # pre-release has to be named, as "~> 1.0" doesn't match "1.0.0-rc.1".
+  test "the docs install the version mix.exs gives" do
+    version = Version.parse!(Mix.Project.config()[:version])
+    expected = if version.pre == [], do: "~> #{version.major}.#{version.minor}", else: "~> #{version}"
+
+    assert Version.match?(version, expected, allow_pre: true)
+
+    for doc <- ["README.md", "guides/migrating-to-1.0.md", "notebook/getting_started.livemd"] do
+      requirements = Regex.scan(~r/\{:ex_castor_edc, "([^"]+)"\}/, File.read!(doc), capture: :all_but_first)
+
+      assert requirements != [], "#{doc} doesn't say how to install the library"
+
+      for [requirement] <- requirements do
+        assert requirement == expected, "#{doc} installs #{inspect(requirement)} instead of #{inspect(expected)}"
+      end
+    end
+  end
 end
