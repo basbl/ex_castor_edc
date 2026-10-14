@@ -169,6 +169,10 @@ defmodule CastorEDC.FieldValueTest do
     test "decodes an upload as the file's name" do
       assert FieldValue.decode("-- Uploaded File: scan 1.pdf --", "upload") == {:upload, "scan 1.pdf"}
       assert FieldValue.decode("- - Uploaded file - -", "upload") == {:upload, nil}
+
+      # The lists describe it as JSON, with the name base64-encoded.
+      listed = ~s({"file_name":"aGVsbG8udHh0","mime_type":"text\\/plain","file_size":22,"storage_path":"E5F2A8E0"})
+      assert FieldValue.decode(listed, "upload") == {:upload, "hello.txt"}
     end
 
     test "decodes a location as latitude and longitude" do
@@ -184,6 +188,9 @@ defmodule CastorEDC.FieldValueTest do
               {~s({"0":"a"}), "grid"},
               {"scan.pdf", "upload"},
               {"-- Uploaded File: scan.pdf", "upload"},
+              {~s({"file_name":"not base64!"}), "upload"},
+              {~s({"mime_type":"text/plain"}), "upload"},
+              {"{not json", "upload"},
               {"52.3", "geolocation"},
               {"north;south", "geolocation"}
             ] do

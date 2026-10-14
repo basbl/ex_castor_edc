@@ -18,7 +18,7 @@ defmodule CastorEDC.FieldValue do
   | `radio`, `dropdown` | the chosen option's value, such as `"2"` | the value, as a string |
   | `checkbox` | the checked options' values, such as `"0;1"` | a list of the values |
   | `grid` | JSON, row by column: `{"0":{"0":"5"}}` | `%{row => %{column => cell}}`, with integer rows and columns, and each cell decoded like text |
-  | `upload` | `"-- Uploaded File: scan.pdf --"`, or `"- - Uploaded file - -"` when the name can't be read | `{:upload, name}`, with `nil` for an unknown name |
+  | `upload` | `"-- Uploaded File: scan.pdf --"` from single data points, `"- - Uploaded file - -"` when the name can't be read, or JSON with the name base64-encoded (`{"file_name":"c2Nhbi5wZGY=",...}`) from the lists | `{:upload, name}`, with `nil` for an unknown name |
   | `geolocation` | `"52.36;4.90"` | `{latitude, longitude}` |
   | `string`, `textarea` and others | text | the string |
   | any, when empty | `""` | `nil` |
@@ -181,6 +181,17 @@ defmodule CastorEDC.FieldValue do
     case String.split_at(rest, -3) do
       {name, " --"} -> {:ok, {:upload, name}}
       _invalid -> :error
+    end
+  end
+
+  # The data point lists describe an upload as JSON, with the file's name
+  # base64-encoded; its type, size and storage path are in the raw value.
+  defp read("upload", "{" <> _rest = raw) do
+    with {:ok, %{"file_name" => encoded}} when is_binary(encoded) <- JSON.decode(raw),
+         {:ok, name} <- Base.decode64(encoded) do
+      {:ok, {:upload, name}}
+    else
+      _unreadable -> :error
     end
   end
 

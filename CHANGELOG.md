@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- An uploaded file's value in the data point lists, JSON with the file's name base64-encoded, decodes to `{:upload, name}` as the single data point's `"-- Uploaded File: name --"` does, instead of staying a string with a warning.
 - Smaller doc corrections: the export functions say that a format, filter or option an export doesn't take raises `ArgumentError`, and what `:into` does with `unzip: true`; `CastorEDC.Model` says a value it can't read stays as it arrived; a grid cell's type includes `:encrypted`; and two mistakes in the 1.0.0-rc.1 notes are fixed.
 - Bulk write docs list the fields of their body's items (`common`, `data`, role assignments and new repeating data instances) instead of linking to structs that don't exist, and generated docs no longer repeat their summary, carry the API's "Returns an array of objects. Paged." beside their own return line, or claim streams use the API's largest page size where it has none.
 - The docs say which time zone the API's times are in: a data point's `updated_on`, and the other times without a zone, are the server's local time (see `CastorEDC.time_zone/1`), `updated_after` shows how to build one from them, and decoded `DateTime`s say they're in the server's zone. They also say that a cleared value stays in the data point lists, empty, and that a participant's `updated_on` is to the minute.
