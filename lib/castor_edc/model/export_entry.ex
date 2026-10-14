@@ -7,10 +7,10 @@ defmodule CastorEDC.Model.ExportEntry do
 
   ## Fields
 
-    * `:completed_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:completed_on` (`DateTime`) - A DateTime in the server's time zone (see CastorEDC.time_zone/1); compare it with DateTime.compare/2.
     * `:created_by` (string) - The ID of the user who requested the export.
-    * `:created_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
-    * `:expires_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:created_on` (`DateTime`) - A DateTime in the server's time zone (see CastorEDC.time_zone/1); compare it with DateTime.compare/2.
+    * `:expires_on` (`DateTime`) - A DateTime in the server's time zone (see CastorEDC.time_zone/1); compare it with DateTime.compare/2.
     * `:file_name` (string)
     * `:file_size` (integer)
     * `:format` (string, one of `csv`, `excel`, `spss`, `sas_xpt`, `sas_7bdat`, `odm`, `pdf`, `xml`, `zip`) - The export format, despite the name.

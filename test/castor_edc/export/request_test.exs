@@ -94,13 +94,19 @@ defmodule CastorEDC.Export.RequestTest do
   end
 
   test "formats times where the API takes a date and time" do
-    filters =
-      Request.encode(:survey_compliance,
-        filters: [availability_start: ~N[2026-01-01 11:11:59], availability_end: ~U[2026-02-01 08:00:00Z]]
-      )["filters"]
+    filters = [availability_start: ~N[2026-01-01 11:11:59], availability_end: ~U[2026-02-01 08:00:00Z]]
 
-    # A DateTime moves to the server's time (Amsterdam, UTC+1 in winter).
-    assert filters == %{"availability_start" => "2026-01-01 11:11", "availability_end" => "2026-02-01 09:00"}
+    # A DateTime moves to the server's time zone: Amsterdam is UTC+1 in
+    # winter, New York UTC-5.
+    assert Request.encode(:survey_compliance, [filters: filters], "Europe/Amsterdam")["filters"] ==
+             %{"availability_start" => "2026-01-01 11:11", "availability_end" => "2026-02-01 09:00"}
+
+    assert Request.encode(:survey_compliance, [filters: filters], "America/New_York")["filters"]["availability_end"] ==
+             "2026-02-01 03:00"
+
+    assert_raise ArgumentError, ~r/needs the server's time zone/, fn ->
+      Request.encode(:survey_compliance, filters: filters)
+    end
 
     assert Request.encode(:queries, filters: [created_between_start: ~D[2026-01-01]])["filters"] ==
              %{"created_between_start" => "2026-01-01"}

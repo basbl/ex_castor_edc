@@ -321,7 +321,7 @@ defmodule CastorEDC.Export do
     indexed =
       requests
       |> Enum.with_index(fn {type, export_opts}, index ->
-        {Atom.to_string(type), index, Request.encode(type, export_opts)}
+        {Atom.to_string(type), index, Request.encode(type, export_opts, CastorEDC.time_zone(client))}
       end)
       |> Enum.sort_by(fn {type, index, _entry} -> {type, index} end)
 

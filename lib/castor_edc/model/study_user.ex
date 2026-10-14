@@ -13,7 +13,7 @@ defmodule CastorEDC.Model.StudyUser do
     * `:entity_id` (string)
     * `:full_name` (string)
     * `:id` (string)
-    * `:last_login` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:last_login` (`DateTime`) - A DateTime in the server's time zone (see CastorEDC.time_zone/1); compare it with DateTime.compare/2.
     * `:manage_permissions` (`t:CastorEDC.Model.ManagementPermissions.t/0`)
     * `:name_first` (string)
     * `:name_last` (string)

@@ -29,6 +29,15 @@ defmodule CastorEDC do
   """
   @user_agent "ex_castor_edc/" <> Mix.Project.config()[:version]
 
+  # The API's times without a zone are local to the server; each of Castor
+  # EDC's public servers has one fixed zone.
+  @time_zones %{
+    "data.castoredc.com" => "Europe/Amsterdam",
+    "uk.castoredc.com" => "Europe/London",
+    "us.castoredc.com" => "America/New_York",
+    "au.castoredc.com" => "Australia/Sydney"
+  }
+
   @typedoc """
   A client from `new/1`, or the options to build one with.
   """
@@ -55,6 +64,12 @@ defmodule CastorEDC do
       `CastorEDC.RateLimit`.
     * `:max_rate_limit_wait` - the longest to wait for a rate limit, in
       milliseconds, 60 seconds by default.
+    * `:time_zone` - the server's time zone, which the API's times without
+      a zone are local to (see `time_zone/1`): the `:time_zone` application
+      environment key, then the `CASTOR_EDC_TIME_ZONE` environment variable,
+      then the zone of Castor EDC's public servers (`Europe/Amsterdam` for
+      data.castoredc.com, `Europe/London` for uk, `America/New_York` for us
+      and `Australia/Sydney` for au). Set it for a private server.
 
   Every other option is passed to `Req.new/1`, so timeouts, retries and
   connection options are set the same way:
@@ -78,12 +93,21 @@ defmodule CastorEDC do
   @spec new(keyword()) :: Req.Request.t()
   def new(options \\ []) do
     {own, req_options} =
-      Keyword.split(options, [:client_id, :client_secret, :access_token, :base_url, :rate_limit, :max_rate_limit_wait])
+      Keyword.split(options, [
+        :client_id,
+        :client_secret,
+        :access_token,
+        :base_url,
+        :rate_limit,
+        :max_rate_limit_wait,
+        :time_zone
+      ])
 
     base_url = setting(own, :base_url, "CASTOR_EDC_BASE_URL")
+    base_url = if present?(base_url), do: base_url, else: @default_base_url
 
     [
-      base_url: if(present?(base_url), do: base_url, else: @default_base_url),
+      base_url: base_url,
       user_agent: @user_agent,
       retry: &CastorEDC.RateLimit.retry?/2
     ]
@@ -91,6 +115,34 @@ defmodule CastorEDC do
     |> Req.new()
     |> CastorEDC.RateLimit.attach(Keyword.take(own, [:rate_limit, :max_rate_limit_wait]))
     |> authenticate_with(credentials!(own))
+    |> Req.Request.put_private(:castor_edc_time_zone, time_zone!(own, base_url))
+  end
+
+  @doc """
+  The time zone of the client's server, which the API's times without a
+  zone (such as a data point's `updated_on`, or a study's `created_on`)
+  are local to: `Europe/Amsterdam` for data.castoredc.com, for example.
+  `nil` for a server whose zone isn't known: set `:time_zone` in `new/1`.
+
+      iex> CastorEDC.time_zone(CastorEDC.new(access_token: "t", base_url: "https://uk.castoredc.com"))
+      "Europe/London"
+
+  Turn such a time into a `DateTime` with it:
+
+      DateTime.from_naive!(updated_on, CastorEDC.time_zone(client), Tz.TimeZoneDatabase)
+  """
+  @spec time_zone(client()) :: String.t() | nil
+  def time_zone(client) when is_list(client), do: client |> new() |> time_zone()
+  def time_zone(%Req.Request{} = client), do: Req.Request.get_private(client, :castor_edc_time_zone)
+
+  defp time_zone!(own, base_url) do
+    zone = setting(own, :time_zone, "CASTOR_EDC_TIME_ZONE")
+    zone = if present?(zone), do: zone, else: Map.get(@time_zones, URI.parse(base_url).host)
+
+    case zone && DateTime.now(zone, Tz.TimeZoneDatabase) do
+      {:error, _reason} -> raise ArgumentError, "unknown time zone #{inspect(zone)} given as :time_zone"
+      _known_or_nil -> zone
+    end
   end
 
   # Multiplex over HTTP/2 unless told otherwise. Req takes the protocols from

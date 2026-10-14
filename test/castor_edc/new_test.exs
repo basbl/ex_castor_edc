@@ -5,16 +5,16 @@ defmodule CastorEDC.NewTest do
   alias CastorEDC.Auth.Secret
 
   setup do
-    for key <- [:client_id, :client_secret, :base_url], do: Application.delete_env(:ex_castor_edc, key)
+    for key <- [:client_id, :client_secret, :base_url, :time_zone], do: Application.delete_env(:ex_castor_edc, key)
 
     previous =
-      for name <- ~w(CASTOR_EDC_CLIENT_ID CASTOR_EDC_CLIENT_SECRET CASTOR_EDC_BASE_URL),
+      for name <- ~w(CASTOR_EDC_CLIENT_ID CASTOR_EDC_CLIENT_SECRET CASTOR_EDC_BASE_URL CASTOR_EDC_TIME_ZONE),
           do: {name, System.get_env(name)}
 
     for {name, _value} <- previous, do: System.delete_env(name)
 
     on_exit(fn ->
-      for key <- [:client_id, :client_secret, :base_url], do: Application.delete_env(:ex_castor_edc, key)
+      for key <- [:client_id, :client_secret, :base_url, :time_zone], do: Application.delete_env(:ex_castor_edc, key)
       for {name, value} <- previous, value, do: System.put_env(name, value)
     end)
   end
@@ -85,6 +85,34 @@ defmodule CastorEDC.NewTest do
 
     System.put_env("CASTOR_EDC_BASE_URL", "")
     assert CastorEDC.new(access_token: "token").options.base_url == "https://data.castoredc.com"
+  end
+
+  test "knows the time zone of Castor EDC's public servers" do
+    for {server, zone} <- [
+          {"https://data.castoredc.com", "Europe/Amsterdam"},
+          {"https://uk.castoredc.com/", "Europe/London"},
+          {"https://us.castoredc.com", "America/New_York"},
+          {"https://au.castoredc.com", "Australia/Sydney"}
+        ] do
+      assert CastorEDC.time_zone(CastorEDC.new(access_token: "t", base_url: server)) == zone
+    end
+
+    assert CastorEDC.time_zone(access_token: "t") == "Europe/Amsterdam"
+  end
+
+  test "takes a private server's time zone from the options or the environment" do
+    private = [access_token: "t", base_url: "https://edc.example.org"]
+    assert CastorEDC.time_zone(private) == nil
+    assert CastorEDC.time_zone(private ++ [time_zone: "Europe/Berlin"]) == "Europe/Berlin"
+
+    System.put_env("CASTOR_EDC_TIME_ZONE", "Asia/Tokyo")
+    assert CastorEDC.time_zone(private) == "Asia/Tokyo"
+    Application.put_env(:ex_castor_edc, :time_zone, "Europe/Paris")
+    assert CastorEDC.time_zone(private) == "Europe/Paris"
+
+    assert_raise ArgumentError, ~r/unknown time zone "Mars\/Olympus"/, fn ->
+      CastorEDC.new(private ++ [time_zone: "Mars/Olympus"])
+    end
   end
 
   test "keeps the client secret out of the client's inspect output" do

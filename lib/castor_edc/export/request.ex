@@ -5,9 +5,6 @@ defmodule CastorEDC.Export.Request do
   # vendored spec, so a typo raises here rather than coming back from the
   # API as a 400 (or being ignored).
 
-  # The zone of the API's times without one, on data.castoredc.com.
-  @server_time_zone "Europe/Amsterdam"
-
   @spec_path Path.expand("../../../priv/openapi/castor_edc.json", __DIR__)
   @external_resource @spec_path
 
@@ -93,7 +90,7 @@ defmodule CastorEDC.Export.Request do
   defp type_doc(%{"format" => "date"}), do: "a `Date`"
 
   defp type_doc(%{"format" => "date-time"}),
-    do: "a `Date`, a `NaiveDateTime` in the server's time (Europe/Amsterdam) or a `DateTime`, to the minute"
+    do: "a `Date`, a `NaiveDateTime` in the server's time or a `DateTime`, to the minute; see `CastorEDC.time_zone/1`"
 
   defp type_doc(_string), do: "string"
 
@@ -125,12 +122,12 @@ defmodule CastorEDC.Export.Request do
   end
 
   @doc false
-  @spec encode(atom(), keyword()) :: map()
-  def encode(type, opts) do
+  @spec encode(atom(), keyword(), String.t() | nil) :: map()
+  def encode(type, opts, time_zone \\ nil) do
     definition = definition(type)
     {format, opts} = Keyword.pop(opts, :format, hd(definition.formats))
-    {filters, opts} = Keyword.pop(opts, :filters, [])
-    {options, opts} = Keyword.pop(opts, :options, [])
+    {filters, opts} = opts |> Keyword.pop(:filters, []) |> then(fn {v, rest} -> {local(v, time_zone), rest} end)
+    {options, opts} = opts |> Keyword.pop(:options, []) |> then(fn {v, rest} -> {local(v, time_zone), rest} end)
 
     if opts != [] do
       raise ArgumentError,
@@ -146,6 +143,22 @@ defmodule CastorEDC.Export.Request do
     |> put_object("filters", object(filters, definition.filters, "#{type} export filter"))
     |> put_object("options", options)
   end
+
+  # The API reads times in the server's zone, so a DateTime moves there
+  # first, as the NaiveDateTime it reads.
+  defp local(%DateTime{}, nil) do
+    raise ArgumentError,
+          "a DateTime filter needs the server's time zone, which this client doesn't know: " <>
+            "set :time_zone in CastorEDC.new/1, or pass a NaiveDateTime in the server's local time"
+  end
+
+  defp local(%DateTime{} = datetime, zone),
+    do: datetime |> DateTime.shift_zone!(zone, Tz.TimeZoneDatabase) |> DateTime.to_naive()
+
+  defp local(values, zone) when is_list(values), do: Enum.map(values, &local(&1, zone))
+  defp local(values, zone) when is_map(values) and not is_struct(values), do: Map.new(values, &local(&1, zone))
+  defp local({key, value}, zone), do: {key, local(value, zone)}
+  defp local(value, _zone), do: value
 
   # Options that apply only to some formats, and to the grouped export or
   # the default one, as `x-castor-requires` says.
@@ -249,14 +262,6 @@ defmodule CastorEDC.Export.Request do
 
   defp value(%Date{} = date, %{"format" => format}, _what) when format in ["date", "date-time"],
     do: Date.to_iso8601(date)
-
-  # The API reads times in its own zone, so a DateTime is first moved there.
-  defp value(%DateTime{} = datetime, %{"format" => "date-time"} = schema, what),
-    do:
-      datetime
-      |> DateTime.shift_zone!(@server_time_zone, Tz.TimeZoneDatabase)
-      |> DateTime.to_naive()
-      |> value(schema, what)
 
   defp value(%NaiveDateTime{} = datetime, %{"format" => "date-time"}, _what),
     do: Calendar.strftime(datetime, "%Y-%m-%d %H:%M")

@@ -8,7 +8,7 @@ defmodule CastorEDC.Model.Query do
   ## Fields
 
     * `:created_by` (string)
-    * `:created_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:created_on` (`DateTime`) - A DateTime in the server's time zone (see CastorEDC.time_zone/1); compare it with DateTime.compare/2.
     * `:field_id` (string)
     * `:first_query_remark` (string)
     * `:id` (string)
@@ -16,7 +16,7 @@ defmodule CastorEDC.Model.Query do
     * `:query_remarks` (list of `t:CastorEDC.Model.QueryRemark.t/0`)
     * `:status` (string)
     * `:updated_by` (string)
-    * `:updated_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:updated_on` (`DateTime`) - A DateTime in the server's time zone (see CastorEDC.time_zone/1); compare it with DateTime.compare/2.
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
 

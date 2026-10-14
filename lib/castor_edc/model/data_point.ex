@@ -19,7 +19,7 @@ defmodule CastorEDC.Model.DataPoint do
     * `:survey_name` (string)
     * `:survey_package_id` (string)
     * `:survey_package_instance_id` (string)
-    * `:updated_on` (`NaiveDateTime`) - When the value last changed, in the server's local time (Europe/Amsterdam on data.castoredc.com), not UTC.
+    * `:updated_on` (`NaiveDateTime`) - When the value last changed, in the server's local time, not UTC; see CastorEDC.time_zone/1.
     * `:value` (string) - The stored value, always a string; see CastorEDC.FieldValue for decoding it by field type. A value that was cleared stays in the lists, as an empty string with its own updated_on.
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """

@@ -11,7 +11,7 @@ defmodule CastorEDC.Model.Participant do
     * `:archived_reason` (string)
     * `:ccr_patient_id` (string)
     * `:created_by` (string)
-    * `:created_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:created_on` (`DateTime`) - A DateTime in the server's time zone (see CastorEDC.time_zone/1); compare it with DateTime.compare/2.
     * `:deleted` (boolean)
     * `:id` (string)
     * `:last_opened_form` (string)
@@ -24,7 +24,7 @@ defmodule CastorEDC.Model.Participant do
     * `:randomization_group` (integer)
     * `:randomization_group_name` (string)
     * `:randomized_id` (string) - The participant's randomization ID.
-    * `:randomized_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:randomized_on` (`DateTime`) - A DateTime in the server's time zone (see CastorEDC.time_zone/1); compare it with DateTime.compare/2.
     * `:site` (`t:CastorEDC.Model.Site.t/0`)
     * `:status` (string) - Deprecated: use the locked property instead
     * `:updated_by` (string)

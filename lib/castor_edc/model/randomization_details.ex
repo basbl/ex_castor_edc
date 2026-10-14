@@ -10,7 +10,7 @@ defmodule CastorEDC.Model.RandomizationDetails do
     * `:randomization_group` (integer)
     * `:randomization_group_name` (string)
     * `:randomized_id` (string)
-    * `:randomized_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:randomized_on` (`DateTime`) - A DateTime in the server's time zone (see CastorEDC.time_zone/1); compare it with DateTime.compare/2.
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
 

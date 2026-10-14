@@ -120,7 +120,7 @@ defmodule CastorEDC.Tabular do
     * `:value` - decoded with `CastorEDC.FieldValue.decode/2`
     * `:raw_value` - the string the API sent
     * `:updated_on` - when it last changed, in the server's local time
-      (Europe/Amsterdam on data.castoredc.com), not UTC
+      (see `CastorEDC.time_zone/1`), not UTC
 
   A value that was cleared is still listed, with `value: nil` and
   `raw_value: ""`.

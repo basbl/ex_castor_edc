@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## Unreleased
 
+### Added
+
+- `CastorEDC.time_zone/1`, the time zone of a client's server, which the API's times without a zone are local to, and the `:time_zone` option of `CastorEDC.new/1` (or `CASTOR_EDC_TIME_ZONE`) to set it for a private server. Castor EDC's public servers' zones are built in.
+
 ### Changed
 
 - Options of the same kind take the same kind of value: `:archived` and `:validations` are booleans everywhere (the client sends 1 or 0 where the API takes an integer), `:include` is a list everywhere, and `list_participants`' site filter is `:site_id`, as it takes one site. `list_participant_repeating_data_data_points`' `:enable_pagination` is gone, as is `upload_file` in single data point writes, which the client never sent as a file.
@@ -20,13 +24,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Smaller doc corrections: the export functions say that a format, filter or option an export doesn't take raises `ArgumentError`, and what `:into` does with `unzip: true`; `CastorEDC.Model` says a value it can't read stays as it arrived; a grid cell's type includes `:encrypted`; and two mistakes in the 1.0.0-rc.1 notes are fixed.
 - Bulk write docs list the fields of their body's items (`common`, `data`, role assignments and new repeating data instances) instead of linking to structs that don't exist, and generated docs no longer repeat their summary, carry the API's "Returns an array of objects. Paged." beside their own return line, or claim streams use the API's largest page size where it has none.
-- The docs say which time zone the API's times are in: a data point's `updated_on`, and the other times without a zone, are the server's local time (Europe/Amsterdam on data.castoredc.com), `updated_after` shows how to build one from them, and decoded `DateTime`s say they're in the server's zone. They also say that a cleared value stays in the data point lists, empty, and that a participant's `updated_on` is to the minute.
+- The docs say which time zone the API's times are in: a data point's `updated_on`, and the other times without a zone, are the server's local time (see `CastorEDC.time_zone/1`), `updated_after` shows how to build one from them, and decoded `DateTime`s say they're in the server's zone. They also say that a cleared value stays in the data point lists, empty, and that a participant's `updated_on` is to the minute.
 - Options that are lists sent as one key per value, such as `list_survey_compliance`'s `:participant_ids`, `:site_ids`, `:participant_statuses`, `:survey_package_ids` and `:survey_package_statuses`, raised instead of being sent. `list_participants`' `:fields` filter, documented as a list but used by the API as `field[ID]=VALUE`, is a map of field IDs to values, and works.
 - A client with the right client ID but another secret no longer reuses a token another client cached: tokens are cached per client ID and a hash of the secret, so a wrong or revoked secret always means asking the API.
 - The token request passes on Req's `:plug` option, so a client built for `Req.Test` works, and reads a token lifetime given as text instead of raising.
 - Req's own retry no longer runs on top of the rate limit handling: a 429 was retried up to three more times with Req's backoff, so `rate_limit: :error` waited seconds and returned a made-up error instead of the API's 429, and `:wait` sent up to seven requests instead of four. Clients retry what Req's default does, but never a 429.
 - A rate limit reset time that isn't a Unix timestamp in seconds no longer crashes every request; and waiting out a 429 adds the same jitter as waiting before a request, so a clock ahead of the server's doesn't retry before the window resets.
-- Export date-time filters take a `DateTime` in the server's time (Europe/Amsterdam): one was sent as its own wall clock, so a UTC time was read an hour or two off. They're documented as to the minute, as the API takes them.
+- Export date-time filters take a `DateTime` in the server's time zone (see `CastorEDC.time_zone/1`): one was sent as its own wall clock, so a UTC time was read hours off. They're documented as to the minute, as the API takes them.
 - An export saved into a directory keeps the server's file name inside it: a name with directories in it could have put the file, and what was unzipped from it, elsewhere.
 - A PHP DateTime with an offset zone (`+02:00`) decodes to a UTC `DateTime` instead of staying a map, and a local time a clock change skips becomes the moment after the gap, as PHP reads it. `CastorEDC.FieldValue.decode/2` takes the field type as an atom too, instead of raising.
 - `CastorEDC.Tabular.data_points/3`'s wide format no longer loses values: columns that would share a name (a checkbox `sym` with option `1` and a field `sym_1`) are both named after their field ID, and fields on no form the study knows are the study's own instead of vanishing from the rows.

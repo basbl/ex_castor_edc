@@ -8,7 +8,7 @@ defmodule CastorEDC.Model.QueryRemark do
   ## Fields
 
     * `:created_by` (string)
-    * `:created_on` (`DateTime`) - A DateTime in the server's time zone (Europe/Amsterdam on data.castoredc.com); compare it with DateTime.compare/2.
+    * `:created_on` (`DateTime`) - A DateTime in the server's time zone (see CastorEDC.time_zone/1); compare it with DateTime.compare/2.
     * `:description` (string)
     * `:id` (string)
     * `:title` (string)
