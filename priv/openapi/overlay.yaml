@@ -422,9 +422,13 @@ actions:
     update: {x-castor-name: site_id}
   - target: $.paths.*.*.parameters[?@.name == 'upload_file']
     description: >-
-      Uploading a file with a data point needs a multipart request, which
-      the client doesn't send: it writes values as JSON.
-    remove: true
+      Says what the client takes for the file; with it in the body, the
+      client sends the request as multipart form data instead of JSON.
+    update:
+      description: >-
+        A file to upload as the value, instead of field_value: `{file name,
+        contents}` or a `File.Stream`. The request then goes as multipart form
+        data. The upload limit is 2 MB.
   - target: $.paths.*.*.parameters[?@.name == 'enable_pagination']
     description: >-
       Whether to page the participant's repeating data values. The client

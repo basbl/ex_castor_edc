@@ -10036,7 +10036,7 @@
         ],
         "requestBody": {
           "content": {
-            "application/x-www-form-urlencoded": {
+            "multipart/form-data": {
               "schema": {
                 "properties": {
                   "change_reason": {
@@ -10049,6 +10049,11 @@
                   },
                   "field_value": {
                     "description": "The value. If empty, it will clear any stored value, including uploaded files.",
+                    "type": "string"
+                  },
+                  "upload_file": {
+                    "description": "A file to upload as the value, instead of field_value: `{file name, contents}` or a `File.Stream`. The request then goes as multipart form data. The upload limit is 2 MB.",
+                    "format": "binary",
                     "type": "string"
                   }
                 },
@@ -10244,7 +10249,7 @@
         ],
         "requestBody": {
           "content": {
-            "application/x-www-form-urlencoded": {
+            "multipart/form-data": {
               "schema": {
                 "properties": {
                   "change_reason": {
@@ -10253,6 +10258,11 @@
                   },
                   "field_value": {
                     "description": "The value. If empty, it will clear any stored value, including uploaded files.",
+                    "type": "string"
+                  },
+                  "upload_file": {
+                    "description": "A file to upload as the value, instead of field_value: `{file name, contents}` or a `File.Stream`. The request then goes as multipart form data. The upload limit is 2 MB.",
+                    "format": "binary",
                     "type": "string"
                   }
                 },
@@ -12186,7 +12196,7 @@
         ],
         "requestBody": {
           "content": {
-            "application/x-www-form-urlencoded": {
+            "multipart/form-data": {
               "schema": {
                 "properties": {
                   "change_reason": {
@@ -12199,6 +12209,11 @@
                   },
                   "field_value": {
                     "description": "The value. If empty, it will clear any stored value, including uploaded files.",
+                    "type": "string"
+                  },
+                  "upload_file": {
+                    "description": "A file to upload as the value, instead of field_value: `{file name, contents}` or a `File.Stream`. The request then goes as multipart form data. The upload limit is 2 MB.",
+                    "format": "binary",
                     "type": "string"
                   }
                 },

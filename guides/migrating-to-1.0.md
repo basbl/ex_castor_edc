@@ -145,7 +145,7 @@ Every 0.4 function has a 1.0 replacement, apart from the two at the end of the t
 | `StudyProtocol.SurveyForms.list/4`, `find/5` | `CastorEDC.Surveys.list_survey_forms/4`, `get_survey_form/5` |
 | `StudyProtocol.SurveyPackages.list/3`, `find/3` | `CastorEDC.Surveys.list_survey_packages/3`, `get_survey_package/4` |
 | `DataCollection.Participants.SurveyPackageInstances.patch/5` | none: the endpoint needs the participant app's scope |
-| `create` of `DataCollection.DataEntry.StudyDataPoint`, `SurveyDataPoint` or `RepeatingDataDataPoint` with an `"upload_file"` | none: uploading a file with a data point isn't supported |
+| `create` of `DataCollection.DataEntry.StudyDataPoint`, `SurveyDataPoint` or `RepeatingDataDataPoint` with an `"upload_file"` | `CastorEDC.DataPoints.create_study_data_point/6`, `create_survey_data_point/7` or `create_repeating_data_data_point/7` with `"upload_file" => {file name, contents}` in the body, sent as multipart form data |
 
 Every 1.0 function takes options last, so its arity is one more than its arguments; the table counts them.
 

@@ -209,10 +209,24 @@ defmodule CastorEDC.Client do
 
   defp body(operation) do
     case Keyword.fetch(operation, :body) do
-      {:ok, body} -> [json: fill_items(body, operation[:fill_items], operation[:path_params] || %{})]
+      {:ok, body} -> encode_body(fill_items(body, operation[:fill_items], operation[:path_params] || %{}))
       :error -> []
     end
   end
+
+  # A body with a file to upload goes as multipart form data, the rest as
+  # JSON.
+  defp encode_body(%{} = body) when is_map_key(body, "upload_file") or is_map_key(body, :upload_file) do
+    [form_multipart: Enum.map(body, fn {name, value} -> {to_string(name), part(value)} end)]
+  end
+
+  defp encode_body(body), do: [json: body]
+
+  defp part({file_name, contents}) when is_binary(file_name), do: {contents, filename: file_name}
+  defp part(%File.Stream{} = stream), do: stream
+  defp part(true), do: "1"
+  defp part(false), do: "0"
+  defp part(value), do: to_string(value)
 
   # The API wants some keys in every item of a list although the path
   # already says them, such as each repeating data value's instance.

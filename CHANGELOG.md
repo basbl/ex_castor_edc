@@ -8,11 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Uploading a file as a data point's value: `create_study_data_point`, `create_survey_data_point` and `create_repeating_data_data_point` take `"upload_file" => {file name, contents}` (or a `File.Stream`) in the body, which then goes as multipart form data. 1.0.0-rc.1 didn't support uploads.
 - `CastorEDC.time_zone/1`, the time zone of a client's server, which the API's times without a zone are local to, and the `:time_zone` option of `CastorEDC.new/1` (or `CASTOR_EDC_TIME_ZONE`) to set it for a private server. Castor EDC's public servers' zones are built in.
 
 ### Changed
 
-- Options of the same kind take the same kind of value: `:archived` and `:validations` are booleans everywhere (the client sends 1 or 0 where the API takes an integer), `:include` is a list everywhere, and `list_participants`' site filter is `:site_id`, as it takes one site. `list_participant_repeating_data_data_points`' `:enable_pagination` is gone, as is `upload_file` in single data point writes, which the client never sent as a file.
+- Options of the same kind take the same kind of value: `:archived` and `:validations` are booleans everywhere (the client sends 1 or 0 where the API takes an integer), `:include` is a list everywhere, and `list_participants`' site filter is `:site_id`, as it takes one site. `list_participant_repeating_data_data_points`' `:enable_pagination` is gone.
 - A 404 is an empty page only when it's the API's answer for no repeating data instances: a participant that doesn't exist was an empty page too, and is an error now.
 - `CastorEDC.Error` has `export_ids` and `result` for errors the client makes itself, and lists its own codes. The export errors carry the exports' IDs in `export_ids` (an `:export_timeout`'s pending IDs were in `details` as messages) and the export in `result` (it was in `body`), and `:not_saved` the write's result in `result`. `body` and `details` are only ever what the API sent.
 - Creating sites and repeating data instances answers like a bulk data point write, and the client now treats it alike: `CastorEDC.Model.SiteCollection` and `RepeatingDataInstanceCollection` list what was created under `saved` (it was `success`), and `create_site!/4` and `create_repeating_data_instances!/5` raise a `CastorEDC.Error` with `code: :not_saved` when anything wasn't, as the data point `!` functions do.

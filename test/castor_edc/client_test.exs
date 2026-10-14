@@ -59,6 +59,21 @@ defmodule CastorEDC.ClientTest do
       end
     end
 
+    test "sends a body with a file to upload as multipart form data" do
+      body = %{"upload_file" => {"report.pdf", "%PDF"}, "change_reason" => "Scanned", "confirmed_changes" => true}
+      Client.request(client(json(%{}, status: 201)), operation(method: :post, body: body, decode: nil))
+
+      request = assert_requested()
+      assert [content_type] = request.headers["content-type"]
+      assert content_type =~ "multipart/form-data"
+
+      sent = request.body |> Enum.to_list() |> IO.iodata_to_binary()
+      assert sent =~ ~s(name="upload_file"; filename="report.pdf")
+      assert sent =~ "%PDF"
+      assert sent =~ ~s(name="change_reason") <> "\r\n\r\nScanned"
+      assert sent =~ ~s(name="confirmed_changes") <> "\r\n\r\n1"
+    end
+
     test "sends repeated parameters as one key per value" do
       operation =
         operation(query_names: %{site_ids: "siteId[]"}, repeated_params: [:site_ids], query: [site_ids: ["a", "b"]])

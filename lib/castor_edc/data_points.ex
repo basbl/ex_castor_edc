@@ -55,6 +55,7 @@ defmodule CastorEDC.DataPoints do
       * `change_reason` (string) - Required change reason when changing an existing data point that is verified or signed, or when GCP is enabled and there is already a data point that is being changed.
       * `confirmed_changes` (boolean) - Required when changing an existing data point that is verified or signed. Note that you also have to provide "change_reason".
       * `field_value` (string) - The value. If empty, it will clear any stored value, including uploaded files.
+      * `upload_file` (string) - A file to upload as the value, instead of field_value: `{file name, contents}` or a `File.Stream`. The request then goes as multipart form data. The upload limit is 2 MB.
 
   Every option is passed to `Req`.
   """
@@ -144,6 +145,7 @@ defmodule CastorEDC.DataPoints do
       * `change_reason` (string) - Required change reason when changing an existing data point that is verified or signed, or when GCP is enabled and there is already a data point that is being changed.
       * `confirmed_changes` (boolean) - Required when changing an existing data point that is verified or signed. Note that you also have to provide "change_reason".
       * `field_value` (string) - The value. If empty, it will clear any stored value, including uploaded files.
+      * `upload_file` (string) - A file to upload as the value, instead of field_value: `{file name, contents}` or a `File.Stream`. The request then goes as multipart form data. The upload limit is 2 MB.
 
   Every option is passed to `Req`.
   """
@@ -194,6 +196,7 @@ defmodule CastorEDC.DataPoints do
     * `body` - a map, sent as JSON
       * `change_reason` (string) - Required change reason when GCP is enabled and there is already a data point that is being changed.
       * `field_value` (string) - The value. If empty, it will clear any stored value, including uploaded files.
+      * `upload_file` (string) - A file to upload as the value, instead of field_value: `{file name, contents}` or a `File.Stream`. The request then goes as multipart form data. The upload limit is 2 MB.
 
   Every option is passed to `Req`.
   """
