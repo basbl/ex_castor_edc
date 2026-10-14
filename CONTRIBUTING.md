@@ -50,6 +50,11 @@ A study that has never been live allows only ten participants, so once it has th
 
 `mix castor_edc.fixtures.record` re-records `test/fixtures/` from the same study; commit a refresh on its own.
 
+## Notebook
+
+`notebook/getting_started.livemd` installs the published version.
+To run it against your checkout, start Livebook with `CASTOR_EDC_PATH` set to the checkout's path.
+
 ## Commits
 
 Each commit is one logical change that leaves the build green.
