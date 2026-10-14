@@ -57,7 +57,8 @@ When a route's rate limit is used up, the client waits for it to reset; see `Cas
 `CastorEDC.Export` queues a batch export, waits for it and downloads it, in one call:
 
 ```elixir
-{:ok, export} = CastorEDC.Export.participant_data(client, study_id, into: "exports/", unzip: true)
+{:ok, export} =
+  CastorEDC.Export.participant_data(client, study_id, into: "exports/", unzip: true)
 export.files
 ```
 

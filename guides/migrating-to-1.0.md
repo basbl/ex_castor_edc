@@ -22,14 +22,16 @@ end
 In 0.4, you built a client and then authenticated it:
 
 ```elixir
-client = CastorEDC.Client.new(%{client_id: id, client_secret: secret}, endpoint: "https://us.castoredc.com/")
+client =
+  CastorEDC.Client.new(%{client_id: id, client_secret: secret}, endpoint: "https://us.castoredc.com/")
 {:ok, client} = CastorEDC.authenticate(client)
 ```
 
 In 1.0, `CastorEDC.new/1` builds a client that authenticates itself: it fetches an access token with the first request, renews it before it expires, and retries once with a new token if the API turns one down.
 
 ```elixir
-client = CastorEDC.new(client_id: id, client_secret: secret, base_url: "https://us.castoredc.com")
+client =
+  CastorEDC.new(client_id: id, client_secret: secret, base_url: "https://us.castoredc.com")
 ```
 
 - The credentials and server can also come from the application environment (`config :ex_castor_edc, client_id: ..., client_secret: ..., base_url: ...`) or from the `CASTOR_EDC_CLIENT_ID`, `CASTOR_EDC_CLIENT_SECRET` and `CASTOR_EDC_BASE_URL` environment variables, so `CastorEDC.new()` is often enough.
@@ -54,7 +56,8 @@ Every function also accepts the options to build a client with, instead of the c
 1.0 returns `{:ok, result}` or `{:error, %CastorEDC.Error{}}`, and each function has a `!` variant that returns the result or raises:
 
 ```elixir
-{:ok, %CastorEDC.Page{entries: participants}} = CastorEDC.Participants.list_participants(client, study_id)
+{:ok, %CastorEDC.Page{entries: participants}} =
+  CastorEDC.Participants.list_participants(client, study_id)
 participants = CastorEDC.Participants.list_participants!(client, study_id).entries
 ```
 
@@ -102,7 +105,8 @@ See `CastorEDC.RateLimit`.
 1.0 runs the API's batch exports in one call per type, which queues the export, waits for it and downloads it:
 
 ```elixir
-{:ok, export} = CastorEDC.Export.participant_data(client, study_id, into: "exports/", unzip: true)
+{:ok, export} =
+  CastorEDC.Export.participant_data(client, study_id, into: "exports/", unzip: true)
 export.files
 ```
 
