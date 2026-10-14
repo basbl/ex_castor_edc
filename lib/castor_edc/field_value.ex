@@ -17,7 +17,7 @@ defmodule CastorEDC.FieldValue do
   | `numberdate` | `"5;07-10-2026"` | `{number, date}`, either of which can be `nil` |
   | `radio`, `dropdown` | the chosen option's value, such as `"2"` | the value, as a string |
   | `checkbox` | the checked options' values, such as `"0;1"` | a list of the values |
-  | `grid` | JSON, row by column: `{"0":{"0":"5"}}` | `%{row => %{column => cell}}`, with integer rows and columns, and each cell decoded like text |
+  | `grid` (the API doesn't take grid values in writes) | JSON, row by column: `{"0":{"0":"5"}}` | `%{row => %{column => cell}}`, with integer rows and columns; given the field, each cell decoded by its row's or column's type from the grid's layout, and like text otherwise |
   | `upload` | `"-- Uploaded File: scan.pdf --"` from single data points, `"- - Uploaded file - -"` when the name can't be read, or JSON with the name base64-encoded (`{"file_name":"c2Nhbi5wZGY=",...}`) from the lists | `{:upload, name}`, with `nil` for an unknown name |
   | `geolocation` | `"52.36;4.90"` | `{latitude, longitude}` |
   | `string`, `textarea` and others | text | the string |
@@ -90,7 +90,7 @@ defmodule CastorEDC.FieldValue do
     with nil <- MissingValue.parse(raw) do
       case read(type(field), raw) do
         {:ok, value} ->
-          value
+          typed_cells(value, field)
 
         :error ->
           warn(raw, field)
@@ -98,6 +98,32 @@ defmodule CastorEDC.FieldValue do
       end
     end
   end
+
+  # A grid's layout (its field's summary template) gives each row, or each
+  # column, a field type; its cells decode as that type when the field is
+  # given, and as text otherwise.
+  defp typed_cells(grid, %Field{field_type: "grid", field_summary_template: template})
+       when is_map(grid) and is_binary(template) do
+    case JSON.decode(template) do
+      {:ok, %{"type" => by, "fieldTypes" => types}} when by in ["row", "column"] and is_list(types) ->
+        Map.new(grid, fn {row, cells} ->
+          {row,
+           Map.new(cells, fn {column, cell} ->
+             {column, retype(cell, Enum.at(types, if(by == "row", do: row, else: column)))}
+           end)}
+        end)
+
+      _other ->
+        grid
+    end
+  end
+
+  defp typed_cells(value, _field), do: value
+
+  defp retype(cell, type) when is_binary(cell) and is_binary(type) and type not in ["", "string", "textarea"],
+    do: decode(cell, type)
+
+  defp retype(cell, _type), do: cell
 
   @doc """
   The name of the option with the given value, as the user saw it.

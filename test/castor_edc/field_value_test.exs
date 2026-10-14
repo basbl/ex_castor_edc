@@ -166,6 +166,26 @@ defmodule CastorEDC.FieldValueTest do
       assert FieldValue.decode(~s({"a":{"b":7,"c":null}}), "grid") == %{"a" => %{"b" => "7", "c" => nil}}
     end
 
+    test "decodes a grid's cells by the types its layout gives each row or column" do
+      raw = ~s({"0":{"0":"a","1":"b"},"1":{"0":"4","1":"5.5"},"2":{"0":"01-10-2026","1":""}})
+      by_row = ~s({"type":"row","fieldTypes":["string","numeric","date"]})
+      field = %Field{field_type: "grid", field_summary_template: by_row}
+
+      assert FieldValue.decode(raw, field) == %{
+               0 => %{0 => "a", 1 => "b"},
+               1 => %{0 => 4, 1 => 5.5},
+               2 => %{0 => ~D[2026-10-01], 1 => nil}
+             }
+
+      by_column = ~s({"type":"column","fieldTypes":["string","numeric"]})
+      assert %{1 => %{0 => "4", 1 => 5.5}} = FieldValue.decode(raw, %{field | field_summary_template: by_column})
+
+      # Without a layout, or with one it can't read, cells stay text.
+      assert %{1 => %{0 => "4"}} = FieldValue.decode(raw, "grid")
+      assert %{1 => %{0 => "4"}} = FieldValue.decode(raw, %{field | field_summary_template: "not json"})
+      assert %{1 => %{0 => "4"}} = FieldValue.decode(raw, %{field | field_summary_template: nil})
+    end
+
     test "decodes an upload as the file's name" do
       assert FieldValue.decode("-- Uploaded File: scan 1.pdf --", "upload") == {:upload, "scan 1.pdf"}
       assert FieldValue.decode("- - Uploaded file - -", "upload") == {:upload, nil}
