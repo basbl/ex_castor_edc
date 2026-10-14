@@ -1315,6 +1315,8 @@ defmodule CastorEDC.DataPoints do
         * `field_value` (string, required) - The value
         * `instance_id` (string, required) - The Survey(Package)InstanceId to save the data-points for
 
+      Each item of `data` that has no `instance_id` gets `survey_instance_id`, so it doesn't need repeating.
+
   Every option is passed to `Req`.
 
   Returns what was saved and what wasn't; the `!` variant raises a `CastorEDC.Error` when anything wasn't.
@@ -1366,6 +1368,8 @@ defmodule CastorEDC.DataPoints do
         * `field_id` (string, required) - The field identifier
         * `field_value` (string, required) - The value
         * `instance_id` (string, required) - The Survey(Package)InstanceId to save the data-points for
+
+      Each item of `data` that has no `instance_id` gets `survey_package_instance_id`, so it doesn't need repeating.
 
   Every option is passed to `Req`.
 
@@ -1725,6 +1729,7 @@ defmodule CastorEDC.DataPoints do
       query_names: %{},
       body: body,
       partial_success: true,
+      fill_items: %{"data" => %{"instance_id" => "survey_instance_id"}},
       decode: DataPointsResult
     ]
   end
@@ -1739,6 +1744,7 @@ defmodule CastorEDC.DataPoints do
       query_names: %{},
       body: body,
       partial_success: true,
+      fill_items: %{"data" => %{"instance_id" => "survey_package_instance_id"}},
       decode: DataPointsResult
     ]
   end

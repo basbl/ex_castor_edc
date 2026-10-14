@@ -149,6 +149,23 @@ defmodule CastorEDC.ClientTest do
       assert sent.(%{"data" => ["not a map"]}) == %{"data" => ["not a map"]}
     end
 
+    test "fills the instance of repeating data and survey writes from their path" do
+      body = %{"data" => [%{"field_id" => "F1", "field_value" => "1"}]}
+
+      sent = fn write ->
+        write.(client(json(%{"success" => [], "failed" => []}, status: 201)))
+        assert_requested().body |> IO.iodata_to_binary() |> JSON.decode!()
+      end
+
+      for write <- [
+            &CastorEDC.DataPoints.upsert_repeating_data_instance_data_points(&1, "S1", "P1", "I1", body),
+            &CastorEDC.DataPoints.upsert_survey_instance_data_points(&1, "S1", "P1", "I1", body),
+            &CastorEDC.DataPoints.upsert_survey_package_instance_data_points(&1, "S1", "P1", "I1", body)
+          ] do
+        assert %{"data" => [%{"instance_id" => "I1"}]} = sent.(write)
+      end
+    end
+
     test "marks the request with its route for rate limiting" do
       Client.request(client(json(%{})), operation([]))
 

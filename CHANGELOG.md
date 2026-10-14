@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - `CastorEDC.FieldValue.decode/2`, given a grid's field, decodes each cell by the type the grid's layout gives its row or column (numbers, dates and the rest), as `CastorEDC.Tabular` rows do; with just the type name, cells stay text. The docs note that the API doesn't take grid values in writes.
 - Uploading a file as a data point's value: `create_study_data_point`, `create_survey_data_point` and `create_repeating_data_data_point` take `"upload_file" => {file name, contents}` (or a `File.Stream`) in the body, which then goes as multipart form data. 1.0.0-rc.1 didn't support uploads.
+- `CastorEDC.DataPoints.upsert_survey_instance_data_points/6` and `upsert_survey_package_instance_data_points/6` fill in the `instance_id` the API wants in every value from the instance in the path, as `upsert_repeating_data_instance_data_points/6` does.
 - `CastorEDC.time_zone/1`, the time zone of a client's server, which the API's times without a zone are local to, and the `:time_zone` option of `CastorEDC.new/1` (or `CASTOR_EDC_TIME_ZONE`) to set it for a private server. Castor EDC's public servers' zones are built in.
 
 ### Changed

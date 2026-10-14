@@ -11199,6 +11199,11 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-fill-items": {
+          "data": {
+            "instance_id": "survey_instance_id"
+          }
+        },
         "x-castor-module": "DataPoints",
         "x-castor-partial-success": true
       }
@@ -11530,6 +11535,11 @@
         "tags": [
           "data-points"
         ],
+        "x-castor-fill-items": {
+          "data": {
+            "instance_id": "survey_package_instance_id"
+          }
+        },
         "x-castor-module": "DataPoints",
         "x-castor-partial-success": true
       }

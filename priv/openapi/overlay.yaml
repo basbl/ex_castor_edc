@@ -1321,3 +1321,20 @@ actions:
     update:
       x-castor-fill-items:
         data: {instance_id: repeating_data_instance_id}
+
+  - target: $.paths.*[?@.operationId == 'upsert_survey_instance_data_points']
+    description: >-
+      Each value needs its survey instance's ID although the path has it
+      already (confirmed); the client fills it in.
+    update:
+      x-castor-fill-items:
+        data: {instance_id: survey_instance_id}
+
+  - target: $.paths.*[?@.operationId == 'upsert_survey_package_instance_data_points']
+    description: >-
+      Each value needs its survey package instance's ID although the path has
+      it already (confirmed: without it the API answers "Missing the instance
+      id"); the client fills it in.
+    update:
+      x-castor-fill-items:
+        data: {instance_id: survey_package_instance_id}
