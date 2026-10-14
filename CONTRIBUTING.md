@@ -11,6 +11,20 @@ $ lefthook install
 
 [lefthook](https://lefthook.dev) installs a pre-commit hook that runs `mix precommit`, so every commit is compiled, formatted, linted and tested before it's made.
 
+## How it's built
+
+The API's published spec describes it only partly, and sometimes wrongly.
+`priv/openapi/upstream.json` is that spec as published, and `priv/openapi/overlay.yaml` corrects it: names, schemas, paging, error bodies, and what the API really does.
+Two tasks turn them into code:
+
+```console
+$ mix castor_edc.spec.build   # upstream.json and overlay.yaml into priv/openapi/castor_edc.json
+$ mix castor_edc.gen.client   # castor_edc.json into the endpoint modules and response structs
+```
+
+The generated modules sit on a small handwritten core: authentication, rate limits, paging, errors, exports and decoding.
+A weekly workflow fetches the published spec and opens an issue when it drifts.
+
 ## Checks
 
 ```console

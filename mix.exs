@@ -93,9 +93,7 @@ defmodule CastorEDC.MixProject do
       # The CHANGELOG names functions of earlier releases.
       skip_code_autolink_to: [
         "CastorEDC.authenticate/1",
-        "CastorEDC.Client.new/2",
-        "CastorEDC.Client.request/2",
-        "CastorEDC.RateLimit.lookup/1"
+        "CastorEDC.Client.new/2"
       ]
     ]
   end

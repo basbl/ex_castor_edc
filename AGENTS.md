@@ -74,7 +74,7 @@ Don't run `mix castor_edc.spec.fetch` unless asked: it makes a network request, 
 - Replacements take three steps: add the new beside the old, move callers over, delete the old.
 - Subjects are imperative, sentence case, without a prefix or trailing full stop (`Know each server's time zone instead of assuming Amsterdam`).
 - The body, wrapped at about 72 columns, explains why: what was wrong or missing, and what the change does about it; a list of `-` items for several related changes.
-- A user-visible change adds an entry to `CHANGELOG.md` under `## Unreleased` (`Added`, `Changed`, `Fixed`; **Breaking:** where it is) in the same commit, naming the functions and options it affects.
+- A user-visible change adds an entry to `CHANGELOG.md` under the unreleased version at the top (`Added`, `Changed`, `Fixed`; **Breaking:** where it is) in the same commit, naming the functions and options it affects.
 - Don't commit or push unless asked; pull requests are merged without squashing.
 
 ## Docs and prose
