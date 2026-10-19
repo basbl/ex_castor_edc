@@ -961,6 +961,32 @@ actions:
   - target: $.definitions.RepeatingDataInstance.properties.created_on
     description: A date and time as YYYY-MM-DD HH:MM:SS, typed as a plain string.
     update: {x-castor-type: naive_datetime}
+  - target: $.definitions.StudyUser.properties.last_login
+    description: >-
+      A study user's last login arrives as YYYY-MM-DD HH:MM:SS, as a user's
+      does, not as the DateTime object the spec refers to; replaced below.
+    remove: true
+  - target: $.definitions.StudyUser.properties
+    description: A study user's last login, as it arrives.
+    update:
+      last_login: {type: string, x-castor-type: naive_datetime}
+
+  # Shapes the API sends differently
+
+  - target: $.definitions.StudyRecordsStatistics.properties.institutes
+    description: >-
+      The participant count per site is a list of them, not the single
+      object the spec refers to; replaced below.
+    remove: true
+  - target: $.definitions.StudyRecordsStatistics.properties
+    description: The participant count per site, as a list.
+    update:
+      institutes:
+        type: array
+        items: {$ref: '#/definitions/InstituteRecordsStatistics'}
+  - target: $.definitions.FieldOptionGroup.properties.layout
+    description: The layout arrives as `false`, not as the string the spec says.
+    update: {type: [string, boolean]}
 
   # Terminology
   #

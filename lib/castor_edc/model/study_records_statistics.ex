@@ -7,7 +7,7 @@ defmodule CastorEDC.Model.StudyRecordsStatistics do
 
   ## Fields
 
-    * `:institutes` (`t:CastorEDC.Model.InstituteRecordsStatistics.t/0`)
+    * `:institutes` (list of `t:CastorEDC.Model.InstituteRecordsStatistics.t/0`)
     * `:total_count` (integer)
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
   """
@@ -20,7 +20,7 @@ defmodule CastorEDC.Model.StudyRecordsStatistics do
   defstruct [:institutes, :total_count, extra: %{}]
 
   @type t :: %__MODULE__{
-          institutes: InstituteRecordsStatistics.t() | nil,
+          institutes: [InstituteRecordsStatistics.t()] | nil,
           total_count: integer() | nil,
           extra: %{optional(String.t()) => term()}
         }
@@ -31,7 +31,7 @@ defmodule CastorEDC.Model.StudyRecordsStatistics do
     embedded = if is_map(data["_embedded"]), do: data["_embedded"], else: %{}
 
     %__MODULE__{
-      institutes: CastorEDC.Model.one(data["institutes"] || embedded["institutes"], InstituteRecordsStatistics),
+      institutes: CastorEDC.Model.list(data["institutes"] || embedded["institutes"], InstituteRecordsStatistics),
       total_count: data["total_count"],
       extra: data |> Map.drop(@known ++ ["_links", "_embedded"]) |> Map.merge(Map.drop(embedded, @known_embedded))
     }

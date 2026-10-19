@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Fixed
+
+- `CastorEDC.Model.StudyUser`'s `last_login` decodes to a `NaiveDateTime` in the server's time, as the API sends it, instead of staying a string the client couldn't read as a `DateTime`.
+- `CastorEDC.Model.StudyRecordsStatistics`'s `institutes` is a list of `CastorEDC.Model.InstituteRecordsStatistics` structs, one per site, as the API sends it, instead of the maps it arrived as.
+- `CastorEDC.Model.FieldOptionGroup`'s `layout` is documented as any value, as the API sends `false` where the spec says a string.
+
 ## [1.0.0-rc.1] - 2026-10-14
 
 A rewrite on [Req](https://hexdocs.pm/req), with a function for every operation of the API; see the migration guide.
