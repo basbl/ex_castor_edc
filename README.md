@@ -14,7 +14,7 @@ Coming from 0.4? See the [migration guide](guides/migrating-to-1.0.md).
 ```elixir
 def deps do
   [
-    {:ex_castor_edc, "~> 1.0.0-rc.1"}
+    {:ex_castor_edc, "~> 1.0"}
   ]
 end
 ```
