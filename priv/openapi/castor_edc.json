@@ -1899,7 +1899,10 @@
           },
           "layout": {
             "description": "Horizontal or vertical option positioning",
-            "type": "string"
+            "type": [
+              "string",
+              "boolean"
+            ]
           },
           "name": {
             "description": "The FieldOptionGroup name",
@@ -5025,7 +5028,10 @@
       "StudyRecordsStatistics": {
         "properties": {
           "institutes": {
-            "$ref": "#/components/schemas/InstituteRecordsStatistics"
+            "items": {
+              "$ref": "#/components/schemas/InstituteRecordsStatistics"
+            },
+            "type": "array"
           },
           "total_count": {
             "type": "integer"
@@ -5075,7 +5081,8 @@
             "type": "string"
           },
           "last_login": {
-            "$ref": "#/components/schemas/DateTime"
+            "type": "string",
+            "x-castor-type": "naive_datetime"
           },
           "manage_permissions": {
             "$ref": "#/components/schemas/ManagementPermissions"

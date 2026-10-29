@@ -9,7 +9,7 @@ defmodule CastorEDC.Model.FieldOptionGroup do
 
     * `:description` (string) - The FieldOptionGroup description
     * `:id` (string) - Unique identifier of the FieldOptionGroup
-    * `:layout` (string) - Horizontal or vertical option positioning
+    * `:layout` (any) - Horizontal or vertical option positioning
     * `:name` (string) - The FieldOptionGroup name
     * `:options` (list of `t:CastorEDC.Model.FieldOption.t/0`) - The list of FieldOptions that are included in this FieldOptionGroup
     * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
@@ -25,7 +25,7 @@ defmodule CastorEDC.Model.FieldOptionGroup do
   @type t :: %__MODULE__{
           description: String.t() | nil,
           id: String.t() | nil,
-          layout: String.t() | nil,
+          layout: term() | nil,
           name: String.t() | nil,
           options: [FieldOption.t()] | nil,
           extra: %{optional(String.t()) => term()}
