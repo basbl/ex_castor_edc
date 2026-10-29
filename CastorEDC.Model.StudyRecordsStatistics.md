@@ -5,7 +5,7 @@ The `StudyRecordsStatistics` object of the API.
 
 ## Fields
 
-  * `:institutes` (`t:CastorEDC.Model.InstituteRecordsStatistics.t/0`)
+  * `:institutes` (list of `t:CastorEDC.Model.InstituteRecordsStatistics.t/0`)
   * `:total_count` (integer)
   * `:extra` - every key the API sent that this struct doesn't name, under the API's own name.
 
@@ -14,7 +14,7 @@ The `StudyRecordsStatistics` object of the API.
 ```elixir
 @type t() :: %CastorEDC.Model.StudyRecordsStatistics{
   extra: %{optional(String.t()) =&gt; term()},
-  institutes: CastorEDC.Model.InstituteRecordsStatistics.t() | nil,
+  institutes: [CastorEDC.Model.InstituteRecordsStatistics.t()] | nil,
   total_count: integer() | nil
 }
 ```

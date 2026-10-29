@@ -11,7 +11,7 @@ The `StudyUser` object of the API.
   * `:entity_id` (string)
   * `:full_name` (string)
   * `:id` (string)
-  * `:last_login` (`DateTime`) - A DateTime in the server's time zone (see CastorEDC.time_zone/1); compare it with DateTime.compare/2.
+  * `:last_login` (`NaiveDateTime`)
   * `:manage_permissions` (`t:CastorEDC.Model.ManagementPermissions.t/0`)
   * `:name_first` (string)
   * `:name_last` (string)
@@ -31,7 +31,7 @@ The `StudyUser` object of the API.
   extra: %{optional(String.t()) =&gt; term()},
   full_name: String.t() | nil,
   id: String.t() | nil,
-  last_login: DateTime.t() | nil,
+  last_login: NaiveDateTime.t() | nil,
   manage_permissions: CastorEDC.Model.ManagementPermissions.t() | nil,
   name_first: String.t() | nil,
   name_last: String.t() | nil,
