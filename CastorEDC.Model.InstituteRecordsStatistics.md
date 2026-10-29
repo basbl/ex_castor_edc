@@ -1,5 +1,5 @@
 # `CastorEDC.Model.InstituteRecordsStatistics`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/model/institute_records_statistics.ex#L4)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/model/institute_records_statistics.ex#L4)
 
 The `InstituteRecordsStatistics` object of the API.
 

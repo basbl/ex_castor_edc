@@ -1,5 +1,5 @@
 # `CastorEDC.FieldValue`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/field_value.ex#L1)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/field_value.ex#L1)
 
 Turns the values of data points into Elixir values.
 

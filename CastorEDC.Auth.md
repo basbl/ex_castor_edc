@@ -1,5 +1,5 @@
 # `CastorEDC.Auth`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/auth.ex#L1)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/auth.ex#L1)
 
 Gets and keeps access tokens for clients built from client credentials.
 

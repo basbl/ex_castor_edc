@@ -5,14 +5,14 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.40.4">
-    <meta name="project" content="ExCastorEDC v1.0.0-rc.1">
+    <meta name="project" content="ExCastorEDC v1.0.0">
 
 
-    <title>Migrating from 0.4 to 1.0 — ExCastorEDC v1.0.0-rc.1</title>
+    <title>Migrating from 0.4 to 1.0 — ExCastorEDC v1.0.0</title>
 
     <link rel="stylesheet" href="dist/html-elixir-RXHHCTJW.css" />
 
-    <script defer src="dist/sidebar_items-2BF14A89.js"></script>
+    <script defer src="dist/sidebar_items-CE7372EB.js"></script>
     <script defer src="docs_config.js"></script>
     <script defer src="dist/html-MI33G4N7.js"></script>
 
@@ -37,7 +37,7 @@
 ExCastorEDC
         </a>
         <div class="sidebar-projectVersion" translate="no">
-          v1.0.0-rc.1
+          v1.0.0
         </div>
       </div>
     </div>
@@ -100,7 +100,7 @@ ExCastorEDC
 </a>
 
 
-      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/guides/migrating-to-1.0.md#L1" title="View Source" class="icon-action" rel="help nofollow">
+      <a href="https://github.com/basbl/ex_castor_edc/blob/1.0.0/guides/migrating-to-1.0.md#L1" title="View Source" class="icon-action" rel="help nofollow">
         <i class="ri-code-s-slash-line" aria-hidden="true"></i>
         <span class="sr-only">View Source</span>
       </a>
@@ -113,7 +113,7 @@ Every operation of the API has a function now, generated from a corrected copy o
 This guide takes a 0.4 program to 1.0: the client, the shape of results, each function's replacement, and what's new.</p><h2 id="requirements" class="section-heading"><a href="#requirements" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Requirements</span></h2><p>1.0 needs Elixir 1.20 or later.
 Tesla, Hackney and Jason are no longer dependencies; drop any configuration you had for them.</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="group-1">do</span><span class="w">
   </span><span class="p" data-group-id="group-2">[</span><span class="w">
-    </span><span class="p" data-group-id="group-3">{</span><span class="ss">:ex_castor_edc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 1.0.0-rc.1&quot;</span><span class="p" data-group-id="group-3">}</span><span class="w">
+    </span><span class="p" data-group-id="group-3">{</span><span class="ss">:ex_castor_edc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 1.0&quot;</span><span class="p" data-group-id="group-3">}</span><span class="w">
   </span><span class="p" data-group-id="group-2">]</span><span class="w">
 </span><span class="k" data-group-id="group-1">end</span></code></pre><h2 id="the-client" class="section-heading"><a href="#the-client" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">The client</span></h2><p>In 0.4, you built a client and then authenticated it:</p><pre><code class="makeup elixir" translate="no"><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w">
   </span><span class="nc">CastorEDC.Client</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="group-1">(</span><span class="p" data-group-id="group-2">%{</span><span class="ss">client_id</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="ss">client_secret</span><span class="p">:</span><span class="w"> </span><span class="n">secret</span><span class="p" data-group-id="group-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://us.castoredc.com/&quot;</span><span class="p" data-group-id="group-1">)</span><span class="w">
@@ -177,11 +177,11 @@ Changelog
         <p>
 
             <span class="line">
-              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1">Hex Package</a>
+              <a href="https://hex.pm/packages/ex_castor_edc/1.0.0">Hex Package</a>
 
-              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1">Hex Preview</a>
+              <a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0">Hex Preview</a>
 
-                (<a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0-rc.1/show/guides/migrating-to-1.0.md">current file</a>)
+                (<a href="https://preview.hex.pm/preview/ex_castor_edc/1.0.0/show/guides/migrating-to-1.0.md">current file</a>)
 
             </span>
 

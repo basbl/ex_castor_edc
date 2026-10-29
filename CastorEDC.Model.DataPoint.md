@@ -1,5 +1,5 @@
 # `CastorEDC.Model.DataPoint`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/model/data_point.ex#L4)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/model/data_point.ex#L4)
 
 A stored value of one field, for a participant, in the context of the study, a survey (package) instance or a repeating data instance.
 

@@ -1,5 +1,5 @@
 # `CastorEDC.Model.SurveyPackageInstance`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/model/survey_package_instance.ex#L4)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/model/survey_package_instance.ex#L4)
 
 The SurveyPackageInstance is an instantiation of a SurveyPackage,
 a real copy a SurveyPackage that gets sent to survey participants.

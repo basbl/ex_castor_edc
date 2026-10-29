@@ -1,4 +1,4 @@
-# ExCastorEDC v1.0.0-rc.1 - API Reference
+# ExCastorEDC v1.0.0 - API Reference
 
 ## Modules
 

@@ -4,7 +4,9 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [1.0.0] - 2026-10-29
+
+The first stable release: 1.0.0-rc.1, with these fixes.
 
 ### Fixed
 
@@ -99,6 +101,7 @@ A rewrite on [Req](https://hexdocs.pm/req), with a function for every operation 
 
 - Initial release.
 
+[1.0.0]: https://hex.pm/packages/ex_castor_edc/1.0.0
 [1.0.0-rc.1]: https://hex.pm/packages/ex_castor_edc/1.0.0-rc.1
 [0.4.1]: https://hex.pm/packages/ex_castor_edc/0.4.1
 [0.4.0]: https://hex.pm/packages/ex_castor_edc/0.4.0

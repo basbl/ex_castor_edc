@@ -1,5 +1,5 @@
 # `CastorEDC.PartialDate`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/partial_date.ex#L1)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/partial_date.ex#L1)
 
 A date whose day, or day and month, may be unknown.
 

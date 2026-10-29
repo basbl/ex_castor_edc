@@ -1,5 +1,5 @@
 # `CastorEDC.Error`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/error.ex#L1)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/error.ex#L1)
 
 A failed request: one the API refused, one that never got an answer, or
 one the client gave up on.

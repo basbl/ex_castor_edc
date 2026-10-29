@@ -1,5 +1,5 @@
 # `CastorEDC.Model.FieldDependency`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/model/field_dependency.ex#L4)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/model/field_dependency.ex#L4)
 
 The `FieldDependency` object of the API.
 

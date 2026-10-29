@@ -4,7 +4,7 @@
 # The published version, or the checkout CASTOR_EDC_PATH names.
 castor_edc =
   case System.get_env("CASTOR_EDC_PATH") do
-    nil -> {:ex_castor_edc, "~> 1.0.0-rc.1"}
+    nil -> {:ex_castor_edc, "~> 1.0"}
     path -> {:ex_castor_edc, path: path}
   end
 

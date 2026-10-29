@@ -1,5 +1,5 @@
 # `CastorEDC.Model.RepeatingDataInstance`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/model/repeating_data_instance.ex#L4)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/model/repeating_data_instance.ex#L4)
 
 The repeating data instance is an instantiation of repeating data,
 a real copy of repeating data to which the data points get saved.

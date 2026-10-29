@@ -1,5 +1,5 @@
 # `CastorEDC.RateLimit`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/rate_limit.ex#L1)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/rate_limit.ex#L1)
 
 Keeps track of the API's rate limits.
 

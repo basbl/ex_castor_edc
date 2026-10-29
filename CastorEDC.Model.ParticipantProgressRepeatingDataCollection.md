@@ -1,5 +1,5 @@
 # `CastorEDC.Model.ParticipantProgressRepeatingDataCollection`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/model/participant_progress_repeating_data_collection.ex#L4)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/model/participant_progress_repeating_data_collection.ex#L4)
 
 The `ParticipantProgressRepeatingDataCollection` object of the API.
 

@@ -12,7 +12,7 @@ Tesla, Hackney and Jason are no longer dependencies; drop any configuration you 
 ```elixir
 def deps do
   [
-    {:ex_castor_edc, "~> 1.0.0-rc.1"}
+    {:ex_castor_edc, "~> 1.0"}
   ]
 end
 ```

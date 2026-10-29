@@ -1,5 +1,5 @@
 # `CastorEDC.Model.ManagementPermissions`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/model/management_permissions.ex#L4)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/model/management_permissions.ex#L4)
 
 The `ManagementPermissions` object of the API.
 

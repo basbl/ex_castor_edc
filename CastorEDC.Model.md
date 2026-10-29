@@ -1,5 +1,5 @@
 # `CastorEDC.Model`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/model.ex#L1)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/model.ex#L1)
 
 The structs responses are decoded into, and the helpers that decode them.
 

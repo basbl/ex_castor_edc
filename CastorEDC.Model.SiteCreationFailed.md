@@ -1,5 +1,5 @@
 # `CastorEDC.Model.SiteCreationFailed`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/model/site_creation_failed.ex#L4)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/model/site_creation_failed.ex#L4)
 
 The `SiteCreationFailed` object of the API.
 

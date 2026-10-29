@@ -1,5 +1,5 @@
 # `CastorEDC.Metadata`
-[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0-rc.1/lib/castor_edc/metadata.ex#L4)
+[🔗](https://github.com/basbl/ex_castor_edc/blob/1.0.0/lib/castor_edc/metadata.ex#L4)
 
 Metadata attached to a study's elements, and the types of metadata.
 
